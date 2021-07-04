@@ -1,0 +1,255 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\app.png" />
+    <None Remove="Resources\appExit.png" />
+    <None Remove="Resources\appHelp.png" />
+    <None Remove="Resources\appInfo.png" />
+    <None Remove="Resources\appPrint.png" />
+    <None Remove="Resources\appRedo.png" />
+    <None Remove="Resources\appSave.png" />
+    <None Remove="Resources\appSettings.png" />
+    <None Remove="Resources\appUndo.png" />
+    <None Remove="Resources\Logo.gif" />
+    <None Remove="Resources\logo.ico" />
+    <None Remove="Resources\metadata.png" />
+    <None Remove="Resources\metadataCategory.png" />
+    <None Remove="Resources\metadataCategoryExport.png" />
+    <None Remove="Resources\metadataCategoryImport.png" />
+    <None Remove="Resources\metadataCategoryReport.png" />
+    <None Remove="Resources\metadataCountry.png" />
+    <None Remove="Resources\metadataCountryExport.png" />
+    <None Remove="Resources\metadataCountryImport.png" />
+    <None Remove="Resources\metadataCountryReport.png" />
+    <None Remove="Resources\metadataCurency.png" />
+    <None Remove="Resources\metadataCurencyExport.png" />
+    <None Remove="Resources\metadataCurencyImport.png" />
+    <None Remove="Resources\metadataCurencyReport.png" />
+    <None Remove="Resources\metadataProducts.png" />
+    <None Remove="Resources\metadataProductsExport.png" />
+    <None Remove="Resources\metadataProductsImport.png" />
+    <None Remove="Resources\metadataProductsReport.png" />
+    <None Remove="Resources\metadataStorageLocation.png" />
+    <None Remove="Resources\metadataStorageLocationExport.png" />
+    <None Remove="Resources\metadataStorageLocationImport.png" />
+    <None Remove="Resources\metadataStorageLocationReport.png" />
+    <None Remove="Resources\metadataSupplier.png" />
+    <None Remove="Resources\metadataSupplierExport.png" />
+    <None Remove="Resources\metadataSupplierImport.png" />
+    <None Remove="Resources\metadataSupplierReport.png" />
+    <None Remove="Resources\metadataWorktype.png" />
+    <None Remove="Resources\metadataWorktypeExport.png" />
+    <None Remove="Resources\metadataWorktypeImport.png" />
+    <None Remove="Resources\metadataWorktypeReport.png" />
+    <None Remove="Resources\options.png" />
+    <None Remove="Resources\projectEdit.png" />
+    <None Remove="Resources\projectExport.png" />
+    <None Remove="Resources\projectImport.png" />
+    <None Remove="Resources\projectManagement.png" />
+    <None Remove="Resources\projectReport.png" />
+    <None Remove="Resources\storageManagement.png" />
+    <None Remove="Resources\storageOrder.png" />
+    <None Remove="Resources\storageRecieve.png" />
+    <None Remove="Resources\storageReportOrders.png" />
+    <None Remove="Resources\storageReportOverview.png" />
+    <None Remove="Resources\storageReportRecieve.png" />
+    <None Remove="Resources\storageReports.png" />
+    <None Remove="Resources\storageReportUsage.png" />
+    <None Remove="Resources\timeEdit.png" />
+    <None Remove="Resources\timeExport.png" />
+    <None Remove="Resources\timeImport.png" />
+    <None Remove="Resources\timeManagement.png" />
+    <None Remove="Resources\timeReport.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\app.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appExit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appInfo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appPrint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appSave.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appSettings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\appUndo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Logo.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadata.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCategory.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCategoryExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCategoryImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCategoryReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCountry.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCountryExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCountryImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCountryReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCurency.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCurencyExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCurencyImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataCurencyReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataProducts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataProductsExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataProductsImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataProductsReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataStorageLocation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataStorageLocationExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataStorageLocationImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataStorageLocationReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataSupplier.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataSupplierExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataSupplierImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataSupplierReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataWorktype.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataWorktypeExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataWorktypeImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataWorktypeReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\options.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\projectEdit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\projectExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\projectImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\projectManagement.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\projectReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageManagement.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageOrder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageRecieve.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageReportOrders.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageReportOverview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageReportRecieve.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageReports.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageReportUsage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\timeEdit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\timeExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\timeImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\timeManagement.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\timeReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
