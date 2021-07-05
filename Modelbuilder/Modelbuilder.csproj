@@ -66,6 +66,14 @@
     <None Remove="Resources\timeImport.png" />
     <None Remove="Resources\timeManagement.png" />
     <None Remove="Resources\timeReport.png" />
+    <None Remove="Resources\toolbarAdd.png" />
+    <None Remove="Resources\toolbarCancel.png" />
+    <None Remove="Resources\toolbarDelete.png" />
+    <None Remove="Resources\toolbarEnd.png" />
+    <None Remove="Resources\toolbarLeft.png" />
+    <None Remove="Resources\toolbarRight.png" />
+    <None Remove="Resources\toolbarSave.png" />
+    <None Remove="Resources\toolbarStart.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -89,6 +97,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\appRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarAdd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarCancel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarDelete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarEnd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarSave.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\appSave.png">
@@ -248,6 +277,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\timeReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarStart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
