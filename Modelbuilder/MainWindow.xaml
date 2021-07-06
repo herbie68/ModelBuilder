@@ -107,7 +107,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationImport.png" Header="Importeer Locaties"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationExport.png" Header="Exporteer Locaties"/>
                     </RibbonSplitButton>
-                    <RibbonSplitButton Label="Valuta" SmallImageSource=".\Resources\metadataCurency.png">
+                    <RibbonSplitButton Label="Valuta" SmallImageSource=".\Resources\metadataCurency.png" Click="ShowCurrencyPage">
                         <RibbonMenuItem ImageSource=".\Resources\metadataCurencyImport.png" Header="Importeer Valuta"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataCurencyExport.png" Header="Exporteer Valuta"/>
                     </RibbonSplitButton>

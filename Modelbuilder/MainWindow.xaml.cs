@@ -34,7 +34,13 @@ namespace Modelbuilder
             Main.Content = new metadataCountry();
         }
         #endregion
+        #region Call Currency Page
+        private void ShowCurrencyPage(object sender, RoutedEventArgs e)
+        {
 
+            Main.Content = new metadataCurrency();
+        }
+        #endregion
         #region Exit Application
         private void ApplicationExit_Click(object sender, EventArgs e)
         {
