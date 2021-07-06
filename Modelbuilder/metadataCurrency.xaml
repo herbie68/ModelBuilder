@@ -102,9 +102,61 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFEEEEEE"
-            Text="1,000" 
+            Text="{Binding Amount,Mode=TwoWay,StringFormat={}{0:C}}" 
             PreviewTextInput="NumberValidationTextBox"
-            TextWrapping="NoWrap" CharacterCasing="Normal" InputScope="Number" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            TextWrapping="NoWrap" 
+            CharacterCasing="Normal" 
+            InputScope="Number"
+            HorizontalContentAlignment="Right" 
+            VerticalContentAlignment="Center" />
+
+        <ToolBarTray
+            Width="Auto"
+            Height="37"
+            Margin="20,185,10,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <ToolBar
+                x:Name="generalToolbar"
+                Width="90"
+                Height="27"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+
+                <Button ToolTip="Land toevoegen aan de tabel"
+                        Click="ToolbarButtonNew">
+                    <Image Source=".\Resources\toolbarAdd.png" />
+                </Button>
+                <Button ToolTip="Land verwijderen uit de tabel"
+                        Click="ToolbarButtonDelete">
+                    <Image Source=".\Resources\toolbarDelete.png" />
+                </Button>
+                <Button ToolTip="Wijzigingen opslaan"
+                        Click="ToolbarButtonSave">
+                    <Image Source=".\Resources\toolbarSave.png" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <DataGrid x:Name="CurrencyCode_DataGrid" ItemsSource="{Binding}"
+                  Margin="10,226,10,0" 
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                  Height="Auto"
+                  AlternatingRowBackground="AliceBlue" 
+                  AutoGenerateColumns="False" 
+                  SelectionChanged="CurrencyCode_DataGrid_SelectionChanged" 
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}"/>
+                <DataGridTextColumn Header="Valuta code" Width="80" Binding="{Binding currency_Code}"/>
+                <DataGridTextColumn Header="Valuta symbool" Width="100" Binding="{Binding currency_Symbol}"/>
+                <DataGridTextColumn Header="Koers" Width="90" Binding="{Binding currency_ConversionRate}"/>
+                <DataGridTextColumn Header="Valuta" Width="*" Binding="{Binding courrency_Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>
