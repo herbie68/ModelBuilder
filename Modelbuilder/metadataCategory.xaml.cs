@@ -3,7 +3,17 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 namespace Modelbuilder
 {
     /// <summary>
@@ -55,7 +65,6 @@ namespace Modelbuilder
                     PopulateTree(row, root);
                 }
             }
-
         }
         public void PopulateTree(DataRow dr, TreeViewItem pNode)
         {
@@ -174,85 +183,9 @@ namespace Modelbuilder
             _ = dbConnection.LoadMySqlData();
 
             //treeViewCategory.Items.Clear();
-            BuildTree();
-
-            //var t = GetTreeViewItem(treeViewCategory, treeViewCategory.SelectedItem);
-
-            //treeViewCategory.Items.Remove(t);
-
-            //textBox1.Text = treeView1.SelectedItem.ToString();
-            //int index = treeViewCategory.Items.IndexOf(treeViewCategory.SelectedItem);
-            //treeViewCategory.Items.RemoveAt(treeViewCategory.Items.IndexOf(item));
-            // treeViewCategory.Items.RemoveAt(treeViewCategory.Items.IndexOf(treeViewCategory.SelectedItem));
-            //treeViewCategory.Items.Remove(treeViewCategory.SelectedItem);
-
-
-            /*
-            // item is null
-            Console.WriteLine(valueFullpath.Text + " --> " + treeViewCategory.SelectedItem.ToString());
-            string[] categories = valueFullpath.Text.Split('\\');
-            Console.WriteLine("Depth of selected categorie: " + categories.Length);
-            int point = 0;
-            foreach (TreeViewItem rootItem in treeViewCategory.Items)
-            {
-                Console.WriteLine(rootItem.ToString());
-                if (rootItem.Tag.ToString() == valueFullpath.Text)
-                {
-                    //TODO: Acttion to delete this category
-                    Console.WriteLine("Selected category is root item" + rootItem.Header.ToString());
-                }
-                else
-                {
-                    //TODO: Search deeper, selected category not found
-                    foreach (TreeViewItem item3 in rootItem.Items)
-                    {
-                        var tempList = getTreeViewItems(item3);
-                        if (item3.Tag.ToString() == valueFullpath.Text)
-                        {
-                            //TODO: Acttion to delete this category
-                            Console.WriteLine("Selected category is root item" + item3.Header.ToString());
-                        }
-                    }
-                }
-
-                if (rootItem.Header.ToString() == categories[point])
-                {
-                    point++;
-                    foreach (TreeViewItem item in rootItem.Items)
-                    {
-                        if (item.Header.ToString() == categories[point])
-                        {
-                            point++;
-                            foreach (TreeViewItem item2 in rootItem.Items)
-                            {
-                                if (item2.Header.ToString() == categories[point])
-                                {
-                                    point++;
-
-
-                                }
-                                Console.WriteLine(item.ToString());
-                            }
-                        }
-                        Console.WriteLine(item.ToString());
-                    }
-                }
-            }
-            treeViewCategory.Items.Remove(treeViewCategory.SelectedItem);
-            */
+            //BuildTree();
         }
-        /// <summary>
-        /// Recursively search for an item in this subtree.
-        /// </summary>
-        /// <param name="container">
-        /// The parent ItemsControl. This can be a TreeView or a TreeViewItem.
-        /// </param>
-        /// <param name="item">
-        /// The item to search for.
-        /// </param>
-        /// <returns>
-        /// The TreeViewItem that contains the specified item.
-        /// </returns>
+
         private TreeViewItem GetTreeViewItem(ItemsControl container, object item)
         {
             if (container != null)
@@ -388,6 +321,7 @@ namespace Modelbuilder
                 this.BringIndexIntoView(index);
             }
         }
+
 
     }
 }

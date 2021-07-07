@@ -10,6 +10,20 @@
     mc:Ignorable="d">
 
     <Grid>
+        <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="0,0,0,5"/>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="0,0,0,5"/>
+                </Style>
+                <Style TargetType="{x:Type TreeView}">
+                    <Setter Property="Margin" Value=" 0,0,0,10"/>
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+        
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
             <Label
@@ -38,52 +52,77 @@
         
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
         <TextBox x:Name="valueFullpath" 
+                 Margin="450,25,0,0"
                  HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter2" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
+                 VerticalAlignment="Top" 
+                 Width="Auto" 
+                 Visibility="Hidden"/>
         <TextBox x:Name="valueId" 
+                 Margin="500,25,0,0"
                  HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter3" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
-        <TextBox x:Name="valueParentFullpath" 
+                 VerticalAlignment="Top" 
+                 Width="Auto" 
+                 Visibility="Hidden"/>
+        <TextBox x:Name="valueParentFullpath"
+                 Margin="550,25,0,0"
                  HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter4" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
-        <TextBox x:Name="valueParentId" 
+                 VerticalAlignment="Top" 
+                 Width="Auto" 
+                 Visibility="Hidden"/>
+        <TextBox x:Name="valueParentId"
+                 Margin="600,25,0,0"
                  HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
+                 VerticalAlignment="Top" 
+                 Width="Auto" 
+                 Visibility="Hidden"/>
+        <TextBox x:Name="valueSelectedItem"
+                 Margin="650,25,0,0"
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 Width="Auto" 
+                 Visibility="Visible"/>
         <!-- End of "Do not remove" part-->
         
+        <StackPanel DockPanel.Dock="Top" x:Name="CategoryPageButtons"
+                    Orientation="Horizontal" 
+                    Height="Auto"
+                    Width="Auto"
+                    Margin="0,5"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+        
         <TreeView x:Name="treeViewCategory" 
+                  SelectedItemChanged="treeViewCategory_SelectedItemChanged"
                   HorizontalAlignment="Left"
-                  ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Width="960" 
                   RenderTransformOrigin="0.5,0.5" 
                   Margin="20,165,0,10">
+            <TreeView.Resources>
+                <ContextMenu x:Key ="SolutionContext"  StaysOpen="true">
+                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
+                    <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory"/>
+                    <MenuItem Header="Rename"/>
+                </ContextMenu>
+                <ContextMenu x:Key="FolderContext"  StaysOpen="true">
+                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
+                    <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory" />
+                    <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategorie"/>
+                    <Separator/>
+                    <MenuItem Header="Copy"/>
+                    <MenuItem Header="Cut"/>
+                    <MenuItem Header="Paste"/>
+                    <MenuItem Header="Move"/>
+                </ContextMenu>
+            </TreeView.Resources>
+
             <TreeView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
