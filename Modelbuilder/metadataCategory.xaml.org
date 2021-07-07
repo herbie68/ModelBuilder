@@ -35,49 +35,6 @@
                 FontSize="16"
                 FontStyle="Italic"/>
         </StackPanel>
-        
-        <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox x:Name="valueFullpath" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter2" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
-        <TextBox x:Name="valueId" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter3" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
-        <TextBox x:Name="valueParentFullpath" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <GridSplitter x:Name="gridSplitter4" 
-                      HorizontalAlignment="Stretch" 
-                      Height="Auto" 
-                      Width="5" 
-                      Background="AliceBlue"/>
-        <TextBox x:Name="valueParentId" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" 
-                 Height="Auto" 
-                 Width="120" 
-                 Visibility="Collapsed"/>
-        <!-- End of "Do not remove" part-->
-        
         <TreeView x:Name="treeViewCategory" 
                   HorizontalAlignment="Left"
                   ScrollViewer.VerticalScrollBarVisibility="Visible" 

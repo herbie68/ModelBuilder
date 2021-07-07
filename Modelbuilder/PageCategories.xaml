@@ -1,0 +1,93 @@
+﻿<Page x:Class="ModelbouwBeheer.PageCategories"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ModelbouwBeheer"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageCategories">
+    <Grid x:Name="categoryPanel">
+        <Border BorderBrush="Gray"
+                Background="AliceBlue"
+                BorderThickness="2">
+        </Border>
+        <DockPanel>
+            <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Margin" Value="0,0,0,5"/>
+                    </Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,0,0,5"/>
+                    </Style>
+                    <Style TargetType="{x:Type TreeView}">
+                        <Setter Property="Margin" Value=" 0,0,0,10"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <StackPanel>
+                    <Label x:Name="labelCategoryPageTitle" Content="Beheer de categoriën" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel x:Name="SelectedCategoryProperties" Background="AliceBlue"
+                    Orientation="Horizontal"  VerticalAlignment="Top" Margin="0,0,0,0">
+
+                    <StackPanel>
+                        <Label x:Name="labelCategoryPageSubTitle" Content="selecteer een categorie en gebruik de rechtermuisknop" FontStyle="Italic"/>
+                    </StackPanel>
+                    <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
+                    <TextBox x:Name="valueFullpath" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="120" Visibility="Collapsed"/>
+                    <GridSplitter x:Name="gridSplitter2" HorizontalAlignment="Stretch" Height="Auto" Width="5" Background="AliceBlue"/>
+                    <TextBox x:Name="valueId" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="120" Visibility="Collapsed"/>
+                    <GridSplitter x:Name="gridSplitter3" HorizontalAlignment="Stretch" Height="Auto" Width="5" Background="AliceBlue"/>
+                    <TextBox x:Name="valueParentFullpath" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="120" Visibility="Collapsed"/>
+                    <GridSplitter x:Name="gridSplitter4" HorizontalAlignment="Stretch" Height="Auto" Width="5" Background="AliceBlue"/>
+                    <TextBox x:Name="valueParentId" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="120" Visibility="Collapsed"/>
+                    <!-- End of "Do not remove" part-->
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" x:Name="CategoryPageButtons"
+                    Orientation="Horizontal" 
+                    Height="Auto"
+                    Width="Auto"
+                    Margin="0,5"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Margin" Value="5,0,0,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+
+                <StackPanel Height="302">
+                    <TreeView x:Name="treeViewCategory" 
+                              SelectedItemChanged="treeViewCategory_SelectedItemChanged" 
+                              RenderTransformOrigin="0.5,0.5" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                              Height="302" VerticalAlignment="Stretch" Margin="0,0,0,10"
+                              VirtualizingStackPanel.IsVirtualizing="True">
+                        <TreeView.Resources>
+                            <ContextMenu x:Key ="SolutionContext"  StaysOpen="true">
+                                <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
+                                <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory"/>
+                                <MenuItem Header="Rename"/>
+                            </ContextMenu>
+                            <ContextMenu x:Key="FolderContext"  StaysOpen="true">
+                                <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
+                                <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory" />
+                                <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategorie"/>
+                                <Separator/>
+                                <MenuItem Header="Copy"/>
+                                <MenuItem Header="Cut"/>
+                                <MenuItem Header="Paste"/>
+                                <MenuItem Header="Move"/>
+                            </ContextMenu>
+                        </TreeView.Resources>
+                    </TreeView>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+</Page>

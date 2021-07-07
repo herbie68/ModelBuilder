@@ -91,7 +91,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataProductsImport.png" Header="Importeer Artikellen"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataProductsExport.png" Header="Exporteer Artikellen"/>
                     </RibbonSplitButton>
-                    <RibbonSplitButton Label="Categoriën" SmallImageSource=".\Resources\metadataCategory.png">
+                    <RibbonSplitButton Label="Categoriën" SmallImageSource=".\Resources\metadataCategory.png" Click="ShowCategoryPage">
                         <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Importeer Categorieën"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Exporteer Categorieën"/>
                     </RibbonSplitButton>

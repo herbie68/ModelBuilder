@@ -41,6 +41,13 @@ namespace Modelbuilder
             Main.Content = new metadataCurrency();
         }
         #endregion
+        #region Call Category Page
+        private void ShowCategoryPage(object sender, RoutedEventArgs e)
+        {
+
+            Main.Content = new metadataCategory();
+        }
+        #endregion
         #region Exit Application
         private void ApplicationExit_Click(object sender, EventArgs e)
         {
