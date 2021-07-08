@@ -177,10 +177,22 @@ namespace Modelbuilder
 
             int ID = int.Parse(valueId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE category_Fullpath LIKE '%" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
+            dbConnection.SqlCommandString = " WHERE category_Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
             dbConnection.TableName = DatabaseTable;
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
+
+            var item = treeViewCategory.SelectedItem as TreeViewItem;
+            var parent = item.Parent as TreeViewItem;
+            if (parent != null)
+            {
+                parent.Items.Remove(item);
+            }
+
+            //treeViewCategory.Items.Remove(treeViewCategory.SelectedItem);
+
+            
+            treeViewCategory.Items.Refresh();
 
             //treeViewCategory.Items.Clear();
             //BuildTree();

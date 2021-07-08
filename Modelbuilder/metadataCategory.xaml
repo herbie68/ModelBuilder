@@ -80,7 +80,7 @@
                  HorizontalAlignment="Left" 
                  VerticalAlignment="Top" 
                  Width="Auto" 
-                 Visibility="Visible"/>
+                 Visibility="Hidden"/>
         <!-- End of "Do not remove" part-->
         
         <StackPanel DockPanel.Dock="Top" x:Name="CategoryPageButtons"
@@ -100,7 +100,7 @@
         <TreeView x:Name="treeViewCategory" 
                   SelectedItemChanged="treeViewCategory_SelectedItemChanged"
                   HorizontalAlignment="Left"
-                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Width="960" 
                   RenderTransformOrigin="0.5,0.5" 
