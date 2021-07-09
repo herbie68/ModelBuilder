@@ -9,6 +9,9 @@
       Title="metadataCurrency">
 
     <Grid>
+        <Grid.DataContext>
+            <local:LocalCurrencyData/>
+        </Grid.DataContext>
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
             <Label
@@ -65,12 +68,12 @@
             Content="Valuta naam" />
         <TextBox
             x:Name="inpCurrencyName"
+            Text=""
             Width="450"
             Margin="170,97,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFEEEEEE"
-            Text=""
             TextWrapping="Wrap" />
 
         <Label

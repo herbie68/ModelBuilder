@@ -53,11 +53,21 @@ namespace Modelbuilder
             {
                 return;
             }
+
+            LocalCurrencyData filldata = new LocalCurrencyData()
+            {
+                localCurrencyId = int.Parse(Row_Selected["currency_Id"].ToString()),
+                localCurrencyCode = Row_Selected["currency_Code"].ToString().ToUpper(),
+                localCurrencyName= Row_Selected["currency_Name"].ToString(),
+                localCurrencySymbol = Row_Selected["currency_Symbol"].ToString(),
+                localCurrencyRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString().Replace(",","."))
+        };
+
             inpCurrencyId.Text = Row_Selected["currency_Id"].ToString();
-            inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString();
+            inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString().ToUpper();
             inpCurrencyName.Text = Row_Selected["currency_Name"].ToString();
             inpCurrencySymbol.Text = Row_Selected["currency_Symbol"].ToString();
-            inpCurrencyRate.Text = Row_Selected["currency_ConversionRate"].ToString();
+            inpCurrencyRate.Text = Row_Selected["currency_ConversionRate"].ToString().Replace(",", ".");
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -76,13 +86,28 @@ namespace Modelbuilder
                 //Database dbConnection = new Database();
                 dbConnection.Connect();
 
+                string tmpCurrencyRate = inpCurrencyRate.Text.Replace(",", ".");
+                if (tmpCurrencyRate.Contains("."))
+                {
+                    // Make ure stored number of decimals is 4
+                    // Count No of 0 to be added to the current decimals in the CurrencyRate
+
+                    // Do Nothing if NoOfZero's = 0 and trim the string if NoOfZeros <0
+                    int noOfZero = 4 - (tmpCurrencyRate.Length - (tmpCurrencyRate.IndexOf('.') + 1));
+                    
+                    tmpCurrencyRate += string.Concat(Enumerable.Repeat("0", noOfZero));
+                }
+                else
+                {
+                    tmpCurrencyRate += ".0000";
+                }
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "currency_Code = '" + inpCurrencyCode.Text + "', " +
+                    "currency_Code = '" + inpCurrencyCode.Text.ToUpper() + "', " +
                     "currency_Name = '" + inpCurrencyName.Text + "', " +
                     "currency_Symbol = '" + inpCurrencySymbol.Text + "', " +
                     "currency_Id = '" + inpCurrencyId + "' WHERE " +
-                    "currency_ConversionRate = " + inpCurrencyRate.Text + ";";
+                    "currency_ConversionRate = " + inpCurrencyRate.Text.Replace(",",".") + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
@@ -156,5 +181,13 @@ namespace Modelbuilder
 
         }
 
+    }
+    public class LocalCurrencyData
+    {
+        public int localCurrencyId { get; set; }
+        public string localCurrencyCode { get; set; }
+        public string localCurrencyName { get; set; }
+        public string localCurrencySymbol { get; set; }
+        public float localCurrencyRate { get; set; }
     }
 }
