@@ -8,110 +8,27 @@
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataCurrency">
 
-    <Grid>
-        <Grid.DataContext>
-            <local:LocalCurrencyData/>
-        </Grid.DataContext>
+    <Grid Margin="0,2,0,-2">
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <Label
-                Margin="10"
-                Content="Valuta"
-                FontSize="20"
-                FontWeight="Bold" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Valuta"/>
             <Canvas>
-                <Path
-                    Canvas.Left="5"
-                    Canvas.Top="-5"
-                    Width="250"
-                    Height="5"
-                    Data="M61,125 L193,28"
-                    Fill="Blue"
-                    Stretch="Fill"
-                    Stroke="Red"
-                    StrokeThickness="5" />
+                <Path Style="{DynamicResource DefaultTitleLine}"/>
             </Canvas>
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label
-            Width="130"
-            Margin="20,68,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Valutacode" />
-        <TextBox
-            x:Name="inpCurrencyCode"
-            Width="50"
-            Margin="170,71,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap" CharacterCasing="Upper" />
-        <TextBox
-            x:Name="inpCurrencyId"
-            Width="50"
-            Margin="270,71,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap"
-            Visibility="Hidden"/>
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="Valutacode" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="Valuta naam" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="Valuta Symbool" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="Omrekenkoers naar €" />
 
-        <Label
-            Width="130"
-            Margin="20,94,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Valuta naam" />
-        <TextBox
-            x:Name="inpCurrencyName"
-            Text=""
-            Width="450"
-            Margin="170,97,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            TextWrapping="Wrap" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyCode"      Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyName"      Width="450" Margin="170,97,0,0" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencySymbol"    Width="50"  Margin="170,123,0,0" />
+        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpCurrencyRate"  Width="50"  Margin="170,149,0,0" PreviewTextInput="NumberValidationTextBox"/>
 
-        <Label
-            Width="130"
-            Margin="20,120,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Valuta Symbool" />
-        <TextBox
-            x:Name="inpCurrencySymbol"
-            Width="50"
-            Margin="170,123,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap" CharacterCasing="Upper" />
-
-        <Label
-            Width="130"
-            Margin="20,146,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Omrekenkoers naar €" />
-        <TextBox
-            x:Name="inpCurrencyRate"
-            Width="50"
-            Margin="170,149,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text="{Binding Amount,Mode=TwoWay,StringFormat={}{0:C}}" 
-            PreviewTextInput="NumberValidationTextBox"
-            TextWrapping="NoWrap" 
-            CharacterCasing="Normal" 
-            InputScope="Number"
-            HorizontalContentAlignment="Right" 
-            VerticalContentAlignment="Center" />
+        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCurrencyId"    Margin="270,71,0,0"/>
 
         <ToolBarTray
             Width="Auto"

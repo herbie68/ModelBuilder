@@ -12,93 +12,25 @@
     <Grid>
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <Label
-                Margin="10"
-                Content="Landen"
-                FontSize="20"
-                FontWeight="Bold" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Landen"/>
             <Canvas>
-                <Path
-                    Canvas.Left="5"
-                    Canvas.Top="-5"
-                    Width="250"
-                    Height="5"
-                    Data="M61,125 L193,28"
-                    Fill="Blue"
-                    Stretch="Fill"
-                    Stroke="Red"
-                    StrokeThickness="5" />
+                <Path Style="{DynamicResource DefaultTitleLine}"/>
             </Canvas>
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label
-            Width="130"
-            Margin="20,68,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Landcode" />
-        <TextBox
-            x:Name="inpCountryCode"
-            Width="50"
-            Margin="170,71,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap" CharacterCasing="Upper" />
-        <TextBox
-            x:Name="inpCountryId"
-            Width="50"
-            Margin="270,71,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap"
-            Visibility="Hidden"/>
-        
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="Landcode" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="Land" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="Standaard Valuta" />
 
-        <Label
-            Width="130"
-            Margin="20,94,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Land" />
-        <TextBox
-            x:Name="inpCountryName"
-            Width="450"
-            Margin="170,97,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryCode"   Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryName"   Width="450" Margin="170,97,0,0" />
 
-        <Label
-            Width="130"
-            Margin="20,120,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Standaard Valuta" />
-        <ComboBox
-            x:Name="cboxCountryCurrency"
-            Width="70"
-            Height="Auto"
-            Margin="170,123,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" 
-            ItemsSource="{Binding CurrencyCollection}"/>
-        <TextBox
-            x:Name="inpCountryCurrencyId"
-            Width="50"
-            Margin="270,123,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFEEEEEE"
-            Text=""
-            TextWrapping="Wrap"
-            Visibility="Hidden"/>
+        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency"  Margin="170,123,780,654"    ItemsSource="{Binding CurrencyCollection}"/>
+
+        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryId"         Margin="270,71,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryCurrencyId" Margin="270,123,0,0" />
+
 
         <ToolBarTray
             Width="Auto"

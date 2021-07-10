@@ -23,66 +23,24 @@
                 </Style>
             </StackPanel.Resources>
         </StackPanel>
-        
+
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <Label
-                Margin="10"
-                Content="Categoriën"
-                FontSize="20"
-                FontWeight="Bold" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Categoriën"/>
             <Canvas>
-                <Path
-                    Canvas.Left="5"
-                    Canvas.Top="-5"
-                    Width="250"
-                    Height="5"
-                    Data="M61,125 L193,28"
-                    Fill="Blue"
-                    Stretch="Fill"
-                    Stroke="Red"
-                    StrokeThickness="5" />
+                <Path Style="{DynamicResource DefaultTitleLine}"/>
             </Canvas>
-            <Label
-                Margin="10"
-                Content="Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop"
-                FontSize="16"
-                FontStyle="Italic"/>
+            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop"/>
         </StackPanel>
-        
+
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox x:Name="valueFullpath" 
-                 Margin="450,25,0,0"
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Width="Auto" 
-                 Visibility="Hidden"/>
-        <TextBox x:Name="valueId" 
-                 Margin="500,25,0,0"
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Width="Auto" 
-                 Visibility="Hidden"/>
-        <TextBox x:Name="valueParentFullpath"
-                 Margin="550,25,0,0"
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Width="Auto" 
-                 Visibility="Hidden"/>
-        <TextBox x:Name="valueParentId"
-                 Margin="600,25,0,0"
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Width="Auto" 
-                 Visibility="Hidden"/>
-        <TextBox x:Name="valueSelectedItem"
-                 Margin="650,25,0,0"
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Width="Auto" 
-                 Visibility="Hidden"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueFullpath"         Margin="450,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueId"               Margin="500,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentFullpath"   Margin="550,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentId"         Margin="600,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSelectedItem"     Margin="650,25,0,0"/>
         <!-- End of "Do not remove" part-->
-        
+
         <StackPanel DockPanel.Dock="Top" x:Name="CategoryPageButtons"
                     Orientation="Horizontal" 
                     Height="Auto"
@@ -96,7 +54,7 @@
                 </Style>
             </StackPanel.Resources>
         </StackPanel>
-        
+
         <TreeView x:Name="treeViewCategory" 
                   SelectedItemChanged="treeViewCategory_SelectedItemChanged"
                   HorizontalAlignment="Left"
@@ -104,7 +62,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Width="960" 
                   RenderTransformOrigin="0.5,0.5" 
-                  Margin="20,165,0,10">
+                  Margin="18,143,0,32">
             <TreeView.Resources>
                 <ContextMenu x:Key ="SolutionContext"  StaysOpen="true">
                     <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
