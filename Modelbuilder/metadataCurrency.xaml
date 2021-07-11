@@ -30,45 +30,22 @@
 
         <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCurrencyId"    Margin="270,71,0,0"/>
 
-        <ToolBarTray
-            Width="Auto"
-            Height="37"
-            Margin="20,185,10,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ToolBar
-                x:Name="generalToolbar"
-                Width="90"
-                Height="27"
-                Margin="10,5,10,5"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top">
-
-                <Button ToolTip="Land toevoegen aan de tabel"
-                        Click="ToolbarButtonNew">
-                    <Image Source=".\Resources\toolbarAdd.png" />
+        <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,185,10,0">
+            <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
+                    <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button ToolTip="Land verwijderen uit de tabel"
-                        Click="ToolbarButtonDelete">
-                    <Image Source=".\Resources\toolbarDelete.png" />
+                <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                    <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button ToolTip="Wijzigingen opslaan"
-                        Click="ToolbarButtonSave">
-                    <Image Source=".\Resources\toolbarSave.png" />
+                <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                    <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
         </ToolBarTray>
 
-        <DataGrid x:Name="CurrencyCode_DataGrid" ItemsSource="{Binding}"
-                  Margin="10,226,10,0" 
-                  ScrollViewer.CanContentScroll="True" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                  Height="Auto"
-                  AlternatingRowBackground="AliceBlue" 
-                  AutoGenerateColumns="False" 
-                  SelectionChanged="CurrencyCode_DataGrid_SelectionChanged" 
-                  IsReadOnly="True">
+        <DataGrid x:Name="CurrencyCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+                  Margin="10,226,10,0" SelectionChanged="CurrencyCode_DataGrid_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}"/>
                 <DataGridTextColumn Header="Valuta code" Width="80" Binding="{Binding currency_Code}"/>

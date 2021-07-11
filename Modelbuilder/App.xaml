@@ -75,7 +75,50 @@
             <Setter Property="VerticalContentAlignment" Value="Top"/>
         </Style>
         <!--#endregion-->
+
+        <!--#region Default toolbar resources-->
+        <Style x:Key="DefaultToolBarTray" TargetType="ToolBarTray">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="DefaultToolBar" TargetType="ToolBar">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="ToolBarTray.IsLocked" Value="True" />
+        </Style>
+
+        <Style x:Key="ToolBarAddIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarAdd.png"/>
+            <Setter Property="Height" Value="21"/>
+        </Style>
+
+        <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarDelete.png"/>
+            <Setter Property="Height" Value="21"/>
+        </Style>
+
+        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSave.png"/>
+            <Setter Property="Height" Value="21"/>
+        </Style>
+        <!--#endregion-->
         
+        <!--#region Default DataGrid resources-->
+        <Style x:Key="DefaultDataGrid" TargetType="DataGrid">
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="AlternatingRowBackground" Value="AliceBlue" />
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="IsReadOnly" Value="False" />
+        </Style>
+        <!--#endregion-->
         <!--#endregion-->
     </Application.Resources>
 </Application>
