@@ -39,6 +39,7 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentFullpath"   Margin="550,25,0,0"/>
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentId"         Margin="600,25,0,0"/>
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSelectedItem"     Margin="650,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOriginalName"     Margin="700,25,0,0"/>
         <!-- End of "Do not remove" part-->
 
         <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="20,95,0,0"/>

@@ -99,6 +99,7 @@ namespace Modelbuilder
             valueParentFullpath.Text = ParentPathValue;
             valueParentId.Text = ParentValue;
             valueId.Text = ChildValue;
+            valueOriginalName.Text = SelectedItem.Header.ToString();
             inpCategoryName.Text = SelectedItem.Header.ToString();
 
 
@@ -210,21 +211,13 @@ namespace Modelbuilder
                 //Database dbConnection = new Database();
                 dbConnection.Connect();
 
-                /*
-                 valueFullpath.Text = SelectedItem.Tag.ToString();
-                valueParentFullpath.Text = ParentPathValue;
-                valueParentId.Text = ParentValue;
-                valueId.Text = ChildValue;
-                inpCategoryName.Text = SelectedItem.Header.ToString();
-                 */
-
+                // UPDATE category SET category_Fullpath = REPLACE(category_Fullpath, 'Test\\T2\\T4', 'Test\\Test 2\\T4') WHERE category_Fullpath LIKE ('Test\\\\T2\\\\T4%');
+                var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
+                var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
-                dbConnection.SqlCommandString = " SET " +
-                    "category_Id = '" + valueId.Text + "', " +
-                    "category_Name = '" + inpCategoryName.Text + "', " +
-                    "category_FullPath = '" + valueParentFullpath.Text + "', " +
-                    "category_ParentId = '" + valueParentId.Text + "' WHERE " +
-                    "category_FullPath = " + valueParentFullpath.Text + ";";
+                dbConnection.SqlCommandString = " SET category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
+                    NewPath.Replace("\\", "\\\\") + "') WHERE " + 
+                    "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
 
                 dbConnection.TableName = DatabaseTable;
 
