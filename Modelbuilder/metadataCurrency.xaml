@@ -51,7 +51,7 @@
                 <DataGridTextColumn Header="Valuta code" Width="80" Binding="{Binding currency_Code}"/>
                 <DataGridTextColumn Header="Valuta symbool" Width="100" Binding="{Binding currency_Symbol}"/>
                 <DataGridTextColumn Header="Koers" Width="90" Binding="{Binding currency_ConversionRate}"/>
-                <DataGridTextColumn Header="Valuta" Width="*" Binding="{Binding courrency_Name}"/>
+                <DataGridTextColumn Header="Valuta" Width="*" Binding="{Binding currency_Name}"/>
             </DataGrid.Columns>
         </DataGrid>
 

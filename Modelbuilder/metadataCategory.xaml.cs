@@ -50,8 +50,7 @@ namespace Modelbuilder
             dsCategoryCodes.Tables.Add(dtCategoryCodes);
 
             // add a relationship
-            dsCategoryCodes.Relations.Add("rsParentChild", dsCategoryCodes.Tables[DatabaseTable].Columns["category_Id"],
-                dsCategoryCodes.Tables[DatabaseTable].Columns["category_ParentId"]);
+            dsCategoryCodes.Relations.Add("rsParentChild", dsCategoryCodes.Tables[DatabaseTable].Columns["category_Id"], dsCategoryCodes.Tables[DatabaseTable].Columns["category_ParentId"]);
 
             foreach (DataRow row in dsCategoryCodes.Tables[DatabaseTable].Rows)
             {
@@ -100,6 +99,7 @@ namespace Modelbuilder
             valueParentFullpath.Text = ParentPathValue;
             valueParentId.Text = ParentValue;
             valueId.Text = ChildValue;
+            inpCategoryName.Text = SelectedItem.Header.ToString();
 
 
             // Perhaps the switch can be used for a different menu on root item and sub item, but not sure if necesarry
@@ -196,6 +196,49 @@ namespace Modelbuilder
 
             //treeViewCategory.Items.Clear();
             //BuildTree();
+        }
+
+        private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
+        {
+            if (inpCategoryName.Text != "")
+            {
+                Database dbConnection = new Database
+                {
+                    TableName = DatabaseTable
+                };
+
+                //Database dbConnection = new Database();
+                dbConnection.Connect();
+
+                /*
+                 valueFullpath.Text = SelectedItem.Tag.ToString();
+                valueParentFullpath.Text = ParentPathValue;
+                valueParentId.Text = ParentValue;
+                valueId.Text = ChildValue;
+                inpCategoryName.Text = SelectedItem.Header.ToString();
+                 */
+
+                dbConnection.SqlCommand = "UPDATE ";
+                dbConnection.SqlCommandString = " SET " +
+                    "category_Id = '" + valueId.Text + "', " +
+                    "category_Name = '" + inpCategoryName.Text + "', " +
+                    "category_FullPath = '" + valueParentFullpath.Text + "', " +
+                    "category_ParentId = '" + valueParentId.Text + "' WHERE " +
+                    "category_FullPath = " + valueParentFullpath.Text + ";";
+
+                dbConnection.TableName = DatabaseTable;
+
+                _ = dbConnection.UpdateMySqlDataRecord();
+                DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
+                /*
+                // Load the data from the database into the datagrid
+                CategoryCode_DataGrid.DataContext = dtCountryCodes;
+
+                // Make sure the eddited row in the datagrid is selected
+                CountryCode_DataGrid.SelectedIndex = int.Parse(inpCountryId.Text) - 1;
+                CountryCode_DataGrid.Focus();
+                */
+            }
         }
 
         private TreeViewItem GetTreeViewItem(ItemsControl container, object item)
