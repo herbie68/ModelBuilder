@@ -34,6 +34,7 @@ namespace Modelbuilder
             Main.Content = new metadataCountry();
         }
         #endregion
+
         #region Call Currency Page
         private void ShowCurrencyPage(object sender, RoutedEventArgs e)
         {
@@ -41,6 +42,7 @@ namespace Modelbuilder
             Main.Content = new metadataCurrency();
         }
         #endregion
+
         #region Call Category Page
         private void ShowCategoryPage(object sender, RoutedEventArgs e)
         {
@@ -48,6 +50,15 @@ namespace Modelbuilder
             Main.Content = new metadataCategory();
         }
         #endregion
+
+        #region Call Storage Page
+        private void ShowStoragePage(object sender, RoutedEventArgs e)
+        {
+
+            Main.Content = new metadataStorage();
+        }
+        #endregion
+
         #region Exit Application
         private void ApplicationExit_Click(object sender, EventArgs e)
         {
