@@ -3,17 +3,8 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace Modelbuilder
 {
     /// <summary>
@@ -95,6 +86,7 @@ namespace Modelbuilder
                 ChildValue = SelectedItem.Name.ToString().Substring(seperatorValue + 1);
                 ParentPathValue = SelectedItem.Tag.ToString().Replace("\\" + SelectedItem.Header.ToString(), "");
             }
+            valueSelectedItem.Text = SelectedItem.Header.ToString();
             valueFullpath.Text = SelectedItem.Tag.ToString();
             valueParentFullpath.Text = ParentPathValue;
             valueParentId.Text = ParentValue;
@@ -119,11 +111,11 @@ namespace Modelbuilder
 
         private void ButtonAddSubCategory(object sender, RoutedEventArgs e)
         {
-            dialogCategory dialogCategory = new dialogCategory();
+            dialogCategory dialogCategory = new();
             dialogCategory.LabelDialogCategory.Text = "Subcategory toevoegen";
             dialogCategory.ShowDialog();
 
-            Database dbConnection = new Database();
+            Database dbConnection = new();
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
@@ -152,7 +144,7 @@ namespace Modelbuilder
             dialogCategory.LabelDialogCategory.Text = "Hoofdcategory toevoegen";
             dialogCategory.ShowDialog();
 
-            Database dbConnection = new Database();
+            Database dbConnection = new();
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
@@ -164,7 +156,7 @@ namespace Modelbuilder
             DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
 
             // Insert new value to the teeview so refresh of treeview not needed
-            TreeViewItem root = new TreeViewItem();
+            TreeViewItem root = new();
             root.Header = dialogCategory.diaLogCategoryValue;
             root.Name = "P" + ID.ToString(); // Store ID in the tag
             root.Tag = dialogCategory.diaLogCategoryValue;
@@ -189,14 +181,6 @@ namespace Modelbuilder
             {
                 parent.Items.Remove(item);
             }
-
-            //treeViewCategory.Items.Remove(treeViewCategory.SelectedItem);
-
-            
-            treeViewCategory.Items.Refresh();
-
-            //treeViewCategory.Items.Clear();
-            //BuildTree();
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
@@ -208,29 +192,33 @@ namespace Modelbuilder
                     TableName = DatabaseTable
                 };
 
-                //Database dbConnection = new Database();
                 dbConnection.Connect();
 
-                // UPDATE category SET category_Fullpath = REPLACE(category_Fullpath, 'Test\\T2\\T4', 'Test\\Test 2\\T4') WHERE category_Fullpath LIKE ('Test\\\\T2\\\\T4%');
-                var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
-                var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
-                dbConnection.SqlCommandString = " SET category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
-                    NewPath.Replace("\\", "\\\\") + "') WHERE " + 
-                    "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
+                dbConnection.SqlCommandString = " SET " +
+                    "category_Name = '" + inpCategoryName.Text + "' WHERE " +
+                    "category_Id = " + valueId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
-                DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
-                /*
-                // Load the data from the database into the datagrid
-                CategoryCode_DataGrid.DataContext = dtCountryCodes;
 
-                // Make sure the eddited row in the datagrid is selected
-                CountryCode_DataGrid.SelectedIndex = int.Parse(inpCountryId.Text) - 1;
-                CountryCode_DataGrid.Focus();
-                */
+                var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
+                var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
+                dbConnection.SqlCommand = "UPDATE ";
+                dbConnection.SqlCommandString = " SET " + 
+                    "category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
+                    NewPath.Replace("\\", "\\\\") + "') WHERE " + 
+                    "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
+                
+                dbConnection.TableName = DatabaseTable;
+
+                _ = dbConnection.UpdateMySqlDataRecord();
+
+                TreeViewItem SelectedItem = treeViewCategory.SelectedItem as TreeViewItem;
+
+                // Change the header of the selected treview to update the view
+                SelectedItem.Header = inpCategoryName.Text;                
             }
         }
 
@@ -280,13 +268,11 @@ namespace Modelbuilder
                 // Ensure that the generator for this panel has been created.
                 UIElementCollection children = itemsHostPanel.Children;
 
-                MyVirtualizingStackPanel virtualizingPanel =
-                    itemsHostPanel as MyVirtualizingStackPanel;
 
                 for (int i = 0, count = container.Items.Count; i < count; i++)
                 {
                     TreeViewItem subContainer;
-                    if (virtualizingPanel != null)
+                    if (itemsHostPanel is MyVirtualizingStackPanel virtualizingPanel)
                     {
                         // Bring the item into view so
                         // that the container will be generated.
@@ -369,7 +355,5 @@ namespace Modelbuilder
                 this.BringIndexIntoView(index);
             }
         }
-
-
     }
 }
