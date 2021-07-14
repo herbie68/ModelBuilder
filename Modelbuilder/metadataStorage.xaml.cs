@@ -21,10 +21,12 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataStorage : Page
     {
+        public List<storageLocation> StorageList = new();
         private readonly string DatabaseTable = "storage";
         public metadataStorage()
         {
             InitializeComponent();
+            BuildTree();
         }
 
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -95,12 +97,52 @@ namespace Modelbuilder
 
             DataTable dtStorageCodes = dbConnection.LoadSpecificMySqlData();
             //Use a DataSet to manage the data
-            DataSet dsStorageCodes = new DataSet();
+            DataSet dsStorageCodes = new();
             dsStorageCodes.Tables.Add(dtStorageCodes);
 
-            // add a relationship
-            dsStorageCodes.Relations.Add("rsParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["Storage_Id"], dsStorageCodes.Tables[DatabaseTable].Columns["Storage_ParentId"]);
+            foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
+            {
+                /// storage_Id = int.Parse(row["storage_Id"].ToString()),
+                /// storage_ParentId = int.Parse(row["storage_ParentId"].ToString()),
+                /// storage_FullPath = row["storage_FullPath"].ToString(),
+                /// storage_Code = row["storage_Code"].ToString(),
+                /// storage_Name = row["storage_Name"].ToString(),
+                /// storage_Level = int.Parse(row["storage_Level"].ToString()),
 
+                if (row["Storage_ParentId"] == DBNull.Value)
+                {
+                    StorageList.Add(
+                    new storageLocation()
+                    {
+                        storage_Id = (int)row["storage_Id"],
+                        storage_FullPath = row["storage_FullPath"].ToString(),
+                        storage_Code = row["storage_Code"].ToString(),
+                        storage_Name = row["storage_Name"].ToString(),
+                        storage_Level = (int)row["storage_Level"],
+                    }
+                    );
+                }
+                else
+                {
+                    StorageList.Add(
+                        new storageLocation()
+                        {
+                            storage_Id = (int)row["storage_Id"],
+                            storage_ParentId = (int)row["storage_ParentId"],
+                            storage_FullPath = row["storage_FullPath"].ToString(),
+                            storage_Code = row["storage_Code"].ToString(),
+                            storage_Name = row["storage_Name"].ToString(),
+                            storage_Level = (int)row["storage_Level"],
+                        }
+                        );
+                }
+            }
+            Console.WriteLine(StorageList);
+
+            // add a relationship
+            //dsStorageCodes.Relations.Add("rsParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["Storage_Id"], dsStorageCodes.Tables[DatabaseTable].Columns["Storage_ParentId"]);
+
+            /*
             foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
             {
                 if (row["Storage_ParentId"] == DBNull.Value)
@@ -113,6 +155,7 @@ namespace Modelbuilder
                     PopulateTree(row, root);
                 }
             }
+            */
         }
         #endregion
 

@@ -41,13 +41,14 @@
         <!-- End of "Do not remove" part-->
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,140,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
-                <Button ToolTip="Gewijzigde categorienaam opslaan" Click="ToolbarButtonSave">
+                <Button ToolTip="Gewijzigde categorienaam opslaan" >
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
         </ToolBarTray>
 
         <TreeView x:Name="treeViewStorage"
+                  ItemsSource="{Binding StorageList}"
                   SelectedItemChanged="treeViewStorage_SelectedItemChanged"
                   HorizontalAlignment="Left"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -56,20 +57,20 @@
                   RenderTransformOrigin="0.5,0.5" 
                   Margin="20,190,0,32">>
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate>
-                    <Grid>
-                        <!-- Column defenitions -->
-                        <!-- Column 1: Shortname -->
-                        <!-- Column 2: Description -->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <ItemContainerTemplate>
+                        <Grid>
+                            <!-- Column defenitions -->
+                            <!-- Column 1: Shortname -->
+                            <!-- Column 2: Description -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding storage_Code}" Grid.Column="0"/>
-                        <TextBlock Text="{Binding Storage_Name}" Grid.Column="1"/>
-                    </Grid>
-                </HierarchicalDataTemplate>
+                            <TextBlock Text="{Binding storage_Code}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Storage_Name}" Grid.Column="1"/>
+                        </Grid>
+                </ItemContainerTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
     </Grid>
