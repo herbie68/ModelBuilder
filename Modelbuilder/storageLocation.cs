@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace ModelbouwBeheer
+namespace Modelbuilder
 {
     public class storageLocation : TreeViewItem
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelbuilder.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,7 +27,8 @@ namespace Modelbuilder
         public metadataStorage()
         {
             InitializeComponent();
-            BuildTree();
+            DataContext = new StorageViewModel();
+            //BuildTree();
         }
 
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
