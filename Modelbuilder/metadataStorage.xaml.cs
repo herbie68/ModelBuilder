@@ -1,4 +1,5 @@
 ﻿using Modelbuilder.ViewModels;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,13 +23,13 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataStorage : Page
     {
-        public List<storageLocation> StorageList = new();
+        //public List<storageLocation> StorageList = new();
         private readonly string DatabaseTable = "storage";
         public metadataStorage()
         {
             InitializeComponent();
             DataContext = new StorageViewModel();
-            //BuildTree();
+            BuildTree();
         }
 
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -85,49 +86,104 @@ namespace Modelbuilder
 
             _ = new DataTable();
 
-            /// Available Column names
-            /// storage_Id          -- int          -- AUTO_INCREMENT
-            /// storage_ParentId    -- int
-            /// storage_Parent      -- varchar(50)                              [storage_Code0]/[storage_Code1]/[storage_Code2] etc.
-            /// storage_Code        -- varchar(20)  -- NOT NULL -- unique
-            /// storage_Name        -- varchar(150)
-            /// storage_Level       -- int          -- NOT NULL -- Default 0
+            // https://stackoverflow.com/questions/24569156/display-treeviewitem-as-grid-rows-in-wpf
 
             dbConnection.SqlSelectionString = "*";
             dbConnection.SqlOrderByString = "Storage_Fullpath";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtStorageCodes = dbConnection.LoadSpecificMySqlData();
-            //Use a DataSet to manage the data
             DataSet dsStorageCodes = new();
             dsStorageCodes.Tables.Add(dtStorageCodes);
 
-            foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
-            {
-                /// storage_Id = int.Parse(row["storage_Id"].ToString()),
-                /// storage_ParentId = int.Parse(row["storage_ParentId"].ToString()),
-                /// storage_FullPath = row["storage_FullPath"].ToString(),
-                /// storage_Code = row["storage_Code"].ToString(),
-                /// storage_Name = row["storage_Name"].ToString(),
-                /// storage_Level = int.Parse(row["storage_Level"].ToString()),
+            List<MainStorageLocation> StorageLocations = new();
 
+            // Sub storage locations are not in the tree as sublocation. Perhaps I should filter only categories that use the ParentId of the mainlocation
+            
+            List<StorageLocation> storageList = new List<StorageLocation>();
+            foreach (DataRow datarow in dsStorageCodes.Tables[DatabaseTable].Rows)
+            {
+                //var result = storageList.OfType<StorageLocation>().Where(s => s.storage_ParentId == (int)datarow["storage_Id"]).ToList();
+
+                if (datarow["Storage_ParentId"] == DBNull.Value)
+                {
+                    storageList.Add(new StorageLocation()
+                    {
+                        storage_Id = (int)datarow["storage_Id"],
+                        storage_FullPath = datarow["storage_FullPath"].ToString(),
+                        storage_Code = datarow["storage_Code"].ToString(),
+                        storage_Name = datarow["storage_Name"].ToString(),
+                        storage_Level = (int)datarow["storage_Level"],
+                        SubStorageLocations = new List<SubStorageLocation>()
+                        {new SubStorageLocation(){storage_Code = datarow["storage_Code"].ToString(), storage_Name =datarow["storage_Name"].ToString() }, }
+                    }
+                    );
+                }
+                else
+                {
+                    DataTable tblFiltered = dtStorageCodes.AsEnumerable().Where(r => r.Field<int>("storage_Id") == (int)datarow["storage_ParentId"]).CopyToDataTable();
+                    List<SubStorageLocation> subStorageList = new List<SubStorageLocation>();
+                    subStorageList = (from DataRow dr in tblFiltered.Rows select new SubStorageLocation()
+                    {
+                        storage_Id = (int)dr["storage_Id"],
+                        storage_ParentId = (int)dr["storage_ParentId"],
+                        storage_Code = dr["storage_Code"].ToString(),
+                        storage_Name = dr["storage_Name"].ToString()
+                    }).ToList();
+                    storageList.Add(new StorageLocation()
+                    {
+                        storage_Id = (int)datarow["storage_Id"],
+                        storage_ParentId = (int)datarow["storage_ParentId"],
+                        storage_FullPath = datarow["storage_FullPath"].ToString(),
+                        storage_Code = datarow["storage_Code"].ToString(),
+                        storage_Name = datarow["storage_Name"].ToString(),
+                        storage_Level = (int)datarow["storage_Level"],
+                        SubStorageLocations = subStorageList
+                        // SubStorageLocations = new List<SubStorageLocation>()
+                        // {new SubStorageLocation(){storage_Code = datarow["storage_Code"].ToString(), storage_Name =datarow["storage_Name"].ToString() }, }
+                    }
+                    );
+                }
+            }
+            treeViewStorage.ItemsSource = storageList;
+
+            //var result = storageList.OfType<StorageLocation>().Where(s => s.storage_ParentId > 1);
+            //Console.WriteLine(result);
+
+            /*
+            List<StorageLocation> storageList = new List<StorageLocation>();
+            storageList = (from DataRow datarow in dtStorageCodes.Rows
+                           select new StorageLocation()
+                           {
+                               storage_Id = (int)datarow["storage_Id"],
+                               storage_ParentId = (int)datarow["storage_ParentId"],
+                               storage_FullPath = datarow["storage_FullPath"].ToString(),
+                               storage_Code = datarow["storage_Code"].ToString(),
+                               storage_Name = datarow["storage_Name"].ToString(),
+                               storage_Level = (int)datarow["storage_Level"],
+                           }).ToList();
+
+            foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
+{
+                DataTable tblFiltered = dtStorageCodes.AsEnumerable().Where(r => r.Field<int>("storage_ParentId") == (int)row["storage_Id"])
+                             .CopyToDataTable();
                 if (row["Storage_ParentId"] == DBNull.Value)
                 {
-                    StorageList.Add(
-                    new storageLocation()
+                    StorageLocations.Add(new MainStorageLocation()
                     {
                         storage_Id = (int)row["storage_Id"],
                         storage_FullPath = row["storage_FullPath"].ToString(),
                         storage_Code = row["storage_Code"].ToString(),
                         storage_Name = row["storage_Name"].ToString(),
                         storage_Level = (int)row["storage_Level"],
+                        SubStorageLocations = new List<SubStorageLocation>()
+                        {new SubStorageLocation(){storage_Code = row["storage_Code"].ToString(), storage_Name =row["storage_Name"].ToString() }, }
                     }
                     );
                 }
                 else
                 {
-                    StorageList.Add(
-                        new storageLocation()
+                    StorageLocations.Add(new MainStorageLocation()
                         {
                             storage_Id = (int)row["storage_Id"],
                             storage_ParentId = (int)row["storage_ParentId"],
@@ -135,47 +191,15 @@ namespace Modelbuilder
                             storage_Code = row["storage_Code"].ToString(),
                             storage_Name = row["storage_Name"].ToString(),
                             storage_Level = (int)row["storage_Level"],
-                        }
+                        SubStorageLocations = new List<SubStorageLocation>()
+                        { new SubStorageLocation() { storage_Code = row["storage_Code"].ToString(), storage_Name = row["storage_Name"].ToString() }, }
+                    }
                         );
                 }
             }
-            Console.WriteLine(StorageList);
-
-            // add a relationship
-            //dsStorageCodes.Relations.Add("rsParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["Storage_Id"], dsStorageCodes.Tables[DatabaseTable].Columns["Storage_ParentId"]);
-
-            /*
-            foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
-            {
-                if (row["Storage_ParentId"] == DBNull.Value)
-                {
-                    TreeViewItem root = new TreeViewItem();
-                    root.Header = row["Storage_Name"].ToString();
-                    root.Name = "P" + row["Storage_Id"].ToString();
-                    root.Tag = row["Storage_Fullpath"].ToString();
-                    treeViewStorage.Items.Add(root);
-                    PopulateTree(row, root);
-                }
-            }
             */
+            //treeViewStorage.ItemsSource = StorageLocations;
         }
-        #endregion
-
-        #region Populate the tree
-        public void PopulateTree(DataRow dr, TreeViewItem pNode)
-        {
-            foreach (DataRow row in dr.GetChildRows("rsParentChild"))
-            {
-                TreeViewItem cChild = new TreeViewItem();
-                cChild.Header = row["Storage_Name"].ToString();
-                cChild.Name = "P" + row["Storage_ParentId"].ToString() + "C" + row["Storage_Id"].ToString(); // Store ID and Parent_Id in the tag
-                cChild.Tag = row["Storage_Fullpath"].ToString();
-                pNode.Items.Add(cChild);
-                //Recursively build the tree
-                PopulateTree(row, cChild);
-            }
-        }
-
         #endregion
     }
 }

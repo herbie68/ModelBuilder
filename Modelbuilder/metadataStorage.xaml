@@ -47,30 +47,34 @@
             </ToolBar>
         </ToolBarTray>
 
-        <TreeView x:Name="treeViewStorage"
-                  ItemsSource="{Binding StorageList}"
-                  SelectedItemChanged="treeViewStorage_SelectedItemChanged"
-                  HorizontalAlignment="Left"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Width="960" 
-                  RenderTransformOrigin="0.5,0.5" 
-                  Margin="20,190,0,32">>
+        <TreeView x:Name="treeViewStorage" SelectedItemChanged="treeViewStorage_SelectedItemChanged" Margin="20,190,0,32" ItemsSource="{Binding StorageLocations}">
             <TreeView.ItemTemplate>
-                <ItemContainerTemplate>
-                        <Grid>
-                            <!-- Column defenitions -->
-                            <!-- Column 1: Shortname -->
-                            <!-- Column 2: Description -->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="90"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="{Binding storage_Code}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Storage_Name}" Grid.Column="1"/>
-                        </Grid>
-                </ItemContainerTemplate>
+                <DataTemplate>
+                    <TreeViewItem  ItemsSource="{Binding Models}">
+                        <TreeViewItem.Header>
+                            <Grid Width="350">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" MinWidth="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding storage_Code}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                <TextBlock Text="{Binding storage_Name}" HorizontalAlignment="Left"  VerticalAlignment="Center"  Grid.Column="1"/>
+                            </Grid>
+                        </TreeViewItem.Header>
+                        <TreeViewItem.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="-20,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto" MinWidth="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Code}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
+                </DataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
     </Grid>
