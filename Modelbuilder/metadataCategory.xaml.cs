@@ -188,14 +188,9 @@ namespace Modelbuilder
             {
                 parent.Items.Remove(item);
             }
-
-            //treeViewCategory.Items.Remove(treeViewCategory.SelectedItem);
-
-            
+          
             treeViewCategory.Items.Refresh();
 
-            //treeViewCategory.Items.Clear();
-            //BuildTree();
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
@@ -207,16 +202,7 @@ namespace Modelbuilder
                     TableName = DatabaseTable
                 };
 
-                //Database dbConnection = new Database();
                 dbConnection.Connect();
-
-                /*
-                 valueFullpath.Text = SelectedItem.Tag.ToString();
-                valueParentFullpath.Text = ParentPathValue;
-                valueParentId.Text = ParentValue;
-                valueId.Text = ChildValue;
-                inpCategoryName.Text = SelectedItem.Header.ToString();
-                 */
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
@@ -230,14 +216,6 @@ namespace Modelbuilder
 
                 _ = dbConnection.UpdateMySqlDataRecord();
                 DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
-                /*
-                // Load the data from the database into the datagrid
-                CategoryCode_DataGrid.DataContext = dtCountryCodes;
-
-                // Make sure the eddited row in the datagrid is selected
-                CountryCode_DataGrid.SelectedIndex = int.Parse(inpCountryId.Text) - 1;
-                CountryCode_DataGrid.Focus();
-                */
             }
         }
 

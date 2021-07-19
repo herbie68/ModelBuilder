@@ -295,4 +295,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="dialogStorageLocation.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>
