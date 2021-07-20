@@ -39,6 +39,10 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentId"         Margin="600,25,0,0"/>
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSelectedItem"     Margin="650,25,0,0"/>
         <!-- End of "Do not remove" part-->
+
+        <Label Style="{DynamicResource DefaultLabel}" Content="Locatie" Margin="20,95,0,0"/>
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpStorageLocationName" Margin="100,100,0,0" Width="250"/>
+
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,140,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
                 <Button ToolTip="Gewijzigde categorienaam opslaan" >
@@ -47,31 +51,30 @@
             </ToolBar>
         </ToolBarTray>
 
-        <TreeView x:Name="treeViewStorage"
-                  ItemsSource="{Binding StorageList}"
+        <TreeView x:Name="treeViewStorage" 
                   SelectedItemChanged="treeViewStorage_SelectedItemChanged"
                   HorizontalAlignment="Left"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Width="960" 
                   RenderTransformOrigin="0.5,0.5" 
-                  Margin="20,190,0,32">>
-            <TreeView.ItemTemplate>
-                <ItemContainerTemplate>
-                        <Grid>
-                            <!-- Column defenitions -->
-                            <!-- Column 1: Shortname -->
-                            <!-- Column 2: Description -->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="90"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                  Margin="20,190,0,32">
+            <TreeView.Resources>
+                <ContextMenu x:Key="FolderContext"  StaysOpen="true">
+                    <MenuItem Header="Hoofd-locatie toevoegen" Click="ButtonAddMainLocation"/>
+                    <MenuItem Header="Sub-locatie toevoegen" Click="ButtonAddSubLocation" />
+                    <MenuItem Header="Verwijder deze EN ALLE onderligende opslag locaties" Click="ButtonDeleteLocation"/>
+                </ContextMenu>
+            </TreeView.Resources>
 
-                            <TextBlock Text="{Binding storage_Code}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Storage_Name}" Grid.Column="1"/>
-                        </Grid>
-                </ItemContainerTemplate>
-            </TreeView.ItemTemplate>
+            <TreeView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.358"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.944"/>
+                </TransformGroup>
+            </TreeView.RenderTransform>
         </TreeView>
     </Grid>
 </Page>

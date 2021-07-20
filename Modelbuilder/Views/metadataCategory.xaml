@@ -69,7 +69,7 @@
                 <ContextMenu x:Key="FolderContext"  StaysOpen="true">
                     <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
                     <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory" />
-                    <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategorie"/>
+                    <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategory"/>
                 </ContextMenu>
             </TreeView.Resources>
 
