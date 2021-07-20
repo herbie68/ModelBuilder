@@ -30,14 +30,6 @@ namespace Modelbuilder
             connection.Open();
         }
 
-        public void Disconnect()
-        {
-            myConnection = new MySqlConnection(Connection_Query.connectionString);
-            MySqlConnection connection = myConnection;
-
-            connection.Close();
-        }
-
         public DataTable LoadMySqlData()
         {
             string mySelectQuery = "SELECT * FROM " + Connection_Query.database + "." + TableName;

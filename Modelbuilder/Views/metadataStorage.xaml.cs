@@ -1,41 +1,30 @@
-﻿using Modelbuilder.ViewModels;
-using MySqlX.XDevAPI.Relational;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Modelbuilder
 {
-    /// <summary>
-    /// Interaction logic for metadataStorage.xaml
-    /// </summary>
     public partial class metadataStorage : Page
     {
         private readonly string DatabaseTable = "storage";
+
         public metadataStorage()
         {
             InitializeComponent();
             BuildTree();
         }
 
+        #region Command Binding CanExecute region
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
+        #endregion
 
         #region treeviewStorage_SelectedItemChanged
+
         private void treeViewStorage_SelectedItemChanged(object sender, RoutedEventArgs e)
         {
             // Changed RoutedPropertyChangedEventArgs<object> e into RoutedEventArgs e
@@ -59,22 +48,24 @@ namespace Modelbuilder
             valueId.Text = ChildValue;
             inpStorageLocationName.Text = SelectedItem.Header.ToString();
 
-
             // Perhaps the switch can be used for a different menu on root item and sub item, but not sure if necesarry
             switch (SelectedItem.Tag.ToString())
             {
                 case "Solution":
                     treeViewStorage.ContextMenu = treeViewStorage.Resources["SolutionContext"] as System.Windows.Controls.ContextMenu;
                     break;
+
                 case "Folder":
                     treeViewStorage.ContextMenu = treeViewStorage.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
                     break;
             }
             treeViewStorage.ContextMenu = treeViewStorage.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
         }
-        #endregion
+
+        #endregion treeviewStorage_SelectedItemChanged
 
         #region Build Storage tree
+
         public void BuildTree()
         {
             Database dbConnection = new()
@@ -93,7 +84,7 @@ namespace Modelbuilder
             DataTable dtStorageCodes = dbConnection.LoadSpecificMySqlData();
             DataSet dsStorageCodes = new();
             dsStorageCodes.Tables.Add(dtStorageCodes);
-            
+
             // add a relationship
             dsStorageCodes.Relations.Add("rsStorageParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["storage_Id"], dsStorageCodes.Tables[DatabaseTable].Columns["storage_ParentId"]);
 
@@ -124,9 +115,11 @@ namespace Modelbuilder
                 PopulateTree(row, cChild);
             }
         }
-        #endregion
+
+        #endregion Build Storage tree
 
         #region Add Sublocation to the tree
+
         private void ButtonAddSubLocation(object sender, RoutedEventArgs e)
         {
             dialogStorageLocation dialogStorageLocation = new dialogStorageLocation();
@@ -154,9 +147,11 @@ namespace Modelbuilder
             TreeViewItem ParentItem = treeViewStorage.SelectedItem as TreeViewItem;
             ParentItem.Items.Add(cChild);
         }
-        #endregion
+
+        #endregion Add Sublocation to the tree
 
         #region Add Mainlocation to the tree
+
         private void ButtonAddMainLocation(object sender, RoutedEventArgs e)
         {
             dialogStorageLocation dialogStorageLocation = new dialogStorageLocation();
@@ -181,9 +176,11 @@ namespace Modelbuilder
             root.Tag = dialogStorageLocation.diaLogStorageLocationValue;
             treeViewStorage.Items.Add(root);
         }
-        #endregion
+
+        #endregion Add Mainlocation to the tree
 
         #region Delete Storage location and all sublocations if available.
+
         private void ButtonDeleteLocation(object sender, RoutedEventArgs e)
         {
             Database dbConnection = new Database();
@@ -204,9 +201,11 @@ namespace Modelbuilder
 
             treeViewStorage.Items.Refresh();
         }
-        #endregion
+
+        #endregion Delete Storage location and all sublocations if available.
 
         #region Rename Storage Loocation
+
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpStorageLocationName.Text != "")
@@ -232,6 +231,7 @@ namespace Modelbuilder
                 DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
             }
         }
-        #endregion
+
+        #endregion Rename Storage Loocation
     }
 }

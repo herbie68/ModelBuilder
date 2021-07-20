@@ -89,7 +89,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Icon1.ico">
+    <Resource Include="Resources\Icon1.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\app.png">
@@ -296,7 +296,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="dialogStorageLocation.xaml">
+    <Page Update="Views\Dialog\dialogStorageLocation.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
