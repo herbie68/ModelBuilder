@@ -91,7 +91,6 @@ namespace Modelbuilder
             valueParentFullpath.Text = ParentPathValue;
             valueParentId.Text = ParentValue;
             valueId.Text = ChildValue;
-            valueOriginalName.Text = SelectedItem.Header.ToString();
             inpCategoryName.Text = SelectedItem.Header.ToString();
 
 
@@ -194,6 +193,7 @@ namespace Modelbuilder
 
                 dbConnection.Connect();
 
+<<<<<<< HEAD
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
                     "category_Name = '" + inpCategoryName.Text + "' WHERE " +
@@ -211,6 +211,24 @@ namespace Modelbuilder
                     NewPath.Replace("\\", "\\\\") + "') WHERE " + 
                     "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
                 
+=======
+                /*
+                 valueFullpath.Text = SelectedItem.Tag.ToString();
+                valueParentFullpath.Text = ParentPathValue;
+                valueParentId.Text = ParentValue;
+                valueId.Text = ChildValue;
+                inpCategoryName.Text = SelectedItem.Header.ToString();
+                 */
+
+                dbConnection.SqlCommand = "UPDATE ";
+                dbConnection.SqlCommandString = " SET " +
+                    "category_Id = '" + valueId.Text + "', " +
+                    "category_Name = '" + inpCategoryName.Text + "', " +
+                    "category_FullPath = '" + valueParentFullpath.Text + "', " +
+                    "category_ParentId = '" + valueParentId.Text + "' WHERE " +
+                    "category_FullPath = " + valueParentFullpath.Text + ";";
+
+>>>>>>> parent of 9d6815f (Rename of category partly done, FullPath is correctly changed but category_Name is still old name.)
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
