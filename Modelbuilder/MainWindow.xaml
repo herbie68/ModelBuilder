@@ -103,7 +103,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataSupplierImport.png" Header="Importeer Leveranciers"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataSupplierExport.png" Header="Exporteer Leveranciers"/>
                     </RibbonSplitButton>
-                    <RibbonSplitButton Label="Locaties" SmallImageSource=".\Resources\metadataStorageLocation.png">
+                    <RibbonSplitButton Label="Locaties" SmallImageSource=".\Resources\metadataStorageLocation.png" Click="ShowStoragePage">
                         <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationImport.png" Header="Importeer Locaties"/>
                         <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationExport.png" Header="Exporteer Locaties"/>
                     </RibbonSplitButton>
@@ -119,7 +119,7 @@
             </RibbonTab>
 
             <RibbonTab x:Name="ConfigTab" Header="Instellingen">
-                <RibbonButton LargeImageSource=".\Resources\options.png" Label="Insrellingen"/>
+                <RibbonButton LargeImageSource=".\Resources\options.png" Label="Instellingen"/>
             </RibbonTab>
         </Ribbon>
 

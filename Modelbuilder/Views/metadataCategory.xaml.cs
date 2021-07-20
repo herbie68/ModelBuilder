@@ -4,12 +4,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
 
+=======
+>>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
 namespace Modelbuilder
 {
-    /// <summary>
-    /// Interaction logic for metadataCountry.xaml
-    /// </summary>
     public partial class metadataCategory : Page
     {
         private readonly string DatabaseTable = "category";
@@ -18,10 +18,15 @@ namespace Modelbuilder
             InitializeComponent();
             BuildTree();
         }
+
+        #region Command Binding CanExecute region
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
+        #endregion
+
+        #region Buildtree
         public void BuildTree()
         {
             Database dbConnection = new Database
@@ -56,6 +61,8 @@ namespace Modelbuilder
                 }
             }
         }
+
+        #region Populate tree during build
         public void PopulateTree(DataRow dr, TreeViewItem pNode)
         {
             foreach (DataRow row in dr.GetChildRows("rsParentChild"))
@@ -69,6 +76,10 @@ namespace Modelbuilder
                 PopulateTree(row, cChild);
             }
         }
+        #endregion
+        #endregion
+
+        #region SelectedItemChanged
         private void treeViewCategory_SelectedItemChanged(object sender, RoutedEventArgs e)
         {
             // Changed RoutedPropertyChangedEventArgs<object> e into RoutedEventArgs e
@@ -107,8 +118,9 @@ namespace Modelbuilder
             }
             treeViewCategory.ContextMenu = treeViewCategory.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
         }
+        #endregion
 
-
+        #region Add a Sub category
         private void ButtonAddSubCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new();
@@ -137,7 +149,9 @@ namespace Modelbuilder
             TreeViewItem ParentItem = treeViewCategory.SelectedItem as TreeViewItem;
             ParentItem.Items.Add(cChild);
         }
+        #endregion
 
+        #region Add a Main (root) category
         private void ButtonAddMainCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new dialogCategory();
@@ -162,8 +176,10 @@ namespace Modelbuilder
             root.Tag = dialogCategory.diaLogCategoryValue;
             treeViewCategory.Items.Add(root);
         }
+        #endregion
 
-        private void ButtonDeleteCategorie(object sender, RoutedEventArgs e)
+        #region Delete a category, including all subs under the selected catogory
+        private void ButtonDeleteCategory(object sender, RoutedEventArgs e)
         {
             Database dbConnection = new Database();
             dbConnection.Connect();
@@ -181,8 +197,15 @@ namespace Modelbuilder
             {
                 parent.Items.Remove(item);
             }
+<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
+=======
+          
+            treeViewCategory.Items.Refresh();
+>>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
         }
+        #endregion
 
+        #region Rename category save changes to tree and database
         private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
         {
             if (inpCategoryName.Text != "")
@@ -202,6 +225,7 @@ namespace Modelbuilder
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
+<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
 
                 var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
                 var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
@@ -355,5 +379,12 @@ namespace Modelbuilder
                 this.BringIndexIntoView(index);
             }
         }
+=======
+                DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
+            }
+        }
+        #endregion
+
+>>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
     }
 }
