@@ -12,9 +12,9 @@
     <Grid>
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Landen"/>
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Landen" />
             <Canvas>
-                <Path Style="{DynamicResource DefaultTitleLine}"/>
+                <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
         </StackPanel>
 
@@ -26,11 +26,10 @@
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryCode"   Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryName"   Width="450" Margin="170,97,0,0" />
 
-        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency"  Margin="170,123,780,654"    ItemsSource="{Binding CurrencyCollection}"/>
+        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency"  Margin="170,123,780,654"    ItemsSource="{Binding CurrencyCollection}" />
 
-        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryId"         Margin="270,71,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryId"         Margin="270,71,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryCurrencyId" Margin="270,123,0,0" />
-
 
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,160,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
@@ -49,11 +48,11 @@
         <DataGrid x:Name="CountryCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
                   Margin="10,206,10,0" SelectionChanged="CountryCode_DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}"/>
-                <DataGridTextColumn Header="Land code" Width="80" Binding="{Binding country_Code}"/>
-                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Defaultcurrency_Id}"/>
-                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding country_Defaultcurrency_Symbol}"/>
-                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}"/>
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}" />
+                <DataGridTextColumn Header="Land code" Width="80" Binding="{Binding country_Code}" />
+                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Defaultcurrency_Id}" />
+                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding country_Defaultcurrency_Symbol}" />
+                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

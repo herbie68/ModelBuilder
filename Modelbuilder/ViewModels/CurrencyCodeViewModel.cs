@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelbuilder
 {
@@ -11,9 +7,10 @@ namespace Modelbuilder
     {
         public List<string> CurrencyCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
+
         public CurrencyCodeViewModel()
         {
-            CurrencyCollection = new List<string>{};
+            CurrencyCollection = new List<string> { };
 
             Database dbCurrencyConnection = new()
             {
