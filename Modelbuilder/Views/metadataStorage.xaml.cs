@@ -17,11 +17,13 @@ namespace Modelbuilder
         }
 
         #region Command Binding CanExecute region
+
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
-        #endregion
+
+        #endregion Command Binding CanExecute region
 
         #region treeviewStorage_SelectedItemChanged
 

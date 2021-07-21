@@ -1,12 +1,6 @@
 ﻿using ConnectionNamespace;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelbuilder
 {
@@ -48,7 +42,7 @@ namespace Modelbuilder
 
         public DataTable LoadSpecificMySqlData()
         {
-            string OrderString= "", WhereString = "";
+            string OrderString = "", WhereString = "";
 
             if (SqlOrderByString != "")
             {
@@ -69,7 +63,7 @@ namespace Modelbuilder
             }
 
             string mySelectQuery = "SELECT " + SqlSelectionString + " FROM " + Connection_Query.database + "." + TableName + WhereString + OrderString;
-            
+
             MySqlConnection myConnection = new MySqlConnection(Connection_Query.connectionString);
 
             myConnection.Open();
@@ -81,6 +75,7 @@ namespace Modelbuilder
 
             return tempDataTable;
         }
+
         public int UpdateMySqlDataRecord()
         {
             MySqlCommand SqlCmdUpdate = new MySqlCommand
@@ -99,8 +94,8 @@ namespace Modelbuilder
             myConnection.Close();
 
             return (int)ID;
-
         }
+
         public int RetrieveSpecificIdFromMySqlData()
         {
             string WhereString;
@@ -125,13 +120,12 @@ namespace Modelbuilder
 
             retrieveData.Read();
             var reader = retrieveData.GetOrdinal("currency_Id");
-            
+
             int ID = retrieveData.GetInt32(reader);
-            
+
             myConnection.Close();
 
             return ID;
         }
-
     }
 }

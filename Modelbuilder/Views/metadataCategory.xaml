@@ -13,36 +13,37 @@
         <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Label}">
-                    <Setter Property="Margin" Value="0,0,0,5"/>
+                    <Setter Property="Margin" Value="0,0,0,5" />
                 </Style>
                 <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Margin" Value="0,0,0,5"/>
+                    <Setter Property="Margin" Value="0,0,0,5" />
                 </Style>
                 <Style TargetType="{x:Type TreeView}">
-                    <Setter Property="Margin" Value=" 0,0,0,10"/>
+                    <Setter Property="Margin" Value=" 0,0,0,10" />
                 </Style>
             </StackPanel.Resources>
         </StackPanel>
 
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Categoriën"/>
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Categoriën" />
             <Canvas>
-                <Path Style="{DynamicResource DefaultTitleLine}"/>
+                <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
-            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop"/>
+            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop" />
         </StackPanel>
 
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueFullpath"         Margin="450,25,0,0"/>
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueId"               Margin="500,25,0,0"/>
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentFullpath"   Margin="550,25,0,0"/>
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentId"         Margin="600,25,0,0"/>
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSelectedItem"     Margin="650,25,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueFullpath"         Margin="450,25,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueId"               Margin="500,25,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentFullpath"   Margin="550,25,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueParentId"         Margin="600,25,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSelectedItem"     Margin="650,25,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOriginalName"     Margin="700,25,0,0" />
         <!-- End of "Do not remove" part-->
 
-        <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="20,95,0,0"/>
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCategoryName" Margin="100,100,0,0" Width="250"/>
+        <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="20,95,0,0" />
+        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCategoryName" Margin="100,100,0,0" Width="250" />
 
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,140,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
@@ -52,33 +53,33 @@
             </ToolBar>
         </ToolBarTray>
 
-        <TreeView x:Name="treeViewCategory" 
+        <TreeView x:Name="treeViewCategory"
                   SelectedItemChanged="treeViewCategory_SelectedItemChanged"
                   HorizontalAlignment="Left"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Width="960" 
-                  RenderTransformOrigin="0.5,0.5" 
+                  Width="960"
+                  RenderTransformOrigin="0.5,0.5"
                   Margin="20,190,0,32">
             <TreeView.Resources>
                 <ContextMenu x:Key ="SolutionContext"  StaysOpen="true">
-                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
-                    <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory"/>
-                    <MenuItem Header="Rename"/>
+                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory" />
+                    <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory" />
+                    <MenuItem Header="Rename" />
                 </ContextMenu>
                 <ContextMenu x:Key="FolderContext"  StaysOpen="true">
-                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory"/>
+                    <MenuItem Header="Hoofd-category toevoegen" Click="ButtonAddMainCategory" />
                     <MenuItem Header="Sub-category toevoegen" Click="ButtonAddSubCategory" />
-                    <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategory"/>
+                    <MenuItem Header="Verwijder deze EN ALLE onderligende subcategorieën" Click="ButtonDeleteCategory" />
                 </ContextMenu>
             </TreeView.Resources>
 
             <TreeView.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="0.358"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.944"/>
+                    <ScaleTransform />
+                    <SkewTransform AngleX="0.358" />
+                    <RotateTransform />
+                    <TranslateTransform X="-0.944" />
                 </TransformGroup>
             </TreeView.RenderTransform>
         </TreeView>
