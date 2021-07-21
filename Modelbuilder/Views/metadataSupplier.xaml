@@ -1,0 +1,61 @@
+﻿<Page x:Class="Modelbuilder.Views.metadataSupplier"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Modelbuilder.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="metadataSupplier">
+
+    <Grid>
+        <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="0,0,0,5"/>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="0,0,0,5"/>
+                </Style>
+                <Style TargetType="{x:Type TreeView}">
+                    <Setter Property="Margin" Value=" 0,0,0,10"/>
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <!--  Title of the page  -->
+        <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Leveranciers"/>
+            <Canvas>
+                <Path Style="{DynamicResource DefaultTitleLine}"/>
+            </Canvas>
+        </StackPanel>
+
+        <StackPanel>
+            <TabControl Margin="20,80,20,0" Height="700">
+                <TabItem Header="Basis gegevens">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Memo">
+                    <Grid Background="#FFE5E5E5">
+                        <TextBlock Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
+                        <RichTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70" Height="600" Width="Auto">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text="RichTextBox"/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+
+                </TabItem>
+                <TabItem Header="Bestellingen">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+
+        </StackPanel>
+
+
+    </Grid>
+</Page>
