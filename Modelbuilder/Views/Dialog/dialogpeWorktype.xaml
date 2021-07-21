@@ -1,0 +1,48 @@
+﻿<Window x:Class="Modelbuilder.dialogWorktype"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Modelbuilder"
+        mc:Ignorable="d"
+        Title="dialogWorktype" Height="103" Width="258">
+    <Grid>
+        <Grid x:Name="WorktypeDialog">
+            <Border BorderBrush="Gray"
+                Background="AliceBlue"
+                BorderThickness="2"/>
+        </Grid>
+        <Grid x:Name="InputBox" Visibility="Visible" Margin="0,0,-0.4,0">
+            <Grid Background="AliceBlue" Opacity="0.5"/>
+            <Border
+                            MinWidth="250"
+                            Background="DarkBlue" 
+                            BorderBrush="AliceBlue" 
+                            BorderThickness="1" 
+                            CornerRadius="0,55,0,55" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                <StackPanel Margin="0,0,-10,0">
+                    <TextBlock x:Name="LabelDialogWorktype" Margin="5" Text="Soort werkzaamheden toevoegen" FontWeight="Bold" FontFamily="Cambria">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBox MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="NewWorktypeName"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="buttonAdd" Margin="5" Content="Toevoegen" Background="{x:Null}" FontWeight="Bold" Click="ButtonAdd_Click">
+                            <Button.Foreground>
+                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}"/>
+                            </Button.Foreground>
+                        </Button>
+                        <Button x:Name="buttonCancel" Margin="5" Content="Annuleren" Background="{x:Null}" FontWeight="Bold" Click="ButtonCancel_Click">
+                            <Button.Foreground>
+                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}"/>
+                            </Button.Foreground>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
