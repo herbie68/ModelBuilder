@@ -49,6 +49,13 @@ namespace Modelbuilder
 
         #endregion Call Storage Page
 
+        #region Call Worktype Page
+        private void ShowWorktypePage(object sender, RoutedEventArgs e)
+        {
+
+            Main.Content = new metadataWorktype();
+        }
+        #endregion
         #region Exit Application
 
         private void ApplicationExit_Click(object sender, EventArgs e)

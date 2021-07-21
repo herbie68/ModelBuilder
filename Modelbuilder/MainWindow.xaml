@@ -111,9 +111,9 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataCurencyImport.png" Header="Importeer Valuta" />
                         <RibbonMenuItem ImageSource=".\Resources\metadataCurencyExport.png" Header="Exporteer Valuta" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Label="Werkzaamheden" SmallImageSource=".\Resources\metadataWorktype.png">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeImport.png" Header="Importeer Werkzaamheden" />
-                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeExport.png" Header="Exporteer Werkzaamheden" />
+                    <RibbonSplitButton Label="Werksoorten" SmallImageSource=".\Resources\metadataWorktype.png" Click="ShowWorktypePage">
+                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeImport.png" Header="Importeer Werksoorten"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeExport.png" Header="Exporteer Werksoorten"/>
                     </RibbonSplitButton>
                 </RibbonGroup>
             </RibbonTab>

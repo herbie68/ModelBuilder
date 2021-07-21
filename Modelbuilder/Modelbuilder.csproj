@@ -296,7 +296,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\Dialog\dialogpeWorktype.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Views\Dialog\dialogStorageLocation.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Views\metadataWorktype.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
