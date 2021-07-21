@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Modelbuilder
 {
@@ -23,6 +12,7 @@ namespace Modelbuilder
     public partial class metadataCurrency : Page
     {
         private readonly string DatabaseTable = "currency";
+
         public metadataCurrency()
         {
             InitializeComponent();
@@ -43,8 +33,8 @@ namespace Modelbuilder
             // Make sure the first row in the datagrid is selected
             CurrencyCode_DataGrid.SelectedIndex = 0;
             //CurrencyCode_DataGrid.Focus();
-
         }
+
         private void CurrencyCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dataGrid = (DataGrid)sender;
@@ -60,11 +50,13 @@ namespace Modelbuilder
             inpCurrencySymbol.Text = Row_Selected["currency_Symbol"].ToString();
             inpCurrencyRate.Text = Row_Selected["currency_ConversionRate"].ToString().Replace(".", ",");
         }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9,]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpCurrencyCode.Text != "")
@@ -120,6 +112,7 @@ namespace Modelbuilder
             CurrencyCode_DataGrid.Focus();
             inpCurrencyCode.Text = "";
         }
+
         private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
             Database dbConnection = new Database();
@@ -157,8 +150,6 @@ namespace Modelbuilder
 
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-
         }
-
     }
 }

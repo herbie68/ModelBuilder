@@ -12,6 +12,7 @@ namespace Modelbuilder
     {
         private readonly string DatabaseTable = "country";
         private readonly string DatabaseCurrencyTable = "currency";
+
         public metadataCountry()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace Modelbuilder
             CountryCode_DataGrid.SelectedIndex = 0;
             CountryCode_DataGrid.Focus();
         }
+
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -52,6 +54,7 @@ namespace Modelbuilder
             inpCountryCurrencyId.Text = Row_Selected["country_Defaultcurrency_Id"].ToString();
             cboxCountryCurrency.Text = Row_Selected["country_Defaultcurrency_Symbol"].ToString();
         }
+
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpCountryCode.Text != "")
@@ -116,6 +119,7 @@ namespace Modelbuilder
             CountryCode_DataGrid.Focus();
             inpCountryCode.Text = "";
         }
+
         private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
             Database dbConnection = new Database();
@@ -137,9 +141,9 @@ namespace Modelbuilder
             CountryCode_DataGrid.DataContext = dtCountryCodes;
 
             // Make sure the correct row in the datagrid is selected after deletion
-            
+
             // if row is already ithe first row, it should be reselected
-            if(row == 0)
+            if (row == 0)
             {
                 CountryCode_DataGrid.SelectedIndex = 0;
             }
@@ -147,13 +151,12 @@ namespace Modelbuilder
             {
                 CountryCode_DataGrid.SelectedIndex = row - 1;
             }
-            
+
             CountryCode_DataGrid.Focus();
         }
 
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-
         }
     }
 }

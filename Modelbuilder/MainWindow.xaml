@@ -11,17 +11,17 @@
         <Ribbon x:Name="mainRibbon" Grid.ColumnSpan="4">
             <!-- Help Pane, located at the right-hand side of the window -->
             <Ribbon.HelpPaneContent>
-                <RibbonButton SmallImageSource=".\Resources\appHelp.png" ToolTip="Hulp bij dit programma"/>
+                <RibbonButton SmallImageSource=".\Resources\appHelp.png" ToolTip="Hulp bij dit programma" />
             </Ribbon.HelpPaneContent>
 
             <!-- Quick access Pane, located at the top of the window -->
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
-                    <RibbonButton x:Name ="Save" SmallImageSource=".\Resources\appSave.png" ToolTip="Opslaan"/>
-                    <RibbonButton SmallImageSource=".\Resources\appUndo.png" ToolTip="Ongedaan maken"/>
-                    <RibbonButton SmallImageSource=".\Resources\appRedo.png" ToolTip="Opnieuw uitvoeren"/>
+                    <RibbonButton x:Name ="Save" SmallImageSource=".\Resources\appSave.png" ToolTip="Opslaan" />
+                    <RibbonButton SmallImageSource=".\Resources\appUndo.png" ToolTip="Ongedaan maken" />
+                    <RibbonButton SmallImageSource=".\Resources\appRedo.png" ToolTip="Opnieuw uitvoeren" />
                     <RibbonButton SmallImageSource=".\resources\appPrint.png" ToolTip="Afdrukken" />
-                    <RibbonButton SmallImageSource=".\resources\appExit.png" ToolTip="Afsluiten" Click="ApplicationExit_Click"/>
+                    <RibbonButton SmallImageSource=".\resources\appExit.png" ToolTip="Afsluiten" Click="ApplicationExit_Click" />
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
 
@@ -30,7 +30,7 @@
                 <RibbonApplicationMenu SmallImageSource=".\Resources\app.png">
                     <RibbonApplicationMenuItem x:Name="About" Header="Over..." ImageSource=".\Resources\appInfo.png" />
                     <RibbonApplicationMenuItem x:Name="Settings" Header="Instellingen" ImageSource=".\Resources\appSettings.png" />
-                    <RibbonApplicationMenuItem Header="Afsluiten" ImageSource=".\Resources\appExit.png" Click="ApplicationExit_Click"/>
+                    <RibbonApplicationMenuItem Header="Afsluiten" ImageSource=".\Resources\appExit.png" Click="ApplicationExit_Click" />
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
 
@@ -38,93 +38,91 @@
             <RibbonTab x:Name="MainTab" Header="Beheer">
                 <RibbonGroup x:Name="Time" Header="Tijdregistratie">
                     <RibbonSplitButton LargeImageSource=".\Resources\timeManagement.png" Label="Tijdregistratie" KeyTip="V">
-                        <RibbonMenuItem ImageSource=".\Resources\timeEdit.png" Header="Tijdregistratie"/>
-                        <RibbonMenuItem ImageSource=".\Resources\timeReport.png" Header="Urenrapportage"/>
+                        <RibbonMenuItem ImageSource=".\Resources\timeEdit.png" Header="Tijdregistratie" />
+                        <RibbonMenuItem ImageSource=".\Resources\timeReport.png" Header="Urenrapportage" />
                         <RibbonSeparator></RibbonSeparator>
-                        <RibbonMenuItem ImageSource=".\Resources\timeImport.png" Header="Importeer data" KeyTip="T"/>
-                        <RibbonMenuItem ImageSource=".\Resources\timeExport.png" Header="Exporteer" KeyTip="S"/>
+                        <RibbonMenuItem ImageSource=".\Resources\timeImport.png" Header="Importeer data" KeyTip="T" />
+                        <RibbonMenuItem ImageSource=".\Resources\timeExport.png" Header="Exporteer" KeyTip="S" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton x:Name="TimeSheet" Label="Tijdregistratie" SmallImageSource=".\Resources\timeEdit.png"/>
-                    <RibbonMenuButton x:Name="TimeReport" Label="Urenrapportage" SmallImageSource=".\Resources\timeReport.png"/>
+                    <RibbonMenuButton x:Name="TimeSheet" Label="Tijdregistratie" SmallImageSource=".\Resources\timeEdit.png" />
+                    <RibbonMenuButton x:Name="TimeReport" Label="Urenrapportage" SmallImageSource=".\Resources\timeReport.png" />
                 </RibbonGroup>
 
                 <RibbonGroup x:Name="Project" Header="Projectenbeheer">
                     <RibbonSplitButton LargeImageSource=".\Resources\projectManagement.png" Label="Projecten">
-                        <RibbonMenuItem ImageSource=".\Resources\projectEdit.png" Header="Projectbeheer"/>
-                        <RibbonMenuItem ImageSource=".\Resources\projectReport.png" Header="Projectenoverzicht"/>
+                        <RibbonMenuItem ImageSource=".\Resources\projectEdit.png" Header="Projectbeheer" />
+                        <RibbonMenuItem ImageSource=".\Resources\projectReport.png" Header="Projectenoverzicht" />
                         <RibbonSeparator></RibbonSeparator>
-                        <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten"/>
-                        <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten"/>
+                        <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten" />
+                        <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton Label="Projectbeheer" SmallImageSource=".\Resources\projectEdit.png"/>
-                    <RibbonMenuButton Label="Projectenoverzicht" SmallImageSource=".\Resources\projectReport.png"/>
+                    <RibbonMenuButton Label="Projectbeheer" SmallImageSource=".\Resources\projectEdit.png" />
+                    <RibbonMenuButton Label="Projectenoverzicht" SmallImageSource=".\Resources\projectReport.png" />
                 </RibbonGroup>
 
                 <RibbonGroup x:Name="Storage" Header="Voorraadbeheer">
                     <RibbonSplitButton LargeImageSource=".\Resources\storageManagement.png" Label="Voorraad beheer">
-                        <RibbonMenuItem ImageSource=".\Resources\storageOrder.png" Header="Bestellen"/>
-                        <RibbonMenuItem ImageSource=".\Resources\storageRecieve.png" Header="Ontvangsten"/>
+                        <RibbonMenuItem ImageSource=".\Resources\storageOrder.png" Header="Bestellen" />
+                        <RibbonMenuItem ImageSource=".\Resources\storageRecieve.png" Header="Ontvangsten" />
                         <RibbonSeparator></RibbonSeparator>
-                        <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten"/>
-                        <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten"/>
+                        <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten" />
+                        <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton Label="Bestellen" SmallImageSource=".\Resources\storageOrder.png"/>
-                    <RibbonMenuButton Label="Ontvangsten" SmallImageSource=".\Resources\storageRecieve.png"/>
+                    <RibbonMenuButton Label="Bestellen" SmallImageSource=".\Resources\storageOrder.png" />
+                    <RibbonMenuButton Label="Ontvangsten" SmallImageSource=".\Resources\storageRecieve.png" />
                     <RibbonMenuButton LargeImageSource=".\Resources\storageReports.png" Label="Overzichten">
-                        <RibbonMenuItem ImageSource=".\Resources\storageReportOverview.png" Header="Voorraadoverzicht"/>
-                        <RibbonMenuItem ImageSource=".\Resources\storageReportRecieve.png" Header="Bestelling-overzicht"/>
-                        <RibbonMenuItem ImageSource=".\Resources\storageReportUsage.png" Header="Verbruik per project"/>
+                        <RibbonMenuItem ImageSource=".\Resources\storageReportOverview.png" Header="Voorraadoverzicht" />
+                        <RibbonMenuItem ImageSource=".\Resources\storageReportRecieve.png" Header="Bestelling-overzicht" />
+                        <RibbonMenuItem ImageSource=".\Resources\storageReportUsage.png" Header="Verbruik per project" />
                     </RibbonMenuButton>
                 </RibbonGroup>
 
                 <RibbonGroup x:Name="Config" Header="Stambestanden">
                     <RibbonMenuButton LargeImageSource=".\Resources\metadata.png" Label="Stambestanden">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsReport.png" Header="Overzicht Artikellen"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryReport.png" Header="Overzicht Categoriën"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryReport.png" Header="Overzicht Landen"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierReport.png" Header="Overzicht Leveranciers"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationReport.png" Header="Overzicht Opslag Locaties"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyReport.png" Header="Overzicht Valuta"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeReport.png" Header="Overzicht Werkzaamheden"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsReport.png" Header="Overzicht Artikellen" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryReport.png" Header="Overzicht Categoriën" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryReport.png" Header="Overzicht Landen" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierReport.png" Header="Overzicht Leveranciers" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationReport.png" Header="Overzicht Opslag Locaties" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyReport.png" Header="Overzicht Valuta" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeReport.png" Header="Overzicht Werkzaamheden" />
                     </RibbonMenuButton>
                     <RibbonSplitButton Label="Artikelen" SmallImageSource=".\Resources\metadataProducts.png">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsImport.png" Header="Importeer Artikellen"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsExport.png" Header="Exporteer Artikellen"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsImport.png" Header="Importeer Artikellen" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataProductsExport.png" Header="Exporteer Artikellen" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Categoriën" SmallImageSource=".\Resources\metadataCategory.png" Click="ShowCategoryPage">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Importeer Categorieën"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Exporteer Categorieën"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Importeer Categorieën" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCategoryImport.png" Header="Exporteer Categorieën" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Landen" SmallImageSource=".\Resources\metadataCountry.png" Click="ShowCountryPage">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryImport.png" Header="Importeer Landen"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryExport.png" Header="Exporteer Landen"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryImport.png" Header="Importeer Landen" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCountryExport.png" Header="Exporteer Landen" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Leveranciers" SmallImageSource=".\Resources\metadataSupplier.png">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierImport.png" Header="Importeer Leveranciers"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierExport.png" Header="Exporteer Leveranciers"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierImport.png" Header="Importeer Leveranciers" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataSupplierExport.png" Header="Exporteer Leveranciers" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Locaties" SmallImageSource=".\Resources\metadataStorageLocation.png" Click="ShowStoragePage">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationImport.png" Header="Importeer Locaties"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationExport.png" Header="Exporteer Locaties"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationImport.png" Header="Importeer Locaties" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataStorageLocationExport.png" Header="Exporteer Locaties" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Valuta" SmallImageSource=".\Resources\metadataCurency.png" Click="ShowCurrencyPage">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyImport.png" Header="Importeer Valuta"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyExport.png" Header="Exporteer Valuta"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyImport.png" Header="Importeer Valuta" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataCurencyExport.png" Header="Exporteer Valuta" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="Werkzaamheden" SmallImageSource=".\Resources\metadataWorktype.png">
-                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeImport.png" Header="Importeer Werkzaamheden"/>
-                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeExport.png" Header="Exporteer Werkzaamheden"/>
+                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeImport.png" Header="Importeer Werkzaamheden" />
+                        <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeExport.png" Header="Exporteer Werkzaamheden" />
                     </RibbonSplitButton>
                 </RibbonGroup>
             </RibbonTab>
 
             <RibbonTab x:Name="ConfigTab" Header="Instellingen">
-                <RibbonButton LargeImageSource=".\Resources\options.png" Label="Instellingen"/>
+                <RibbonButton LargeImageSource=".\Resources\options.png" Label="Instellingen" />
             </RibbonTab>
         </Ribbon>
 
-        <Frame x:Name="Main" Margin="0,140,0,0" NavigationUIVisibility="Hidden"/>
-
-
+        <Frame x:Name="Main" Margin="0,140,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

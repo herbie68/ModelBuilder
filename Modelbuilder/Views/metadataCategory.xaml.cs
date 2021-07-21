@@ -4,15 +4,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
 
-=======
->>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
 namespace Modelbuilder
 {
     public partial class metadataCategory : Page
     {
         private readonly string DatabaseTable = "category";
+
         public metadataCategory()
         {
             InitializeComponent();
@@ -24,7 +22,7 @@ namespace Modelbuilder
         {
             e.CanExecute = true;
         }
-        #endregion
+        #endregion Command Binding CanExecute region
 
         #region Buildtree
         public void BuildTree()
@@ -76,8 +74,8 @@ namespace Modelbuilder
                 PopulateTree(row, cChild);
             }
         }
-        #endregion
-        #endregion
+        #endregion Populate tree during build
+        #endregion Buildtree
 
         #region SelectedItemChanged
         private void treeViewCategory_SelectedItemChanged(object sender, RoutedEventArgs e)
@@ -105,22 +103,23 @@ namespace Modelbuilder
             valueOriginalName.Text = SelectedItem.Header.ToString();
             inpCategoryName.Text = SelectedItem.Header.ToString();
 
-
             // Perhaps the switch can be used for a different menu on root item and sub item, but not sure if necesarry
             switch (SelectedItem.Tag.ToString())
             {
                 case "Solution":
                     treeViewCategory.ContextMenu = treeViewCategory.Resources["SolutionContext"] as System.Windows.Controls.ContextMenu;
                     break;
+
                 case "Folder":
                     treeViewCategory.ContextMenu = treeViewCategory.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
                     break;
             }
             treeViewCategory.ContextMenu = treeViewCategory.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
         }
-        #endregion
+        #endregion SelectedItemChanged
 
         #region Add a Sub category
+
         private void ButtonAddSubCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new();
@@ -149,9 +148,11 @@ namespace Modelbuilder
             TreeViewItem ParentItem = treeViewCategory.SelectedItem as TreeViewItem;
             ParentItem.Items.Add(cChild);
         }
-        #endregion
+
+        #endregion Add a Sub category
 
         #region Add a Main (root) category
+
         private void ButtonAddMainCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new dialogCategory();
@@ -176,7 +177,8 @@ namespace Modelbuilder
             root.Tag = dialogCategory.diaLogCategoryValue;
             treeViewCategory.Items.Add(root);
         }
-        #endregion
+
+        #endregion Add a Main (root) category
 
         #region Delete a category, including all subs under the selected catogory
         private void ButtonDeleteCategory(object sender, RoutedEventArgs e)
@@ -197,16 +199,12 @@ namespace Modelbuilder
             {
                 parent.Items.Remove(item);
             }
-<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
-=======
-          
             treeViewCategory.Items.Refresh();
->>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
         }
-        #endregion
+        #endregion Delete a category, including all subs under the selected catogory
 
         #region Rename category save changes to tree and database
-        private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
+        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpCategoryName.Text != "")
             {
@@ -225,16 +223,15 @@ namespace Modelbuilder
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
-<<<<<<< HEAD:Modelbuilder/metadataCategory.xaml.cs
 
                 var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
                 var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
-                dbConnection.SqlCommandString = " SET " + 
+                dbConnection.SqlCommandString = " SET " +
                     "category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
-                    NewPath.Replace("\\", "\\\\") + "') WHERE " + 
+                    NewPath.Replace("\\", "\\\\") + "') WHERE " +
                     "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
-                
+
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
@@ -242,10 +239,12 @@ namespace Modelbuilder
                 TreeViewItem SelectedItem = treeViewCategory.SelectedItem as TreeViewItem;
 
                 // Change the header of the selected treview to update the view
-                SelectedItem.Header = inpCategoryName.Text;                
+                SelectedItem.Header = inpCategoryName.Text;
             }
         }
+        #endregion
 
+        #region Get Treeview Item
         private TreeViewItem GetTreeViewItem(ItemsControl container, object item)
         {
             if (container != null)
@@ -292,7 +291,6 @@ namespace Modelbuilder
                 // Ensure that the generator for this panel has been created.
                 UIElementCollection children = itemsHostPanel.Children;
 
-
                 for (int i = 0, count = container.Items.Count; i < count; i++)
                 {
                     TreeViewItem subContainer;
@@ -337,7 +335,9 @@ namespace Modelbuilder
 
             return null;
         }
+        #endregion
 
+        #region Find Visual Child
         /// <summary>
         /// Search for an element of a certain type in the visual tree.
         /// </summary>
@@ -367,24 +367,18 @@ namespace Modelbuilder
 
             return null;
         }
+        #endregion
 
+        #region Virtualizing Stackpanel
         public class MyVirtualizingStackPanel : VirtualizingStackPanel
         {
-            /// <summary>
-            /// Publically expose BringIndexIntoView.
-            /// </summary>
+
             public void BringIntoView(int index)
             {
-
-                this.BringIndexIntoView(index);
-            }
-        }
-=======
-                DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
+                BringIndexIntoView(index);
             }
         }
         #endregion
 
->>>>>>> develop:Modelbuilder/Views/metadataCategory.xaml.cs
     }
 }
