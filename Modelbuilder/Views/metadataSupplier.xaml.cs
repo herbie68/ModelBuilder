@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace Modelbuilder
     public partial class metadataSupplier : Page
     {
         private readonly string DatabaseTable = "supplier";
-        private readonly string DatabaseCountyTable = "country";
+        private readonly string DatabaseCountryTable = "country";
         private readonly string DatabaseCurrencyTable = "currency";
         public metadataSupplier()
         {
@@ -80,36 +81,35 @@ namespace Modelbuilder
             inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
             inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
             inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
-            inpSupplierMemo.Text = Row_Selected["supplier_Memo"].ToString();
+            inpSupplierMemo.Document.Blocks.Clear();
+
+            // Read formatted ritch text from table and store in field
+            string rtfText = Row_Selected["supplier_Memo"].ToString();
+            byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
+                tr.Load(ms, DataFormats.Rtf);
+            }
+            
+            //inpSupplierMemo.Document.Blocks.Add(new Paragraph(new Run(Row_Selected["supplier_Memo"].ToString())));
+
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpSupplierCode.Text != "")
             {
-                Database dbCurrencyConnection = new()
+                //string ContenSupplierMemo = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd).Text;
+                // Prepare ritch text to be stored in database 
+                string ContenSupplierMemo;
+                TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    TableName = DatabaseCurrencyTable
-                };
-
-                dbCurrencyConnection.Connect();
-                dbCurrencyConnection.SqlCommandString = "currency_Id";
-                dbCurrencyConnection.SqlWhereString = "currency_Symbol = '" + cboxSupplierCurrency.Text + "'";
-
-                long currencyId = dbCurrencyConnection.RetrieveSpecificIdFromMySqlData();
-                valueCurrencyId.Text = currencyId.ToString();
-
-                Database dbCountryConnection = new()
-                {
-                    TableName = DatabaseCurrencyTable
-                };
-
-                dbCountryConnection.Connect();
-                dbCountryConnection.SqlCommandString = "country_Id";
-                dbCountryConnection.SqlWhereString = "country_Name = '" + cboxSupplierCountry.Text + "'";
-
-                long countryId = dbCountryConnection.RetrieveSpecificIdFromMySqlData();
-                valueCountryId.Text = countryId.ToString();
+                    // tr.Save(ms, DataFormats.Rtf);
+                    tr.Save(ms, DataFormats.Rtf);
+                    ContenSupplierMemo = Encoding.ASCII.GetString(ms.ToArray());
+                }
 
                 Database dbConnection = new Database
                 {
@@ -138,7 +138,7 @@ namespace Modelbuilder
                     "supplier_PhoneSupport = '" + inpSupplierPhoneSupport.Text + "', " +
                     "supplier_MailGeneral = '" + inpSupplierMailGeneral.Text + "', " +
                     "supplier_MailSales = '" + inpSupplierMailSales.Text + "', " +
-                    "supplier_Memo = '" + inpSupplierMemo.Text + "', " +
+                    "supplier_Memo = '" + ContenSupplierMemo + "', " +
                     "supplier_MailSupport = '" + inpSupplierMailSupport.Text + "' WHERE " + 
                     "supplier_Id = " + valueSupplierId.Text + ";";
 

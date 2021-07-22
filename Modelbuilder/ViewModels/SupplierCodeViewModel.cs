@@ -9,6 +9,7 @@ namespace Modelbuilder
         public List<string> CountryCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
         private readonly string DatabaseCountryTable = "country";
+        public string TableId = "supplier_Id";
 
         public SupplierCodeViewModel()
         {
@@ -39,11 +40,11 @@ namespace Modelbuilder
             };
 
             //DataTable dataTable = new DataTable();
-            dbCurrencyConnection.SqlSelectionString = "country_Name";
-            dbCurrencyConnection.SqlOrderByString = "currency_Id";
-            dbCurrencyConnection.TableName = DatabaseCountryTable;
+            dbCountryConnection.SqlSelectionString = "country_Name";
+            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.TableName = DatabaseCountryTable;
 
-            DataTable dtCountrySelection = dbCurrencyConnection.LoadSpecificMySqlData();
+            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
 
             for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
             {

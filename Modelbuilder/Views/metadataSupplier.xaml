@@ -87,11 +87,11 @@
                 </TabItem>
                 <TabItem Header="Memo">
                     <Grid Background="#FFE5E5E5">
-                        <TextBlock x:Name="inpSupplierMemo" Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
-                        <RichTextBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,70,10,0" Height="182" Width="Auto">
+                        <TextBlock Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
+                        <RichTextBox x:Name="inpSupplierMemo" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,70,10,0" Height="182" Width="Auto">
                             <FlowDocument>
                                 <Paragraph>
-                                    <Run Text="RichTextBox"/>
+                                    <Run Text=""/>
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
