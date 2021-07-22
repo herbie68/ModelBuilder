@@ -66,7 +66,7 @@
         </Style>
 
         <Style x:Key="DefaultComboBox" TargetType="ComboBox">
-            <Setter Property="Height" Value="Auto" />
+            <Setter Property="Height" Value="18" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />

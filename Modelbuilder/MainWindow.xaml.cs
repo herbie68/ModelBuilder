@@ -52,10 +52,17 @@ namespace Modelbuilder
         #region Call Worktype Page
         private void ShowWorktypePage(object sender, RoutedEventArgs e)
         {
-
             Main.Content = new metadataWorktype();
         }
         #endregion
+
+        #region Call Supplier Page
+        private void ShowSupplierPage(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new metadataSupplier();
+        }
+        #endregion Call Supplier Pager
+
         #region Exit Application
 
         private void ApplicationExit_Click(object sender, EventArgs e)

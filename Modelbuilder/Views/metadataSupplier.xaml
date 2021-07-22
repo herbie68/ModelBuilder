@@ -1,9 +1,9 @@
-﻿<Page x:Class="Modelbuilder.Views.metadataSupplier"
+﻿<Page x:Class="Modelbuilder.metadataSupplier"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Modelbuilder.Views"
+      xmlns:local="clr-namespace:Modelbuilder"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataSupplier">
@@ -32,14 +32,63 @@
         </StackPanel>
 
         <StackPanel>
-            <TabControl Margin="20,80,20,0" Height="700">
+            <TabControl Margin="20,80,20,0" Height="285">
                 <TabItem Header="Basis gegevens">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"   Margin="450,15,0,0" />
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"    Margin="500,15,0,0" />
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryCode"  Margin="550,15,0,0" />
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"   Margin="600,15,0,0" />
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode" Margin="650,15,0,0" />
+                        <!-- End of "Do not remove" part-->
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="20,15,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCode" Margin="135,20,0,0" Width="100" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="20,35,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierName" Margin="135,40,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Adres" Margin="20,55,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress1" Margin="135,60,0,0" Width="490" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress2" Margin="135,80,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Postcode" Margin="20,95,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierZip" Margin="135,100,0,0" Width="110" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Plaats" Margin="250,95,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCity" Margin="295,100,0,0" Width="330" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="20,115,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="135,120,0,0" Width="190" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="20,135,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="135,140,0,0" Width="50" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="20,155,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="135,160,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Algemeen" Margin="135,175,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Verkoop" Margin="300,175,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Support" Margin="465,175,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Telefoonnummer" Margin="20,195,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneGeneral" Margin="135,200,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSales" Margin="300,200,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSupport" Margin="465,200,0,0" Width="160" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="E-Mail" Margin="20,215,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="135,220,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="300,220,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="465,220,0,0" Width="160" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Contactpersonen">
+                    
                 </TabItem>
                 <TabItem Header="Memo">
                     <Grid Background="#FFE5E5E5">
-                        <TextBlock Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
-                        <RichTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70" Height="600" Width="Auto">
+                        <TextBlock x:Name="inpSupplierMemo" Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
+                        <RichTextBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,70,10,0" Height="182" Width="Auto">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>
@@ -53,7 +102,38 @@
                     <Grid Background="#FFE5E5E5"/>
                 </TabItem>
             </TabControl>
+        </StackPanel>
 
+        <StackPanel>
+            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,380,10,0">
+                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
+                    <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
+                        <Image Style="{DynamicResource ToolBarAddIcon}" />
+                    </Button>
+                    <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                    </Button>
+                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                        <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            <DataGrid x:Name="SupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+                  Margin="20,05,20,0" SelectionChanged="SupplierCode_DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_Id}" />
+                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding supplier_Code}" />
+                    <DataGridTextColumn Header="Naam" Width="180" Binding="{Binding supplier_Name}" />
+                    <DataGridTextColumn Header="Adres" Width="180" Binding="{Binding supplier_Address1}" />
+                    <DataGridTextColumn Header="Postcode" Width="80" Binding="{Binding supplier_Zip}" />
+                    <DataGridTextColumn Header="Plaats" Width="120" Binding="{Binding supplier_City}" />
+                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}" />
+                    <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding currency_Symbol}" />
+                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}" />
+                    <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
 
 
