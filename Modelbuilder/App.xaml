@@ -105,6 +105,123 @@
             <Setter Property="Height" Value="21" />
         </Style>
         <!--#endregion-->
+        
+        <!--#region  RTF Toolbar resources-->
+        <Style x:Key="RtfToolBarTray" TargetType="ToolBarTray">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="RtfToolBar" TargetType="ToolBar">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="ToolBarTray.IsLocked" Value="True" />
+        </Style>
+
+        <Style x:Key="RtfToolBarCutIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarCut.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarCopyIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarCopy.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarPasteIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarPaste.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarUndoIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarUndo.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarRedoIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarRedo.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarBoldIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarBold.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarItalicIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarItalic.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarUnderlineIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarUnderline.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarStrikeoutIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarStrikeout.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarTextcolorIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarTextcolor.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarBackcolorIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarBackcolor.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarAlignLeftIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarAlignLeft.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarAlignCenterIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarAlignCenter.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarAlignRightIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarAlignRight.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarBulletListIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarBulletList.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        
+        <Style x:Key="RtfToolBarNumbersListIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarNumbersList.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarIndentIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarIndent.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarIndentRemoveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarIndentRemove.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarSubscriptIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarSubscript.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+
+        <Style x:Key="RtfToolBarSuperscriptIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\rtftoolbarSuperscript.png" />
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        <!--#endregion-->
 
         <!--#region Default DataGrid resources-->
         <Style x:Key="DefaultDataGrid" TargetType="DataGrid">

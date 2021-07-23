@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -84,76 +85,80 @@ namespace Modelbuilder
             inpSupplierMemo.Document.Blocks.Clear();
 
             // Read formatted ritch text from table and store in field
-            string rtfText = Row_Selected["supplier_Memo"].ToString();
-            byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
-            using (MemoryStream ms = new MemoryStream(byteArray))
-            {
-                TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
-                tr.Load(ms, DataFormats.Rtf);
-            }
-            
-            //inpSupplierMemo.Document.Blocks.Add(new Paragraph(new Run(Row_Selected["supplier_Memo"].ToString())));
+            string ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
 
+            if (ContentSupplierMemo != "")
+            {
+                byte[] byteArray = Encoding.ASCII.GetBytes(ContentSupplierMemo);
+                using (MemoryStream ms = new(byteArray))
+                {
+                    TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
+                    tr.Load(ms, DataFormats.Rtf);
+                }
+            }
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
+            string ContentSupplierMemo;
+
             if (inpSupplierCode.Text != "")
             {
-                //string ContenSupplierMemo = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd).Text;
-                // Prepare ritch text to be stored in database 
-                string ContenSupplierMemo;
                 TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
-                using (MemoryStream ms = new MemoryStream())
+                using (MemoryStream ms = new())
                 {
-                    // tr.Save(ms, DataFormats.Rtf);
                     tr.Save(ms, DataFormats.Rtf);
-                    ContenSupplierMemo = Encoding.ASCII.GetString(ms.ToArray());
+                    ContentSupplierMemo = Encoding.ASCII.GetString(ms.ToArray());
                 }
-
-                Database dbConnection = new Database
-                {
-                    TableName = DatabaseTable
-                };
-
-                dbConnection.Connect();
-
-                dbConnection.SqlCommand = "UPDATE ";
-                dbConnection.SqlCommandString = " SET " +
-                    "supplier_Code = '" + inpSupplierCode.Text + "', " +
-                    "supplier_Name = '" + inpSupplierName.Text + "', " +
-                    "supplier_Address1 = '" + inpSupplierAddress1.Text + "', " +
-                    "supplier_Address2 = '" + inpSupplierAddress2.Text + "', " +
-                    "supplier_Zip = '" + inpSupplierZip.Text + "', " +
-                    "supplier_City = '" + inpSupplierCity.Text + "', " +
-                    "Country_Id = '" + valueCountryId.Text + "', " +
-                    "Country_Code = '" + valueCountryCode.Text + "', " +
-                    "Country_Name = '" + cboxSupplierCountry.Text + "', " +
-                    "Currency_Id = '" + valueCurrencyId.Text + "', " +
-                    "Currency_Code = '" + valueCurrencyCode.Text + "', " +
-                    "Currency_Symbol = '" + cboxSupplierCurrency.Text + "', " +
-                    "supplier_Url = '" + inpSupplierUrl.Text + "', " +
-                    "supplier_PhoneGeneral = '" + inpSupplierPhoneGeneral.Text + "', " +
-                    "supplier_PhoneSales = '" + inpSupplierPhoneSales.Text + "', " +
-                    "supplier_PhoneSupport = '" + inpSupplierPhoneSupport.Text + "', " +
-                    "supplier_MailGeneral = '" + inpSupplierMailGeneral.Text + "', " +
-                    "supplier_MailSales = '" + inpSupplierMailSales.Text + "', " +
-                    "supplier_Memo = '" + ContenSupplierMemo + "', " +
-                    "supplier_MailSupport = '" + inpSupplierMailSupport.Text + "' WHERE " + 
-                    "supplier_Id = " + valueSupplierId.Text + ";";
-
-                dbConnection.TableName = DatabaseTable;
-
-                _ = dbConnection.UpdateMySqlDataRecord();
-                DataTable dtSupplierCodes = dbConnection.LoadMySqlData();
-
-                // Load the data from the database into the datagrid
-                SupplierCode_DataGrid.DataContext = dtSupplierCodes;
-
-                // Make sure the eddited row in the datagrid is selected
-                SupplierCode_DataGrid.SelectedIndex = int.Parse(valueSupplierId.Text) - 1;
-                SupplierCode_DataGrid.Focus();
             }
+            else 
+            { 
+                ContentSupplierMemo = ""; 
+            }
+
+            Database dbConnection = new Database
+            {
+                TableName = DatabaseTable
+            };
+
+            dbConnection.Connect();
+
+            dbConnection.SqlCommand = "UPDATE ";
+            dbConnection.SqlCommandString = " SET " +
+                "supplier_Code = '" + inpSupplierCode.Text + "', " +
+                "supplier_Name = '" + inpSupplierName.Text + "', " +
+                "supplier_Address1 = '" + inpSupplierAddress1.Text + "', " +
+                "supplier_Address2 = '" + inpSupplierAddress2.Text + "', " +
+                "supplier_Zip = '" + inpSupplierZip.Text + "', " +
+                "supplier_City = '" + inpSupplierCity.Text + "', " +
+                "Country_Id = '" + valueCountryId.Text + "', " +
+                "Country_Code = '" + valueCountryCode.Text + "', " +
+                "Country_Name = '" + cboxSupplierCountry.Text + "', " +
+                "Currency_Id = '" + valueCurrencyId.Text + "', " +
+                "Currency_Code = '" + valueCurrencyCode.Text + "', " +
+                "Currency_Symbol = '" + cboxSupplierCurrency.Text + "', " +
+                "supplier_Url = '" + inpSupplierUrl.Text + "', " +
+                "supplier_PhoneGeneral = '" + inpSupplierPhoneGeneral.Text + "', " +
+                "supplier_PhoneSales = '" + inpSupplierPhoneSales.Text + "', " +
+                "supplier_PhoneSupport = '" + inpSupplierPhoneSupport.Text + "', " +
+                "supplier_MailGeneral = '" + inpSupplierMailGeneral.Text + "', " +
+                "supplier_MailSales = '" + inpSupplierMailSales.Text + "', " +
+                "supplier_Memo = '" + ContentSupplierMemo + "', " +
+                "supplier_Memo2 = '" + ContentSupplierMemo + "', " +
+                "supplier_MailSupport = '" + inpSupplierMailSupport.Text + "' WHERE " + 
+                "supplier_Id = " + valueSupplierId.Text + ";";
+
+            dbConnection.TableName = DatabaseTable;
+
+            _ = dbConnection.UpdateMySqlDataRecord();
+            DataTable dtSupplierCodes = dbConnection.LoadMySqlData();
+
+            // Load the data from the database into the datagrid
+            SupplierCode_DataGrid.DataContext = dtSupplierCodes;
+
+            // Make sure the eddited row in the datagrid is selected
+            SupplierCode_DataGrid.SelectedIndex = int.Parse(valueSupplierId.Text) - 1;
+            SupplierCode_DataGrid.Focus();
         }
 
         private void ToolbarButtonNew(object sender, RoutedEventArgs e)
@@ -162,7 +167,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, Country_Id, Country_Code, Country_Name, Currency_Id, Currency_Code, Currency_Symbol, supplier_Url, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_Memo) VALUES('*','','','','','','','','','','','','','','','','','','');";
+            dbConnection.SqlCommandString = "(supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, Country_Id, Country_Code, Country_Name, Currency_Id, Currency_Code, Currency_Symbol, supplier_Url, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_Memo, supplier_Memo2) VALUES('*','','','','','','','','','','','','','','','','','','', '');";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
             valueSupplierId.Text = ID.ToString();
@@ -213,5 +218,26 @@ namespace Modelbuilder
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
         }
+
+        #region rtfToolbar actions
+        #region Variables
+        private bool dataChanged = false; // Unsaved textchanges
+
+        private string privateText = null; // Content of RTFBox in txt-Format
+        public string text
+        {
+            get
+            {
+                TextRange range = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
+                return range.Text;
+            }
+            set
+            {
+                privateText = value;
+            }
+        }
+        #endregion Variables
+
+        #endregion rtfToolbar actions
     }
 }

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataSupplier">
-
+    
     <Grid>
         <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
             <StackPanel.Resources>
@@ -85,9 +85,85 @@
                 <TabItem Header="Contactpersonen">
                     
                 </TabItem>
+                
                 <TabItem Header="Memo">
                     <Grid Background="#FFE5E5E5">
-                        <TextBlock Text="Opmerkingen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
+                        <TextBlock Text="Comments" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
+                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="10,30,0,0" Width="490">
+                            <ToolBar Style="{DynamicResource RtfToolBar}" x:Name="ToolBarTop">
+                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen">
+                                    <Image Style="{DynamicResource RtfToolBarCutIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
+                                    <Image Style="{DynamicResource RtfToolBarCopyIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Paste" ToolTip="Plak">
+                                    <Image Style="{DynamicResource RtfToolBarPasteIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Undo" ToolTip="Ongedaan maken">
+                                    <Image Style="{DynamicResource RtfToolBarUndoIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
+                                    <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
+                                </Button>
+                                <Separator/>
+                                
+                                <Button Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                    <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
+                                </Button>
+                                <Button ToolTip="Doorhalen" Click="ToolStripButtonStrikeout_Click">
+                                    <Image Style="{DynamicResource RtfToolBarStrikeoutIcon}" />
+                                </Button>
+                                <ToggleButton ToolTip="Subscript" Click="ToolStripButtonSubscript_Click">
+                                    <Image Style="{DynamicResource RtfToolBarSubscriptIcon}" />
+                                </ToggleButton>
+                                <ToggleButton ToolTip="Superscript" Click="ToolStripButtonSuperscript_Click">
+                                    <Image Style="{DynamicResource RtfToolBarSuperscriptIcon}" />
+                                </ToggleButton>
+                                <Separator/>
+
+                                <Button ToolTip="Tekst kleur" Click="ToolStripButtonTextcolor_Click">
+                                    <Image Style="{DynamicResource RtfToolBarTextcolorIcon}" />
+                                </Button>
+                                <Button ToolTip="Achtergrond kleur" Click="ToolStripButtonBackcolor_Click">
+                                    <Image Style="{DynamicResource RtfToolBarBackcolorIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <ToggleButton Command="EditingCommands.AlignLeft" ToolTip="Links uitlijnen" Click="ToolStripButtonAlignLeft_Click">
+                                    <Image Style="{DynamicResource RtfToolBarAlignLeftIcon}" />
+                                </ToggleButton>
+                                <ToggleButton Command="EditingCommands.AlignCenter" ToolTip="Centreren" Click="ToolStripButtonAlignCenter_Click">
+                                    <Image Style="{DynamicResource RtfToolBarAlignCenterIcon}" />
+                                </ToggleButton>
+                                <ToggleButton Command="EditingCommands.AlignRight" ToolTip="Rechts uitlijnen" Click="ToolStripButtonAlignRight_Click">
+                                    <Image Style="{DynamicResource RtfToolBarAlignRightIcon}" />
+                                </ToggleButton>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
+                                    <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
+                                    <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.DecreaseIndentation" ToolTip="Terugspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentRemoveIcon}" />
+                                </Button>
+
+                            </ToolBar>
+                        </ToolBarTray>
                         <RichTextBox x:Name="inpSupplierMemo" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,70,10,0" Height="182" Width="Auto">
                             <FlowDocument>
                                 <Paragraph>
@@ -96,8 +172,8 @@
                             </FlowDocument>
                         </RichTextBox>
                     </Grid>
-
                 </TabItem>
+                
                 <TabItem Header="Bestellingen">
                     <Grid Background="#FFE5E5E5"/>
                 </TabItem>
