@@ -7,8 +7,54 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataSupplier">
-    
-    <Grid>
+
+    <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="290" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <!--  Title of the page  -->
+        <TextBlock Style="{DynamicResource Title}" Text="Leveranciers"/>
+        <Path Grid.Row="1" Style="{DynamicResource TitleLine}"/>
+        
+        <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"   Margin="450,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"    Margin="500,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryCode"  Margin="550,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"   Margin="600,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode" Margin="650,15,0,0" />
+        <!-- End of "Do not remove" part-->
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <TabControl Height="285" Background="#FFE5E5E5">
+                <TabItem Header="Basisgegevens">
+                    <Grid>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCode" Margin="135,6" Width="100" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="0,20" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Memo">
+                    
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        
+
         <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Label}">
@@ -22,29 +68,12 @@
                 </Style>
             </StackPanel.Resources>
         </StackPanel>
-
-        <!--  Title of the page  -->
-        <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Leveranciers"/>
-            <Canvas>
-                <Path Style="{DynamicResource DefaultTitleLine}"/>
-            </Canvas>
-        </StackPanel>
-
+ 
         <StackPanel>
-            <TabControl Margin="20,80,20,0" Height="285">
+            <TabControl Grid.Row="2" Grid.ColumnSpan="4" Height="285">
                 <TabItem Header="Basis gegevens">
                     <Grid Background="#FFE5E5E5">
-                        <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"   Margin="450,15,0,0" />
-                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"    Margin="500,15,0,0" />
-                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryCode"  Margin="550,15,0,0" />
-                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"   Margin="600,15,0,0" />
-                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode" Margin="650,15,0,0" />
-                        <!-- End of "Do not remove" part-->
-
                         <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="20,15,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCode" Margin="135,20,0,0" Width="100" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="20,35,0,0" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierName" Margin="135,40,0,0" Width="490" />
@@ -80,6 +109,7 @@
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="135,220,0,0" Width="160" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="300,220,0,0" Width="160" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="465,220,0,0" Width="160" />
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Contactpersonen">
@@ -91,7 +121,7 @@
                         <TextBlock Text="Comments" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="10,30,0,0" Width="490">
                             <ToolBar Style="{DynamicResource RtfToolBar}" x:Name="ToolBarTop">
-                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen">
+                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
                                     <Image Style="{DynamicResource RtfToolBarCutIcon}" />
                                 </Button>
                                 <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
@@ -107,44 +137,16 @@
                                     <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
                                 </Button>
                                 <Separator/>
-                                
-                                <Button Command="EditingCommands.ToggleBold" ToolTip="Vet">
+
+                                <Button x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
                                 </Button>
-                                <Button Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                <Button x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
                                     <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
                                 </Button>
-                                <Button Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                <Button x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
                                 </Button>
-                                <Button ToolTip="Doorhalen" Click="ToolStripButtonStrikeout_Click">
-                                    <Image Style="{DynamicResource RtfToolBarStrikeoutIcon}" />
-                                </Button>
-                                <ToggleButton ToolTip="Subscript" Click="ToolStripButtonSubscript_Click">
-                                    <Image Style="{DynamicResource RtfToolBarSubscriptIcon}" />
-                                </ToggleButton>
-                                <ToggleButton ToolTip="Superscript" Click="ToolStripButtonSuperscript_Click">
-                                    <Image Style="{DynamicResource RtfToolBarSuperscriptIcon}" />
-                                </ToggleButton>
-                                <Separator/>
-
-                                <Button ToolTip="Tekst kleur" Click="ToolStripButtonTextcolor_Click">
-                                    <Image Style="{DynamicResource RtfToolBarTextcolorIcon}" />
-                                </Button>
-                                <Button ToolTip="Achtergrond kleur" Click="ToolStripButtonBackcolor_Click">
-                                    <Image Style="{DynamicResource RtfToolBarBackcolorIcon}" />
-                                </Button>
-                                <Separator/>
-
-                                <ToggleButton Command="EditingCommands.AlignLeft" ToolTip="Links uitlijnen" Click="ToolStripButtonAlignLeft_Click">
-                                    <Image Style="{DynamicResource RtfToolBarAlignLeftIcon}" />
-                                </ToggleButton>
-                                <ToggleButton Command="EditingCommands.AlignCenter" ToolTip="Centreren" Click="ToolStripButtonAlignCenter_Click">
-                                    <Image Style="{DynamicResource RtfToolBarAlignCenterIcon}" />
-                                </ToggleButton>
-                                <ToggleButton Command="EditingCommands.AlignRight" ToolTip="Rechts uitlijnen" Click="ToolStripButtonAlignRight_Click">
-                                    <Image Style="{DynamicResource RtfToolBarAlignRightIcon}" />
-                                </ToggleButton>
                                 <Separator/>
 
                                 <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
@@ -179,7 +181,7 @@
                 </TabItem>
             </TabControl>
         </StackPanel>
-
+        
         <StackPanel>
             <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,380,10,0">
                 <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">

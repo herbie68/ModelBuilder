@@ -8,6 +8,14 @@ namespace Modelbuilder
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Connectiondata
+        public static readonly string server = "localhost";
+        public static readonly string database = "modelbuilder";
+        public static readonly int port = 3306;
+        public static readonly string uid = "root";
+        public static readonly string password = "admin";
+        private HelperMySQL _helper;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,5 +79,15 @@ namespace Modelbuilder
         }
 
         #endregion Exit Application
+
+        #region Open connection to database
+        private void InitializeHelper()
+        {
+            if (_helper == null)
+            {
+                _helper = new HelperMySQL(server,port, database, uid, password);
+            }
+        }
+        #endregion Open connection to database
     }
 }

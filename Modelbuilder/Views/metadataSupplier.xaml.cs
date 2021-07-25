@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
+
 
 namespace Modelbuilder
 {
@@ -23,6 +25,19 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataSupplier : Page
     {
+        /// <summary>
+        /// Translated names
+        /// zeilenangabe    => ShowRow
+        /// privAktZeile    => _CurrentRow
+        /// AktZeile        => CurrentRow
+        /// LabelZeileNr    => LabelRowNr
+        /// privAktSpalte   => _CurrentColumn
+        //  AktSpalte       => CurrentColumn
+        /// spaltenangabe   => ShowColumn
+        /// LabelSpalteNr   => LabelColumnNr
+        /// Zeilennummer    => Rownumber
+        /// Spaltennummer   => Columnnumber
+        /// </summary>
         private readonly string DatabaseTable = "supplier";
         private readonly string DatabaseCountryTable = "country";
         private readonly string DatabaseCurrencyTable = "currency";
@@ -85,22 +100,41 @@ namespace Modelbuilder
             inpSupplierMemo.Document.Blocks.Clear();
 
             // Read formatted ritch text from table and store in field
-            string ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
+            //string ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
+            string ContentSupplierMemo = string.Empty;
 
-            if (ContentSupplierMemo != "")
+            if (Row_Selected["supplier_Memo"] != null && Row_Selected["supplier_Memo"] != DBNull.Value)
             {
-                byte[] byteArray = Encoding.ASCII.GetBytes(ContentSupplierMemo);
-                using (MemoryStream ms = new(byteArray))
+                //get value from DataTable
+                ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
+            }
+
+            if (!String.IsNullOrEmpty(ContentSupplierMemo))
+            {
+                //Debug.WriteLine("Length: " + ContentSupplierMemo.Length);
+
+                //clear existing data
+                inpSupplierMemo.Document.Blocks.Clear();
+
+                //convert to byte[]
+                byte[] dataArr = System.Text.Encoding.UTF8.GetBytes(ContentSupplierMemo);
+
+                using (MemoryStream ms = new MemoryStream(dataArr))
                 {
-                    TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
-                    tr.Load(ms, DataFormats.Rtf);
+                    //inpSupplierMemo.Document = new FlowDocument();
+
+                    //load data
+                    TextRange flowDocRange = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
+                    flowDocRange.Load(ms, DataFormats.Rtf);
                 }
             }
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
-            string ContentSupplierMemo;
+            string ContentSupplierMemo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
+
+            /*string ContentSupplierMemo;
 
             if (inpSupplierCode.Text != "")
             {
@@ -115,6 +149,7 @@ namespace Modelbuilder
             { 
                 ContentSupplierMemo = ""; 
             }
+            */
 
             Database dbConnection = new Database
             {
@@ -144,7 +179,6 @@ namespace Modelbuilder
                 "supplier_MailGeneral = '" + inpSupplierMailGeneral.Text + "', " +
                 "supplier_MailSales = '" + inpSupplierMailSales.Text + "', " +
                 "supplier_Memo = '" + ContentSupplierMemo + "', " +
-                "supplier_Memo2 = '" + ContentSupplierMemo + "', " +
                 "supplier_MailSupport = '" + inpSupplierMailSupport.Text + "' WHERE " + 
                 "supplier_Id = " + valueSupplierId.Text + ";";
 
@@ -167,7 +201,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, Country_Id, Country_Code, Country_Name, Currency_Id, Currency_Code, Currency_Symbol, supplier_Url, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_Memo, supplier_Memo2) VALUES('*','','','','','','','','','','','','','','','','','','', '');";
+            dbConnection.SqlCommandString = "(supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, Country_Id, Country_Code, Country_Name, Currency_Id, Currency_Code, Currency_Symbol, supplier_Url, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_Memo) VALUES('*','','','','','','','','','','','','','','','','','', '');";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
             valueSupplierId.Text = ID.ToString();
@@ -219,8 +253,27 @@ namespace Modelbuilder
         {
         }
 
+        private string GetRichTextFromFlowDocument(FlowDocument fDoc)
+        {
+            string result = string.Empty;
+
+            //convert to string
+            if (fDoc != null)
+            {
+                TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    tr.Save(ms, DataFormats.Rtf);
+                    result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+                }
+            }
+
+            return result;
+        }
+
+
         #region rtfToolbar actions
-        #region Variables
         private bool dataChanged = false; // Unsaved textchanges
 
         private string privateText = null; // Content of RTFBox in txt-Format
@@ -236,8 +289,34 @@ namespace Modelbuilder
                 privateText = value;
             }
         }
-        #endregion Variables
 
+        private string ShowRow; // aktuelle Zeile der Cursorposition
+        private int _CurrentRow = 1;
+        public int CurrentRow
+        {
+            get { return _CurrentRow; }
+            set
+            {
+                _CurrentRow = value;
+                ShowRow = "Rij: " + value;
+                //Uncomment when statusbar is in place
+                //LabelRowNr.Content = ShowRow;
+            }
+        }
+
+        private string ShowColumn; // aktuelle Spalte der Cursorposition
+        private int _CurrentColumn = 1;
+        public int CurrentColumn
+        {
+            get { return _CurrentColumn; }
+            set
+            {
+                _CurrentColumn = value;
+                ShowColumn = "Kol: " + value;
+                // Uncomment when statusbar is in place
+                //LabelColumnNr.Content = ShowColumn;
+            }
+        }
         #endregion rtfToolbar actions
     }
 }

@@ -29,6 +29,28 @@
             <Setter Property="Stroke" Value="Red" />
             <Setter Property="StrokeThickness" Value="5" />
         </Style>
+
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        
+        <Style x:Key="TitleLine" TargetType="Path">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Height" Value="5" />
+            <Setter Property="Data" Value="M61,125 L193,28" />
+            <Setter Property="Fill" Value="Blue" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="Stroke" Value="Red" />
+            <Setter Property="StrokeThickness" Value="5" />
+        </Style>
         <!--#endregion-->
 
         <!--#region Default content Entry Panel resources on Pages-->
