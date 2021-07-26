@@ -9,14 +9,16 @@
       Title="metadataSupplier">
 
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+        <!--#region Grid definition-->
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="10" />
             <RowDefinition Height="30"/>
             <RowDefinition Height="290" />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -25,11 +27,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+        <!--#endregion-->
 
-        <!--  Title of the page  -->
+        <!--region Title of the page  -->
         <TextBlock Style="{DynamicResource Title}" Text="Leveranciers"/>
         <Path Grid.Row="1" Style="{DynamicResource TitleLine}"/>
+        <!--#endregion-->
         
+        <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"   Margin="450,15,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"    Margin="500,15,0,0" />
@@ -37,90 +42,64 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"   Margin="600,15,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode" Margin="650,15,0,0" />
         <!-- End of "Do not remove" part-->
-
+        <!--#endregion-->
+        
+        <!--#region Tabpages -->
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
-            <TabControl Height="285" Background="#FFE5E5E5">
+            <TabControl Height="300" Background="#FFE5E5E5">
                 <TabItem Header="Basisgegevens">
                     <Grid>
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCode" Margin="135,6" Width="100" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCode" Margin="115,6,0,0" Width="100" />
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="0,20" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="0,20,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierName" Margin="115,26,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Adres" Margin="0,40" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress1" Margin="115,46,0,0" Width="490" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress2" Margin="115,66,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Postcode" Margin="0,80,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierZip" Margin="115,86,0,0" Width="110" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Plaats" Margin="230,80,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCity" Margin="275,86,0,0" Width="330" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="0,100,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="115,106,0,0" Width="190" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="0,130,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="115,136,0,0" Width="50" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="0,160,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="115,166,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Algemeen" Margin="115,195,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Verkoop" Margin="280,195,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Support" Margin="445,195,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Telefoonnummer" Margin="0,215,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneGeneral" Margin="115,221,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSales" Margin="280,221,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSupport" Margin="445,221,0,0" Width="160" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="E-Mail" Margin="0,235,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="115,241,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="280,241,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="445,241,0,0" Width="160" />
                     </Grid>
                 </TabItem>
-                <TabItem Header="Memo">
-                    
-                </TabItem>
-            </TabControl>
-        </StackPanel>
-        
 
-        <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Label}">
-                    <Setter Property="Margin" Value="0,0,0,5"/>
-                </Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Margin" Value="0,0,0,5"/>
-                </Style>
-                <Style TargetType="{x:Type TreeView}">
-                    <Setter Property="Margin" Value=" 0,0,0,10"/>
-                </Style>
-            </StackPanel.Resources>
-        </StackPanel>
- 
-        <StackPanel>
-            <TabControl Grid.Row="2" Grid.ColumnSpan="4" Height="285">
-                <TabItem Header="Basis gegevens">
-                    <Grid Background="#FFE5E5E5">
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="20,15,0,0" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Naam" Margin="20,35,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierName" Margin="135,40,0,0" Width="490" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Adres" Margin="20,55,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress1" Margin="135,60,0,0" Width="490" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierAddress2" Margin="135,80,0,0" Width="490" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Postcode" Margin="20,95,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierZip" Margin="135,100,0,0" Width="110" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Plaats" Margin="250,95,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCity" Margin="295,100,0,0" Width="330" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="20,115,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="135,120,0,0" Width="190" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="20,135,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="135,140,0,0" Width="50" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="20,155,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="135,160,0,0" Width="490" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Algemeen" Margin="135,175,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Verkoop" Margin="300,175,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Support" Margin="465,175,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Telefoonnummer" Margin="20,195,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneGeneral" Margin="135,200,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSales" Margin="300,200,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSupport" Margin="465,200,0,0" Width="160" />
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="E-Mail" Margin="20,215,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="135,220,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="300,220,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="465,220,0,0" Width="160" />
-
-                    </Grid>
-                </TabItem>
                 <TabItem Header="Contactpersonen">
-                    
+                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
                 </TabItem>
-                
+
                 <TabItem Header="Memo">
-                    <Grid Background="#FFE5E5E5">
-                        <TextBlock Text="Comments" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10" FontWeight="Bold" Foreground="DarkRed"/>
-                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="10,30,0,0" Width="490">
-                            <ToolBar Style="{DynamicResource RtfToolBar}" x:Name="ToolBarTop">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Opmerkingen:" Margin="5,5" FontSize="14" FontWeight="ExtraBold" Foreground="DarkRed" />
+                        
+                        <!-- Toolbar area-->
+                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,35,5,0">
+                            <ToolBar Style="{DynamicResource RtfToolBar}">
                                 <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
                                     <Image Style="{DynamicResource RtfToolBarCutIcon}" />
                                 </Button>
@@ -163,11 +142,11 @@
                                 <Button Command="EditingCommands.DecreaseIndentation" ToolTip="Terugspringen">
                                     <Image Style="{DynamicResource RtfToolBarIndentRemoveIcon}" />
                                 </Button>
-
                             </ToolBar>
                         </ToolBarTray>
-                        <RichTextBox x:Name="inpSupplierMemo" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,70,10,0" Height="182" Width="Auto">
-                            <FlowDocument>
+
+                        <RichTextBox x:Name="inpSupplierMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="5,65,5,0" Height="195" Width="Auto">
+                            <FlowDocument Name="inpSupplierMemoFD">
                                 <Paragraph>
                                     <Run Text=""/>
                                 </Paragraph>
@@ -175,45 +154,62 @@
                         </RichTextBox>
                     </Grid>
                 </TabItem>
-                
-                <TabItem Header="Bestellingen">
-                    <Grid Background="#FFE5E5E5"/>
+
+                <TabItem Header="Contactpersonen">
+                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
                 </TabItem>
             </TabControl>
         </StackPanel>
+        <!--#endregion-->
         
-        <StackPanel>
-            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,380,10,0">
-                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
-                    <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
-                        <Image Style="{DynamicResource ToolBarAddIcon}" />
-                    </Button>
-                    <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
-                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
-                    </Button>
-                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
-                        <Image Style="{DynamicResource ToolBarSaveIcon}" />
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
-
-            <DataGrid x:Name="SupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                  Margin="20,05,20,0" SelectionChanged="SupplierCode_DataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding supplier_Code}" />
-                    <DataGridTextColumn Header="Naam" Width="180" Binding="{Binding supplier_Name}" />
-                    <DataGridTextColumn Header="Adres" Width="180" Binding="{Binding supplier_Address1}" />
-                    <DataGridTextColumn Header="Postcode" Width="80" Binding="{Binding supplier_Zip}" />
-                    <DataGridTextColumn Header="Plaats" Width="120" Binding="{Binding supplier_City}" />
-                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}" />
-                    <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding currency_Symbol}" />
-                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}" />
-                    <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-
-
+        <!--#region Toolbar for datagrid-->
+        <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Grid.Row="5" Grid.Column="1">
+            <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
+                <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
+                    <Image Style="{DynamicResource ToolBarAddIcon}" />
+                </Button>
+                <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                    <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                </Button>
+                <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                    <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <!--#endregion-->
+        
+        <!--#region Datagrid definition-->
+        <DataGrid x:Name="SupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+                Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="SupplierCode_DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_Id}" />
+                <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding supplier_Code}" />
+                <DataGridTextColumn Header="Naam" Width="180" Binding="{Binding supplier_Name}" />
+                <DataGridTextColumn Header="Adres" Width="180" Binding="{Binding supplier_Address1}" />
+                <DataGridTextColumn Header="Postcode" Width="80" Binding="{Binding supplier_Zip}" />
+                <DataGridTextColumn Header="Plaats" Width="120" Binding="{Binding supplier_City}" />
+                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}" />
+                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding currency_Symbol}" />
+                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}" />
+                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--#endregion-->
+        
+        <!--#region Status row-->
+        <DockPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Aantal:"/>
+                <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
+                <TextBox Grid.Column="3" x:Name="textBoxStaus" IsReadOnly="True" Background="LightGray"/>
+            </Grid>
+        </DockPanel>
+        <!--#endregion-->
     </Grid>
 </Page>

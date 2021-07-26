@@ -38,12 +38,16 @@ namespace Modelbuilder
         /// Zeilennummer    => Rownumber
         /// Spaltennummer   => Columnnumber
         /// </summary>
-        private readonly string DatabaseTable = "supplier";
-        private readonly string DatabaseCountryTable = "country";
-        private readonly string DatabaseCurrencyTable = "currency";
+        private readonly string DatabaseTable = "supplier", DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
+        private HelperMySQL _helper;
+        private DataTable _dt;
+        private int _dbRowCount, _CurrentDataGridIndex;
+
         public metadataSupplier()
         {
             InitializeComponent();
+            GetData();
+
             DataContext = new SupplierCodeViewModel();
 
             Database dbConnection = new()
@@ -66,6 +70,31 @@ namespace Modelbuilder
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void GetData()
+        {
+            InitializeHelper();
+
+            // Get data from database
+            _dt = _helper.GetDataTblSupplier();
+
+            // Populate data in datagrid from datatable
+            SupplierCode_DataGrid.DataContext = _dt;
+
+            // Set value
+            _dbRowCount = _dt.Rows.Count;
+
+            // Clear existing memo data
+            inpSupplierMemo.Document.BLocks.Clear();
+        }
+
+        private void InitializeHelper()
+        {
+            if (_helper == null)
+            {
+                _helper = new HelperMySQL("localhost", 3306, "modelbuilder", "root", "admin");
+            }
         }
 
         private void SupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,7 +126,7 @@ namespace Modelbuilder
             inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
             inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
             inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
-            inpSupplierMemo.Document.Blocks.Clear();
+            //inpSupplierMemo.Document.Blocks.Clear();
 
             // Read formatted ritch text from table and store in field
             //string ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();

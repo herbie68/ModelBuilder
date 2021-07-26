@@ -22,20 +22,20 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_MailSales` varchar(80) DEFAULT NULL,
   `supplier_MailSupport` varchar(80) DEFAULT NULL,
   `supplier_Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `currency_Id` int DEFAULT '1',
-  `currency_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'EUR',
-  `currency_Symbol` varchar(2) DEFAULT '€',
-  `country_Id` int DEFAULT NULL,
-  `country_Code` varchar(4) DEFAULT NULL,
-  `country_Name` varchar(45) DEFAULT NULL,
+  `supplier_CountryId` int DEFAULT NULL,
+  `supplier_CountryCode` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `supplier_CountryName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `supplier_CurrencyId` int DEFAULT '1',
+  `supplier_CurrencyCode` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'EUR',
+  `supplier_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
   PRIMARY KEY (`supplier_Id`),
   UNIQUE KEY `supplier_Code` (`supplier_Code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `supplier`;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` (`supplier_Id`, `supplier_Code`, `supplier_Name`, `supplier_Address1`, `supplier_Address2`, `supplier_Zip`, `supplier_City`, `country_Id`, `country_Code`, `supplier_Url`, `supplier_PhoneGeneral`, `supplier_PhoneSales`, `supplier_PhoneSupport`, `supplier_MailGeneral`, `supplier_MailSales`, `supplier_MailSupport`, `supplier_Memo`, `currency_Id`, `currency_Code`, `currency_Symbol`, `country_Name`) VALUES
-	(1, 'CORNWALL', 'Cornwall Model Boats Ltd', 'Unit 3B, Highfield Rd Ind Est', 'Camelford', 'PL32 9RA', 'Cornwall', 2, 'UK', 'https://www.cornwallmodelboats.co.uk/', '01840 211009', NULL, NULL, NULL, 'sales@cornwallmodelboats.co.uk', NULL, NULL, 2, 'GBP', '£', 'Engeland');
+INSERT INTO `supplier` (`supplier_Id`, `supplier_Code`, `supplier_Name`, `supplier_Address1`, `supplier_Address2`, `supplier_Zip`, `supplier_City`, `supplier_CountryId`, `supplier_CountryCode`, `supplier_Url`, `supplier_PhoneGeneral`, `supplier_PhoneSales`, `supplier_PhoneSupport`, `supplier_MailGeneral`, `supplier_MailSales`, `supplier_MailSupport`, `supplier_Memo`, `supplier_CurrencyId`, `supplier_CurrencyCode`, `supplier_CurrencySymbol`, `supplier_CountryName`) VALUES
+	(1, 'CORNWALL', 'Cornwall Model Boats Ltd', 'Unit 3B, Highfield Rd Ind Est', 'Camelford', 'PL32 9RA', 'Cornwall', 2, 'UK', 'https://www.cornwallmodelboats.co.uk/', '01840 211009', '', '', '', 'sales@cornwallmodelboats.co.uk', '', '{\rtf1ansiansicpg1252uc1htmautspdeff2{fonttbl{f0fcharset0 Times New Roman;}{f2fcharset0 Segoe UI;}}{colortbl\red0green0lue0;\red255green255lue255;}lochhichdbchpardplainltrparitap0{lang1033fs18f2cf0 cf0ql{f2 {ltrch Test content}li0\ri0sa0sb0fi0qlpar}\r\n}\r\n}', 2, 'GBP', '£', 'Engeland');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

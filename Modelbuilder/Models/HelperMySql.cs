@@ -36,7 +36,7 @@ namespace Modelbuilder
             _ = cmd.ExecuteNonQuery();
         }
 
-        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierId = 0)
+        public int ExecuteNonQueryTblSupplier(string sqlext, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, int supplierId = 0)
         {
             int rowsAffected = 0;
 
@@ -115,40 +115,38 @@ namespace Modelbuilder
                 //open
                 con.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-                {
-                    //add parameter
-                    cmd.Parameters.Add("@supplierId", MySqlDbType.Int32).Value = supplierId;
+                using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+                //add parameter
+                cmd.Parameters.Add("@supplierId", MySqlDbType.Int32).Value = supplierId;
 
-                    using MySqlDataAdapter da = new(cmd);
-                    //use DataAdapter to fill DataTable
-                    da.Fill(dt);
-                }
+                using MySqlDataAdapter da = new(cmd);
+                //use DataAdapter to fill DataTable
+                da.Fill(dt);
             }
 
             return dt;
         }
 
-        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo)
+        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_Memo = @supplierMemo WHERE supplier_Id = @supplierId;";
+            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo WHERE supplier_Id = @supplierId;";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierId);
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierMemo, supplierId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
-                result = rowsAffected > 0 ? "Updated successfully" : "No rows were updated.";
+                result = rowsAffected > 0 ? supplierName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
             }
             catch (MySqlException ex)
             {
-                Debug.WriteLine("Error (UpdateTblSupplier - MySqlException): " + ex.Message);
+                Debug.WriteLine("Fout (UpdateTblSupplier - MySqlException): " + ex.Message);
                 throw ex;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error (UpdateTblSupplier): " + ex.Message);
+                Debug.WriteLine("Fout (UpdateTblSupplier): " + ex.Message);
                 throw;
             }
 
