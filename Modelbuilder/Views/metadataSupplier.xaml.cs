@@ -47,7 +47,8 @@ namespace Modelbuilder
         {
             InitializeComponent();
             GetData();
-
+            
+            /*
             DataContext = new SupplierCodeViewModel();
 
             Database dbConnection = new()
@@ -65,6 +66,7 @@ namespace Modelbuilder
             // Make sure the first row in the datagrid is selected
             SupplierCode_DataGrid.SelectedIndex = 0;
             SupplierCode_DataGrid.Focus();
+            */
         }
 
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -86,7 +88,7 @@ namespace Modelbuilder
             _dbRowCount = _dt.Rows.Count;
 
             // Clear existing memo data
-            inpSupplierMemo.Document.BLocks.Clear();
+            inpSupplierMemo.Document.Blocks.Clear();
         }
 
         private void InitializeHelper()
@@ -99,6 +101,7 @@ namespace Modelbuilder
 
         private void SupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
             DataGrid dataGrid = (DataGrid)sender;
 
             if (dataGrid.SelectedItem is not DataRowView Row_Selected)
@@ -157,6 +160,7 @@ namespace Modelbuilder
                     flowDocRange.Load(ms, DataFormats.Rtf);
                 }
             }
+            */
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)

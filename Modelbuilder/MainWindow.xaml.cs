@@ -79,15 +79,5 @@ namespace Modelbuilder
         }
 
         #endregion Exit Application
-
-        #region Open connection to database
-        private void InitializeHelper()
-        {
-            if (_helper == null)
-            {
-                _helper = new HelperMySQL(server,port, database, uid, password);
-            }
-        }
-        #endregion Open connection to database
     }
 }

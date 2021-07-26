@@ -27,16 +27,20 @@ namespace Modelbuilder
 
         public void ExecuteNonQuery(string sqlText)
         {
-            using MySqlConnection con = new(ConnectionStr);
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
 
-            con.Open();
-
-            using MySqlCommand cmd = new(sqlText, con);
-
-            _ = cmd.ExecuteNonQuery();
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+                    //execute
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public int ExecuteNonQueryTblSupplier(string sqlext, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, int supplierId = 0)
+        public int ExecuteNonQueryTblSupplier(string sqlText, int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountrId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
         {
             int rowsAffected = 0;
 
@@ -62,6 +66,18 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@supplierCity", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierUrl", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierMemo", MySqlDbType.LongText).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCountryId", MySqlDbType.Int32).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCounrtyCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCounrtyName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCurrencyId", MySqlDbType.Int32).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCurrencyCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierPhoneGeneral", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierPhoneSales", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierPhoneSupport", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierMailGeneral", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierMailSales", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierMailSupport", MySqlDbType.VarChar).Value = DBNull.Value;
 
                     //set values
                     if (!String.IsNullOrEmpty(supplierCode))
@@ -87,6 +103,36 @@ namespace Modelbuilder
 
                     if (supplierMemo != null && supplierMemo.Length > 0)
                         cmd.Parameters["@supplierMemo"].Value = supplierMemo;
+
+                    if (!String.IsNullOrEmpty(supplierCountryCode))
+                        cmd.Parameters["@supplierCountryCode"].Value = supplierCountryCode;
+
+                    if (!String.IsNullOrEmpty(supplierCountryName))
+                        cmd.Parameters["@supplierCountryName"].Value = supplierCountryName;
+
+                    if (!String.IsNullOrEmpty(supplierCurrencyCode))
+                        cmd.Parameters["@supplierCurrencyCode"].Value = supplierCurrencyCode;
+
+                    if (!String.IsNullOrEmpty(supplierCurrencySymbol))
+                        cmd.Parameters["@supplierCurrencySymbol"].Value = supplierCurrencySymbol;
+
+                    if (!String.IsNullOrEmpty(supplierPhoneGeneral))
+                        cmd.Parameters["@supplierPhoneGeneral"].Value = supplierPhoneGeneral;
+
+                    if (!String.IsNullOrEmpty(supplierPhoneSales))
+                        cmd.Parameters["@supplierPhoneSales"].Value = supplierPhoneSales;
+
+                    if (!String.IsNullOrEmpty(supplierPhoneSupport))
+                        cmd.Parameters["@supplierPhoneSupport"].Value = supplierPhoneSupport;
+
+                    if (!String.IsNullOrEmpty(supplierMailGeneral))
+                        cmd.Parameters["@supplierMailGeneral"].Value = supplierMailGeneral;
+
+                    if (!String.IsNullOrEmpty(supplierMailSales))
+                        cmd.Parameters["@supplierMailSales"].Value = supplierMailSales;
+
+                    if (!String.IsNullOrEmpty(supplierMailSupport))
+                        cmd.Parameters["@supplierMailSupport"].Value = supplierMailSupport;
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -127,10 +173,10 @@ namespace Modelbuilder
             return dt;
         }
 
-        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
+        public string UpdateTblSupplier(int supplierId = 0, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId = 0, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId = 0, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo WHERE supplier_Id = @supplierId;";
+            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_CountryId = @supplierCountrId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencySymbol = @supplierCurrencySymbol, supplierPhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport WHERE supplier_Id = @supplierId;";
 
             try
             {
