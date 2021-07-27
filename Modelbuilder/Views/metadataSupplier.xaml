@@ -66,10 +66,10 @@
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierCity" Margin="275,86,0,0" Width="330" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="0,100,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="115,106,0,0" Width="190" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="115,106,0,0" Width="190" ItemsSource="{Binding CountryCollection}" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="0,130,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="115,136,0,0" Width="50" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="115,136,0,0" Width="50" ItemsSource="{Binding CurrencyCollection}" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="0,160,0,0" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="115,166,0,0" Width="490" />

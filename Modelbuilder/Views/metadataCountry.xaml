@@ -26,8 +26,7 @@
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryCode"   Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryName"   Width="450" Margin="170,97,0,0" />
 
-        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency"  Margin="170,123,780,654"    ItemsSource="{Binding CurrencyCollection}" />
-
+        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency" Margin="170,123,0,0" ItemsSource="{Binding CurrencyCollection}" />
         <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryId"         Margin="270,71,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryCurrencyId" Margin="270,123,0,0" />
 

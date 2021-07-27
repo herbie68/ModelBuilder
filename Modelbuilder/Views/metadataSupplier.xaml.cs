@@ -47,6 +47,7 @@ namespace Modelbuilder
         public metadataSupplier()
         {
             InitializeComponent();
+            DataContext = new SupplierCodeViewModel();
             GetData();
             
             /*
@@ -97,6 +98,7 @@ namespace Modelbuilder
             if (_dt.Rows.Count != 1) { tmpStr = "s"; };
             string msg = "Status: " + _dt.Rows.Count + " leverancier" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
+
         }
 
         private void InitializeHelper()
