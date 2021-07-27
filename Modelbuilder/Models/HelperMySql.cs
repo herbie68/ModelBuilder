@@ -40,7 +40,7 @@ namespace Modelbuilder
             }
         }
 
-        public int ExecuteNonQueryTblSupplier(string sqlText, int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountrId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
+        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountrId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
         {
             int rowsAffected = 0;
 
@@ -57,7 +57,6 @@ namespace Modelbuilder
                     //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
 
                     //add parameters setting string values to DBNull.Value
-                    cmd.Parameters.Add("@supplierId", MySqlDbType.Int32).Value = supplierId;
                     cmd.Parameters.Add("@supplierCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierName", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierAddress1", MySqlDbType.VarChar).Value = DBNull.Value;
@@ -173,14 +172,47 @@ namespace Modelbuilder
             return dt;
         }
 
-        public string UpdateTblSupplier(int supplierId = 0, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId = 0, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId = 0, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
+        public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountrId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
+        {
+            string result = string.Empty;
+            string sqlText = "INSERT INTO Supplier  (supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, supplier_Url, supplier_Memo, supplier_CountryId, supplier_CountryCode, supplier_CountryName, supplier_CurrencyId, supplier_CurrencyCode, supplier_CurrencySymbol, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountrId, @supplierCountryCode, @supplierCountryName, @supplierCurrencyId, @supplierCurrencyCode, @supplierCurrencySymbol, @supplierPhoneGeneral, @supplierPhoneSales, @supplierPhoneSupport, @supplierMailGeneral, @supplierMailSales, @supplierMailSupport);";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountrId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Row added.");
+                }
+                else
+                {
+                    result = "Row not added.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (UpdateTblSupplier - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (UpdateTblSupplier): " + ex.Message);
+                throw ex;
+            }
+
+            return result;
+        }
+
+        public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
         {
             string result = string.Empty;
             string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_CountryId = @supplierCountrId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencySymbol = @supplierCurrencySymbol, supplierPhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport WHERE supplier_Id = @supplierId;";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierMemo, supplierId);
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? supplierName + " bijgewerkt." : "Geen wijzigingen door te voeren.";

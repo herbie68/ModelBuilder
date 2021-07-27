@@ -207,7 +207,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Aantal:"/>
                 <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
-                <TextBox Grid.Column="3" x:Name="textBoxStaus" IsReadOnly="True" Background="LightGray"/>
+                <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
             </Grid>
         </DockPanel>
         <!--#endregion-->
