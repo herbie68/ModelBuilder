@@ -8,6 +8,15 @@
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataSupplier">
 
+    <Page.Resources>
+        <DataTemplate  x:Key="CurrencyComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="30" Text="{Binding Path=currencySymbol}" />
+                <TextBlock Width="20" Text="{Binding Path=currencyId}" Visibility="Hidden"/>
+                <TextBlock Width="30" Text="{Binding Path=currencyCode}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
         <Grid.RowDefinitions>
@@ -70,8 +79,12 @@
                         <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="0,100,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" Margin="115,106,0,0" Width="190" ItemsSource="{Binding CountryCollection}" />
 
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="Test" Width="200" Margin="500,136,0,0"/>
                         <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="0,130,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" Margin="115,136,0,0" Width="50" ItemsSource="{Binding CurrencyCollection}" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" ItemTemplate="{StaticResource CurrencyComboTemplate}" Width="200" Margin="195,136,0,0">
+
+                        </ComboBox>
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency2" Margin="115,136,0,0" Width="50" ItemsSource="{Binding CurrencyCollection}" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="0,160,0,0" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="115,166,0,0" Width="490" />

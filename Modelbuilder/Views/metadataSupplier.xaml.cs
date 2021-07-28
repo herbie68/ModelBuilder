@@ -48,7 +48,44 @@ namespace Modelbuilder
         {
             InitializeComponent();
             DataContext = new SupplierCodeViewModel();
+
+            Database dbCurrencyConnection = new()
+            {
+                TableName = DatabaseCurrencyTable
+            };
+
+            //DataTable dataTable = new DataTable();
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id, currency_Code";
+            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
+
+            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
+
+            List<Currency> CurrencyList = new();
+
+            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
+            {
+                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
+                    dtCurrencySelection.Rows[i][1].ToString(),
+                    dtCurrencySelection.Rows[i][2].ToString()));
+            };
+
+            cboxSupplierCurrency.ItemsSource = CurrencyList;
             GetData();
+        }
+
+        private class Currency
+        {
+            public Currency(string Symbol, string Id, string Code)
+            {
+                currencySymbol = Symbol;
+                currencyId = Id;
+                currencyCode = Code;
+            }
+
+            public string currencySymbol { get; set; }
+            public string currencyId { get; set; }
+            public string currencyCode { get; set; }
         }
 
         #region CommonCommandBinding_CanExecute
@@ -216,8 +253,10 @@ namespace Modelbuilder
             // Update Id values with the selected Country an Currency
             // SELECT supplier_CountryId, supplier_CountryCode from Country WHERE supplier_CountryName = @supplierCountryName
             // SELECT supplier_CurrencyId, supplier_CurrencyyCode from Currency WHERE supplier_CurrencySumbol = @supplierCurrencySymbol
-            _dtCountry = _helper.GetDataTblCountry(cboxSupplierCountry.Text);
-            Console.WriteLine((string)_dtCountry.Rows[0][0]);
+            Test.Text = cboxSupplierCurrency.Text;
+            //_dtCountry = _helper.GetDataTblCountry(cboxSupplierCountry.Text);
+            //Console.WriteLine((string)_dtCountry.Rows[0][0]);
+            
             if (_dt.Rows.Count > _dbRowCount)
             {
                 InsertRow(SupplierCode_DataGrid.SelectedIndex);
