@@ -36,11 +36,13 @@
         
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"   Margin="450,15,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"    Margin="500,15,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryCode"  Margin="550,15,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"   Margin="600,15,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode" Margin="650,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"       Margin="450,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"        Margin="500,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryCode"      Margin="550,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"      Margin="600,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"       Margin="650,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyCode"     Margin="600,15,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"   Margin="750,15,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
         

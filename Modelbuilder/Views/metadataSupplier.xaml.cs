@@ -40,7 +40,7 @@ namespace Modelbuilder
         /// </summary>
         private readonly string DatabaseTable = "supplier", DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
         private HelperMySQL _helper;
-        private DataTable _dt;
+        private DataTable _dt, _dtCountry, _dtCurrency;
         private int _dbRowCount = 0;
         private int _currentDataGridIndex = 0;
 
@@ -49,33 +49,16 @@ namespace Modelbuilder
             InitializeComponent();
             DataContext = new SupplierCodeViewModel();
             GetData();
-            
-            /*
-            DataContext = new SupplierCodeViewModel();
-
-            Database dbConnection = new()
-            {
-                TableName = DatabaseTable
-            };
-
-            _ = new DataTable();
-
-            DataTable dtSupplierCodes = dbConnection.LoadMySqlData();
-
-            // Load the data from the database into the datagrid
-            SupplierCode_DataGrid.DataContext = dtSupplierCodes;
-
-            // Make sure the first row in the datagrid is selected
-            SupplierCode_DataGrid.SelectedIndex = 0;
-            SupplierCode_DataGrid.Focus();
-            */
         }
 
+        #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
+        #endregion
 
+        #region Get the data
         private void GetData()
         {
             InitializeHelper();
@@ -100,7 +83,9 @@ namespace Modelbuilder
             UpdateStatus(msg);
 
         }
+        #endregion
 
+        #region InitializeHelper (connect to database)
         private void InitializeHelper()
         {
             if (_helper == null)
@@ -108,7 +93,9 @@ namespace Modelbuilder
                 _helper = new HelperMySQL("localhost", 3306, "modelbuilder", "root", "admin");
             }
         }
+        #endregion
 
+        #region Get content of Memofield
         private void GetMemo(int index)
         {
             string ContentSupplierMemo = string.Empty;
@@ -127,9 +114,7 @@ namespace Modelbuilder
 
                 if (!String.IsNullOrEmpty(ContentSupplierMemo))
                 {
-                    //Debug.WriteLine("Length: " + ContentSupplierMemo.Length);
-
-                    //clear existing data
+                     //clear existing data
                     inpSupplierMemo.Document.Blocks.Clear();
 
                     //convert to byte[]
@@ -137,8 +122,6 @@ namespace Modelbuilder
 
                     using (MemoryStream ms = new MemoryStream(dataArr))
                     {
-                        //inpSupplierMemo.Document = new FlowDocument();
-
                         //load data
                         TextRange flowDocRange = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
                         flowDocRange.Load(ms, DataFormats.Rtf);
@@ -146,7 +129,9 @@ namespace Modelbuilder
                 }
             }
         }
+        #endregion
 
+        #region Selection changed
         private void SupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = (DataGrid)sender;
@@ -161,8 +146,10 @@ namespace Modelbuilder
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
             valueCountryCode.Text = Row_Selected["supplier_CountryCode"].ToString();
+            valueCountryName.Text = Row_Selected["supplier_CountryName"].ToString();
             valueCurrencyId.Text = Row_Selected["supplier_CurrencyId"].ToString();
             valueCurrencyCode.Text = Row_Selected["supplier_CurrencyCode"].ToString();
+            valueCurrencySymbol.Text = Row_Selected["supplier_CurrencySymbol"].ToString();
             inpSupplierCode.Text = Row_Selected["supplier_Code"].ToString();
             inpSupplierName.Text = Row_Selected["supplier_Name"].ToString();
             inpSupplierAddress1.Text = Row_Selected["supplier_Address1"].ToString();
@@ -178,70 +165,10 @@ namespace Modelbuilder
             inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
             inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
             inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
-
-            /*
-            DataGrid dataGrid = (DataGrid)sender;
-
-            if (dataGrid.SelectedItem is not DataRowView Row_Selected)
-            {
-                return;
-            }
-
-            valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
-            valueCountryId.Text = Row_Selected["country_Id"].ToString();
-            valueCountryCode.Text = Row_Selected["country_Code"].ToString();
-            valueCurrencyId.Text = Row_Selected["currency_Id"].ToString();
-            valueCurrencyCode.Text = Row_Selected["currency_Code"].ToString();
-            inpSupplierCode.Text = Row_Selected["supplier_Code"].ToString();
-            inpSupplierName.Text = Row_Selected["supplier_Name"].ToString();
-            inpSupplierAddress1.Text = Row_Selected["supplier_Address1"].ToString();
-            inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
-            inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
-            inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
-            cboxSupplierCountry.Text = Row_Selected["country_Name"].ToString();
-            cboxSupplierCurrency.Text = Row_Selected["currency_Symbol"].ToString();
-            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
-            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
-            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
-            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
-            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
-            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
-            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
-            //inpSupplierMemo.Document.Blocks.Clear();
-
-            // Read formatted ritch text from table and store in field
-            //string ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
-            string ContentSupplierMemo = string.Empty;
-
-            if (Row_Selected["supplier_Memo"] != null && Row_Selected["supplier_Memo"] != DBNull.Value)
-            {
-                //get value from DataTable
-                ContentSupplierMemo = Row_Selected["supplier_Memo"].ToString();
-            }
-
-            if (!String.IsNullOrEmpty(ContentSupplierMemo))
-            {
-                //Debug.WriteLine("Length: " + ContentSupplierMemo.Length);
-
-                //clear existing data
-                inpSupplierMemo.Document.Blocks.Clear();
-
-                //convert to byte[]
-                byte[] dataArr = System.Text.Encoding.UTF8.GetBytes(ContentSupplierMemo);
-
-                using (MemoryStream ms = new MemoryStream(dataArr))
-                {
-                    //inpSupplierMemo.Document = new FlowDocument();
-
-                    //load data
-                    TextRange flowDocRange = new TextRange(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
-                    flowDocRange.Load(ms, DataFormats.Rtf);
-                }
-            }
-            */
         }
+        #endregion
 
-
+        #region Insert new row in table
         private void InsertRow(int dgIndex)
         {
             //since the DataGrid DataContext is set to the DataTable, 
@@ -279,12 +206,19 @@ namespace Modelbuilder
             result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
             UpdateStatus(result);
         }
+        #endregion
 
+        #region Click Save Data button (on toolbar)
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             int rowIndex = _currentDataGridIndex;
 
-            if(_dt.Rows.Count > _dbRowCount)
+            // Update Id values with the selected Country an Currency
+            // SELECT supplier_CountryId, supplier_CountryCode from Country WHERE supplier_CountryName = @supplierCountryName
+            // SELECT supplier_CurrencyId, supplier_CurrencyyCode from Currency WHERE supplier_CurrencySumbol = @supplierCurrencySymbol
+            _dtCountry = _helper.GetDataTblCountry(cboxSupplierCountry.Text);
+            Console.WriteLine((string)_dtCountry.Rows[0][0]);
+            if (_dt.Rows.Count > _dbRowCount)
             {
                 InsertRow(SupplierCode_DataGrid.SelectedIndex);
             }
@@ -298,72 +232,9 @@ namespace Modelbuilder
             // Make sure the eddited row in the datagrid is selected
             SupplierCode_DataGrid.SelectedIndex = rowIndex;
             SupplierCode_DataGrid.Focus();
-
-            //string ContentSupplierMemo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
-
-            /*string ContentSupplierMemo;
-
-            if (inpSupplierCode.Text != "")
-            {
-                TextRange tr = new(inpSupplierMemo.Document.ContentStart, inpSupplierMemo.Document.ContentEnd);
-                using (MemoryStream ms = new())
-                {
-                    tr.Save(ms, DataFormats.Rtf);
-                    ContentSupplierMemo = Encoding.ASCII.GetString(ms.ToArray());
-                }
-            }
-            else 
-            { 
-                ContentSupplierMemo = ""; 
-            }
-            */
-
-            /*
-
-            Database dbConnection = new Database
-            {
-                TableName = DatabaseTable
-            };
-
-            dbConnection.Connect();
-
-            dbConnection.SqlCommand = "UPDATE ";
-            dbConnection.SqlCommandString = " SET " +
-                "supplier_Code = '" + inpSupplierCode.Text + "', " +
-                "supplier_Name = '" + inpSupplierName.Text + "', " +
-                "supplier_Address1 = '" + inpSupplierAddress1.Text + "', " +
-                "supplier_Address2 = '" + inpSupplierAddress2.Text + "', " +
-                "supplier_Zip = '" + inpSupplierZip.Text + "', " +
-                "supplier_City = '" + inpSupplierCity.Text + "', " +
-                "supplier_CountryId = '" + valueCountryId.Text + "', " +
-                "supplier_CountryCode = '" + valueCountryCode.Text + "', " +
-                "supplier_CountryName = '" + cboxSupplierCountry.Text + "', " +
-                "supplier_CurrencyId = '" + valueCurrencyId.Text + "', " +
-                "supplier_CurrencyCode = '" + valueCurrencyCode.Text + "', " +
-                "supplier_CurrencySymbol = '" + cboxSupplierCurrency.Text + "', " +
-                "supplier_Url = '" + inpSupplierUrl.Text + "', " +
-                "supplier_PhoneGeneral = '" + inpSupplierPhoneGeneral.Text + "', " +
-                "supplier_PhoneSales = '" + inpSupplierPhoneSales.Text + "', " +
-                "supplier_PhoneSupport = '" + inpSupplierPhoneSupport.Text + "', " +
-                "supplier_MailGeneral = '" + inpSupplierMailGeneral.Text + "', " +
-                "supplier_MailSales = '" + inpSupplierMailSales.Text + "', " +
-                "supplier_Memo = '" + ContentSupplierMemo + "', " +
-                "supplier_MailSupport = '" + inpSupplierMailSupport.Text + "' WHERE " + 
-                "supplier_Id = " + valueSupplierId.Text + ";";
-
-            dbConnection.TableName = DatabaseTable;
-
-            _ = dbConnection.UpdateMySqlDataRecord();
-            DataTable dtSupplierCodes = dbConnection.LoadMySqlData();
-
-            // Load the data from the database into the datagrid
-            SupplierCode_DataGrid.DataContext = dtSupplierCodes;
-
-            // Make sure the eddited row in the datagrid is selected
-            SupplierCode_DataGrid.SelectedIndex = int.Parse(valueSupplierId.Text) - 1;
-            SupplierCode_DataGrid.Focus();
-            */
         }
+        #endregion
+
 
         private void ToolbarButtonNew(object sender, RoutedEventArgs e)
         {
@@ -449,26 +320,26 @@ namespace Modelbuilder
             //get data from DataTable
             DataRow row = _dt.Rows[_currentDataGridIndex];
 
-            int supplierId = (int)row["supplier_Id"];
-            string supplierCode = row["supplier_Code"].ToString();
-            string supplierName = row["supplier_Name"].ToString();
-            string supplierAddress1 = row["supplier_Address1"].ToString();
-            string supplierAddress2 = row["supplier_Address2"].ToString();
-            string supplierZip = row["supplier_Zip"].ToString();
-            string supplierCity = row["supplier_City"].ToString();
-            string supplierUrl = row["supplier_Url"].ToString();
-            int supplierCountryId = (int)row["supplier_CountryId"];
-            string supplierCountryCode = row["supplier_CountryCode"].ToString();
-            string supplierCountryName = row["supplier_CountryName"].ToString();
-            int supplierCurrencyId = (int)row["supplier_CurrencyId"];
-            string supplierCurrencyCode = row["supplier_CurrencyCode"].ToString();
-            string supplierCurrencySymbol = row["supplier_CurrencySymbol"].ToString();
-            string supplierPhoneGeneral = row["supplier_PhoneGeneral"].ToString();
-            string supplierPhoneSales = row["supplier_PhoneSales"].ToString();
-            string supplierPhoneSupport = row["supplier_PhoneSupport"].ToString();
-            string supplierMailGeneral = row["supplier_MailGeneral"].ToString();
-            string supplierMailSales = row["supplier_MailSales"].ToString();
-            string supplierMailSupport = row["supplier_MailSupport"].ToString();
+            int supplierId = int.Parse(valueSupplierId.Text);
+            string supplierCode = inpSupplierCode.Text;
+            string supplierName = inpSupplierName.Text;
+            string supplierAddress1 = inpSupplierAddress1.Text;
+            string supplierAddress2 = inpSupplierAddress2.Text;
+            string supplierZip = inpSupplierZip.Text;
+            string supplierCity = inpSupplierCity.Text;
+            string supplierUrl = inpSupplierUrl.Text;
+            int supplierCountryId = int.Parse(valueCountryId.Text);
+            string supplierCountryCode = valueCountryCode.Text;
+            string supplierCountryName = valueCountryName.Text;
+            int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
+            string supplierCurrencyCode = valueCurrencyCode.Text;
+            string supplierCurrencySymbol = valueCurrencySymbol.Text;
+            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
+            string supplierPhoneSales = inpSupplierPhoneSales.Text;
+            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
+            string supplierMailGeneral = inpSupplierMailGeneral.Text;
+            string supplierMailSales = inpSupplierMailSales.Text;
+            string supplierMailSupport = inpSupplierMailSupport.Text;
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);

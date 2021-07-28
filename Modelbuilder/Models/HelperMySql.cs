@@ -45,7 +45,7 @@ namespace Modelbuilder
         #endregion Execute NonQuery
 
         #region Execute Non Query Table: Supplier
-        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
+        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, int supplierId = 0)
         {
             int rowsAffected = 0;
 
@@ -62,6 +62,7 @@ namespace Modelbuilder
                     //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
 
                     //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@supplierId", MySqlDbType.Int32).Value = supplierId;
                     cmd.Parameters.Add("@supplierCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierName", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierAddress1", MySqlDbType.VarChar).Value = DBNull.Value;
@@ -70,10 +71,10 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@supplierCity", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierUrl", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierMemo", MySqlDbType.LongText).Value = DBNull.Value;
-                    cmd.Parameters.Add("@supplierCountryId", MySqlDbType.Int32).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCountryId", MySqlDbType.Int32).Value = supplierCountryId;
                     cmd.Parameters.Add("@supplierCountryCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierCountryName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@supplierCurrencyId", MySqlDbType.Int32).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierCurrencyId", MySqlDbType.Int32).Value = supplierCurrencyId;
                     cmd.Parameters.Add("@supplierCurrencyCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierCurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierPhoneGeneral", MySqlDbType.VarChar).Value = DBNull.Value;
@@ -180,6 +181,74 @@ namespace Modelbuilder
         }
         #endregion Get Data from Table: Supplier
 
+        # region Get Data from Table: Country
+        public DataTable GetDataTblCountry(string supplierCountryName = "")
+        {
+            DataTable dtCountry = new DataTable();
+            string sqlText = string.Empty;
+
+            if (supplierCountryName != "")
+            {
+                sqlText = "SELECT country_Id, country_Code FROM country WHERE country_Name = @supplierCountryName";
+            }
+            else
+            {
+                sqlText = "SELECT country_Id, country_Code, country_Name FROM Country";
+            }
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+                //add parameter
+                cmd.Parameters.Add("@supplierCountryName", MySqlDbType.String).Value = supplierCountryName;
+
+                using MySqlDataAdapter da = new(cmd);
+                //use DataAdapter to fill DataTable
+                da.Fill(dtCountry);
+            }
+            Console.WriteLine(dtCountry.Rows[0][0].ToString());
+
+            return dtCountry;
+        }
+        #endregion Get Data from Table: Country
+
+        #region Get Data from Table: Currency
+        public DataTable GetDataTblCurrency(string supplierCurrencySymbol = "")
+        {
+            DataTable dtCurrency = new DataTable();
+            string sqlText = string.Empty;
+
+            if (supplierCurrencySymbol != "")
+            {
+                sqlText = "SELECT currency_Id, currencyy_Code from Currency WHERE currency_Symbol = @supplierCurrencySymbol";
+            }
+            else
+            {
+                sqlText = "SELECT currency_Id, currencyy_Code, currency_Symbol from Currency";
+            }
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+                //add parameter
+                cmd.Parameters.Add("@supplierCurrencySymbol", MySqlDbType.String).Value = supplierCurrencySymbol;
+
+                using MySqlDataAdapter da = new(cmd);
+                //use DataAdapter to fill DataTable
+                da.Fill(dtCurrency);
+            }
+
+            return dtCurrency;
+        }
+        #endregion Get Data from Table: Currency
+
+
         #region Insert in Table: Supplier
         public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
         {
@@ -219,12 +288,12 @@ namespace Modelbuilder
         public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryCode, string supplierCountryName, int supplierCurrencyId, string supplierCurrencyCode, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencySymbol = @supplierCurrencySymbol, supplierPhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport WHERE supplier_Id = @supplierId;";
+            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryCode = @supplierCountryCode, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencyCode = @supplierCurrencyCode, supplier_CurrencyCode = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo WHERE supplier_Id = @supplierId;";
 
             try
             {
                 // Do we need to add supplierId here?
-                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? supplierName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
