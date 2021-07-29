@@ -9,7 +9,6 @@ namespace Modelbuilder
     {
         public List<string> CurrencyCollection { get; set; }
         public List<string> CurrencyCollectionId { get; set; }
-        public List<string> CurrencyCollectionCode { get; set; }
         public List<string> CountryCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
         private readonly string DatabaseCountryTable = "country";
@@ -19,8 +18,6 @@ namespace Modelbuilder
         {
             CurrencyCollection = new List<string> { };
             CurrencyCollectionId = new List<string> { };
-            CurrencyCollectionCode = new List<string> { };
-
 
             Database dbCurrencyConnection = new()
             {
@@ -28,7 +25,7 @@ namespace Modelbuilder
             };
 
             //DataTable dataTable = new DataTable();
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id, currency_Code";
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
             dbCurrencyConnection.SqlOrderByString = "currency_Id";
             dbCurrencyConnection.TableName = DatabaseCurrencyTable;
 
@@ -38,7 +35,6 @@ namespace Modelbuilder
             {
                 CurrencyCollection.Add(dtCurrencySelection.Rows[i][0].ToString());
                 CurrencyCollectionId.Add(dtCurrencySelection.Rows[i][1].ToString());
-                CurrencyCollectionCode.Add(dtCurrencySelection.Rows[i][2].ToString());
             };
 
             CountryCollection = new List<string> { };
@@ -49,7 +45,7 @@ namespace Modelbuilder
             };
 
             //DataTable dataTable = new DataTable();
-            dbCountryConnection.SqlSelectionString = "country_Name, country_Id, country_Code";
+            dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
             dbCountryConnection.SqlOrderByString = "country_Id";
             dbCountryConnection.TableName = DatabaseCountryTable;
 
@@ -67,15 +63,10 @@ namespace Modelbuilder
             {
                 currencySymbol = Symbol;
                 currencyId = Id;
-                currencyCode = Code;
             }
 
             public string currencySymbol { get; set; }
-
             public int currencyId { get; set; }
-
-            public string currencyCode { get; set; }
-
         }
     }
 }

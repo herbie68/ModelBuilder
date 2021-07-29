@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using MySqlX.XDevAPI.Relational;
 
 namespace Modelbuilder
 {
@@ -55,7 +56,7 @@ namespace Modelbuilder
                 TableName = DatabaseCurrencyTable
             };
 
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id, currency_Code";
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
             dbCurrencyConnection.SqlOrderByString = "currency_Id";
             dbCurrencyConnection.TableName = DatabaseCurrencyTable;
 
@@ -66,8 +67,7 @@ namespace Modelbuilder
             for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
             {
                 CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
-                    dtCurrencySelection.Rows[i][1].ToString(),
-                    dtCurrencySelection.Rows[i][2].ToString()));
+                    dtCurrencySelection.Rows[i][1].ToString()));
             };
 
             cboxSupplierCurrency.ItemsSource = CurrencyList;
@@ -90,8 +90,7 @@ namespace Modelbuilder
             for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
             {
                 CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
-                    dtCountrySelection.Rows[i][1].ToString(),
-                    dtCountrySelection.Rows[i][2].ToString()));
+                    dtCountrySelection.Rows[i][1].ToString()));
             };
 
             cboxSupplierCountry.ItemsSource = CountryList;
@@ -103,32 +102,28 @@ namespace Modelbuilder
         #region Create object for all currencies in table for dropdown
         private class Currency
         {
-            public Currency(string Symbol, string Id, string Code)
+            public Currency(string Symbol, string Id)
             {
                 currencySymbol = Symbol;
                 currencyId = Id;
-                currencyCode = Code;
             }
 
             public string currencySymbol { get; set; }
             public string currencyId { get; set; }
-            public string currencyCode { get; set; }
         }
         #endregion
 
         #region Create object for all countries in table for dropdown
         private class Country
         {
-            public Country(string Name, string Id, string Code)
+            public Country(string Name, string Id)
             {
                 countryName = Name;
                 countryId = Id;
-                countryCode = Code;
             }
 
             public string countryName { get; set; }
             public string countryId { get; set; }
-            public string countryCode { get; set; }
         }
         #endregion
 
@@ -226,10 +221,8 @@ namespace Modelbuilder
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
-            valueCountryCode.Text = Row_Selected["supplier_CountryCode"].ToString();
             valueCountryName.Text = Row_Selected["supplier_CountryName"].ToString();
             valueCurrencyId.Text = Row_Selected["supplier_CurrencyId"].ToString();
-            valueCurrencyCode.Text = Row_Selected["supplier_CurrencyCode"].ToString();
             valueCurrencySymbol.Text = Row_Selected["supplier_CurrencySymbol"].ToString();
             inpSupplierCode.Text = Row_Selected["supplier_Code"].ToString();
             inpSupplierName.Text = Row_Selected["supplier_Name"].ToString();
@@ -284,10 +277,8 @@ namespace Modelbuilder
             string supplierCity = inpSupplierCity.Text;
             string supplierUrl = inpSupplierUrl.Text;
             int supplierCountryId = int.Parse(valueCountryId.Text);
-            string supplierCountryCode = valueCountryCode.Text;
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
-            string supplierCurrencyCode = valueCurrencyCode.Text;
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
             string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
             string supplierPhoneSales = inpSupplierPhoneSales.Text;
@@ -302,7 +293,25 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId,  supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+            UpdateStatus(result);
+        }
+        #endregion
+
+        #region Delete row in table
+        private void DeleteRow(int dgIndex)
+        {
+            //since the DataGrid DataContext is set to the DataTable, 
+            //the DataTable is updated when data is modified in the DataGrid
+            //get last row
+            DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+            int supplierId = int.Parse(valueSupplierId.Text);
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.DeleteTblSupplier(supplierId);
             UpdateStatus(result);
         }
         #endregion
@@ -314,13 +323,9 @@ namespace Modelbuilder
 
             // Update Id, Code, Name and Symbol values with the selected Country and Currency
             valueCurrencyId.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencyId.ToString();
-            valueCurrencyCode.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencyCode.ToString();
             valueCurrencySymbol.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencySymbol.ToString();
             valueCountryId.Text = ((Country)cboxSupplierCountry.SelectedItem).countryId.ToString();
-            valueCountryCode.Text = ((Country)cboxSupplierCountry.SelectedItem).countryCode.ToString();
             valueCountryName.Text = ((Country)cboxSupplierCountry.SelectedItem).countryName.ToString();
-
-            //Console.WriteLine((string)_dtCountry.Rows[0][0]);
 
             if (valueSupplierId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
@@ -340,45 +345,29 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Delete Data button (on toolbar)
         private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
-            Database dbConnection = new Database();
-            dbConnection.Connect();
+            int rowIndex = _currentDataGridIndex;
 
-            // Get the selected row
-            int row = int.Parse(SupplierCode_DataGrid.SelectedIndex.ToString());
+            DeleteRow(SupplierCode_DataGrid.SelectedIndex);
 
-            int ID = int.Parse(valueSupplierId.Text);
-            dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE supplier_Id = " + ID + ";";
-            dbConnection.TableName = DatabaseTable;
-            _ = dbConnection.UpdateMySqlDataRecord();
-            _ = dbConnection.LoadMySqlData();
+            GetData();
 
-            DataTable dtSupplierCodes = dbConnection.LoadMySqlData();
-
-            // Load the data from the database into the datagrid
-            SupplierCode_DataGrid.DataContext = dtSupplierCodes;
-
-            // Make sure the correct row in the datagrid is selected after deletion
-
-            // if row is already ithe first row, it should be reselected
-            if (row == 0)
+            if (rowIndex == 0)
             {
                 SupplierCode_DataGrid.SelectedIndex = 0;
             }
             else
             {
-                SupplierCode_DataGrid.SelectedIndex = row - 1;
+                SupplierCode_DataGrid.SelectedIndex = rowIndex - 1;
             }
 
             SupplierCode_DataGrid.Focus();
         }
+        #endregion
 
-        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-        }
-
+        #region Get rich text from flow document
         private string GetRichTextFromFlowDocument(FlowDocument fDoc)
         {
             string result = string.Empty;
@@ -394,10 +383,11 @@ namespace Modelbuilder
                     result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
                 }
             }
-
             return result;
         }
+        #endregion
 
+        #region Update row
         private void UpdateRow(int dgIndex)
         {
             //when DataGrid SelectionChanged occurs, the value of '_currentDataGridIndex' is set
@@ -414,10 +404,8 @@ namespace Modelbuilder
             string supplierCity = inpSupplierCity.Text;
             string supplierUrl = inpSupplierUrl.Text;
             int supplierCountryId = int.Parse(valueCountryId.Text);
-            string supplierCountryCode = valueCountryCode.Text;
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
-            string supplierCurrencyCode = valueCurrencyCode.Text;
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
             string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
             string supplierPhoneSales = inpSupplierPhoneSales.Text;
@@ -432,10 +420,12 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryCode, supplierCountryName, supplierCurrencyId, supplierCurrencyCode, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo);
             UpdateStatus(result);
         }
+        #endregion
 
+        #region Update status
         private void UpdateStatus(string msg)
         {
             if (!String.IsNullOrEmpty(msg))
@@ -452,6 +442,7 @@ namespace Modelbuilder
                 }
             }
         }
+        #endregion
 
         #region rtfToolbar actions
         private bool dataChanged = false; // Unsaved textchanges
