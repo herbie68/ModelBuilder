@@ -99,7 +99,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataCountryImport.png" Header="Importeer Landen" />
                         <RibbonMenuItem ImageSource=".\Resources\metadataCountryExport.png" Header="Exporteer Landen" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Label="Leveranciers" SmallImageSource=".\Resources\metadataSupplier.png">
+                    <RibbonSplitButton Label="Leveranciers" SmallImageSource=".\Resources\metadataSupplier.png" Click="ShowSupplierPage">
                         <RibbonMenuItem ImageSource=".\Resources\metadataSupplierImport.png" Header="Importeer Leveranciers" />
                         <RibbonMenuItem ImageSource=".\Resources\metadataSupplierExport.png" Header="Exporteer Leveranciers" />
                     </RibbonSplitButton>

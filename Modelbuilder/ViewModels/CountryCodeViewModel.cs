@@ -7,6 +7,7 @@ namespace Modelbuilder
     {
         public List<string> CurrencyCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
+        public string TableId = "country_Id";
 
         public CountryCodeViewModel()
         {

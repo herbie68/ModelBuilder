@@ -54,6 +54,28 @@
     <None Remove="Resources\projectImport.png" />
     <None Remove="Resources\projectManagement.png" />
     <None Remove="Resources\projectReport.png" />
+    <None Remove="Resources\rtftoolbarAlignCenter.png" />
+    <None Remove="Resources\rtftoolbarAlignLeft.png" />
+    <None Remove="Resources\rtftoolbarAlignRight.png" />
+    <None Remove="Resources\rtftoolbarBackcolor.png" />
+    <None Remove="Resources\rtftoolbarBold.png" />
+    <None Remove="Resources\rtftoolbarBulletList.png" />
+    <None Remove="Resources\rtftoolbarCopy.png" />
+    <None Remove="Resources\rtftoolbarCut.png" />
+    <None Remove="Resources\rtftoolbarIndent.png" />
+    <None Remove="Resources\rtftoolbarIndentRemove.png" />
+    <None Remove="Resources\rtftoolbarItalic.png" />
+    <None Remove="Resources\rtftoolbarNumbersList.png" />
+    <None Remove="Resources\rtftoolbarOpen.png" />
+    <None Remove="Resources\rtftoolbarPaste.png" />
+    <None Remove="Resources\rtftoolbarPrint.png" />
+    <None Remove="Resources\rtftoolbarRedo.png" />
+    <None Remove="Resources\rtftoolbarStrikeout.png" />
+    <None Remove="Resources\rtftoolbarSubscript.png" />
+    <None Remove="Resources\rtftoolbarSuperscript.png" />
+    <None Remove="Resources\rtftoolbarTextcolor.png" />
+    <None Remove="Resources\rtftoolbarUnderline.png" />
+    <None Remove="Resources\rtftoolbarUndo.png" />
     <None Remove="Resources\storageManagement.png" />
     <None Remove="Resources\storageOrder.png" />
     <None Remove="Resources\storageRecieve.png" />
@@ -108,6 +130,72 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\appRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarAlignCenter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarAlignLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarAlignRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarBackcolor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarBold.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarBulletList.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarCopy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarCut.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarIndent.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarIndentRemove.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarItalic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarNumbersList.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarOpen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarPaste.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarPrint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarStrikeout.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarSubscript.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarSuperscript.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarTextcolor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarUnderline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\rtftoolbarUndo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarAdd.png">

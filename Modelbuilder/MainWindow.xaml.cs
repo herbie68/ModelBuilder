@@ -8,6 +8,14 @@ namespace Modelbuilder
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Connectiondata
+        public static readonly string server = "localhost";
+        public static readonly string database = "modelbuilder";
+        public static readonly int port = 3306;
+        public static readonly string uid = "root";
+        public static readonly string password = "admin";
+        private HelperMySQL _helper;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,10 +60,17 @@ namespace Modelbuilder
         #region Call Worktype Page
         private void ShowWorktypePage(object sender, RoutedEventArgs e)
         {
-
             Main.Content = new metadataWorktype();
         }
         #endregion
+
+        #region Call Supplier Page
+        private void ShowSupplierPage(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new metadataSupplier();
+        }
+        #endregion Call Supplier Pager
+
         #region Exit Application
 
         private void ApplicationExit_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ namespace Modelbuilder
         public string TableName { get; set; }
         public string DataTable { get; set; }
         public string SqlCommand { get; set; }
+        public string TableId { get; set; }
         public string SqlCommandString { get; set; }
         public string SqlSelectionString { get; set; }
         public string SqlOrderByString { get; set; }
@@ -119,8 +120,13 @@ namespace Modelbuilder
             MySqlDataReader retrieveData = myCommand.ExecuteReader();
 
             retrieveData.Read();
-            var reader = retrieveData.GetOrdinal("currency_Id");
 
+            // These two rows are cemmented out because its causing an error when storing a Supplier
+            // Unsure why in this general read function specificly a currency Id is read.
+            // var reader = retrieveData.GetOrdinal("currency_Id");
+            // int ID = retrieveData.GetInt32(reader);
+
+            var reader = retrieveData.GetOrdinal(TableId);
             int ID = retrieveData.GetInt32(reader);
 
             myConnection.Close();
