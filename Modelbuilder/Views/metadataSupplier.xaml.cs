@@ -49,12 +49,12 @@ namespace Modelbuilder
             InitializeComponent();
             DataContext = new SupplierCodeViewModel();
 
+            #region Fill Currency dropdown
             Database dbCurrencyConnection = new()
             {
                 TableName = DatabaseCurrencyTable
             };
 
-            //DataTable dataTable = new DataTable();
             dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id, currency_Code";
             dbCurrencyConnection.SqlOrderByString = "currency_Id";
             dbCurrencyConnection.TableName = DatabaseCurrencyTable;
@@ -71,9 +71,36 @@ namespace Modelbuilder
             };
 
             cboxSupplierCurrency.ItemsSource = CurrencyList;
+            #endregion
+
+            #region Fill Country dropdown
+            Database dbCountryConnection = new()
+            {
+                TableName = DatabaseCountryTable
+            };
+
+            dbCountryConnection.SqlSelectionString = "country_Name, country_Id, country_Code";
+            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.TableName = DatabaseCountryTable;
+
+            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
+
+            List<Country> CountryList = new();
+
+            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
+            {
+                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
+                    dtCountrySelection.Rows[i][1].ToString(),
+                    dtCountrySelection.Rows[i][2].ToString()));
+            };
+
+            cboxSupplierCountry.ItemsSource = CountryList;
+            #endregion
+
             GetData();
         }
 
+        #region Create object for all currencies in table for dropdown
         private class Currency
         {
             public Currency(string Symbol, string Id, string Code)
@@ -87,6 +114,23 @@ namespace Modelbuilder
             public string currencyId { get; set; }
             public string currencyCode { get; set; }
         }
+        #endregion
+
+        #region Create object for all countries in table for dropdown
+        private class Country
+        {
+            public Country(string Name, string Id, string Code)
+            {
+                countryName = Name;
+                countryId = Id;
+                countryCode = Code;
+            }
+
+            public string countryName { get; set; }
+            public string countryId { get; set; }
+            public string countryCode { get; set; }
+        }
+        #endregion
 
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -193,8 +237,27 @@ namespace Modelbuilder
             inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
             inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
             inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
-            cboxSupplierCountry.Text = Row_Selected["supplier_CountryName"].ToString();
-            cboxSupplierCurrency.Text = Row_Selected["supplier_CurrencySymbol"].ToString();
+
+            //Select the saved Country in the combobox by default
+            foreach (Country country in cboxSupplierCountry.Items)
+            {
+                if (country.countryName == Row_Selected["supplier_CountryName"].ToString())
+                {
+                    cboxSupplierCountry.SelectedItem = country;
+                    break;
+                }
+            }
+
+            //Select the saved Currency in the combobox by default
+            foreach (Currency currency in cboxSupplierCurrency.Items)
+            {
+                if (currency.currencySymbol == Row_Selected["supplier_CurrencySymbol"].ToString())
+                {
+                    cboxSupplierCurrency.SelectedItem = currency;
+                    break;
+                }
+            }
+
             inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
             inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
             inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
@@ -213,26 +276,25 @@ namespace Modelbuilder
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
-            //get data from DataTable
-            string supplierCode = row["supplier_Code"].ToString();
-            string supplierName = row["supplier_Name"].ToString();
-            string supplierAddress1 = row["supplier_Address1"].ToString();
-            string supplierAddress2 = row["supplier_Address2"].ToString();
-            string supplierZip = row["supplier_Zip"].ToString();
-            string supplierCity = row["supplier_City"].ToString();
-            string supplierUrl = row["supplier_Url"].ToString();
-            int supplierCountryId = (int)row["supplier_CountryId"];
-            string supplierCountryCode = row["supplier_CountryCode"].ToString();
-            string supplierCountryName = row["supplier_CountryName"].ToString();
-            int supplierCurrencyId = (int)row["supplier_CurrencyId"];
-            string supplierCurrencyCode = row["supplier_CurrencyCode"].ToString();
-            string supplierCurrencySymbol = row["supplier_CurrencySymbol"].ToString();
-            string supplierPhoneGeneral = row["supplier_PhoneGeneral"].ToString();
-            string supplierPhoneSales = row["supplier_PhoneSales"].ToString();
-            string supplierPhoneSupport = row["supplier_PhoneSupport"].ToString();
-            string supplierMailGeneral = row["supplier_MailGeneral"].ToString();
-            string supplierMailSales = row["supplier_MailSales"].ToString();
-            string supplierMailSupport = row["supplier_MailSupport"].ToString();
+            string supplierCode = inpSupplierCode.Text;
+            string supplierName = inpSupplierName.Text;
+            string supplierAddress1 = inpSupplierAddress1.Text;
+            string supplierAddress2 = inpSupplierAddress2.Text;
+            string supplierZip = inpSupplierZip.Text;
+            string supplierCity = inpSupplierCity.Text;
+            string supplierUrl = inpSupplierUrl.Text;
+            int supplierCountryId = int.Parse(valueCountryId.Text);
+            string supplierCountryCode = valueCountryCode.Text;
+            string supplierCountryName = valueCountryName.Text;
+            int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
+            string supplierCurrencyCode = valueCurrencyCode.Text;
+            string supplierCurrencySymbol = valueCurrencySymbol.Text;
+            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
+            string supplierPhoneSales = inpSupplierPhoneSales.Text;
+            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
+            string supplierMailGeneral = inpSupplierMailGeneral.Text;
+            string supplierMailSales = inpSupplierMailSales.Text;
+            string supplierMailSupport = inpSupplierMailSupport.Text;
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -250,14 +312,18 @@ namespace Modelbuilder
         {
             int rowIndex = _currentDataGridIndex;
 
-            // Update Id values with the selected Country an Currency
-            // SELECT supplier_CountryId, supplier_CountryCode from Country WHERE supplier_CountryName = @supplierCountryName
-            // SELECT supplier_CurrencyId, supplier_CurrencyyCode from Currency WHERE supplier_CurrencySumbol = @supplierCurrencySymbol
-            Test.Text = cboxSupplierCurrency.Text;
-            //_dtCountry = _helper.GetDataTblCountry(cboxSupplierCountry.Text);
+            // Update Id, Code, Name and Symbol values with the selected Country and Currency
+            valueCurrencyId.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencyId.ToString();
+            valueCurrencyCode.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencyCode.ToString();
+            valueCurrencySymbol.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencySymbol.ToString();
+            valueCountryId.Text = ((Country)cboxSupplierCountry.SelectedItem).countryId.ToString();
+            valueCountryCode.Text = ((Country)cboxSupplierCountry.SelectedItem).countryCode.ToString();
+            valueCountryName.Text = ((Country)cboxSupplierCountry.SelectedItem).countryName.ToString();
+
             //Console.WriteLine((string)_dtCountry.Rows[0][0]);
-            
-            if (_dt.Rows.Count > _dbRowCount)
+
+            if (valueSupplierId.Text == "")
+            // if (_dt.Rows.Count > _dbRowCount)
             {
                 InsertRow(SupplierCode_DataGrid.SelectedIndex);
             }
@@ -273,26 +339,6 @@ namespace Modelbuilder
             SupplierCode_DataGrid.Focus();
         }
         #endregion
-
-
-        private void ToolbarButtonNew(object sender, RoutedEventArgs e)
-        {
-            Database dbConnection = new Database();
-            dbConnection.Connect();
-
-            dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, Country_Id, Country_Code, Country_Name, Currency_Id, Currency_Code, Currency_Symbol, supplier_Url, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_Memo) VALUES('*','','','','','','','','','','','','','','','','','', '');";
-            dbConnection.TableName = DatabaseTable;
-            int ID = dbConnection.UpdateMySqlDataRecord();
-            valueSupplierId.Text = ID.ToString();
-            DataTable dtCountryCodes = dbConnection.LoadMySqlData();
-
-            // Load the data from the database into the datagrid
-            SupplierCode_DataGrid.DataContext = dtCountryCodes;
-            SupplierCode_DataGrid.SelectedIndex = dtCountryCodes.Rows.Count - 1;
-            SupplierCode_DataGrid.Focus();
-            inpSupplierCode.Text = "";
-        }
 
         private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
