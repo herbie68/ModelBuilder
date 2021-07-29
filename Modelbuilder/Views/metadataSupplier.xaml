@@ -23,6 +23,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
+ 
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
         <Grid.RowDefinitions>
