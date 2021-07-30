@@ -83,6 +83,7 @@
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="0,104,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" ItemTemplate="{StaticResource CountryComboTemplate}" Width="190" Margin="115,106,0,0" SelectedIndex="0" Cursor="Arrow" />
+                        
                         <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="0,134,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" ItemTemplate="{StaticResource CurrencyComboTemplate}" Width="50" Margin="115,136,0,0" SelectedIndex="0" Cursor="Arrow"/>
 

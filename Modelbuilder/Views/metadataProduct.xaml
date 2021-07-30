@@ -5,9 +5,32 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Modelbuilder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataProduct">
 
+    <Page.Resources>
+        <DataTemplate  x:Key="CategoryComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=categoryName}" />
+                <TextBlock Text="{Binding Path=categoryId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  x:Key="StorageComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=storageName}" />
+                <TextBlock Text="{Binding Path=storageId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  x:Key="SupplierComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=supplierName}" />
+                <TextBlock Text="{Binding Path=supplierId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </Page.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
         <Grid.RowDefinitions>
@@ -33,5 +56,134 @@
         <TextBlock Style="{DynamicResource Title}" Text="Artikelen"/>
         <Path Grid.Row="1" Style="{DynamicResource TitleLine}"/>
         <!--#endregion-->
+
+        <!--#region Hiddenfields-->
+        <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId"        Margin="300,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"       Margin="350,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName"     Margin="400,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId"       Margin="450,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName"     Margin="500,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId"        Margin="550,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"      Margin="600,5,0,0" />
+        <!-- End of "Do not remove" part-->
+        <!--#endregion-->
+
+        <!--#region Tabpages -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <TabControl Height="300" Background="#FFE5E5E5">
+                <TabItem Header="Basisgegevens">
+                    <Grid>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="631"/>
+                        <Border BorderBrush="Gray" Margin="0,50,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
+                        <Border BorderBrush="Gray" Margin="0,110,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
+                        <Border BorderBrush="Gray" Margin="0,167,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
+                        <Border BorderBrush="Gray" Margin="0,223,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="631,0,0,0" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="252"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" Margin="115,6,0,0" Width="200" CharacterCasing="Upper"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Omschrijving" Margin="0,20,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" Margin="115,26,0,0" Width="490" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,54,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategoryName" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,56,0,0" SelectedIndex="0" Cursor="Arrow" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Voorraadlokatie" Margin="0,80,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorageName" ItemTemplate="{StaticResource StorageComboTemplate}" Width="250" Margin="115,82,0,0" SelectedIndex="0" Cursor="Arrow"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Leverancier" Margin="0,116,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplierName" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="250" Margin="115,118,0,0" SelectedIndex="0" Cursor="Arrow"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Artikelnr. leverancier" Margin="0,139,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" Margin="115,143,0,0" Width="200"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Kostprijs" Margin="0,169,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductPrice" Margin="115,173,0,0" Width="50" HorizontalContentAlignment="Right"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Minimale voorraad" Margin="185,169,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductMinimalStock" Margin="300,173,0,0" Width="75" HorizontalContentAlignment="Right"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Bestelhoeveelheid" Margin="400,169,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductStandardOrderQuantity" Margin="515,173,0,0" Width="90" HorizontalContentAlignment="Right"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Eenheid" Margin="0,193,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductUnit" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="100" Margin="115,195,0,0" SelectedIndex="0" Cursor="Arrow" >
+                            <ComboBoxItem Content=""/>
+                            <ComboBoxItem Content="Stuk"/>
+                            <ComboBoxItem Content="Set"/>
+                            <ComboBoxItem Content="Fles"/>
+                            <ComboBoxItem Content="mm"/>
+                            <ComboBoxItem Content="cm"/>
+                            <ComboBoxItem Content="gr"/>
+                            <ComboBoxItem Content="mgr"/>
+                            <ComboBoxItem Content="kg"/>
+                            <ComboBoxItem Content="ml"/>
+                            <ComboBoxItem Content="dl"/>
+                            <ComboBoxItem Content="ltr"/>
+                            <ComboBoxItem Content="mtr"/>
+                        </ComboBox>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerkend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" Margin="0,221,0,0"/>
+                        <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkProjectProjectCosts" Margin="115,226,0,0"/>
+                        
+                        <Image Style="{DynamicResource ProductImage}" Margin="636,0,0,0" x:Name="imgProductImage"/>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Leveranciers">
+                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
+                </TabItem>
+                <TabItem Header="Voorraadhistorie">
+                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region Toolbar for datagrid-->
+        <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Grid.Row="5" Grid.Column="1">
+            <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
+                <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                    <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                </Button>
+                <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                    <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <!--#endregion-->
+
+        <!--#region Datagrid definition-->
+        <DataGrid x:Name="ProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+                Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="ProductCode_DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding product_Id}" />
+                <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding product_Code}" />
+                <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding product_Name}" />
+                <DataGridTextColumn Header="Category" Width="180" Binding="{Binding product_CategoryName}" />
+                <DataGridTextColumn Header="Locatie" Width="180" Binding="{Binding product_StorageName}" />
+                <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding product_Pice}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--#endregion-->
+
+        <!--#region Status row-->
+        <DockPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Aantal:"/>
+                <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
+                <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
+            </Grid>
+        </DockPanel>
+        <!--#endregion-->
+
     </Grid>
 </Page>

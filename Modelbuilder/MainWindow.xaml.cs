@@ -69,7 +69,14 @@ namespace Modelbuilder
         {
             Main.Content = new metadataSupplier();
         }
-        #endregion Call Supplier Pager
+        #endregion Call Supplier Page
+
+        #region Call Product Page
+        private void ShowProductPage(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new metadataProduct();
+        }
+        #endregion Call Product Page
 
         #region Exit Application
 

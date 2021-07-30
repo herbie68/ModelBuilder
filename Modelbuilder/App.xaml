@@ -65,6 +65,11 @@
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
 
+        <Style x:Key="DefaultCheckBox" TargetType="CheckBox">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
         <Style x:Key="DefaultTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -97,6 +102,13 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="ProductImage" TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="247" />
+            <Setter Property="Width" Value="247"/>
         </Style>
         <!--#endregion-->
 
