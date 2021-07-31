@@ -24,6 +24,12 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataProduct : Page
     {
+        private readonly string DatabaseTable = "product", DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseProductTable="product";
+        private HelperMySQL _helper;
+        private DataTable _dt, _dtCategory, _dtStorage, _dtProduct;
+        private int _dbRowCount = 0;
+        private int _currentDataGridIndex = 0;
+
         public metadataProduct()
         {
             InitializeComponent();
@@ -43,7 +49,7 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Create object for all suppliers in table for dropdown
+        #region Create object for all Suppliers in table for dropdown
         private class Supplier
         {
             public Supplier(string Name, string Id)
@@ -122,47 +128,41 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
-            /*
-            valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
-            valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
-            valueCountryName.Text = Row_Selected["supplier_CountryName"].ToString();
-            valueCurrencyId.Text = Row_Selected["supplier_CurrencyId"].ToString();
-            valueCurrencySymbol.Text = Row_Selected["supplier_CurrencySymbol"].ToString();
-            inpSupplierCode.Text = Row_Selected["supplier_Code"].ToString();
-            inpSupplierName.Text = Row_Selected["supplier_Name"].ToString();
-            inpSupplierAddress1.Text = Row_Selected["supplier_Address1"].ToString();
-            inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
-            inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
-            inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
+            valueProductId.Text = Row_Selected["product_Id"].ToString();
+            inpProductCode.Text = Row_Selected["product_Code"].ToString();
+            inpProductName.Text = Row_Selected["product_Name"].ToString();
+
 
             //Select the saved Country in the combobox by default
-            foreach (Country country in cboxSupplierCountry.Items)
+            foreach (Supplier supplier in cboxProductSupplierName.Items)
             {
-                if (country.countryName == Row_Selected["supplier_CountryName"].ToString())
+                if (supplier.supplierName == Row_Selected["product_SupplierName"].ToString())
                 {
-                    cboxSupplierCountry.SelectedItem = country;
+                    cboxProductSupplierName.SelectedItem = supplier;
                     break;
                 }
             }
 
-            //Select the saved Currency in the combobox by default
-            foreach (Currency currency in cboxSupplierCurrency.Items)
+            //Select the saved Category in the combobox by default
+            foreach (Category category in cboxProductCategoryName.Items)
             {
-                if (currency.currencySymbol == Row_Selected["supplier_CurrencySymbol"].ToString())
+                if (category.categoryName == Row_Selected["product_CategoryName"].ToString())
                 {
-                    cboxSupplierCurrency.SelectedItem = currency;
+                    cboxProductCategoryName.SelectedItem = category;
                     break;
                 }
             }
 
-            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
-            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
-            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
-            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
-            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
-            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
-            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
-            */
+            //Select the saved Storage location in the combobox by default
+            foreach (Storage storage in cboxProductStorageName.Items)
+            {
+                if (storage.storageName == Row_Selected["product_StorageName"].ToString())
+                {
+                    cboxProductCategoryName.SelectedItem = storage;
+                    break;
+                }
+            }
+
         }
         #endregion
 
@@ -174,31 +174,13 @@ namespace Modelbuilder
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
-            string supplierCode = inpSupplierCode.Text;
-            string supplierName = inpSupplierName.Text;
-            string supplierAddress1 = inpSupplierAddress1.Text;
-            string supplierAddress2 = inpSupplierAddress2.Text;
-            string supplierZip = inpSupplierZip.Text;
-            string supplierCity = inpSupplierCity.Text;
-            string supplierUrl = inpSupplierUrl.Text;
-            int supplierCountryId = int.Parse(valueCountryId.Text);
-            string supplierCountryName = valueCountryName.Text;
-            int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
-            string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
-            string supplierPhoneSales = inpSupplierPhoneSales.Text;
-            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
-            string supplierMailGeneral = inpSupplierMailGeneral.Text;
-            string supplierMailSales = inpSupplierMailSales.Text;
-            string supplierMailSupport = inpSupplierMailSupport.Text;
-
-            //convert RTF to string
-            string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
+            string productCode = inpProductCode.Text;
+            string productName = inpProductName.Text;
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+            result = _helper.InsertTblProduct(productCode, productName);
             UpdateStatus(result);
         }
         #endregion
@@ -211,12 +193,12 @@ namespace Modelbuilder
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
-            int supplierId = int.Parse(valueSupplierId.Text);
+            int productId = int.Parse(valueProductId.Text);
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.DeleteTblSupplier(supplierId);
+            result = _helper.DeleteTblProduct(productId);
             UpdateStatus(result);
         }
         #endregion
@@ -227,26 +209,28 @@ namespace Modelbuilder
             int rowIndex = _currentDataGridIndex;
 
             // Update Id, Code, Name and Symbol values with the selected Country and Currency
-            valueCurrencyId.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencyId.ToString();
-            valueCurrencySymbol.Text = ((Currency)cboxSupplierCurrency.SelectedItem).currencySymbol.ToString();
-            valueCountryId.Text = ((Country)cboxSupplierCountry.SelectedItem).countryId.ToString();
-            valueCountryName.Text = ((Country)cboxSupplierCountry.SelectedItem).countryName.ToString();
+            valueCategoryId.Text = ((Category)cboxProductCategoryName.SelectedItem).categoryId.ToString();
+            valueCategoryName.Text = ((Category)cboxProductCategoryName.SelectedItem).categoryName.ToString();
+            valueStorageId.Text = ((Storage)cboxProductStorageName.SelectedItem).storageId.ToString();
+            valueStorageName.Text = ((Storage)cboxProductStorageName.SelectedItem).storageName.ToString();
+            valueSupplierId.Text = ((Supplier)cboxProductSupplierName.SelectedItem).supplierId.ToString();
+            valueSupplierName.Text = ((Supplier)cboxProductSupplierName.SelectedItem).supplierName.ToString();
 
-            if (valueSupplierId.Text == "")
+            if (valueProductId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
             {
-                InsertRow(SupplierCode_DataGrid.SelectedIndex);
+                InsertRow(ProductCode_DataGrid.SelectedIndex);
             }
             else
             {
-                UpdateRow(SupplierCode_DataGrid.SelectedIndex);
+                UpdateRow(ProductCode_DataGrid.SelectedIndex);
             }
 
             GetData();
 
             // Make sure the eddited row in the datagrid is selected
-            SupplierCode_DataGrid.SelectedIndex = rowIndex;
-            SupplierCode_DataGrid.Focus();
+            ProductCode_DataGrid.SelectedIndex = rowIndex;
+            ProductCode_DataGrid.Focus();
         }
         #endregion
 
@@ -255,20 +239,20 @@ namespace Modelbuilder
         {
             int rowIndex = _currentDataGridIndex;
 
-            DeleteRow(SupplierCode_DataGrid.SelectedIndex);
+            DeleteRow(ProductCode_DataGrid.SelectedIndex);
 
             GetData();
 
             if (rowIndex == 0)
             {
-                SupplierCode_DataGrid.SelectedIndex = 0;
+                ProductCode_DataGrid.SelectedIndex = 0;
             }
             else
             {
-                SupplierCode_DataGrid.SelectedIndex = rowIndex - 1;
+                ProductCode_DataGrid.SelectedIndex = rowIndex - 1;
             }
 
-            SupplierCode_DataGrid.Focus();
+            ProductCode_DataGrid.Focus();
         }
         #endregion
 
@@ -280,32 +264,14 @@ namespace Modelbuilder
             //get data from DataTable
             DataRow row = _dt.Rows[_currentDataGridIndex];
 
-            int supplierId = int.Parse(valueSupplierId.Text);
-            string supplierCode = inpSupplierCode.Text;
-            string supplierName = inpSupplierName.Text;
-            string supplierAddress1 = inpSupplierAddress1.Text;
-            string supplierAddress2 = inpSupplierAddress2.Text;
-            string supplierZip = inpSupplierZip.Text;
-            string supplierCity = inpSupplierCity.Text;
-            string supplierUrl = inpSupplierUrl.Text;
-            int supplierCountryId = int.Parse(valueCountryId.Text);
-            string supplierCountryName = valueCountryName.Text;
-            int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
-            string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
-            string supplierPhoneSales = inpSupplierPhoneSales.Text;
-            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
-            string supplierMailGeneral = inpSupplierMailGeneral.Text;
-            string supplierMailSales = inpSupplierMailSales.Text;
-            string supplierMailSupport = inpSupplierMailSupport.Text;
-
-            //convert RTF to string
-            string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
+            int productId = int.Parse(valueProductId.Text);
+            string productCode = inpProductCode.Text;
+            string productName = inpProductName.Text;
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo);
+            result = _helper.UpdateTblProduct(productId, productCode, productName);
             UpdateStatus(result);
         }
         #endregion

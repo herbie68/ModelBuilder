@@ -136,6 +136,44 @@ namespace Modelbuilder
         }
         #endregion Execute Non Query Table: Supplier
 
+        #region Execute Non Query Table: Product
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //set values - if they exist
+                    //if a value is null, one must use DBNull.Value
+                    //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
+                    cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                    //set values
+                    if (!String.IsNullOrEmpty(productCode))
+                        cmd.Parameters["@productCode"].Value = productCode;
+
+                    if (!String.IsNullOrEmpty(productName))
+                        cmd.Parameters["@productName"].Value = productName;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table: Product
+
         #region Execute Non Query Table Supplier_Id: Supplier
         public int ExecuteNonQueryTblSupplierId(string sqlText, int supplierId = 0)
         {
@@ -160,6 +198,31 @@ namespace Modelbuilder
             return rowsAffected;
         }
         #endregion Execute Non Query Table Supplier_Id: Supplier
+
+        #region Execute Non Query Table Supplier_Id: Product
+        public int ExecuteNonQueryTblProductId(string sqlText, int productId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table Supplier_Id: Product
 
         #region Get Data from Table: Supplier
         public DataTable GetDataTblSupplier(int supplierId = 0)
@@ -193,6 +256,39 @@ namespace Modelbuilder
             return dt;
         }
         #endregion Get Data from Table: Supplier
+
+        #region Get Data from Table: Product
+        public DataTable GetDataTblProduct(int productId = 0)
+        {
+            DataTable dt = new DataTable();
+            string sqlText = string.Empty;
+
+            if (productId > 0)
+            {
+                sqlText = "SELECT * from Product where product_Id = @productId";
+            }
+            else
+            {
+                sqlText = "SELECT * from Product";
+            }
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+                //add parameter
+                cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
+
+                using MySqlDataAdapter da = new(cmd);
+                //use DataAdapter to fill DataTable
+                da.Fill(dt);
+            }
+
+            return dt;
+        }
+        #endregion Get Data from Table: Product
 
         # region Get Data from Table: Country
         public DataTable GetDataTblCountry(string supplierCountryName = "")
@@ -296,6 +392,41 @@ namespace Modelbuilder
         }
         #endregion Insert in Table: Supplier
 
+        #region Insert in Table: Product
+        public string InsertTblProduct(string productCode, string productName)
+        {
+            string result = string.Empty;
+            string sqlText = "INSERT INTO Product (product_Code, product_Name);";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij toegevoegd.");
+                }
+                else
+                {
+                    result = "Rij niet toegevoegd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Insert in Table: Product
+
         #region Delete row in Table: Supplier
         public string DeleteTblSupplier(int supplierId)
         {
@@ -331,6 +462,41 @@ namespace Modelbuilder
         }
         #endregion Delete row in Table: Supplier
 
+        #region Delete row in Table: Product
+        public string DeleteTblProduct(int productId)
+        {
+            string result = string.Empty;
+            string sqlText = "DELETE FROM Product WHERE product_Id=@productId";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblSupplierId(sqlText, productId);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij verwijderd.");
+                }
+                else
+                {
+                    result = "Rij niet verwijderd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Delete row in Table: Product
+
         #region Update Table: Supplier
         public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
         {
@@ -359,5 +525,34 @@ namespace Modelbuilder
             return result;
         }
         #endregion Update Table: Supplier
+
+        #region Update Table: Product
+        public string UpdateTblProduct(int productId, string productCode, string productName)
+        {
+            string result = string.Empty;
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName WHERE product_Id = @productId;";
+
+            try
+            {
+                // Do we need to add supplierId here?
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productId);
+
+                //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
+                result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Update Table: Product
     }
 }

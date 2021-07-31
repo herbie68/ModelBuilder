@@ -74,12 +74,7 @@
             <TabControl Height="300" Background="#FFE5E5E5">
                 <TabItem Header="Basisgegevens">
                     <Grid>
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="631"/>
-                        <Border BorderBrush="Gray" Margin="0,50,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
-                        <Border BorderBrush="Gray" Margin="0,110,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
-                        <Border BorderBrush="Gray" Margin="0,167,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
-                        <Border BorderBrush="Gray" Margin="0,223,0,0" BorderThickness="1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="631"/>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="631,0,0,0" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="252"/>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="631,0,0,0" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="252"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0,0,0"/>
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" Margin="115,6,0,0" Width="200" CharacterCasing="Upper"/>

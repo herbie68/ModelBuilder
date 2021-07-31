@@ -87,7 +87,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\metadataCurencyReport.png" Header="Overzicht Valuta" />
                         <RibbonMenuItem ImageSource=".\Resources\metadataWorktypeReport.png" Header="Overzicht Werkzaamheden" />
                     </RibbonMenuButton>
-                    <RibbonSplitButton Label="Artikelen" SmallImageSource=".\Resources\metadataProducts.png">
+                    <RibbonSplitButton Label="Artikelen" SmallImageSource=".\Resources\metadataProducts.png" Click="ShowProductPage">
                         <RibbonMenuItem ImageSource=".\Resources\metadataProductsImport.png" Header="Importeer Artikellen" />
                         <RibbonMenuItem ImageSource=".\Resources\metadataProductsExport.png" Header="Exporteer Artikellen" />
                     </RibbonSplitButton>
