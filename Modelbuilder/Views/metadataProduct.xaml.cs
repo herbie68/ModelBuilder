@@ -24,7 +24,7 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataProduct : Page
     {
-        private readonly string DatabaseTable = "product", DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseProductTable="product";
+        private readonly string DatabaseTable = "product", DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier";
         private HelperMySQL _helper;
         private DataTable _dt, _dtCategory, _dtStorage, _dtProduct;
         private int _dbRowCount = 0;
@@ -33,6 +33,78 @@ namespace Modelbuilder
         public metadataProduct()
         {
             InitializeComponent();
+            DataContext = new ProductCodeViewModel();
+
+            #region Fill Category dropdown
+            Database dbCategoryConnection = new()
+            {
+                TableName = DatabaseCategoryTable
+            };
+
+            dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
+            dbCategoryConnection.SqlOrderByString = "category_Id";
+            dbCategoryConnection.TableName = DatabaseCategoryTable;
+
+            DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
+
+            List<Category> CategoryList = new();
+
+            for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
+            {
+                CategoryList.Add(new Category(dtCategorySelection.Rows[i][0].ToString(),
+                    dtCategorySelection.Rows[i][1].ToString()));
+            };
+
+            cboxProductSupplierName.ItemsSource = CategoryList;
+            #endregion
+
+            #region Fill Supplier dropdown
+            Database dbSupplierConnection = new()
+            {
+                TableName = DatabaseSupplierTable
+            };
+
+            dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
+            dbSupplierConnection.SqlOrderByString = "supplier_Id";
+            dbSupplierConnection.TableName = DatabaseSupplierTable;
+
+            DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
+
+            List<Supplier> SupplierList = new();
+
+            for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
+            {
+                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
+                    dtSupplierSelection.Rows[i][1].ToString()));
+            };
+
+            cboxProductSupplierName.ItemsSource = SupplierList;
+            #endregion
+
+            #region Fill Storage dropdown
+            Database dbStorageConnection = new()
+            {
+                TableName = DatabaseStorageTable
+            };
+
+            dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
+            dbStorageConnection.SqlOrderByString = "storage_Id";
+            dbStorageConnection.TableName = DatabaseStorageTable;
+
+            DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
+
+            List<Storage> StorageList = new();
+
+            for (int i = 0; i < dtStorageSelection.Rows.Count; i++)
+            {
+                StorageList.Add(new Storage(dtStorageSelection.Rows[i][0].ToString(),
+                    dtStorageSelection.Rows[i][1].ToString()));
+            };
+
+            cboxProductSupplierName.ItemsSource = StorageList;
+            #endregion
+
+            GetData();
         }
 
         #region Create object for all categories in table for dropdown

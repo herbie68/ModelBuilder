@@ -25,7 +25,7 @@
 
         <DataTemplate  x:Key="SupplierComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=supplierName}" />
+                <TextBlock Text="{Binding Path=supplierName}" Width="Auto"/>
                 <TextBlock Text="{Binding Path=supplierId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
