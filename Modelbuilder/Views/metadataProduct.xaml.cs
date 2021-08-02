@@ -163,9 +163,9 @@ namespace Modelbuilder
             valueSupplierName.Text = Row_Selected["product_SupplierName"].ToString();
             inpProductCode.Text = Row_Selected["product_Code"].ToString();
             inpProductName.Text = Row_Selected["product_Name"].ToString();
-            inpProductMinimalStock.Text = Row_Selected["product_MinimalStock"].ToString();
-            inpProductStandardOrderQuantity.Text = Row_Selected["product_StandardOrderQuantity"].ToString();
-            inpProductPrice.Text = Row_Selected["product_Price"].ToString();
+            inpProductMinimalStock.Text = Row_Selected["product_MinimalStock"].ToString().Replace(".", ",");
+            inpProductStandardOrderQuantity.Text = Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",");
+            inpProductPrice.Text = Row_Selected["product_Price"].ToString().Replace(".", ",");
             inpSupplierProductNumber.Text = Row_Selected["product_SupplierProductNumber"].ToString();
             chkProjectProjectCosts.IsChecked = Row_Selected["product_ProjectCosts"].ToString() == "0";
 
@@ -210,6 +210,7 @@ namespace Modelbuilder
             //the DataTable is updated when data is modified in the DataGrid
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+            int productProjectCosts = 0;
 
             var productCode = inpProductCode.Text;
             var productName = inpProductName.Text;
@@ -217,7 +218,9 @@ namespace Modelbuilder
             var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
             var productPrice = float.Parse(inpProductPrice.Text);
             var productSupplierProductNumber = inpSupplierProductNumber.Text;
-            var productProjectCosts = chkProjectProjectCosts.IsChecked;
+            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
+            { productProjectCosts = 0; }
+            //byte productProjectCosts = byte.Parse(chkProjectProjectCosts.IsChecked);
             var productCategoryId = int.Parse(valueCategoryId.Text);
             var productCategoryName = valueCategoryName.Text;
             var productStorageId = int.Parse(valueStorageId.Text);
@@ -310,15 +313,34 @@ namespace Modelbuilder
             //to DataGrid SelectedIndex
             //get data from DataTable
             DataRow row = _dt.Rows[_currentDataGridIndex];
+            var productProjectCosts = 0;
 
-            int productId = int.Parse(valueProductId.Text);
+
+
+            var productId = int.Parse(valueProductId.Text);
             string productCode = inpProductCode.Text;
             string productName = inpProductName.Text;
+            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
+            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
+
+            if (inpProductPrice.Text == "") { inpProductPrice.Text = "0,00"; }
+            { inpProductPrice.Text.Replace(".", ","); }
+            var productPrice = float.Parse(inpProductPrice.Text);
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;
+            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
+            { productProjectCosts = 0; }
+            //byte productProjectCosts = byte.Parse(chkProjectProjectCosts.IsChecked);
+            var productCategoryId = int.Parse(valueCategoryId.Text);
+            var productCategoryName = valueCategoryName.Text;
+            var productStorageId = int.Parse(valueStorageId.Text);
+            var productStorageName = valueStorageName.Text;
+            var productSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierName = valueSupplierName.Text;
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName);
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
             UpdateStatus(result);
         }
         #endregion
