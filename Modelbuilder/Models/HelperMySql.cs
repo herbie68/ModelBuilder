@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Modelbuilder
 {
@@ -10,8 +11,13 @@ namespace Modelbuilder
     {
         #region public Variables
         public string ConnectionStr { get; set; } = string.Empty;
-
+        
+        public string DatabaseCategoryTable = "category";
         public string DatabaseCountryTable = "country";
+        public string DatabaseCurrencyTable = "currency";
+        public string DatabaseStorageTable = "storage";
+        public string DatabaseSupplierTable = "supplier";
+
         #endregion public Variables
 
         #region Connector to database
@@ -140,7 +146,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table: Supplier
 
         #region Execute Non Query Table: Product
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productId = 0)
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, bool productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productId = 0)
         {
             int rowsAffected = 0;
 
@@ -160,13 +166,36 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
                     cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
-
+                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Float).Value = productMinimalStock;
+                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Float).Value = productStandardOrderQuantity;
+                    cmd.Parameters.Add("@productPrice", MySqlDbType.Float).Value = productPrice;
+                    cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productProjectCosts", MySqlDbType.TinyText).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
+                    cmd.Parameters.Add("@productCategoryName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productStorageId", MySqlDbType.Int32).Value = productStorageId;
+                    cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
+                    cmd.Parameters.Add("@productSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    
                     //set values
                     if (!String.IsNullOrEmpty(productCode))
                         cmd.Parameters["@productCode"].Value = productCode;
 
                     if (!String.IsNullOrEmpty(productName))
                         cmd.Parameters["@productName"].Value = productName;
+
+                    if (!String.IsNullOrEmpty(productSupplierProductNumber))
+                        cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
+
+                    if (!String.IsNullOrEmpty(productCategoryName))
+                        cmd.Parameters["@productCategoryName"].Value = productCategoryName;
+
+                    if (!String.IsNullOrEmpty(productStorageName))
+                        cmd.Parameters["@productStorageName"].Value = productStorageName;
+
+                    if (!String.IsNullOrEmpty(productSupplierName))
+                        cmd.Parameters["@productSupplierName"].Value = productSupplierName;
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -396,14 +425,14 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName)
+        public string InsertTblProduct(string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, bool productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO Product (product_Code, product_Name);";
-
+            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName);";
+            
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
 
                 if (rowsAffected > 0)
                 {
@@ -530,15 +559,15 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName)
+        public string UpdateTblProduct(int productId, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, bool productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName WHERE product_Id = @productId;";
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName WHERE product_Id = @productId;";
 
             try
             {
                 // Do we need to add supplierId here?
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productId);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -559,6 +588,32 @@ namespace Modelbuilder
         #endregion Update Table: Product
 
         #region Create lists to populate dropdowns for metadata pages
+        #region Fill the dropdownlists
+        #region Fill Category dropdown
+        public List<Category> CategoryList()
+        {
+
+            Database dbCategoryConnection = new()
+            {
+                TableName = DatabaseCategoryTable
+            };
+
+            dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
+            dbCategoryConnection.SqlOrderByString = "category_Id";
+            dbCategoryConnection.TableName = DatabaseCategoryTable;
+
+            DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
+
+            List<Category> CategoryList = new();
+
+            for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
+            {
+                CategoryList.Add(new Category(dtCategorySelection.Rows[i][0].ToString(),
+                    int.Parse(dtCategorySelection.Rows[i][1].ToString())));
+            };
+            return CategoryList;
+        }
+        #endregion
 
         #region Fill Country dropdown
         public List<Country> CountryList()
@@ -586,10 +641,88 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Fill Currency dropdown
+        public List<Currency> CurrencyList()
+        {
+
+            Database dbCurrencyConnection = new()
+            {
+                TableName = DatabaseCurrencyTable
+            };
+
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
+            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
+
+            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
+
+            List<Currency> CurrencyList = new();
+
+            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
+            {
+                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
+                    dtCurrencySelection.Rows[i][1].ToString()));
+            };
+            return CurrencyList;
+        }
+        #endregion
+
+        #region Fill Storage dropdown
+        public List<Storage> StorageList()
+        {
+
+            Database dbStorageConnection = new()
+            {
+                TableName = DatabaseStorageTable
+            };
+
+            dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
+            dbStorageConnection.SqlOrderByString = "storage_Id";
+            dbStorageConnection.TableName = DatabaseStorageTable;
+
+            DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
+
+            List<Storage> StorageList = new();
+
+            for (int i = 0; i < dtStorageSelection.Rows.Count; i++)
+            {
+                StorageList.Add(new Storage(dtStorageSelection.Rows[i][0].ToString(),
+                    int.Parse(dtStorageSelection.Rows[i][1].ToString())));
+            };
+            return StorageList;
+        }
+        #endregion
+
+        #region Fill Supplier dropdown
+        public List<Supplier> SupplierList()
+        {
+
+            Database dbSupplierConnection = new()
+            {
+                TableName = DatabaseSupplierTable
+            };
+
+            dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
+            dbSupplierConnection.SqlOrderByString = "supplier_Id";
+            dbSupplierConnection.TableName = DatabaseSupplierTable;
+
+            DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
+
+            List<Supplier> SupplierList = new();
+
+            for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
+            {
+                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
+                    int.Parse(dtSupplierSelection.Rows[i][1].ToString())));
+            };
+            return SupplierList;
+        }
+        #endregion
+        #endregion Fill the dropdownlists
 
         #region Helper classes to for creating objects to populate dropdowns
         #region Create object for all categories in table for dropdown
-        private class Category
+        public class Category
         {
             public Category(string Name, int Id)
             {
@@ -617,7 +750,7 @@ namespace Modelbuilder
         #endregion
 
         #region Create object for all currencies in table for dropdown
-        private class Currency
+        public class Currency
         {
             public Currency(string Symbol, string Id)
             {
@@ -631,7 +764,7 @@ namespace Modelbuilder
         #endregion
 
         #region Create object for all storage locations in table for dropdown
-        private class Storage
+        public class Storage
         {
             public Storage(string Name, int Id)
             {
@@ -645,7 +778,7 @@ namespace Modelbuilder
         #endregion
 
         #region Create object for all suppliers in table for dropdown
-        private class Supplier
+        public class Supplier
         {
             public Supplier(string Name, int Id)
             {

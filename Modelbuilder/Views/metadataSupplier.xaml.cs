@@ -28,66 +28,19 @@ namespace Modelbuilder
         /// Zeilennummer    => Rownumber
         /// Spaltennummer   => Columnnumber
         /// </summary>
-        private readonly string DatabaseTable = "supplier", DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
         private HelperMySQL _helper;
-        private DataTable _dt, _dtCountry, _dtCurrency;
-        private int _dbRowCount = 0;
-        private int _currentDataGridIndex = 0;
+        private DataTable _dt;
+        private int _dbRowCount;
+        private int _currentDataGridIndex;
+        static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
         {
             InitializeComponent();
-            //DataContext = new SupplierCodeViewModel();
 
-            #region Fill Currency dropdown
-            Database dbCurrencyConnection = new()
-            {
-                TableName = DatabaseCurrencyTable
-            };
-
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
-            dbCurrencyConnection.SqlOrderByString = "currency_Id";
-            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
-
-            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
-
-            List<Currency> CurrencyList = new();
-
-            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
-            {
-                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
-                    dtCurrencySelection.Rows[i][1].ToString()));
-            };
-
-            cboxSupplierCurrency.ItemsSource = CurrencyList;
-            #endregion
-
-            #region Fill Country dropdown
-            Database dbCountryConnection = new()
-            {
-                TableName = DatabaseCountryTable
-            };
-
-            dbCountryConnection.SqlSelectionString = "country_Name, country_Id, country_Code";
-            dbCountryConnection.SqlOrderByString = "country_Id";
-            dbCountryConnection.TableName = DatabaseCountryTable;
-
-            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
-
-            List<Country> CountryList = new();
-
-            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
-            {
-                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
-                    dtCountrySelection.Rows[i][1].ToString()));
-            };
-
-            cboxSupplierCountry.ItemsSource = CountryList;
-
-
-            //cboxSupplierCountry.ItemsSource = DataContext.ToString();
-
-            #endregion
+            InitializeHelper();
+            cboxSupplierCurrency.ItemsSource = CurrencyList();
+            cboxSupplierCountry.ItemsSource = CountryList();
 
             GetData();
         }
@@ -418,6 +371,59 @@ namespace Modelbuilder
         }
         #endregion
 
+
+        #region Fill Country dropdown
+        static List<Country> CountryList()
+        {
+
+            Database dbCountryConnection = new()
+            {
+                TableName = DatabaseCountryTable
+            };
+
+            dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
+            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.TableName = DatabaseCountryTable;
+
+            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
+
+            List<Country> CountryList = new();
+
+            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
+            {
+                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
+                    dtCountrySelection.Rows[i][1].ToString()));
+            };
+            return CountryList;
+        }
+        #endregion
+
+        #region Fill Currency dropdown
+        static List<Currency> CurrencyList()
+        {
+
+            Database dbCurrencyConnection = new()
+            {
+                TableName = DatabaseCurrencyTable
+            };
+
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
+            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
+
+            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
+
+            List<Currency> CurrencyList = new();
+
+            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
+            {
+                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
+                    dtCurrencySelection.Rows[i][1].ToString()));
+            };
+            return CurrencyList;
+        }
+        #endregion
+
         #region Update status
         private void UpdateStatus(string msg)
         {
@@ -438,7 +444,7 @@ namespace Modelbuilder
         #endregion
 
         #region rtfToolbar actions
-        private bool dataChanged = false; // Unsaved textchanges
+        // private bool dataChanged = false; // Unsaved textchanges
 
         private string privateText = null; // Content of RTFBox in txt-Format
         public string text

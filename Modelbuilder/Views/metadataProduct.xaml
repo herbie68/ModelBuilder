@@ -30,6 +30,13 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate  x:Key="CountryComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=countryName}" />
+                <TextBlock Text="{Binding Path=countryId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
     </Page.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
@@ -83,13 +90,14 @@
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" Margin="115,26,0,0" Width="490" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,54,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategoryName" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,56,0,0" SelectedIndex="0" Cursor="Arrow" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategory" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,56,0,0" SelectedIndex="0" Cursor="Arrow" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" ItemTemplate="{StaticResource CountryComboTemplate}" Width="190" Margin="400,56,0,0" SelectedIndex="0" Cursor="Arrow" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Voorraadlokatie" Margin="0,80,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorageName" ItemTemplate="{StaticResource StorageComboTemplate}" Width="250" Margin="115,82,0,0" SelectedIndex="0" Cursor="Arrow"/>
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorage" ItemTemplate="{StaticResource StorageComboTemplate}" Width="250" Margin="115,82,0,0" SelectedIndex="0" Cursor="Arrow"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Leverancier" Margin="0,116,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplierName" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="250" Margin="115,118,0,0" SelectedIndex="0" Cursor="Arrow"/>
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="250" Margin="115,118,0,0" SelectedIndex="0" Cursor="Arrow"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Artikelnr. leverancier" Margin="0,139,0,0"/>
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" Margin="115,143,0,0" Width="200"/>

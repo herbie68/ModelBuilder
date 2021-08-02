@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Modelbuilder
 {
@@ -24,84 +25,24 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataProduct : Page
     {
-        private readonly string DatabaseTable = "product", DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier";
         private HelperMySQL _helper;
-        private DataTable _dt, _dtCategory, _dtStorage, _dtProduct;
-        private int _dbRowCount = 0;
-        private int _currentDataGridIndex = 0;
+        private DataTable _dt;
+        private int _dbRowCount;
+        private int _currentDataGridIndex;
+        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier";
 
         public metadataProduct()
         {
             InitializeComponent();
-            DataContext = new SupplierListViewModel();
 
-            #region Fill Category dropdown
-            Database dbCategoryConnection = new()
-            {
-                TableName = DatabaseCategoryTable
-            };
+            InitializeHelper();
+            //cboxProductCategory.ItemsSource = _helper.CategoryList();
+            //cboxProductSupplier.ItemsSource = _helper.SupplierList();
+            //cboxProductStorage.ItemsSource = _helper.StorageList();
+            cboxProductCategory.ItemsSource = CategoryList();
+            cboxProductSupplier.ItemsSource = SupplierList();
+            cboxProductStorage.ItemsSource = StorageList();
 
-            dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
-            dbCategoryConnection.SqlOrderByString = "category_Id";
-            dbCategoryConnection.TableName = DatabaseCategoryTable;
-
-            DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
-
-            List<Category> CategoryList = new();
-
-            for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
-            {
-                CategoryList.Add(new Category(dtCategorySelection.Rows[i][0].ToString(),
-                    dtCategorySelection.Rows[i][1].ToString()));
-            };
-
-            cboxProductSupplierName.ItemsSource = CategoryList;
-            #endregion
-
-            #region Fill Supplier dropdown
-            Database dbSupplierConnection = new()
-            {
-                TableName = DatabaseSupplierTable
-            };
-
-            dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
-            dbSupplierConnection.SqlOrderByString = "supplier_Id";
-            dbSupplierConnection.TableName = DatabaseSupplierTable;
-
-            DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
-
-            List<Supplier> SupplierList = new();
-
-            for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
-            {
-                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
-                    dtSupplierSelection.Rows[i][1].ToString()));
-            };
-            cboxProductSupplierName.ItemsSource = SupplierList.ToString();
-            #endregion
-
-            #region Fill Storage dropdown
-            Database dbStorageConnection = new()
-            {
-                TableName = DatabaseStorageTable
-            };
-
-            dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
-            dbStorageConnection.SqlOrderByString = "storage_Id";
-            dbStorageConnection.TableName = DatabaseStorageTable;
-
-            DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
-
-            List<Storage> StorageList = new();
-
-            for (int i = 0; i < dtStorageSelection.Rows.Count; i++)
-            {
-                StorageList.Add(new Storage(dtStorageSelection.Rows[i][0].ToString(),
-                    dtStorageSelection.Rows[i][1].ToString()));
-            };
-
-            cboxProductSupplierName.ItemsSource = StorageList;
-            #endregion
 
             GetData();
         }
@@ -145,6 +86,20 @@ namespace Modelbuilder
 
             public string storageName { get; set; }
             public string storageId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all countries in table for dropdown
+        private class Country
+        {
+            public Country(string Name, string Id)
+            {
+                countryName = Name;
+                countryId = Id;
+            }
+
+            public string countryName { get; set; }
+            public string countryId { get; set; }
         }
         #endregion
 
@@ -200,40 +155,51 @@ namespace Modelbuilder
             _currentDataGridIndex = dg.SelectedIndex;
 
             valueProductId.Text = Row_Selected["product_Id"].ToString();
+            valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();
+            valueCategoryName.Text = Row_Selected["product_CategoryName"].ToString();
+            valueStorageId.Text = Row_Selected["product_StorageId"].ToString();
+            valueStorageName.Text = Row_Selected["product_StorageName"].ToString();
+            valueSupplierId.Text = Row_Selected["product_SupplierId"].ToString();
+            valueSupplierName.Text = Row_Selected["product_SupplierName"].ToString();
             inpProductCode.Text = Row_Selected["product_Code"].ToString();
             inpProductName.Text = Row_Selected["product_Name"].ToString();
+            inpProductMinimalStock.Text = Row_Selected["product_MinimalStock"].ToString();
+            inpProductStandardOrderQuantity.Text = Row_Selected["product_StandardOrderQuantity"].ToString();
+            inpProductPrice.Text = Row_Selected["product_Price"].ToString();
+            inpSupplierProductNumber.Text = Row_Selected["product_SupplierProductNumber"].ToString();
+            chkProjectProjectCosts.IsChecked = Row_Selected["product_ProjectCosts"].ToString() == "0";
 
-
-            //Select the saved Country in the combobox by default
-            foreach (Supplier supplier in cboxProductSupplierName.Items)
-            {
-                if (supplier.supplierName == Row_Selected["product_SupplierName"].ToString())
-                {
-                    cboxProductSupplierName.SelectedItem = supplier;
-                    break;
-                }
-            }
 
             //Select the saved Category in the combobox by default
-            foreach (Category category in cboxProductCategoryName.Items)
+            foreach (Category category in cboxProductCategory.Items)
             {
                 if (category.categoryName == Row_Selected["product_CategoryName"].ToString())
                 {
-                    cboxProductCategoryName.SelectedItem = category;
+                    cboxProductCategory.SelectedItem = category;
                     break;
                 }
             }
 
+            //Select the saved Supplier in the combobox by default
+            foreach (Supplier supplier in cboxProductSupplier.Items)
+            {
+                if (supplier.supplierName == Row_Selected["product_SupplierName"].ToString())
+                {
+                    cboxProductSupplier.SelectedItem = supplier;
+                    break;
+                }
+            }
+            
+
             //Select the saved Storage location in the combobox by default
-            foreach (Storage storage in cboxProductStorageName.Items)
+            foreach (Storage storage in cboxProductStorage.Items)
             {
                 if (storage.storageName == Row_Selected["product_StorageName"].ToString())
                 {
-                    cboxProductCategoryName.SelectedItem = storage;
+                    cboxProductCategory.SelectedItem = storage;
                     break;
                 }
             }
-
         }
         #endregion
 
@@ -245,13 +211,23 @@ namespace Modelbuilder
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
-            string productCode = inpProductCode.Text;
-            string productName = inpProductName.Text;
-
+            var productCode = inpProductCode.Text;
+            var productName = inpProductName.Text;
+            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
+            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
+            var productPrice = float.Parse(inpProductPrice.Text);
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;
+            var productProjectCosts = chkProjectProjectCosts.IsChecked;
+            var productCategoryId = int.Parse(valueCategoryId.Text);
+            var productCategoryName = valueCategoryName.Text;
+            var productStorageId = int.Parse(valueStorageId.Text);
+            var productStorageName = valueStorageName.Text;
+            var productSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierName = valueSupplierName.Text;
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
             UpdateStatus(result);
         }
         #endregion
@@ -280,12 +256,12 @@ namespace Modelbuilder
             int rowIndex = _currentDataGridIndex;
 
             // Update Id, Code, Name and Symbol values with the selected Country and Currency
-            valueCategoryId.Text = ((Category)cboxProductCategoryName.SelectedItem).categoryId.ToString();
-            valueCategoryName.Text = ((Category)cboxProductCategoryName.SelectedItem).categoryName.ToString();
-            valueStorageId.Text = ((Storage)cboxProductStorageName.SelectedItem).storageId.ToString();
-            valueStorageName.Text = ((Storage)cboxProductStorageName.SelectedItem).storageName.ToString();
-            valueSupplierId.Text = ((Supplier)cboxProductSupplierName.SelectedItem).supplierId.ToString();
-            valueSupplierName.Text = ((Supplier)cboxProductSupplierName.SelectedItem).supplierName.ToString();
+            valueCategoryId.Text = ((Category)cboxProductCategory.SelectedItem).categoryId.ToString();
+            valueCategoryName.Text = ((Category)cboxProductCategory.SelectedItem).categoryName.ToString();
+            valueStorageId.Text = ((Storage)cboxProductStorage.SelectedItem).storageId.ToString();
+            valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
+            valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
+            valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
 
             if (valueProductId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
@@ -365,5 +341,84 @@ namespace Modelbuilder
             }
         }
         #endregion
+
+        #region Fill Category dropdown
+        static List<Category> CategoryList()
+        {
+
+            Database dbCategoryConnection = new()
+            {
+                TableName = DatabaseCategoryTable
+            };
+
+            dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
+            dbCategoryConnection.SqlOrderByString = "category_Id";
+            dbCategoryConnection.TableName = DatabaseCategoryTable;
+
+            DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
+
+            List<Category> CategoryList = new();
+
+            for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
+            {
+                CategoryList.Add(new Category(dtCategorySelection.Rows[i][0].ToString(),
+                    dtCategorySelection.Rows[i][1].ToString()));
+            };
+            return CategoryList;
+        }
+        #endregion
+
+        #region Fill Storage dropdown
+        static List<Storage> StorageList()
+        {
+
+            Database dbStorageConnection = new()
+            {
+                TableName = DatabaseStorageTable
+            };
+
+            dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
+            dbStorageConnection.SqlOrderByString = "storage_Id";
+            dbStorageConnection.TableName = DatabaseStorageTable;
+
+            DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
+
+            List<Storage> StorageList = new();
+
+            for (int i = 0; i < dtStorageSelection.Rows.Count; i++)
+            {
+                StorageList.Add(new Storage(dtStorageSelection.Rows[i][0].ToString(),
+                    dtStorageSelection.Rows[i][1].ToString()));
+            };
+            return StorageList;
+        }
+        #endregion
+
+        #region Fill Supplier dropdown
+        static List<Supplier> SupplierList()
+        {
+
+            Database dbSupplierConnection = new()
+            {
+                TableName = DatabaseSupplierTable
+            };
+
+            dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
+            dbSupplierConnection.SqlOrderByString = "supplier_Id";
+            dbSupplierConnection.TableName = DatabaseSupplierTable;
+
+            DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
+
+            List<Supplier> SupplierList = new();
+
+            for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
+            {
+                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
+                    dtSupplierSelection.Rows[i][1].ToString()));
+            };
+            return SupplierList;
+        }
+        #endregion
+
     }
 }

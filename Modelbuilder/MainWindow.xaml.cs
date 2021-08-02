@@ -14,7 +14,6 @@ namespace Modelbuilder
         public static readonly int port = 3306;
         public static readonly string uid = "root";
         public static readonly string password = "admin";
-        private HelperMySQL _helper;
 
         public MainWindow()
         {
