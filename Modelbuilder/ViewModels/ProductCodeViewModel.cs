@@ -10,6 +10,7 @@ namespace Modelbuilder
         public List<string> CategoryCollection { get; set; }
         public List<string> StorageCollection { get; set; }
         public List<string> SupplierCollection { get; set; }
+        public List<string> SupplierList { get; set; }
         private readonly string DatabaseCategoryTable = "category";
         private readonly string DatabaseSupplierTable = "supplier";
         private readonly string DatabaseStorageTable = "storage";
@@ -59,27 +60,35 @@ namespace Modelbuilder
             };
             StorageCollection = new List<string> { };
 
+            #region Fill Supplier dropdown
             Database dbSupplierConnection = new()
             {
-                TableName = DatabaseStorageTable
+                TableName = DatabaseSupplierTable
             };
 
-            //DataTable dataTable = new DataTable();
             dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
             dbSupplierConnection.SqlOrderByString = "supplier_Id";
             dbSupplierConnection.TableName = DatabaseSupplierTable;
 
             DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
 
+            List<Supplier> SupplierList = new();
+
             for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
             {
-                SupplierCollection.Add(dtSupplierSelection.Rows[i][0].ToString());
+                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
+                    int.Parse(dtSupplierSelection.Rows[i][1].ToString())));
             };
+
+            //cboxProductSupplierName.ItemsSource = SupplierList;
+            #endregion
+
+
         }
 
         private class Category
         {
-            public Category(string Name, int Id, string Code)
+            public Category(string Name, int Id)
             {
                 categoryName = Name;
                 categoryId = Id;
@@ -91,7 +100,7 @@ namespace Modelbuilder
 
         private class Storage
         {
-            public Storage(string Name, int Id, string Code)
+            public Storage(string Name, int Id)
             {
                 storageName = Name;
                 storageId = Id;
@@ -103,7 +112,7 @@ namespace Modelbuilder
 
         private class Supplier
         {
-            public Supplier(string Name, int Id, string Code)
+            public Supplier(string Name, int Id)
             {
                 supplierName = Name;
                 supplierId = Id;

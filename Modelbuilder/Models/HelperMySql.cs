@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Modelbuilder
 {
@@ -9,6 +10,8 @@ namespace Modelbuilder
     {
         #region public Variables
         public string ConnectionStr { get; set; } = string.Empty;
+
+        public string DatabaseCountryTable = "country";
         #endregion public Variables
 
         #region Connector to database
@@ -554,5 +557,107 @@ namespace Modelbuilder
             return result;
         }
         #endregion Update Table: Product
+
+        #region Create lists to populate dropdowns for metadata pages
+
+        #region Fill Country dropdown
+        public List<Country> CountryList()
+        {
+            
+            Database dbCountryConnection = new()
+            {
+                TableName = DatabaseCountryTable
+            };
+
+            dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
+            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.TableName = DatabaseCountryTable;
+
+            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
+
+            List<Country> CountryList = new();
+
+            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
+            {
+                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
+                    int.Parse(dtCountrySelection.Rows[i][1].ToString())));
+            };
+            return CountryList;
+        }
+        #endregion
+
+
+        #region Helper classes to for creating objects to populate dropdowns
+        #region Create object for all categories in table for dropdown
+        private class Category
+        {
+            public Category(string Name, int Id)
+            {
+                categoryName = Name;
+                categoryId = Id;
+            }
+
+            public string categoryName { get; set; }
+            public int categoryId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all countries in table for dropdown
+        public class Country
+        {
+            public Country(string Name, int Id)
+            {
+                countryName = Name;
+                countryId = Id;
+            }
+
+            public string countryName { get; set; }
+            public int countryId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all currencies in table for dropdown
+        private class Currency
+        {
+            public Currency(string Symbol, string Id)
+            {
+                currencySymbol = Symbol;
+                currencyId = Id;
+            }
+
+            public string currencySymbol { get; set; }
+            public string currencyId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all storage locations in table for dropdown
+        private class Storage
+        {
+            public Storage(string Name, int Id)
+            {
+                storageName = Name;
+                storageId = Id;
+            }
+
+            public string storageName { get; set; }
+            public int storageId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all suppliers in table for dropdown
+        private class Supplier
+        {
+            public Supplier(string Name, int Id)
+            {
+                supplierName = Name;
+                supplierId = Id;
+            }
+
+            public string supplierName { get; set; }
+            public int supplierId { get; set; }
+        }
+        #endregion
+        #endregion Helper classes to for creating objects to populate dropdowns
+        #endregion Create lists to populate dropdowns for metadata pages
     }
 }

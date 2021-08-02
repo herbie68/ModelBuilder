@@ -37,7 +37,7 @@ namespace Modelbuilder
         public metadataSupplier()
         {
             InitializeComponent();
-            DataContext = new SupplierCodeViewModel();
+            //DataContext = new SupplierCodeViewModel();
 
             #region Fill Currency dropdown
             Database dbCurrencyConnection = new()
@@ -83,6 +83,10 @@ namespace Modelbuilder
             };
 
             cboxSupplierCountry.ItemsSource = CountryList;
+
+
+            //cboxSupplierCountry.ItemsSource = DataContext.ToString();
+
             #endregion
 
             GetData();

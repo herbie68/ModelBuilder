@@ -33,7 +33,7 @@ namespace Modelbuilder
         public metadataProduct()
         {
             InitializeComponent();
-            DataContext = new ProductCodeViewModel();
+            DataContext = new SupplierListViewModel();
 
             #region Fill Category dropdown
             Database dbCategoryConnection = new()
@@ -77,8 +77,7 @@ namespace Modelbuilder
                 SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
                     dtSupplierSelection.Rows[i][1].ToString()));
             };
-
-            cboxProductSupplierName.ItemsSource = SupplierList;
+            cboxProductSupplierName.ItemsSource = SupplierList.ToString();
             #endregion
 
             #region Fill Storage dropdown
