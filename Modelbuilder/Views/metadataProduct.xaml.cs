@@ -89,20 +89,6 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Create object for all countries in table for dropdown
-        private class Country
-        {
-            public Country(string Name, string Id)
-            {
-                countryName = Name;
-                countryId = Id;
-            }
-
-            public string countryName { get; set; }
-            public string countryId { get; set; }
-        }
-        #endregion
-
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -154,6 +140,11 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
+            // All floating vaulues are stored as int, so recalculate first to two decimal floats
+            float _Minimalstock = float.Parse(Row_Selected["product_MinimalStock"].ToString().Replace(".", ",")) / 100;
+            float _StandardOrderQuantity = float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",")) / 100;
+            float _Price = float.Parse(Row_Selected["product_Price"].ToString().Replace(".", ",")) / 100;
+
             valueProductId.Text = Row_Selected["product_Id"].ToString();
             valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();
             valueCategoryName.Text = Row_Selected["product_CategoryName"].ToString();
@@ -163,12 +154,19 @@ namespace Modelbuilder
             valueSupplierName.Text = Row_Selected["product_SupplierName"].ToString();
             inpProductCode.Text = Row_Selected["product_Code"].ToString();
             inpProductName.Text = Row_Selected["product_Name"].ToString();
-            inpProductMinimalStock.Text = Row_Selected["product_MinimalStock"].ToString().Replace(".", ",");
-            inpProductStandardOrderQuantity.Text = Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",");
-            inpProductPrice.Text = Row_Selected["product_Price"].ToString().Replace(".", ",");
+            inpProductMinimalStock.Text = _Minimalstock.ToString();
+            inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString();
+            inpProductPrice.Text = _Price.ToString();
             inpSupplierProductNumber.Text = Row_Selected["product_SupplierProductNumber"].ToString();
-            chkProjectProjectCosts.IsChecked = Row_Selected["product_ProjectCosts"].ToString() == "0";
 
+            if (Row_Selected["product_ProjectCosts"].ToString() == "0")
+            {
+                chkProjectProjectCosts.IsChecked = false;
+            }
+            else
+            {
+                chkProjectProjectCosts.IsChecked = true;
+            }
 
             //Select the saved Category in the combobox by default
             foreach (Category category in cboxProductCategory.Items)
@@ -214,9 +212,9 @@ namespace Modelbuilder
 
             var productCode = inpProductCode.Text;
             var productName = inpProductName.Text;
-            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
-            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
-            var productPrice = float.Parse(inpProductPrice.Text);
+            var productMinimalStock = int.Parse(inpProductMinimalStock.Text) * 100;
+            var productStandardOrderQuantity = int.Parse(inpProductStandardOrderQuantity.Text) * 100;
+            var productPrice = int.Parse(inpProductPrice.Text.Replace(",", ".")) * 100;
             var productSupplierProductNumber = inpSupplierProductNumber.Text;
             if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
             { productProjectCosts = 0; }
@@ -316,20 +314,17 @@ namespace Modelbuilder
             var productProjectCosts = 0;
 
 
+            // Orconvert original floats to ints, including decimal point correction
 
             var productId = int.Parse(valueProductId.Text);
             string productCode = inpProductCode.Text;
             string productName = inpProductName.Text;
-            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
-            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
-
-            if (inpProductPrice.Text == "") { inpProductPrice.Text = "0,00"; }
-            { inpProductPrice.Text.Replace(".", ","); }
-            var productPrice = float.Parse(inpProductPrice.Text);
+            var productMinimalStock = (int)float.Parse(inpProductMinimalStock.Text.Replace(",", ".")) * 100;
+            var productStandardOrderQuantity = (int)float.Parse(inpProductStandardOrderQuantity.Text.Replace(",", ".")) * 100;
+            var productPrice = (int)float.Parse(inpProductPrice.Text.Replace(",",".")) * 100;
             var productSupplierProductNumber = inpSupplierProductNumber.Text;
             if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
             { productProjectCosts = 0; }
-            //byte productProjectCosts = byte.Parse(chkProjectProjectCosts.IsChecked);
             var productCategoryId = int.Parse(valueCategoryId.Text);
             var productCategoryName = valueCategoryName.Text;
             var productStorageId = int.Parse(valueStorageId.Text);

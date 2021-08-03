@@ -146,7 +146,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table: Supplier
 
         #region Execute Non Query Table: Product
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productId = 0)
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productId = 0)
         {
             int rowsAffected = 0;
 
@@ -161,17 +161,17 @@ namespace Modelbuilder
                     //set values - if they exist
                     //if a value is null, one must use DBNull.Value
                     //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
+                    // floating cells will be stored as INT and therefore will be multiplied by 100 before saving
 
                     //add parameters setting string values to DBNull.Value
                     cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
                     cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Float).Value = productMinimalStock;
-                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Float).Value = productStandardOrderQuantity;
-                    cmd.Parameters.Add("@productPrice", MySqlDbType.Float).Value = productPrice;
+                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Int32).Value = productMinimalStock;
+                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Int32).Value = productStandardOrderQuantity;
+                    cmd.Parameters.Add("@productPrice", MySqlDbType.Int32).Value = productPrice;
                     cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int16).Value = productProjectCosts;
-                    cmd.Parameters.Add(new MySqlParameter("@productProjectCosts", productProjectCosts));
+                    cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int32).Value = productProjectCosts;
                     cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
                     cmd.Parameters.Add("@productCategoryName", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productStorageId", MySqlDbType.Int32).Value = productStorageId;
@@ -426,7 +426,7 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
+        public string InsertTblProduct(string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
         {
             string result = string.Empty;
             string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName);";
@@ -560,7 +560,7 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
+        public string UpdateTblProduct(int productId, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
         {
             string result = string.Empty;
             string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName WHERE product_Id = @productId;";
