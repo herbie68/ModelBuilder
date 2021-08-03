@@ -29,7 +29,7 @@ namespace Modelbuilder
         private DataTable _dt;
         private int _dbRowCount;
         private int _currentDataGridIndex;
-        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier";
+        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable="brand";
 
         public metadataProduct()
         {
@@ -42,6 +42,7 @@ namespace Modelbuilder
             cboxProductCategory.ItemsSource = CategoryList();
             cboxProductSupplier.ItemsSource = SupplierList();
             cboxProductStorage.ItemsSource = StorageList();
+            cboxProductBrand.ItemsSource = BrandList();
 
 
             GetData();
@@ -88,6 +89,21 @@ namespace Modelbuilder
             public string storageId { get; set; }
         }
         #endregion
+
+        #region Create object for all brands in table for dropdown
+        private class Brand
+        {
+            public Brand(string Name, string Id)
+            {
+                brandName = Name;
+                brandId = Id;
+            }
+
+            public string brandName { get; set; }
+            public string brandId { get; set; }
+        }
+        #endregion
+
 
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -141,9 +157,9 @@ namespace Modelbuilder
             _currentDataGridIndex = dg.SelectedIndex;
 
             // All floating vaulues are stored as int, so recalculate first to two decimal floats
-            float _Minimalstock = float.Parse(Row_Selected["product_MinimalStock"].ToString().Replace(".", ",")) / 100;
-            float _StandardOrderQuantity = float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",")) / 100;
-            float _Price = float.Parse(Row_Selected["product_Price"].ToString().Replace(".", ",")) / 100;
+            int _Minimalstock = (int)float.Parse(Row_Selected["product_MinimalStock"].ToString().Replace(".", ",")) / 100;
+            int _StandardOrderQuantity = (int)float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",")) / 100;
+            int _Price = (int)float.Parse(Row_Selected["product_Price"].ToString().Replace(".", ",")) / 100;
 
             valueProductId.Text = Row_Selected["product_Id"].ToString();
             valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();
@@ -187,7 +203,16 @@ namespace Modelbuilder
                     break;
                 }
             }
-            
+
+            //Select the saved Brand in the combobox by default
+            foreach (Brand brand in cboxProductBrand.Items)
+            {
+                if (brand.brandName == Row_Selected["product_BrandName"].ToString())
+                {
+                    cboxProductBrand.SelectedItem = brand;
+                    break;
+                }
+            }
 
             //Select the saved Storage location in the combobox by default
             foreach (Storage storage in cboxProductStorage.Items)
@@ -437,5 +462,30 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Fill Brand dropdown
+        static List<Brand> BrandList()
+        {
+
+            Database dbBrandConnection = new()
+            {
+                TableName = DatabaseBrandTable
+            };
+
+            dbBrandConnection.SqlSelectionString = "brand_Name, brand_Id";
+            dbBrandConnection.SqlOrderByString = "brand_Id";
+            dbBrandConnection.TableName = DatabaseSupplierTable;
+
+            DataTable dtBrandSelection = dbBrandConnection.LoadSpecificMySqlData();
+
+            List<Supplier> BrandList = new();
+
+            for (int i = 0; i < dtBrandSelection.Rows.Count; i++)
+            {
+                BrandList.Add(new Brand(dtBrandSelection.Rows[i][0].ToString(),
+                    dtBrandSelection.Rows[i][1].ToString()));
+            };
+            return BrandList;
+        }
+        #endregion
     }
 }

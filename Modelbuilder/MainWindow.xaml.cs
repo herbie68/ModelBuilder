@@ -9,6 +9,14 @@ namespace Modelbuilder
     public partial class MainWindow : Window
     {
         //Connectiondata
+        /*
+        public static readonly string server = "remotemysql.com";
+        public static readonly string database = "Xf4RToJiEC";
+        public static readonly int port = 3306;
+        public static readonly string uid = "Xf4RToJiEC";
+        public static readonly string password = "UQ0xrOlmlK";
+        */
+        
         public static readonly string server = "localhost";
         public static readonly string database = "modelbuilder";
         public static readonly int port = 3306;

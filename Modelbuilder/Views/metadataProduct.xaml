@@ -37,6 +37,13 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate  x:Key="BrandComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=brandName}" />
+                <TextBlock Text="{Binding Path=brandId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
     </Page.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
@@ -91,8 +98,9 @@
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,54,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategory" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,56,0,0" SelectedIndex="0" Cursor="Arrow" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" ItemTemplate="{StaticResource CountryComboTemplate}" Width="190" Margin="400,56,0,0" SelectedIndex="0" Cursor="Arrow" />
-
+                        
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" HorizontalAlignment="Left" Margin="387,54,0,0" VerticalAlignment="Top" Width="216" IsEditable="True" ItemTemplate="{StaticResource BrandComboTemplate}"/>
+                        
                         <Label Style="{DynamicResource DefaultLabel}" Content="Voorraadlokatie" Margin="0,80,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorage" ItemTemplate="{StaticResource StorageComboTemplate}" Width="250" Margin="115,82,0,0" SelectedIndex="0" Cursor="Arrow"/>
 
@@ -130,8 +138,9 @@
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerkend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" Margin="0,221,0,0"/>
                         <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkProjectProjectCosts" Margin="115,226,0,0"/>
-                        
+
                         <Image Style="{DynamicResource ProductImage}" Margin="636,0,0,0" x:Name="imgProductImage"/>
+                        
 
                     </Grid>
                 </TabItem>
