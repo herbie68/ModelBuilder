@@ -1,15 +1,25 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server versie:                8.0.26 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Versie:              11.3.0.6336
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `modelbuilder`;
+
+-- Databasestructuur van modelbuilder wordt geschreven
 CREATE DATABASE IF NOT EXISTS `modelbuilder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `modelbuilder`;
 
-DROP TABLE IF EXISTS `category`;
+-- Structuur van  tabel modelbuilder.category wordt geschreven
 CREATE TABLE IF NOT EXISTS `category` (
   `category_Id` int NOT NULL AUTO_INCREMENT,
   `category_Name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -18,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`category_Id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=777 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
+-- Dumpen data van tabel modelbuilder.category: ~169 rows (ongeveer)
 DELETE FROM `category`;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `category_ParentId`) VALUES
@@ -192,7 +203,7 @@ INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `ca
 	(776, 'SubSubtest 2', 'Test\\T4\\Test 1\\Subtest 1\\SubSubtest 2', 736);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `country`;
+-- Structuur van  tabel modelbuilder.country wordt geschreven
 CREATE TABLE IF NOT EXISTS `country` (
   `country_Id` int NOT NULL AUTO_INCREMENT,
   `country_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -203,6 +214,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   UNIQUE KEY `country_Code_UNIQUE` (`country_Code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.country: ~7 rows (ongeveer)
 DELETE FROM `country`;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
 INSERT INTO `country` (`country_Id`, `country_Code`, `country_Defaultcurrency_Symbol`, `country_Name`, `country_Defaultcurrency_Id`) VALUES
@@ -212,11 +224,10 @@ INSERT INTO `country` (`country_Id`, `country_Code`, `country_Defaultcurrency_Sy
 	(4, 'DE', '€', 'Duitsland', 1),
 	(5, 'ESP', '€', 'Spanje', 1),
 	(6, 'CH', 'Y', 'China', 4),
-	(15, 'IT', '€', 'Italë', 1),
-	(19, '*', '', '', 0);
+	(15, 'IT', '€', 'Italë', 1);
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `currency`;
+-- Structuur van  tabel modelbuilder.currency wordt geschreven
 CREATE TABLE IF NOT EXISTS `currency` (
   `currency_Id` int NOT NULL AUTO_INCREMENT,
   `currency_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -227,6 +238,7 @@ CREATE TABLE IF NOT EXISTS `currency` (
   UNIQUE KEY `currency_Code` (`currency_Code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.currency: ~5 rows (ongeveer)
 DELETE FROM `currency`;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
 INSERT INTO `currency` (`currency_Id`, `currency_Code`, `currency_Symbol`, `currency_Name`, `currency_ConversionRate`) VALUES
@@ -237,61 +249,34 @@ INSERT INTO `currency` (`currency_Id`, `currency_Code`, `currency_Symbol`, `curr
 	(5, 'TST', 'T', 'Testje', 1.2300);
 /*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `language`;
-CREATE TABLE IF NOT EXISTS `language` (
-  `language_Id` int NOT NULL AUTO_INCREMENT,
-  `language_code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `language_Description` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  PRIMARY KEY (`language_Id`) USING BTREE,
-  UNIQUE KEY `language_code` (`language_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DELETE FROM `language`;
-/*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` (`language_Id`, `language_code`, `language_Description`) VALUES
-	(1, 'NL', 'Nederlands'),
-	(2, 'EN', 'English'),
-	(3, 'DE', 'Deutsch');
-/*!40000 ALTER TABLE `language` ENABLE KEYS */;
-
-DROP TABLE IF EXISTS `product`;
+-- Structuur van  tabel modelbuilder.product wordt geschreven
 CREATE TABLE IF NOT EXISTS `product` (
   `product_Id` int NOT NULL AUTO_INCREMENT,
   `product_Code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `product_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `category_Id` int DEFAULT NULL,
-  `category_Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `supplier_Id` int DEFAULT NULL,
-  `supplier_Name` varchar(45) DEFAULT NULL,
+  `product_CategoryId` int DEFAULT NULL,
+  `product_CategoryName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product_SupplierId` int DEFAULT NULL,
+  `product_SupplierName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `product_SupplierProductNumber` varchar(20) DEFAULT NULL,
-  `storage_Id` int DEFAULT NULL,
-  `storage_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `product_Price` float DEFAULT NULL,
+  `product_StorageId` int DEFAULT NULL,
+  `product_StorageName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product_Price` int DEFAULT NULL,
+  `product_ProjectCosts` int NOT NULL DEFAULT '0',
+  `product_MinimalStock` int DEFAULT NULL,
+  `product_StandardOrderQuantity` int DEFAULT NULL,
   PRIMARY KEY (`product_Id`),
   UNIQUE KEY `product_Code` (`product_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.product: ~1 rows (ongeveer)
 DELETE FROM `product`;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`product_Id`, `product_Code`, `product_Name`, `product_CategoryId`, `product_CategoryName`, `product_SupplierId`, `product_SupplierName`, `product_SupplierProductNumber`, `product_StorageId`, `product_StorageName`, `product_Price`, `product_ProjectCosts`, `product_MinimalStock`, `product_StandardOrderQuantity`) VALUES
+	(1, 'BANKSCHROEF', 'Proxxon Bankschroef', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE IF NOT EXISTS `project` (
-  `projects_Id` int NOT NULL AUTO_INCREMENT,
-  `projects_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `projects_StartDate` date DEFAULT NULL,
-  `projects_ExpectedEndDate` date DEFAULT NULL,
-  `projects_EndDate` date DEFAULT NULL,
-  `projects_TotalCost` decimal(5,2) DEFAULT NULL,
-  `projects_TotalMinutes` int DEFAULT NULL,
-  PRIMARY KEY (`projects_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DELETE FROM `project`;
-/*!40000 ALTER TABLE `project` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project` ENABLE KEYS */;
-
-DROP TABLE IF EXISTS `storage`;
+-- Structuur van  tabel modelbuilder.storage wordt geschreven
 CREATE TABLE IF NOT EXISTS `storage` (
   `storage_Id` int NOT NULL AUTO_INCREMENT,
   `storage_ParentId` int DEFAULT NULL,
@@ -300,6 +285,7 @@ CREATE TABLE IF NOT EXISTS `storage` (
   PRIMARY KEY (`storage_Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.storage: ~105 rows (ongeveer)
 DELETE FROM `storage`;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
 INSERT INTO `storage` (`storage_Id`, `storage_ParentId`, `storage_FullPath`, `storage_Name`) VALUES
@@ -410,7 +396,7 @@ INSERT INTO `storage` (`storage_Id`, `storage_ParentId`, `storage_FullPath`, `st
 	(258, 242, 'Herberts Werf\\Werkbank\\Werkbank  - Tribune 3 (rechts)', 'Werkbank  - Tribune 3 (rechts)');
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `supplier`;
+-- Structuur van  tabel modelbuilder.supplier wordt geschreven
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_Id` int NOT NULL AUTO_INCREMENT,
   `supplier_Code` varchar(20) NOT NULL,
@@ -419,8 +405,6 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_Address2` varchar(150) DEFAULT NULL,
   `supplier_Zip` varchar(15) DEFAULT NULL,
   `supplier_City` varchar(40) DEFAULT NULL,
-  `country_Id` int DEFAULT NULL,
-  `country_Code` varchar(4) DEFAULT NULL,
   `supplier_Url` varchar(255) DEFAULT NULL,
   `supplier_PhoneGeneral` varchar(40) DEFAULT NULL,
   `supplier_PhoneSales` varchar(40) DEFAULT NULL,
@@ -429,17 +413,24 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_MailSales` varchar(80) DEFAULT NULL,
   `supplier_MailSupport` varchar(80) DEFAULT NULL,
   `supplier_Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `currency_Id` int DEFAULT NULL,
-  `currency_Code` varchar(4) DEFAULT NULL,
+  `supplier_CurrencyId` int DEFAULT '1',
+  `supplier_CurrencyCode` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'EUR',
+  `supplier_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
+  `supplier_CountryId` int DEFAULT NULL,
+  `supplier_CountryCode` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `supplier_CountryName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`supplier_Id`),
   UNIQUE KEY `supplier_Code` (`supplier_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.supplier: ~1 rows (ongeveer)
 DELETE FROM `supplier`;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` (`supplier_Id`, `supplier_Code`, `supplier_Name`, `supplier_Address1`, `supplier_Address2`, `supplier_Zip`, `supplier_City`, `supplier_Url`, `supplier_PhoneGeneral`, `supplier_PhoneSales`, `supplier_PhoneSupport`, `supplier_MailGeneral`, `supplier_MailSales`, `supplier_MailSupport`, `supplier_Memo`, `supplier_CurrencyId`, `supplier_CurrencyCode`, `supplier_CurrencySymbol`, `supplier_CountryId`, `supplier_CountryCode`, `supplier_CountryName`) VALUES
+	(1, 'CORNWALL', 'Cornwall Model Boats Ltd', 'Unit 3B, Highfield Rd Ind Est', 'Camelford', 'PL32 9RA', 'Cornwall', 'https://www.cornwallmodelboats.co.uk/', '01840 211009', NULL, NULL, NULL, 'sales@cornwallmodelboats.co.uk', NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}', 2, '£', '£', 2, 'UK', 'Engeland');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `worktype`;
+-- Structuur van  tabel modelbuilder.worktype wordt geschreven
 CREATE TABLE IF NOT EXISTS `worktype` (
   `worktype_Id` int NOT NULL AUTO_INCREMENT,
   `worktype_ParentId` int DEFAULT NULL,
@@ -448,6 +439,7 @@ CREATE TABLE IF NOT EXISTS `worktype` (
   PRIMARY KEY (`worktype_Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.worktype: ~25 rows (ongeveer)
 DELETE FROM `worktype`;
 /*!40000 ALTER TABLE `worktype` DISABLE KEYS */;
 INSERT INTO `worktype` (`worktype_Id`, `worktype_ParentId`, `worktype_Name`, `worktype_FullPath`) VALUES
@@ -478,6 +470,7 @@ INSERT INTO `worktype` (`worktype_Id`, `worktype_ParentId`, `worktype_Name`, `wo
 	(25, 22, 'Afwerking', 'Wand\\Afwerking');
 /*!40000 ALTER TABLE `worktype` ENABLE KEYS */;
 
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -104,7 +104,6 @@ namespace Modelbuilder
         }
         #endregion
 
-
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -162,9 +161,9 @@ namespace Modelbuilder
                     inpProductMemo.Document.Blocks.Clear();
 
                     //convert to byte[]
-                    byte[] dataArr = System.Text.Encoding.UTF8.GetBytes(ContentProductMemo);
+                    byte[] dataArr = Encoding.UTF8.GetBytes(ContentProductMemo);
 
-                    using (MemoryStream ms = new MemoryStream(dataArr))
+                    using (MemoryStream ms = new(dataArr))
                     {
                         //load data
                         TextRange flowDocRange = new TextRange(inpProductMemo.Document.ContentStart, inpProductMemo.Document.ContentEnd);
@@ -195,10 +194,12 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
+            GetMemo(dg.SelectedIndex);
+
             // All floating vaulues are stored as int, so recalculate first to two decimal floats
-            int _Minimalstock = (int)float.Parse(Row_Selected["product_MinimalStock"].ToString().Replace(".", ",")) / 100;
-            int _StandardOrderQuantity = (int)float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",")) / 100;
-            int _Price = (int)float.Parse(Row_Selected["product_Price"].ToString().Replace(".", ",")) / 100;
+            var _Minimalstock = float.Parse(Row_Selected["product_MinimalStock"].ToString().Replace(".", ",")) / 100;
+            var _StandardOrderQuantity = float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString().Replace(".", ",")) / 100;
+            var _Price = float.Parse(Row_Selected["product_Price"].ToString().Replace(".", ",")) / 100;
 
             valueProductId.Text = Row_Selected["product_Id"].ToString();
             valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();

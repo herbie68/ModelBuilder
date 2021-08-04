@@ -102,6 +102,7 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="IsTextSearchEnabled" Value="True" />
         </Style>
 
         <Style x:Key="ProductImage" TargetType="Image">
