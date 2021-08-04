@@ -80,6 +80,9 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName"     Margin="500,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId"        Margin="550,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"      Margin="600,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId"          Margin="650,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName"        Margin="700,5,0,0" />
+
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -90,37 +93,20 @@
                     <Grid>
                         <Border BorderBrush="Gray" BorderThickness="1" Margin="631,0,0,0" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="252"/>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0,0,0"/>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,2,0,0"/>
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" Margin="115,6,0,0" Width="200" CharacterCasing="Upper"/>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Omschrijving" Margin="0,20,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" Margin="115,26,0,0" Width="490" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Omschrijving" Margin="0,24,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" Margin="115,28,0,0" Width="490" />
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,54,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategory" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,56,0,0" SelectedIndex="0" Cursor="Arrow" />
-                        
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" HorizontalAlignment="Left" Margin="387,54,0,0" VerticalAlignment="Top" Width="216" IsEditable="True" ItemTemplate="{StaticResource BrandComboTemplate}"/>
-                        
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Voorraadlokatie" Margin="0,80,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorage" ItemTemplate="{StaticResource StorageComboTemplate}" Width="250" Margin="115,82,0,0" SelectedIndex="0" Cursor="Arrow"/>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Merk" Margin="0,48,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" ItemTemplate="{StaticResource BrandComboTemplate}" Margin="115,50,0,0" Width="250"/>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Leverancier" Margin="0,116,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="250" Margin="115,118,0,0" SelectedIndex="0" Cursor="Arrow"/>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Afmetingen" Margin="0,73,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductDimensions" Margin="115,77,0,0" Width="490" />
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Artikelnr. leverancier" Margin="0,139,0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" Margin="115,143,0,0" Width="200"/>
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Kostprijs" Margin="0,169,0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductPrice" Margin="115,173,0,0" Width="50" HorizontalContentAlignment="Right"/>
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Minimale voorraad" Margin="185,169,0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductMinimalStock" Margin="300,173,0,0" Width="75" HorizontalContentAlignment="Right"/>
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Bestelhoeveelheid" Margin="400,169,0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductStandardOrderQuantity" Margin="515,173,0,0" Width="90" HorizontalContentAlignment="Right"/>
-
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Eenheid" Margin="0,193,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductUnit" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="100" Margin="115,195,0,0" SelectedIndex="0" Cursor="Arrow" >
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Eenheid" Margin="0,98,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductUnit" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="100" Margin="115,100,0,0" SelectedIndex="0" Cursor="Arrow" >
                             <ComboBoxItem Content=""/>
                             <ComboBoxItem Content="Stuk"/>
                             <ComboBoxItem Content="Set"/>
@@ -136,16 +122,97 @@
                             <ComboBoxItem Content="mtr"/>
                         </ComboBox>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerkend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" Margin="0,221,0,0"/>
-                        <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkProjectProjectCosts" Margin="115,226,0,0"/>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,126,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategory" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,128,0,0" SelectedIndex="0"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Minimale voorraad" Margin="0,163,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductMinimalStock" Margin="115,167,0,0" Width="100" HorizontalContentAlignment="Right"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Bestelhoeveelheid" Margin="250,163,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductStandardOrderQuantity" Margin="365,167,0,0" Width="100" HorizontalContentAlignment="Right"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Voorraadlokatie" Margin="0,189,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductStorage" ItemTemplate="{StaticResource StorageComboTemplate}" Width="400" Margin="115,190,0,0" SelectedIndex="0" Cursor="Arrow" Height="23"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerkend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" Margin="0,226,0,0"/>
+                        <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkProjectProjectCosts" Margin="115,231,0,0"/>
 
                         <Image Style="{DynamicResource ProductImage}" Margin="636,0,0,0" x:Name="imgProductImage"/>
-                        
 
                     </Grid>
                 </TabItem>
+                <TabItem Header="Uitgebreide omschrijving">
+                    <Grid>
+                        <!-- Toolbar area-->
+                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
+                            <ToolBar Style="{DynamicResource RtfToolBar}">
+                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
+                                    <Image Style="{DynamicResource RtfToolBarCutIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
+                                    <Image Style="{DynamicResource RtfToolBarCopyIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Paste" ToolTip="Plak">
+                                    <Image Style="{DynamicResource RtfToolBarPasteIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Undo" ToolTip="Ongedaan maken">
+                                    <Image Style="{DynamicResource RtfToolBarUndoIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
+                                    <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
+                                </Button>
+                                <Button x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                    <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
+                                </Button>
+                                <Button x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
+                                    <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
+                                    <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.DecreaseIndentation" ToolTip="Terugspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentRemoveIcon}" />
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+
+                        <RichTextBox x:Name="inpProductMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="5,35,5,0" Height="195" Width="Auto">
+                            <FlowDocument Name="inpProductMemoFD">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+
+                </TabItem>
                 <TabItem Header="Leveranciers">
-                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
+                    <Grid>
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Leverancier" Margin="0,2,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="400" Margin="115,4,0,0" SelectedIndex="0"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Artikelnr. leverancier" Margin="0,27,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" Margin="115,31,0,0" Width="400"/>
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Kostprijs" Margin="0,50,0,0"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductPrice" Margin="115,54,0,0" Width="100" HorizontalContentAlignment="Right"/>
+
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Voorraadhistorie">
                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>

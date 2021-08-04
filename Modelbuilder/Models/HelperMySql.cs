@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
+using K4os.Compression.LZ4.Internal;
 
 namespace Modelbuilder
 {
@@ -146,7 +147,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table: Supplier
 
         #region Execute Non Query Table: Product
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productId = 0)
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, string productMemo, int productId = 0)
         {
             int rowsAffected = 0;
 
@@ -178,7 +179,11 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
                     cmd.Parameters.Add("@productSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    
+                    cmd.Parameters.Add("@productBrandId", MySqlDbType.Int32).Value = productBrandId;
+                    cmd.Parameters.Add("@productBrandName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productDimensions", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productMemo", MySqlDbType.LongText).Value = DBNull.Value;
+
                     //set values
                     if (!String.IsNullOrEmpty(productCode))
                         cmd.Parameters["@productCode"].Value = productCode;
@@ -197,6 +202,15 @@ namespace Modelbuilder
 
                     if (!String.IsNullOrEmpty(productSupplierName))
                         cmd.Parameters["@productSupplierName"].Value = productSupplierName;
+
+                    if (!String.IsNullOrEmpty(productBrandName))
+                        cmd.Parameters["@productBrandName"].Value = productBrandName;
+                    
+                    if (!String.IsNullOrEmpty(productDimensions))
+                        cmd.Parameters["@productDimensions"].Value = productDimensions;
+
+                    if (!String.IsNullOrEmpty(productMemo))
+                        cmd.Parameters["@productMemo"].Value = productMemo;
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -426,14 +440,14 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
+        public string InsertTblProduct(string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, string productMemo)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName);";
+            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName, , product_BrandId, product_BrandName, product_Dimensions, product_Memo);";
             
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productMemo);
 
                 if (rowsAffected > 0)
                 {
@@ -560,15 +574,15 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName)
+        public string UpdateTblProduct(int productId, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, string productMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName WHERE product_Id = @productId;";
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, productBrandId = @productBrandId, product_BrandName = @productBrandName, product_Dimensions = @productDimensions, product_Memo = @productMemo WHERE product_Id = @productId;";
 
             try
             {
                 // Do we need to add supplierId here?
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productId);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productMemo, productId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";

@@ -127,12 +127,51 @@ namespace Modelbuilder
             _dbRowCount = _dt.Rows.Count;
             RecordsCount.Text = _dbRowCount.ToString();
 
+            // Clear existing memo data
+            inpProductMemo.Document.Blocks.Clear();
+
             string tmpStr = "";
             //update status
             if (_dt.Rows.Count != 1) { tmpStr = "s"; };
             string msg = "Status: " + _dt.Rows.Count + " producten" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
 
+        }
+        #endregion
+
+        #region Get content of Memofield
+        private void GetMemo(int index)
+        {
+            string ContentProductMemo = string.Empty;
+
+            if (_dt != null && index >= 0 && index < _dt.Rows.Count)
+            {
+                //set value
+                DataRow row = _dt.Rows[index];
+
+
+                if (row["product_Memo"] != null && row["product_Memo"] != DBNull.Value)
+                {
+                    //get value from DataTable
+                    ContentProductMemo = row["product_Memo"].ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ContentProductMemo))
+                {
+                    //clear existing data
+                    inpProductMemo.Document.Blocks.Clear();
+
+                    //convert to byte[]
+                    byte[] dataArr = System.Text.Encoding.UTF8.GetBytes(ContentProductMemo);
+
+                    using (MemoryStream ms = new MemoryStream(dataArr))
+                    {
+                        //load data
+                        TextRange flowDocRange = new TextRange(inpProductMemo.Document.ContentStart, inpProductMemo.Document.ContentEnd);
+                        flowDocRange.Load(ms, DataFormats.Rtf);
+                    }
+                }
+            }
         }
         #endregion
 
@@ -219,7 +258,7 @@ namespace Modelbuilder
             {
                 if (storage.storageName == Row_Selected["product_StorageName"].ToString())
                 {
-                    cboxProductCategory.SelectedItem = storage;
+                    cboxProductStorage.SelectedItem = storage;
                     break;
                 }
             }
@@ -250,11 +289,38 @@ namespace Modelbuilder
             var productStorageName = valueStorageName.Text;
             var productSupplierId = int.Parse(valueSupplierId.Text);
             var productSupplierName = valueSupplierName.Text;
+            var productBrandId = int.Parse(valueBrandId.Text);
+            var productBrandName = valueBrandName.Text;
+            var productDimensions = inpProductDimensions.Text;
+
+            //convert RTF to string
+            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, memo);
             UpdateStatus(result);
+        }
+        #endregion
+
+        #region Get rich text from flow document
+        private string GetRichTextFromFlowDocument(FlowDocument fDoc)
+        {
+            string result = string.Empty;
+
+            //convert to string
+            if (fDoc != null)
+            {
+                TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    tr.Save(ms, DataFormats.Rtf);
+                    result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+                }
+            }
+            return result;
         }
         #endregion
 
@@ -288,6 +354,8 @@ namespace Modelbuilder
             valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
             valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
             valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
+            valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
+            valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
 
             if (valueProductId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
@@ -356,11 +424,17 @@ namespace Modelbuilder
             var productStorageName = valueStorageName.Text;
             var productSupplierId = int.Parse(valueSupplierId.Text);
             var productSupplierName = valueSupplierName.Text;
+            var productBrandId = int.Parse(valueBrandId.Text);
+            var productBrandName = valueBrandName.Text;
+            var productDimensions = inpProductDimensions.Text;
+
+            //convert RTF to string
+            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName);
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, memo);
             UpdateStatus(result);
         }
         #endregion
@@ -473,11 +547,11 @@ namespace Modelbuilder
 
             dbBrandConnection.SqlSelectionString = "brand_Name, brand_Id";
             dbBrandConnection.SqlOrderByString = "brand_Id";
-            dbBrandConnection.TableName = DatabaseSupplierTable;
+            dbBrandConnection.TableName = DatabaseBrandTable;
 
             DataTable dtBrandSelection = dbBrandConnection.LoadSpecificMySqlData();
 
-            List<Supplier> BrandList = new();
+            List<Brand> BrandList = new();
 
             for (int i = 0; i < dtBrandSelection.Rows.Count; i++)
             {

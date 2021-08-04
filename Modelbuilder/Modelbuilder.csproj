@@ -84,6 +84,7 @@
     <None Remove="Resources\storageReportRecieve.png" />
     <None Remove="Resources\storageReports.png" />
     <None Remove="Resources\storageReportUsage.png" />
+    <None Remove="Resources\Test.png" />
     <None Remove="Resources\timeEdit.png" />
     <None Remove="Resources\timeExport.png" />
     <None Remove="Resources\timeImport.png" />
@@ -196,6 +197,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\rtftoolbarUndo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarAdd.png">
