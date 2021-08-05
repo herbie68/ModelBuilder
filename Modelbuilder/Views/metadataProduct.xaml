@@ -44,6 +44,13 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate  x:Key="UnitComboTemplate" >
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="{Binding Path=unitName}" />
+                <TextBlock Text="{Binding Path=unitId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
     </Page.Resources>
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
@@ -82,7 +89,8 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"      Margin="600,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId"          Margin="650,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName"        Margin="700,5,0,0" />
-
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId"           Margin="750,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitName"         Margin="800,5,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -106,21 +114,7 @@
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductDimensions" Margin="115,77,0,0" Width="490" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Eenheid" Margin="0,98,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductUnit" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="100" Margin="115,100,0,0" SelectedIndex="0" IsTextSearchEnabled="True">
-                            <ComboBoxItem Content=""/>
-                            <ComboBoxItem Content="Stuk"/>
-                            <ComboBoxItem Content="Set"/>
-                            <ComboBoxItem Content="Fles"/>
-                            <ComboBoxItem Content="mm"/>
-                            <ComboBoxItem Content="cm"/>
-                            <ComboBoxItem Content="gr"/>
-                            <ComboBoxItem Content="mgr"/>
-                            <ComboBoxItem Content="kg"/>
-                            <ComboBoxItem Content="ml"/>
-                            <ComboBoxItem Content="dl"/>
-                            <ComboBoxItem Content="ltr"/>
-                            <ComboBoxItem Content="mtr"/>
-                        </ComboBox>
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductUnit" ItemTemplate="{StaticResource UnitComboTemplate}" Width="100" Margin="115,100,0,0" TextSearch.TextPath="unitName" SelectedIndex="0" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Categorie" Margin="0,126,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductCategory" ItemTemplate="{StaticResource CategoryComboTemplate}" Width="250" Margin="115,128,0,0" TextSearch.TextPath="categoryName"  SelectedIndex="0"/>
@@ -204,7 +198,7 @@
                 <TabItem Header="Leveranciers">
                     <Grid>
                         <!--#region Datagrid definition-->
-                        <DataGrid x:Name="SuplierProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" SelectionChanged="SupplierProductCode_DataGrid_SelectionChanged">
+                        <DataGrid x:Name="ProductSupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged" GridLinesVisibility="Vertical">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding product_Id}" />
                                 <DataGridTextColumn Header="Leverancier" Width="150" Binding="{Binding supplier_Name}" />

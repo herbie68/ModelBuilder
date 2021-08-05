@@ -26,23 +26,21 @@ namespace Modelbuilder
     public partial class metadataProduct : Page
     {
         private HelperMySQL _helper;
-        private DataTable _dt;
+        private DataTable _dt, _dtPS;
         private int _dbRowCount;
         private int _currentDataGridIndex;
-        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable="brand";
+        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable="brand", DatabaseUnitTable = "unit";
 
         public metadataProduct()
         {
             InitializeComponent();
 
             InitializeHelper();
-            //cboxProductCategory.ItemsSource = _helper.CategoryList();
-            //cboxProductSupplier.ItemsSource = _helper.SupplierList();
-            //cboxProductStorage.ItemsSource = _helper.StorageList();
             cboxProductCategory.ItemsSource = CategoryList();
             cboxProductSupplier.ItemsSource = SupplierList();
             cboxProductStorage.ItemsSource = StorageList();
             cboxProductBrand.ItemsSource = BrandList();
+            cboxProductUnit.ItemsSource = UnitList();
 
 
             GetData();
@@ -104,6 +102,20 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Create object for all units in table for dropdown
+        private class Unit
+        {
+            public Unit(string Name, string Id)
+            {
+                unitName = Name;
+                unitId = Id;
+            }
+
+            public string unitName { get; set; }
+            public string unitId { get; set; }
+        }
+        #endregion
+
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -118,9 +130,11 @@ namespace Modelbuilder
 
             // Get data from database
             _dt = _helper.GetDataTblProduct();
+            _dtPS = _helper.GetDataTblProductSupplier();
 
             // Populate data in datagrid from datatable
             ProductCode_DataGrid.DataContext = _dt;
+            ProductSupplierCode_DataGrid.DataContext = _dtPS;
 
             // Set value
             _dbRowCount = _dt.Rows.Count;
@@ -184,7 +198,7 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Selection changed
+        #region Selection changed ProductCode
         private void ProductCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = (DataGrid)sender;
@@ -208,12 +222,17 @@ namespace Modelbuilder
             valueStorageName.Text = Row_Selected["product_StorageName"].ToString();
             valueSupplierId.Text = Row_Selected["product_SupplierId"].ToString();
             valueSupplierName.Text = Row_Selected["product_SupplierName"].ToString();
+            valueBrandId.Text = Row_Selected["product_BrandId"].ToString();
+            valueBrandName.Text = Row_Selected["product_BrandName"].ToString();
+            valueUnitId.Text = Row_Selected["product_UnitId"].ToString();
+            valueUnitName.Text = Row_Selected["product_UnitName"].ToString();
             inpProductCode.Text = Row_Selected["product_Code"].ToString();
             inpProductName.Text = Row_Selected["product_Name"].ToString();
             inpProductMinimalStock.Text = _Minimalstock.ToString();
             inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString();
             inpProductPrice.Text = _Price.ToString();
             inpSupplierProductNumber.Text = Row_Selected["product_SupplierProductNumber"].ToString();
+            inpProductDimensions.Text = Row_Selected["product_Dimensions"].ToString();
 
             if (Row_Selected["product_ProjectCosts"].ToString() == "0")
             {
@@ -254,6 +273,16 @@ namespace Modelbuilder
                 }
             }
 
+            //Select the saved Unit in the combobox by default
+            foreach (Unit unit in cboxProductUnit.Items)
+            {
+                if (unit.unitName == Row_Selected["product_UnitName"].ToString())
+                {
+                    cboxProductUnit.SelectedItem = unit;
+                    break;
+                }
+            }
+
             //Select the saved Storage location in the combobox by default
             foreach (Storage storage in cboxProductStorage.Items)
             {
@@ -263,6 +292,18 @@ namespace Modelbuilder
                     break;
                 }
             }
+        }
+        #endregion
+
+        #region Selection changed ProductSupplierCode
+        private void ProductSupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dgPS = (DataGrid)sender;
+
+            if (dgPS.SelectedItem is not DataRowView Row_Selected) { return; }
+
+            //set value
+            _currentDataGridIndex = dgPS.SelectedIndex;
         }
         #endregion
 
@@ -293,6 +334,8 @@ namespace Modelbuilder
             var productBrandId = int.Parse(valueBrandId.Text);
             var productBrandName = valueBrandName.Text;
             var productDimensions = inpProductDimensions.Text;
+            var productUnitId = int.Parse(valueUnitId.Text);
+            var productUnitName = valueBrandName.Text;
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
@@ -300,7 +343,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, memo);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
             UpdateStatus(result);
         }
         #endregion
@@ -357,6 +400,8 @@ namespace Modelbuilder
             valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
             valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
             valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
+            valueUnitId.Text = ((Unit)cboxProductUnit.SelectedItem).unitId.ToString();
+            valueUnitName.Text = ((Unit)cboxProductUnit.SelectedItem).unitName.ToString();
 
             if (valueProductId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
@@ -428,6 +473,8 @@ namespace Modelbuilder
             var productBrandId = int.Parse(valueBrandId.Text);
             var productBrandName = valueBrandName.Text;
             var productDimensions = inpProductDimensions.Text;
+            var productUnitId = int.Parse(valueUnitId.Text);
+            var productUnitName = valueUnitName.Text;
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
@@ -435,7 +482,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, memo);
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
             UpdateStatus(result);
         }
         #endregion
@@ -560,6 +607,32 @@ namespace Modelbuilder
                     dtBrandSelection.Rows[i][1].ToString()));
             };
             return BrandList;
+        }
+        #endregion
+
+        #region Fill Unit dropdown
+        static List<Unit> UnitList()
+        {
+
+            Database dbUnitConnection = new()
+            {
+                TableName = DatabaseUnitTable
+            };
+
+            dbUnitConnection.SqlSelectionString = "unit_Name, unit_Id";
+            dbUnitConnection.SqlOrderByString = "unit_Id";
+            dbUnitConnection.TableName = DatabaseUnitTable;
+
+            DataTable dtUnitSelection = dbUnitConnection.LoadSpecificMySqlData();
+
+            List<Unit> UnitList = new();
+
+            for (int i = 0; i < dtUnitSelection.Rows.Count; i++)
+            {
+                UnitList.Add(new Unit(dtUnitSelection.Rows[i][0].ToString(),
+                    dtUnitSelection.Rows[i][1].ToString()));
+            };
+            return UnitList;
         }
         #endregion
     }
