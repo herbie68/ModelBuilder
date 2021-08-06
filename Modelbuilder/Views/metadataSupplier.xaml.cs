@@ -15,19 +15,6 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataSupplier : Page
     {
-        /// <summary>
-        /// Translated names
-        /// zeilenangabe    => ShowRow
-        /// privAktZeile    => _CurrentRow
-        /// AktZeile        => CurrentRow
-        /// LabelZeileNr    => LabelRowNr
-        /// privAktSpalte   => _CurrentColumn
-        //  AktSpalte       => CurrentColumn
-        /// spaltenangabe   => ShowColumn
-        /// LabelSpalteNr   => LabelColumnNr
-        /// Zeilennummer    => Rownumber
-        /// Spaltennummer   => Columnnumber
-        /// </summary>
         private HelperMySQL _helper;
         private DataTable _dt;
         private int _dbRowCount;
@@ -163,7 +150,17 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
+            //Clear memo field
+            inpSupplierMemo.Document.Blocks.Clear();
+
             GetMemo(dg.SelectedIndex);
+
+            float _MinimalOrderCosts = 0, _OrderCosts = 0;
+
+            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = float.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
+            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
+
+            //var _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString());
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
@@ -176,6 +173,15 @@ namespace Modelbuilder
             inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
             inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
             inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
+            inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
+            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
+            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
+            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
+            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
+            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
+            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
 
             //Select the saved Country in the combobox by default
             foreach (Country country in cboxSupplierCountry.Items)
@@ -197,13 +203,6 @@ namespace Modelbuilder
                 }
             }
 
-            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
-            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
-            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
-            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
-            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
-            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
-            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
         }
         #endregion
 
@@ -232,6 +231,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
+            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -239,7 +240,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId,  supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId,  supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -359,6 +360,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
+            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -366,11 +369,10 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
-
 
         #region Fill Country dropdown
         static List<Country> CountryList()

@@ -23,14 +23,14 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
- 
+
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
         <!--#region Grid definition-->
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="10" />
             <RowDefinition Height="30"/>
-            <RowDefinition Height="290" />
+            <RowDefinition Height="300" />
             <RowDefinition Height="10"/>
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
@@ -49,7 +49,7 @@
         <TextBlock Style="{DynamicResource Title}" Text="Leveranciers"/>
         <Path Grid.Row="1" Style="{DynamicResource TitleLine}"/>
         <!--#endregion-->
-        
+
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"       Margin="450,5,0,0" />
@@ -59,10 +59,10 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"   Margin="650,5,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
-        
+
         <!--#region Tabpages -->
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
-            <TabControl Height="300" Background="#FFE5E5E5">
+            <TabControl Height="310" Background="#FFE5E5E5">
                 <TabItem Header="Basisgegevens">
                     <Grid>
                         <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,0,0,0"/>
@@ -83,25 +83,31 @@
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Land" Margin="0,104,0,0" />
                         <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCountry" ItemTemplate="{StaticResource CountryComboTemplate}" Width="190" Margin="115,106,0,0" SelectedIndex="0" Cursor="Arrow" />
-                        
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="0,134,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" ItemTemplate="{StaticResource CurrencyComboTemplate}" Width="50" Margin="115,136,0,0" SelectedIndex="0" Cursor="Arrow"/>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Website" Margin="0,160,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="115,166,0,0" Width="490" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Standaard valuta" Margin="340,104,0,0" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierCurrency" ItemTemplate="{StaticResource CurrencyComboTemplate}" Width="50" Margin="455,106,0,0" SelectedIndex="0" Cursor="Arrow"/>
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Algemeen" Margin="115,195,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Verkoop" Margin="280,195,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Support" Margin="445,195,0,0" />
-                        <Label Style="{DynamicResource DefaultLabel}" Content="Telefoonnummer" Margin="0,215,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneGeneral" Margin="115,221,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSales" Margin="280,221,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSupport" Margin="445,221,0,0" Width="160" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Website" VerticalAlignment="Center" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierUrl" Margin="115,0,0,0" Width="490" VerticalAlignment="Center" />
 
-                        <Label Style="{DynamicResource DefaultLabel}" Content="E-Mail" Margin="0,235,0,0" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="115,241,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="280,241,0,0" Width="160" />
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="445,241,0,0" Width="160" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Verzendkosten" Margin="0,171,0,0" />
+                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpSupplierOrderCosts" Margin="115,177,0,0" Width="100" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Tot bedrag" Margin="230,171,0,0" />
+                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpSupplierMinOrderCosts" Margin="300,177,0,0" Width="100" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Algemeen" Margin="115,206,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Verkoop" Margin="280,206,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Support" Margin="445,206,0,0" />
+                        <Label Style="{DynamicResource DefaultLabel}" Content="Telefoonnummer" Margin="0,226,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneGeneral" Margin="115,232,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSales" Margin="280,232,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierPhoneSupport" Margin="445,232,0,0" Width="160" />
+
+                        <Label Style="{DynamicResource DefaultLabel}" Content="E-Mail" Margin="0,246,0,0" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailGeneral" Margin="115,252,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSales" Margin="280,252,0,0" Width="160" />
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierMailSupport" Margin="445,252,0,0" Width="160" />
                     </Grid>
                 </TabItem>
 
@@ -112,7 +118,7 @@
                 <TabItem Header="Memo">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Opmerkingen:" Margin="5,5" FontSize="14" FontWeight="ExtraBold" Foreground="DarkRed" />
-                        
+
                         <!-- Toolbar area-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,35,5,0">
                             <ToolBar Style="{DynamicResource RtfToolBar}">
@@ -177,7 +183,7 @@
             </TabControl>
         </StackPanel>
         <!--#endregion-->
-        
+
         <!--#region Toolbar for datagrid-->
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Grid.Row="5" Grid.Column="1">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
@@ -190,7 +196,7 @@
             </ToolBar>
         </ToolBarTray>
         <!--#endregion-->
-        
+
         <!--#region Datagrid definition-->
         <DataGrid x:Name="SupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
                 Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="SupplierCode_DataGrid_SelectionChanged">
@@ -208,7 +214,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--#endregion-->
-        
+
         <!--#region Status row-->
         <DockPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" VerticalAlignment="Center">
             <Grid>

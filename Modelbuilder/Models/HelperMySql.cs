@@ -51,7 +51,7 @@ namespace Modelbuilder
         #endregion Execute NonQuery
 
         #region Execute Non Query Table: Supplier
-        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, int supplierId = 0)
+        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, float supplierOrderCosts, float supplierMinOrderCosts, int supplierId = 0)
         {
             int rowsAffected = 0;
 
@@ -87,6 +87,8 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@supplierMailGeneral", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierMailSales", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@supplierMailSupport", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierOrderCosts", MySqlDbType.Float).Value = supplierOrderCosts;
+                    cmd.Parameters.Add("@supplierMinOrderCosts", MySqlDbType.Float).Value = supplierMinOrderCosts;
 
                     //set values
                     if (!String.IsNullOrEmpty(supplierCode))
@@ -147,7 +149,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table: Supplier
 
         #region Execute Non Query Table: Product
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo, int productId = 0)
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo, int productId = 0)
         {
             int rowsAffected = 0;
 
@@ -168,9 +170,9 @@ namespace Modelbuilder
                     cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
                     cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Int32).Value = productMinimalStock;
-                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Int32).Value = productStandardOrderQuantity;
-                    cmd.Parameters.Add("@productPrice", MySqlDbType.Int32).Value = productPrice;
+                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Float).Value = productMinimalStock;
+                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Float).Value = productStandardOrderQuantity;
+                    cmd.Parameters.Add("@productPrice", MySqlDbType.Float).Value = productPrice;
                     cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
                     cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int32).Value = productProjectCosts;
                     cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
@@ -443,14 +445,14 @@ namespace Modelbuilder
         #endregion Get Data from Table: Currency
 
         #region Insert in Table: Supplier
-        public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport)
+        public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, float supplierOrderCosts, float supplierMinOrderCosts)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO Supplier (supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, supplier_Url, supplier_Memo, supplier_CountryId, supplier_CountryName, supplier_CurrencyId, supplier_CurrencySymbol, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountryId, @supplierCountryName, @supplierCurrencyId, @supplierCurrencySymbol, @supplierPhoneGeneral, @supplierPhoneSales, @supplierPhoneSupport, @supplierMailGeneral, @supplierMailSales, @supplierMailSupport);";
+            string sqlText = "INSERT INTO Supplier (supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, supplier_Url, supplier_Memo, supplier_CountryId, supplier_CountryName, supplier_CurrencyId, supplier_CurrencySymbol, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_OrderCosts, supplier_MinOrderCosts) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountryId, @supplierCountryName, @supplierCurrencyId, @supplierCurrencySymbol, @supplierPhoneGeneral, @supplierPhoneSales, @supplierPhoneSupport, @supplierMailGeneral, @supplierMailSales, @supplierMailSupport, @supplierOrderCosts, @supplierMinOrderCosts);";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
 
                 if (rowsAffected > 0)
                 {
@@ -478,7 +480,7 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
+        public string InsertTblProduct(string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
         {
             string result = string.Empty;
             string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName, , product_BrandId, product_BrandName, product_Dimensions, product_UnitId, product_UnitName, product_Memo);";
@@ -583,15 +585,14 @@ namespace Modelbuilder
         #endregion Delete row in Table: Product
 
         #region Update Table: Supplier
-        public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo)
+        public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, float supplierOrderCosts, float supplierMinOrderCosts)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencySymbol = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo WHERE supplier_Id = @supplierId;";
+            string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencySymbol = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_OrderCosts = @supplierOrderCosts, supplier_MinOrderCosts = @supplierMinOrderCosts WHERE supplier_Id = @supplierId;";
 
             try
             {
-                // Do we need to add supplierId here?
-                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierId);
+                int rowsAffected = ExecuteNonQueryTblSupplier(sqlText, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierMemo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts, supplierId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? supplierName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -612,7 +613,7 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, int productMinimalStock, int productStandardOrderQuantity, int productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
+        public string UpdateTblProduct(int productId, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
         {
             string result = string.Empty;
             string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_Dimensions = @productDimensions, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";

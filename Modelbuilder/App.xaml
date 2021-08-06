@@ -82,7 +82,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFEEEEEE" />
-            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay, StringFormat={}{0:C}}" />
+            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay}" />
             <Setter Property="TextWrapping" Value="NoWrap" />
             <Setter Property="InputScope" Value="Number" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
