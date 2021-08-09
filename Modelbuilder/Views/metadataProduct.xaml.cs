@@ -29,7 +29,7 @@ namespace Modelbuilder
         private HelperMySQL _helper;
         private DataTable _dt, _dtPS;
         private int _dbRowCount;
-        private int _currentDataGridIndex;
+        private int _currentDataGridIndex, _currentDataGridPSIndex;
         static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable="brand", DatabaseUnitTable = "unit";
 
         public metadataProduct()
@@ -306,7 +306,14 @@ namespace Modelbuilder
             if (dgPS.SelectedItem is not DataRowView Row_Selected) { return; }
 
             //set value
-            _currentDataGridIndex = dgPS.SelectedIndex;
+            _currentDataGridPSIndex = dgPS.SelectedIndex;
+
+            var _ProductPrice = float.Parse(Row_Selected["supplierProductPrice"].ToString());
+
+
+            valueProductSupplierId.Text = Row_Selected["Id"].ToString();
+            valueProductSupplierCurrency.Text = Row_Selected["currency_Id"].ToString();
+            valueProductSupplierId.Text = Row_Selected["supplier_Id"].ToString();
         }
         #endregion
 
