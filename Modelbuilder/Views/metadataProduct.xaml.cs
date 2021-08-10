@@ -43,7 +43,6 @@ namespace Modelbuilder
             cboxProductBrand.ItemsSource = BrandList();
             cboxProductUnit.ItemsSource = UnitList();
 
-
             GetData();
         }
 
@@ -211,6 +210,12 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
+            // Get data from database
+            _dtPS = _helper.GetDataTblProductSupplier();
+
+            // Populate data in datagrid from datatable
+            ProductSupplierCode_DataGrid.DataContext = _dtPS;
+
             GetMemo(dg.SelectedIndex);
 
             var _Minimalstock = float.Parse(Row_Selected["product_MinimalStock"].ToString());
@@ -295,6 +300,12 @@ namespace Modelbuilder
                     break;
                 }
             }
+            // Get data from database
+            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
+
+            // Populate data in datagrid from datatable
+            ProductSupplierCode_DataGrid.DataContext = _dtPS;
+
         }
         #endregion
 
@@ -307,13 +318,19 @@ namespace Modelbuilder
 
             //set value
             _currentDataGridPSIndex = dgPS.SelectedIndex;
+            float _ProductPrice = 0;
 
-            var _ProductPrice = float.Parse(Row_Selected["supplierProductPrice"].ToString());
+            if (Row_Selected["productSupplier_ProductPrice"].ToString() != "") { _ProductPrice = float.Parse(Row_Selected["productSupplier_ProductPrice"].ToString()); };
 
+            valueProductSupplierId.Text = Row_Selected["productSupplier_Id"].ToString();
+            valueProductSupplierCurrencyId.Text = Row_Selected["productSupplier_CurrencyId"].ToString();
+            valueProductSupplierSupplierId.Text = Row_Selected["productSupplier_SupplierId"].ToString();
+            valueProductSupplierSupplierName.Text = Row_Selected["productSupplier_SupplierName"].ToString();
 
-            valueProductSupplierId.Text = Row_Selected["Id"].ToString();
-            valueProductSupplierCurrency.Text = Row_Selected["currency_Id"].ToString();
-            valueProductSupplierId.Text = Row_Selected["supplier_Id"].ToString();
+            inpSupplierProductNumber.Text = Row_Selected["productSupplier_ProductNumber"].ToString();
+            inpSupplierProductName.Text = Row_Selected["productSupplier_ProductName"].ToString();
+            dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
+            inpSupplierProductPrice.Text = _ProductPrice.ToString("€ #,##0.00;€ - #,##0.00");;
         }
         #endregion
 
@@ -433,37 +450,26 @@ namespace Modelbuilder
         #region Click Save Data button (on suppliertoolbar)
         private void supplierToolbarButtonSave(object sender, RoutedEventArgs e)
         {
-            int rowIndex = _currentDataGridIndex;
-            // Do whatever is necesary to save the data from the supplier tabpage to the list on the supplier tabpage 
-            /*
-            // Update Id, Code, Name and Symbol values with the selected Country and Currency
-            valueCategoryId.Text = ((Category)cboxProductCategory.SelectedItem).categoryId.ToString();
-            valueCategoryName.Text = ((Category)cboxProductCategory.SelectedItem).categoryName.ToString();
-            valueStorageId.Text = ((Storage)cboxProductStorage.SelectedItem).storageId.ToString();
-            valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
-            valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
-            valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
-            valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
-            valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
-            valueUnitId.Text = ((Unit)cboxProductUnit.SelectedItem).unitId.ToString();
-            valueUnitName.Text = ((Unit)cboxProductUnit.SelectedItem).unitName.ToString();
+            int rowIndex = _currentDataGridPSIndex;
+            valueProductSupplierSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
+            valueProductSupplierSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
 
-            if (valueProductId.Text == "")
+
+            if (valueProductSupplierId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
             {
-                InsertRow(ProductCode_DataGrid.SelectedIndex);
+                InsertRow(ProductSupplierCode_DataGrid.SelectedIndex);
             }
             else
             {
-                UpdateRow(ProductCode_DataGrid.SelectedIndex);
+                UpdateRow(ProductSupplierCode_DataGrid.SelectedIndex);
             }
 
             GetData();
 
             // Make sure the eddited row in the datagrid is selected
-            ProductCode_DataGrid.SelectedIndex = rowIndex;
-            ProductCode_DataGrid.Focus();
-            */
+            ProductSupplierCode_DataGrid.SelectedIndex = rowIndex;
+            ProductSupplierCode_DataGrid.Focus();
         }
         #endregion
 

@@ -7,20 +7,22 @@
 
 DROP TABLE IF EXISTS `productsupplier`;
 CREATE TABLE IF NOT EXISTS `productsupplier` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `supplier_Id` int NOT NULL DEFAULT '0',
-  `supplier_Name` varchar(150) DEFAULT NULL,
-  `product_Id` int NOT NULL DEFAULT '0',
-  `supplierProductNumber` varchar(150) DEFAULT NULL,
-  `supplierProductName` varchar(150) DEFAULT NULL,
-  `supplierProductPrice` float(10,2) DEFAULT '0.00',
-  PRIMARY KEY (`Id`)
+  `productSupplier_Id` int NOT NULL AUTO_INCREMENT,
+  `productSupplier_ProductId` int NOT NULL DEFAULT '0',
+  `productSupplier_SupplierId` int NOT NULL DEFAULT '0',
+  `productSupplier_SupplierName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `productSupplier_CurrencyId` int NOT NULL DEFAULT '0',
+  `productSupplier_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  `productSupplier_ProductNumber` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `productSupplier_ProductName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `productSupplier_ProductPrice` float(10,2) DEFAULT '0.00',
+  PRIMARY KEY (`productSupplier_Id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
 
 DELETE FROM `productsupplier`;
 /*!40000 ALTER TABLE `productsupplier` DISABLE KEYS */;
-INSERT INTO `productsupplier` (`Id`, `supplier_Id`, `supplier_Name`, `product_Id`, `supplierProductNumber`, `supplierProductName`, `supplierProductPrice`) VALUES
-	(1, 1, 'Cornwall Model Boats Ltd', 1, '1234', 'Proxxon Vench', 29.95);
+INSERT INTO `productsupplier` (`productSupplier_Id`, `productSupplier_ProductId`, `productSupplier_SupplierId`, `productSupplier_SupplierName`, `productSupplier_CurrencyId`, `productSupplier_CurrencySymbol`, `productSupplier_ProductNumber`, `productSupplier_ProductName`, `productSupplier_ProductPrice`) VALUES
+	(1, 1, 1, 'Cornwall Model Boats Ltd', 2, '£', '1234', 'Proxxon Vench', 29.95);
 /*!40000 ALTER TABLE `productsupplier` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

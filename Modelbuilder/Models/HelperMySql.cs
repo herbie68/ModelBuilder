@@ -228,6 +228,56 @@ namespace Modelbuilder
         }
         #endregion Execute Non Query Table: Product
 
+        #region Execute Non Query Table: ProductSupplier
+        public int ExecuteNonQueryTblProductSupplier(string sqlText, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, int productSupplierId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //set values - if they exist
+                    //if a value is null, one must use DBNull.Value
+                    //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
+        
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
+                    cmd.Parameters.Add("@productSupplierProductId", MySqlDbType.Int32).Value = productSupplierProductId;
+                    cmd.Parameters.Add("@productSupplierSupplierId", MySqlDbType.Int32).Value = productSupplierSupplierId;
+                    cmd.Parameters.Add("@productSupplierSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierCurrencyId", MySqlDbType.Int32).Value = productSupplierCurrencyId;
+                    cmd.Parameters.Add("@productSupplierCurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductPrice", MySqlDbType.Float).Value = productSupplierProductPrice;
+
+                    //set values
+                    if (!String.IsNullOrEmpty(productSupplierSupplierName))
+                        cmd.Parameters["@productSupplierSupplierName"].Value = productSupplierSupplierName;
+
+                    if (!String.IsNullOrEmpty(productSupplierCurrencySymbol))
+                        cmd.Parameters["@productSupplierCurrencySymbol"].Value = productSupplierCurrencySymbol;
+
+                    if (!String.IsNullOrEmpty(productSupplierProductNumber))
+                        cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
+
+                    if (!String.IsNullOrEmpty(productSupplierProductName))
+                        cmd.Parameters["@productSupplierProductName"].Value = productSupplierProductName;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table: ProductSupplier
+
         #region Execute Non Query Table Supplier_Id: Supplier
         public int ExecuteNonQueryTblSupplierId(string sqlText, int supplierId = 0)
         {
@@ -277,6 +327,31 @@ namespace Modelbuilder
             return rowsAffected;
         }
         #endregion Execute Non Query Table Supplier_Id: Product
+
+        #region Execute Non Query Table ProductSupplierId: ProductSupplier
+        public int ExecuteNonQueryTblProductSupplierId(string sqlText, int productId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productId;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
 
         #region Get Data from Table: Supplier
         public DataTable GetDataTblSupplier(int supplierId = 0)
@@ -345,14 +420,14 @@ namespace Modelbuilder
         #endregion Get Data from Table: Product
 
         #region Get Data from Table: ProductSupplier
-        public DataTable GetDataTblProductSupplier(int productId = 0)
+        public DataTable GetDataTblProductSupplier(int ProductId = 0)
         {
-            DataTable dt = new DataTable();
+            DataTable dtPS = new DataTable();
             string sqlText = string.Empty;
 
-            if (productId > 0)
+            if (ProductId > 0)
             {
-                sqlText = "SELECT * from ProductSupplier where product_Id = @productId";
+                sqlText = "SELECT * from ProductSupplier where productSupplier_ProductId = @ProductId";
             }
             else
             {
@@ -366,14 +441,14 @@ namespace Modelbuilder
 
                 using MySqlCommand cmd = new MySqlCommand(sqlText, con);
                 //add parameter
-                cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
+                cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
 
-                using MySqlDataAdapter da = new(cmd);
+                using MySqlDataAdapter daPS = new(cmd);
                 //use DataAdapter to fill DataTable
-                da.Fill(dt);
+                daPS.Fill(dtPS);
             }
 
-            return dt;
+            return dtPS;
         }
         #endregion Get Data from Table: Product
 
@@ -514,6 +589,41 @@ namespace Modelbuilder
         }
         #endregion Insert in Table: Product
 
+        #region Insert in Table: ProductSupplier
+        public string InsertTblProductSupplier(int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice)
+        {
+            string result = string.Empty;
+            string sqlText = "INSERT INTO ProductSupplier (productSupplier_ProductId, productSupplier_SupplierId, productSupplier_SupplierName, productSupplier_CurrencyId, productSupplier_CurrencySymbol, productSupplier_ProductNumber,  productSupplier_ProductName, productSupplier_ProductPrice);";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij toegevoegd.");
+                }
+                else
+                {
+                    result = "Rij niet toegevoegd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Insert in Table: Product
+
         #region Delete row in Table: Supplier
         public string DeleteTblSupplier(int supplierId)
         {
@@ -624,6 +734,34 @@ namespace Modelbuilder
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Update Table: Product
+
+        #region Update Table: ProductSupplier
+        public string UpdateTblProductSupplier(int productSupplierId, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice)
+        {
+            string result = string.Empty;
+            string sqlText = "UPDATE Product SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice WHERE productSupplier_Id = @productSupplierId;";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierId);
+
+                //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
+                result = rowsAffected > 0 ? productSupplierProductName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
             }
             catch (MySqlException ex)
             {

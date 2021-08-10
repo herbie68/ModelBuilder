@@ -82,18 +82,20 @@
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId"            Margin="300,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"           Margin="350,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName"         Margin="400,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId"           Margin="450,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName"         Margin="500,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId"            Margin="550,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"          Margin="600,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId"              Margin="650,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName"            Margin="700,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId"               Margin="750,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitName"             Margin="800,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId"    Margin="850,5,0,0" />
-
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"           Margin="325,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName"         Margin="350,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId"           Margin="375,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName"         Margin="400,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId"            Margin="425,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"          Margin="450,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId"              Margin="475,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName"            Margin="500,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId"               Margin="525,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitName"             Margin="550,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId"    Margin="575,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId"    Margin="600,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierName"    Margin="625,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId"    Margin="650,5,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -216,7 +218,7 @@
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductName" Margin="115,91,0,0" Width="300" Height="20"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Prijs" Margin="0,112,0,0" Height="26"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="valueProductSupplierCurrency" Margin="90,116,0,0" IsReadOnly="True" Height="20" Width="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" BorderBrush="{x:Null}" Background="#FFE5E5E5" TextWrapping="Wrap"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="dispProductSupplierCurrencySymbol" Margin="90,116,0,0" IsReadOnly="True" Height="20" Width="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" BorderBrush="{x:Null}" Background="#FFE5E5E5" TextWrapping="Wrap"/>
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductPrice" Margin="116,116,0,0" Width="50" Height="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                         
                         <!--#region Toolbar for datagrid-->
@@ -235,11 +237,12 @@
                         <!--#region Datagrid definition-->
                         <DataGrid x:Name="ProductSupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged" GridLinesVisibility="Vertical" Margin="430,35,5,5" Grid.Column="1">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding product_Id}" />
-                                <DataGridTextColumn Header="Leverancier" Width="150" Binding="{Binding supplier_Name}" />
-                                <DataGridTextColumn Header="Artikelnummer" Width="150" Binding="{Binding supplierProductNumber}" />
-                                <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding supplierProductName}" />
-                                <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding supplierProductPrice}" />
+                                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding productSupplier_ProductId}" />
+                                <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding productSupplier_SupplierName}" />
+                                <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding productSupplier_ProductNumber}" />
+                                <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding productSupplier_ProductName}" />
+                                <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding productSupplier_ProductCurrencySymbol}" />
+                                <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding productSupplier_ProductPrice}" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <!--#endregion-->
