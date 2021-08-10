@@ -30,7 +30,7 @@ namespace Modelbuilder
         private DataTable _dt, _dtPS;
         private int _dbRowCount;
         private int _currentDataGridIndex, _currentDataGridPSIndex;
-        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable="brand", DatabaseUnitTable = "unit";
+        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable = "brand", DatabaseUnitTable = "unit";
 
         public metadataProduct()
         {
@@ -330,7 +330,7 @@ namespace Modelbuilder
             inpSupplierProductNumber.Text = Row_Selected["productSupplier_ProductNumber"].ToString();
             inpSupplierProductName.Text = Row_Selected["productSupplier_ProductName"].ToString();
             dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
-            inpSupplierProductPrice.Text = _ProductPrice.ToString("€ #,##0.00;€ - #,##0.00");;
+            inpSupplierProductPrice.Text = _ProductPrice.ToString("€ #,##0.00;€ - #,##0.00"); ;
         }
         #endregion
 
@@ -373,6 +373,45 @@ namespace Modelbuilder
             UpdateStatus(result);
         }
         #endregion
+
+        #region Insert new row in ProductSupplier table
+        private void InsertRowProductSupplier(int dgIndex)
+        {
+            //since the DataGrid DataContext is set to the DataTable, 
+            //the DataTable is updated when data is modified in the DataGrid
+            //get last row
+            DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+            var productCode = inpProductCode.Text;
+            var productName = inpProductName.Text;
+            var productPrice = float.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;
+            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
+            { productProjectCosts = 0; }
+            var productCategoryId = int.Parse(valueCategoryId.Text);
+            var productCategoryName = valueCategoryName.Text;
+            var productStorageId = int.Parse(valueStorageId.Text);
+            var productStorageName = valueStorageName.Text;
+            var productSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierName = valueSupplierName.Text;
+            var productBrandId = int.Parse(valueBrandId.Text);
+            var productBrandName = valueBrandName.Text;
+            var productDimensions = inpProductDimensions.Text;
+            var productUnitId = int.Parse(valueUnitId.Text);
+            var productUnitName = valueBrandName.Text;
+
+            //convert RTF to string
+            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
+            UpdateStatus(result);
+        }
+        #endregion
+
+
 
         #region Get rich text from flow document
         private string GetRichTextFromFlowDocument(FlowDocument fDoc)
@@ -455,7 +494,7 @@ namespace Modelbuilder
             valueProductSupplierSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
 
 
-            if (valueProductSupplierId.Text == "")
+            if (valueProductSupplierSupplierId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
             {
                 InsertRow(ProductSupplierCode_DataGrid.SelectedIndex);
@@ -502,9 +541,7 @@ namespace Modelbuilder
             // Do whatever is necesary to delete the selected row in the datagrid of the supplier tabpage
             /*
             DeleteRow(ProductCode_DataGrid.SelectedIndex);
-
             GetData();
-
             if (rowIndex == 0)
             {
                 ProductCode_DataGrid.SelectedIndex = 0;
@@ -513,7 +550,6 @@ namespace Modelbuilder
             {
                 ProductCode_DataGrid.SelectedIndex = rowIndex - 1;
             }
-
             ProductCode_DataGrid.Focus();
             */
         }
