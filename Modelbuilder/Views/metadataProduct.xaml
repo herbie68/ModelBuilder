@@ -203,13 +203,17 @@
                     </Grid>
 
                 </TabItem>
-                <TabItem Header="Leveranciers">
+                <TabItem Header="Leveranciers" x:Name="SupplierTab" IsEnabled="False">
                     <Grid>
 
                         <TextBlock Text="Artikel informatie per leverancier" Style="{DynamicResource DefaultSubTitle}" Margin="10,0,0,0" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFAE3A3A"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Leverancier" Margin="0,38,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="300" Margin="115,40,0,0" SelectedIndex="0" TextSearch.TextPath="supplierName" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier" ItemTemplate="{StaticResource SupplierComboTemplate}" Width="300" Margin="115,40,0,0" SelectedIndex="0" TextSearch.TextPath="supplierName" SelectionChanged="cboxSupplier_SelectionChanged" IsTabStop="False">
+                            <ComboBox.ItemContainerStyleSelector>
+                                <StyleSelector/>
+                            </ComboBox.ItemContainerStyleSelector>
+                        </ComboBox>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Artikelnummer" Margin="0,64,0,0"/>
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" Margin="115,67,0,0" Width="300" Height="20"/>
@@ -227,7 +231,7 @@
                                 <Button ToolTip="Wijzigingen opslaan" Click="supplierToolbarButtonSave">
                                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                                 </Button>
-                                <Button ToolTip="Leverancier verwijderen uit de tabel" Click="supplierToolbarButtonDelete">
+                                <Button ToolTip="Leverancier verwijderen uit de tabel" Click="SupplierToolbarButtonDelete">
                                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                                 </Button>
                             </ToolBar>

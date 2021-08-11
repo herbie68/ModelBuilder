@@ -239,8 +239,10 @@ namespace Modelbuilder
             inpProductMinimalStock.Text = _Minimalstock.ToString("#,##0.00;- #,##0.00");
             inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString("#,##0.00;- #,##0.00");
             inpProductPrice.Text = _Price.ToString("€ #,##0.00;€ - #,##0.00");
-            inpSupplierProductNumber.Text = Row_Selected["product_SupplierProductNumber"].ToString();
             inpProductDimensions.Text = Row_Selected["product_Dimensions"].ToString();
+
+            // When there is an existing Prduct selected the supplier tabpage can be activated
+            SupplierTab.IsEnabled = inpProductCode.Text != "";
 
             if (Row_Selected["product_ProjectCosts"].ToString() == "0")
             {
@@ -257,16 +259,6 @@ namespace Modelbuilder
                 if (category.categoryName == Row_Selected["product_CategoryName"].ToString())
                 {
                     cboxProductCategory.SelectedItem = category;
-                    break;
-                }
-            }
-
-            //Select the saved Supplier in the combobox by default
-            foreach (Supplier supplier in cboxProductSupplier.Items)
-            {
-                if (supplier.supplierName == Row_Selected["product_SupplierName"].ToString())
-                {
-                    cboxProductSupplier.SelectedItem = supplier;
                     break;
                 }
             }
@@ -330,12 +322,241 @@ namespace Modelbuilder
             inpSupplierProductNumber.Text = Row_Selected["productSupplier_ProductNumber"].ToString();
             inpSupplierProductName.Text = Row_Selected["productSupplier_ProductName"].ToString();
             dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
-            inpSupplierProductPrice.Text = _ProductPrice.ToString("€ #,##0.00;€ - #,##0.00"); ;
+            inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
+
+            //Select the saved Supplier in the combobox by default
+            foreach (Supplier supplier in cboxProductSupplier.Items)
+            {
+                if (supplier.supplierName == Row_Selected["productSupplier_SupplierName"].ToString())
+                {
+                    cboxProductSupplier.SelectedItem = supplier;
+                    dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
+                    break;
+                }
+            }
+
+            // Get data from database
+            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
+
+            // Populate data in datagrid from datatable
+            ProductSupplierCode_DataGrid.DataContext = _dtPS;
         }
         #endregion
 
-        #region Insert new row in table
-        private void InsertRow(int dgIndex)
+        #region The Selection in the ProductSupplier combobox has changed
+        private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            //https://stackoverflow.com/questions/2961118/combobox-selectionchanged-event-has-old-value-not-new-value
+            //https://www.parallelcodes.com/wpf-combobox-selectionchanged/
+            var test = (sender as ComboBox).SelectedItem as string;
+            //var test2 = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content as string;
+            //var test2 = (e.AddedItems[0] as ComboBoxItem).Content as string;
+            //var test3 = cboxProductSupplier.SelectedValue.ToString();
+            //var test4 = (e.AddedItems[0] as List).ToString();
+            //dispProductSupplierCurrencySymbol.Text = cboxProductSupplier.SelectedValue.ToString();
+            Console.WriteLine(test);
+
+        }
+        #endregion
+
+        #region Get rich text from flow document
+        private string GetRichTextFromFlowDocument(FlowDocument fDoc)
+        {
+            string result = string.Empty;
+
+            //convert to string
+            if (fDoc != null)
+            {
+                TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    tr.Save(ms, DataFormats.Rtf);
+                    result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+                }
+            }
+            return result;
+        }
+        #endregion
+
+        #region Click Save Data button (on toolbar)
+        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
+        {
+            int rowIndex = _currentDataGridIndex;
+
+            // Update Id, Code, Name and Symbol values with the selected Country and Currency
+            valueCategoryId.Text = ((Category)cboxProductCategory.SelectedItem).categoryId.ToString();
+            valueCategoryName.Text = ((Category)cboxProductCategory.SelectedItem).categoryName.ToString();
+            valueStorageId.Text = ((Storage)cboxProductStorage.SelectedItem).storageId.ToString();
+            valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
+            valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
+            valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
+            valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
+            valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
+            valueUnitId.Text = ((Unit)cboxProductUnit.SelectedItem).unitId.ToString();
+            valueUnitName.Text = ((Unit)cboxProductUnit.SelectedItem).unitName.ToString();
+
+            // When there is an existing Prduct selected the supplier tabpage can be activated
+            SupplierTab.IsEnabled = inpProductCode.Text != "";
+
+            if (valueProductId.Text == "")
+            // if (_dt.Rows.Count > _dbRowCount)
+            {
+                InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
+            }
+            else
+            {
+                UpdateRowProduct(ProductCode_DataGrid.SelectedIndex);
+            }
+
+            GetData();
+
+            // Make sure the eddited row in the datagrid is selected
+            ProductCode_DataGrid.SelectedIndex = rowIndex;
+            ProductCode_DataGrid.Focus();
+        }
+        #endregion
+
+        #region Click Save Data button (on suppliertoolbar)
+        private void supplierToolbarButtonSave(object sender, RoutedEventArgs e)
+        {
+            int rowIndex = _currentDataGridPSIndex;
+            valueProductSupplierSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
+            valueProductSupplierSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
+
+
+            //if (valueProductSupplierSupplierId.Text == "")
+            if (_dtPS.Rows.Count > _dbRowCount)
+            {
+                InsertRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
+            }
+            else
+            {
+                UpdateRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
+            }
+
+            GetData();
+
+            // Make sure the eddited row in the datagrid is selected
+            ProductSupplierCode_DataGrid.SelectedIndex = rowIndex;
+            ProductSupplierCode_DataGrid.Focus();
+        }
+        #endregion
+
+        #region Delete Data button (on toolbar)
+        private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
+        {
+            int rowIndex = _currentDataGridIndex;
+
+            DeleteRowProduct(ProductCode_DataGrid.SelectedIndex);
+
+            GetData();
+
+            if (rowIndex == 0)
+            {
+                ProductCode_DataGrid.SelectedIndex = 0;
+            }
+            else
+            {
+                ProductCode_DataGrid.SelectedIndex = rowIndex - 1;
+            }
+
+            ProductCode_DataGrid.Focus();
+        }
+        #endregion
+
+        #region Delete Data button (on SupplierToolbar)
+        private void SupplierToolbarButtonDelete(object sender, RoutedEventArgs e)
+        {
+            int rowIndex = _currentDataGridPSIndex;
+
+            DeleteRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
+
+            GetData();
+
+            if (rowIndex == 0)
+            {
+                ProductSupplierCode_DataGrid.SelectedIndex = 0;
+            }
+            else
+            {
+                ProductSupplierCode_DataGrid.SelectedIndex = rowIndex - 1;
+            }
+
+            ProductSupplierCode_DataGrid.Focus();
+        }
+        #endregion
+
+        #region Update row Product Table
+        private void UpdateRowProduct(int dgIndex)
+        {
+            //when DataGrid SelectionChanged occurs, the value of '_currentDataGridIndex' is set
+            //to DataGrid SelectedIndex
+            //get data from DataTable
+            DataRow row = _dt.Rows[_currentDataGridIndex];
+            var productProjectCosts = 0;
+
+            var productId = int.Parse(valueProductId.Text);
+            string productCode = inpProductCode.Text;
+            string productName = inpProductName.Text;
+            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
+            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
+            var productPrice = float.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", ""));
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;
+            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
+            { productProjectCosts = 0; }
+            var productCategoryId = int.Parse(valueCategoryId.Text);
+            var productCategoryName = valueCategoryName.Text;
+            var productStorageId = int.Parse(valueStorageId.Text);
+            var productStorageName = valueStorageName.Text;
+            var productSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierName = valueSupplierName.Text;
+            var productBrandId = int.Parse(valueBrandId.Text);
+            var productBrandName = valueBrandName.Text;
+            var productDimensions = inpProductDimensions.Text;
+            var productUnitId = int.Parse(valueUnitId.Text);
+            var productUnitName = valueUnitName.Text;
+
+            //convert RTF to string
+            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
+            UpdateStatus(result);
+        }
+        #endregion
+
+        #region Update row ProductSupplier Tabble
+        private void UpdateRowProductSupplier(int dgIndex)
+        {
+            //when DataGrid SelectionChanged occurs, the value of '_currentDataGridIndex' is set
+            //to DataGrid SelectedIndex
+            //get data from DataTable
+            DataRow row = _dt.Rows[_currentDataGridPSIndex];
+
+            var productSupplierId = int.Parse(valueProductSupplierId.Text);
+            var productSupplierProductId = int.Parse(valueProductId.Text);
+            var productSupplierSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierSupplierName = valueProductSupplierSupplierName.Text;
+            var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);
+            var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;
+            var productSupplierProductName = inpSupplierProductName.Text;
+            var productSupplierProductPrice = float.Parse(inpSupplierProductPrice.Text.Replace("€", "").Replace(" ", ""));
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.UpdateTblProductSupplier(productSupplierId, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice);
+            UpdateStatus(result);
+        }
+        #endregion
+
+        #region Insert new row in Product Table
+        private void InsertRowProduct(int dgIndex)
         {
             //since the DataGrid DataContext is set to the DataTable, 
             //the DataTable is updated when data is modified in the DataGrid
@@ -382,59 +603,26 @@ namespace Modelbuilder
             //get last row
             DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
-            var productCode = inpProductCode.Text;
-            var productName = inpProductName.Text;
-            var productPrice = float.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
+            // var productSupplierId = int.Parse(valueProductSupplierId.Text);
+            var productSupplierProductId = int.Parse(valueProductId.Text);
+            var productSupplierSupplierId = int.Parse(valueSupplierId.Text);
+            var productSupplierSupplierName = valueProductSupplierSupplierName.Text;
+            var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);
+            var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;
             var productSupplierProductNumber = inpSupplierProductNumber.Text;
-            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
-            { productProjectCosts = 0; }
-            var productCategoryId = int.Parse(valueCategoryId.Text);
-            var productCategoryName = valueCategoryName.Text;
-            var productStorageId = int.Parse(valueStorageId.Text);
-            var productStorageName = valueStorageName.Text;
-            var productSupplierId = int.Parse(valueSupplierId.Text);
-            var productSupplierName = valueSupplierName.Text;
-            var productBrandId = int.Parse(valueBrandId.Text);
-            var productBrandName = valueBrandName.Text;
-            var productDimensions = inpProductDimensions.Text;
-            var productUnitId = int.Parse(valueUnitId.Text);
-            var productUnitName = valueBrandName.Text;
-
-            //convert RTF to string
-            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+            var productSupplierProductName = inpSupplierProductName.Text;
+            var productSupplierProductPrice = float.Parse(inpSupplierProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
+            result = _helper.InsertTblProductSupplier(productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice);
             UpdateStatus(result);
         }
         #endregion
 
-
-
-        #region Get rich text from flow document
-        private string GetRichTextFromFlowDocument(FlowDocument fDoc)
-        {
-            string result = string.Empty;
-
-            //convert to string
-            if (fDoc != null)
-            {
-                TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
-
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    tr.Save(ms, DataFormats.Rtf);
-                    result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-                }
-            }
-            return result;
-        }
-        #endregion
-
-        #region Delete row in table
-        private void DeleteRow(int dgIndex)
+        #region Delete row from Product table
+        private void DeleteRowProduct(int dgIndex)
         {
             //since the DataGrid DataContext is set to the DataTable, 
             //the DataTable is updated when data is modified in the DataGrid
@@ -451,147 +639,20 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Click Save Data button (on toolbar)
-        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
+        #region Delete row in ProductSupplier table
+        private void DeleteRowProductSupplier(int dgIndex)
         {
-            int rowIndex = _currentDataGridIndex;
+            //since the DataGrid DataContext is set to the DataTable, 
+            //the DataTable is updated when data is modified in the DataGrid
+            //get last row
+            DataRow row = _dtPS.Rows[_dtPS.Rows.Count - 1];
 
-            // Update Id, Code, Name and Symbol values with the selected Country and Currency
-            valueCategoryId.Text = ((Category)cboxProductCategory.SelectedItem).categoryId.ToString();
-            valueCategoryName.Text = ((Category)cboxProductCategory.SelectedItem).categoryName.ToString();
-            valueStorageId.Text = ((Storage)cboxProductStorage.SelectedItem).storageId.ToString();
-            valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
-            valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
-            valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
-            valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
-            valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
-            valueUnitId.Text = ((Unit)cboxProductUnit.SelectedItem).unitId.ToString();
-            valueUnitName.Text = ((Unit)cboxProductUnit.SelectedItem).unitName.ToString();
-
-            if (valueProductId.Text == "")
-            // if (_dt.Rows.Count > _dbRowCount)
-            {
-                InsertRow(ProductCode_DataGrid.SelectedIndex);
-            }
-            else
-            {
-                UpdateRow(ProductCode_DataGrid.SelectedIndex);
-            }
-
-            GetData();
-
-            // Make sure the eddited row in the datagrid is selected
-            ProductCode_DataGrid.SelectedIndex = rowIndex;
-            ProductCode_DataGrid.Focus();
-        }
-        #endregion
-
-        #region Click Save Data button (on suppliertoolbar)
-        private void supplierToolbarButtonSave(object sender, RoutedEventArgs e)
-        {
-            int rowIndex = _currentDataGridPSIndex;
-            valueProductSupplierSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
-            valueProductSupplierSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
-
-
-            if (valueProductSupplierSupplierId.Text == "")
-            // if (_dt.Rows.Count > _dbRowCount)
-            {
-                InsertRow(ProductSupplierCode_DataGrid.SelectedIndex);
-            }
-            else
-            {
-                UpdateRow(ProductSupplierCode_DataGrid.SelectedIndex);
-            }
-
-            GetData();
-
-            // Make sure the eddited row in the datagrid is selected
-            ProductSupplierCode_DataGrid.SelectedIndex = rowIndex;
-            ProductSupplierCode_DataGrid.Focus();
-        }
-        #endregion
-
-        #region Delete Data button (on toolbar)
-        private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
-        {
-            int rowIndex = _currentDataGridIndex;
-
-            DeleteRow(ProductCode_DataGrid.SelectedIndex);
-
-            GetData();
-
-            if (rowIndex == 0)
-            {
-                ProductCode_DataGrid.SelectedIndex = 0;
-            }
-            else
-            {
-                ProductCode_DataGrid.SelectedIndex = rowIndex - 1;
-            }
-
-            ProductCode_DataGrid.Focus();
-        }
-        #endregion
-
-        #region Delete Data button (on SupplierToolbar)
-        private void supplierToolbarButtonDelete(object sender, RoutedEventArgs e)
-        {
-            int rowIndex = _currentDataGridIndex;
-            // Do whatever is necesary to delete the selected row in the datagrid of the supplier tabpage
-            /*
-            DeleteRow(ProductCode_DataGrid.SelectedIndex);
-            GetData();
-            if (rowIndex == 0)
-            {
-                ProductCode_DataGrid.SelectedIndex = 0;
-            }
-            else
-            {
-                ProductCode_DataGrid.SelectedIndex = rowIndex - 1;
-            }
-            ProductCode_DataGrid.Focus();
-            */
-        }
-        #endregion
-
-        #region Update row
-        private void UpdateRow(int dgIndex)
-        {
-            //when DataGrid SelectionChanged occurs, the value of '_currentDataGridIndex' is set
-            //to DataGrid SelectedIndex
-            //get data from DataTable
-            DataRow row = _dt.Rows[_currentDataGridIndex];
-            var productProjectCosts = 0;
-
-            var productId = int.Parse(valueProductId.Text);
-            string productCode = inpProductCode.Text;
-            string productName = inpProductName.Text;
-            var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
-            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
-            var productPrice = float.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", ""));
-            var productSupplierProductNumber = inpSupplierProductNumber.Text;
-            if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
-            { productProjectCosts = 0; }
-            var productCategoryId = int.Parse(valueCategoryId.Text);
-            var productCategoryName = valueCategoryName.Text;
-            var productStorageId = int.Parse(valueStorageId.Text);
-            var productStorageName = valueStorageName.Text;
-            var productSupplierId = int.Parse(valueSupplierId.Text);
-            var productSupplierName = valueSupplierName.Text;
-            var productBrandId = int.Parse(valueBrandId.Text);
-            var productBrandName = valueBrandName.Text;
-            var productDimensions = inpProductDimensions.Text;
-            var productUnitId = int.Parse(valueUnitId.Text);
-            var productUnitName = valueUnitName.Text;
-
-            //convert RTF to string
-            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+            int productSupplierId = int.Parse(valueProductSupplierId.Text);
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, memo);
+            result = _helper.DeleteTblProductSupplier(productSupplierId);
             UpdateStatus(result);
         }
         #endregion

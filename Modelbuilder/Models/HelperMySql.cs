@@ -329,7 +329,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table Supplier_Id: Product
 
         #region Execute Non Query Table ProductSupplierId: ProductSupplier
-        public int ExecuteNonQueryTblProductSupplierId(string sqlText, int productId = 0)
+        public int ExecuteNonQueryTblProductSupplierId(string sqlText, int productSupplierId = 0)
         {
             int rowsAffected = 0;
 
@@ -342,7 +342,7 @@ namespace Modelbuilder
                 {
 
                     //add parameters setting string values to DBNull.Value
-                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productId;
+                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -694,6 +694,41 @@ namespace Modelbuilder
         }
         #endregion Delete row in Table: Product
 
+        #region Delete row in Table: ProductSupplier
+        public string DeleteTblProductSupplier(int productSupplierId)
+        {
+            string result = string.Empty;
+            string sqlText = "DELETE FROM ProductSupplier WHERE productSupplier_Id=@productSupplierId";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblProductSupplierId(sqlText, productSupplierId);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij verwijderd.");
+                }
+                else
+                {
+                    result = "Rij niet verwijderd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Delete row in Table: Product
+
         #region Update Table: Supplier
         public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, float supplierOrderCosts, float supplierMinOrderCosts)
         {
@@ -754,7 +789,7 @@ namespace Modelbuilder
         public string UpdateTblProductSupplier(int productSupplierId, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice WHERE productSupplier_Id = @productSupplierId;";
+            string sqlText = "UPDATE ProductSupplier SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice WHERE productSupplier_Id = @productSupplierId;";
 
             try
             {
@@ -765,12 +800,12 @@ namespace Modelbuilder
             }
             catch (MySqlException ex)
             {
-                Debug.WriteLine("Fout (UpdateTblProduct - MySqlException): " + ex.Message);
+                Debug.WriteLine("Fout (UpdateTblProductSupplier - MySqlException): " + ex.Message);
                 throw ex;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Fout (UpdateTblProduct): " + ex.Message);
+                Debug.WriteLine("Fout (UpdateTblProductSupplier): " + ex.Message);
                 throw;
             }
 
