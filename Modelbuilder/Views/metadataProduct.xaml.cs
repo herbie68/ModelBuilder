@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using Google.Protobuf.WellKnownTypes;
+using System.Data.SqlClient;
 
 namespace Modelbuilder
 {
@@ -40,7 +41,8 @@ namespace Modelbuilder
             cboxProductCategory.ItemsSource = CategoryList();
             cboxProductSupplier.ItemsSource = SupplierList();
             cboxProductStorage.ItemsSource = StorageList();
-            cboxProductBrand.ItemsSource = BrandList();
+            //cboxProductBrand.ItemsSource = BrandList();
+            comboBrand();
             cboxProductUnit.ItemsSource = UnitList();
 
             GetData();
@@ -264,14 +266,18 @@ namespace Modelbuilder
             }
 
             //Select the saved Brand in the combobox by default
-            foreach (Brand brand in cboxProductBrand.Items)
+
+            // cboxProductBrand.SelectedItem = data;
+            
+            foreach (DataRowView brand in cboxProductBrand.Items)
             {
-                if (brand.brandName == Row_Selected["product_BrandName"].ToString())
+                if (brand.Row.ItemArray[1] == Row_Selected["product_BrandName"].ToString())
                 {
                     cboxProductBrand.SelectedItem = brand;
                     break;
                 }
             }
+            
 
             //Select the saved Unit in the combobox by default
             foreach (Unit unit in cboxProductUnit.Items)
@@ -343,19 +349,35 @@ namespace Modelbuilder
         }
         #endregion
 
+        private void cboxBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Object[] data = ((DataRowView)e.AddedItems[0]).Row.ItemArray;
+
+            valueBrandId.Text = data[1].ToString();
+            valueBrandName.Text = data[0].ToString();
+
+            cboxProductBrand.SelectedItem = data;
+
+            Console.WriteLine();
+        }
         #region The Selection in the ProductSupplier combobox has changed
         private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             //https://stackoverflow.com/questions/2961118/combobox-selectionchanged-event-has-old-value-not-new-value
             //https://www.parallelcodes.com/wpf-combobox-selectionchanged/
-            var test = (sender as ComboBox).SelectedItem as string;
+
+            //var test = e.AddedItems[0].ToString();
+            //var test2 = test[0].ToString();
+            //Object[] data = ((DataRowView)e.AddedItems[0]).Row.ItemArray;
+            //var test = data[1].ToString();
+            //var test = (sender as ComboBox).SelectedItem as string;
             //var test2 = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content as string;
             //var test2 = (e.AddedItems[0] as ComboBoxItem).Content as string;
             //var test3 = cboxProductSupplier.SelectedValue.ToString();
             //var test4 = (e.AddedItems[0] as List).ToString();
             //dispProductSupplierCurrencySymbol.Text = cboxProductSupplier.SelectedValue.ToString();
-            Console.WriteLine(test);
+            //Console.WriteLine(test, test2);
 
         }
         #endregion
@@ -751,6 +773,27 @@ namespace Modelbuilder
                     dtSupplierSelection.Rows[i][2].ToString()));
             };
             return SupplierList;
+        }
+        #endregion
+
+        #region Test BrandBox
+        public void comboBrand()
+        {
+            Database dbBrandConnection = new()
+            {
+                TableName = DatabaseBrandTable
+            };
+
+            dbBrandConnection.SqlSelectionString = "brand_Name, brand_Id";
+            dbBrandConnection.SqlOrderByString = "brand_Id";
+            dbBrandConnection.TableName = DatabaseBrandTable;
+
+            // Get data from database
+            _dt = _helper.ExecuteQuery("Brand");
+
+            cboxProductBrand.ItemsSource = _dt.DefaultView;
+            cboxProductBrand.DisplayMemberPath = "brand_Name";
+            cboxProductBrand.SelectedValuePath = "brand_Id";
         }
         #endregion
 

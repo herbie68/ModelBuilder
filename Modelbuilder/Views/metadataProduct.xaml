@@ -81,21 +81,21 @@
 
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId"            Margin="300,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"           Margin="325,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName"         Margin="350,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId"           Margin="375,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName"         Margin="400,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId"            Margin="425,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName"          Margin="450,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId"              Margin="475,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName"            Margin="500,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId"               Margin="525,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitName"             Margin="550,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId"    Margin="575,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId"    Margin="600,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierName"    Margin="625,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId"    Margin="650,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueProductId"                   Margin="0,20,0,0"/>
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueSupplierId"                  Margin="25,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueSupplierName"                Margin="50,24,0,0" Grid.RowSpan="2" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueCategoryId"                  Margin="75,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueCategoryName"                Margin="100,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueStorageId"                   Margin="125,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueStorageName"                 Margin="150,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueBrandId"                     Margin="175,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueBrandName"                   Margin="200,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueUnitId"                      Margin="225,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueUnitName"                    Margin="250,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueProductSupplierId"           Margin="275,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueProductSupplierSupplierId"   Margin="300,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueProductSupplierSupplierName" Margin="325,20,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" Grid.Row="0" Grid.Column="2" x:Name="valueProductSupplierCurrencyId"   Margin="350,20,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -107,13 +107,13 @@
                         <Border BorderBrush="Gray" BorderThickness="1" Margin="631,0,0,0" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="252"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Zoeknaam" Margin="0,2,0,0"/>
-                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" Margin="115,6,0,0" Width="200" CharacterCasing="Upper"/>
+                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" Margin="115,2,0,0" Width="200" CharacterCasing="Upper"/>
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Omschrijving" Margin="0,24,0,0" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" Margin="115,28,0,0" Width="490" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Merk" Margin="0,48,0,0" />
-                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" ItemTemplate="{StaticResource BrandComboTemplate}" Margin="115,50,0,0" Width="250" TextSearch.TextPath="brandName" />
+                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" SelectionChanged="cboxBrand_SelectionChanged" Margin="115,50,0,0" Width="250" TextSearch.TextPath="brandName" />
 
                         <Label Style="{DynamicResource DefaultLabel}" Content="Afmetingen" Margin="0,73,0,0" />
                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductDimensions" Margin="115,77,0,0" Width="490" />

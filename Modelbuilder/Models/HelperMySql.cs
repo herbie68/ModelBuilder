@@ -5,6 +5,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
 using K4os.Compression.LZ4.Internal;
+using System.Drawing;
+using ConnectionNamespace;
+using System.Data.SqlClient;
 
 namespace Modelbuilder
 {
@@ -812,6 +815,38 @@ namespace Modelbuilder
             return result;
         }
         #endregion Update Table: Product
+
+        #region Execute Query Table
+        public DataTable ExecuteQuery(string Base)
+        {
+            string result = string.Empty, sqlText = string.Empty;
+   
+            switch (Base)
+            {
+                case "Brand":
+                    sqlText = "SELECT brand_Name, brand_Id FROM brand ORDER by brand_Id";
+                    break;
+                default:
+                    sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_Dimensions = @productDimensions, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+                    break;
+            }
+
+            MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+            con.Open();
+
+            var cmd = new MySqlCommand(sqlText, con);
+
+            DataTable tempDataTable = new DataTable();
+            tempDataTable.Load(cmd.ExecuteReader());
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
+        #endregion
 
         #region Create lists to populate dropdowns for metadata pages
         #region Fill the dropdownlists
