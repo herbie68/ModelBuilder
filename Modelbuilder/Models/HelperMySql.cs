@@ -3,11 +3,7 @@ using System;
 using System.Data;
 using System.Diagnostics;
 using System.Collections.Generic;
-using Google.Protobuf.WellKnownTypes;
-using K4os.Compression.LZ4.Internal;
-using System.Drawing;
-using ConnectionNamespace;
-using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Modelbuilder
 {
@@ -16,11 +12,19 @@ namespace Modelbuilder
         #region public Variables
         public string ConnectionStr { get; set; } = string.Empty;
         
-        public string DatabaseCategoryTable = "category";
-        public string DatabaseCountryTable = "country";
-        public string DatabaseCurrencyTable = "currency";
-        public string DatabaseStorageTable = "storage";
-        public string DatabaseSupplierTable = "supplier";
+        public string DbBrandTable = "brand";
+        public string DbCategoryTable = "category";
+        public string DbCountryTable = "country";
+        public string DbCurrencyTable = "currency";
+        public string DbProductTable = "product";
+        public string DbProductSupplierTable = "productsupplier";
+        public string DbProjectTable = "project";
+        public string DbStorageTable = "storage";
+        public string DbSupplierTable = "supplier";
+        public string DbUnitTable = "unit";
+        public string DbWorktypeTable = "worktype";
+
+        public CultureInfo Culture = new("nl-NL");
 
         #endregion public Variables
 
@@ -41,17 +45,324 @@ namespace Modelbuilder
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionStr))
             {
-                //open
                 con.Open();
 
                 using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
                 {
-                    //execute
                     cmd.ExecuteNonQuery();
                 }
             }
         }
         #endregion Execute NonQuery
+
+        #region Execute Non Query Table: Brand
+        /// <summary>
+        /// Parameters necesary to execute non query
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="brandName"></param>
+        /// <param name="brandId"></param>
+        /// <returns></returns>
+        public int ExecuteNonQueryTblBrand(string sqlText, string brandName, int brandId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new(ConnectionStr))
+            {
+                con.Open();
+
+                using MySqlCommand cmd = new(sqlText, con);
+                // Add Int values
+                cmd.Parameters.Add("@brandId", MySqlDbType.Int32).Value = brandId;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@brandName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                //set values
+                if (!String.IsNullOrEmpty(brandName))
+                    cmd.Parameters["@brandName"].Value = brandName;
+
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            return rowsAffected;
+        }
+        #endregion
+
+        #region Execute Non Query Table: Category
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="categoryName"></param>
+        /// <param name="categoryParentId"></param>
+        /// <param name="categoryFullPath"></param>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public int ExecuteNonQueryTblCategory(string sqlText, string categoryName, int categoryParentId, string categoryFullPath, int categoryId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new(ConnectionStr))
+            {
+                con.Open();
+
+                using MySqlCommand cmd = new(sqlText, con);
+                // Add Int values
+                cmd.Parameters.Add("@categoryId", MySqlDbType.Int32).Value = categoryId;
+                cmd.Parameters.Add("@categoryParentId", MySqlDbType.Int32).Value = categoryParentId;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@categoryFullPath", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                //set values
+                if (!String.IsNullOrEmpty(categoryFullPath))
+                    cmd.Parameters["@categoryFullPath"].Value = categoryFullPath;
+
+                if (!String.IsNullOrEmpty(categoryName))
+                    cmd.Parameters["@categoryName"].Value = categoryName;
+
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            return rowsAffected;
+        }
+        #endregion
+
+        #region Execute Non Query Table: Country
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="countryCode"></param>
+        /// <param name="countryDefaultcurrencySymbol"></param>
+        /// <param name="countryName"></param>
+        /// <param name="countryDefaultcurrencyId"></param>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
+        public int ExecuteNonQueryTblCountry(string sqlText, string countryCode, string countryDefaultcurrencySymbol, string countryName, int countryDefaultcurrencyId, int countryId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new(ConnectionStr))
+            {
+                con.Open();
+
+                using MySqlCommand cmd = new(sqlText, con);
+                // Add Int values
+                cmd.Parameters.Add("@countryId", MySqlDbType.Int32).Value = countryId;
+                cmd.Parameters.Add("@countryDefaultcurrencyId", MySqlDbType.Int32).Value = countryDefaultcurrencyId;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@countryCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@countryDefaultcurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@countryName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                //set values
+                if (!String.IsNullOrEmpty(countryCode))
+                    cmd.Parameters["@countryCode"].Value = countryCode;
+
+                if (!String.IsNullOrEmpty(countryCode))
+                    cmd.Parameters["@countryDefaultcurrencySymbol"].Value = countryDefaultcurrencySymbol;
+
+                if (!String.IsNullOrEmpty(countryName))
+                    cmd.Parameters["@countryName"].Value = countryName;
+
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            return rowsAffected;
+        }
+        #endregion
+
+        #region Execute Non Query Table: Currency
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="currencyCode"></param>
+        /// <param name="currencySymbol"></param>
+        /// <param name="currencyName"></param>
+        /// <param name="currencyConversionRate"></param>
+        /// <param name="currencyId"></param>
+        /// <returns></returns>
+        public int ExecuteNonQueryTblCurrency(string sqlText, string currencyCode, string currencySymbol, string currencyName, float currencyConversionRate, int currencyId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new(ConnectionStr))
+            {
+                con.Open();
+
+                using MySqlCommand cmd = new(sqlText, con);
+                // Add Int values
+                cmd.Parameters.Add("@currencyId", MySqlDbType.Int32).Value = currencyId;
+
+                // Add Float values
+                cmd.Parameters.Add("@currencyConversionRate", MySqlDbType.Float).Value = currencyConversionRate;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@currencyCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@currencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@countryName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                //set values
+                if (!String.IsNullOrEmpty(currencyCode))
+                    cmd.Parameters["@currencyCode"].Value = currencyCode;
+
+                if (!String.IsNullOrEmpty(currencySymbol))
+                    cmd.Parameters["@currencySymbol"].Value = currencySymbol;
+
+                if (!String.IsNullOrEmpty(currencyName))
+                    cmd.Parameters["@currencyName"].Value = currencyName;
+
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            return rowsAffected;
+        }
+        #endregion
+
+        #region Execute Non Query Table: Product
+        /// <summary>
+        /// Parameters necesary to execute non query
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="productCode"></param>
+        /// <param name="productName"></param>
+        /// <param name="productMinimalStock"></param>
+        /// <param name="productStandardOrderQuantity"></param>
+        /// <param name="productPrice"></param>
+        /// <param name="productSupplierProductNumber"></param>
+        /// <param name="productProjectCosts"></param>
+        /// <param name="productCategoryId"></param>
+        /// <param name="productCategoryName"></param>
+        /// <param name="productStorageId"></param>
+        /// <param name="productStorageName"></param>
+        /// <param name="productSupplierId"></param>
+        /// <param name="productSupplierName"></param>
+        /// <param name="productBrandId"></param>
+        /// <param name="productBrandName"></param>
+        /// <param name="productUnitId"></param>
+        /// <param name="productUnitName"></param>
+        /// <param name="productMemo"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, int productId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new(ConnectionStr))
+            {
+                con.Open();
+
+                using MySqlCommand cmd = new(sqlText, con);
+                // Add Int values
+                cmd.Parameters.Add("@productBrandId", MySqlDbType.Int32).Value = productBrandId;
+                cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
+                cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
+                cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int32).Value = productProjectCosts;
+                cmd.Parameters.Add("@productStorageId", MySqlDbType.Int32).Value = productStorageId;
+                cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
+                cmd.Parameters.Add("@productUnitId", MySqlDbType.Int32).Value = productUnitId;
+
+                // Add Float values
+                cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Float).Value = productMinimalStock;
+                cmd.Parameters.Add("@productPrice", MySqlDbType.Float).Value = productPrice;
+                cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Float).Value = productStandardOrderQuantity;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@productBrandName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productCategoryName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productUnitName", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                // Add LongText values
+                cmd.Parameters.Add("@productMemo", MySqlDbType.LongText).Value = DBNull.Value;
+
+                //set values
+                if (!String.IsNullOrEmpty(productBrandName))
+                    cmd.Parameters["@productBrandName"].Value = productBrandName;
+
+                if (!String.IsNullOrEmpty(productCategoryName))
+                    cmd.Parameters["@productCategoryName"].Value = productCategoryName;
+
+                if (!String.IsNullOrEmpty(productCode))
+                    cmd.Parameters["@productCode"].Value = productCode;
+
+                if (!String.IsNullOrEmpty(productName))
+                    cmd.Parameters["@productName"].Value = productName;
+
+                if (!String.IsNullOrEmpty(productStorageName))
+                    cmd.Parameters["@productStorageName"].Value = productStorageName;
+
+                if (!String.IsNullOrEmpty(productSupplierName))
+                    cmd.Parameters["@productSupplierName"].Value = productSupplierName;
+
+                if (!String.IsNullOrEmpty(productSupplierProductNumber))
+                    cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
+
+                if (!String.IsNullOrEmpty(productUnitName))
+                    cmd.Parameters["@productUnitName"].Value = productUnitName;
+
+                if (!String.IsNullOrEmpty(productMemo))
+                    cmd.Parameters["@productMemo"].Value = productMemo;
+
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            return rowsAffected;
+        }
+        #endregion
+
+        #region Execute Non Query Table: ProductSupplier
+        public int ExecuteNonQueryTblProductSupplier(string sqlText, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, string productSupplierDefault, int productSupplierId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
+                    cmd.Parameters.Add("@productSupplierProductId", MySqlDbType.Int32).Value = productSupplierProductId;
+                    cmd.Parameters.Add("@productSupplierSupplierId", MySqlDbType.Int32).Value = productSupplierSupplierId;
+                    cmd.Parameters.Add("@productSupplierSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierCurrencyId", MySqlDbType.Int32).Value = productSupplierCurrencyId;
+                    cmd.Parameters.Add("@productSupplierCurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@productSupplierProductPrice", MySqlDbType.Float).Value = productSupplierProductPrice;
+                    cmd.Parameters.Add("@productSupplierDefault", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                    //set values
+                    if (!String.IsNullOrEmpty(productSupplierSupplierName))
+                        cmd.Parameters["@productSupplierSupplierName"].Value = productSupplierSupplierName;
+
+                    if (!String.IsNullOrEmpty(productSupplierCurrencySymbol))
+                        cmd.Parameters["@productSupplierCurrencySymbol"].Value = productSupplierCurrencySymbol;
+
+                    if (!String.IsNullOrEmpty(productSupplierProductNumber))
+                        cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
+
+                    if (!String.IsNullOrEmpty(productSupplierProductName))
+                        cmd.Parameters["@productSupplierProductName"].Value = productSupplierProductName;
+
+                    if (!String.IsNullOrEmpty(productSupplierDefault))
+                        cmd.Parameters["@productSupplierDefault"].Value = productSupplierDefault;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table: ProductSupplier
 
         #region Execute Non Query Table: Supplier
         public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, float supplierOrderCosts, float supplierMinOrderCosts, int supplierId = 0)
@@ -150,136 +461,6 @@ namespace Modelbuilder
             return rowsAffected;
         }
         #endregion Execute Non Query Table: Supplier
-
-        #region Execute Non Query Table: Product
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo, int productId = 0)
-        {
-            int rowsAffected = 0;
-
-            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-            {
-                //open
-                con.Open();
-
-                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-                {
-
-                    //set values - if they exist
-                    //if a value is null, one must use DBNull.Value
-                    //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
-                    // floating cells will be stored as INT and therefore will be multiplied by 100 before saving
-
-                    //add parameters setting string values to DBNull.Value
-                    cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
-                    cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Float).Value = productMinimalStock;
-                    cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Float).Value = productStandardOrderQuantity;
-                    cmd.Parameters.Add("@productPrice", MySqlDbType.Float).Value = productPrice;
-                    cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int32).Value = productProjectCosts;
-                    cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
-                    cmd.Parameters.Add("@productCategoryName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productStorageId", MySqlDbType.Int32).Value = productStorageId;
-                    cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
-                    cmd.Parameters.Add("@productSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productBrandId", MySqlDbType.Int32).Value = productBrandId;
-                    cmd.Parameters.Add("@productBrandName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productDimensions", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productUnitId", MySqlDbType.Int32).Value = productUnitId;
-                    cmd.Parameters.Add("@productUnitName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productMemo", MySqlDbType.LongText).Value = DBNull.Value;
-
-                    //set values
-                    if (!String.IsNullOrEmpty(productCode))
-                        cmd.Parameters["@productCode"].Value = productCode;
-
-                    if (!String.IsNullOrEmpty(productName))
-                        cmd.Parameters["@productName"].Value = productName;
-
-                    if (!String.IsNullOrEmpty(productSupplierProductNumber))
-                        cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
-
-                    if (!String.IsNullOrEmpty(productCategoryName))
-                        cmd.Parameters["@productCategoryName"].Value = productCategoryName;
-
-                    if (!String.IsNullOrEmpty(productStorageName))
-                        cmd.Parameters["@productStorageName"].Value = productStorageName;
-
-                    if (!String.IsNullOrEmpty(productSupplierName))
-                        cmd.Parameters["@productSupplierName"].Value = productSupplierName;
-
-                    if (!String.IsNullOrEmpty(productBrandName))
-                        cmd.Parameters["@productBrandName"].Value = productBrandName;
-
-                    if (!String.IsNullOrEmpty(productUnitName))
-                        cmd.Parameters["@productUnitName"].Value = productUnitName;
-
-                    if (!String.IsNullOrEmpty(productDimensions))
-                        cmd.Parameters["@productDimensions"].Value = productDimensions;
-
-                    if (!String.IsNullOrEmpty(productMemo))
-                        cmd.Parameters["@productMemo"].Value = productMemo;
-
-                    //execute; returns the number of rows affected
-                    rowsAffected = cmd.ExecuteNonQuery();
-                }
-            }
-
-            return rowsAffected;
-        }
-        #endregion Execute Non Query Table: Product
-
-        #region Execute Non Query Table: ProductSupplier
-        public int ExecuteNonQueryTblProductSupplier(string sqlText, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, int productSupplierId = 0)
-        {
-            int rowsAffected = 0;
-
-            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-            {
-                //open
-                con.Open();
-
-                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-                {
-
-                    //set values - if they exist
-                    //if a value is null, one must use DBNull.Value
-                    //if the value is DBNull.Value, and the table column doesn't allow nulls, this will cause an error
-        
-                    //add parameters setting string values to DBNull.Value
-                    cmd.Parameters.Add("@productSupplierId", MySqlDbType.Int32).Value = productSupplierId;
-                    cmd.Parameters.Add("@productSupplierProductId", MySqlDbType.Int32).Value = productSupplierProductId;
-                    cmd.Parameters.Add("@productSupplierSupplierId", MySqlDbType.Int32).Value = productSupplierSupplierId;
-                    cmd.Parameters.Add("@productSupplierSupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productSupplierCurrencyId", MySqlDbType.Int32).Value = productSupplierCurrencyId;
-                    cmd.Parameters.Add("@productSupplierCurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productSupplierProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productSupplierProductName", MySqlDbType.VarChar).Value = DBNull.Value;
-                    cmd.Parameters.Add("@productSupplierProductPrice", MySqlDbType.Float).Value = productSupplierProductPrice;
-
-                    //set values
-                    if (!String.IsNullOrEmpty(productSupplierSupplierName))
-                        cmd.Parameters["@productSupplierSupplierName"].Value = productSupplierSupplierName;
-
-                    if (!String.IsNullOrEmpty(productSupplierCurrencySymbol))
-                        cmd.Parameters["@productSupplierCurrencySymbol"].Value = productSupplierCurrencySymbol;
-
-                    if (!String.IsNullOrEmpty(productSupplierProductNumber))
-                        cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
-
-                    if (!String.IsNullOrEmpty(productSupplierProductName))
-                        cmd.Parameters["@productSupplierProductName"].Value = productSupplierProductName;
-
-                    //execute; returns the number of rows affected
-                    rowsAffected = cmd.ExecuteNonQuery();
-                }
-            }
-
-            return rowsAffected;
-        }
-        #endregion Execute Non Query Table: ProductSupplier
 
         #region Execute Non Query Table Supplier_Id: Supplier
         public int ExecuteNonQueryTblSupplierId(string sqlText, int supplierId = 0)
@@ -558,14 +739,14 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
+        public string InsertTblProduct(string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName, , product_BrandId, product_BrandName, product_Dimensions, product_UnitId, product_UnitName, product_Memo);";
+            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_SupplierProductNumber, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_SupplierId, product_SupplierName, , product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo);";
             
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, productMemo);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo);
 
                 if (rowsAffected > 0)
                 {
@@ -593,14 +774,14 @@ namespace Modelbuilder
         #endregion Insert in Table: Product
 
         #region Insert in Table: ProductSupplier
-        public string InsertTblProductSupplier(int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice)
+        public string InsertTblProductSupplier(int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, string productSupplierDefault)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO ProductSupplier (productSupplier_ProductId, productSupplier_SupplierId, productSupplier_SupplierName, productSupplier_CurrencyId, productSupplier_CurrencySymbol, productSupplier_ProductNumber,  productSupplier_ProductName, productSupplier_ProductPrice);";
+            string sqlText = "INSERT INTO ProductSupplier (productSupplier_ProductId, productSupplier_SupplierId, productSupplier_SupplierName, productSupplier_CurrencyId, productSupplier_CurrencySymbol, productSupplier_ProductNumber,  productSupplier_ProductName, productSupplier_ProductPrice, productSupplier_Default) VALUES (@productSupplierProductId, @productSupplierSupplierId, @productSupplierSupplierName, @productSupplierCurrencyId, @productSupplierCurrencySymbol, @productSupplierProductNumber, @productSupplierProductName, @productSupplierProductPrice, @productSupplierDefault);";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice);
+                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierDefault);
 
                 if (rowsAffected > 0)
                 {
@@ -622,10 +803,9 @@ namespace Modelbuilder
                 Debug.WriteLine("Error (UpdateTblProduct): " + ex.Message);
                 throw;
             }
-
             return result;
         }
-        #endregion Insert in Table: Product
+        #endregion
 
         #region Delete row in Table: Supplier
         public string DeleteTblSupplier(int supplierId)
@@ -761,14 +941,14 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, string productDimensions, int productUnitId, string productUnitName, string productMemo)
+        public string UpdateTblProduct(int productId, string productCode, string productName, float productMinimalStock, float productStandardOrderQuantity, float productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_Dimensions = @productDimensions, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productDimensions, productUnitId, productUnitName, productMemo, productId);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -789,14 +969,14 @@ namespace Modelbuilder
         #endregion Update Table: Product
 
         #region Update Table: ProductSupplier
-        public string UpdateTblProductSupplier(int productSupplierId, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice)
+        public string UpdateTblProductSupplier(int productSupplierId, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, string productSupplierDefault)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE ProductSupplier SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice WHERE productSupplier_Id = @productSupplierId;";
+            string sqlText = "UPDATE ProductSupplier SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice, productSupplier_Default = @productSupplierDefault WHERE productSupplier_Id = @productSupplierId;";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierId);
+                int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierDefault, productSupplierId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productSupplierProductName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -827,7 +1007,7 @@ namespace Modelbuilder
                     sqlText = "SELECT brand_Name, brand_Id FROM brand ORDER by brand_Id";
                     break;
                 default:
-                    sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_Dimensions = @productDimensions, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+                    sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
                     break;
             }
 
@@ -856,12 +1036,12 @@ namespace Modelbuilder
 
             Database dbCategoryConnection = new()
             {
-                TableName = DatabaseCategoryTable
+                TableName = DbCategoryTable
             };
 
             dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
             dbCategoryConnection.SqlOrderByString = "category_Id";
-            dbCategoryConnection.TableName = DatabaseCategoryTable;
+            dbCategoryConnection.TableName = DbCategoryTable;
 
             DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
 
@@ -882,12 +1062,12 @@ namespace Modelbuilder
             
             Database dbCountryConnection = new()
             {
-                TableName = DatabaseCountryTable
+                TableName = DbCountryTable
             };
 
             dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
             dbCountryConnection.SqlOrderByString = "country_Id";
-            dbCountryConnection.TableName = DatabaseCountryTable;
+            dbCountryConnection.TableName = DbCountryTable;
 
             DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
 
@@ -908,12 +1088,12 @@ namespace Modelbuilder
 
             Database dbCurrencyConnection = new()
             {
-                TableName = DatabaseCurrencyTable
+                TableName = DbCurrencyTable
             };
 
             dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
             dbCurrencyConnection.SqlOrderByString = "currency_Id";
-            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
+            dbCurrencyConnection.TableName = DbCurrencyTable;
 
             DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
 
@@ -934,12 +1114,12 @@ namespace Modelbuilder
 
             Database dbStorageConnection = new()
             {
-                TableName = DatabaseStorageTable
+                TableName = DbStorageTable
             };
 
             dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
             dbStorageConnection.SqlOrderByString = "storage_Id";
-            dbStorageConnection.TableName = DatabaseStorageTable;
+            dbStorageConnection.TableName = DbStorageTable;
 
             DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
 
@@ -955,28 +1135,61 @@ namespace Modelbuilder
         #endregion
 
         #region Fill Supplier dropdown
-        public List<Supplier> SupplierList()
+        public List<Supplier> GetSupplierList(List<Supplier> supplierList)
         {
-
-            Database dbSupplierConnection = new()
+            var DatabaseTable = DbSupplierTable;
+            Database dbConnection = new()
             {
-                TableName = DatabaseSupplierTable
+                TableName = DatabaseTable
             };
 
-            dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_Id";
-            dbSupplierConnection.SqlOrderByString = "supplier_Id";
-            dbSupplierConnection.TableName = DatabaseSupplierTable;
+            dbConnection.SqlSelectionString = "supplier_Name, supplier_Id, supplier_CurrencySymbol, supplier_CurrencyId";
+            dbConnection.SqlOrderByString = "supplier_Id";
+            dbConnection.TableName = DatabaseTable;
 
-            DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
+            DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
             List<Supplier> SupplierList = new();
 
-            for (int i = 0; i < dtSupplierSelection.Rows.Count; i++)
+            for (int i = 0; i < dtSelection.Rows.Count; i++)
             {
-                SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(),
-                    int.Parse(dtSupplierSelection.Rows[i][1].ToString())));
+                // SupplierList.Add(new Supplier(dtSelection.Rows[i][0].ToString(), int.Parse(dtSelection.Rows[i][1].ToString())));
+                supplierList.Add(new Supplier
+                {
+                    SupplierName = dtSelection.Rows[i][0].ToString(),
+                    SupplierId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
+                    SupplierCurrencySymbol = dtSelection.Rows[i][2].ToString(),
+                    SupplierCurrencyId = int.Parse(dtSelection.Rows[i][3].ToString(), Culture)
+                });
             };
-            return SupplierList;
+            return supplierList;
+        }
+        #endregion
+
+        #region Fill the Brand dropdown
+        public List<Brand> GetBrandList(List<Brand> brandList)
+        {
+            var DatabaseTable = DbBrandTable;
+            Database dbConnection = new()
+            {
+                TableName = DatabaseTable
+            };
+
+            dbConnection.SqlSelectionString = "brand_Name, brand_Id";
+            dbConnection.SqlOrderByString = "brand_Id";
+            dbConnection.TableName = DatabaseTable;
+
+            DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
+
+            for (int i = 0; i < dtSelection.Rows.Count; i++)
+            {
+                brandList.Add(new Brand
+                {
+                    BrandName = dtSelection.Rows[i][0].ToString(),
+                    BrandId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
+                });
+            };
+            return brandList;
         }
         #endregion
         #endregion Fill the dropdownlists
@@ -1041,6 +1254,7 @@ namespace Modelbuilder
         #region Create object for all suppliers in table for dropdown
         public class Supplier
         {
+            /*
             public Supplier(string Name, int Id)
             {
                 supplierName = Name;
@@ -1049,9 +1263,22 @@ namespace Modelbuilder
 
             public string supplierName { get; set; }
             public int supplierId { get; set; }
+            */
+            public string SupplierName { get; set; }
+            public int SupplierId { get; set; }
+            public string SupplierCurrencySymbol { get; set; }
+            public int SupplierCurrencyId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all brands in table for dropdown
+        public class Brand
+        {
+            public string BrandName { get; set; }
+            public int BrandId { get; set; }
         }
         #endregion
         #endregion Helper classes to for creating objects to populate dropdowns
-        #endregion Create lists to populate dropdowns for metadata pages
+#endregion Create lists to populate dropdowns for metadata pages
     }
 }
