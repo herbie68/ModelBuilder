@@ -222,9 +222,9 @@ namespace Modelbuilder
 
             GetMemo(dg.SelectedIndex);
 
-            var _Minimalstock = float.Parse(Row_Selected["product_MinimalStock"].ToString());
-            var _StandardOrderQuantity = float.Parse(Row_Selected["product_StandardOrderQuantity"].ToString());
-            var _Price = float.Parse(Row_Selected["product_Price"].ToString());
+            var _Minimalstock = double.Parse(Row_Selected["product_MinimalStock"].ToString());
+            var _StandardOrderQuantity = double.Parse(Row_Selected["product_StandardOrderQuantity"].ToString());
+            var _Price = double.Parse(Row_Selected["product_Price"].ToString());
 
             valueProductId.Text = Row_Selected["product_Id"].ToString();
             valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();
@@ -429,7 +429,7 @@ namespace Modelbuilder
             if (valueProductId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
             {
-                InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
+                //InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
             }
             else
             {
@@ -447,7 +447,98 @@ namespace Modelbuilder
         #region Click New data row button (on toolbar)
         private void ToolbarButtonNew(object sender, RoutedEventArgs e)
         {
-            InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
+            // When the ProductId is not empty, a excisting row is selected when the add new row button is hit. 
+            // In this case a new row with blank values should be added to the dtable and selected.
+            // Otherwise it can be that fields are already filled with data befor the add new row button was hit.
+            // In this case the existing value should be used instead of emptying all the data from the form.
+
+            var productProjectCosts = 0;
+            var productCode = "";
+            var productName = "";
+            var productMinimalStock = 0.00;
+            var productStandardOrderQuantity = 0.00;
+            var productPrice = 0.00;
+            var productCategoryId = 0;
+            var productCategoryName = "";
+            var productStorageId = 0;
+            var productStorageName = "";
+            var productSupplierId = 0;
+            var productSupplierName = "";
+            var productBrandId = 0;
+            var productBrandName = "";
+            var productUnitId = 0;
+            var productUnitName = "";
+
+            if (valueProductId.Text == "")
+            {
+                // No existing product selected, use formdata if entered
+                // check on entered data on formated field because they throw an error on adding a new row
+                productCode = inpProductCode.Text;
+                productName = inpProductName.Text;
+
+                if (inpProductMinimalStock.Text != "")
+                {productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", "."));}
+
+                if (inpProductStandardOrderQuantity.Text != "")
+                {productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));}
+
+                if (inpProductPrice.Text != "")
+                { productPrice = double.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", "")); }
+
+                var productSupplierProductNumber = inpSupplierProductNumber.Text;
+                if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
+
+                if (valueCategoryId.Text != "")
+                {
+                    productCategoryId = int.Parse(valueCategoryId.Text);
+                }
+                
+                productCategoryName = valueCategoryName.Text;
+
+                if (valueStorageId.Text != "")
+                {
+                    productStorageId = int.Parse(valueStorageId.Text);
+                }
+
+                productStorageName = valueStorageName.Text;
+
+                if (valueBrandId.Text != "")
+                {
+                    productBrandId = int.Parse(valueBrandId.Text);
+                }
+                productBrandName = valueBrandName.Text;
+                if (valueUnitId.Text != "")
+                {
+                    productUnitId = int.Parse(valueUnitId.Text);
+                }
+                productUnitName = valueBrandName.Text;
+            }
+
+            //convert RTF to string
+            string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+
+            DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            UpdateStatus(result);
+
+            // Get data from database
+            _dt = _helper.GetDataTblProduct();
+
+            // Populate data in datagrid from datatable
+            ProductCode_DataGrid.DataContext = _dt;
+            //dataGridView1.Rows[e.RowIndex].Selected = true;
+            DataGrid dg = (DataGrid)sender;
+
+            if (dg.SelectedItem is not DataRowView Row_Selected)
+            {
+                return;
+            }
+
+            // InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
         }
         #endregion
 
@@ -596,19 +687,25 @@ namespace Modelbuilder
         private void UpdateRowProductSupplier(int dgIndex)
         {
             //var productSupplierId = int.Parse(valueProductSupplierId.Text);
-            var productSupplierId = int.Parse(valueProductSupplierSupplierId.Text);
-            var productSupplierProductId = int.Parse(valueProductId.Text);
-            var productSupplierSupplierId = int.Parse(valueSupplierId.Text);
-            var productSupplierSupplierName = valueProductSupplierSupplierName.Text;
-            var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);
-            var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;
-            var productSupplierProductNumber = inpSupplierProductNumber.Text;
-            var productSupplierProductName = inpSupplierProductName.Text;
-            var productSupplierProductPrice = float.Parse(inpSupplierProductPrice.Text.Replace("€", "").Replace(" ", ""));
-            var productSupplierDefault = "";
+            var productSupplierId = int.Parse(valueProductSupplierId.Text);                     // Unique Id for the recrd in the ProductSupplier Table
+            var productSupplierProductId = int.Parse(valueProductId.Text);                      // Id of the selected Product
+            var productSupplierSupplierId = int.Parse(valueSupplierId.Text);                    // Id of the Supplier selected from the Supplier ComboBox
+            var productSupplierSupplierName = valueProductSupplierSupplierName.Text;            // Name of the Supplier selected from the Supplier ComboBox
+            var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);     // Default Currency Id of the Supplier selected from the Supplier ComboBox
+            var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;         // Default Currency Symbol of the Supplier selected from the Supplier ComboBox
+            var productSupplierProductNumber = inpSupplierProductNumber.Text;                   // Product number used by the selected supplier
+            var productSupplierProductName = inpSupplierProductName.Text;                       // Product description used by the selected supplier
+            var productSupplierProductPrice = float.Parse(inpSupplierProductPrice.Text.Replace("€", "").Replace(" ", "")); // Product price used by the selected supplier
+            var productSupplierDefault = "";                                                    // Is the selected supplier/product the default product to be used?
             if ((bool)chkSupplierDefault.IsChecked) { productSupplierDefault = "*"; }
 
             InitializeHelper();
+
+            // If the checkbox that for default supplier is selected, the eventual other default supplier should be set to '', because there can only be one default
+            if ((bool)chkSupplierDefault.IsChecked)
+            {
+                _ = _helper.UncheckDefaultSupplierTblProductSupplier(productSupplierId, productSupplierProductId);
+            }
 
             string result = string.Empty;
             result = _helper.UpdateTblProductSupplier(productSupplierId, productSupplierProductId, productSupplierSupplierId, productSupplierSupplierName, productSupplierCurrencyId, productSupplierCurrencySymbol, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierDefault);
@@ -633,9 +730,9 @@ namespace Modelbuilder
 
             var productCode = inpProductCode.Text;
             var productName = inpProductName.Text;
-            var productMinimalStock = float.Parse(inpProductMinimalStock.Text.Replace(",", "."));
-            var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));
-            var productPrice = float.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
+            var productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", "."));
+            var productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));
+            var productPrice = double.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
             var productSupplierProductNumber = inpSupplierProductNumber.Text;
             if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
             { productProjectCosts = 0; }
@@ -656,7 +753,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
             UpdateStatus(result);
         }
         #endregion
