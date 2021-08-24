@@ -16,7 +16,7 @@ namespace Modelbuilder
         public static readonly string uid = "Xf4RToJiEC";
         public static readonly string password = "UQ0xrOlmlK";
         */
-        
+
         public static readonly string server = "localhost";
         public static readonly string database = "modelbuilder";
         public static readonly int port = 3306;

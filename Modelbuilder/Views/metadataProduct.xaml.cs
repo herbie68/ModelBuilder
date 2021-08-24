@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using Google.Protobuf.WellKnownTypes;
 using System.Data.SqlClient;
+using Microsoft.Win32;
 
 namespace Modelbuilder
 {
@@ -214,12 +215,6 @@ namespace Modelbuilder
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
-            // Get data from database
-            _dtPS = _helper.GetDataTblProductSupplier();
-
-            // Populate data in datagrid from datatable
-            ProductSupplierCode_DataGrid.DataContext = _dtPS;
-
             GetMemo(dg.SelectedIndex);
 
             var _Minimalstock = double.Parse(Row_Selected["product_MinimalStock"].ToString());
@@ -231,8 +226,6 @@ namespace Modelbuilder
             valueCategoryName.Text = Row_Selected["product_CategoryName"].ToString();
             valueStorageId.Text = Row_Selected["product_StorageId"].ToString();
             valueStorageName.Text = Row_Selected["product_StorageName"].ToString();
-            valueSupplierId.Text = Row_Selected["product_SupplierId"].ToString();
-            valueSupplierName.Text = Row_Selected["product_SupplierName"].ToString();
             valueBrandId.Text = Row_Selected["product_BrandId"].ToString();
             valueBrandName.Text = Row_Selected["product_BrandName"].ToString();
             valueUnitId.Text = Row_Selected["product_UnitId"].ToString();
@@ -273,7 +266,7 @@ namespace Modelbuilder
                     cboxProductBrand.SelectedItem = brand;
                 }
             }
-            
+
 
             //Select the saved Unit in the combobox by default
             foreach (Unit unit in cboxProductUnit.Items)
@@ -294,12 +287,6 @@ namespace Modelbuilder
                     break;
                 }
             }
-            // Get data from database
-            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
-
-            // Populate data in datagrid from datatable
-            ProductSupplierCode_DataGrid.DataContext = _dtPS;
-
         }
         #endregion
 
@@ -324,6 +311,8 @@ namespace Modelbuilder
             if (Row_Selected["productSupplier_ProductPrice"].ToString() != "") { _ProductPrice = float.Parse(Row_Selected["productSupplier_ProductPrice"].ToString()); };
 
             valueProductSupplierId.Text = Row_Selected["productSupplier_Id"].ToString();
+            valueProductSupplierSupplierId.Text = Row_Selected["productSupplier_SupplierId"].ToString();
+            valueProductSupplierSupplierName.Text = Row_Selected["productSupplier_SupplierName"].ToString();
             valueProductSupplierCurrencyId.Text = Row_Selected["productSupplier_CurrencyId"].ToString();
             inpSupplierProductNumber.Text = Row_Selected["productSupplier_ProductNumber"].ToString();
             inpSupplierProductName.Text = Row_Selected["productSupplier_ProductName"].ToString();
@@ -337,7 +326,7 @@ namespace Modelbuilder
             {
                 chkSupplierDefault.IsChecked = false;
             }
-            
+
 
             //Select the saved Supplier in the combobox by default
             foreach (HelperMySQL.Supplier supplier in cboxProductSupplier.Items)
@@ -353,12 +342,6 @@ namespace Modelbuilder
                     break;
                 }
             }
-
-            // Get data from database
-            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
-
-            // Populate data in datagrid from datatable
-            ProductSupplierCode_DataGrid.DataContext = _dtPS;
         }
         #endregion
 
@@ -411,15 +394,10 @@ namespace Modelbuilder
         {
             int rowIndex = _currentDataGridIndex;
 
-            // Update Id, Code, Name and Symbol values with the selected Country and Currency
             valueCategoryId.Text = ((Category)cboxProductCategory.SelectedItem).categoryId.ToString();
             valueCategoryName.Text = ((Category)cboxProductCategory.SelectedItem).categoryName.ToString();
             valueStorageId.Text = ((Storage)cboxProductStorage.SelectedItem).storageId.ToString();
             valueStorageName.Text = ((Storage)cboxProductStorage.SelectedItem).storageName.ToString();
-            //valueSupplierId.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierId.ToString();
-            //valueSupplierName.Text = ((Supplier)cboxProductSupplier.SelectedItem).supplierName.ToString();
-            //valueBrandId.Text = ((Brand)cboxProductBrand.SelectedItem).brandId.ToString();
-            //valueBrandName.Text = ((Brand)cboxProductBrand.SelectedItem).brandName.ToString();
             valueUnitId.Text = ((Unit)cboxProductUnit.SelectedItem).unitId.ToString();
             valueUnitName.Text = ((Unit)cboxProductUnit.SelectedItem).unitName.ToString();
 
@@ -462,8 +440,6 @@ namespace Modelbuilder
             var productCategoryName = "";
             var productStorageId = 0;
             var productStorageName = "";
-            var productSupplierId = 0;
-            var productSupplierName = "";
             var productBrandId = 0;
             var productBrandName = "";
             var productUnitId = 0;
@@ -477,22 +453,21 @@ namespace Modelbuilder
                 productName = inpProductName.Text;
 
                 if (inpProductMinimalStock.Text != "")
-                {productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", "."));}
+                { productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", ".")); }
 
                 if (inpProductStandardOrderQuantity.Text != "")
-                {productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));}
+                { productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", ".")); }
 
                 if (inpProductPrice.Text != "")
                 { productPrice = double.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", "")); }
 
-                var productSupplierProductNumber = inpSupplierProductNumber.Text;
                 if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
 
                 if (valueCategoryId.Text != "")
                 {
                     productCategoryId = int.Parse(valueCategoryId.Text);
                 }
-                
+
                 productCategoryName = valueCategoryName.Text;
 
                 if (valueStorageId.Text != "")
@@ -517,7 +492,8 @@ namespace Modelbuilder
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
 
-            DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+            if (_dt.Rows.Count != 0)
+            { DataRow row = _dt.Rows[_dt.Rows.Count - 1]; }
 
             InitializeHelper();
 
@@ -531,12 +507,18 @@ namespace Modelbuilder
             // Populate data in datagrid from datatable
             ProductCode_DataGrid.DataContext = _dt;
             //dataGridView1.Rows[e.RowIndex].Selected = true;
-            DataGrid dg = (DataGrid)sender;
+            if (ProductCode_DataGrid.SelectedItem is not DataRowView Row_Selected)
+            {
+                return;
+            }
+            /*
+             * DataGrid dg = (DataGrid)sender;
 
             if (dg.SelectedItem is not DataRowView Row_Selected)
             {
                 return;
             }
+            */
 
             // InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
         }
@@ -665,8 +647,6 @@ namespace Modelbuilder
             var productCategoryName = valueCategoryName.Text;
             var productStorageId = int.Parse(valueStorageId.Text);
             var productStorageName = valueStorageName.Text;
-            var productSupplierId = int.Parse(valueSupplierId.Text);
-            var productSupplierName = valueSupplierName.Text;
             var productBrandId = int.Parse(valueBrandId.Text);
             var productBrandName = valueBrandName.Text;
             var productUnitId = int.Parse(valueUnitId.Text);
@@ -678,7 +658,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productSupplierProductNumber, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productSupplierId, productSupplierName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
             UpdateStatus(result);
         }
         #endregion
@@ -689,7 +669,7 @@ namespace Modelbuilder
             //var productSupplierId = int.Parse(valueProductSupplierId.Text);
             var productSupplierId = int.Parse(valueProductSupplierId.Text);                     // Unique Id for the recrd in the ProductSupplier Table
             var productSupplierProductId = int.Parse(valueProductId.Text);                      // Id of the selected Product
-            var productSupplierSupplierId = int.Parse(valueSupplierId.Text);                    // Id of the Supplier selected from the Supplier ComboBox
+            var productSupplierSupplierId = int.Parse(valueProductSupplierSupplierId.Text);     // Id of the Supplier selected from the Supplier ComboBox
             var productSupplierSupplierName = valueProductSupplierSupplierName.Text;            // Name of the Supplier selected from the Supplier ComboBox
             var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);     // Default Currency Id of the Supplier selected from the Supplier ComboBox
             var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;         // Default Currency Symbol of the Supplier selected from the Supplier ComboBox
@@ -740,8 +720,6 @@ namespace Modelbuilder
             var productCategoryName = valueCategoryName.Text;
             var productStorageId = int.Parse(valueStorageId.Text);
             var productStorageName = valueStorageName.Text;
-            var productSupplierId = int.Parse(valueSupplierId.Text);
-            var productSupplierName = valueSupplierName.Text;
             var productBrandId = int.Parse(valueBrandId.Text);
             var productBrandName = valueBrandName.Text;
             var productUnitId = int.Parse(valueUnitId.Text);
@@ -761,13 +739,16 @@ namespace Modelbuilder
         #region Delete row from Product table
         private void DeleteRowProduct(int dgIndex)
         {
-            int productId = int.Parse(valueProductId.Text);
+            if (valueProductId.Text != "")
+            {
+                var productId = int.Parse(valueProductId.Text);
 
-            InitializeHelper();
+                InitializeHelper();
 
-            string result = string.Empty;
-            result = _helper.DeleteTblProduct(productId);
-            UpdateStatus(result);
+                string result = string.Empty;
+                result = _helper.DeleteTblProduct(productId);
+                UpdateStatus(result);
+            }
         }
         #endregion
 
@@ -781,6 +762,27 @@ namespace Modelbuilder
             string result = string.Empty;
             result = _helper.DeleteTblProductSupplier(productSupplierId);
             UpdateStatus(result);
+        }
+        #endregion
+
+        #region Add a product Image
+        private void ImageAdd(object sender, RoutedEventArgs e)
+        {
+            //https://docs.microsoft.com/en-us/dotnet/desktop/wpf/controls/how-to-rotate-an-image?view=netframeworkdesktop-4.8
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Selecteer een afbeelding voor dit product";
+            op.Filter = "JPEG (*.jpeg)|*.jpeg|PNG (*.png)|*.png|JPG (*.jpg)|*.jpg|GIF (*.gif)|*.gif|BMP (*.bmp)|*.bmp";
+            if (op.ShowDialog() == true)
+            {
+                imgProductImage.Source = new BitmapImage(new Uri(op.FileName));
+            }
+        }
+        #endregion
+
+        #region Delete a product Image
+        private void ImageDelete(object sender, RoutedEventArgs e)
+        {
+
         }
         #endregion
 

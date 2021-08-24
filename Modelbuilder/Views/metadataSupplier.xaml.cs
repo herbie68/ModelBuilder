@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Diagnostics;
 
 namespace Modelbuilder
 {
@@ -19,7 +19,7 @@ namespace Modelbuilder
         private DataTable _dt;
         private int _dbRowCount;
         private int _currentDataGridIndex;
-        static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
+        private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
         {
@@ -123,7 +123,7 @@ namespace Modelbuilder
 
                 if (!String.IsNullOrEmpty(ContentSupplierMemo))
                 {
-                     //clear existing data
+                    //clear existing data
                     inpSupplierMemo.Document.Blocks.Clear();
 
                     //convert to byte[]
@@ -145,8 +145,8 @@ namespace Modelbuilder
         {
             DataGrid dg = (DataGrid)sender;
 
-            if (dg.SelectedItem is not DataRowView Row_Selected) {return;}
-            
+            if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
@@ -231,8 +231,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
-            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -240,7 +240,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId,  supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -360,8 +360,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
-            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -375,7 +375,7 @@ namespace Modelbuilder
         #endregion
 
         #region Fill Country dropdown
-        static List<Country> CountryList()
+        private static List<Country> CountryList()
         {
 
             Database dbCountryConnection = new()
@@ -401,7 +401,7 @@ namespace Modelbuilder
         #endregion
 
         #region Fill Currency dropdown
-        static List<Currency> CurrencyList()
+        private static List<Currency> CurrencyList()
         {
 
             Database dbCurrencyConnection = new()

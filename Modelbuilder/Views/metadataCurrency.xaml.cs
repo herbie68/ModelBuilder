@@ -43,8 +43,8 @@ namespace Modelbuilder
             {
                 return;
             }
-            
-            var _ConversionRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString());
+
+            float _ConversionRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString());
             inpCurrencyId.Text = Row_Selected["currency_Id"].ToString();
             inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString().ToUpper();
             inpCurrencyName.Text = Row_Selected["currency_Name"].ToString();

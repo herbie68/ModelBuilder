@@ -131,7 +131,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`worktype_Name`, `worktype_FullPath`, `worktype_ParentId`) " + "VALUES('" + 
+            dbConnection.SqlCommandString = "(`worktype_Name`, `worktype_FullPath`, `worktype_ParentId`) " + "VALUES('" +
                 dialogWorktype.diaLogWorktypeValue + "', '" +
                 valueFullpath.Text.Replace("\\", "\\\\") + "\\\\" + dialogWorktype.diaLogWorktypeValue + "', '" +
                 valueId.Text + "');";
@@ -194,8 +194,8 @@ namespace Modelbuilder
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
 
-            var item = treeViewWorktype.SelectedItem as TreeViewItem;
-            var parent = item.Parent as TreeViewItem;
+            TreeViewItem item = treeViewWorktype.SelectedItem as TreeViewItem;
+            TreeViewItem parent = item.Parent as TreeViewItem;
             if (parent != null)
             {
                 parent.Items.Remove(item);
@@ -205,7 +205,7 @@ namespace Modelbuilder
         #endregion Delete a Worktype, including all subs under the selected worktype
 
         #region Rename Worktype save changes to tree and database
-        private void ToolbarButtonSave(object sender, RoutedEventArgs e) 
+        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
         {
             if (inpWorktypeName.Text != "")
             {
@@ -225,8 +225,8 @@ namespace Modelbuilder
 
                 _ = dbConnection.UpdateMySqlDataRecord();
 
-                var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
-                var NewPath = valueParentFullpath.Text + "\\" + inpWorktypeName.Text;
+                string OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
+                string NewPath = valueParentFullpath.Text + "\\" + inpWorktypeName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
                     "worktype_Fullpath = REPLACE(worktype_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +

@@ -70,8 +70,6 @@
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
@@ -141,8 +139,7 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Productnaam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" 
-                                                x:Name="inpProductName"  CharacterCasing="Upper"
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" 
                                                 Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Width="700" />
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Categorie" 
@@ -236,9 +233,19 @@
 
                         <!--#region Product Image block-->
                         <StackPanel Grid.Column="1" Margin="5">
-                            <Border Style="{DynamicResource ImageBorder}" Height="290" Width="230">
-                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProductImage" Grid.Column="1"/>
+                            <Border Style="{DynamicResource ImageBorder}" Height="234" Width="234" Margin="2">
+                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProductImage"/>
                             </Border>
+                            <ToolBarTray Style="{DynamicResource ImageToolBarTray}">
+                                <ToolBar Style="{DynamicResource ImageToolBar}">
+                                    <Button Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen" VerticalAlignment="Top">
+                                        <Image Style="{DynamicResource ToolBarAddIcon}"/>
+                                    </Button>
+                                    <Button Click="ImageDelete" ToolTip="Afbeelding verwijderen" VerticalAlignment="Top">
+                                        <Image Style="{DynamicResource ToolBarDeleteIcon}"/>
+                                    </Button>
+                                </ToolBar>
+                            </ToolBarTray>
                         </StackPanel>
                         <!--#endregion-->
                     </Grid>
@@ -384,10 +391,17 @@
                             <!--#region Datagrid definition-->
                             <DataGrid x:Name="ProductSupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
                                       SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged" 
-                                      Padding="3" Height="265" Margin="5,0">
+                                      Padding="3" Height="265" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding productSupplier_ProductId}" />
-                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding productSupplier_Default}" />
+                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding productSupplier_Default}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                     <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding productSupplier_SupplierName}" />
                                     <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding productSupplier_ProductNumber}" />
                                     <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding productSupplier_ProductName}" />
@@ -454,7 +468,8 @@
 
             <!--#region Datagrid definition-->
             <DataGrid x:Name="ProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                    Padding="3" SelectionChanged="ProductCode_DataGrid_SelectionChanged" Height="285" Margin="5,0">
+                    Padding="3" SelectionChanged="ProductCode_DataGrid_SelectionChanged" Height="285" Margin="5,0"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding product_Id}" />
                     <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding product_Code}" />

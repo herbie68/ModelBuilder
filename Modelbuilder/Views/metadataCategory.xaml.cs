@@ -193,8 +193,8 @@ namespace Modelbuilder
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
 
-            var item = treeViewCategory.SelectedItem as TreeViewItem;
-            var parent = item.Parent as TreeViewItem;
+            TreeViewItem item = treeViewCategory.SelectedItem as TreeViewItem;
+            TreeViewItem parent = item.Parent as TreeViewItem;
             if (parent != null)
             {
                 parent.Items.Remove(item);
@@ -224,8 +224,8 @@ namespace Modelbuilder
 
                 _ = dbConnection.UpdateMySqlDataRecord();
 
-                var OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
-                var NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
+                string OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
+                string NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
                     "category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +

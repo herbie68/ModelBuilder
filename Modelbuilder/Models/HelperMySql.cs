@@ -1,8 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace Modelbuilder
@@ -11,7 +11,7 @@ namespace Modelbuilder
     {
         #region public Variables
         public string ConnectionStr { get; set; } = string.Empty;
-        
+
         public string DbBrandTable = "brand";
         public string DbCategoryTable = "category";
         public string DbCountryTable = "country";
@@ -80,7 +80,9 @@ namespace Modelbuilder
 
                 //set values
                 if (!String.IsNullOrEmpty(brandName))
+                {
                     cmd.Parameters["@brandName"].Value = brandName;
+                }
 
                 rowsAffected = cmd.ExecuteNonQuery();
             }
@@ -117,10 +119,14 @@ namespace Modelbuilder
 
                 //set values
                 if (!String.IsNullOrEmpty(categoryFullPath))
+                {
                     cmd.Parameters["@categoryFullPath"].Value = categoryFullPath;
+                }
 
                 if (!String.IsNullOrEmpty(categoryName))
+                {
                     cmd.Parameters["@categoryName"].Value = categoryName;
+                }
 
                 rowsAffected = cmd.ExecuteNonQuery();
             }
@@ -159,13 +165,19 @@ namespace Modelbuilder
 
                 //set values
                 if (!String.IsNullOrEmpty(countryCode))
+                {
                     cmd.Parameters["@countryCode"].Value = countryCode;
+                }
 
                 if (!String.IsNullOrEmpty(countryCode))
+                {
                     cmd.Parameters["@countryDefaultcurrencySymbol"].Value = countryDefaultcurrencySymbol;
+                }
 
                 if (!String.IsNullOrEmpty(countryName))
+                {
                     cmd.Parameters["@countryName"].Value = countryName;
+                }
 
                 rowsAffected = cmd.ExecuteNonQuery();
             }
@@ -206,13 +218,19 @@ namespace Modelbuilder
 
                 //set values
                 if (!String.IsNullOrEmpty(currencyCode))
+                {
                     cmd.Parameters["@currencyCode"].Value = currencyCode;
+                }
 
                 if (!String.IsNullOrEmpty(currencySymbol))
+                {
                     cmd.Parameters["@currencySymbol"].Value = currencySymbol;
+                }
 
                 if (!String.IsNullOrEmpty(currencyName))
+                {
                     cmd.Parameters["@currencyName"].Value = currencyName;
+                }
 
                 rowsAffected = cmd.ExecuteNonQuery();
             }
@@ -346,19 +364,29 @@ namespace Modelbuilder
 
                     //set values
                     if (!String.IsNullOrEmpty(productSupplierSupplierName))
+                    {
                         cmd.Parameters["@productSupplierSupplierName"].Value = productSupplierSupplierName;
+                    }
 
                     if (!String.IsNullOrEmpty(productSupplierCurrencySymbol))
+                    {
                         cmd.Parameters["@productSupplierCurrencySymbol"].Value = productSupplierCurrencySymbol;
+                    }
 
                     if (!String.IsNullOrEmpty(productSupplierProductNumber))
+                    {
                         cmd.Parameters["@productSupplierProductNumber"].Value = productSupplierProductNumber;
+                    }
 
                     if (!String.IsNullOrEmpty(productSupplierProductName))
+                    {
                         cmd.Parameters["@productSupplierProductName"].Value = productSupplierProductName;
+                    }
 
                     if (!String.IsNullOrEmpty(productSupplierDefault))
+                    {
                         cmd.Parameters["@productSupplierDefault"].Value = productSupplierDefault;
+                    }
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -411,52 +439,84 @@ namespace Modelbuilder
 
                     //set values
                     if (!String.IsNullOrEmpty(supplierCode))
+                    {
                         cmd.Parameters["@supplierCode"].Value = supplierCode;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierName))
+                    {
                         cmd.Parameters["@supplierName"].Value = supplierName;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierAddress1))
+                    {
                         cmd.Parameters["@supplierAddress1"].Value = supplierAddress1;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierAddress2))
+                    {
                         cmd.Parameters["@supplierAddress2"].Value = supplierAddress2;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierZip))
+                    {
                         cmd.Parameters["@supplierZip"].Value = supplierZip;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierCity))
+                    {
                         cmd.Parameters["@supplierCity"].Value = supplierCity;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierUrl))
+                    {
                         cmd.Parameters["@supplierUrl"].Value = supplierUrl;
+                    }
 
                     if (supplierMemo != null && supplierMemo.Length > 0)
+                    {
                         cmd.Parameters["@supplierMemo"].Value = supplierMemo;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierCountryName))
+                    {
                         cmd.Parameters["@supplierCountryName"].Value = supplierCountryName;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierCurrencySymbol))
+                    {
                         cmd.Parameters["@supplierCurrencySymbol"].Value = supplierCurrencySymbol;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierPhoneGeneral))
+                    {
                         cmd.Parameters["@supplierPhoneGeneral"].Value = supplierPhoneGeneral;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierPhoneSales))
+                    {
                         cmd.Parameters["@supplierPhoneSales"].Value = supplierPhoneSales;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierPhoneSupport))
+                    {
                         cmd.Parameters["@supplierPhoneSupport"].Value = supplierPhoneSupport;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierMailGeneral))
+                    {
                         cmd.Parameters["@supplierMailGeneral"].Value = supplierMailGeneral;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierMailSales))
+                    {
                         cmd.Parameters["@supplierMailSales"].Value = supplierMailSales;
+                    }
 
                     if (!String.IsNullOrEmpty(supplierMailSupport))
+                    {
                         cmd.Parameters["@supplierMailSupport"].Value = supplierMailSupport;
+                    }
 
                     //execute; returns the number of rows affected
                     rowsAffected = cmd.ExecuteNonQuery();
@@ -775,7 +835,7 @@ namespace Modelbuilder
         {
             string result = string.Empty;
             string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo);";
-            
+
             try
             {
                 int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo);
@@ -882,7 +942,7 @@ namespace Modelbuilder
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblSupplierId(sqlText, productId);
+                int rowsAffected = ExecuteNonQueryTblProductId(sqlText, productId);
 
                 if (rowsAffected > 0)
                 {
@@ -945,7 +1005,7 @@ namespace Modelbuilder
         #endregion Delete row in Table: Product
 
         #region Update Table: Supplier
-        public string UpdateTblSupplier( int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, float supplierOrderCosts, float supplierMinOrderCosts)
+        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, float supplierOrderCosts, float supplierMinOrderCosts)
         {
             string result = string.Empty;
             string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencySymbol = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_OrderCosts = @supplierOrderCosts, supplier_MinOrderCosts = @supplierMinOrderCosts WHERE supplier_Id = @supplierId;";
@@ -973,10 +1033,10 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, string productSupplierProductNumber, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productSupplierId, string productSupplierName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
+        public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
 
             try
             {
@@ -1061,7 +1121,7 @@ namespace Modelbuilder
         public DataTable ExecuteQuery(string Base)
         {
             string result = string.Empty, sqlText = string.Empty;
-   
+
             switch (Base)
             {
                 case "Brand":
@@ -1076,7 +1136,7 @@ namespace Modelbuilder
 
             con.Open();
 
-            var cmd = new MySqlCommand(sqlText, con);
+            MySqlCommand cmd = new MySqlCommand(sqlText, con);
 
             DataTable tempDataTable = new DataTable();
             tempDataTable.Load(cmd.ExecuteReader());
@@ -1120,7 +1180,7 @@ namespace Modelbuilder
         #region Fill Country dropdown
         public List<Country> CountryList()
         {
-            
+
             Database dbCountryConnection = new()
             {
                 TableName = DbCountryTable
@@ -1198,7 +1258,7 @@ namespace Modelbuilder
         #region Fill Supplier dropdown
         public List<Supplier> GetSupplierList(List<Supplier> supplierList)
         {
-            var DatabaseTable = DbSupplierTable;
+            string DatabaseTable = DbSupplierTable;
             Database dbConnection = new()
             {
                 TableName = DatabaseTable
@@ -1230,7 +1290,7 @@ namespace Modelbuilder
         #region Fill the Brand dropdown
         public List<Brand> GetBrandList(List<Brand> brandList)
         {
-            var DatabaseTable = DbBrandTable;
+            string DatabaseTable = DbBrandTable;
             Database dbConnection = new()
             {
                 TableName = DatabaseTable
@@ -1340,6 +1400,6 @@ namespace Modelbuilder
         }
         #endregion
         #endregion Helper classes to for creating objects to populate dropdowns
-#endregion Create lists to populate dropdowns for metadata pages
+        #endregion Create lists to populate dropdowns for metadata pages
     }
 }

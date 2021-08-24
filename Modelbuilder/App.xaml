@@ -147,8 +147,8 @@
         <Style x:Key="ProductImage" TargetType="Image">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height" Value="247" />
-            <Setter Property="Width" Value="247"/>
+            <Setter Property="Height" Value="230" />
+            <Setter Property="Width" Value="230"/>
         </Style>
         <!--#endregion-->
 
@@ -168,6 +168,23 @@
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
             <Setter Property="Padding" Value="2"/>
         </Style>
+
+        <Style x:Key="ImageToolBarTray" TargetType="ToolBarTray">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="ImageToolBar" TargetType="ToolBar">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="ToolBarTray.IsLocked" Value="True" />
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+
 
         <Style x:Key="ToolBarAddIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
