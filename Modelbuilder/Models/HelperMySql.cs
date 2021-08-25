@@ -263,7 +263,7 @@ namespace Modelbuilder
         /// <param name="productMemo"></param>
         /// <param name="productId"></param>
         /// <returns></returns>
-        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, int productId = 0)
+        public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage, int productId = 0)
         {
             int rowsAffected = 0;
 
@@ -292,9 +292,14 @@ namespace Modelbuilder
                 cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
                 cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
                 cmd.Parameters.Add("@productUnitName", MySqlDbType.VarChar).Value = DBNull.Value;
+                cmd.Parameters.Add("@productImageRotationAngle", MySqlDbType.VarChar).Value = DBNull.Value;
 
                 // Add LongText values
                 cmd.Parameters.Add("@productMemo", MySqlDbType.LongText).Value = DBNull.Value;
+
+                // Add Images
+                cmd.Parameters.Add("@productImage", MySqlDbType.Blob).Value = productImage;
+
 
                 //set values
                 if (!String.IsNullOrEmpty(productBrandName))
@@ -330,6 +335,11 @@ namespace Modelbuilder
                 if (!String.IsNullOrEmpty(productMemo))
                 {
                     cmd.Parameters["@productMemo"].Value = productMemo;
+                }
+
+                if (!String.IsNullOrEmpty(productImageRotationAngle))
+                {
+                    cmd.Parameters["@productImageRotationAngle"].Value = productImageRotationAngle;
                 }
 
                 rowsAffected = cmd.ExecuteNonQuery();
@@ -628,7 +638,6 @@ namespace Modelbuilder
         }
         #endregion
 
-
         #region Get Data from Table: Supplier
         public DataTable GetDataTblSupplier(int supplierId = 0)
         {
@@ -831,14 +840,14 @@ namespace Modelbuilder
         #endregion Insert in Table: Supplier
 
         #region Insert in Table: Product
-        public string InsertTblProduct(string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
+        public string InsertTblProduct(string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
         {
             string result = string.Empty;
-            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo);";
+            string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo, product_ImageRotationAngle, product_Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productImageRotationAngle, productImage);
 
                 if (rowsAffected > 0)
                 {
@@ -1033,14 +1042,14 @@ namespace Modelbuilder
         #endregion Update Table: Supplier
 
         #region Update Table: Product
-        public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo)
+        public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+            string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo, product_ImageRotationAngle = @productImageRotationAngle, product_Image = @productImage WHERE product_Id = @productId;";
 
             try
             {
-                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productId);
+                int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productImageRotationAngle, productImage, productId);
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";

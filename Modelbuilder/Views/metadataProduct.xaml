@@ -82,6 +82,7 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueImageRotationAngle" Text="0"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
                 <!--#endregion-->
@@ -244,6 +245,11 @@
                                     <Button Click="ImageDelete" ToolTip="Afbeelding verwijderen" VerticalAlignment="Top">
                                         <Image Style="{DynamicResource ToolBarDeleteIcon}"/>
                                     </Button>
+                                    <Separator Style="{DynamicResource ImageToolBarSeperator}"/>
+                                    <Button Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien" VerticalAlignment="Top">
+                                        <Image Style="{DynamicResource ToolBarRotateIcon}"/>
+                                    </Button>
+
                                 </ToolBar>
                             </ToolBarTray>
                         </StackPanel>

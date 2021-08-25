@@ -48,6 +48,7 @@
     <None Remove="Resources\metadataWorktypeExport.png" />
     <None Remove="Resources\metadataWorktypeImport.png" />
     <None Remove="Resources\metadataWorktypeReport.png" />
+    <None Remove="Resources\noImage.png" />
     <None Remove="Resources\options.png" />
     <None Remove="Resources\projectEdit.png" />
     <None Remove="Resources\projectExport.png" />
@@ -96,6 +97,7 @@
     <None Remove="Resources\toolbarEnd.png" />
     <None Remove="Resources\toolbarLeft.png" />
     <None Remove="Resources\toolbarRight.png" />
+    <None Remove="Resources\toolbarRotate.png" />
     <None Remove="Resources\toolbarSave.png" />
     <None Remove="Resources\toolbarStart.png" />
   </ItemGroup>
@@ -131,6 +133,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\appRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\noImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\rtftoolbarAlignCenter.png">
@@ -218,6 +223,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarRotate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarSave.png">

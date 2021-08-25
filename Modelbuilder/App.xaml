@@ -152,7 +152,7 @@
         </Style>
         <!--#endregion-->
 
-        <!--#region Default toolbar resources-->
+        <!--#region Default toolbar definitions-->
         <Style x:Key="DefaultToolBarTray" TargetType="ToolBarTray">
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="Auto" />
@@ -166,6 +166,11 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+
+        <Style x:Key="DefaultToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
             <Setter Property="Padding" Value="2"/>
         </Style>
 
@@ -185,7 +190,32 @@
             <Setter Property="Padding" Value="2"/>
         </Style>
 
+        <Style x:Key="ImageToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
+        </Style>
 
+        <Style x:Key="RtfToolBarTray" TargetType="ToolBarTray">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="RtfToolBar" TargetType="ToolBar">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="ToolBarTray.IsLocked" Value="True" />
+        </Style>
+
+        <Style x:Key="RtfToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Toolbar Icon resources-->
         <Style x:Key="ToolBarAddIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
             <Setter Property="Height" Value="21" />
@@ -203,24 +233,15 @@
             <Setter Property="Height" Value="21" />
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
+
+        <Style x:Key="ToolBarRotateIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
         <!--#endregion-->
         
-        <!--#region  RTF Toolbar resources-->
-        <Style x:Key="RtfToolBarTray" TargetType="ToolBarTray">
-            <Setter Property="Width" Value="Auto" />
-            <Setter Property="Height" Value="Auto" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-        </Style>
-
-        <Style x:Key="RtfToolBar" TargetType="ToolBar">
-            <Setter Property="Width" Value="Auto" />
-            <Setter Property="Height" Value="Auto" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="ToolBarTray.IsLocked" Value="True" />
-        </Style>
-
+        <!--#region RTF Toolbar Icon resources-->
         <Style x:Key="RtfToolBarCutIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarCut.png" />
             <Setter Property="Stretch" Value="None"/>

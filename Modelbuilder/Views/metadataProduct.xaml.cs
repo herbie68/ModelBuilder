@@ -21,6 +21,7 @@ using Google.Protobuf.WellKnownTypes;
 using System.Data.SqlClient;
 using Microsoft.Win32;
 
+
 namespace Modelbuilder
 {
     /// <summary>
@@ -230,11 +231,30 @@ namespace Modelbuilder
             valueBrandName.Text = Row_Selected["product_BrandName"].ToString();
             valueUnitId.Text = Row_Selected["product_UnitId"].ToString();
             valueUnitName.Text = Row_Selected["product_UnitName"].ToString();
+            valueImageRotationAngle.Text = Row_Selected["product_ImageRotationAngle"].ToString();
             inpProductCode.Text = Row_Selected["product_Code"].ToString();
             inpProductName.Text = Row_Selected["product_Name"].ToString();
             inpProductMinimalStock.Text = _Minimalstock.ToString("#,##0.00;- #,##0.00");
             inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString("#,##0.00;- #,##0.00");
             inpProductPrice.Text = _Price.ToString("€ #,##0.00;€ - #,##0.00");
+
+
+            // Retrieve Product Image
+            
+            if (Row_Selected["product_Image"].ToString() != "")
+            {
+                byte[] productImageByte = (byte[])Row_Selected["product_Image"];
+                var stream = new MemoryStream(productImageByte);
+                PngBitmapDecoder decoder = new PngBitmapDecoder(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                BitmapSource source = decoder.Frames[0];
+
+                imgProductImage.Source = source;
+                imgProductImage.LayoutTransform = new RotateTransform(int.Parse(valueImageRotationAngle.Text));
+            }
+            else
+            {
+                imgProductImage.Source = new BitmapImage(new Uri("Resources\noImage.png"));
+            }
 
             // When there is an existing Prduct selected the supplier tabpage can be activated
             SupplierTab.IsEnabled = inpProductCode.Text != "";
@@ -404,12 +424,7 @@ namespace Modelbuilder
             // When there is an existing Prduct selected the supplier tabpage can be activated
             SupplierTab.IsEnabled = inpProductCode.Text != "";
 
-            if (valueProductId.Text == "")
-            // if (_dt.Rows.Count > _dbRowCount)
-            {
-                //InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
-            }
-            else
+            if (valueProductId.Text != "")
             {
                 UpdateRowProduct(ProductCode_DataGrid.SelectedIndex);
             }
@@ -444,6 +459,8 @@ namespace Modelbuilder
             var productBrandName = "";
             var productUnitId = 0;
             var productUnitName = "";
+            var productImageRotationAngle = "0";
+            byte[] productImage = null;
 
             if (valueProductId.Text == "")
             {
@@ -481,12 +498,28 @@ namespace Modelbuilder
                 {
                     productBrandId = int.Parse(valueBrandId.Text);
                 }
+                
                 productBrandName = valueBrandName.Text;
+                
                 if (valueUnitId.Text != "")
                 {
                     productUnitId = int.Parse(valueUnitId.Text);
                 }
+                
                 productUnitName = valueBrandName.Text;
+
+                productImageRotationAngle = valueImageRotationAngle.Text;
+
+                var bitmap = imgProductImage.Source as BitmapSource;
+                var encoder = new PngBitmapEncoder();
+
+                encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+                using (var stream = new MemoryStream())
+                {
+                    encoder.Save(stream);
+                    productImage = stream.ToArray();
+                }
             }
 
             //convert RTF to string
@@ -498,7 +531,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo, productImageRotationAngle, productImage);
             UpdateStatus(result);
 
             // Get data from database
@@ -511,16 +544,6 @@ namespace Modelbuilder
             {
                 return;
             }
-            /*
-             * DataGrid dg = (DataGrid)sender;
-
-            if (dg.SelectedItem is not DataRowView Row_Selected)
-            {
-                return;
-            }
-            */
-
-            // InsertRowProduct(ProductCode_DataGrid.SelectedIndex);
         }
         #endregion
 
@@ -652,13 +675,27 @@ namespace Modelbuilder
             var productUnitId = int.Parse(valueUnitId.Text);
             var productUnitName = valueUnitName.Text;
 
+            var productImageRotationAngle = valueImageRotationAngle.Text;
+
+            byte[] productImage;
+            var bitmap = imgProductImage.Source as BitmapSource;
+            var encoder = new PngBitmapEncoder();
+
+            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                productImage = stream.ToArray();
+            }
+
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
 
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo, productImageRotationAngle, productImage);
             UpdateStatus(result);
         }
         #endregion
@@ -724,6 +761,19 @@ namespace Modelbuilder
             var productBrandName = valueBrandName.Text;
             var productUnitId = int.Parse(valueUnitId.Text);
             var productUnitName = valueBrandName.Text;
+            var productImageRotationAngle = valueImageRotationAngle.Text;
+
+            byte[] productImage;
+            var bitmap = imgProductImage.Source as BitmapSource;
+            var encoder = new PngBitmapEncoder();
+
+            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                productImage = stream.ToArray();
+            }
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
@@ -731,7 +781,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo);
+            result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, memo, productImageRotationAngle, productImage);
             UpdateStatus(result);
         }
         #endregion
@@ -768,13 +818,12 @@ namespace Modelbuilder
         #region Add a product Image
         private void ImageAdd(object sender, RoutedEventArgs e)
         {
-            //https://docs.microsoft.com/en-us/dotnet/desktop/wpf/controls/how-to-rotate-an-image?view=netframeworkdesktop-4.8
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Selecteer een afbeelding voor dit product";
-            op.Filter = "JPEG (*.jpeg)|*.jpeg|PNG (*.png)|*.png|JPG (*.jpg)|*.jpg|GIF (*.gif)|*.gif|BMP (*.bmp)|*.bmp";
-            if (op.ShowDialog() == true)
+            OpenFileDialog ImageDialog = new OpenFileDialog();
+            ImageDialog.Title = "Selecteer een afbeelding voor dit product";
+            ImageDialog.Filter = "Afbeeldingen (*.jpg;*.jpeg;*.png;*.gif;*.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            if (ImageDialog.ShowDialog() == true)
             {
-                imgProductImage.Source = new BitmapImage(new Uri(op.FileName));
+                imgProductImage.Source = new BitmapImage(new Uri(ImageDialog.FileName));
             }
         }
         #endregion
@@ -782,6 +831,21 @@ namespace Modelbuilder
         #region Delete a product Image
         private void ImageDelete(object sender, RoutedEventArgs e)
         {
+            imgProductImage.Source = null;
+            valueImageRotationAngle.Text = "0";
+        }
+        #endregion
+
+        #region Rotate a product Image
+        private void ImageRotate(object sender, RoutedEventArgs e)
+        {
+            var _tempValue = (int.Parse(valueImageRotationAngle.Text) + 90);
+            if (_tempValue == 360)
+            {
+                _tempValue = 0;
+            }
+            valueImageRotationAngle.Text = _tempValue.ToString();
+            imgProductImage.LayoutTransform = new RotateTransform(int.Parse(valueImageRotationAngle.Text));
 
         }
         #endregion
@@ -881,27 +945,6 @@ namespace Modelbuilder
                 SupplierList.Add(new Supplier(dtSupplierSelection.Rows[i][0].ToString(), dtSupplierSelection.Rows[i][1].ToString(), dtSupplierSelection.Rows[i][2].ToString(), dtSupplierSelection.Rows[i][3].ToString()));
             };
             return SupplierList;
-        }
-        #endregion
-
-        #region Test BrandBox
-        public void comboBrand()
-        {
-            Database dbBrandConnection = new()
-            {
-                TableName = DatabaseBrandTable
-            };
-
-            dbBrandConnection.SqlSelectionString = "brand_Name, brand_Id";
-            dbBrandConnection.SqlOrderByString = "brand_Id";
-            dbBrandConnection.TableName = DatabaseBrandTable;
-
-            // Get data from database
-            _dt = _helper.ExecuteQuery("Brand");
-
-            cboxProductBrand.ItemsSource = _dt.DefaultView;
-            cboxProductBrand.DisplayMemberPath = "brand_Name";
-            cboxProductBrand.SelectedValuePath = "brand_Id";
         }
         #endregion
 
