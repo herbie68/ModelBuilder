@@ -235,7 +235,7 @@
                         <!--#region Product Image block-->
                         <StackPanel Grid.Column="1" Margin="5">
                             <Border Style="{DynamicResource ImageBorder}" Height="234" Width="234" Margin="2">
-                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProductImage"/>
+                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProductImage" Source="/Resources/noImage.png"/>
                             </Border>
                             <ToolBarTray Style="{DynamicResource ImageToolBarTray}">
                                 <ToolBar Style="{DynamicResource ImageToolBar}">

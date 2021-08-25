@@ -253,7 +253,8 @@ namespace Modelbuilder
             }
             else
             {
-                imgProductImage.Source = new BitmapImage(new Uri("Resources\noImage.png"));
+                //BitmapImage _tempImage = new BitmapImage ( UriSource = @"Resources/noImage.png" };
+                imgProductImage.Source = new BitmapImage(new Uri("..\\Resources\\noImage.png", UriKind.Relative ));
             }
 
             // When there is an existing Prduct selected the supplier tabpage can be activated
