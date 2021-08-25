@@ -155,12 +155,11 @@ namespace Modelbuilder
 
             GetMemo(dg.SelectedIndex);
 
-            float _MinimalOrderCosts = 0, _OrderCosts = 0;
+            double _MinimalOrderCosts = 0, _OrderCosts = 0;
 
-            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = float.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
-            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
+            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
+            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
 
-            //var _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString());
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
@@ -231,8 +230,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
-            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -360,8 +359,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
-            var supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);

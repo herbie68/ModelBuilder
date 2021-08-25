@@ -22,6 +22,13 @@
                 <TextBlock Text="{Binding Path=countryId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
+
+        <DataTemplate  x:Key="ContactTypeComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=contacttypeName}" />
+                <TextBlock Text="{Binding Path=contacttypeId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
@@ -57,6 +64,7 @@
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"      Margin="550,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"       Margin="600,5,0,0" />
         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"   Margin="650,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContatactTypeId"  Margin="650,5,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -112,7 +120,52 @@
                 </TabItem>
 
                 <TabItem Header="Contactpersonen">
-                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--#region Supplier information fields-->
+                        <StackPanel Grid.Column="0" Margin="5">
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\metadataSupplier.png"/>
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Communicatiekanalen per leverancier"/>
+                                    </StackPanel>
+                                </GroupBox.Header>
+
+                                <Grid Margin="3,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Text="Volledige naam"/>
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpsupplierContactName" Grid.Row="1" Width="360" IsEnabled="False"/>
+
+                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Functie"/>
+                                    <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierContactType"  IsTabStop="False"
+                                              ItemTemplate="{StaticResource ContactTypeComboTemplate}" TextSearch.TextPath="contacttypeName" 
+                                              SelectionChanged="cboxSupplierContactType_SelectionChanged" 
+                                              Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="False">
+                                        <ComboBox.ItemContainerStyleSelector>
+                                            <StyleSelector/>
+                                        </ComboBox.ItemContainerStyleSelector>
+                                    </ComboBox>
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
 
                 <TabItem Header="Memo">
