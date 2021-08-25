@@ -52,6 +52,36 @@
             <Setter Property="StrokeThickness" Value="5" />
         </Style>
         <!--#endregion-->
+        
+        <!--#region Space borders on pages and in stackpanels etc -->
+        <Style x:Key="MainBorder" TargetType="Border">
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style x:Key="InnerBorder" TargetType="Border">
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!--#region Default Borders -->
+        <Style x:Key="ImageBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <!--#endregion-->
+        <!--#endregion-->
+
+        <!-- #region Tab controls on pages -->
+        <Style x:Key="Default TabControl" TargetType="TabControl">
+            <Setter Property="Margin" Value="0, 15"/>
+            <Setter Property="Background" Value="#FFE5E5E5"/>
+        </Style>
+
+        <Style x:Key="Default TabItem" TargetType="TabItem">
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        <!--#endregion-->
 
         <!--#region Default content Entry Panel resources on Pages-->
         <Style x:Key="DefaultLabel" TargetType="Label">
@@ -65,30 +95,43 @@
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
 
+        <Style x:Key="TextBlockBold" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="DefaultCheckBox" TargetType="CheckBox">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
         <Style x:Key="DefaultTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFEEEEEE" />
             <Setter Property="Text" Value="" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Padding" Value="2"/>
         </Style>
 
         <Style x:Key="NumericTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFEEEEEE" />
-            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay, StringFormat={}{0:C}}" />
+            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay}" />
             <Setter Property="TextWrapping" Value="NoWrap" />
             <Setter Property="InputScope" Value="Number" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="2"/>
         </Style>
 
         <Style x:Key="HiddenTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Width" Value="Auto" />
-            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="Text" Value="" />
         </Style>
 
@@ -97,10 +140,19 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="IsTextSearchEnabled" Value="True" />
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+
+        <Style x:Key="ProductImage" TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="230" />
+            <Setter Property="Width" Value="230"/>
         </Style>
         <!--#endregion-->
 
-        <!--#region Default toolbar resources-->
+        <!--#region Default toolbar definitions-->
         <Style x:Key="DefaultToolBarTray" TargetType="ToolBarTray">
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="Auto" />
@@ -112,27 +164,36 @@
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="Auto" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
+            <Setter Property="Padding" Value="2"/>
         </Style>
 
-        <Style x:Key="ToolBarAddIcon" TargetType="Image">
-            <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
-            <Setter Property="Height" Value="21" />
+        <Style x:Key="DefaultToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
+            <Setter Property="Padding" Value="2"/>
         </Style>
 
-        <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
-            <Setter Property="Source" Value=".\Resources\toolbarDelete.png" />
-            <Setter Property="Height" Value="21" />
+        <Style x:Key="ImageToolBarTray" TargetType="ToolBarTray">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
 
-        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
-            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
-            <Setter Property="Height" Value="21" />
+        <Style x:Key="ImageToolBar" TargetType="ToolBar">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="ToolBarTray.IsLocked" Value="True" />
+            <Setter Property="Padding" Value="2"/>
         </Style>
-        <!--#endregion-->
-        
-        <!--#region  RTF Toolbar resources-->
+
+        <Style x:Key="ImageToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
+        </Style>
+
         <Style x:Key="RtfToolBarTray" TargetType="ToolBarTray">
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="Auto" />
@@ -148,6 +209,39 @@
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
         </Style>
 
+        <Style x:Key="RtfToolBarSeperator" TargetType="Separator">
+            <Setter Property="Margin" Value="15 0 10 0"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Toolbar Icon resources-->
+        <Style x:Key="ToolBarAddIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarDelete.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarRotateIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
+        <!--#endregion-->
+        
+        <!--#region RTF Toolbar Icon resources-->
         <Style x:Key="RtfToolBarCutIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarCut.png" />
             <Setter Property="Stretch" Value="None"/>
@@ -258,6 +352,13 @@
             <Setter Property="AlternatingRowBackground" Value="AliceBlue" />
             <Setter Property="AutoGenerateColumns" Value="False" />
             <Setter Property="IsReadOnly" Value="False" />
+        </Style>
+        <!--#endregion-->
+        
+        <!--#region Header group resources-->
+        <Style x:Key="ImageHeaderGroup" TargetType="Image">
+            <Setter Property="Height" Value="14"/>
+            <Setter Property="Margin" Value="3"/>
         </Style>
         <!--#endregion-->
         <!--#endregion-->

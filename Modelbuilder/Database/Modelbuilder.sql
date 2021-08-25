@@ -9,6 +9,39 @@ DROP DATABASE IF EXISTS `modelbuilder`;
 CREATE DATABASE IF NOT EXISTS `modelbuilder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `modelbuilder`;
 
+DROP TABLE IF EXISTS `brand`;
+CREATE TABLE IF NOT EXISTS `brand` (
+  `brand_Id` int NOT NULL AUTO_INCREMENT,
+  `brand_Name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`brand_Id`),
+  UNIQUE KEY `barnd_Name` (`brand_Name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of brands for tools, kits, suplies and all other stuf';
+
+DELETE FROM `brand`;
+/*!40000 ALTER TABLE `brand` DISABLE KEYS */;
+INSERT INTO `brand` (`brand_Id`, `brand_Name`) VALUES
+	(17, 'Aeronaut'),
+	(4, 'Amati'),
+	(5, 'Artesania'),
+	(12, 'Billing Boats'),
+	(14, 'Caldercraft'),
+	(15, 'Constructo'),
+	(18, 'Corel'),
+	(2, 'Dremel'),
+	(3, 'Excel'),
+	(10, 'Humbrol'),
+	(16, 'Krick'),
+	(6, 'Mantua'),
+	(13, 'Model Shipways'),
+	(7, 'Modelcraft'),
+	(8, 'Occre'),
+	(19, 'Panart'),
+	(1, 'Proxxon'),
+	(9, 'Revell'),
+	(20, 'Sergal'),
+	(11, 'Tamiya');
+/*!40000 ALTER TABLE `brand` ENABLE KEYS */;
+
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_Id` int NOT NULL AUTO_INCREMENT,
@@ -124,72 +157,7 @@ INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `ca
 	(610, 'Bruin', 'Materiaal\\Zeilen\\Bruin', 609),
 	(611, 'Creme', 'Materiaal\\Zeilen\\Creme', 609),
 	(612, 'Wit', 'Materiaal\\Zeilen\\Wit', 609),
-	(613, 'Zwart', 'Materiaal\\Zeilen\\Zwart', 609),
-	(667, 'Test', 'Test', NULL),
-	(668, 'T1', 'Test\\T1', 667),
-	(669, 'T2', 'Test\\T2', 667),
-	(670, 'T3', 'Test\\T3', 667),
-	(671, 'T4', 'Test\\T4', 667),
-	(672, 'T1', 'Test\\T1\\T1', 668),
-	(673, 'T2', 'Test\\T1\\T2', 668),
-	(674, 'T3', 'Test\\T1\\T3', 668),
-	(675, 'T4', 'Test\\T1\\T4', 668),
-	(676, 'T1', 'Test\\T2\\T1', 669),
-	(677, 'T2', 'Test\\T2\\T2', 669),
-	(678, 'T3', 'Test\\T2\\T3', 669),
-	(679, 'T4', 'Test\\T2\\T4', 669),
-	(680, 'T1', 'Test\\T3\\T1', 670),
-	(681, 'T2', 'Test\\T3\\T2', 670),
-	(682, 'T3', 'Test\\T3\\T3', 670),
-	(683, 'T4', 'Test\\T3\\T4', 670),
-	(684, 'Test 1', 'Test\\T4\\Test 1', 671),
-	(688, 'T1', 'Test\\T1\\T1\\T1', 672),
-	(689, 'T2', 'Test\\T1\\T1\\T2', 672),
-	(690, 'T3', 'Test\\T1\\T1\\T3', 672),
-	(691, 'T4', 'Test\\T1\\T1\\T4', 672),
-	(692, 'T1', 'Test\\T1\\T2\\T1', 673),
-	(693, 'T2', 'Test\\T1\\T2\\T2', 673),
-	(694, 'T3', 'Test\\T1\\T2\\T3', 673),
-	(695, 'T4', 'Test\\T1\\T2\\T4', 673),
-	(696, 'T1', 'Test\\T1\\T3\\T1', 674),
-	(697, 'T2', 'Test\\T1\\T3\\T2', 674),
-	(698, 'T3', 'Test\\T1\\T3\\T3', 674),
-	(699, 'T4', 'Test\\T1\\T3\\T4', 674),
-	(700, 'T1', 'Test\\T1\\T4\\T1', 675),
-	(701, 'T2', 'Test\\T1\\T4\\T2', 675),
-	(702, 'T3', 'Test\\T1\\T4\\T3', 675),
-	(703, 'T4', 'Test\\T1\\T4\\T4', 675),
-	(704, 'T1', 'Test\\T2\\T1\\T1', 676),
-	(705, 'T2', 'Test\\T2\\T1\\T2', 676),
-	(706, 'T3', 'Test\\T2\\T1\\T3', 676),
-	(707, 'T4', 'Test\\T2\\T1\\T4', 676),
-	(708, 'T1', 'Test\\T2\\T2\\T1', 677),
-	(709, 'T2', 'Test\\T2\\T2\\T2', 677),
-	(712, 'T1', 'Test\\T2\\T3\\T1', 678),
-	(713, 'T2', 'Test\\T2\\T3\\T2', 678),
-	(716, 'T1', 'Test\\T2\\T4\\T1', 679),
-	(717, 'T2', 'Test\\T2\\T4\\T2', 679),
-	(718, 'T3', 'Test\\T2\\T4\\T3', 679),
-	(719, 'T4', 'Test\\T2\\T4\\T4', 679),
-	(720, 'T1', 'Test\\T2\\T1\\T1', 680),
-	(721, 'T2', 'Test\\T2\\T1\\T2', 680),
-	(722, 'T3', 'Test\\T2\\T1\\T3', 680),
-	(723, 'T4', 'Test\\T2\\T1\\T4', 680),
-	(724, 'T1', 'Test\\T2\\T2\\T1', 681),
-	(725, 'T2', 'Test\\T2\\T2\\T2', 681),
-	(728, 'T1', 'Test\\T2\\T3\\T1', 682),
-	(729, 'T2', 'Test\\T2\\T3\\T2', 682),
-	(732, 'T1', 'Test\\T2\\T4\\T1', 683),
-	(733, 'T2', 'Test\\T2\\T4\\T2', 683),
-	(734, 'T3', 'Test\\T2\\T4\\T3', 683),
-	(735, 'T4', 'Test\\T2\\T4\\T4', 683),
-	(736, 'Subtest 1', 'Test\\T4\\Test 1\\Subtest 1', 684),
-	(737, 'Subtest 2', 'Test\\T4\\Test 1\\Subtest 2', 684),
-	(738, 'Subtest 3', 'Test\\T4\\Test 1\\Subtest 3', 684),
-	(739, 'Subtest 4*', 'Test\\T4\\Test 1\\T4', 684),
-	(768, 'SubSubtest 1', 'Test\\T4\\Test 1\\Subtest 1\\SubSubtest 1', 736),
-	(775, 'T1', 'Test\\T1\\T1\\T1\\T1', 688),
-	(776, 'SubSubtest 2', 'Test\\T4\\Test 1\\Subtest 1\\SubSubtest 2', 736);
+	(613, 'Zwart', 'Materiaal\\Zeilen\\Zwart', 609);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `country`;
@@ -212,8 +180,7 @@ INSERT INTO `country` (`country_Id`, `country_Code`, `country_Defaultcurrency_Sy
 	(4, 'DE', '€', 'Duitsland', 1),
 	(5, 'ESP', '€', 'Spanje', 1),
 	(6, 'CH', 'Y', 'China', 4),
-	(15, 'IT', '€', 'Italë', 1),
-	(19, '*', '', '', 0);
+	(15, 'IT', '€', 'Italë', 1);
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `currency`;
@@ -240,15 +207,15 @@ INSERT INTO `currency` (`currency_Id`, `currency_Code`, `currency_Symbol`, `curr
 DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
   `language_Id` int NOT NULL AUTO_INCREMENT,
-  `language_code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `language_Description` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `language_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `language_Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`language_Id`) USING BTREE,
-  UNIQUE KEY `language_code` (`language_code`) USING BTREE
+  UNIQUE KEY `language_code` (`language_Code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `language`;
 /*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` (`language_Id`, `language_code`, `language_Description`) VALUES
+INSERT INTO `language` (`language_Id`, `language_Code`, `language_Name`) VALUES
 	(1, 'NL', 'Nederlands'),
 	(2, 'EN', 'English'),
 	(3, 'DE', 'Deutsch');
@@ -259,21 +226,51 @@ CREATE TABLE IF NOT EXISTS `product` (
   `product_Id` int NOT NULL AUTO_INCREMENT,
   `product_Code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `product_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `category_Id` int DEFAULT NULL,
-  `category_Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `supplier_Id` int DEFAULT NULL,
-  `supplier_Name` varchar(45) DEFAULT NULL,
+  `product_Dimensions` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  `product_Price` float(10,2) DEFAULT '0.00',
+  `product_MinimalStock` int DEFAULT '0',
+  `product_StandardOrderQuantity` int DEFAULT '1',
+  `product_ProjectCosts` int DEFAULT '0',
+  `product_UnitId` int DEFAULT NULL,
+  `product_UnitName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product_Image` blob,
+  `product_BrandId` int DEFAULT NULL,
+  `product_BrandName` varchar(150) DEFAULT NULL,
+  `product_CategoryId` int DEFAULT NULL,
+  `product_CategoryName` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product_SupplierId` int DEFAULT NULL,
+  `product_SupplierName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `product_SupplierProductNumber` varchar(20) DEFAULT NULL,
-  `storage_Id` int DEFAULT NULL,
-  `storage_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `product_Price` float DEFAULT NULL,
+  `product_StorageId` int DEFAULT NULL,
+  `product_StorageName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product_Memo` longtext,
   PRIMARY KEY (`product_Id`),
   UNIQUE KEY `product_Code` (`product_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `product`;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`product_Id`, `product_Code`, `product_Name`, `product_Dimensions`, `product_Price`, `product_MinimalStock`, `product_StandardOrderQuantity`, `product_ProjectCosts`, `product_UnitId`, `product_UnitName`, `product_Image`, `product_BrandId`, `product_BrandName`, `product_CategoryId`, `product_CategoryName`, `product_SupplierId`, `product_SupplierName`, `product_SupplierProductNumber`, `product_StorageId`, `product_StorageName`, `product_Memo`) VALUES
+	(1, 'BANKSCHROEF', 'Proxxon Bankschroef', '150mm', 29.95, 1, 1, 0, 2, 'Stuk', NULL, 1, 'Proxxon', 520, 'Algemeen', 4, 'Testing 123', NULL, 242, 'Werkbank', '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `productsupplier`;
+CREATE TABLE IF NOT EXISTS `productsupplier` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `supplier_Id` int NOT NULL DEFAULT '0',
+  `supplier_Name` varchar(150) DEFAULT NULL,
+  `product_Id` int NOT NULL DEFAULT '0',
+  `supplierProductNumber` varchar(150) DEFAULT NULL,
+  `supplierProductName` varchar(150) DEFAULT NULL,
+  `supplierProductPrice` float(10,2) DEFAULT '0.00',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
+
+DELETE FROM `productsupplier`;
+/*!40000 ALTER TABLE `productsupplier` DISABLE KEYS */;
+INSERT INTO `productsupplier` (`Id`, `supplier_Id`, `supplier_Name`, `product_Id`, `supplierProductNumber`, `supplierProductName`, `supplierProductPrice`) VALUES
+	(1, 1, 'Cornwall Model Boats Ltd', 1, '1234', 'Proxxon Vench', 29.95);
+/*!40000 ALTER TABLE `productsupplier` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
@@ -413,15 +410,15 @@ INSERT INTO `storage` (`storage_Id`, `storage_ParentId`, `storage_FullPath`, `st
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_Id` int NOT NULL AUTO_INCREMENT,
-  `supplier_Code` varchar(20) NOT NULL,
-  `supplier_Name` varchar(150) NOT NULL,
+  `supplier_Code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `supplier_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `supplier_Address1` varchar(150) DEFAULT NULL,
   `supplier_Address2` varchar(150) DEFAULT NULL,
   `supplier_Zip` varchar(15) DEFAULT NULL,
   `supplier_City` varchar(40) DEFAULT NULL,
-  `country_Id` int DEFAULT NULL,
-  `country_Code` varchar(4) DEFAULT NULL,
   `supplier_Url` varchar(255) DEFAULT NULL,
+  `supplier_OrderCosts` float(6,2) DEFAULT '0.00',
+  `supplier_MinOrderCosts` float(6,2) DEFAULT '0.00',
   `supplier_PhoneGeneral` varchar(40) DEFAULT NULL,
   `supplier_PhoneSales` varchar(40) DEFAULT NULL,
   `supplier_PhoneSupport` varchar(40) DEFAULT NULL,
@@ -429,15 +426,49 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_MailSales` varchar(80) DEFAULT NULL,
   `supplier_MailSupport` varchar(80) DEFAULT NULL,
   `supplier_Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `currency_Id` int DEFAULT NULL,
-  `currency_Code` varchar(4) DEFAULT NULL,
+  `supplier_CurrencyId` int DEFAULT '1',
+  `supplier_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
+  `supplier_CountryId` int DEFAULT '1',
+  `supplier_CountryName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Nederland',
   PRIMARY KEY (`supplier_Id`),
   UNIQUE KEY `supplier_Code` (`supplier_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `supplier`;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` (`supplier_Id`, `supplier_Code`, `supplier_Name`, `supplier_Address1`, `supplier_Address2`, `supplier_Zip`, `supplier_City`, `supplier_Url`, `supplier_OrderCosts`, `supplier_MinOrderCosts`, `supplier_PhoneGeneral`, `supplier_PhoneSales`, `supplier_PhoneSupport`, `supplier_MailGeneral`, `supplier_MailSales`, `supplier_MailSupport`, `supplier_Memo`, `supplier_CurrencyId`, `supplier_CurrencySymbol`, `supplier_CountryId`, `supplier_CountryName`) VALUES
+	(1, 'CORNWALL', 'Cornwall Model Boats Ltd', 'Unit 3B, Highfield Rd Ind Est', 'Camelford', 'PL32 9RA', 'Cornwall', 'https://www.cornwallmodelboats.co.uk/', 0.00, 0.00, '01840 211009', '123', NULL, NULL, 'sales@cornwallmodelboats.co.uk', NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs24\\f2\\cf0 \\cf0\\ql{\\f2 {\\ltrch test }{\\b\\ltrch 123}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n}\r\n}', 2, '£', 2, 'Engeland'),
+	(5, 'DORDRECHT', 'Modelbouw-Dordrecht', 'Voorstraat 360', NULL, '3311 CX', 'Dordrecht', 'https://modelbouw-dordrecht.nl/', 6.95, 50.00, '078-6312711', NULL, NULL, 'info@modelbouw-dordrecht.nl', NULL, NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}', 1, '€', 1, 'Nederland'),
+	(6, 'KRIKKE', 'Modelbouw Krikke', 'Nieuweweg 22', NULL, '9711 TE', 'Groningen', 'https://www.modelbouwkrikke.nl/', 7.25, 100.00, '050-3140306', NULL, NULL, 'ron@krikke.net', NULL, NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql{\\f2 {\\ltrch Winkelopeningstijden: Dinsdag t/m Zaterdag: 10.00-17.00 uur}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n}\r\n}', 1, '€', 1, 'Nederland'),
+	(7, 'HOBBYMODELBOUW', 'Hobby & Modelbouw', 'Angstelkade 2a unit 3.3', '(Let op alleen webshop!)', '3631 NA', 'Nieuwersluis', 'https://www.hobby-en-modelbouw.nl/', 6.95, 100.00, '0294-266587', NULL, NULL, 'info@hobby-en-modelbouw.nl', NULL, NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql{\\f2 {\\ltrch Bereikbaar op ma. t/m vr. tussen 11.00 en 15.00 uur}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch IBANnr: NL61 RBRB 0941 5046 03 BIC /Swift : RBRBNL21}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n}\r\n}', 1, '€', 1, 'Nederland'),
+	(8, 'MEIJERBLESSING', 'Meijer & Blessing', 'Westewagenstraat 27', NULL, '3011 AR', 'Rotterdam', 'https://www.meijerenblessing.nl/', 6.99, 100.00, '010-4145591', NULL, NULL, 'info@meijerenblessing.nl', NULL, NULL, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql{\\f2 {\\ltrch Openingstijden}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch maandag\\tab gesloten}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch dinsdag\\tab 09:30 \\endash  18:00}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch woensdag\\tab 09:30 \\endash  18:00}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch donderdag\\tab 09:30 \\endash  18:00}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch vrijdag\\tab 09:30 \\endash  18:00}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch zaterdag\\tab 09:00 \\endash  17:00}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n{\\f2 {\\ltrch zondag\\tab gesloten}\\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}\r\n}\r\n}', 1, '€', 1, 'Nederland');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `unit`;
+CREATE TABLE IF NOT EXISTS `unit` (
+  `unit_Id` int NOT NULL AUTO_INCREMENT,
+  `unit_Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`unit_Id`),
+  UNIQUE KEY `unit_Name` (`unit_Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DELETE FROM `unit`;
+/*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` (`unit_Id`, `unit_Name`) VALUES
+	(1, ''),
+	(6, 'cm'),
+	(11, 'dl'),
+	(4, 'Fles'),
+	(7, 'gr'),
+	(9, 'kg'),
+	(12, 'ltr'),
+	(8, 'mgr'),
+	(10, 'ml'),
+	(5, 'mm'),
+	(13, 'mtr'),
+	(3, 'Set'),
+	(2, 'Stuk');
+/*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `worktype`;
 CREATE TABLE IF NOT EXISTS `worktype` (
@@ -446,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `worktype` (
   `worktype_Name` char(150) DEFAULT NULL,
   `worktype_FullPath` char(255) DEFAULT NULL,
   PRIMARY KEY (`worktype_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `worktype`;
 /*!40000 ALTER TABLE `worktype` DISABLE KEYS */;

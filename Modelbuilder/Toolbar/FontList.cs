@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 
 
@@ -10,7 +9,7 @@ namespace Modelbuilder
     /// </summary>
     internal class FontList : ObservableCollection<string>
     {
-        public FontList() 
+        public FontList()
         {
             foreach (FontFamily f in Fonts.SystemFontFamilies)
             {

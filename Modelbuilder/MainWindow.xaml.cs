@@ -9,12 +9,19 @@ namespace Modelbuilder
     public partial class MainWindow : Window
     {
         //Connectiondata
+        /*
+        public static readonly string server = "remotemysql.com";
+        public static readonly string database = "Xf4RToJiEC";
+        public static readonly int port = 3306;
+        public static readonly string uid = "Xf4RToJiEC";
+        public static readonly string password = "UQ0xrOlmlK";
+        */
+
         public static readonly string server = "localhost";
         public static readonly string database = "modelbuilder";
         public static readonly int port = 3306;
         public static readonly string uid = "root";
         public static readonly string password = "admin";
-        private HelperMySQL _helper;
 
         public MainWindow()
         {
@@ -69,7 +76,14 @@ namespace Modelbuilder
         {
             Main.Content = new metadataSupplier();
         }
-        #endregion Call Supplier Pager
+        #endregion Call Supplier Page
+
+        #region Call Product Page
+        private void ShowProductPage(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new metadataProduct();
+        }
+        #endregion Call Product Page
 
         #region Exit Application
 

@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using MySqlX.XDevAPI.Relational;
 
 namespace Modelbuilder
 {
@@ -26,75 +15,19 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataSupplier : Page
     {
-        /// <summary>
-        /// Translated names
-        /// zeilenangabe    => ShowRow
-        /// privAktZeile    => _CurrentRow
-        /// AktZeile        => CurrentRow
-        /// LabelZeileNr    => LabelRowNr
-        /// privAktSpalte   => _CurrentColumn
-        //  AktSpalte       => CurrentColumn
-        /// spaltenangabe   => ShowColumn
-        /// LabelSpalteNr   => LabelColumnNr
-        /// Zeilennummer    => Rownumber
-        /// Spaltennummer   => Columnnumber
-        /// </summary>
-        private readonly string DatabaseTable = "supplier", DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
         private HelperMySQL _helper;
-        private DataTable _dt, _dtCountry, _dtCurrency;
-        private int _dbRowCount = 0;
-        private int _currentDataGridIndex = 0;
+        private DataTable _dt;
+        private int _dbRowCount;
+        private int _currentDataGridIndex;
+        private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
         {
             InitializeComponent();
-            DataContext = new SupplierCodeViewModel();
 
-            #region Fill Currency dropdown
-            Database dbCurrencyConnection = new()
-            {
-                TableName = DatabaseCurrencyTable
-            };
-
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
-            dbCurrencyConnection.SqlOrderByString = "currency_Id";
-            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
-
-            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
-
-            List<Currency> CurrencyList = new();
-
-            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
-            {
-                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
-                    dtCurrencySelection.Rows[i][1].ToString()));
-            };
-
-            cboxSupplierCurrency.ItemsSource = CurrencyList;
-            #endregion
-
-            #region Fill Country dropdown
-            Database dbCountryConnection = new()
-            {
-                TableName = DatabaseCountryTable
-            };
-
-            dbCountryConnection.SqlSelectionString = "country_Name, country_Id, country_Code";
-            dbCountryConnection.SqlOrderByString = "country_Id";
-            dbCountryConnection.TableName = DatabaseCountryTable;
-
-            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
-
-            List<Country> CountryList = new();
-
-            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
-            {
-                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
-                    dtCountrySelection.Rows[i][1].ToString()));
-            };
-
-            cboxSupplierCountry.ItemsSource = CountryList;
-            #endregion
+            InitializeHelper();
+            cboxSupplierCurrency.ItemsSource = CurrencyList();
+            cboxSupplierCountry.ItemsSource = CountryList();
 
             GetData();
         }
@@ -190,7 +123,7 @@ namespace Modelbuilder
 
                 if (!String.IsNullOrEmpty(ContentSupplierMemo))
                 {
-                     //clear existing data
+                    //clear existing data
                     inpSupplierMemo.Document.Blocks.Clear();
 
                     //convert to byte[]
@@ -212,12 +145,22 @@ namespace Modelbuilder
         {
             DataGrid dg = (DataGrid)sender;
 
-            if (dg.SelectedItem is not DataRowView Row_Selected) {return;}
-            
+            if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
 
+            //Clear memo field
+            inpSupplierMemo.Document.Blocks.Clear();
+
             GetMemo(dg.SelectedIndex);
+
+            float _MinimalOrderCosts = 0, _OrderCosts = 0;
+
+            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = float.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
+            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
+
+            //var _OrderCosts = float.Parse(Row_Selected["supplier_OrderCosts"].ToString());
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
@@ -230,6 +173,15 @@ namespace Modelbuilder
             inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
             inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
             inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
+            inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
+            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
+            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
+            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
+            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
+            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
+            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
 
             //Select the saved Country in the combobox by default
             foreach (Country country in cboxSupplierCountry.Items)
@@ -251,13 +203,6 @@ namespace Modelbuilder
                 }
             }
 
-            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
-            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
-            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
-            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
-            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
-            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
-            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
         }
         #endregion
 
@@ -286,6 +231,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
+            float supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -293,7 +240,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId,  supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -413,6 +360,8 @@ namespace Modelbuilder
             string supplierMailGeneral = inpSupplierMailGeneral.Text;
             string supplierMailSales = inpSupplierMailSales.Text;
             string supplierMailSupport = inpSupplierMailSupport.Text;
+            float supplierOrderCosts = float.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            float supplierMinOrderCosts = float.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -420,8 +369,60 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
+        }
+        #endregion
+
+        #region Fill Country dropdown
+        private static List<Country> CountryList()
+        {
+
+            Database dbCountryConnection = new()
+            {
+                TableName = DatabaseCountryTable
+            };
+
+            dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
+            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.TableName = DatabaseCountryTable;
+
+            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
+
+            List<Country> CountryList = new();
+
+            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
+            {
+                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
+                    dtCountrySelection.Rows[i][1].ToString()));
+            };
+            return CountryList;
+        }
+        #endregion
+
+        #region Fill Currency dropdown
+        private static List<Currency> CurrencyList()
+        {
+
+            Database dbCurrencyConnection = new()
+            {
+                TableName = DatabaseCurrencyTable
+            };
+
+            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
+            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
+
+            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
+
+            List<Currency> CurrencyList = new();
+
+            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
+            {
+                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
+                    dtCurrencySelection.Rows[i][1].ToString()));
+            };
+            return CurrencyList;
         }
         #endregion
 
@@ -445,7 +446,7 @@ namespace Modelbuilder
         #endregion
 
         #region rtfToolbar actions
-        private bool dataChanged = false; // Unsaved textchanges
+        // private bool dataChanged = false; // Unsaved textchanges
 
         private string privateText = null; // Content of RTFBox in txt-Format
         public string text

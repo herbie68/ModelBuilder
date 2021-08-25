@@ -44,11 +44,12 @@ namespace Modelbuilder
                 return;
             }
 
+            float _ConversionRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString());
             inpCurrencyId.Text = Row_Selected["currency_Id"].ToString();
             inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString().ToUpper();
             inpCurrencyName.Text = Row_Selected["currency_Name"].ToString();
             inpCurrencySymbol.Text = Row_Selected["currency_Symbol"].ToString();
-            inpCurrencyRate.Text = Row_Selected["currency_ConversionRate"].ToString().Replace(".", ",");
+            inpCurrencyRate.Text = _ConversionRate.ToString("#,####0.0000");
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

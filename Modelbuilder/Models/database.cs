@@ -32,7 +32,7 @@ namespace Modelbuilder
 
             myConnection.Open();
 
-            var myCommand = new MySqlCommand(mySelectQuery, myConnection);
+            MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
 
             DataTable tempDatatable = new DataTable();
             tempDatatable.Load(myCommand.ExecuteReader());
@@ -47,7 +47,10 @@ namespace Modelbuilder
 
             if (SqlOrderByString != "")
             {
-                if (SqlOrderByString != null) OrderString = " ORDER BY " + SqlOrderByString;
+                if (SqlOrderByString != null)
+                {
+                    OrderString = " ORDER BY " + SqlOrderByString;
+                }
             }
             else
             {
@@ -56,7 +59,10 @@ namespace Modelbuilder
 
             if (SqlWhereString != "")
             {
-                if (SqlWhereString != null) WhereString = " WHERE " + SqlWhereString;
+                if (SqlWhereString != null)
+                {
+                    WhereString = " WHERE " + SqlWhereString;
+                }
             }
             else
             {
@@ -69,7 +75,7 @@ namespace Modelbuilder
 
             myConnection.Open();
 
-            var myCommand = new MySqlCommand(mySelectQuery, myConnection);
+            MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
 
             DataTable tempDataTable = new DataTable();
             tempDataTable.Load(myCommand.ExecuteReader());
@@ -115,7 +121,7 @@ namespace Modelbuilder
 
             myConnection.Open();
 
-            var myCommand = new MySqlCommand(myRetrieveQuery, myConnection);
+            MySqlCommand myCommand = new MySqlCommand(myRetrieveQuery, myConnection);
 
             MySqlDataReader retrieveData = myCommand.ExecuteReader();
 
@@ -126,7 +132,7 @@ namespace Modelbuilder
             // var reader = retrieveData.GetOrdinal("currency_Id");
             // int ID = retrieveData.GetInt32(reader);
 
-            var reader = retrieveData.GetOrdinal(TableId);
+            int reader = retrieveData.GetOrdinal(TableId);
             int ID = retrieveData.GetInt32(reader);
 
             myConnection.Close();
