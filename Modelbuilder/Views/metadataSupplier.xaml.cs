@@ -18,16 +18,18 @@ namespace Modelbuilder
         private HelperMySQL _helper;
         private DataTable _dt;
         private int _dbRowCount;
-        private int _currentDataGridIndex;
+        private int _currentDataGridIndex, _currentDataGridSCTIndex;
         private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
         {
+            var ContactTypeList = new List<HelperMySQL.ContactType>();
             InitializeComponent();
 
             InitializeHelper();
             cboxSupplierCurrency.ItemsSource = CurrencyList();
             cboxSupplierCountry.ItemsSource = CountryList();
+            cboxSupplierContactType.ItemsSource = _helper.GetContactTypeList(ContactTypeList);
 
             GetData();
         }
@@ -202,6 +204,56 @@ namespace Modelbuilder
                 }
             }
 
+            tabSupplierContact.IsEnabled = true;
+
+        }
+        #endregion
+
+        #region Selection changed: SupplierContacts
+        private void SupplierContact_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // When a row in the datagrid is selected, all fields can be enablen
+            inpSupplierContactName.IsEnabled = true;
+            cboxSupplierContactType.IsEnabled = true;
+            inpSupplierContactPhone.IsEnabled = true;
+            inpSupplierContactMail.IsEnabled = true;
+
+            DataGrid dgSCT = (DataGrid)sender;
+
+            if (dgSCT.SelectedItem is not DataRowView Row_Selected) { return; }
+
+            //set value
+            _currentDataGridSCTIndex = dgSCT.SelectedIndex;
+
+            //valueSupplierId.Text = Row_Selected["suppliercontact_SupplierId"].ToString();
+            valueSupplierContactId.Text = Row_Selected["suppliercontact_Id"].ToString();
+            inpSupplierContactName.Text = Row_Selected["suppliercontact_Name"].ToString();
+            inpSupplierContactPhone.Text = Row_Selected["suppliercontact_Phone"].ToString();
+            inpSupplierContactMail.Text = Row_Selected["suppliercontact_Mail"].ToString();
+
+
+            //Select the saved Contacttype in the combobox by default
+            foreach (HelperMySQL.ContactType contacttype in cboxSupplierContactType.Items)
+            {
+                if (contacttype.ContactTypeName == Row_Selected["suppliercontact_Type"].ToString())
+                {
+                    cboxSupplierContactType.SelectedItem = contacttype;
+                    valueContactTypeId.Text = Row_Selected["contacttype_Id"].ToString();
+                    valueContactTypeName.Text = Row_Selected["contacttype_Name"].ToString();
+                    break;
+                }
+            }
+        }
+        #endregion
+
+        #region Selection changed: Combobox Contacts
+        private void cboxSupplierContactType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (HelperMySQL.ContactType item in e.AddedItems)
+            {
+                valueContactTypeId.Text = item.ContactTypeId.ToString();
+                valueContactTypeName.Text = item.ContactTypeName.ToString();
+            }
         }
         #endregion
 
@@ -259,6 +311,27 @@ namespace Modelbuilder
             string result = string.Empty;
             result = _helper.DeleteTblSupplier(supplierId);
             UpdateStatus(result);
+        }
+        #endregion
+
+        #region Click New Contact button (on supplier contacts toolbar)
+        private void SupplierContactToolbarButtonNew(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Click Save Contact button (on supplier contacts toolbar)
+        private void SupplierContactToolbarButtonSave(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Click Delete Contact button (on supplier contacts toolbar)
+        private void SupplierContactToolbarButtonDelete(object sender, RoutedEventArgs e)
+        {
+
         }
         #endregion
 
@@ -477,6 +550,7 @@ namespace Modelbuilder
 
         private string ShowColumn; // aktuelle Spalte der Cursorposition
         private int _CurrentColumn = 1;
+
         public int CurrentColumn
         {
             get { return _CurrentColumn; }

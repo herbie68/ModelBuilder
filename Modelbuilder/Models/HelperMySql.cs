@@ -23,6 +23,7 @@ namespace Modelbuilder
         public string DbSupplierTable = "supplier";
         public string DbUnitTable = "unit";
         public string DbWorktypeTable = "worktype";
+        public string DbContactTypeTable = "contacttype";
 
         public CultureInfo Culture = new("nl-NL");
 
@@ -408,7 +409,7 @@ namespace Modelbuilder
         #endregion Execute Non Query Table: ProductSupplier
 
         #region Execute Non Query Table: Supplier
-        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, float supplierOrderCosts, float supplierMinOrderCosts, int supplierId = 0)
+        public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, double supplierOrderCosts, double supplierMinOrderCosts, int supplierId = 0)
         {
             int rowsAffected = 0;
 
@@ -805,7 +806,7 @@ namespace Modelbuilder
         #endregion Get Data from Table: Currency
 
         #region Insert in Table: Supplier
-        public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, float supplierOrderCosts, float supplierMinOrderCosts)
+        public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, double supplierOrderCosts, double supplierMinOrderCosts)
         {
             string result = string.Empty;
             string sqlText = "INSERT INTO Supplier (supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, supplier_Url, supplier_Memo, supplier_CountryId, supplier_CountryName, supplier_CurrencyId, supplier_CurrencySymbol, supplier_PhoneGeneral, supplier_PhoneSales, supplier_PhoneSupport, supplier_MailGeneral, supplier_MailSales, supplier_MailSupport, supplier_OrderCosts, supplier_MinOrderCosts) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountryId, @supplierCountryName, @supplierCurrencyId, @supplierCurrencySymbol, @supplierPhoneGeneral, @supplierPhoneSales, @supplierPhoneSupport, @supplierMailGeneral, @supplierMailSales, @supplierMailSupport, @supplierOrderCosts, @supplierMinOrderCosts);";
@@ -1014,7 +1015,7 @@ namespace Modelbuilder
         #endregion Delete row in Table: Product
 
         #region Update Table: Supplier
-        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, float supplierOrderCosts, float supplierMinOrderCosts)
+        public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, double supplierOrderCosts, double supplierMinOrderCosts)
         {
             string result = string.Empty;
             string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencySymbol = @supplierCurrencySymbol, supplier_PhoneGeneral = @supplierPhoneGeneral, supplier_PhoneSales = @supplierPhoneSales, supplier_PhoneSupport = @supplierPhoneSupport, supplier_MailGeneral = @supplierMailGeneral, supplier_MailSales = @supplierMailSales, supplier_MailSupport = @supplierMailSupport,supplier_Memo = @supplierMemo, supplier_OrderCosts = @supplierOrderCosts, supplier_MinOrderCosts = @supplierMinOrderCosts WHERE supplier_Id = @supplierId;";
@@ -1296,6 +1297,36 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Fill ContactType dropdown
+        public List<ContactType> GetContactTypeList(List<ContactType> contactTypeList)
+        {
+            string DatabaseTable = DbContactTypeTable;
+            Database dbConnection = new()
+            {
+                TableName = DatabaseTable
+            };
+
+            dbConnection.SqlSelectionString = "contacttype_Name, contacttype_Id";
+            dbConnection.SqlOrderByString = "contacttype_Name";
+            dbConnection.TableName = DatabaseTable;
+
+            DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
+
+            List<ContactType> ContactTypeList = new();
+
+            for (int i = 0; i < dtSelection.Rows.Count; i++)
+            {
+                // SupplierList.Add(new Supplier(dtSelection.Rows[i][0].ToString(), int.Parse(dtSelection.Rows[i][1].ToString())));
+                contactTypeList.Add(new ContactType
+                {
+                    ContactTypeName = dtSelection.Rows[i][0].ToString(),
+                    ContactTypeId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
+                });
+            };
+            return ContactTypeList;
+        }
+        #endregion
+
         #region Fill the Brand dropdown
         public List<Brand> GetBrandList(List<Brand> brandList)
         {
@@ -1384,20 +1415,18 @@ namespace Modelbuilder
         #region Create object for all suppliers in table for dropdown
         public class Supplier
         {
-            /*
-            public Supplier(string Name, int Id)
-            {
-                supplierName = Name;
-                supplierId = Id;
-            }
-
-            public string supplierName { get; set; }
-            public int supplierId { get; set; }
-            */
             public string SupplierName { get; set; }
             public int SupplierId { get; set; }
             public string SupplierCurrencySymbol { get; set; }
             public int SupplierCurrencyId { get; set; }
+        }
+        #endregion
+
+        #region Create object for all contacttypes in table for dropdown
+        public class ContactType
+        {
+            public string ContactTypeName { get; set; }
+            public int ContactTypeId { get; set; }
         }
         #endregion
 
@@ -1408,7 +1437,7 @@ namespace Modelbuilder
             public int BrandId { get; set; }
         }
         #endregion
-        #endregion Helper classes to for creating objects to populate dropdowns
-        #endregion Create lists to populate dropdowns for metadata pages
+        #endregion
+        #endregion
     }
 }

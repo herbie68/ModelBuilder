@@ -25,8 +25,8 @@
 
         <DataTemplate  x:Key="ContactTypeComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=contacttypeName}" />
-                <TextBlock Text="{Binding Path=contacttypeId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=ContactTypeName}" />
+                <TextBlock Text="{Binding Path=ContactTypeId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -59,12 +59,14 @@
 
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"       Margin="450,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"        Margin="500,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"      Margin="550,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"       Margin="600,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"   Margin="650,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContatactTypeId"  Margin="650,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"           Margin="350,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"            Margin="400,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"          Margin="450,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"           Margin="500,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"       Margin="550,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierContactId"    Margin="600,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeId"        Margin="650,5,0,0" />
+        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeName"      Margin="700,5,0,0" />
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -119,7 +121,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Contactpersonen">
+                <TabItem Header="Contactpersonen" x:Name="tabSupplierContact" IsEnabled="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -131,7 +133,7 @@
                             <GroupBox>
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\metadataSupplier.png"/>
+                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\metadataContact.png"/>
                                         <TextBlock Style="{DynamicResource TextBlockBold}" Text="Communicatiekanalen per leverancier"/>
                                     </StackPanel>
                                 </GroupBox.Header>
@@ -146,25 +148,66 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Text="Volledige naam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpsupplierContactName" Grid.Row="1" Width="360" IsEnabled="False"/>
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierContactName" Grid.Row="1" Width="360" IsEnabled="False"/>
 
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Functie"/>
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Functie"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierContactType"  IsTabStop="False"
                                               ItemTemplate="{StaticResource ContactTypeComboTemplate}" TextSearch.TextPath="contacttypeName" 
                                               SelectionChanged="cboxSupplierContactType_SelectionChanged" 
-                                              Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="False">
+                                              Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="True">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
                                         </ComboBox.ItemContainerStyleSelector>
                                     </ComboBox>
+
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="4" Text="Telefoonnummer"/>
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierContactPhone" Grid.Row="5" Width="360" IsEnabled="False"/>
+
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="6" Text="E-Mail"/>
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierContactMail" Grid.Row="7" Width="360" IsEnabled="False"/>
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
+
+                        <!--#region Suppliers per product datagrid section-->
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <!--#region Datagrid definition-->
+                            <DataGrid x:Name="SupplierContact_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
+                                      SelectionChanged="SupplierContact_DataGrid_SelectionChanged" 
+                                      Padding="3" Height="220" Margin="5,0" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_Id}" />
+                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding suppliercontact_Type}" />
+                                    <DataGridTextColumn Header="Telefoon" Width="120" Binding="{Binding suppliercontact_Phone}" />
+                                    <DataGridTextColumn Header="E-Mail" Width="*" Binding="{Binding suppliercontact_Mail}" />
+                                    <DataGridTextColumn Header="Naam" Width="150" Binding="{Binding suppliercontact_Name}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--#endregion-->
+
+                            <!--#region Toolbar for datagrid-->
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <ToolBarTray Style="{DynamicResource DefaultToolBarTray}">
+                                    <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="suppliercontactToolbar">
+                                        <Button ToolTip="Contact(persoon) bij leverancier toevoegen" Click="SupplierContactToolbarButtonNew">
+                                            <Image Style="{DynamicResource ToolBarAddIcon}" />
+                                        </Button>
+                                        <Button ToolTip="Wijzigingen opslaan" Click="SupplierContactToolbarButtonSave">
+                                            <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                                        </Button>
+                                        <Button ToolTip="Contact(persoon) verwijderen uit de tabel" Click="SupplierContactToolbarButtonDelete">
+                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                            </StackPanel>
+                            <!--#endregion-->
+                        </StackPanel>
+                        <!--#endregion-->
+
                     </Grid>
                 </TabItem>
 
@@ -230,7 +273,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Contactpersonen">
+                <TabItem Header="Orderhistorie">
                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
                 </TabItem>
             </TabControl>

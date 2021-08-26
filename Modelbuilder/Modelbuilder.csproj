@@ -24,6 +24,7 @@
     <None Remove="Resources\metadataCategoryExport.png" />
     <None Remove="Resources\metadataCategoryImport.png" />
     <None Remove="Resources\metadataCategoryReport.png" />
+    <None Remove="Resources\metadataContact.png" />
     <None Remove="Resources\metadataCountry.png" />
     <None Remove="Resources\metadataCountryExport.png" />
     <None Remove="Resources\metadataCountryImport.png" />
@@ -133,6 +134,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\appRedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\metadataContact.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\noImage.png">

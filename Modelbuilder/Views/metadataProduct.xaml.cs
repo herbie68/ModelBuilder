@@ -33,7 +33,7 @@ namespace Modelbuilder
         private DataTable _dt, _dtPS;
         private int _dbRowCount;
         private int _currentDataGridIndex, _currentDataGridPSIndex;
-        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable = "brand", DatabaseUnitTable = "unit", DatabaseProductSupplierTable = "productsupplier";
+        static string DatabaseCategoryTable = "category", DatabaseStorageTable = "storage", DatabaseSupplierTable = "supplier", DatabaseBrandTable = "brand", DatabaseUnitTable = "unit";
 
         public metadataProduct()
         {
@@ -50,80 +50,6 @@ namespace Modelbuilder
 
             GetData();
         }
-
-        #region Create object for all categories in table for dropdown
-        private class Category
-        {
-            public Category(string Name, string Id)
-            {
-                categoryName = Name;
-                categoryId = Id;
-            }
-
-            public string categoryName { get; set; }
-            public string categoryId { get; set; }
-        }
-        #endregion
-
-        #region Create object for all Suppliers in table for dropdown
-        private class Supplier
-        {
-            public Supplier(string Name, string Currency, string CurrencyId, string Id)
-            {
-                supplierName = Name;
-                supplierCurrency = Currency;
-                supplierCurrencyId = CurrencyId;
-                supplierId = Id;
-            }
-
-            public string supplierName { get; set; }
-            public string supplierCurrency { get; set; }
-            public string supplierCurrencyId { get; set; }
-            public string supplierId { get; set; }
-        }
-        #endregion
-
-        #region Create object for all storagelocations in table for dropdown
-        private class Storage
-        {
-            public Storage(string Name, string Id)
-            {
-                storageName = Name;
-                storageId = Id;
-            }
-
-            public string storageName { get; set; }
-            public string storageId { get; set; }
-        }
-        #endregion
-
-        #region Create object for all brands in table for dropdown
-        private class Brand
-        {
-            public Brand(string Name, string Id)
-            {
-                brandName = Name;
-                brandId = Id;
-            }
-
-            public string brandName { get; set; }
-            public string brandId { get; set; }
-        }
-        #endregion
-
-        #region Create object for all units in table for dropdown
-        private class Unit
-        {
-            public Unit(string Name, string Id)
-            {
-                unitName = Name;
-                unitId = Id;
-            }
-
-            public string unitName { get; set; }
-            public string unitId { get; set; }
-        }
-        #endregion
 
         #region CommonCommandBinding_CanExecute
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -238,9 +164,7 @@ namespace Modelbuilder
             inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString("#,##0.00;- #,##0.00");
             inpProductPrice.Text = _Price.ToString("€ #,##0.00;€ - #,##0.00");
 
-
-            // Retrieve Product Image
-            
+            // Retrieve Product Image            
             if (Row_Selected["product_Image"].ToString() != "")
             {
                 byte[] productImageByte = (byte[])Row_Selected["product_Image"];
@@ -253,7 +177,6 @@ namespace Modelbuilder
             }
             else
             {
-                //BitmapImage _tempImage = new BitmapImage ( UriSource = @"Resources/noImage.png" };
                 imgProductImage.Source = new BitmapImage(new Uri("..\\Resources\\noImage.png", UriKind.Relative ));
             }
 
@@ -327,6 +250,7 @@ namespace Modelbuilder
 
             //set value
             _currentDataGridPSIndex = dgPS.SelectedIndex;
+
             float _ProductPrice = 0;
 
             if (Row_Selected["productSupplier_ProductPrice"].ToString() != "") { _ProductPrice = float.Parse(Row_Selected["productSupplier_ProductPrice"].ToString()); };
@@ -870,6 +794,21 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Category dropdown
+        #region Create object for all categories in table for dropdown
+        private class Category
+        {
+            public Category(string Name, string Id)
+            {
+                categoryName = Name;
+                categoryId = Id;
+            }
+
+            public string categoryName { get; set; }
+            public string categoryId { get; set; }
+        }
+        #endregion
+
         #region Fill Category dropdown
         static List<Category> CategoryList()
         {
@@ -893,6 +832,22 @@ namespace Modelbuilder
                     dtCategorySelection.Rows[i][1].ToString()));
             };
             return CategoryList;
+        }
+        #endregion
+        #endregion
+
+        #region Storage dropdown
+        #region Create object for all storagelocations in table for dropdown
+        private class Storage
+        {
+            public Storage(string Name, string Id)
+            {
+                storageName = Name;
+                storageId = Id;
+            }
+
+            public string storageName { get; set; }
+            public string storageId { get; set; }
         }
         #endregion
 
@@ -919,6 +874,26 @@ namespace Modelbuilder
                     dtStorageSelection.Rows[i][1].ToString()));
             };
             return StorageList;
+        }
+        #endregion
+        #endregion
+
+        #region Supplier dropdown
+        #region Create object for all Suppliers in table for dropdown
+        private class Supplier
+        {
+            public Supplier(string Name, string Currency, string CurrencyId, string Id)
+            {
+                supplierName = Name;
+                supplierCurrency = Currency;
+                supplierCurrencyId = CurrencyId;
+                supplierId = Id;
+            }
+
+            public string supplierName { get; set; }
+            public string supplierCurrency { get; set; }
+            public string supplierCurrencyId { get; set; }
+            public string supplierId { get; set; }
         }
         #endregion
 
@@ -948,6 +923,22 @@ namespace Modelbuilder
             return SupplierList;
         }
         #endregion
+        #endregion
+
+        #region Brand dropdown
+        #region Create object for all brands in table for dropdown
+        private class Brand
+        {
+            public Brand(string Name, string Id)
+            {
+                brandName = Name;
+                brandId = Id;
+            }
+
+            public string brandName { get; set; }
+            public string brandId { get; set; }
+        }
+        #endregion
 
         #region Fill Brand dropdown
         static List<Brand> BrandList()
@@ -972,6 +963,22 @@ namespace Modelbuilder
                     dtBrandSelection.Rows[i][1].ToString()));
             };
             return BrandList;
+        }
+        #endregion
+        #endregion
+
+        #region Units dropdown
+        #region Create object for all units in table for dropdown
+        private class Unit
+        {
+            public Unit(string Name, string Id)
+            {
+                unitName = Name;
+                unitId = Id;
+            }
+
+            public string unitName { get; set; }
+            public string unitId { get; set; }
         }
         #endregion
 
@@ -999,6 +1006,7 @@ namespace Modelbuilder
             };
             return UnitList;
         }
+        #endregion
         #endregion
     }
 }
