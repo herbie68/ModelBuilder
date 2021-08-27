@@ -1,4 +1,6 @@
-﻿using System;
+﻿using K4os.Compression.LZ4.Internal;
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -8,6 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 
+using static Modelbuilder.HelperMySQL;
+
 namespace Modelbuilder
 {
     /// <summary>
@@ -16,9 +20,9 @@ namespace Modelbuilder
     public partial class metadataSupplier : Page
     {
         private HelperMySQL _helper;
-        private DataTable _dt;
+        private DataTable _dt, _dtSC;
         private int _dbRowCount;
-        private int _currentDataGridIndex, _currentDataGridSCTIndex;
+        private int _currentDataGridIndex, _currentDataGridSCTIndex, _currentDataGridSCIndex;
         private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
@@ -76,9 +80,11 @@ namespace Modelbuilder
 
             // Get data from database
             _dt = _helper.GetDataTblSupplier();
+            //_dtSC = _helper.GetDataTblSupplierContact();
 
             // Populate data in datagrid from datatable
             SupplierCode_DataGrid.DataContext = _dt;
+            //SupplierContact_DataGrid.DataContext = _dtSC;
 
             // Set value
             _dbRowCount = _dt.Rows.Count;
@@ -142,7 +148,7 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Selection changed
+        #region Selection changed: Supplier
         private void SupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = (DataGrid)sender;
@@ -206,6 +212,12 @@ namespace Modelbuilder
 
             tabSupplierContact.IsEnabled = true;
 
+            // Retrieve list of contacts for this supplier from database
+            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+
+            // Populate data in datagrid from datatable after clearing the current gatagrid
+            SupplierContact_DataGrid.DataContext = _dtSC;
+
         }
         #endregion
 
@@ -225,7 +237,6 @@ namespace Modelbuilder
             //set value
             _currentDataGridSCTIndex = dgSCT.SelectedIndex;
 
-            //valueSupplierId.Text = Row_Selected["suppliercontact_SupplierId"].ToString();
             valueSupplierContactId.Text = Row_Selected["suppliercontact_Id"].ToString();
             inpSupplierContactName.Text = Row_Selected["suppliercontact_Name"].ToString();
             inpSupplierContactPhone.Text = Row_Selected["suppliercontact_Phone"].ToString();
@@ -235,11 +246,11 @@ namespace Modelbuilder
             //Select the saved Contacttype in the combobox by default
             foreach (HelperMySQL.ContactType contacttype in cboxSupplierContactType.Items)
             {
-                if (contacttype.ContactTypeName == Row_Selected["suppliercontact_Type"].ToString())
+                if (contacttype.ContactTypeName == Row_Selected["suppliercontact_TypeName"].ToString())
                 {
                     cboxSupplierContactType.SelectedItem = contacttype;
-                    valueContactTypeId.Text = Row_Selected["contacttype_Id"].ToString();
-                    valueContactTypeName.Text = Row_Selected["contacttype_Name"].ToString();
+                    valueContactTypeId.Text = contacttype.ContactTypeId.ToString();
+                    valueContactTypeName.Text = contacttype.ContactTypeName;
                     break;
                 }
             }
@@ -317,6 +328,49 @@ namespace Modelbuilder
         #region Click New Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonNew(object sender, RoutedEventArgs e)
         {
+            var supplierId = int.Parse(valueSupplierId.Text);
+            var supplierContactContactTypeId = 1;
+            var supplierContactContactTypeName = "";
+            var supplierContactContactName = "";
+            var supplierContactContactPhone = "";
+            var supplierContactContactMail = "";
+
+            // if (_dt.Rows.Count != 0)
+            // { DataRow row = _dt.Rows[_dt.Rows.Count - 1]; }
+
+            InitializeHelper();
+
+            var result = _helper.InsertTblSupplierContact(supplierId,  supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            UpdateStatus(result);
+
+            // Get data from database
+            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+
+            // Populate data in datagrid from datatable
+            SupplierContact_DataGrid.DataContext = _dtSC;
+
+            var rowIndex = _dtSC.Rows.Count;
+
+            object item = SupplierContact_DataGrid.Items[rowIndex]; // = Product X
+            SupplierContact_DataGrid.SelectedItem = item;
+
+            DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+
+            if (row == null)
+            {
+                /* bring the data item (Product object) into view
+                 * in case it has been virtualized away */
+                SupplierContact_DataGrid.ScrollIntoView(item);
+                row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            }
+
+
+            //DataGrid dg = (DataGrid)sender;
+
+            //if (dg.SelectedItem is not DataRowView Row_Selected)
+            //{
+            //    return;
+            //}
 
         }
         #endregion
@@ -324,15 +378,42 @@ namespace Modelbuilder
         #region Click Save Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonSave(object sender, RoutedEventArgs e)
         {
+            int rowIndex = _currentDataGridSCIndex;
 
+            if (valueSupplierContactId.Text != "")
+            {
+                UpdateRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
+            }
+
+            GetData();
+
+            // Make sure the eddited row in the datagrid is selected
+            SupplierContact_DataGrid.SelectedIndex = rowIndex;
+            SupplierContact_DataGrid.Focus();
         }
         #endregion
 
         #region Click Delete Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
+            int rowIndex = _currentDataGridSCIndex;
 
+            DeleteRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
+
+            GetData();
+
+            if (rowIndex == 0)
+            {
+                SupplierContact_DataGrid.SelectedIndex = 0;
+            }
+            else
+            {
+                SupplierContact_DataGrid.SelectedIndex = rowIndex - 1;
+            }
+
+            SupplierContact_DataGrid.Focus();
         }
+    }
         #endregion
 
         #region Click Save Data button (on toolbar)
@@ -446,14 +527,53 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Fill Country dropdown
-        static List<Country> CountryList()
+        #region Update row SupplierContact
+        private void UpdateRowSupplierContact(int dgIndex)
         {
+            DataRow row = _dt.Rows[_currentDataGridIndex];
+            var supplierContactContactName = "";
+            var supplierContactContactTypeId = 1;
+            var supplierContactContactTypeName = "";
+            var supplierContactContactPhone = "";
+            var supplierContactContactMail = "";
 
-            Database dbCountryConnection = new()
+            var supplierContactContactId = int.Parse(valueSupplierContactId.Text);
+            var supplierId = int.Parse(valueSupplierId.Text);
+            if (inpSupplierContactName.Text != "")
             {
-                TableName = DatabaseCountryTable
-            };
+                supplierContactContactName = inpSupplierContactName.Text;
+            }
+
+            if (valueContactTypeId.Text != "")
+            {
+                supplierContactContactTypeId = int.Parse(valueContactTypeId.Text);
+                supplierContactContactTypeName = valueContactTypeName.Text;
+            }
+
+            if(inpSupplierContactPhone.Text != "")
+            { 
+                supplierContactContactPhone = inpSupplierContactPhone.Text; 
+            }
+
+            if (inpSupplierContactMail.Text != "")
+            { 
+                supplierContactContactMail = inpSupplierContactMail.Text; 
+            }
+
+            InitializeHelper();
+            string result = string.Empty;
+            result = _helper.UpdateTblSupplierContact(supplierContactContactId, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            UpdateStatus(result);
+}
+
+#endregion
+#region Fill Country dropdown
+static List<Country> CountryList()
+{
+Database dbCountryConnection = new()
+{
+TableName = DatabaseCountryTable
+};
 
             dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
             dbCountryConnection.SqlOrderByString = "country_Id";

@@ -59,14 +59,16 @@
 
         <!--#region Hiddenfields-->
         <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId"           Margin="350,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"            Margin="400,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"          Margin="450,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"           Margin="500,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"       Margin="550,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierContactId"    Margin="600,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeId"        Margin="650,5,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeName"      Margin="700,5,0,0" />
+        <StackPanel Grid.Column="2" Orientation="Horizontal" >
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierContactId"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeId"/>
+            <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeName"/>
+        </StackPanel>
         <!-- End of "Do not remove" part-->
         <!--#endregion-->
 
@@ -155,9 +157,9 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Functie"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierContactType"  IsTabStop="False"
-                                              ItemTemplate="{StaticResource ContactTypeComboTemplate}" TextSearch.TextPath="contacttypeName" 
+                                              ItemTemplate="{StaticResource ContactTypeComboTemplate}" TextSearch.TextPath="ContactTypeName" 
                                               SelectionChanged="cboxSupplierContactType_SelectionChanged" 
-                                              Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="True">
+                                              Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="False">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
                                         </ComboBox.ItemContainerStyleSelector>
@@ -180,7 +182,8 @@
                                       Padding="3" Height="220" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_Id}" />
-                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding suppliercontact_Type}" />
+                                    <DataGridTextColumn Header="TypeId" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_TypeId}" />
+                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding suppliercontact_TypeName}" />
                                     <DataGridTextColumn Header="Telefoon" Width="120" Binding="{Binding suppliercontact_Phone}" />
                                     <DataGridTextColumn Header="E-Mail" Width="*" Binding="{Binding suppliercontact_Mail}" />
                                     <DataGridTextColumn Header="Naam" Width="150" Binding="{Binding suppliercontact_Name}" />

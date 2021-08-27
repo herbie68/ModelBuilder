@@ -65,11 +65,9 @@ namespace Modelbuilder
 
             // Get data from database
             _dt = _helper.GetDataTblProduct();
-            _dtPS = _helper.GetDataTblProductSupplier();
 
             // Populate data in datagrid from datatable
             ProductCode_DataGrid.DataContext = _dt;
-            ProductSupplierCode_DataGrid.DataContext = _dtPS;
 
             // Set value
             _dbRowCount = _dt.Rows.Count;
@@ -180,7 +178,7 @@ namespace Modelbuilder
                 imgProductImage.Source = new BitmapImage(new Uri("..\\Resources\\noImage.png", UriKind.Relative ));
             }
 
-            // When there is an existing Prduct selected the supplier tabpage can be activated
+            // When there is an existing Product selected the supplier tabpage can be activated
             SupplierTab.IsEnabled = inpProductCode.Text != "";
 
             if (Row_Selected["product_ProjectCosts"].ToString() == "0")
@@ -231,6 +229,13 @@ namespace Modelbuilder
                     break;
                 }
             }
+
+            // Retrieve list of suppliers for this product from database
+            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
+
+            // Populate data in datagrid from datatable
+            ProductSupplierCode_DataGrid.DataContext = _dtPS;
+
         }
         #endregion
 
@@ -491,17 +496,16 @@ namespace Modelbuilder
             UpdateStatus(result);
 
             // Get data from database
-            _dtPS = _helper.GetDataTblProductSupplier();
+            _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
 
             // Populate data in datagrid from datatable
             ProductSupplierCode_DataGrid.DataContext = _dtPS;
-            //dataGridView1.Rows[e.RowIndex].Selected = true;
-            DataGrid dg = (DataGrid)sender;
+            //DataGrid dg = (DataGrid)sender;
 
-            if (dg.SelectedItem is not DataRowView Row_Selected)
-            {
-                return;
-            }
+            //if (dg.SelectedItem is not DataRowView Row_Selected)
+            //{
+            //    return;
+            //}
 
         }
         #endregion

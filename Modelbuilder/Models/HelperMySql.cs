@@ -408,6 +408,57 @@ namespace Modelbuilder
         }
         #endregion Execute Non Query Table: ProductSupplier
 
+        #region Execute Non Query Table: SupplierContact
+        public int ExecuteNonQueryTblSupplierContact(string sqlText, int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail, int supplierContactContactId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@supplierContactContactId", MySqlDbType.Int32).Value = supplierContactContactId;
+                    cmd.Parameters.Add("@supplierContactContactTypeId", MySqlDbType.Int32).Value = supplierContactContactTypeId;
+                    cmd.Parameters.Add("@supplierId", MySqlDbType.Int32).Value = supplierId;
+                    cmd.Parameters.Add("@supplierContactContactName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierContactContactTypeName", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierContactContactPhone", MySqlDbType.VarChar).Value = DBNull.Value;
+                    cmd.Parameters.Add("@supplierContactContactMail", MySqlDbType.VarChar).Value = DBNull.Value;
+
+                    //set values
+                    if (!String.IsNullOrEmpty(supplierContactContactName))
+                    {
+                        cmd.Parameters["@supplierContactContactName"].Value = supplierContactContactName;
+                    }
+
+                    if (!String.IsNullOrEmpty(supplierContactContactTypeName))
+                    {
+                        cmd.Parameters["@supplierContactContactTypeName"].Value = supplierContactContactTypeName;
+                    }
+
+                    if (!String.IsNullOrEmpty(supplierContactContactPhone))
+                    {
+                        cmd.Parameters["@supplierContactContactPhone"].Value = supplierContactContactPhone;
+                    }
+
+                    if (!String.IsNullOrEmpty(supplierContactContactMail))
+                    {
+                        cmd.Parameters["@supplierContactContactMail"].Value = supplierContactContactMail;
+                    }
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion
+
         #region Execute Non Query Table: Supplier
         public int ExecuteNonQueryTblSupplier(string sqlText, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, double supplierOrderCosts, double supplierMinOrderCosts, int supplierId = 0)
         {
@@ -613,6 +664,31 @@ namespace Modelbuilder
         }
         #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
 
+        #region Execute Non Query Table ProductSupplierId: SupplierContact
+        public int ExecuteNonQueryTblSupplierContactId(string sqlText, int supplierContactId = 0)
+        {
+            int rowsAffected = 0;
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+                {
+
+                    //add parameters setting string values to DBNull.Value
+                    cmd.Parameters.Add("@supplierContactId", MySqlDbType.Int32).Value = supplierContactId;
+
+                    //execute; returns the number of rows affected
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return rowsAffected;
+        }
+        #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
+
         #region Uncheck the DefaultSupplier: ProductSupplier
         public int UncheckDefaultSupplierTblProductSupplier(string sqlText, int productSupplierId, int productSupplierProductId)
         {
@@ -737,6 +813,39 @@ namespace Modelbuilder
             return dtPS;
         }
         #endregion Get Data from Table: Product
+
+        #region Get Data from Table: SupplierContact
+        public DataTable GetDataTblSupplierContact(int SupplierId = 0)
+        {
+            DataTable dtSC = new DataTable();
+            string sqlText = string.Empty;
+
+            if (SupplierId > 0)
+            {
+                sqlText = "SELECT * from SupplierContact where suppliercontact_SupplierId = @SupplierId";
+            }
+            else
+            {
+                sqlText = "SELECT * from SupplierContact";
+            }
+
+            using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+            {
+                //open
+                con.Open();
+
+                using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+                //add parameter
+                cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
+
+                using MySqlDataAdapter daPS = new(cmd);
+                //use DataAdapter to fill DataTable
+                daPS.Fill(dtSC);
+            }
+
+            return dtSC;
+        }
+        #endregion
 
         # region Get Data from Table: Country
         public DataTable GetDataTblCountry(string supplierCountryName = "")
@@ -909,6 +1018,40 @@ namespace Modelbuilder
         }
         #endregion
 
+        #region Insert in Table: SupplierContact
+        public string InsertTblSupplierContact(int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail)
+        {
+            string result = string.Empty;
+            string sqlText = "INSERT INTO SupplierContact (suppliercontact_SupplierId, suppliercontact_Name, suppliercontact_TypeId, suppliercontact_TypeName, suppliercontact_Phone, suppliercontact_Mail) VALUES (@supplierId, @supplierContactContactName, @supplierContactContactTypeId, @supplierContactContactTypeName, @supplierContactContactPhone, @supplierContactContactMail);";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblSupplierContact(sqlText, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij toegevoegd.");
+                }
+                else
+                {
+                    result = "Rij niet toegevoegd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (UpdateTblProduct): " + ex.Message);
+                throw;
+            }
+            return result;
+        }
+        #endregion
+
         #region Delete row in Table: Supplier
         public string DeleteTblSupplier(int supplierId)
         {
@@ -1014,6 +1157,41 @@ namespace Modelbuilder
         }
         #endregion Delete row in Table: Product
 
+        #region Delete row in Table: SupplierContact
+        public string DeleteTblSupplierContact(int supplierContactId)
+        {
+            string result = string.Empty;
+            string sqlText = "DELETE FROM SupplierContact WHERE supplierContact_Id=@supplierContactId";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblSupplierContactId(sqlText, supplierContactId);
+
+                if (rowsAffected > 0)
+                {
+
+                    result = String.Format("Rij verwijderd.");
+                }
+                else
+                {
+                    result = "Rij niet verwijderd.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error (DeleteTblProduct): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Delete row in Table: Product
+
         #region Update Table: Supplier
         public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierPhoneGeneral, string supplierPhoneSales, string supplierPhoneSupport, string supplierMailGeneral, string supplierMailSales, string supplierMailSupport, string supplierMemo, double supplierOrderCosts, double supplierMinOrderCosts)
         {
@@ -1082,6 +1260,34 @@ namespace Modelbuilder
 
                 //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
                 result = rowsAffected > 0 ? productSupplierProductName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProductSupplier - MySqlException): " + ex.Message);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Fout (UpdateTblProductSupplier): " + ex.Message);
+                throw;
+            }
+
+            return result;
+        }
+        #endregion Update Table: Product
+
+        #region Update Table: SupplierContact
+        public string UpdateTblSupplierContact(int supplierContactContactId, int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail)
+        {
+            string result = string.Empty;
+            string sqlText = "UPDATE SupplierContact SET suppliercontact_SupplierId=@supplierId, suppliercontact_Name=@supplierContactContactName, suuppliercontact_TypeId=@supplierContactContactTypeId, suppliercontact_TypeName=@supplierContactContactTypeName, suppliercontact_Phone=@supplierContactContactPhone, suppliercontact_Mail=@supplierContactContactMail WHERE suppliercontact_Id = @supplierContactContactId;";
+
+            try
+            {
+                int rowsAffected = ExecuteNonQueryTblSupplierContact(sqlText, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail, supplierContactContactId);
+
+                //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
+                result = rowsAffected > 0 ? supplierContactContactName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
             }
             catch (MySqlException ex)
             {
@@ -1280,11 +1486,8 @@ namespace Modelbuilder
 
             DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
-            List<Supplier> SupplierList = new();
-
             for (int i = 0; i < dtSelection.Rows.Count; i++)
             {
-                // SupplierList.Add(new Supplier(dtSelection.Rows[i][0].ToString(), int.Parse(dtSelection.Rows[i][1].ToString())));
                 supplierList.Add(new Supplier
                 {
                     SupplierName = dtSelection.Rows[i][0].ToString(),
@@ -1312,18 +1515,15 @@ namespace Modelbuilder
 
             DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
-            List<ContactType> ContactTypeList = new();
-
             for (int i = 0; i < dtSelection.Rows.Count; i++)
             {
-                // SupplierList.Add(new Supplier(dtSelection.Rows[i][0].ToString(), int.Parse(dtSelection.Rows[i][1].ToString())));
                 contactTypeList.Add(new ContactType
                 {
                     ContactTypeName = dtSelection.Rows[i][0].ToString(),
                     ContactTypeId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
                 });
             };
-            return ContactTypeList;
+            return contactTypeList;
         }
         #endregion
 
