@@ -244,7 +244,7 @@ namespace Modelbuilder
 
 
             //Select the saved Contacttype in the combobox by default
-            foreach (HelperMySQL.ContactType contacttype in cboxSupplierContactType.Items)
+            foreach (ContactType contacttype in cboxSupplierContactType.Items)
             {
                 if (contacttype.ContactTypeName == Row_Selected["suppliercontact_TypeName"].ToString())
                 {
@@ -307,7 +307,7 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Delete row in table
+        #region Delete row in table Supplier
         private void DeleteRow(int dgIndex)
         {
             //since the DataGrid DataContext is set to the DataTable, 
@@ -321,6 +321,24 @@ namespace Modelbuilder
 
             string result = string.Empty;
             result = _helper.DeleteTblSupplier(supplierId);
+            UpdateStatus(result);
+        }
+        #endregion
+
+        #region Delete row in table SupplierContact
+        private void DeleteRowSupplierContact(int dgIndex)
+        {
+            //since the DataGrid DataContext is set to the DataTable, 
+            //the DataTable is updated when data is modified in the DataGrid
+            //get last row
+            DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+            int SupplierContactId = int.Parse(valueSupplierContactId.Text);
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.DeleteTblSupplierContact(SupplierContactId);
             UpdateStatus(result);
         }
         #endregion
@@ -363,15 +381,6 @@ namespace Modelbuilder
                 SupplierContact_DataGrid.ScrollIntoView(item);
                 row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
             }
-
-
-            //DataGrid dg = (DataGrid)sender;
-
-            //if (dg.SelectedItem is not DataRowView Row_Selected)
-            //{
-            //    return;
-            //}
-
         }
         #endregion
 
@@ -413,7 +422,6 @@ namespace Modelbuilder
 
             SupplierContact_DataGrid.Focus();
         }
-    }
         #endregion
 
         #region Click Save Data button (on toolbar)
@@ -567,13 +575,14 @@ namespace Modelbuilder
 }
 
 #endregion
-#region Fill Country dropdown
-static List<Country> CountryList()
-{
-Database dbCountryConnection = new()
-{
-TableName = DatabaseCountryTable
-};
+
+        #region Fill Country dropdown
+        static List<Country> CountryList()
+        {
+        Database dbCountryConnection = new()
+        {
+        TableName = DatabaseCountryTable
+        };
 
             dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
             dbCountryConnection.SqlOrderByString = "country_Id";

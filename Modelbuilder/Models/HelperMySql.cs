@@ -1280,7 +1280,7 @@ namespace Modelbuilder
         public string UpdateTblSupplierContact(int supplierContactContactId, int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail)
         {
             string result = string.Empty;
-            string sqlText = "UPDATE SupplierContact SET suppliercontact_SupplierId=@supplierId, suppliercontact_Name=@supplierContactContactName, suuppliercontact_TypeId=@supplierContactContactTypeId, suppliercontact_TypeName=@supplierContactContactTypeName, suppliercontact_Phone=@supplierContactContactPhone, suppliercontact_Mail=@supplierContactContactMail WHERE suppliercontact_Id = @supplierContactContactId;";
+            string sqlText = "UPDATE SupplierContact SET suppliercontact_SupplierId=@supplierId, suppliercontact_Name=@supplierContactContactName, suppliercontact_TypeId=@supplierContactContactTypeId, suppliercontact_TypeName=@supplierContactContactTypeName, suppliercontact_Phone=@supplierContactContactPhone, suppliercontact_Mail=@supplierContactContactMail WHERE suppliercontact_Id = @supplierContactContactId;";
 
             try
             {
