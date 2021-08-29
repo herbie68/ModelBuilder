@@ -372,11 +372,13 @@ namespace Modelbuilder
 
             // Populate data in datagrid from datatable
             SupplierContact_DataGrid.DataContext = _dtSC;
+
             //int rowIndex = _currentDataGridSCIndex;
-            int rowIndex = _dtSC.Rows.Count - 1;
-            SupplierContact_DataGrid.SelectedIndex = rowIndex;
-            object item = SupplierContact_DataGrid.Items[rowIndex];
-            SupplierContact_DataGrid.SelectedItem = item;
+            //int rowIndex = _dtSC.Rows.Count - 1;
+            //SupplierContact_DataGrid.SelectedIndex = rowIndex;
+            //object item = SupplierContact_DataGrid.Items[rowIndex];
+            SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
+            //dataGrid.SelectedIndex = dataGrid.Items.Count - 1;
             //DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
             //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
 

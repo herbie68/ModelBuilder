@@ -178,7 +178,7 @@
                         <StackPanel Grid.Column="1" Margin="5">
                             <!--#region Datagrid definition-->
                             <DataGrid x:Name="SupplierContact_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
-                                      SelectionChanged="SupplierContact_DataGrid_SelectionChanged" 
+                                      SelectionChanged="SupplierContact_DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="True" 
                                       Padding="3" Height="220" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_Id}" />
