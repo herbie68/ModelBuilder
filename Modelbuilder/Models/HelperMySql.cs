@@ -1596,7 +1596,7 @@ namespace Modelbuilder
             public string currencySymbol { get; set; }
             public string currencyId { get; set; }
         }
-        #endregion
+         #endregion
 
         #region Create object for all storage locations in table for dropdown
         public class Storage
@@ -1606,7 +1606,6 @@ namespace Modelbuilder
                 storageName = Name;
                 storageId = Id;
             }
-
             public string storageName { get; set; }
             public int storageId { get; set; }
         }

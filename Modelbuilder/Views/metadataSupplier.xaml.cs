@@ -168,7 +168,6 @@ namespace Modelbuilder
             if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
             if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
 
-
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
             valueCountryName.Text = Row_Selected["supplier_CountryName"].ToString();
@@ -189,6 +188,13 @@ namespace Modelbuilder
             inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
             inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
             inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
+
+            // Empty the fields on the SupplierContact tab
+            inpSupplierContactMail.Text = "";
+            inpSupplierContactName.Text = "";
+            inpSupplierContactPhone.Text = "";
+            valueContactTypeId.Text = "1";
+            valueContactTypeName.Text = "";
 
             //Select the saved Country in the combobox by default
             foreach (Country country in cboxSupplierCountry.Items)
@@ -366,21 +372,45 @@ namespace Modelbuilder
 
             // Populate data in datagrid from datatable
             SupplierContact_DataGrid.DataContext = _dtSC;
-
-            var rowIndex = _dtSC.Rows.Count;
-
-            object item = SupplierContact_DataGrid.Items[rowIndex]; // = Product X
+            //int rowIndex = _currentDataGridSCIndex;
+            int rowIndex = _dtSC.Rows.Count - 1;
+            SupplierContact_DataGrid.SelectedIndex = rowIndex;
+            object item = SupplierContact_DataGrid.Items[rowIndex];
             SupplierContact_DataGrid.SelectedItem = item;
+            //DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
 
-            DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            //SupplierContact_DataGrid.Focus();
 
-            if (row == null)
+            // var rowIndex = _dtSC.Rows.Count;
+
+            // object item = SupplierContact_DataGrid.Items[rowIndex]; // = Product X
+            // SupplierContact_DataGrid.SelectedItem = item;
+
+            // DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+
+            // if (row == null)
+            // {
+            //     SupplierContact_DataGrid.ScrollIntoView(item);
+            //     row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            // }
+
+            /*
+            for (int i = 0; i < SupplierContact_DataGrid.Items.Count; i++)
             {
-                /* bring the data item (Product object) into view
-                 * in case it has been virtualized away */
-                SupplierContact_DataGrid.ScrollIntoView(item);
-                row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+                DataGridRow row = (DataGridRow)SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(i);
+                TextBlock cellContent = SupplierContact_DataGrid.Columns[0].GetCellContent(row) as TextBlock;
+                if (cellContent != null && cellContent.Text.Equals(""))
+                {
+                    object item = SupplierContact_DataGrid.Items[i];
+                    SupplierContact_DataGrid.SelectedItem = item;
+                    SupplierContact_DataGrid.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
             }
+            */
+
         }
         #endregion
 
