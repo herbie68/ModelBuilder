@@ -5,16 +5,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
-  `projects_Id` int NOT NULL AUTO_INCREMENT,
-  `projects_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `projects_StartDate` date DEFAULT NULL,
-  `projects_ExpectedEndDate` date DEFAULT NULL,
-  `projects_EndDate` date DEFAULT NULL,
-  `projects_TotalCost` decimal(5,2) DEFAULT NULL,
-  `projects_TotalMinutes` int DEFAULT NULL,
-  PRIMARY KEY (`projects_Id`)
+  `project_Id` int NOT NULL AUTO_INCREMENT,
+  `project_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  `project_StartDate` date DEFAULT NULL,
+  `project_ExpectedEndDate` date DEFAULT NULL,
+  `project_EndDate` date DEFAULT NULL,
+  PRIMARY KEY (`project_Id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `project`;

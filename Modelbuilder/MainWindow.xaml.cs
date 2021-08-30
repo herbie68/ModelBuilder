@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Modelbuilder.Views;
+
+using System;
 using System.Windows;
 
 namespace Modelbuilder
@@ -85,6 +87,12 @@ namespace Modelbuilder
         }
         #endregion Call Product Page
 
+        #region Call Project Page
+        private void ShowProjectPage(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new metadataProject();
+        }
+        #endregion Call Product Page
         #region Exit Application
 
         private void ApplicationExit_Click(object sender, EventArgs e)

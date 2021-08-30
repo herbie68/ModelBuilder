@@ -91,7 +91,7 @@ namespace Modelbuilder
 
                 // Make sure the eddited row in the datagrid is selected
                 CurrencyCode_DataGrid.SelectedIndex = int.Parse(inpCurrencyId.Text) - 1;
-                CurrencyCode_DataGrid.Focus();
+                _ = CurrencyCode_DataGrid.Focus();
             }
         }
 
@@ -110,7 +110,7 @@ namespace Modelbuilder
             // Load the data from the database into the datagrid
             CurrencyCode_DataGrid.DataContext = dtCurrencyCodes;
             CurrencyCode_DataGrid.SelectedIndex = dtCurrencyCodes.Rows.Count - 1;
-            CurrencyCode_DataGrid.Focus();
+            _ = CurrencyCode_DataGrid.Focus();
             inpCurrencyCode.Text = "";
         }
 
@@ -146,7 +146,7 @@ namespace Modelbuilder
                 CurrencyCode_DataGrid.SelectedIndex = row - 1;
             }
 
-            CurrencyCode_DataGrid.Focus();
+            _ = CurrencyCode_DataGrid.Focus();
         }
 
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)

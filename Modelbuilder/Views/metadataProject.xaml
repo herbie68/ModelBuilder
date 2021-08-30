@@ -1,0 +1,147 @@
+﻿<Page x:Class="Modelbuilder.Views.metadataProject"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Modelbuilder.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="metadataProject">
+
+    <Border Style="{DynamicResource MainBorder}" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+        <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <!--region Title of the page  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="Projecten"/>
+
+                <!--#region Hiddenfields-->
+                <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
+                </StackPanel>
+                <!-- End of "Do not remove" part-->
+                <!--#endregion-->
+            </Grid>
+            <Path Style="{DynamicResource TitleLine}"/>
+            <!--#endregion-->
+
+            <!--#region Definition of the tabpages-->
+            <TabControl Height="450" Style="{DynamicResource Default TabControl}">
+                <!--#region Tabpage for general information -->
+                <TabItem Header="Algemene Projectgegevens" Style="{DynamicResource Default TabItem}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </TabItem>
+                <!--#endregion-->
+
+                <!--#region Tabpage for memo field-->
+                <TabItem Header="Aanvullende informatie">
+                    <Grid>
+                        <!--#region Toolbar memo field-->
+                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
+                            <ToolBar Style="{DynamicResource RtfToolBar}">
+                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
+                                    <Image Style="{DynamicResource RtfToolBarCutIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
+                                    <Image Style="{DynamicResource RtfToolBarCopyIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Paste" ToolTip="Plak">
+                                    <Image Style="{DynamicResource RtfToolBarPasteIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Undo" ToolTip="Ongedaan maken">
+                                    <Image Style="{DynamicResource RtfToolBarUndoIcon}" />
+                                </Button>
+                                <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
+                                    <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
+                                </Button>
+                                <Button x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                    <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
+                                </Button>
+                                <Button x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                    <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
+                                    <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
+                                    <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
+                                </Button>
+                                <Separator/>
+
+                                <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
+                                </Button>
+                                <Button Command="EditingCommands.DecreaseIndentation" ToolTip="Terugspringen">
+                                    <Image Style="{DynamicResource RtfToolBarIndentRemoveIcon}" />
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+                        <!--#endregion-->
+
+                        <!--#region Memo field-->
+                        <RichTextBox x:Name="inpProjectMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" 
+                                     HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" 
+                                     Margin="5,35,5,0" Height="365" Width="Auto">
+                            <FlowDocument x:Name="inpProjectMemoFD">
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                        <!--#endregion-->
+                    </Grid>
+                </TabItem>
+                <!--#endregion-->
+
+                <!--#region Tabpage for time information -->
+                <TabItem Header="Werktijden" Style="{DynamicResource Default TabItem}">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
+                    </Grid>
+                </TabItem>
+                <!--#endregion-->
+
+                <!--#region Tabpage for project costs information -->
+                <TabItem Header="Projectkosten" Style="{DynamicResource Default TabItem}">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
+                    </Grid>
+                </TabItem>
+                <!--#endregion-->
+            </TabControl>
+
+            <!--#region Toolbar for datagrid-->
+            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
+                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
+                    <Button ToolTip="Product toevoegen" Click="ToolbarButtonNew">
+                        <Image Style="{DynamicResource ToolBarAddIcon}" />
+                    </Button>
+                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                        <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                    </Button>
+                    <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <!--#endregion-->
+
+        </StackPanel>
+    </Border>
+</Page>

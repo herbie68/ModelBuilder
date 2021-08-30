@@ -44,20 +44,20 @@
                         <RibbonMenuItem ImageSource=".\Resources\timeImport.png" Header="Importeer data" KeyTip="T" />
                         <RibbonMenuItem ImageSource=".\Resources\timeExport.png" Header="Exporteer" KeyTip="S" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton x:Name="TimeSheet" Label="Tijdregistratie" SmallImageSource=".\Resources\timeEdit.png" />
-                    <RibbonMenuButton x:Name="TimeReport" Label="Urenrapportage" SmallImageSource=".\Resources\timeReport.png" />
+                    <RibbonMenuItem x:Name="TimeSheet" Header="Tijdregistratie" ImageSource=".\Resources\timeEdit.png" />
+                    <RibbonMenuItem x:Name="TimeReport" Header="Urenrapportage" ImageSource=".\Resources\timeReport.png" />
                 </RibbonGroup>
 
                 <RibbonGroup x:Name="Project" Header="Projectenbeheer">
                     <RibbonSplitButton LargeImageSource=".\Resources\projectManagement.png" Label="Projecten">
-                        <RibbonMenuItem ImageSource=".\Resources\projectEdit.png" Header="Projectbeheer" />
+                        <RibbonMenuItem ImageSource=".\Resources\projectEdit.png" Header="Projectbeheer" Click="ShowProjectPage"/>
                         <RibbonMenuItem ImageSource=".\Resources\projectReport.png" Header="Projectenoverzicht" />
                         <RibbonSeparator></RibbonSeparator>
                         <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten" />
                         <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton Label="Projectbeheer" SmallImageSource=".\Resources\projectEdit.png" />
-                    <RibbonMenuButton Label="Projectenoverzicht" SmallImageSource=".\Resources\projectReport.png" />
+                    <RibbonMenuItem Header="Projectbeheer" ImageSource=".\Resources\projectEdit.png" Click="ShowProjectPage"/>
+                    <RibbonMenuItem Header="Projectenoverzicht" ImageSource=".\Resources\projectReport.png" />
                 </RibbonGroup>
 
                 <RibbonGroup x:Name="Storage" Header="Voorraadbeheer">
@@ -68,8 +68,8 @@
                         <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten" />
                         <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten" />
                     </RibbonSplitButton>
-                    <RibbonMenuButton Label="Bestellen" SmallImageSource=".\Resources\storageOrder.png" />
-                    <RibbonMenuButton Label="Ontvangsten" SmallImageSource=".\Resources\storageRecieve.png" />
+                    <RibbonMenuItem Header="Bestellen" ImageSource=".\Resources\storageOrder.png" />
+                    <RibbonMenuItem Header="Ontvangsten" ImageSource=".\Resources\storageRecieve.png" />
                     <RibbonMenuButton LargeImageSource=".\Resources\storageReports.png" Label="Overzichten">
                         <RibbonMenuItem ImageSource=".\Resources\storageReportOverview.png" Header="Voorraadoverzicht" />
                         <RibbonMenuItem ImageSource=".\Resources\storageReportRecieve.png" Header="Bestelling-overzicht" />

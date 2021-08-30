@@ -22,7 +22,7 @@ namespace Modelbuilder
         private HelperMySQL _helper;
         private DataTable _dt, _dtSC;
         private int _dbRowCount;
-        private int _currentDataGridIndex, _currentDataGridSCTIndex, _currentDataGridSCIndex;
+        private int _currentDataGridIndex;
         private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         public metadataSupplier()
@@ -182,12 +182,6 @@ namespace Modelbuilder
             inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
-            inpSupplierPhoneGeneral.Text = Row_Selected["supplier_PhoneGeneral"].ToString();
-            inpSupplierPhoneSales.Text = Row_Selected["supplier_PhoneSales"].ToString();
-            inpSupplierPhoneSupport.Text = Row_Selected["supplier_PhoneSupport"].ToString();
-            inpSupplierMailGeneral.Text = Row_Selected["supplier_MailGeneral"].ToString();
-            inpSupplierMailSales.Text = Row_Selected["supplier_MailSales"].ToString();
-            inpSupplierMailSupport.Text = Row_Selected["supplier_MailSupport"].ToString();
 
             // Empty the fields on the SupplierContact tab
             inpSupplierContactMail.Text = "";
@@ -241,7 +235,7 @@ namespace Modelbuilder
             if (dgSCT.SelectedItem is not DataRowView Row_Selected) { return; }
 
             //set value
-            _currentDataGridSCTIndex = dgSCT.SelectedIndex;
+            int _currentDataGridSCTIndex = dgSCT.SelectedIndex;
 
             valueSupplierContactId.Text = Row_Selected["suppliercontact_Id"].ToString();
             inpSupplierContactName.Text = Row_Selected["suppliercontact_Name"].ToString();
@@ -274,8 +268,8 @@ namespace Modelbuilder
         }
         #endregion
 
-        #region Insert new row in table
-        private void InsertRow(int dgIndex)
+        #region Insert new row in table: Supplier
+        private void InsertRowSupplier(int dgIndex)
         {
             //since the DataGrid DataContext is set to the DataTable, 
             //the DataTable is updated when data is modified in the DataGrid
@@ -293,12 +287,6 @@ namespace Modelbuilder
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
-            string supplierPhoneSales = inpSupplierPhoneSales.Text;
-            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
-            string supplierMailGeneral = inpSupplierMailGeneral.Text;
-            string supplierMailSales = inpSupplierMailSales.Text;
-            string supplierMailSupport = inpSupplierMailSupport.Text;
             var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
             var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
@@ -308,7 +296,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, supplierOrderCosts, supplierMinOrderCosts);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -372,72 +360,35 @@ namespace Modelbuilder
 
             // Populate data in datagrid from datatable
             SupplierContact_DataGrid.DataContext = _dtSC;
-
-            //int rowIndex = _currentDataGridSCIndex;
-            //int rowIndex = _dtSC.Rows.Count - 1;
-            //SupplierContact_DataGrid.SelectedIndex = rowIndex;
-            //object item = SupplierContact_DataGrid.Items[rowIndex];
             SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
-            //dataGrid.SelectedIndex = dataGrid.Items.Count - 1;
-            //DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
-            //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-
-            //SupplierContact_DataGrid.Focus();
-
-            // var rowIndex = _dtSC.Rows.Count;
-
-            // object item = SupplierContact_DataGrid.Items[rowIndex]; // = Product X
-            // SupplierContact_DataGrid.SelectedItem = item;
-
-            // DataGridRow row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
-
-            // if (row == null)
-            // {
-            //     SupplierContact_DataGrid.ScrollIntoView(item);
-            //     row = SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
-            // }
-
-            /*
-            for (int i = 0; i < SupplierContact_DataGrid.Items.Count; i++)
-            {
-                DataGridRow row = (DataGridRow)SupplierContact_DataGrid.ItemContainerGenerator.ContainerFromIndex(i);
-                TextBlock cellContent = SupplierContact_DataGrid.Columns[0].GetCellContent(row) as TextBlock;
-                if (cellContent != null && cellContent.Text.Equals(""))
-                {
-                    object item = SupplierContact_DataGrid.Items[i];
-                    SupplierContact_DataGrid.SelectedItem = item;
-                    SupplierContact_DataGrid.ScrollIntoView(item);
-                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                    break;
-                }
-            }
-            */
-
+            _ = SupplierContact_DataGrid.Focus();
         }
         #endregion
 
         #region Click Save Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonSave(object sender, RoutedEventArgs e)
         {
-            int rowIndex = _currentDataGridSCIndex;
+            int rowIndex = SupplierContact_DataGrid.SelectedIndex;
 
             if (valueSupplierContactId.Text != "")
             {
                 UpdateRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
             }
 
-            GetData();
+            //GetData();
+            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Make sure the eddited row in the datagrid is selected
+            SupplierContact_DataGrid.DataContext = _dtSC;
             SupplierContact_DataGrid.SelectedIndex = rowIndex;
-            SupplierContact_DataGrid.Focus();
+            _ = SupplierContact_DataGrid.Focus();
         }
         #endregion
 
         #region Click Delete Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
-            int rowIndex = _currentDataGridSCIndex;
+            int rowIndex = SupplierContact_DataGrid.SelectedIndex;
 
             DeleteRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
 
@@ -452,7 +403,27 @@ namespace Modelbuilder
                 SupplierContact_DataGrid.SelectedIndex = rowIndex - 1;
             }
 
-            SupplierContact_DataGrid.Focus();
+            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+
+            // Make sure the eddited row in the datagrid is selected
+            SupplierContact_DataGrid.DataContext = _dtSC;
+            SupplierContact_DataGrid.SelectedIndex = rowIndex - 1;
+            _ = SupplierContact_DataGrid.Focus();
+        }
+        #endregion
+
+        #region Click New Supplier button (on toolbar)
+        private void ToolbarButtonNew(object sender, RoutedEventArgs e)
+        {
+            InsertRowSupplier(SupplierCode_DataGrid.SelectedIndex);
+
+            // Get data from database
+            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+
+            // Populate data in datagrid from datatable
+            SupplierContact_DataGrid.DataContext = _dtSC;
+            SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
+            _ = SupplierContact_DataGrid.Focus();
         }
         #endregion
 
@@ -470,7 +441,7 @@ namespace Modelbuilder
             if (valueSupplierId.Text == "")
             // if (_dt.Rows.Count > _dbRowCount)
             {
-                InsertRow(SupplierCode_DataGrid.SelectedIndex);
+                InsertRowSupplier(SupplierCode_DataGrid.SelectedIndex);
             }
             else
             {
@@ -547,12 +518,6 @@ namespace Modelbuilder
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            string supplierPhoneGeneral = inpSupplierPhoneGeneral.Text;
-            string supplierPhoneSales = inpSupplierPhoneSales.Text;
-            string supplierPhoneSupport = inpSupplierPhoneSupport.Text;
-            string supplierMailGeneral = inpSupplierMailGeneral.Text;
-            string supplierMailSales = inpSupplierMailSales.Text;
-            string supplierMailSupport = inpSupplierMailSupport.Text;
             var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
             var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
@@ -562,7 +527,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierPhoneGeneral, supplierPhoneSales, supplierPhoneSupport, supplierMailGeneral, supplierMailSales, supplierMailSupport, memo, supplierOrderCosts, supplierMinOrderCosts);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, memo, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
