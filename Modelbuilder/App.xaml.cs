@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 
 namespace Modelbuilder
 {
@@ -7,5 +8,9 @@ namespace Modelbuilder
     /// </summary>
     public partial class App : Application
     {
+        App()
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-NL");
+        }
     }
 }

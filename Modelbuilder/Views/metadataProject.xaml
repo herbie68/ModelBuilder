@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:p="clr-namespace:Modelbuilder.Resources"
       xmlns:local="clr-namespace:Modelbuilder.Views"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
@@ -16,7 +17,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="Projecten"/>
+                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Resources.metadataProject-Title}"/>
 
                 <!--#region Hiddenfields-->
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
@@ -43,7 +44,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="Aanvullende informatie">
+                <TabItem Header="Aanvullende informatie" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">

@@ -1,6 +1,7 @@
 ﻿using Modelbuilder.Views;
 
 using System;
+using System.Globalization;
 using System.Windows;
 
 namespace Modelbuilder

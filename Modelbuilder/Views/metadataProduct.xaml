@@ -259,7 +259,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="Uitgebreide omschrijving">
+                <TabItem Header="Uitgebreide omschrijving" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
@@ -327,7 +327,7 @@
                 <!--#endregion-->
                 
                 <!--#region Tabpage for product per supplier information-->
-                <TabItem Header="Leveranciers" x:Name="SupplierTab" IsEnabled="False">
+                <TabItem Header="Leveranciers" x:Name="SupplierTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -447,7 +447,7 @@
                 <!--#endregion-->
                 
                 <!--#region Tabpage for storage history [not yet implemented]-->
-                <TabItem Header="Voorraadhistorie">
+                <TabItem Header="Voorraadhistorie" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
