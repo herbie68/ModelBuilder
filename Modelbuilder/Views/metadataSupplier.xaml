@@ -328,7 +328,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for Historic orders-->
-                <TabItem Header="Orderhistorie">
+                <TabItem Style="{DynamicResource Default TabItem}" Header="Orderhistorie">
                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                Text="Nog niet geïmplementeerd" Margin="10,10" Foreground="Red"/>
                 </TabItem>

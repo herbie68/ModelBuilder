@@ -78,8 +78,33 @@
             <Setter Property="Background" Value="#FFE5E5E5"/>
         </Style>
 
-        <Style x:Key="Default TabItem" TargetType="TabItem">
+        <Style x:Key="Default TabItem1" TargetType="TabItem">
             <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderThickness" Value="1,1,1,0"/>
+        </Style>
+
+        <Style TargetType="TabItem" x:Key="Default TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gray" CornerRadius="6,6,0,0" Margin="5,0">
+                            <ContentPresenter x:Name="ContentSite"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                ContentSource="Header"
+                                Margin="10,2"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFFFEA00"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#FFE5E5E5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <!--#endregion-->
 
@@ -131,7 +156,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Width" Value="Auto" />
-            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="Text" Value="" />
         </Style>
 
