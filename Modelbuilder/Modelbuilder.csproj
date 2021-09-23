@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+	<Copyright>Herbert Nijkamp $(Year)</Copyright>
+	<NeutralLanguage>nl-NL</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -400,10 +402,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Resources.nl-NL.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <CustomToolNamespace>Modelbuilder</CustomToolNamespace>
+    <Compile Update="Languages\Cultures.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Cultures.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Languages\Cultures.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Cultures.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="metadataProject-Title" xml:space="preserve">
-    <value>Projecten2</value>
+  <data name="metadataCategory.Page.Title" xml:space="preserve">
+    <value>Categories</value>
   </data>
-  <data name="metadataProject.Title" xml:space="preserve">
-    <value>Projecten</value>
+  <data name="metadataCountry.Page.Title" xml:space="preserve">
+    <value>Countries</value>
   </data>
-  <data name="Test" xml:space="preserve">
-    <value>Test</value>
+  <data name="metadataCurrency.Page.Title" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="metadataProduct.Page.Title" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="metadataProject.Page.Title" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.General" xml:space="preserve">
+    <value>Project data</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.Memo" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.ProjectCosts" xml:space="preserve">
+    <value>Project Expenses</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.TimeManagement" xml:space="preserve">
+    <value>Building time</value>
+  </data>
+  <data name="metadataStorage.Page.Title" xml:space="preserve">
+    <value>Storage Locations</value>
+  </data>
+  <data name="metadataSupplier.Page.Title" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="metadataWorktype.Page.Title" xml:space="preserve">
+    <value>Work types</value>
   </data>
 </root>

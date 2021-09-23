@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:p="clr-namespace:Modelbuilder.Resources"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       xmlns:local="clr-namespace:Modelbuilder.Views"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Resources.metadataProject-Title}"/>
+                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Cultures.metadataProject_Page_Title}"/>
 
                 <!--#region Hiddenfields-->
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
@@ -33,7 +33,7 @@
             <!--#region Definition of the tabpages-->
             <TabControl Height="450" Style="{DynamicResource Default TabControl}">
                 <!--#region Tabpage for general information -->
-                <TabItem Header="Algemene Projectgegevens" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_General}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
@@ -44,7 +44,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="Aanvullende informatie" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
@@ -111,7 +111,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for time information -->
-                <TabItem Header="Werktijden" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
@@ -119,7 +119,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for project costs information -->
-                <TabItem Header="Projectkosten" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
