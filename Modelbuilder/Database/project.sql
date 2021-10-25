@@ -7,10 +7,12 @@
 
 CREATE TABLE IF NOT EXISTS `project` (
   `project_Id` int NOT NULL AUTO_INCREMENT,
+  `project_Code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `project_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
   `project_StartDate` date DEFAULT NULL,
   `project_ExpectedEndDate` date DEFAULT NULL,
   `project_EndDate` date DEFAULT NULL,
+  `project_Closed` tinyint DEFAULT '0',
   PRIMARY KEY (`project_Id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

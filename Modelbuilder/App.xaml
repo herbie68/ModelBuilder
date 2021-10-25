@@ -130,7 +130,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
-
+        
         <Style x:Key="DefaultTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -138,6 +138,34 @@
             <Setter Property="Text" Value="" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Padding" Value="2"/>
+        </Style>
+
+        <Style x:Key="NonEditableTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="Text" Value="" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+
+        <Style x:Key="DefaultDataPicker" TargetType="DatePicker">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="NonEditableNumericTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay}" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="InputScope" Value="Number" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="IsEnabled" Value="False"/>
         </Style>
 
         <Style x:Key="NumericTextBox" TargetType="TextBox">
@@ -151,6 +179,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Padding" Value="2"/>
         </Style>
+
 
         <Style x:Key="HiddenTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
