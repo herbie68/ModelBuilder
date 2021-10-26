@@ -578,7 +578,7 @@ namespace Modelbuilder
         }
         #endregion Execute Non Query Table Supplier_Id: Supplier
 
-        #region Execute Non Query Table Supplier_Id: Product
+        #region Execute Non Query Table Product_Id: Product
         public int ExecuteNonQueryTblProductId(string sqlText, int productId = 0)
         {
             int rowsAffected = 0;

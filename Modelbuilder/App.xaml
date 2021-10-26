@@ -178,7 +178,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Padding" Value="2"/>
-            <Setter Property="IsEnabled" Value="True"
+            <Setter Property="IsEnabled" Value="True"/>
         </Style>
 
 

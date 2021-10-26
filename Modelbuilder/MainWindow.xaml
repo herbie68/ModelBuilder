@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Modelbuilder"
         mc:Ignorable="d"
-                Title="Modelbouwer beheer" Height="900" Width="1200" Icon=".\Resources\logo.gif">
+                Title="Modelbouwer beheer" Height="900" Width="1400" Icon=".\Resources\logo.gif">
 
     <Grid>
         <Ribbon x:Name="mainRibbon" Grid.ColumnSpan="4">

@@ -91,7 +91,7 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="6" Grid.Column="0" Text="Project voltooid"/>
-                                    <CheckBox Style="{DynamicResource DefaultCheckBox}"
+                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" Checked="ProjectIsCompleted" Unchecked="ProjectIsCompleted"
                                           Grid.Row="7" Grid.Column="0" x:Name="inpProjectClosed"/>
                                 </Grid>
 
@@ -287,7 +287,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" x:Name="MemoTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#endregion-->
 
@@ -353,13 +353,13 @@
                     </Grid>
                 </TabItem>
                 <!--#region Tabpage for time information -->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" x:Name="TimeTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
                 </TabItem>
                 <!--#region Tabpage for project costs information -->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}" x:Name="CostsTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
@@ -392,7 +392,9 @@
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding project_Id}" />
                     <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding project_Code}" />
                     <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding project_Name}" />
-                    <DataGridTextColumn Header="Startdatum" Width="80" Binding="{Binding project_StartDate}" />
+                    <DataGridTextColumn Header="Startdatum" Width="80" Binding="{Binding project_StartDate, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />
+                    <DataGridTextColumn Header="Einddatum" Width="80" Binding="{Binding project_EndDate, StringFormat={}\{0:dd/MM/yyyy\}}" />
+                    <DataGridCheckBoxColumn Header="Voltooid" Binding="{Binding project_Closed}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->
