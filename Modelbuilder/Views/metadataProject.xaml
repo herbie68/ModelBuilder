@@ -289,10 +289,6 @@
                 <!--#region Tabpage for memo field-->
                 <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" x:Name="MemoTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
-                        <!--#endregion-->
-
-                        <!--#endregion-->
-
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
                             <ToolBar Style="{DynamicResource RtfToolBar}">
@@ -340,6 +336,8 @@
                                 </Button>
                             </ToolBar>
                         </ToolBarTray>
+                        <!--#end region Toolbar memo field-->
+                        
                         <!--#region Memo field-->
                         <RichTextBox x:Name="inpProjectMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" 
                                      HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" 
@@ -350,8 +348,11 @@
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
+                        <!--#endregion Memo field-->
                     </Grid>
                 </TabItem>
+                <!--#endregion Tabpage for memo field-->
+                
                 <!--#region Tabpage for time information -->
                 <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" x:Name="TimeTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
@@ -372,13 +373,13 @@
             <!--#region Toolbar for datagrid-->
             <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
                 <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
-                    <Button ToolTip="Product toevoegen" Click="ToolbarButtonNew">
+                    <Button ToolTip="Project toevoegen" Click="ToolbarButtonNew">
                         <Image Style="{DynamicResource ToolBarAddIcon}" />
                     </Button>
                     <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
                         <Image Style="{DynamicResource ToolBarSaveIcon}" />
                     </Button>
-                    <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                    <Button ToolTip="Project verwijderen uit de tabel" Click="ToolbarButtonDelete">
                         <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                     </Button>
                 </ToolBar>

@@ -167,5 +167,320 @@ namespace Modelbuilder.Languages {
                 return ResourceManager.GetString("metadataWorktype.Page.Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afgeleverd.
+        /// </summary>
+        public static string Order_Order_Field_Closed {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Order_Field_ClosedDate {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ClosedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wisselkoers.
+        /// </summary>
+        public static string Order_Order_Field_CurrencyRate {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string Order_Order_Field_CurrencySymbol {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order kosten.
+        /// </summary>
+        public static string Order_Order_Field_OrderCosts {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order datum.
+        /// </summary>
+        public static string Order_Order_Field_OrderDate {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verzendkosten.
+        /// </summary>
+        public static string Order_Order_Field_ShippingCosts {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ShippingCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string Order_Order_Field_Supplier {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelregels.
+        /// </summary>
+        public static string Order_Order_Group_Orderdetail {
+            get {
+                return ResourceManager.GetString("Order.Order.Group.Orderdetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelgegevens.
+        /// </summary>
+        public static string Order_Order_Group_Orderinformation {
+            get {
+                return ResourceManager.GetString("Order.Order.Group.Orderinformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string Order_Orderline_Field_Category {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afgeleverd.
+        /// </summary>
+        public static string Order_Orderline_Field_Closed {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Orderline_Field_ClosedDate {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.ClosedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal.
+        /// </summary>
+        public static string Order_Orderline_Field_Number {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs.
+        /// </summary>
+        public static string Order_Orderline_Field_Price {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Order_Orderline_Field_Product {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voer de bestelling in per leverancier, per regel kan worden aangegeven of een artikel wordt meegenomen in de project kosten.
+        /// </summary>
+        public static string Order_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("Order.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelling.
+        /// </summary>
+        public static string Order_Page_Title {
+            get {
+                return ResourceManager.GetString("Order.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelling.
+        /// </summary>
+        public static string Order_TabItemHeader_General {
+            get {
+                return ResourceManager.GetString("Order.TabItemHeader.General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aanvullende informatie.
+        /// </summary>
+        public static string Order_TabItemHeader_Memo {
+            get {
+                return ResourceManager.GetString("Order.TabItemHeader.Memo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geselecteerde regel verwijderen.
+        /// </summary>
+        public static string toolbarButton_Action_Delete {
+            get {
+                return ResourceManager.GetString("toolbarButton.Action.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regel toevoegen.
+        /// </summary>
+        public static string toolbarButton_Action_New {
+            get {
+                return ResourceManager.GetString("toolbarButton.Action.New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewijzigde gegevens opslaan.
+        /// </summary>
+        public static string toolbarButton_Action_Save {
+            get {
+                return ResourceManager.GetString("toolbarButton.Action.Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vet.
+        /// </summary>
+        public static string toolbarButton_Font_Bold {
+            get {
+                return ResourceManager.GetString("toolbarButton.Font.Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursief.
+        /// </summary>
+        public static string toolbarButton_Font_Italic {
+            get {
+                return ResourceManager.GetString("toolbarButton.Font.Italic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onderstrepen.
+        /// </summary>
+        public static string toolbarButton_Font_Underline {
+            get {
+                return ResourceManager.GetString("toolbarButton.Font.Underline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terugspringen.
+        /// </summary>
+        public static string toolbarButton_Indent_Decrease {
+            get {
+                return ResourceManager.GetString("toolbarButton.Indent.Decrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inspringen.
+        /// </summary>
+        public static string toolbarButton_Indent_Increase {
+            get {
+                return ResourceManager.GetString("toolbarButton.Indent.Increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lijst.
+        /// </summary>
+        public static string toolbarButton_List_Bullet {
+            get {
+                return ResourceManager.GetString("toolbarButton.List.Bullet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genummerde lijst.
+        /// </summary>
+        public static string toolbarButton_List_Number {
+            get {
+                return ResourceManager.GetString("toolbarButton.List.Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kopieer.
+        /// </summary>
+        public static string toolbarButton_Text_Copy {
+            get {
+                return ResourceManager.GetString("toolbarButton.Text.Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knippen.
+        /// </summary>
+        public static string toolbarButton_Text_Cut {
+            get {
+                return ResourceManager.GetString("toolbarButton.Text.Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plak.
+        /// </summary>
+        public static string toolbarButton_Text_Paste {
+            get {
+                return ResourceManager.GetString("toolbarButton.Text.Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opnieuw.
+        /// </summary>
+        public static string toolbarButton_Text_Redo {
+            get {
+                return ResourceManager.GetString("toolbarButton.Text.Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongedaan maken.
+        /// </summary>
+        public static string toolbarButton_Text_Undo {
+            get {
+                return ResourceManager.GetString("toolbarButton.Text.Undo", resourceCulture);
+            }
+        }
     }
 }

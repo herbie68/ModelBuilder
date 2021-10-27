@@ -37,7 +37,12 @@
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
+        <Style x:Key="SubTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontStyle" Value="Italic" />
+        </Style>
+
         <Style x:Key="TitleLine" TargetType="Path">
             <Setter Property="Grid.Row" Value="1"/>
             <Setter Property="Grid.Column" Value="1" />
@@ -277,10 +282,10 @@
             <Setter Property="Margin" Value="0, 0, 10, 0"/>
         </Style>
 
-        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
-            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
+        <Style x:Key="ToolBarCancelIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarCancel.png" />
             <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
 
         <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
@@ -289,10 +294,40 @@
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
 
+        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+        </Style>
+
         <Style x:Key="ToolBarRotateIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
             <Setter Property="Height" Value="21" />
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallAddIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallAdd.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="0, 0, 4, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallCancelIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallCancel.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallDeleteIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallDelete.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallSave.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 4, 0"/>
         </Style>
         <!--#endregion-->
         

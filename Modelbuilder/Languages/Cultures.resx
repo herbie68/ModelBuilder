@@ -153,4 +153,109 @@
   <data name="metadataWorktype.Page.Title" xml:space="preserve">
     <value>Werksoorten</value>
   </data>
+  <data name="Order.Page.Title" xml:space="preserve">
+    <value>Bestelling</value>
+  </data>
+  <data name="Order.Page.SubTitle" xml:space="preserve">
+    <value>Voer de bestelling in per leverancier, per regel kan worden aangegeven of een artikel wordt meegenomen in de project kosten</value>
+  </data>
+  <data name="Order.TabItemHeader.General" xml:space="preserve">
+    <value>Bestelling</value>
+  </data>
+  <data name="Order.TabItemHeader.Memo" xml:space="preserve">
+    <value>Aanvullende informatie</value>
+  </data>
+  <data name="toolbarButton.Text.Cut" xml:space="preserve">
+    <value>Knippen</value>
+  </data>
+  <data name="toolbarButton.Text.Copy" xml:space="preserve">
+    <value>Kopieer</value>
+  </data>
+  <data name="toolbarButton.Text.Paste" xml:space="preserve">
+    <value>Plak</value>
+  </data>
+  <data name="toolbarButton.Text.Undo" xml:space="preserve">
+    <value>Ongedaan maken</value>
+  </data>
+  <data name="toolbarButton.Text.Redo" xml:space="preserve">
+    <value>Opnieuw</value>
+  </data>
+  <data name="toolbarButton.Font.Bold" xml:space="preserve">
+    <value>Vet</value>
+  </data>
+  <data name="toolbarButton.Font.Italic" xml:space="preserve">
+    <value>Cursief</value>
+  </data>
+  <data name="toolbarButton.Font.Underline" xml:space="preserve">
+    <value>Onderstrepen</value>
+  </data>
+  <data name="toolbarButton.List.Bullet" xml:space="preserve">
+    <value>Lijst</value>
+  </data>
+  <data name="toolbarButton.List.Number" xml:space="preserve">
+    <value>Genummerde lijst</value>
+  </data>
+  <data name="toolbarButton.Indent.Increase" xml:space="preserve">
+    <value>Inspringen</value>
+  </data>
+  <data name="toolbarButton.Indent.Decrease" xml:space="preserve">
+    <value>Terugspringen</value>
+  </data>
+  <data name="Order.Order.Field.Supplier" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="Order.Order.Field.OrderDate" xml:space="preserve">
+    <value>Order datum</value>
+  </data>
+  <data name="Order.Order.Field.CurrencySymbol" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="Order.Order.Field.CurrencyRate" xml:space="preserve">
+    <value>Wisselkoers</value>
+  </data>
+  <data name="Order.Order.Field.ShippingCosts" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="Order.Order.Field.OrderCosts" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="Order.Order.Field.Closed" xml:space="preserve">
+    <value>Afgeleverd</value>
+  </data>
+  <data name="Order.Order.Field.ClosedDate" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Orderline.Field.Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderline.Field.Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Order.Orderline.Field.Number" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="Order.Orderline.Field.Price" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="Order.Orderline.Field.Closed" xml:space="preserve">
+    <value>Afgeleverd</value>
+  </data>
+  <data name="Order.Orderline.Field.ClosedDate" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Order.Group.Orderinformation" xml:space="preserve">
+    <value>Bestelgegevens</value>
+  </data>
+  <data name="Order.Order.Group.Orderdetail" xml:space="preserve">
+    <value>Bestelregels</value>
+  </data>
+  <data name="toolbarButton.Action.New" xml:space="preserve">
+    <value>Regel toevoegen</value>
+  </data>
+  <data name="toolbarButton.Action.Delete" xml:space="preserve">
+    <value>Geselecteerde regel verwijderen</value>
+  </data>
+  <data name="toolbarButton.Action.Save" xml:space="preserve">
+    <value>Gewijzigde gegevens opslaan</value>
+  </data>
 </root>
