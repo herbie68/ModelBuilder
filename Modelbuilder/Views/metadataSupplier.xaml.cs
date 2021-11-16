@@ -163,10 +163,10 @@ namespace Modelbuilder
 
             GetMemo(dg.SelectedIndex);
 
-            double _MinimalOrderCosts = 0, _OrderCosts = 0;
+            double _MinimalShippingCosts = 0, _ShippingCosts = 0;
 
-            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
-            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
+            if (Row_Selected["supplier_MinShippingCosts"].ToString() != "") { _MinimalShippingCosts = double.Parse(Row_Selected["supplier_MinShippingCosts"].ToString()); }
+            if (Row_Selected["supplier_ShippingCosts"].ToString() != "") { _ShippingCosts = double.Parse(Row_Selected["supplier_ShippingCosts"].ToString()); }
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
@@ -179,8 +179,8 @@ namespace Modelbuilder
             inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
             inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
             inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
-            inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
-            inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierShippingCosts.Text = _ShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierMinShippingCosts.Text = _MinimalShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
 
             // Empty the fields on the SupplierContact tab
@@ -287,8 +287,8 @@ namespace Modelbuilder
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierShippingCosts = double.Parse(inpSupplierShippingCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinShippingCosts = double.Parse(inpSupplierMinShippingCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -296,7 +296,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierOrderCosts, supplierMinOrderCosts);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierShippingCosts, supplierMinShippingCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -518,8 +518,8 @@ namespace Modelbuilder
             string supplierCountryName = valueCountryName.Text;
             int supplierCurrencyId = int.Parse(valueCurrencyId.Text);
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
-            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
-            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierShippingCosts = double.Parse(inpSupplierShippingCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinShippingCosts = double.Parse(inpSupplierMinShippingCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -527,7 +527,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, memo, supplierOrderCosts, supplierMinOrderCosts);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, memo, supplierShippingCosts, supplierMinShippingCosts);
             UpdateStatus(result);
         }
         #endregion

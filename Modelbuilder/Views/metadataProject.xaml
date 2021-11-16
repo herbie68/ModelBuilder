@@ -37,6 +37,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel HorizontalAlignment="Left"  Width="720">
+                            <!--#region Genereal projectinformation-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal" Background="Transparent" >
@@ -96,6 +97,9 @@
                                 </Grid>
 
                             </GroupBox>
+                            <!--#endregion-->
+                            
+                            <!--#region Time-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal" Background="Transparent" >
@@ -195,7 +199,8 @@
                                          Grid.Row="5" Grid.Column="6" Width="50"/>
                                 </Grid>
                             </GroupBox>
-
+                            <!--#endregion Time-->
+                            
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal" Background="Transparent" >
@@ -384,10 +389,10 @@
                     </Button>
                 </ToolBar>
             </ToolBarTray>
-            <!--#endregion-->
+            <!--#endregion Toolbar for datagrid-->
             <!--#region Datagrid definition-->
             <DataGrid x:Name="ProjectCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                                      Padding="3" SelectionChanged="ProjectCode_DataGrid_SelectionChanged" Height="285" Margin="5,0"
+                                      Padding="3" SelectionChanged="ProjectCode_DataGrid_SelectionChanged" Height="215" Margin="5,0"
                                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding project_Id}" />

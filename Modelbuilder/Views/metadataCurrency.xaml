@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       xmlns:local="clr-namespace:Modelbuilder"
       mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1000"
@@ -11,17 +12,17 @@
     <Grid Margin="0,2,0,-2">
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Valuta" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataCurrency_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="Valutacode" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="Valuta naam" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="Valuta Symbool" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="Omrekenkoers naar €" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyName}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRate}" />
 
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyCode"      Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyName"      Width="450" Margin="170,97,0,0" />
@@ -32,13 +33,13 @@
 
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,185,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
+                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Add}" Click="ToolbarButtonNew">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                <Button ToolTip="L{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Delete}" Click="ToolbarButtonDelete">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Save}" Click="ToolbarButtonSave">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -48,10 +49,10 @@
                   Margin="10,226,10,0" SelectionChanged="CurrencyCode_DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}" />
-                <DataGridTextColumn Header="Valuta code" Width="80" Binding="{Binding currency_Code}" />
-                <DataGridTextColumn Header="Valuta symbool" Width="100" Binding="{Binding currency_Symbol}" />
-                <DataGridTextColumn Header="Koers" Width="90" Binding="{Binding currency_ConversionRate}" />
-                <DataGridTextColumn Header="Valuta" Width="*" Binding="{Binding currency_Name}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" Width="80" Binding="{Binding currency_Code}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" Width="100" Binding="{Binding currency_Symbol}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRateShort}" Width="90" Binding="{Binding currency_ConversionRate}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_Currency}" Width="*" Binding="{Binding currency_Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

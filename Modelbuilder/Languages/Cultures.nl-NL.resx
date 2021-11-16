@@ -202,7 +202,7 @@
     <value>Inspringen</value>
   </data>
   <data name="Order.Order.Field.Closed" xml:space="preserve">
-    <value>Afgeleverd</value>
+    <value>Geleverd</value>
   </data>
   <data name="Order.Order.Field.ClosedDate" xml:space="preserve">
     <value>Leverdatum</value>
@@ -246,8 +246,8 @@
   <data name="Order.Order.Group.Orderinformation" xml:space="preserve">
     <value>Bestelgegevens</value>
   </data>
-  <data name="Order.Order.Group.Orderdetail" xml:space="preserve">
-    <value>Bestelregels</value>
+  <data name="Order.Order.Group.Orderline" xml:space="preserve">
+    <value>Bestelregel</value>
   </data>
   <data name="toolbarButton.Action.New" xml:space="preserve">
     <value>Regel toevoegen</value>
@@ -257,5 +257,98 @@
   </data>
   <data name="toolbarButton.Action.Save" xml:space="preserve">
     <value>Gewijzigde gegevens opslaan</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyCode" xml:space="preserve">
+    <value>Valuta code</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyName" xml:space="preserve">
+    <value>Valuta omschrijving</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencySymbol" xml:space="preserve">
+    <value>Valuta symbool</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRate" xml:space="preserve">
+    <value>Omrekenkoers</value>
+  </data>
+  <data name="metadataCurrency.Field.Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRateShort" xml:space="preserve">
+    <value>Koers</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Add" xml:space="preserve">
+    <value>Valuta toevoegen</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Delete" xml:space="preserve">
+    <value>Geslecteerde valuta</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Save" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="Order.Order.Group.Orderlist" xml:space="preserve">
+    <value>Bestelregels</value>
+  </data>
+  <data name="Order.Orderlist.Field.Price" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="Order.Orderlist.Field.Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderline.Field.Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tooltip" xml:space="preserve">
+    <value>Stukprijs in de valuta van de leverancier</value>
+  </data>
+  <data name="Order.Orderline.Field.Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="Order.OrderlineTotals.GrandTotal" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="Order.OrderlineTotals.Ordercosts" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="Order.OrderlineTotals.RowTotal" xml:space="preserve">
+    <value>Totaal bestelregels</value>
+  </data>
+  <data name="Order.OrderlineTotals.ShippingCosts" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="Order.OrderlineTotals" xml:space="preserve">
+    <value>Totalen</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Verwijder geselkteerde bestelregel</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.New" xml:space="preserve">
+    <value>Nieuwe bestelregel toevoegen</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Save" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="Order.Toolbar.Button.Save" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="Order.Toolbar.Button.New" xml:space="preserve">
+    <value>Bestelling toevoegen</value>
+  </data>
+  <data name="Order.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Verwijder geselecteerde bestelling</value>
+  </data>
+  <data name="Order.Datagrid.Header.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderCompleted" xml:space="preserve">
+    <value>Geleverd</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderDate" xml:space="preserve">
+    <value>Besteldatum</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierId" xml:space="preserve">
+    <value>SupplierID</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierName" xml:space="preserve">
+    <value>Leverancier</value>
   </data>
 </root>

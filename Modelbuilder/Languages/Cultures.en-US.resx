@@ -246,8 +246,8 @@
   <data name="Order.Order.Group.Orderinformation" xml:space="preserve">
     <value>Order information</value>
   </data>
-  <data name="Order.Order.Group.Orderdetail" xml:space="preserve">
-    <value>Order details</value>
+  <data name="Order.Order.Group.Orderline" xml:space="preserve">
+    <value>Order line</value>
   </data>
   <data name="toolbarButton.Action.New" xml:space="preserve">
     <value>Add line</value>
@@ -257,5 +257,98 @@
   </data>
   <data name="toolbarButton.Action.Save" xml:space="preserve">
     <value>Save current content</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyName" xml:space="preserve">
+    <value>Currency description</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyCode" xml:space="preserve">
+    <value>Currency code</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencySymbol" xml:space="preserve">
+    <value>Currency Symbol</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRate" xml:space="preserve">
+    <value>Exchange rate</value>
+  </data>
+  <data name="metadataCurrency.Field.Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRateShort" xml:space="preserve">
+    <value>Currency rate</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Add" xml:space="preserve">
+    <value>Add currency</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Delete" xml:space="preserve">
+    <value>Delete selected currency</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Save" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Order.Order.Group.Orderlist" xml:space="preserve">
+    <value>Order details</value>
+  </data>
+  <data name="Order.Orderlist.Field.Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Order.Orderlist.Field.Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Order.Orderline.Field.Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tooltip" xml:space="preserve">
+    <value>Unit price in supplier's currency</value>
+  </data>
+  <data name="Order.Orderline.Field.Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Order.OrderlineTotals.GrandTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Order.OrderlineTotals.Ordercosts" xml:space="preserve">
+    <value>Order costs</value>
+  </data>
+  <data name="Order.OrderlineTotals.RowTotal" xml:space="preserve">
+    <value>Total order lines</value>
+  </data>
+  <data name="Order.OrderlineTotals.ShippingCosts" xml:space="preserve">
+    <value>Shipping costs</value>
+  </data>
+  <data name="Order.OrderlineTotals" xml:space="preserve">
+    <value>Totals</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Delete selected order line</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.New" xml:space="preserve">
+    <value>Add new order line</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Save" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Order.Toolbar.Button.Save" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Order.Toolbar.Button.New" xml:space="preserve">
+    <value>Add Order</value>
+  </data>
+  <data name="Order.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Delete Selected Oder</value>
+  </data>
+  <data name="Order.Datagrid.Header.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderCompleted" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderDate" xml:space="preserve">
+    <value>Orderdate</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierId" xml:space="preserve">
+    <value>SupplierID</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierName" xml:space="preserve">
+    <value>Supplier</value>
   </data>
 </root>

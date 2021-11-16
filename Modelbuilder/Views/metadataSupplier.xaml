@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="metadataSupplier">
-    
+
     <!--#region Page resources-->
     <Page.Resources>
         <DataTemplate  x:Key="CurrencyComboTemplate">
@@ -150,10 +150,9 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                            Grid.Row="13" Grid.Column="1" Text="Tot bedrag"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" 
-                                         x:Name="inpSupplierOrderCosts" 
-                                         Grid.Row="14" Grid.Column="0" Width="150" />
+                                         x:Name="inpSupplierShippingCosts" Grid.Column="0" Width="150" Margin="-184,-182,0,0" />
                                     <TextBox Style="{DynamicResource NumericTextBox}" 
-                                         x:Name="inpSupplierMinOrderCosts" 
+                                         x:Name="inpSupplierMinShippingCosts" 
                                          Grid.Row="14" Grid.Column="1" Width="150" />
                                 </Grid>
                             </GroupBox>
