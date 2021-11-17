@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 
-using static Modelbuilder.HelperMySQL;
+using static Modelbuilder.HelperSupplier;
 
 namespace Modelbuilder
 {
@@ -19,7 +19,7 @@ namespace Modelbuilder
     /// </summary>
     public partial class metadataSupplier : Page
     {
-        private HelperMySQL _helper;
+        private HelperSupplier _helper;
         private DataTable _dt, _dtSC;
         private int _dbRowCount;
         private int _currentDataGridIndex;
@@ -27,7 +27,7 @@ namespace Modelbuilder
 
         public metadataSupplier()
         {
-            var ContactTypeList = new List<HelperMySQL.ContactType>();
+            var ContactTypeList = new List<HelperSupplier.ContactType>();
             InitializeComponent();
 
             InitializeHelper();
@@ -107,7 +107,7 @@ namespace Modelbuilder
         {
             if (_helper == null)
             {
-                _helper = new HelperMySQL("localhost", 3306, "modelbuilder", "root", "admin");
+                _helper = new HelperSupplier("localhost", 3306, "modelbuilder", "root", "admin");
             }
         }
         #endregion
@@ -163,10 +163,12 @@ namespace Modelbuilder
 
             GetMemo(dg.SelectedIndex);
 
-            double _MinimalShippingCosts = 0, _ShippingCosts = 0;
+            double _MinimalShippingCosts = 0, _ShippingCosts = 0, _MinimalOrderCosts = 0, _OrderCosts = 0;
 
             if (Row_Selected["supplier_MinShippingCosts"].ToString() != "") { _MinimalShippingCosts = double.Parse(Row_Selected["supplier_MinShippingCosts"].ToString()); }
             if (Row_Selected["supplier_ShippingCosts"].ToString() != "") { _ShippingCosts = double.Parse(Row_Selected["supplier_ShippingCosts"].ToString()); }
+            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
+            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
 
             valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
             valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
@@ -181,6 +183,8 @@ namespace Modelbuilder
             inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
             inpSupplierShippingCosts.Text = _ShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierMinShippingCosts.Text = _MinimalShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
+            inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
 
             // Empty the fields on the SupplierContact tab
@@ -260,7 +264,7 @@ namespace Modelbuilder
         #region Selection changed: Combobox Contacts
         private void cboxSupplierContactType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (HelperMySQL.ContactType item in e.AddedItems)
+            foreach (HelperSupplier.ContactType item in e.AddedItems)
             {
                 valueContactTypeId.Text = item.ContactTypeId.ToString();
                 valueContactTypeName.Text = item.ContactTypeName.ToString();
@@ -289,6 +293,8 @@ namespace Modelbuilder
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
             var supplierShippingCosts = double.Parse(inpSupplierShippingCosts.Text.Replace("€", "").Replace(" ", ""));
             var supplierMinShippingCosts = double.Parse(inpSupplierMinShippingCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -296,7 +302,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierShippingCosts, supplierMinShippingCosts);
+            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion
@@ -520,6 +526,8 @@ namespace Modelbuilder
             string supplierCurrencySymbol = valueCurrencySymbol.Text;
             var supplierShippingCosts = double.Parse(inpSupplierShippingCosts.Text.Replace("€", "").Replace(" ", ""));
             var supplierMinShippingCosts = double.Parse(inpSupplierMinShippingCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace("€", "").Replace(" ", ""));
+            var supplierMinOrderCosts = double.Parse(inpSupplierMinOrderCosts.Text.Replace("€", "").Replace(" ", ""));
 
             //convert RTF to string
             string memo = GetRichTextFromFlowDocument(inpSupplierMemo.Document);
@@ -527,7 +535,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, memo, supplierShippingCosts, supplierMinShippingCosts);
+            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCountryName, supplierCurrencyId, supplierCurrencySymbol, memo, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts, supplierMinOrderCosts);
             UpdateStatus(result);
         }
         #endregion

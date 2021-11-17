@@ -349,6 +349,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ordernummer.
+        /// </summary>
+        public static string Order_Order_Field_OrderNumber {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verzendkosten.
         /// </summary>
         public static string Order_Order_Field_ShippingCosts {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
+using ConnectionNamespace;
 
 namespace Modelbuilder;
 
@@ -51,6 +52,114 @@ internal class HelperOrder
         }
     }
     #endregion Execute NonQuery
+
+    #region Get Data from Table: Order
+    public DataTable GetDataTblOrder(int Id = 0)
+    {
+        DataTable dt = new DataTable();
+        string sqlText = string.Empty;
+
+        if (Id > 0)
+        {
+            sqlText = "SELECT * from Order where order_Id = @Id";
+        }
+        else
+        {
+            sqlText = "SELECT * from Order";
+        }
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+            //add parameter
+            cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+
+            using MySqlDataAdapter da = new(cmd);
+            //use DataAdapter to fill DataTable
+            da.Fill(dt);
+        }
+
+        return dt;
+    }
+    #endregion Get Data from Table: Order
+
+    #region Get Data from Table: Orderline
+    public DataTable GetDataTblOrderline(int Id = 0)
+    {
+        DataTable dt = new DataTable();
+        string sqlText = string.Empty;
+
+        if (Id > 0)
+        {
+            sqlText = "SELECT * from Orderline where orderline_OrderId = @Id";
+        }
+        else
+        {
+            sqlText = "SELECT * from Orderline";
+        }
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+            //add parameter
+            cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+
+            using MySqlDataAdapter da = new(cmd);
+            //use DataAdapter to fill DataTable
+            da.Fill(dt);
+        }
+
+        return dt;
+    }
+    #endregion Get Data from Table: Orderline
+
+    #region Get Data from Table: Currency (GetConversionrate)
+    public string GetConversionRate(int Id = 0)
+    {
+        DataTable dt = new DataTable();
+        string sqlText = string.Empty;
+        string resultString = String.Empty;
+
+        if (Id > 0)
+        {
+            sqlText = "SELECT currency_ConversionRate from Currency where currency_Id = @Id";
+        }
+        else
+        {
+            sqlText = "SELECT * from Currency";
+        }
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+        cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+
+        MySqlDataReader retrieveData = cmd.ExecuteReader();
+
+        retrieveData.Read();
+
+        // These two rows are cemmented out because its causing an error when storing a Supplier
+        // Unsure why in this general read function specificly a currency Id is read.
+        // var reader = retrieveData.GetOrdinal("currency_Id");
+        // int ID = retrieveData.GetInt32(reader);
+
+        //string reader = retrieveData.GetOrdinal("currency_ConversionRate");
+        //string Rate = retrieveData.GetInt32(reader);
+        resultString = retrieveData.GetString("0");
+        con.Close();
+
+        return resultString;
+    }
+    #endregion Get Data from Table: Orderline
+
 
     #region Create lists to populate dropdowns for metadata pages
     #region Fill the dropdownlists

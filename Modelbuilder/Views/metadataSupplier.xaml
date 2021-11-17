@@ -62,7 +62,7 @@
             <!--#endregion-->
 
             <!--#region Tabpages-->
-            <TabControl Height="370" Style="{DynamicResource Default TabControl}">
+            <TabControl Height="390" Style="{DynamicResource Default TabControl}">
                 <!--#region Tabpage for General information-->
                 <TabItem Style="{DynamicResource Default TabItem}" Header="Basisgegevens">
                     <Grid>
@@ -79,6 +79,8 @@
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
@@ -150,10 +152,20 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                            Grid.Row="13" Grid.Column="1" Text="Tot bedrag"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" 
-                                         x:Name="inpSupplierShippingCosts" Grid.Column="0" Width="150" Margin="-184,-182,0,0" />
+                                         x:Name="inpSupplierShippingCosts" Grid.Column="0" Grid.Row="14" Width="150" />
                                     <TextBox Style="{DynamicResource NumericTextBox}" 
                                          x:Name="inpSupplierMinShippingCosts" 
                                          Grid.Row="14" Grid.Column="1" Width="150" />
+                                    
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                           Grid.Row="15" Grid.Column="0" Text="Orderkosten"/>
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                           Grid.Row="15" Grid.Column="1" Text="Tot bedrag"/>
+                                    <TextBox Style="{DynamicResource NumericTextBox}" 
+                                         x:Name="inpSupplierOrderCosts" Grid.Column="0" Grid.Row="16" Width="150" />
+                                    <TextBox Style="{DynamicResource NumericTextBox}" 
+                                         x:Name="inpSupplierMinOrderCosts" 
+                                         Grid.Row="16" Grid.Column="1" Width="150" />
                                 </Grid>
                             </GroupBox>
                             <!--#endregion-->
@@ -355,7 +367,7 @@
             <!--#region Datagrid definition-->
             <DataGrid x:Name="SupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" 
                       ItemsSource="{Binding}" SelectionChanged="SupplierCode_DataGrid_SelectionChanged"
-                      Height="280">
+                      Height="260">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_Id}" />
                     <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding supplier_Code}" />

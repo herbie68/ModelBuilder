@@ -351,4 +351,7 @@
   <data name="Order.Datagrid.Header.SupplierName" xml:space="preserve">
     <value>Lieferanten</value>
   </data>
+  <data name="Order.Order.Field.OrderNumber" xml:space="preserve">
+    <value>Bestellnummer</value>
+  </data>
 </root>
