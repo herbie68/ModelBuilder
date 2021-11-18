@@ -125,6 +125,7 @@ internal class HelperOrder
         DataTable dt = new DataTable();
         string sqlText = string.Empty;
         string resultString = String.Empty;
+        float resultFloat = 0;
 
         if (Id > 0)
         {
@@ -142,23 +143,58 @@ internal class HelperOrder
         MySqlCommand cmd = new MySqlCommand(sqlText, con);
         cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
 
-        MySqlDataReader retrieveData = cmd.ExecuteReader();
+        resultFloat = (float)cmd.ExecuteScalar();
 
-        retrieveData.Read();
-
-        // These two rows are cemmented out because its causing an error when storing a Supplier
-        // Unsure why in this general read function specificly a currency Id is read.
-        // var reader = retrieveData.GetOrdinal("currency_Id");
-        // int ID = retrieveData.GetInt32(reader);
-
-        //string reader = retrieveData.GetOrdinal("currency_ConversionRate");
-        //string Rate = retrieveData.GetInt32(reader);
-        resultString = retrieveData.GetString("0");
-        con.Close();
+        resultString=resultFloat.ToString();   
 
         return resultString;
     }
     #endregion Get Data from Table: Orderline
+
+    #region Get Single Data from provided Table
+    public string GetSingleData(int Id = 0, string Table = "", string Field = "", string Type = "")
+    {
+        string sqlText = string.Empty;
+        string resultString = String.Empty;
+
+        if (Id > 0)
+        {
+            sqlText = "SELECT " + Field + " from " + Table + " where " + Table.ToLower() + "_Id = @Id";
+        }
+        else
+        {
+            sqlText = "SELECT * from " + Table;
+        }
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+        cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+
+        switch (Type.ToLower())
+        {
+            case "double":
+                resultString = ((double)cmd.ExecuteScalar()).ToString();
+                break;
+            case "float":
+                resultString = ((float)cmd.ExecuteScalar()).ToString();
+                break;
+            case "int":
+                resultString = ((int)cmd.ExecuteScalar()).ToString();
+                break;
+            case "string":
+                resultString= (string)cmd.ExecuteScalar();
+                break;
+            default:
+                resultString = (string)cmd.ExecuteScalar();
+                break;
+        }
+
+        return resultString;
+    }
+    #endregion Get Single Data from provided Table
 
 
     #region Create lists to populate dropdowns for metadata pages

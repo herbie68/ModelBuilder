@@ -37,6 +37,7 @@ namespace Modelbuilder.Views
             InitializeComponent();
             InitializeHelper();
 
+            // Fill the dropdowns
             cboxSupplier.ItemsSource = _helper.GetSupplierList(SupplierList);
             cboxProject.ItemsSource = _helper.GetProjectList(ProjectList);
             cboxProduct.ItemsSource = _helper.GetProductList(ProductList);
@@ -104,11 +105,90 @@ namespace Modelbuilder.Views
                 valueCurrencyId.Text = item.SupplierCurrencyId.ToString();
                 inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
             }
-            inpCurrencyRate.Text = _helper.GetConversionRate(int.Parse(valueCurrencyId.Text));
+            // textBox1.Text = string.Format("{0:#,##0.00}", double.Parse(textBox1.Text));
+            inpCurrencyRate.Text = _helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "currency_ConversionRate", "float");
+            inpShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_ShippingCosts", "double");
+            valueMinShippingCosts.Text =  _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_MinShippingCosts", "double");
+            inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_OrderCosts", "double");
+            inpCurrencyRate.Text = string.Format("{0:#,###0.000}", double.Parse(inpCurrencyRate.Text));
+            inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpShippingCosts.Text));
+            inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text));
+
+            // Totals should not be empty
+            if (string.IsNullOrWhiteSpace(valRowTotal.Text))
+            {
+                valRowTotal.Text = "0,00";
+                valShippingCost.Text = "0,00";
+                valOrderCost.Text = "0,00";
+                valGrandTotal.Text = "0,00";
+            }
+
+            if (double.Parse(valRowTotal.Text) < double.Parse(valueMinShippingCosts.Text))
+            {
+                valShippingCost.Text = inpShippingCosts.Text;
+            }
+            else
+            {
+                valShippingCost.Text = "0,00";
+            }
+
+            // For order costs there is now minimal valur
+            valOrderCost.Text = inpOrderCosts.Text;
         }
         #endregion
 
+        #region UpdateEvent after changing OrderCosts
+        private void OrderCostsChanged(object sender, TextChangedEventArgs e)
+        {
+            // Values should not be empty
+            if (string.IsNullOrWhiteSpace(valRowTotal.Text))
+            {
+                valRowTotal.Text = "0,00";
+            }
+            if (string.IsNullOrWhiteSpace(valGrandTotal.Text))
+            {
+                valGrandTotal.Text = "0,00";
+            }
 
+            if (string.IsNullOrWhiteSpace(valueMinOrderCosts.Text))
+            {
+                valueMinOrderCosts.Text = "0,00";
+            }
+
+            // Change the order costs
+            valOrderCost.Text = inpOrderCosts.Text;
+        }
+        #endregion UpdateEvent after changing OrderCosts
+
+        #region UpdateEvent after changing ShippingCosts
+        private void ShippingCostsChanged(object sender, TextChangedEventArgs e)
+        {
+            // Values should not be empty
+            if (string.IsNullOrWhiteSpace(valRowTotal.Text))
+            {
+                valRowTotal.Text = "0,00";
+            }
+            if (string.IsNullOrWhiteSpace(valGrandTotal.Text))
+            {
+                valGrandTotal.Text = "0,00";
+            }
+
+            if (string.IsNullOrWhiteSpace(valueMinShippingCosts.Text))
+            {
+                valueMinShippingCosts.Text = "0,00";
+            }
+
+            // update shipping Costs depending on the minimal order value
+            if (double.Parse(valRowTotal.Text) < double.Parse(valueMinShippingCosts.Text))
+            {
+                valShippingCost.Text = inpShippingCosts.Text;
+            }
+            else
+            {
+                valShippingCost.Text = "0,00";
+            }
+        }
+        #endregion UpdateEvent after changing OrderCosts
         #region Update status
         private void UpdateStatus(string msg)
         {
