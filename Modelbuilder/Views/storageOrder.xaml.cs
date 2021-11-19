@@ -25,7 +25,7 @@ namespace Modelbuilder.Views
     {
         private HelperOrder _helper;
         private DataTable _dt, _dtSC;
-        private int _dbRowCount, _dbRowCountSC, _currentDataGridIndex, _currentDataGridSCIndex;
+        private int _dbRowCount, _dbRowCountSC;
         // static string DatabaseSupplierTable = "supplier", DatabaseProductTable = "product", DatabaseProjectTable = "project";
 
         public storageOrder()
@@ -33,6 +33,7 @@ namespace Modelbuilder.Views
             var SupplierList = new List<HelperOrder.Supplier>();
             var ProjectList = new List<HelperOrder.Project>();
             var ProductList = new List<HelperOrder.Product>();
+            var CategoryList = new List<HelperOrder.Category>();
 
             InitializeComponent();
             InitializeHelper();
@@ -41,6 +42,13 @@ namespace Modelbuilder.Views
             cboxSupplier.ItemsSource = _helper.GetSupplierList(SupplierList);
             cboxProject.ItemsSource = _helper.GetProjectList(ProjectList);
             cboxProduct.ItemsSource = _helper.GetProductList(ProductList);
+            cboxCategory.ItemsSource = _helper.GetCategoryList(CategoryList);
+
+            valRowTotal.Text = "0,00";
+            valShippingCost.Text = "0,00";
+            valOrderCost.Text = "0,00";
+            valGrandTotal.Text = "0,00";
+            valTotal.Text = "0,00";
 
             //GetData();
         }
@@ -121,6 +129,7 @@ namespace Modelbuilder.Views
                 valShippingCost.Text = "0,00";
                 valOrderCost.Text = "0,00";
                 valGrandTotal.Text = "0,00";
+                valTotal.Text = "0,00";
             }
 
             if (double.Parse(valRowTotal.Text) < double.Parse(valueMinShippingCosts.Text))
@@ -136,6 +145,73 @@ namespace Modelbuilder.Views
             valOrderCost.Text = inpOrderCosts.Text;
         }
         #endregion
+
+        #region Selection changed: Combobox Product
+        private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (HelperOrder.Product item in e.AddedItems)
+            {
+                valueProductId.Text = item.ProductId.ToString();
+            }
+
+            // Check if product is in table for this supplier, if not return value will be -1
+            string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
+            
+            if (_tmpPrice != "-1")
+            {
+                inpPrice.Text = _tmpPrice.ToString();
+            }
+            else
+            {
+                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");
+            }
+
+            inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
+
+            if (inpNumber.Text == string.Empty)
+            {
+                valTotal.Text = "0";
+            }
+            else
+            {
+                valTotal.Text = (double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text)).ToString();
+            }
+
+            valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(valTotal.Text));
+        }
+        #endregion
+
+        #region Selection changed: Number of items
+        private void inpNumber_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (inpNumber.Text == string.Empty)
+            {
+                valTotal.Text = "0";
+            }
+            else
+            {
+                valTotal.Text = (double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text)).ToString();
+            }
+
+            valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(valTotal.Text));
+
+        }
+        #endregion Selection changed: Number of items
+
+        #region Selection changed: Price of single item
+        private void inpPrice_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if(inpNumber.Text == string.Empty)
+            {
+                valTotal.Text = "0";
+            }
+            else
+            {
+                valTotal.Text = (double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text)).ToString();
+            }
+            valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(valTotal.Text));
+        }
+        #endregion Selection changed: Price of single item
 
         #region UpdateEvent after changing OrderCosts
         private void OrderCostsChanged(object sender, TextChangedEventArgs e)
@@ -189,6 +265,63 @@ namespace Modelbuilder.Views
             }
         }
         #endregion UpdateEvent after changing OrderCosts
+
+        #region Toolbar button for Orderlines: New
+        private void OrderlinesToolbarButtonNew(object sender, RoutedEventArgs e)
+        {
+            var OrderlineOrderId = int.Parse(valueOrderId.Text);
+            var OrderlineProductId = int.Parse(valueProductId.Text); ;
+            if (valueProjectId.Text == string.Empty)
+            {
+                var OrderlineProjectId = "";
+            }
+            else
+            {
+                var OrderlineProjectId = valueProjectId.Text;
+            }
+            if (valueCategoryId.Text == string.Empty)
+            {
+                var OrderlineCategoryId = "";
+            }
+            else
+            {
+                var OrderlineCategoryId = valueCategoryId.Text;
+            }
+            var OrderlineNumber = "";
+            var OrderlinePrice = "";
+            var OrderlineRealRowTotal = "";
+
+            InitializeHelper();
+            // TODO
+            //var result = _helper.InsertTblOrderline(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            //UpdateStatus(result);
+
+            // Get data from database
+            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+
+            // Populate data in datagrid from datatable
+            //SupplierContact_DataGrid.DataContext = _dtSC;
+            //SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
+            //_ = SupplierContact_DataGrid.Focus();
+        }
+        #endregion Toolbar button for Orderlines: New
+
+        #region Toolbar button for Orderlines: Save
+        private void OrderlinesToolbarButtonSave(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Toolbar button for Orderlines: Save
+
+        #region Toolbar button for Orderlines: Delete
+        private void OrderlinesToolbarButtonDelete(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Toolbar button for Orderlines: Delete
+
+
+
         #region Update status
         private void UpdateStatus(string msg)
         {
@@ -253,6 +386,7 @@ namespace Modelbuilder.Views
                 //LabelColumnNr.Content = ShowColumn;
             }
         }
+
         #endregion rtfToolbar actions
 
         #region Toolbar for Orders
@@ -268,6 +402,12 @@ namespace Modelbuilder.Views
         {
 
         }
+
+        private void OrderRowEditableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Click Delete button (on Order toolbar)
@@ -279,9 +419,28 @@ namespace Modelbuilder.Views
 
         #endregion
 
+        #region Enable or disable order row for input, depending on new row in datagrid added
         private void OrderCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if ((bool)(valueOrderRowEditable.IsChecked = true))
+            {
+                cboxProduct.IsEnabled = true;
+                cboxProject.IsEnabled = true;
+                cboxCategory.IsEnabled = true;
+                inpNumber.IsEnabled = true;
+                inpPrice.IsEnabled = true;
+                valTotal.IsEnabled = true;
+            }
+            else
+            {
+                cboxProduct.IsEnabled = false;
+                cboxProject.IsEnabled = false;
+                cboxCategory.IsEnabled = false;
+                inpNumber.IsEnabled = false;
+                inpPrice.IsEnabled = false;
+                valTotal.IsEnabled = false;
+            }
         }
+        #endregion Enable or disable order row for input, depending on new row in datagrid added
     }
 }

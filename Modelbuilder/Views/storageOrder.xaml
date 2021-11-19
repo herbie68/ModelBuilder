@@ -25,6 +25,13 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate  x:Key="CategoryComboTemplate" >
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="{Binding Path=CategoryName}" />
+                <TextBlock Text="{Binding Path=CategoryId}" Visibility="Hidden"/>
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate  x:Key="ProductComboTemplate" >
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="{Binding Path=ProductName}" />
@@ -52,8 +59,10 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinShippingCosts" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinOrderCosts" />
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="valueOrderRowEditable" DataContextChanged="OrderRowEditableChanged"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
                 <!--#endregion Hiddenfields-->
@@ -149,11 +158,12 @@
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width="1.75*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width=".75*"/>
+                                        <ColumnDefinition Width=".25*"/>
+                                        <ColumnDefinition Width=".35*"/>
+                                        <ColumnDefinition Width=".40*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
@@ -166,8 +176,8 @@
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Product}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
                                               x:Name="cboxProduct" 
-                                              ItemTemplate="{StaticResource ProductComboTemplate}"
-                                              Grid.Row="1" Grid.Column="0" Width="400"/>
+                                              ItemTemplate="{StaticResource ProductComboTemplate}" TextSearch.TextPath="productName" SelectionChanged="cboxProduct_SelectionChanged"
+                                              Grid.Row="1" Grid.Column="0" Width="360"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="1" 
@@ -177,26 +187,35 @@
                                               ItemTemplate="{StaticResource ProjectComboTemplate}"
                                               Grid.Row="1" Grid.Column="1" Width="200"/>
 
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
+                                               Grid.Row="0" Grid.Column="2" 
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Category}"/>
+                                    <ComboBox Style="{DynamicResource DefaultComboBox}" 
+                                              x:Name="cboxCategory" 
+                                              ItemTemplate="{StaticResource CategoryComboTemplate}"
+                                              Grid.Row="1" Grid.Column="2" Width="150"/>
+                                    
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" 
+                                               HorizontalAlignment="Right" Grid.Row="0" Grid.Column="3" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Number}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpNumber" 
-                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" 
-                                             Width="90"/>
-
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               HorizontalAlignment="Right" Grid.Row="0" Grid.Column="3" 
-                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Price}"/>
-                                    <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpPrice" 
                                              HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3" 
-                                             Width="90" ToolTip="{x:Static p:Cultures.Order_Orderline_Field_Price_Tooltip}"/>
+                                             Width="50" SelectionChanged="inpNumber_SelectionChanged"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4" 
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Price}"/>
+                                    <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpPrice" 
+                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="4" SelectionChanged="inpPrice_SelectionChanged" 
+                                             Width="70" ToolTip="{x:Static p:Cultures.Order_Orderline_Field_Price_Tooltip}"/>
+
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
+                                               HorizontalAlignment="Right" Grid.Row="0" Grid.Column="5" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Total}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valTotal" 
-                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="4" 
-                                             Width="90" IsEnabled="False"/>                                </Grid>
+                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="5" 
+                                             Width="80" IsReadOnly="True" IsTabStop="False"/>
+                                </Grid>
                             </GroupBox>
                             <!--#endregion  Orderdetails-->
 
@@ -283,13 +302,16 @@
                                     <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="10,0" 
                                              VerticalAlignment="Center" Grid.Row="2">
                                         <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="orderdetailToolbar">
-                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_New}">
+                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_New}"
+                                                    Click="OrderlinesToolbarButtonNew">
                                                 <Image Style="{DynamicResource ToolBarSmallAddIcon}" />
                                             </Button>
-                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Save}">
+                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Save}"
+                                                    Click="OrderlinesToolbarButtonSave">
                                                 <Image Style="{DynamicResource ToolBarSmallSaveIcon}" />
                                             </Button>
-                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Delete}">
+                                            <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Delete}"
+                                                    Click="OrderlinesToolbarButtonDelete">
                                                 <Image Style="{DynamicResource ToolBarSmallDeleteIcon}" />
                                             </Button>
                                         </ToolBar>

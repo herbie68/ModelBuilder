@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
 using ConnectionNamespace;
+using static Modelbuilder.HelperMySQL;
 
 namespace Modelbuilder;
 
@@ -196,8 +197,60 @@ internal class HelperOrder
     }
     #endregion Get Single Data from provided Table
 
+    #region Get Single with multiple criteria Data from provided Table
+    public string GetSingleDataMultiSelect(string Table = "", string RetrieveField = "", string Type = "", string ConditionField1 = "", int Id1 = 0, string Condition1 = "", string ConditionField2 = "", int Id2 = 0)
+    {
+        string sqlText = string.Empty;
+        string resultString = String.Empty;
+        // SELECT productSupplier_ProductPrice FROM productSupplier WHERE productSupplier_ProductId = 1 AND productSupplier_SupplierId = 7 
+        if (Id1 > 0)
+        {
+            sqlText = "SELECT " + RetrieveField + " FROM " + Table + " WHERE " + ConditionField1 + " = @Id1 " + Condition1.ToUpper() + " " + ConditionField2 + " = @Id2 ";
+        }
+        else
+        {
+            sqlText = "SELECT * from " + Table;
+        }
 
-    #region Create lists to populate dropdowns for metadata pages
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+        cmd.Parameters.Add("@Id1", MySqlDbType.Int32).Value = Id1;
+        cmd.Parameters.Add("@Id2", MySqlDbType.Int32).Value = Id2;
+
+        switch (Type.ToLower())
+        {
+            case "double":
+                try
+                {
+                    resultString = ((double)cmd.ExecuteScalar()).ToString();
+                }
+                catch (NullReferenceException)
+                {
+                    resultString = "-1";
+                }
+                break;
+
+            case "float":
+                resultString = ((float)cmd.ExecuteScalar()).ToString();
+                break;
+            case "int":
+                resultString = ((int)cmd.ExecuteScalar()).ToString();
+                break;
+            case "string":
+                resultString = (string)cmd.ExecuteScalar();
+                break;
+            default:
+                resultString = (string)cmd.ExecuteScalar();
+                break;
+        }
+        return resultString;
+    }
+    #endregion Get Single Data from provided Table
+
+    #region Create lists to populate dropdowns for order Page
     #region Fill the dropdownlists
     #region Fill Supplier dropdown
     public List<Supplier> GetSupplierList(List<Supplier> supplierList)
@@ -226,7 +279,7 @@ internal class HelperOrder
         };
         return supplierList;
     }
-    #endregion
+    #endregion Fill Supplier dropdown
 
     #region Fill the Project dropdown
     public List<Project> GetProjectList(List<Project> projectList)
@@ -281,6 +334,34 @@ internal class HelperOrder
         return productList;
     }
     #endregion Fill the Project dropdown
+
+    #region Fill Category dropdown
+    public List<Category> GetCategoryList(List<Category> categoryList)
+    {
+
+        Database dbCategoryConnection = new()
+        {
+            TableName = DbCategoryTable
+        };
+
+        dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
+        dbCategoryConnection.SqlOrderByString = "category_Id";
+        dbCategoryConnection.TableName = DbCategoryTable;
+
+        DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
+
+        for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
+        {
+            categoryList.Add(new Category
+            {
+                CategoryName = dtCategorySelection.Rows[i][0].ToString(),
+                CategoryId = int.Parse(dtCategorySelection.Rows[i][1].ToString(), Culture)
+            });
+
+        };
+        return categoryList;
+    }
+    #endregion
     #endregion Fill the dropdownlists
 
     #region Helper classes to for creating objects to populate dropdowns
@@ -302,13 +383,22 @@ internal class HelperOrder
     }
     #endregion Create object for all projects in table for dropdown
 
+    #region Create object for all categories in table for dropdown
+    public class Category
+    {
+        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
+    }
+    #endregion
+
     #region Create object for all products in table for dropdown
     public class Product
     {
         public string ProductName { get; set; }
         public int ProductId { get; set; }
     }
-    #endregion Create object for all products in table for dropdown    #endregion Helper classes to for creating objects to populate dropdowns
-    #endregion Create lists to populate dropdowns for metadata pages
-    #endregion Create lists to populate dropdowns for metadata pages
+    #endregion Create object for all products in table for dropdown    
+    #endregion Helper classes to for creating objects to populate dropdowns
+
+    #endregion Create lists to populate dropdowns for order Page
 }

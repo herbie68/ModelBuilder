@@ -186,7 +186,6 @@
             <Setter Property="IsEnabled" Value="True"/>
         </Style>
 
-
         <Style x:Key="HiddenTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -194,6 +193,11 @@
             <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="Text" Value="" />
         </Style>
+
+        <Style x:Key="HiddenCheckBox" TargetType="CheckBox">
+            <Setter Property="Visibility" Value="Hidden" />
+        </Style>
+
 
         <Style x:Key="DefaultComboBox" TargetType="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
