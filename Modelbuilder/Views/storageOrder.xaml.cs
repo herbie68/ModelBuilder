@@ -270,39 +270,35 @@ namespace Modelbuilder.Views
         private void OrderlinesToolbarButtonNew(object sender, RoutedEventArgs e)
         {
             var OrderlineOrderId = int.Parse(valueOrderId.Text);
-            var OrderlineProductId = int.Parse(valueProductId.Text); ;
-            if (valueProjectId.Text == string.Empty)
+            var OrderlineProductId = int.Parse(valueProductId.Text);
+            var OrderlineProjectId = 0;
+            var OrderlineCategoryId = 0;
+
+            if (valueProjectId.Text != string.Empty)
             {
-                var OrderlineProjectId = "";
+                OrderlineProjectId = int.Parse(valueProjectId.Text);
             }
-            else
+            if (valueCategoryId.Text != string.Empty)
             {
-                var OrderlineProjectId = valueProjectId.Text;
+                OrderlineCategoryId = int.Parse(valueCategoryId.Text);
             }
-            if (valueCategoryId.Text == string.Empty)
-            {
-                var OrderlineCategoryId = "";
-            }
-            else
-            {
-                var OrderlineCategoryId = valueCategoryId.Text;
-            }
-            var OrderlineNumber = "";
-            var OrderlinePrice = "";
-            var OrderlineRealRowTotal = "";
+
+            var OrderlineNumber = 0.00;
+            var OrderlinePrice = 0.00;
+            var OrderlineRealRowTotal = 0.00;
 
             InitializeHelper();
             // TODO
-            //var result = _helper.InsertTblOrderline(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
-            //UpdateStatus(result);
+            var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice, OrderlineRealRowTotal);
+            UpdateStatus(result);
 
             // Get data from database
-            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            _dtSC = _helper.GetDataTblOrderline(int.Parse(valueSupplierId.Text));
 
             // Populate data in datagrid from datatable
-            //SupplierContact_DataGrid.DataContext = _dtSC;
-            //SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
-            //_ = SupplierContact_DataGrid.Focus();
+            OrderDetail_DataGrid.DataContext = _dtSC;
+            OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count - 1;
+            _ = OrderDetail_DataGrid.Focus();
         }
         #endregion Toolbar button for Orderlines: New
 

@@ -9,11 +9,37 @@ using System.Data;
 using System.Diagnostics;
 using ConnectionNamespace;
 using static Modelbuilder.HelperMySQL;
+using Org.BouncyCastle.Math;
+using static Modelbuilder.HelperOrder;
 
 namespace Modelbuilder;
 
 internal class HelperOrder
 {
+    #region Available databasefields
+    /// ***********************************************************************************
+    /// Available fields for Orderline table
+    /// ***********************************************************************************
+    ///   Table Fieldname           Variable            Parameter     Type
+    ///   -----------------------------------------------------------------------------
+    ///   orderline_Id              Id                  @Id           int
+    ///   orderline_OrderId         OrderId             @OrderId      int
+    ///   orderline_ProductId       ProductId           @ProductId    int
+    ///   orderline_ProjectId       ProjectId           @ProjectId    int
+    ///   orderline_CategoryId      CategoryId          @CategoryId   int
+    ///   orderline_Number          Number              @Number       double
+    ///   orderline_Price           Price               @Price        double
+    ///   orderline_RealRowTotal    RealRowTotal        @RealRowTot   double
+    ///   orderline_Closed          Closed              @Closed       bool (0 or 1)
+    ///   orderline_ClosedDate      ClosedDate          @ClosedDate   date
+    /// ***********************************************************************************
+
+    // orderline_Id, orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal, orderline_Closed, orderline_ClosedDate 
+    // Id, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal, Closed, ClosedDate 
+    // @Id, @OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal, @Closed, @ClosedDate 
+
+    #endregion Available databasefields
+
     #region public Variables
     public string ConnectionStr { get; set; } = string.Empty;
 
@@ -249,6 +275,73 @@ internal class HelperOrder
         return resultString;
     }
     #endregion Get Single Data from provided Table
+
+    #region Insert in Table: Orderline
+    public string InsertTblOrderline(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
+    {
+        string result = string.Empty;
+        string sqlText = "INSERT INTO Orderline (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal);
+
+            if (rowsAffected > 0)
+            {
+
+                result = String.Format("Rij toegevoegd.");
+            }
+            else
+            {
+                result = "Rij niet toegevoegd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine("Error (UpdateTblOrderline - MySqlException): " + ex.Message);
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error (UpdateTblOrderline): " + ex.Message);
+            throw;
+        }
+        return result;
+    }
+    #endregion Insert in Table: Orderline
+
+    #region Execute Non Query Table: Orderline
+    public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal, int OrderlineId = 0)
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            {
+                // add parameters setting string values to DBNull.Value
+                // int parameters
+                cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
+                cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
+                cmd.Parameters.Add("@ProjectId", MySqlDbType.Int32).Value = ProjectId;
+                cmd.Parameters.Add("@CategoryId", MySqlDbType.Int32).Value = CategoryId;
+
+                // double parameters
+                cmd.Parameters.Add("@Number", MySqlDbType.Double).Value = Number;
+                cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = Price;
+                cmd.Parameters.Add("@RealRowTotal", MySqlDbType.Double).Value = RealRowTotal;
+
+                //execute; returns the number of rows affected
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+        }
+        return rowsAffected;
+    }
+    #endregion Execute Non Query Table: Orderline
+
 
     #region Create lists to populate dropdowns for order Page
     #region Fill the dropdownlists
