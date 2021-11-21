@@ -266,6 +266,7 @@ namespace Modelbuilder.Views
         }
         #endregion UpdateEvent after changing OrderCosts
 
+        #region Toolbar for order rows
         #region Toolbar button for Orderlines: New
         private void OrderlinesToolbarButtonNew(object sender, RoutedEventArgs e)
         {
@@ -288,7 +289,6 @@ namespace Modelbuilder.Views
             var OrderlineRealRowTotal = 0.00;
 
             InitializeHelper();
-            // TODO
             var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice, OrderlineRealRowTotal);
             UpdateStatus(result);
 
@@ -299,6 +299,9 @@ namespace Modelbuilder.Views
             OrderDetail_DataGrid.DataContext = _dtSC;
             OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count - 1;
             _ = OrderDetail_DataGrid.Focus();
+
+            // Make orderline related cells available
+            cboxOrderRowEditable.IsChecked = true;
         }
         #endregion Toolbar button for Orderlines: New
 
@@ -315,7 +318,30 @@ namespace Modelbuilder.Views
 
         }
         #endregion Toolbar button for Orderlines: Delete
+        #endregion Toolbar for order rows
 
+        #region Toolbar for Orders
+        #region Click New button (on Order toolbar)
+        private void ToolbarButtonNew(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Click New button (on Order toolbar)
+
+        #region Click Save Data button (on Order toolbar)
+        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Click Save button (on Order toolbar)
+
+        #region Click Delete button (on Order toolbar)
+        private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Click Delete button (on Order toolbar)
+        #endregion Toolbar for Orders
 
 
         #region Update status
@@ -335,7 +361,7 @@ namespace Modelbuilder.Views
                 }
             }
         }
-        #endregion
+        #endregion Update status
 
         #region rtfToolbar actions
         // private bool dataChanged = false; // Unsaved textchanges
@@ -385,40 +411,44 @@ namespace Modelbuilder.Views
 
         #endregion rtfToolbar actions
 
-        #region Toolbar for Orders
-        #region Click New button (on Order toolbar)
-        private void ToolbarButtonNew(object sender, RoutedEventArgs e)
+        #region Enable or disable order entry, depending on new row in datagrid added
+        private void OrderEditableChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
+            if ((bool)(cboxOrderEditable.IsChecked = true))
+            {
+                cboxSupplier.IsEnabled = true;
+                inpCurrencySymbol.IsEnabled = true;
+                inpCurrencyRate.IsEnabled = true;
+                inpShippingCosts.IsEnabled = true;
+                inpOrderCosts.IsEnabled = true;
+                inpOrderNumber.IsEnabled = true;
+                inpOrderDate.IsEnabled = true;
+                inpOrderMemo.IsEnabled = true;
+                OrderRowToolbarButtonNew.IsEnabled = true;
+                OrderRowToolbarButtonSave.IsEnabled = true;
+                OrderRowToolbarButtonDelete.IsEnabled = true;
+            }
+            else
+            {
+                cboxSupplier.IsEnabled = false;
+                inpCurrencySymbol.IsEnabled = false;
+                inpCurrencyRate.IsEnabled = false;
+                inpShippingCosts.IsEnabled = false;
+                inpOrderCosts.IsEnabled = false;
+                inpOrderNumber.IsEnabled = false;
+                inpOrderDate.IsEnabled = false;
+                inpOrderMemo.IsEnabled = false;
+                OrderRowToolbarButtonNew.IsEnabled = false;
+                OrderRowToolbarButtonSave.IsEnabled = false;
+                OrderRowToolbarButtonDelete.IsEnabled = false;
+            }
         }
-        #endregion
-
-        #region Click Save Data button (on Order toolbar)
-        private void ToolbarButtonSave(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OrderRowEditableChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        #endregion
-
-        #region Click Delete button (on Order toolbar)
-        private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #endregion
+        #endregion Enable or disable order entry, depending on new row in datagrid added
 
         #region Enable or disable order row for input, depending on new row in datagrid added
-        private void OrderCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OrderRowEditableChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if ((bool)(valueOrderRowEditable.IsChecked = true))
+            if ((bool)(cboxOrderRowEditable.IsChecked = true))
             {
                 cboxProduct.IsEnabled = true;
                 cboxProject.IsEnabled = true;
@@ -438,5 +468,9 @@ namespace Modelbuilder.Views
             }
         }
         #endregion Enable or disable order row for input, depending on new row in datagrid added
+
+        private void OrderCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 }

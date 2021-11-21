@@ -62,7 +62,8 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinShippingCosts" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinOrderCosts" />
-                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="valueOrderRowEditable" DataContextChanged="OrderRowEditableChanged"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" DataContextChanged="OrderRowEditableChanged"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" DataContextChanged="OrderEditableChanged"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
                 <!--#endregion Hiddenfields-->
@@ -303,15 +304,15 @@
                                              VerticalAlignment="Center" Grid.Row="2">
                                         <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="orderdetailToolbar">
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_New}"
-                                                    Click="OrderlinesToolbarButtonNew">
+                                                    Click="OrderlinesToolbarButtonNew" x:Name="OrderRowToolbarButtonNew">
                                                 <Image Style="{DynamicResource ToolBarSmallAddIcon}" />
                                             </Button>
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Save}"
-                                                    Click="OrderlinesToolbarButtonSave">
+                                                    Click="OrderlinesToolbarButtonSave" x:Name="OrderRowToolbarButtonSave">
                                                 <Image Style="{DynamicResource ToolBarSmallSaveIcon}" />
                                             </Button>
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Delete}"
-                                                    Click="OrderlinesToolbarButtonDelete">
+                                                    Click="OrderlinesToolbarButtonDelete" x:Name="OrderRowToolbarButtonDelete">
                                                 <Image Style="{DynamicResource ToolBarSmallDeleteIcon}" />
                                             </Button>
                                         </ToolBar>

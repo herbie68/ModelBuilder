@@ -17,27 +17,45 @@ namespace Modelbuilder;
 internal class HelperOrder
 {
     #region Available databasefields
-    /// ***********************************************************************************
-    /// Available fields for Orderline table
-    /// ***********************************************************************************
-    ///   Table Fieldname           Variable            Parameter     Type
-    ///   -----------------------------------------------------------------------------
-    ///   orderline_Id              Id                  @Id           int
-    ///   orderline_OrderId         OrderId             @OrderId      int
-    ///   orderline_ProductId       ProductId           @ProductId    int
-    ///   orderline_ProjectId       ProjectId           @ProjectId    int
-    ///   orderline_CategoryId      CategoryId          @CategoryId   int
-    ///   orderline_Number          Number              @Number       double
-    ///   orderline_Price           Price               @Price        double
-    ///   orderline_RealRowTotal    RealRowTotal        @RealRowTot   double
-    ///   orderline_Closed          Closed              @Closed       bool (0 or 1)
-    ///   orderline_ClosedDate      ClosedDate          @ClosedDate   date
-    /// ***********************************************************************************
+    /// ***************************************************************************************
+    ///   Available fields for Order table
+    /// ***************************************************************************************
+    ///   Table Fieldname           	Variable            Parameter      		Type
+    ///   -----------------------------------------------------------------------------------
+    ///   order_Id						Id					@Id					int
+    ///   order_SupplierId				SupplierId			@SupplierId			int
+    ///   order_Date 					OrderDate			@OrderDate			date
+    ///   order_CurrencySymbol 			CurrencySymbol		@CurrencySymbol		string(2)
+    ///   order_CurrencyConversionRate 	ConversionRate		@ConversionRate		float
+    ///   order_ShippingCosts 			ShippingCosts		@ShippingCosts		double
+    ///   order_OrderCosts 				OrderCosts			@OrderCosts			double
+    ///   order_Memo 					Memo				@Memo				string
+    ///   order_Closed 					OrderClosed			@OrderClosed		bool (0 or 1)
+    ///   order_ClosedDate 				OrderClosedDate		@OrderClosedDate	date
+    /// ***************************************************************************************
+    /// order_Id, order_SupplierId, order_Date, order_CurrencySymbol, order_CurrencyConversionRate, order_ShippingCosts, order_OrderCosts, order_Memo, order_Closed, order_ClosedDate
+    /// Id, SupplierId, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, Memo, OrderClosed, OrderClosedDate
+    /// @Id, @SupplierId, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @Memo, @OrderClosed, @OrderClosedDate
 
+    /// ***************************************************************************************
+    ///   Available fields for Orderline table
+    /// ***************************************************************************************
+    ///   Table Fieldname               Variable            Parameter           Type
+    ///   ----------------------------------------------------------------------------------
+    ///   orderline_Id                  Id                  @Id                 int
+    ///   orderline_OrderId             OrderId             @OrderId            int
+    ///   orderline_ProductId           ProductId           @ProductId          int
+    ///   orderline_ProjectId           ProjectId           @ProjectId          int
+    ///   orderline_CategoryId          CategoryId          @CategoryId         int
+    ///   orderline_Number              Number              @Number             double
+    ///   orderline_Price               Price               @Price              double
+    ///   orderline_RealRowTotal        RealRowTotal        @RealRowTot         double
+    ///   orderline_Closed              RowClosed           @RowClosed          bool (0 or 1)
+    ///   orderline_ClosedDate          RowClosedDate       @RowClosedDate      date
+    /// ***************************************************************************************
     // orderline_Id, orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal, orderline_Closed, orderline_ClosedDate 
-    // Id, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal, Closed, ClosedDate 
-    // @Id, @OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal, @Closed, @ClosedDate 
-
+    // Id, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal, RowClosed, RowClosedDate 
+    // @Id, @OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal, @RowClosed, @RowClosedDate 
     #endregion Available databasefields
 
     #region public Variables
@@ -275,6 +293,41 @@ internal class HelperOrder
         return resultString;
     }
     #endregion Get Single Data from provided Table
+
+    #region Insert in Table: Order
+    // TODO Is now for Orderline replace fields for order
+    public string InsertTblOrder(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
+    {
+        string result = string.Empty;
+        string sqlText = "INSERT INTO Order (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal);
+
+            if (rowsAffected > 0)
+            {
+
+                result = String.Format("Rij toegevoegd.");
+            }
+            else
+            {
+                result = "Rij niet toegevoegd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine("Error (UpdateTblOrderline - MySqlException): " + ex.Message);
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error (UpdateTblOrderline): " + ex.Message);
+            throw;
+        }
+        return result;
+    }
+    #endregion Insert in Table: Order
 
     #region Insert in Table: Orderline
     public string InsertTblOrderline(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
