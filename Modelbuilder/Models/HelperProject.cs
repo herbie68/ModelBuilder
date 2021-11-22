@@ -68,11 +68,13 @@ public class HelperProject
             cmd.Parameters.Add("@projectId", MySqlDbType.Int32).Value = projectId;
             cmd.Parameters.Add("@projectClosed", MySqlDbType.Int32).Value = projectClosed;
 
-            // Add VarChar values
+            // Add Date values
             cmd.Parameters.Add("@projectCode", MySqlDbType.VarChar).Value = DBNull.Value;
             cmd.Parameters.Add("@projectName", MySqlDbType.VarChar).Value = DBNull.Value;
             cmd.Parameters.Add("@projectStartDate", MySqlDbType.Date).Value = DBNull.Value;
             cmd.Parameters.Add("@projectEndDate", MySqlDbType.Date).Value = DBNull.Value;
+
+            // Add VarChar values
             cmd.Parameters.Add("@projectImageRotationAngle", MySqlDbType.VarChar).Value = DBNull.Value;
 
             // Add LongText values

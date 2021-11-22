@@ -62,8 +62,8 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinShippingCosts" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinOrderCosts" />
-                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" DataContextChanged="OrderRowEditableChanged"/>
-                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" DataContextChanged="OrderEditableChanged"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" DataContextChanged="OrderRowEditableChanged" IsChecked="True"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" DataContextChanged="OrderEditableChanged" IsChecked="True"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
                 <!--#endregion Hiddenfields-->

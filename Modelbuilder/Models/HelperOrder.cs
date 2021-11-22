@@ -18,7 +18,7 @@ internal class HelperOrder
 {
     #region Available databasefields
     /// ***************************************************************************************
-    ///   Available fields for Order table
+    ///   Available fields for SupplyOrder table
     /// ***************************************************************************************
     ///   Table Fieldname           	Variable            Parameter      		Type
     ///   -----------------------------------------------------------------------------------
@@ -26,19 +26,19 @@ internal class HelperOrder
     ///   order_SupplierId				SupplierId			@SupplierId			int
     ///   order_Date 					OrderDate			@OrderDate			date
     ///   order_CurrencySymbol 			CurrencySymbol		@CurrencySymbol		string(2)
-    ///   order_CurrencyConversionRate 	ConversionRate		@ConversionRate		float
-    ///   order_ShippingCosts 			ShippingCosts		@ShippingCosts		double
-    ///   order_OrderCosts 				OrderCosts			@OrderCosts			double
-    ///   order_Memo 					Memo				@Memo				string
+    ///   order_CurrencyConversionRate 	ConversionRate		@ConversionRate		double (6.4)
+    ///   order_ShippingCosts 			ShippingCosts		@ShippingCosts		double (6,2)
+    ///   order_OrderCosts 				OrderCosts			@OrderCosts			double (6,2)
+    ///   order_Memo 					OrderMemo				@OrderMemo				string
     ///   order_Closed 					OrderClosed			@OrderClosed		bool (0 or 1)
     ///   order_ClosedDate 				OrderClosedDate		@OrderClosedDate	date
     /// ***************************************************************************************
     /// order_Id, order_SupplierId, order_Date, order_CurrencySymbol, order_CurrencyConversionRate, order_ShippingCosts, order_OrderCosts, order_Memo, order_Closed, order_ClosedDate
-    /// Id, SupplierId, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, Memo, OrderClosed, OrderClosedDate
-    /// @Id, @SupplierId, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @Memo, @OrderClosed, @OrderClosedDate
+    /// OrderId, SupplierId, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo, OrderClosed, OrderClosedDate
+    /// @OrderId, @SupplierId, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @OrderMemo, @OrderClosed, @OrderClosedDate
 
     /// ***************************************************************************************
-    ///   Available fields for Orderline table
+    ///   Available fields for SupplyOrderline table
     /// ***************************************************************************************
     ///   Table Fieldname               Variable            Parameter           Type
     ///   ----------------------------------------------------------------------------------
@@ -62,6 +62,8 @@ internal class HelperOrder
     public string ConnectionStr { get; set; } = string.Empty;
 
     public string DbCategoryTable = "category";
+    public string DbOrderTable = "supplyorder";
+    public string DbOrderLineTable = "supplyorderline";
     public string DbCurrencyTable = "currency";
     public string DbProductTable = "product";
     public string DbProductSupplierTable = "productsupplier";
@@ -98,19 +100,19 @@ internal class HelperOrder
     }
     #endregion Execute NonQuery
 
-    #region Get Data from Table: Order
-    public DataTable GetDataTblOrder(int Id = 0)
+    #region Get Data from Table: SupplyOrder
+    public DataTable GetDataTblOrder(int OrderId = 0)
     {
         DataTable dt = new DataTable();
         string sqlText = string.Empty;
 
-        if (Id > 0)
+        if (OrderId > 0)
         {
-            sqlText = "SELECT * from Order where order_Id = @Id";
+            sqlText = "SELECT * from supplyorder where order_Id = @IdOrder";
         }
         else
         {
-            sqlText = "SELECT * from Order";
+            sqlText = "SELECT * from supplyorder";
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -120,7 +122,7 @@ internal class HelperOrder
 
             using MySqlCommand cmd = new MySqlCommand(sqlText, con);
             //add parameter
-            cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+            if (OrderId > 0) { cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId; }
 
             using MySqlDataAdapter da = new(cmd);
             //use DataAdapter to fill DataTable
@@ -129,9 +131,9 @@ internal class HelperOrder
 
         return dt;
     }
-    #endregion Get Data from Table: Order
+    #endregion Get Data from Table: SupplyOrder
 
-    #region Get Data from Table: Orderline
+    #region Get Data from Table: SupplyOrderline
     public DataTable GetDataTblOrderline(int Id = 0)
     {
         DataTable dt = new DataTable();
@@ -139,11 +141,11 @@ internal class HelperOrder
 
         if (Id > 0)
         {
-            sqlText = "SELECT * from Orderline where orderline_OrderId = @Id";
+            sqlText = "SELECT * from SupplyOrderline where orderline_OrderId = @Id";
         }
         else
         {
-            sqlText = "SELECT * from Orderline";
+            sqlText = "SELECT * from SupplyOrderline";
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -162,7 +164,7 @@ internal class HelperOrder
 
         return dt;
     }
-    #endregion Get Data from Table: Orderline
+    #endregion Get Data from Table: SupplyOrderline
 
     #region Get Data from Table: Currency (GetConversionrate)
     public string GetConversionRate(int Id = 0)
@@ -194,7 +196,7 @@ internal class HelperOrder
 
         return resultString;
     }
-    #endregion Get Data from Table: Orderline
+    #endregion Get Data from Table: SupplyOrderline
 
     #region Get Single Data from provided Table
     public string GetSingleData(int Id = 0, string Table = "", string Field = "", string Type = "")
@@ -294,16 +296,15 @@ internal class HelperOrder
     }
     #endregion Get Single Data from provided Table
 
-    #region Insert in Table: Order
-    // TODO Is now for Orderline replace fields for order
-    public string InsertTblOrder(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
+    #region Insert in Table: SupplyOrder
+    public string InsertTblOrder(int SupplierId, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Order (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
+        string sqlText = "INSERT INTO SupplyOrder (order_SupplierId, order_Ordernumber, order_Date, order_CurrencySymbol, order_CurrencyConversionRate, order_ShippingCosts, order_OrderCosts, order_Memo) VALUES (@SupplierId, @OrderNumber, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @OrderMemo);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal);
+            int rowsAffected = ExecuteNonQueryTblOrder(sqlText, SupplierId, OrderNumber, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo);
 
             if (rowsAffected > 0)
             {
@@ -317,23 +318,23 @@ internal class HelperOrder
         }
         catch (MySqlException ex)
         {
-            Debug.WriteLine("Error (UpdateTblOrderline - MySqlException): " + ex.Message);
+            Debug.WriteLine("Error (UpdateTblOrder - MySqlException): " + ex.Message);
             throw ex;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Error (UpdateTblOrderline): " + ex.Message);
+            Debug.WriteLine("Error (UpdateTblOrder): " + ex.Message);
             throw;
         }
         return result;
     }
-    #endregion Insert in Table: Order
+    #endregion Insert in Table: SupplyOrder
 
-    #region Insert in Table: Orderline
+    #region Insert in Table: SupplyOrderline
     public string InsertTblOrderline(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Orderline (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
+        string sqlText = "INSERT INTO SupplyOrderline (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
 
         try
         {
@@ -361,9 +362,69 @@ internal class HelperOrder
         }
         return result;
     }
-    #endregion Insert in Table: Orderline
+    #endregion Insert in Table: SupplyOrderline
 
-    #region Execute Non Query Table: Orderline
+    #region Execute Non Query Table: SupplyOrder
+    public int ExecuteNonQueryTblOrder(string sqlText, int SupplierId, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo, int OrderId = 0)
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using MySqlCommand cmd = new(sqlText, con);
+            // add parameters setting string values to DBNull.Value
+            // int parameters
+            cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
+            cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
+
+            // double parameters
+            cmd.Parameters.Add("@ShippingCosts", MySqlDbType.Double).Value = ShippingCosts;
+            cmd.Parameters.Add("@OrderCosts", MySqlDbType.Double).Value = OrderCosts;
+            cmd.Parameters.Add("@ConversionRate", MySqlDbType.Double).Value = ConversionRate;
+                
+            // Date parameters
+            cmd.Parameters.Add("@OrderDate", MySqlDbType.Date).Value = DBNull.Value;
+
+
+            // Add VarChar values
+            cmd.Parameters.Add("@OrderNumber", MySqlDbType.VarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@CurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
+
+            // Add LongText values
+            cmd.Parameters.Add("@OrderMemo", MySqlDbType.LongText).Value = DBNull.Value;
+
+            //set values
+            if (!String.IsNullOrEmpty(OrderNumber))
+            {
+                cmd.Parameters["@OrderNumber"].Value = OrderNumber;
+            }
+
+            if (!String.IsNullOrEmpty(CurrencySymbol))
+            {
+                cmd.Parameters["@CurrencySymbol"].Value = CurrencySymbol;
+            }
+
+            if (!String.IsNullOrEmpty(OrderDate))
+            {
+                cmd.Parameters["@OrderDate"].Value = DateTime.Parse(OrderDate, Culture);
+            }
+
+            if (!String.IsNullOrEmpty(OrderMemo))
+            {
+                cmd.Parameters["@OrderMemo"].Value = OrderMemo;
+            }
+
+            //execute; returns the number of rows affected
+            rowsAffected = cmd.ExecuteNonQuery();
+        }
+        return rowsAffected;
+    }
+    #endregion Execute Non Query Table: SupplyOrder
+
+    #region Execute Non Query Table: SupplyOrderline
     public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal, int OrderlineId = 0)
     {
         int rowsAffected = 0;
@@ -393,8 +454,7 @@ internal class HelperOrder
         }
         return rowsAffected;
     }
-    #endregion Execute Non Query Table: Orderline
-
+    #endregion Execute Non Query Table: SupplyOrderline
 
     #region Create lists to populate dropdowns for order Page
     #region Fill the dropdownlists

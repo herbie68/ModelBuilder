@@ -50,7 +50,7 @@ namespace Modelbuilder.Views
             valGrandTotal.Text = "0,00";
             valTotal.Text = "0,00";
 
-            //GetData();
+            GetData();
         }
 
         #region InitializeHelper (connect to database)
@@ -320,11 +320,68 @@ namespace Modelbuilder.Views
         #endregion Toolbar button for Orderlines: Delete
         #endregion Toolbar for order rows
 
+        #region Get rich text from flow document
+        private string GetRichTextFromFlowDocument(FlowDocument fDoc)
+        {
+            string result = string.Empty;
+
+            //convert to string
+            if (fDoc != null)
+            {
+                TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    tr.Save(ms, DataFormats.Rtf);
+                    result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+                }
+            }
+            return result;
+        }
+        #endregion
+
         #region Toolbar for Orders
         #region Click New button (on Order toolbar)
         private void ToolbarButtonNew(object sender, RoutedEventArgs e)
         {
+            var SupplierId = 0;
+            var OrderNumber = "";
+            var OrderDate = "";
+            var CurrencySymbol = "";
+            var CurrencyRate = 0.0000;
+            var ShippingCosts = 0.00;
+            var OrderCosts = 0.00;
 
+            if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
+            if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
+            if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
+            if (inpCurrencySymbol.Text == String.Empty) { CurrencySymbol = ""; } else { CurrencySymbol = inpCurrencySymbol.Text; }
+            if (inpCurrencyRate.Text == String.Empty) { CurrencyRate = 0.0000; } else { CurrencyRate = double.Parse(inpCurrencySymbol.Text); }
+            if (inpShippingCosts.Text == String.Empty) { ShippingCosts = 0.0000; } else { ShippingCosts = double.Parse(inpShippingCosts.Text); }
+            if (inpOrderCosts.Text == String.Empty) { OrderCosts = 0.0000; } else { OrderCosts = double.Parse(inpOrderCosts.Text); }
+
+            //convert RTF to string
+            string OrderMemo = GetRichTextFromFlowDocument(inpOrderMemo.Document);
+
+            if (_dt.Rows.Count != 0)
+            { DataRow row = _dt.Rows[_dt.Rows.Count - 1]; }
+
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.InsertTblOrder(SupplierId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
+            UpdateStatus(result);
+
+            // Get data from database
+            _dt = _helper.GetDataTblOrder();
+
+            // Populate data in datagrid from datatable
+            OrderCode_DataGrid.DataContext = _dt;
+            if (OrderCode_DataGrid.SelectedItem is not DataRowView Row_Selected)
+            {
+                return;
+            }
+            cboxOrderEditable.IsChecked = true;
         }
         #endregion Click New button (on Order toolbar)
 
@@ -342,7 +399,6 @@ namespace Modelbuilder.Views
         }
         #endregion Click Delete button (on Order toolbar)
         #endregion Toolbar for Orders
-
 
         #region Update status
         private void UpdateStatus(string msg)
