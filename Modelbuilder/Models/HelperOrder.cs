@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Diagnostics;
 using ConnectionNamespace;
-using static Modelbuilder.HelperMySQL;
 using Org.BouncyCastle.Math;
 using static Modelbuilder.HelperOrder;
 

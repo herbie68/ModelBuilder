@@ -56,6 +56,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
@@ -459,7 +460,7 @@
                                         Binding="{Binding order_SupplierId}" />
                     <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierName}" 
                                         Width="270" 
-                                        Binding="{Binding order_SupplierId}" />
+                                        Binding="{Binding order_SupplierName}" />
                     <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderDate}" 
                                         Width="80" 
                                         Binding="{Binding order_Date, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />

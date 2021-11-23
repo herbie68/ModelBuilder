@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using static Modelbuilder.HelperOrder;
+
 namespace Modelbuilder.Views
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace Modelbuilder.Views
         private HelperOrder _helper;
         private DataTable _dt, _dtSC;
         private int _dbRowCount, _dbRowCountSC;
+        private int _currentDataGridIndex, _currentDataGridPSIndex;
         // static string DatabaseSupplierTable = "supplier", DatabaseProductTable = "product", DatabaseProjectTable = "project";
 
         public storageOrder()
@@ -320,6 +323,42 @@ namespace Modelbuilder.Views
         #endregion Toolbar button for Orderlines: Delete
         #endregion Toolbar for order rows
 
+        #region Get content of Memofield
+        private void GetMemo(int index)
+        {
+            string ContentOrderMemo = string.Empty;
+
+            if (_dt != null && index >= 0 && index < _dt.Rows.Count)
+            {
+                //set value
+                DataRow row = _dt.Rows[index];
+
+
+                if (row["order_Memo"] != null && row["order_Memo"] != DBNull.Value)
+                {
+                    //get value from DataTable
+                    ContentOrderMemo = row["order_Memo"].ToString();
+                }
+
+                if (!String.IsNullOrEmpty(ContentOrderMemo))
+                {
+                    //clear existing data
+                    inpOrderMemo.Document.Blocks.Clear();
+
+                    //convert to byte[]
+                    byte[] dataArr = Encoding.UTF8.GetBytes(ContentOrderMemo);
+
+                    using (MemoryStream ms = new(dataArr))
+                    {
+                        //load data
+                        TextRange flowDocRange = new TextRange(inpOrderMemo.Document.ContentStart, inpOrderMemo.Document.ContentEnd);
+                        flowDocRange.Load(ms, DataFormats.Rtf);
+                    }
+                }
+            }
+        }
+        #endregion Get content of Memofield
+
         #region Get rich text from flow document
         private string GetRichTextFromFlowDocument(FlowDocument fDoc)
         {
@@ -356,7 +395,7 @@ namespace Modelbuilder.Views
             if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
             if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
             if (inpCurrencySymbol.Text == String.Empty) { CurrencySymbol = ""; } else { CurrencySymbol = inpCurrencySymbol.Text; }
-            if (inpCurrencyRate.Text == String.Empty) { CurrencyRate = 0.0000; } else { CurrencyRate = double.Parse(inpCurrencySymbol.Text); }
+            if (inpCurrencyRate.Text == String.Empty) { CurrencyRate = 0.0000; } else { CurrencyRate = double.Parse(inpCurrencyRate.Text); }
             if (inpShippingCosts.Text == String.Empty) { ShippingCosts = 0.0000; } else { ShippingCosts = double.Parse(inpShippingCosts.Text); }
             if (inpOrderCosts.Text == String.Empty) { OrderCosts = 0.0000; } else { OrderCosts = double.Parse(inpOrderCosts.Text); }
 
@@ -464,7 +503,6 @@ namespace Modelbuilder.Views
                 //LabelColumnNr.Content = ShowColumn;
             }
         }
-
         #endregion rtfToolbar actions
 
         #region Enable or disable order entry, depending on new row in datagrid added
@@ -527,6 +565,44 @@ namespace Modelbuilder.Views
 
         private void OrderCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataGrid dg = (DataGrid)sender;
+
+            if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+
+            //set value
+            _currentDataGridIndex = dg.SelectedIndex;
+
+            GetMemo(dg.SelectedIndex);
+
+            valueOrderId.Text = Row_Selected["order_Id"].ToString();
+            valueSupplierId.Text = Row_Selected["order_SupplierId"].ToString();
+            valueSupplierName.Text = Row_Selected["order_SupplierName"].ToString();
+            inpOrderNumber.Text = Row_Selected["order_OrderNumber"].ToString();
+            inpOrderDate.Text = Row_Selected["order_Date"].ToString();
+            inpCurrencySymbol.Text = Row_Selected["order_CurrencySymbol"].ToString();
+            inpCurrencyRate.Text = Row_Selected["order_CurrencyConversionRate"].ToString();
+            inpShippingCosts.Text = Row_Selected["order_ShippingCosts"].ToString();
+            inpOrderCosts.Text = Row_Selected["order_OrderCosts"].ToString();
+            int _TempOrderClosed = int.Parse(Row_Selected["order_Closed"].ToString());
+            if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
+            
+            cboxSupplier.Text = Row_Selected["order_SupplierName"].ToString();
+
+            //Select the saved Supplier in the combobox by default
+            foreach (Supplier supplier in cboxSupplier.Items)
+            {
+                if (supplier.SupplierName == Row_Selected["order_SupplierName"].ToString())
+                {
+                    cboxSupplier.SelectedItem = supplier;
+                    break;
+                }
+            }
+
+            // Retrieve list of OrderRows for this Order from database
+            _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
+
+            // Populate data in datagrid from datatable
+            OrderDetail_DataGrid.DataContext = _dtSC;
         }
     }
 }
