@@ -56,15 +56,15 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinShippingCosts" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinOrderCosts" />
-                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" DataContextChanged="OrderRowEditableChanged" IsChecked="True"/>
-                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" DataContextChanged="OrderEditableChanged" IsChecked="True"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" IsChecked="False"/>
+                    <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" IsChecked="False"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
                 <!--#endregion Hiddenfields-->
@@ -177,24 +177,27 @@
                                                Grid.Row="0" Grid.Column="0" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Product}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
-                                              x:Name="cboxProduct" 
-                                              ItemTemplate="{StaticResource ProductComboTemplate}" TextSearch.TextPath="productName" SelectionChanged="cboxProduct_SelectionChanged"
+                                              x:Name="cboxProduct" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
+                                              ItemTemplate="{StaticResource ProductComboTemplate}" 
+                                              TextSearch.TextPath="productName" SelectionChanged="cboxProduct_SelectionChanged"
                                               Grid.Row="1" Grid.Column="0" Width="360"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="1" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Project}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
-                                              x:Name="cboxProject" 
+                                              x:Name="cboxProject" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource ProjectComboTemplate}"
+                                              TextSearch.TextPath="projectName" SelectionChanged="cboxProject_SelectionChanged"
                                               Grid.Row="1" Grid.Column="1" Width="200"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="2" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Category}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
-                                              x:Name="cboxCategory" 
+                                              x:Name="cboxCategory" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource CategoryComboTemplate}"
+                                              TextSearch.TextPath="categoryName" SelectionChanged="cboxCategory_SelectionChanged"
                                               Grid.Row="1" Grid.Column="2" Width="150"/>
                                     
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
@@ -202,20 +205,24 @@
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Number}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpNumber" 
                                              HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3" 
+                                             IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}" 
                                              Width="50" SelectionChanged="inpNumber_SelectionChanged"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Price}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpPrice" 
-                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="4" SelectionChanged="inpPrice_SelectionChanged" 
+                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="4" 
+                                             SelectionChanged="inpPrice_SelectionChanged" 
+                                             IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                              Width="70" ToolTip="{x:Static p:Cultures.Order_Orderline_Field_Price_Tooltip}"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                HorizontalAlignment="Right" Grid.Row="0" Grid.Column="5" 
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Total}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valTotal" 
-                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="5" 
+                                             HorizontalAlignment="Right" Grid.Row="1" Grid.Column="5"
+                                             IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                              Width="80" IsReadOnly="True" IsTabStop="False"/>
                                 </Grid>
                             </GroupBox>
@@ -305,7 +312,8 @@
                                              VerticalAlignment="Center" Grid.Row="2">
                                         <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="orderdetailToolbar">
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_New}"
-                                                    Click="OrderlinesToolbarButtonNew" x:Name="OrderRowToolbarButtonNew">
+                                                    Click="OrderlinesToolbarButtonNew" x:Name="OrderRowToolbarButtonNew"
+                                                    IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}">
                                                 <Image Style="{DynamicResource ToolBarSmallAddIcon}" />
                                             </Button>
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_Save}"
@@ -326,9 +334,12 @@
                                       IsReadOnly="True" Grid.Row="3">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding orderline_Id}" />
-                                            <DataGridTextColumn Header="Product" Width="*" />
-                                            <DataGridTextColumn Header="Categorie" Width="80"/>
-                                            <DataGridTextColumn Header="Project" Width="80" />
+                                            <DataGridTextColumn Header="ProductID" Visibility="Hidden" Width="70" Binding="{Binding orderline_ProductId}" />
+                                            <DataGridTextColumn Header="CategorieID" Visibility="Hidden" Width="80"  Binding="{Binding orderline_CategoryId}"/>
+                                            <DataGridTextColumn Header="ProjectID" Width="80" Visibility="Hidden"  Binding="{Binding orderline_ProjectId}"/>
+                                            <DataGridTextColumn Header="Product" Width="*" Binding="{Binding orderline_ProductName}"/>
+                                            <DataGridTextColumn Header="Categorie" Width="80"  Binding="{Binding orderline_CategoryName}"/>
+                                            <DataGridTextColumn Header="Project" Width="80"  Binding="{Binding orderline_ProjectName}"/>
                                             <DataGridTextColumn Header="Aantal" Width="80" Binding="{Binding orderline_Number}" />
                                             <DataGridTextColumn Header="Stukprijs" Width="80" Binding="{Binding orderline_Price}" />
                                             <DataGridCheckBoxColumn Header="Geleverd" Binding="{Binding orderline_Closed}"/>

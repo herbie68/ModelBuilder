@@ -190,12 +190,12 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Width" Value="Auto" />
-            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="Text" Value="" />
         </Style>
 
         <Style x:Key="HiddenCheckBox" TargetType="CheckBox">
-            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Visibility" Value="Visible" />
         </Style>
 
 
