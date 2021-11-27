@@ -62,6 +62,8 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductName" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectName" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueMinShippingCosts" />
                     <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderRowEditable" IsChecked="False"/>
                     <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxOrderEditable" IsChecked="False"/>
@@ -338,10 +340,32 @@
                                             <DataGridTextColumn Header="CategorieID" Visibility="Hidden" Width="80"  Binding="{Binding orderline_CategoryId}"/>
                                             <DataGridTextColumn Header="ProjectID" Width="80" Visibility="Hidden"  Binding="{Binding orderline_ProjectId}"/>
                                             <DataGridTextColumn Header="Product" Width="*" Binding="{Binding orderline_ProductName}"/>
+                                            <DataGridTextColumn Header="Project" Width="160"  Binding="{Binding orderline_ProjectName}"/>
                                             <DataGridTextColumn Header="Categorie" Width="80"  Binding="{Binding orderline_CategoryName}"/>
-                                            <DataGridTextColumn Header="Project" Width="80"  Binding="{Binding orderline_ProjectName}"/>
-                                            <DataGridTextColumn Header="Aantal" Width="80" Binding="{Binding orderline_Number}" />
-                                            <DataGridTextColumn Header="Stukprijs" Width="80" Binding="{Binding orderline_Price}" />
+                                            <DataGridTextColumn Header="Aantal" Width="80" Binding="{Binding orderline_Number}">
+                                                <DataGridTextColumn.HeaderStyle>
+                                                    <Style TargetType="DataGridColumnHeader">
+                                                        <Setter Property="HorizontalContentAlignment" Value="Right" />
+                                                    </Style>
+                                                </DataGridTextColumn.HeaderStyle>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                                </DataGridTextColumn>
+                                            <DataGridTextColumn Header="Stukprijs" Width="80" Binding="{Binding orderline_Price, StringFormat={}{0:n2}}">
+                                                <DataGridTextColumn.HeaderStyle>
+                                                    <Style TargetType="DataGridColumnHeader">
+                                                        <Setter Property="HorizontalContentAlignment" Value="Right" />
+                                                    </Style>
+                                                </DataGridTextColumn.HeaderStyle>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
                                             <DataGridCheckBoxColumn Header="Geleverd" Binding="{Binding orderline_Closed}"/>
                                         </DataGrid.Columns>
 

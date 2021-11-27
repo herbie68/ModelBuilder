@@ -32,9 +32,6 @@ internal class HelperOrder
     ///   order_Closed 					OrderClosed			@OrderClosed		bool (0 or 1)
     ///   order_ClosedDate 				OrderClosedDate		@OrderClosedDate	date
     /// ***************************************************************************************
-    /// order_Id, order_SupplierId, order_Date, order_CurrencySymbol, order_CurrencyConversionRate, order_ShippingCosts, order_OrderCosts, order_Memo, order_Closed, order_ClosedDate
-    /// OrderId, SupplierId, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo, OrderClosed, OrderClosedDate
-    /// @OrderId, @SupplierId, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @OrderMemo, @OrderClosed, @OrderClosedDate
 
     /// ***************************************************************************************
     ///   Available fields for SupplyOrderline table
@@ -44,17 +41,17 @@ internal class HelperOrder
     ///   orderline_Id                  Id                  @Id                 int
     ///   orderline_OrderId             OrderId             @OrderId            int
     ///   orderline_ProductId           ProductId           @ProductId          int
+    ///   orderline_ProductName         ProductName         @ProductName        varchar
     ///   orderline_ProjectId           ProjectId           @ProjectId          int
+    ///   orderline_ProjectName         ProjectName         @ProjectName        varchar
     ///   orderline_CategoryId          CategoryId          @CategoryId         int
+    ///   orderline_CategoryName        CategoryName        @CategoryName       varchar
     ///   orderline_Number              Number              @Number             double
     ///   orderline_Price               Price               @Price              double
     ///   orderline_RealRowTotal        RealRowTotal        @RealRowTot         double
     ///   orderline_Closed              RowClosed           @RowClosed          bool (0 or 1)
     ///   orderline_ClosedDate          RowClosedDate       @RowClosedDate      date
     /// ***************************************************************************************
-    // orderline_Id, orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal, orderline_Closed, orderline_ClosedDate 
-    // Id, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal, RowClosed, RowClosedDate 
-    // @Id, @OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal, @RowClosed, @RowClosedDate 
     #endregion Available databasefields
 
     #region public Variables
@@ -330,14 +327,14 @@ internal class HelperOrder
     #endregion Insert in Table: SupplyOrder
 
     #region Insert in Table: SupplyOrderline
-    public string InsertTblOrderline(int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal)
+    public string InsertTblOrderline(int OrderId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, double RealRowTotal)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO SupplyOrderline (orderline_OrderId, orderline_ProductId, orderline_ProjectId, orderline_CategoryId, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProjectId, @CategoryId, @Number, @Price, @RealRowTotal);";
+        string sqlText = "INSERT INTO SupplyOrderline (orderline_OrderId, orderline_ProductId, orderline_ProductName, orderline_ProjectId, orderline_ProjectName, orderline_CategoryId, orderline_CategoryName, orderline_Number, orderline_Price, orderline_RealRowTotal) VALUES (@OrderId, @ProductId, @ProductName, @ProjectId, @ProjectName, @CategoryId, @CategoryName, @Number, @Price, @RealRowTotal);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, ProductId, ProjectId, CategoryId, Number, Price, RealRowTotal);
+            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price, RealRowTotal);
 
             if (rowsAffected > 0)
             {
@@ -424,7 +421,7 @@ internal class HelperOrder
     #endregion Execute Non Query Table: SupplyOrder
 
     #region Execute Non Query Table: SupplyOrderline
-    public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, double RealRowTotal, int OrderlineId = 0)
+    public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, double RealRowTotal, int OrderlineId = 0)
     {
         int rowsAffected = 0;
 
@@ -446,6 +443,11 @@ internal class HelperOrder
                 cmd.Parameters.Add("@Number", MySqlDbType.Double).Value = Number;
                 cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = Price;
                 cmd.Parameters.Add("@RealRowTotal", MySqlDbType.Double).Value = RealRowTotal;
+
+                // Add VarChar values
+                cmd.Parameters.Add("@ProductName", MySqlDbType.VarChar).Value = ProductName;
+                cmd.Parameters.Add("@ProjectName", MySqlDbType.VarChar).Value = ProjectName;
+                cmd.Parameters.Add("@CategoryName", MySqlDbType.VarChar).Value = CategoryName;
 
                 //execute; returns the number of rows affected
                 rowsAffected = cmd.ExecuteNonQuery();

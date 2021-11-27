@@ -76,7 +76,31 @@ public partial class storageOrder : Page
         UpdateStatus(msg);
         //UpdateStatus(msgSC);
     }
-    #endregion
+    #endregion Get the Order data
+
+    #region Get the Orderrow data
+    private void GetRowData()
+    {
+        InitializeHelper();
+
+        // Get data from database
+        _dtSC = _helper.GetDataTblOrderline();
+
+        // Populate data in datagrid from datatable
+        OrderDetail_DataGrid.DataContext = _dtSC;
+
+        // Set value
+        _dbRowCountSC = _dtSC.Rows.Count;
+        RecordsCountSC.Text = _dbRowCountSC.ToString();
+
+        string tmpStr = "";
+        //update status
+        if (_dtSC.Rows.Count != 1) { tmpStr = "s"; };
+        string msgSC = "Status: " + _dtSC.Rows.Count + " Bestelregel" + tmpStr + " ingelezen.";
+
+        UpdateStatus(msgSC);
+    }
+    #endregion Get the Orderrow data
 
     #region Datagrid selection changed for Order
     private void OrderCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,9 +123,13 @@ public partial class storageOrder : Page
         inpCurrencyRate.Text = Row_Selected["order_CurrencyConversionRate"].ToString();
         inpShippingCosts.Text = Row_Selected["order_ShippingCosts"].ToString();
         inpOrderCosts.Text = Row_Selected["order_OrderCosts"].ToString();
+
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
+
         int _TempOrderClosed = int.Parse(Row_Selected["order_Closed"].ToString());
         if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
 
+        #region Select the saved Supplier in the Supplier combobox by default
         cboxSupplier.Text = Row_Selected["order_SupplierName"].ToString();
 
         //Select the saved Supplier in the combobox by default
@@ -113,6 +141,7 @@ public partial class storageOrder : Page
                 break;
             }
         }
+        #endregion Select the saved Supplier in the Supplier combobox by default
 
         // Retrieve list of OrderRows for this Order from database
         _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
@@ -126,7 +155,64 @@ public partial class storageOrder : Page
     #region Datagrid selectionchanged for OrderRow
     private void OrderDetail_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        DataGrid dg = (DataGrid)sender;
 
+        if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+
+        //set value
+        _currentDataGridIndex = dg.SelectedIndex;
+
+        valueCategoryId.Text = Row_Selected["orderline_CategoryId"].ToString();
+        valueCategoryName.Text = Row_Selected["orderline_CategoryName"].ToString();
+        valueProductId.Text = Row_Selected["orderline_ProductId"].ToString();
+        valueProductName.Text = Row_Selected["orderline_ProductName"].ToString();
+        valueProjectId.Text = Row_Selected["orderline_ProjectId"].ToString();
+        valueProjectName.Text = Row_Selected["orderline_ProjectName"].ToString();
+        inpNumber.Text = Row_Selected["orderline_Number"].ToString();
+        inpPrice.Text = Row_Selected["orderline_Price"].ToString();
+
+        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(inpNumber.Text));
+        inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
+        valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text));
+
+        #region Select the saved Product in the Product combobox by default
+        cboxProduct.Text = Row_Selected["orderline_ProductName"].ToString();
+
+        foreach (Product product in cboxProduct.Items)
+        {
+            if (product.ProductName == Row_Selected["orderline_ProductName"].ToString())
+            {
+                cboxProduct.SelectedItem = product;
+                break;
+            }
+        }
+        #endregion Select the saved Product in the Product combobox by default
+
+        #region Select the saved Project in the Project combobox by default
+        cboxProject.Text = Row_Selected["orderline_ProjectName"].ToString();
+
+        foreach (Project project in cboxProject.Items)
+        {
+            if (project.ProjectName == Row_Selected["orderline_ProjectName"].ToString())
+            {
+                cboxProject.SelectedItem = project;
+                break;
+            }
+        }
+        #endregion Select the saved Project in the Project combobox by default
+
+        #region Select the saved Category in the Category combobox by default
+        cboxCategory.Text = Row_Selected["orderline_CategoryName"].ToString();
+
+        foreach (Category category in cboxCategory.Items)
+        {
+            if (category.CategoryName == Row_Selected["orderline_CategoryName"].ToString())
+            {
+                cboxCategory.SelectedItem = category;
+                break;
+            }
+        }
+        #endregion Select the saved Category in the Category combobox by default
     }
     #endregion Datagrid selectionchanged for OrderRow
 
@@ -140,12 +226,11 @@ public partial class storageOrder : Page
             valueCurrencyId.Text = item.SupplierCurrencyId.ToString();
             inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
         }
-        // textBox1.Text = string.Format("{0:#,##0.00}", double.Parse(textBox1.Text));
         inpCurrencyRate.Text = _helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "currency_ConversionRate", "float");
         inpShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_ShippingCosts", "double");
         valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_MinShippingCosts", "double");
         inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_OrderCosts", "double");
-        inpCurrencyRate.Text = string.Format("{0:#,###0.000}", double.Parse(inpCurrencyRate.Text));
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
         inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpShippingCosts.Text));
         inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text));
 
@@ -220,7 +305,7 @@ public partial class storageOrder : Page
         foreach (HelperOrder.Project item in e.AddedItems)
         {
             valueProjectId.Text = item.ProjectId.ToString();
-            //valueProjectName.Text = item.ProjectName.ToString();
+            valueProjectName.Text = item.ProjectName.ToString();
         }
 
     }
@@ -232,7 +317,7 @@ public partial class storageOrder : Page
         foreach (HelperOrder.Category item in e.AddedItems)
         {
             valueCategoryId.Text = item.CategoryId.ToString();
-            //valueCategoryName.Text = item.CategoryName.ToString();
+            valueCategoryName.Text = item.CategoryName.ToString();
         }
 
     }
@@ -241,14 +326,10 @@ public partial class storageOrder : Page
     #region Selection changed: Number of items
     private void inpNumber_SelectionChanged(object sender, RoutedEventArgs e)
     {
-        if (inpNumber.Text == string.Empty)
-        {
-            valTotal.Text = "0";
-        }
-        else
-        {
-            valTotal.Text = (double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text)).ToString();
-        }
+        if (inpNumber.Text == String.Empty) { inpNumber.Text = "0"; }
+        if (inpPrice.Text == String.Empty) { inpPrice.Text = "0"; }
+
+        valTotal.Text = (double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text)).ToString();
 
         valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(valTotal.Text));
 
@@ -329,18 +410,24 @@ public partial class storageOrder : Page
         var OrderlineNumber = 0.00;
         var OrderlinePrice = 0.00;
         var OrderlineRealRowTotal = 0.00;  //RealRowTotal Will be calculated and updated/inserted on Save
+        var OrderlineProductName = "";
+        var OrderlineProjectName = "";
+        var OrderlineCategoryName = "";
 
         if (valueProjectId.Text != string.Empty) { OrderlineProjectId = int.Parse(valueProjectId.Text); }
         if (valueCategoryId.Text != string.Empty) { OrderlineCategoryId = int.Parse(valueCategoryId.Text); }
+        if (valueProjectName.Text != string.Empty) { OrderlineProjectName = valueProjectName.Text; }
+        if (valueProductName.Text != string.Empty) { OrderlineProductName = valueProductName.Text; }
+        if (valueCategoryName.Text != string.Empty) { OrderlineCategoryName = valueCategoryName.Text; }
         if (inpNumber.Text == String.Empty) { OrderlineNumber = 0; } else { OrderlineNumber = double.Parse(inpNumber.Text); }
         if (inpPrice.Text == String.Empty) { OrderlinePrice = 0; } else { OrderlinePrice = double.Parse(inpPrice.Text); }
 
         InitializeHelper();
-        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice, OrderlineRealRowTotal);
+        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice, OrderlineRealRowTotal);
         UpdateStatus(result);
 
         // Get data from database
-        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueSupplierId.Text));
+        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
