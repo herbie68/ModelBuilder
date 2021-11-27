@@ -55,6 +55,7 @@
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderlineId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
@@ -78,7 +79,7 @@
 
             <!--#region Tabpage definition-->
             <TabControl Height="450" Style="{DynamicResource Default TabControl}">
-                <!--#region Tabpage for order information-->
+                <!--#region Tabpage for order data-->
                 <TabItem Header="{x:Static p:Cultures.Order_TabItemHeader_General}" x:Name="GeneralTab" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <StackPanel HorizontalAlignment="Left"  Width="950">
@@ -105,12 +106,15 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="0" Text="{x:Static p:Cultures.Order_Order_Field_Supplier}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplier" 
-                                              ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="supplierName" SelectionChanged="cboxSupplier_SelectionChanged"
+                                              ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="SupplierName" SelectionChanged="cboxSupplier_SelectionChanged"
                                               Grid.Row="1" Grid.Column="0" Width="350"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
@@ -138,7 +142,6 @@
                                     <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpOrderNumber" 
                                              Grid.Row="3" Grid.Column="0" Width="250"/>
 
-
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Static p:Cultures.Order_Order_Field_OrderDate}"/>
                                     <DatePicker Style="{DynamicResource DefaultDataPicker}" x:Name="inpOrderDate" 
@@ -148,10 +151,77 @@
                                                Grid.Row="2" Grid.Column="3" Text="{x:Static p:Cultures.Order_Order_Field_Closed}"/>
                                     <CheckBox Style="{DynamicResource DefaultCheckBox}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                               Grid.Row="3" Grid.Column="3" x:Name="dispOrderClosed" IsEnabled="False"/>
+
+                                    <!--#region Toolbar for datagrid-->
+                                    <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Grid.Row="4">
+                                        <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                            <Button x:Name="ToolbarButtonNewOrder" ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_New}" Click="ToolbarButtonNew">
+                                                <Image Style="{DynamicResource ToolBarAddIcon}" />
+                                            </Button>
+                                            <Button x:Name="ToolbarButtonSaveOrder" ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_Save}" Click="ToolbarButtonSave">
+                                                <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                                            </Button>
+                                            <Button x:Name="ToolbarButtonDeleteOrder" ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_Delete}" Click="ToolbarButtonDelete">
+                                                <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                            </Button>
+                                        </ToolBar>
+                                    </ToolBarTray>
+                                    <!--#endregion Toolbar for datagrid-->
+
+                                    <!--#region Datagrid definition-->
+                                    <DataGrid x:Name="OrderCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+                                      Padding="3" SelectionChanged="OrderCode_DataGrid_SelectionChanged" Height="230" Margin="5,0"
+                                      IsReadOnly="True" Grid.Row="5" Grid.ColumnSpan="6">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_Id}" 
+                                        Visibility="Hidden" Width="70" 
+                                        Binding="{Binding order_Id}" />
+                                            <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierId}" 
+                                        Visibility="Hidden" Width="70" 
+                                        Binding="{Binding order_SupplierId}" />
+                                            <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierName}" 
+                                        Width="270" 
+                                        Binding="{Binding order_SupplierName}" />
+                                            <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderNumber}" 
+                                        Width="90" 
+                                        Binding="{Binding order_OrderNumber}" />
+                                            <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderDate}" 
+                                        Width="80" 
+                                        Binding="{Binding order_Date, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />
+                                            <DataGridCheckBoxColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderCompleted}" 
+                                            Binding="{Binding order_Closed}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <!--#endregion-->
+                                    <!--#region Status bar-->
+                                    <DockPanel Background="LightGray" Margin =" 6 10" VerticalAlignment="Center" Grid.Row="6" Grid.ColumnSpan="6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="45"/>
+                                                <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="10"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Aantal:"/>
+                                            <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
+                                            <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
+                                        </Grid>
+                                    </DockPanel>
+                                    <!--#endregion-->
+
                                 </Grid>
                             </GroupBox>
                             <!--#endregion Orderinformation fields-->
-                            
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <!--#end region Tabpage for order data-->
+                
+                <!--#region Tabpage for orderrow data-->
+                <TabItem Header="{x:Static p:Cultures.Order_TabItemHeader_Orderrows}" x:Name="OrderRowTab" Style="{DynamicResource Default TabItem}">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left"  Width="950">
                             <!--#region  Orderdetails-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
@@ -240,78 +310,15 @@
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
                                         <RowDefinition Height="1.5*"/>
                                         <RowDefinition Height="7*"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-
-                                    <!--#region Ordertotal Lines-->
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width=".15*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width=".15*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width=".15*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="4*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.RowSpan="2"
-                                                   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
-                                                   Text="{x:Static p:Cultures.Order_OrderlineTotals}" 
-                                                   FontWeight="Bold" FontSize="24" VerticalAlignment="Center"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                                   Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
-                                                   Text="{x:Static p:Cultures.Order_OrderlineTotals_RowTotal}"/>
-                                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valRowTotal" 
-                                                 HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="1" Text="0,00"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="+"
-                                                   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
-                                               Text="{x:Static p:Cultures.Order_OrderlineTotals_ShippingCosts}"/>
-                                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valShippingCost" 
-                                             HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="3" IsReadOnly="True" IsTabStop="False" Text="0,00"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="+"
-                                                   Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right"
-                                               Text="{x:Static p:Cultures.Order_OrderlineTotals_Ordercosts}"/>
-                                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valOrderCost" 
-                                             HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="5" IsReadOnly="True" IsTabStop="False" Text="0,00"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="="
-                                                   Grid.Row="1" Grid.Column="6" HorizontalAlignment="Center"/>
-
-                                        <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="7" HorizontalAlignment="Right"
-                                                   FontWeight="Bold" FontSize="14"
-                                               Text="{x:Static p:Cultures.Order_OrderlineTotals_GrandTotal}"/>
-                                        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valGrandTotal" 
-                                             HorizontalAlignment="Right" Width="100" Grid.Row="1" IsReadOnly="True" IsTabStop="False" Text="0,00"
-                                                 FontWeight="Bold" FontSize="12" Grid.Column="7" BorderBrush="#FF0845FD"/>
-                                    </Grid>
-                                    <!--#endregion Ordertotal Lines-->
 
                                     <!--#region Toolbar for orderdetails datagrid-->
                                     <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="10,0" 
-                                             VerticalAlignment="Center" Grid.Row="2">
+                                             VerticalAlignment="Center" Grid.Row="0">
                                         <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="orderdetailToolbar">
                                             <Button ToolTip="{x:Static p:Cultures.Order_Orderlist_Toolbar_Button_New}"
                                                     Click="OrderlinesToolbarButtonNew" x:Name="OrderRowToolbarButtonNew"
@@ -332,8 +339,8 @@
 
                                     <!--#region Datagrid definition-->
                                     <DataGrid x:Name="OrderDetail_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                                      Padding="3" SelectionChanged="OrderDetail_DataGrid_SelectionChanged" Height="130" Margin="10,0"
-                                      IsReadOnly="True" Grid.Row="3">
+                                      Padding="3" SelectionChanged="OrderDetail_DataGrid_SelectionChanged" Height="220" Margin="10,0"
+                                      IsReadOnly="True" Grid.Row="1">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding orderline_Id}" />
                                             <DataGridTextColumn Header="ProductID" Visibility="Hidden" Width="70" Binding="{Binding orderline_ProductId}" />
@@ -353,7 +360,7 @@
                                                         <Setter Property="HorizontalAlignment" Value="Right" />
                                                     </Style>
                                                 </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
+                                            </DataGridTextColumn>
                                             <DataGridTextColumn Header="Stukprijs" Width="80" Binding="{Binding orderline_Price, StringFormat={}{0:n2}}">
                                                 <DataGridTextColumn.HeaderStyle>
                                                     <Style TargetType="DataGridColumnHeader">
@@ -368,12 +375,11 @@
                                             </DataGridTextColumn>
                                             <DataGridCheckBoxColumn Header="Geleverd" Binding="{Binding orderline_Closed}"/>
                                         </DataGrid.Columns>
-
                                     </DataGrid>
                                     <!--#endregion Datagrid definition-->
 
                                     <!--#region Status bar-->
-                                    <DockPanel Background="LightGray" Grid.Row="4" Margin ="10,0" VerticalAlignment="Center">
+                                    <DockPanel Background="LightGray" Grid.Row="2" Margin =" 10 10" VerticalAlignment="Center">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="45"/>
@@ -387,6 +393,70 @@
                                             <TextBox Grid.Column="3" x:Name="textBoxStatusSC" IsReadOnly="True" Background="LightGray"/>
                                         </Grid>
                                     </DockPanel>
+
+                                    <!--#region Ordertotal Lines-->
+                                    <DockPanel Grid.Row="3">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width=".15*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width=".15*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width=".15*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.RowSpan="2"
+                                                       Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+                                                       Text="{x:Static p:Cultures.Order_OrderlineTotals}" 
+                                                       FontWeight="Bold" FontSize="24" VerticalAlignment="Center"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                                       Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
+                                                       Text="{x:Static p:Cultures.Order_OrderlineTotals_RowTotal}"/>
+                                            <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valRowTotal" 
+                                                     HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="1" Text="0,00"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="+"
+                                                       Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                                   Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
+                                                   Text="{x:Static p:Cultures.Order_OrderlineTotals_ShippingCosts}"/>
+                                            <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valShippingCost" 
+                                                 HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="3" IsReadOnly="True" IsTabStop="False" Text="0,00"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="+"
+                                                       Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                                   Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right"
+                                                   Text="{x:Static p:Cultures.Order_OrderlineTotals_Ordercosts}"/>
+                                            <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valOrderCost" 
+                                                 HorizontalAlignment="Right" Width="100" Grid.Row="1" Grid.Column="5" IsReadOnly="True" IsTabStop="False" Text="0,00"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="="
+                                                       Grid.Row="1" Grid.Column="6" HorizontalAlignment="Center"/>
+
+                                            <TextBlock Style="{DynamicResource DefaultTextBlock}" 
+                                                   Grid.Row="0" Grid.Column="7" HorizontalAlignment="Right"
+                                                       FontWeight="Bold" FontSize="14"
+                                                   Text="{x:Static p:Cultures.Order_OrderlineTotals_GrandTotal}"/>
+                                            <TextBox Style="{DynamicResource NumericTextBox}" x:Name="valGrandTotal" 
+                                                 HorizontalAlignment="Right" Width="100" Grid.Row="1" IsReadOnly="True" IsTabStop="False" Text="0,00"
+                                                     FontWeight="Bold" FontSize="12" Grid.Column="7" BorderBrush="#FF0845FD"/>
+                                        </Grid>
+                                    </DockPanel>
+                                    <!--#endregion Ordertotal Lines-->
                                     <!--#endregion-->
                                 </Grid>
                             </GroupBox>
@@ -466,60 +536,6 @@
             </TabControl>
             <!--#endregion Tabpage definition-->
 
-            <!--#region Toolbar for datagrid-->
-            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
-                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
-                    <Button ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_New}" Click="ToolbarButtonNew">
-                        <Image Style="{DynamicResource ToolBarAddIcon}" />
-                    </Button>
-                    <Button ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_Save}" Click="ToolbarButtonSave">
-                        <Image Style="{DynamicResource ToolBarSaveIcon}" />
-                    </Button>
-                    <Button ToolTip="{x:Static p:Cultures.Order_Toolbar_Button_Delete}" Click="ToolbarButtonDelete">
-                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
-            <!--#endregion Toolbar for datagrid-->
-
-            <!--#region Datagrid definition-->
-            <DataGrid x:Name="OrderCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                                      Padding="3" SelectionChanged="OrderCode_DataGrid_SelectionChanged" Height="170" Margin="5,0"
-                                      IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_Id}" 
-                                        Visibility="Hidden" Width="70" 
-                                        Binding="{Binding order_Id}" />
-                    <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierId}" 
-                                        Visibility="Hidden" Width="70" 
-                                        Binding="{Binding order_SupplierId}" />
-                    <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierName}" 
-                                        Width="270" 
-                                        Binding="{Binding order_SupplierName}" />
-                    <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderDate}" 
-                                        Width="80" 
-                                        Binding="{Binding order_Date, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />
-                    <DataGridCheckBoxColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderCompleted}" 
-                                            Binding="{Binding order_Closed}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <!--#endregion-->
-            <!--#region Status bar-->
-            <DockPanel Background="LightGray" Margin =" 0 10" VerticalAlignment="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition Width="35"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="Aantal:"/>
-                    <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
-                    <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
-                </Grid>
-            </DockPanel>
-            <!--#endregion-->
 
         </StackPanel>
     </Border>

@@ -354,4 +354,10 @@
   <data name="Order.Order.Field.OrderNumber" xml:space="preserve">
     <value>Order number</value>
   </data>
+  <data name="Order.Datagrid.Header.OrderNumber" xml:space="preserve">
+    <value>Ordernumber</value>
+  </data>
+  <data name="Order.TabItemHeader.Orderrows" xml:space="preserve">
+    <value>Order details</value>
+  </data>
 </root>

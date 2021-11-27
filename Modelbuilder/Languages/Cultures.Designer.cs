@@ -277,6 +277,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bestelnummer.
+        /// </summary>
+        public static string Order_Datagrid_Header_OrderNumber {
+            get {
+                return ResourceManager.GetString("Order.Datagrid.Header.OrderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SupplierID.
         /// </summary>
         public static string Order_Datagrid_Header_SupplierId {
@@ -606,6 +615,15 @@ namespace Modelbuilder.Languages {
         public static string Order_TabItemHeader_Memo {
             get {
                 return ResourceManager.GetString("Order.TabItemHeader.Memo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelregels.
+        /// </summary>
+        public static string Order_TabItemHeader_Orderrows {
+            get {
+                return ResourceManager.GetString("Order.TabItemHeader.Orderrows", resourceCulture);
             }
         }
         

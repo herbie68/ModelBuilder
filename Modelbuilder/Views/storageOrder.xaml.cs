@@ -1,4 +1,5 @@
-﻿using static Modelbuilder.HelperOrder;
+﻿using System.Windows.Documents;
+using static Modelbuilder.HelperOrder;
 
 namespace Modelbuilder.Views;
 public partial class storageOrder : Page
@@ -162,6 +163,7 @@ public partial class storageOrder : Page
         //set value
         _currentDataGridIndex = dg.SelectedIndex;
 
+        valueOrderlineId.Text = Row_Selected["orderline_Id"].ToString();
         valueCategoryId.Text = Row_Selected["orderline_CategoryId"].ToString();
         valueCategoryName.Text = Row_Selected["orderline_CategoryName"].ToString();
         valueProductId.Text = Row_Selected["orderline_ProductId"].ToString();
@@ -404,12 +406,12 @@ public partial class storageOrder : Page
     private void OrderlinesToolbarButtonNew(object sender, RoutedEventArgs e)
     {
         var OrderlineOrderId = int.Parse(valueOrderId.Text);
+        var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
         var OrderlineProductId = int.Parse(valueProductId.Text);
         var OrderlineProjectId = 0;
         var OrderlineCategoryId = 0;
         var OrderlineNumber = 0.00;
         var OrderlinePrice = 0.00;
-        var OrderlineRealRowTotal = 0.00;  //RealRowTotal Will be calculated and updated/inserted on Save
         var OrderlineProductName = "";
         var OrderlineProjectName = "";
         var OrderlineCategoryName = "";
@@ -423,7 +425,7 @@ public partial class storageOrder : Page
         if (inpPrice.Text == String.Empty) { OrderlinePrice = 0; } else { OrderlinePrice = double.Parse(inpPrice.Text); }
 
         InitializeHelper();
-        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice, OrderlineRealRowTotal);
+        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice);
         UpdateStatus(result);
 
         // Get data from database
@@ -442,6 +444,38 @@ public partial class storageOrder : Page
     #region Toolbar button for Orderlines: Save
     private void OrderlinesToolbarButtonSave(object sender, RoutedEventArgs e)
     {
+        int rowIndex = _currentDataGridIndex;
+
+        var OrderlineId = int.Parse(valueOrderlineId.Text);
+        var OrderlineOrderId = int.Parse(valueOrderId.Text);
+        var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
+        var OrderlineProductId = int.Parse(valueProductId.Text);
+        var OrderlineProjectId = 0;
+        var OrderlineCategoryId = 0;
+        var OrderlineNumber = 0.00;
+        var OrderlinePrice = 0.00;
+        var OrderlineProductName = "";
+        var OrderlineProjectName = "";
+        var OrderlineCategoryName = "";
+
+        if (valueProjectId.Text != string.Empty) { OrderlineProjectId = int.Parse(valueProjectId.Text); }
+        if (valueCategoryId.Text != string.Empty) { OrderlineCategoryId = int.Parse(valueCategoryId.Text); }
+        if (valueProjectName.Text != string.Empty) { OrderlineProjectName = valueProjectName.Text; }
+        if (valueProductName.Text != string.Empty) { OrderlineProductName = valueProductName.Text; }
+        if (valueCategoryName.Text != string.Empty) { OrderlineCategoryName = valueCategoryName.Text; }
+        if (inpNumber.Text == String.Empty) { OrderlineNumber = 0; } else { OrderlineNumber = double.Parse(inpNumber.Text); }
+        if (inpPrice.Text == String.Empty) { OrderlinePrice = 0; } else { OrderlinePrice = double.Parse(inpPrice.Text); }
+
+        InitializeHelper();
+        string result = string.Empty;
+        result = _helper.UpdateTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice, OrderlineId);
+        UpdateStatus(result);
+        
+        GetRowData();
+
+        // Make sure the eddited row in the datagrid is selected
+        OrderDetail_DataGrid.SelectedIndex = rowIndex;
+        OrderDetail_DataGrid.Focus();
 
     }
     #endregion Toolbar button for Orderlines: Save
@@ -515,6 +549,7 @@ public partial class storageOrder : Page
     private void ToolbarButtonNew(object sender, RoutedEventArgs e)
     {
         var SupplierId = 0;
+        var SupplierName = "";
         var OrderNumber = "";
         var OrderDate = "";
         var CurrencySymbol = "";
@@ -523,6 +558,7 @@ public partial class storageOrder : Page
         var OrderCosts = 0.00;
 
         if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
+        if (valueSupplierName.Text == String.Empty) { SupplierName = ""; } else { SupplierName = valueSupplierName.Text; }
         if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
         if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
         if (inpCurrencySymbol.Text == String.Empty) { CurrencySymbol = ""; } else { CurrencySymbol = inpCurrencySymbol.Text; }
@@ -539,7 +575,7 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         string result = string.Empty;
-        result = _helper.InsertTblOrder(SupplierId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
+        result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
         UpdateStatus(result);
 
         // Get data from database
@@ -559,7 +595,52 @@ public partial class storageOrder : Page
     #region Click Save Data button (on Order toolbar)
     private void ToolbarButtonSave(object sender, RoutedEventArgs e)
     {
+        // On save order detail information has to be saved, but also orderline_SupplierId of existing orderrows
 
+        int rowIndex = _currentDataGridIndex;
+        var OrderId = 0;
+        var SupplierId = 0;
+        var SupplierName = "";
+        var OrderNumber = "";
+        var OrderDate = "";
+        var CurrencySymbol = "";
+        var CurrencyRate = 0.0000;
+        var ShippingCosts = 0.00;
+        var OrderCosts = 0.00;
+         
+        if (valueOrderId.Text != String.Empty) {OrderId = int.Parse(valueOrderId.Text);}
+        if (valueSupplierId.Text != String.Empty) { SupplierId = int.Parse(valueSupplierId.Text); }
+        if (valueSupplierName.Text != String.Empty) { SupplierName = valueSupplierName.Text; }
+        if (inpOrderNumber.Text != String.Empty) { OrderNumber = inpOrderNumber.Text; }
+        if (inpOrderDate.Text != String.Empty) { OrderDate = inpOrderDate.Text; }
+        if (inpCurrencySymbol.Text != String.Empty) { CurrencySymbol = inpCurrencySymbol.Text; }
+        if (inpCurrencyRate.Text != String.Empty) { CurrencyRate = double.Parse(inpCurrencyRate.Text); }
+        if (inpShippingCosts.Text != String.Empty) { ShippingCosts = double.Parse(inpShippingCosts.Text); }
+        if (inpOrderCosts.Text != String.Empty) { OrderCosts = double.Parse(inpOrderCosts.Text); }
+
+        //convert RTF to string
+        string memo = GetRichTextFromFlowDocument(inpOrderMemo.Document);
+
+        if (valueOrderId.Text == "")
+        // if (_dt.Rows.Count > _dbRowCount)
+        {
+            InsertOrderRow(OrderCode_DataGrid.SelectedIndex);
+        }
+        else
+        {
+            InitializeHelper();
+
+            string result = string.Empty;
+            result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+            string _tempresult = _helper.UpdateSupplierTblOrderline(OrderId, SupplierId);
+            UpdateStatus(result);
+        }
+
+        GetData();
+
+        // Make sure the eddited row in the datagrid is selected
+        OrderCode_DataGrid.SelectedIndex = rowIndex;
+        OrderCode_DataGrid.Focus();
     }
     #endregion Click Save button (on Order toolbar)
 
@@ -570,6 +651,59 @@ public partial class storageOrder : Page
     }
     #endregion Click Delete button (on Order toolbar)
     #endregion Toolbar for Orders
+
+    #region Insert new row in table: Supplyorder
+    private void InsertOrderRow(int dgIndex)
+    {
+        //since the DataGrid DataContext is set to the DataTable, 
+        //the DataTable is updated when data is modified in the DataGrid
+        //get last row
+        DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+        var SupplierId = 0;
+        var SupplierName = "";
+        var OrderNumber = "";
+        var OrderDate = "";
+        var CurrencySymbol = "";
+        var CurrencyRate = 0.0000;
+        var ShippingCosts = 0.00;
+        var OrderCosts = 0.00;
+
+        if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
+        if (valueSupplierName.Text == String.Empty) { SupplierName = ""; } else { SupplierName = valueSupplierName.Text; }
+        if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
+        if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
+        if (inpCurrencySymbol.Text == String.Empty) { CurrencySymbol = ""; } else { CurrencySymbol = inpCurrencySymbol.Text; }
+        if (inpCurrencyRate.Text == String.Empty) { CurrencyRate = 0.0000; } else { CurrencyRate = double.Parse(inpCurrencyRate.Text); }
+        if (inpShippingCosts.Text == String.Empty) { ShippingCosts = 0.0000; } else { ShippingCosts = double.Parse(inpShippingCosts.Text); }
+        if (inpOrderCosts.Text == String.Empty) { OrderCosts = 0.0000; } else { OrderCosts = double.Parse(inpOrderCosts.Text); }
+
+        //convert RTF to string
+        string memo = GetRichTextFromFlowDocument(inpOrderMemo.Document);
+
+        InitializeHelper();
+
+        string result = string.Empty;
+        result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        UpdateStatus(result);
+    }
+
+
+#endregion
+
+    #region Update Order row
+    private void UpdateOrderRow(int OrderId, int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double CurrencyRate, double ShippingCosts, double OrderCosts, string OrderMemo)
+    {
+        //convert RTF to string
+        string memo = GetRichTextFromFlowDocument(inpOrderMemo.Document);
+
+        InitializeHelper();
+
+        string result = string.Empty;
+        result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        UpdateStatus(result);
+    }
+    #endregion Update Order Row
 
     #region Update status
     private void UpdateStatus(string msg)

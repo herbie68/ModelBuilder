@@ -14,29 +14,26 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Structuur van  tabel modelbuilder.supplyorderline wordt geschreven
-DROP TABLE IF EXISTS `supplyorderline`;
-CREATE TABLE IF NOT EXISTS `supplyorderline` (
-  `orderline_Id` int NOT NULL AUTO_INCREMENT,
-  `orderline_OrderId` int NOT NULL DEFAULT '0',
-  `orderline_ProductId` int DEFAULT '0',
-  `orderline_ProductName` varchar(150) DEFAULT NULL,
-  `orderline_ProjectId` int DEFAULT '0',
-  `orderline_ProjectName` varchar(150) DEFAULT NULL,
-  `orderline_CategoryId` int DEFAULT '0',
-  `orderline_CategoryName` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `orderline_Number` double(6,2) DEFAULT '0.00',
-  `orderline_Price` double(6,2) DEFAULT '0.00',
-  `orderline_RealRowTotal` double(6,2) DEFAULT '0.00',
-  `orderline_Closed` tinyint DEFAULT '0',
-  `orderline_ClosedDate` date DEFAULT NULL,
-  PRIMARY KEY (`orderline_Id`) USING BTREE
+-- Structuur van  tabel modelbuilder.supplyorder wordt geschreven
+CREATE TABLE IF NOT EXISTS `supplyorder` (
+  `order_Id` int NOT NULL AUTO_INCREMENT,
+  `order_OrderNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `order_SupplierId` int DEFAULT '0',
+  `order_Date` date DEFAULT NULL,
+  `order_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
+  `order_CurrencyConversionRate` double(6,4) DEFAULT '0.0000',
+  `order_ShippingCosts` double(10,2) DEFAULT '0.00',
+  `order_OrderCosts` double(10,2) DEFAULT '0.00',
+  `order_Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `order_Closed` tinyint DEFAULT '0',
+  `order_ClosedDate` date DEFAULT NULL,
+  PRIMARY KEY (`order_Id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
--- Dumpen data van tabel modelbuilder.supplyorderline: ~0 rows (ongeveer)
-DELETE FROM `supplyorderline`;
-/*!40000 ALTER TABLE `supplyorderline` DISABLE KEYS */;
-/*!40000 ALTER TABLE `supplyorderline` ENABLE KEYS */;
+-- Dumpen data van tabel modelbuilder.supplyorder: ~0 rows (ongeveer)
+DELETE FROM `supplyorder`;
+/*!40000 ALTER TABLE `supplyorder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `supplyorder` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
