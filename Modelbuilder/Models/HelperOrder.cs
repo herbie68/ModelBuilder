@@ -293,6 +293,34 @@ internal class HelperOrder
     }
     #endregion Get Single Data from provided Table
 
+    #region Get Orderrowtotals for OrderId
+    public string GetOrderTotal(int OrderId)
+    {
+        string sqlText = string.Empty;
+        string resultString = String.Empty;
+        // SELECT SUM(quantityOrdered * priceEach)  orderTotal FROM orderdetails WHERE orderNumber = 10100;
+        sqlText = "SELECT SUM(orderline_Number * orderline_Price) RowTotal FROM supplyorderline WHERE orderline_OrderId = @OrderId ";
+ 
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+        cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
+
+        try
+        {
+            resultString = ((double)cmd.ExecuteScalar()).ToString();
+        }
+        catch
+        {
+            resultString = "0";
+        }
+        con.Close();
+        return resultString;
+    }
+    #endregion Get Orderrowtotals for OrderId
+
     #region Insert in Table: SupplyOrder
     public string InsertTblOrder(int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
     {

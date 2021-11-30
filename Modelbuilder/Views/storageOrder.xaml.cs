@@ -1,4 +1,7 @@
-﻿using System.Windows.Documents;
+﻿using System.ComponentModel;
+using System.Windows.Documents;
+using System.Xml.Linq;
+
 using static Modelbuilder.HelperOrder;
 
 namespace Modelbuilder.Views;
@@ -7,8 +10,7 @@ public partial class storageOrder : Page
     private HelperOrder _helper;
     private DataTable _dt, _dtSC;
     private int _dbRowCount, _dbRowCountSC;
-    private int _currentDataGridIndex, _currentDataGridPSIndex;
-    // static string DatabaseSupplierTable = "supplier", DatabaseProductTable = "product", DatabaseProjectTable = "project";
+    private int _currentDataGridIndex;
 
     public storageOrder()
     {
@@ -33,8 +35,8 @@ public partial class storageOrder : Page
         valTotal.Text = "0,00";
 
         GetData();
-    }
-
+    } 
+     
     #region InitializeHelper (connect to database)
     private void InitializeHelper()
     {
@@ -74,7 +76,7 @@ public partial class storageOrder : Page
         //if (_dtSC.Rows.Count != 1) { tmpStr = "s"; };
         //string msgSC = "Status: " + _dtSC.Rows.Count + " Bestelregel" + tmpStr + " ingelezen.";
 
-        UpdateStatus(msg);
+        UpdateStatus("order", msg);
         //UpdateStatus(msgSC);
     }
     #endregion Get the Order data
@@ -99,7 +101,7 @@ public partial class storageOrder : Page
         if (_dtSC.Rows.Count != 1) { tmpStr = "s"; };
         string msgSC = "Status: " + _dtSC.Rows.Count + " Bestelregel" + tmpStr + " ingelezen.";
 
-        UpdateStatus(msgSC);
+        UpdateStatus("row", msgSC);
     }
     #endregion Get the Orderrow data
 
@@ -115,34 +117,39 @@ public partial class storageOrder : Page
 
         GetMemo(dg.SelectedIndex);
 
-        valueOrderId.Text = Row_Selected["order_Id"].ToString();
-        valueSupplierId.Text = Row_Selected["order_SupplierId"].ToString();
-        valueSupplierName.Text = Row_Selected["order_SupplierName"].ToString();
-        inpOrderNumber.Text = Row_Selected["order_OrderNumber"].ToString();
-        inpOrderDate.Text = Row_Selected["order_Date"].ToString();
-        inpCurrencySymbol.Text = Row_Selected["order_CurrencySymbol"].ToString();
-        inpCurrencyRate.Text = Row_Selected["order_CurrencyConversionRate"].ToString();
-        inpShippingCosts.Text = Row_Selected["order_ShippingCosts"].ToString();
-        inpOrderCosts.Text = Row_Selected["order_OrderCosts"].ToString();
-
-        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
-
-        int _TempOrderClosed = int.Parse(Row_Selected["order_Closed"].ToString());
-        if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
-
         #region Select the saved Supplier in the Supplier combobox by default
-        cboxSupplier.Text = Row_Selected["order_SupplierName"].ToString();
+        string _tempSupplier = Row_Selected["order_SupplierName"].ToString();
+        cboxSupplier.Text = _tempSupplier;
 
         //Select the saved Supplier in the combobox by default
         foreach (Supplier supplier in cboxSupplier.Items)
         {
-            if (supplier.SupplierName == Row_Selected["order_SupplierName"].ToString())
+            if (supplier.SupplierName == _tempSupplier)
             {
                 cboxSupplier.SelectedItem = supplier;
                 break;
             }
         }
         #endregion Select the saved Supplier in the Supplier combobox by default
+
+        valueOrderId.Text = Row_Selected["order_Id"].ToString();
+        //valueSupplierId.Text = Row_Selected["order_SupplierId"].ToString();
+        //valueSupplierName.Text = Row_Selected["order_SupplierName"].ToString();
+        inpOrderNumber.Text = Row_Selected["order_OrderNumber"].ToString();
+        inpOrderDate.Text = Row_Selected["order_Date"].ToString();
+        inpCurrencySymbol.Text = Row_Selected["order_CurrencySymbol"].ToString();
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(Row_Selected["order_CurrencyConversionRate"].ToString()));
+        inpShippingCosts.Text = Row_Selected["order_ShippingCosts"].ToString();
+        inpOrderCosts.Text = Row_Selected["order_OrderCosts"].ToString();
+
+        //inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
+
+        //if(valueOrderId.Text !=  String.Empty) {valRowTotal.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetOrderTotal(int.Parse(valueOrderId.Text)))); }
+
+        int _TempOrderClosed = int.Parse(Row_Selected["order_Closed"].ToString());
+        if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
+
+
 
         // Retrieve list of OrderRows for this Order from database
         _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
@@ -163,27 +170,14 @@ public partial class storageOrder : Page
         //set value
         _currentDataGridIndex = dg.SelectedIndex;
 
-        valueOrderlineId.Text = Row_Selected["orderline_Id"].ToString();
-        valueCategoryId.Text = Row_Selected["orderline_CategoryId"].ToString();
-        valueCategoryName.Text = Row_Selected["orderline_CategoryName"].ToString();
-        valueProductId.Text = Row_Selected["orderline_ProductId"].ToString();
-        valueProductName.Text = Row_Selected["orderline_ProductName"].ToString();
-        valueProjectId.Text = Row_Selected["orderline_ProjectId"].ToString();
-        valueProjectName.Text = Row_Selected["orderline_ProjectName"].ToString();
-        inpNumber.Text = Row_Selected["orderline_Number"].ToString();
-        inpPrice.Text = Row_Selected["orderline_Price"].ToString();
-
-        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(inpNumber.Text));
-        inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
-        valTotal.Text = string.Format("{0:#,##0.00}", double.Parse(inpNumber.Text) * double.Parse(inpPrice.Text));
-
         #region Select the saved Product in the Product combobox by default
-        cboxProduct.Text = Row_Selected["orderline_ProductName"].ToString();
+        string _tempProduct = Row_Selected["orderline_ProductName"].ToString();
+        cboxProduct.Text = _tempProduct;
 
         foreach (Product product in cboxProduct.Items)
         {
-            if (product.ProductName == Row_Selected["orderline_ProductName"].ToString())
-            {
+          if (product.ProductName == _tempProduct)
+                {
                 cboxProduct.SelectedItem = product;
                 break;
             }
@@ -191,11 +185,12 @@ public partial class storageOrder : Page
         #endregion Select the saved Product in the Product combobox by default
 
         #region Select the saved Project in the Project combobox by default
-        cboxProject.Text = Row_Selected["orderline_ProjectName"].ToString();
+        string _tempProject = Row_Selected["orderline_ProjectName"].ToString();
+        if (_tempProject=="") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
 
         foreach (Project project in cboxProject.Items)
         {
-            if (project.ProjectName == Row_Selected["orderline_ProjectName"].ToString())
+            if (project.ProjectName == _tempProject)
             {
                 cboxProject.SelectedItem = project;
                 break;
@@ -204,17 +199,22 @@ public partial class storageOrder : Page
         #endregion Select the saved Project in the Project combobox by default
 
         #region Select the saved Category in the Category combobox by default
-        cboxCategory.Text = Row_Selected["orderline_CategoryName"].ToString();
+        string _tempCategory = Row_Selected["orderline_CategoryName"].ToString();
+        cboxCategory.Text = _tempCategory;
 
         foreach (Category category in cboxCategory.Items)
         {
-            if (category.CategoryName == Row_Selected["orderline_CategoryName"].ToString())
+            if (category.CategoryName == _tempCategory)
             {
                 cboxCategory.SelectedItem = category;
                 break;
             }
         }
         #endregion Select the saved Category in the Category combobox by default
+
+        valueOrderlineId.Text = Row_Selected["orderline_Id"].ToString();
+        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["orderline_Number"].ToString()));
+        inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["orderline_Price"].ToString()));
     }
     #endregion Datagrid selectionchanged for OrderRow
 
@@ -228,6 +228,7 @@ public partial class storageOrder : Page
             valueCurrencyId.Text = item.SupplierCurrencyId.ToString();
             inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
         }
+
         inpCurrencyRate.Text = _helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "currency_ConversionRate", "float");
         inpShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_ShippingCosts", "double");
         valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_MinShippingCosts", "double");
@@ -407,7 +408,7 @@ public partial class storageOrder : Page
     {
         var OrderlineOrderId = int.Parse(valueOrderId.Text);
         var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
-        var OrderlineProductId = int.Parse(valueProductId.Text);
+        var OrderlineProductId = 0;
         var OrderlineProjectId = 0;
         var OrderlineCategoryId = 0;
         var OrderlineNumber = 0.00;
@@ -416,6 +417,7 @@ public partial class storageOrder : Page
         var OrderlineProjectName = "";
         var OrderlineCategoryName = "";
 
+        if (valueProductId.Text != string.Empty) { OrderlineProductId = int.Parse(valueProductId.Text); }
         if (valueProjectId.Text != string.Empty) { OrderlineProjectId = int.Parse(valueProjectId.Text); }
         if (valueCategoryId.Text != string.Empty) { OrderlineCategoryId = int.Parse(valueCategoryId.Text); }
         if (valueProjectName.Text != string.Empty) { OrderlineProjectName = valueProjectName.Text; }
@@ -426,14 +428,14 @@ public partial class storageOrder : Page
 
         InitializeHelper();
         var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice);
-        UpdateStatus(result);
+        UpdateStatus("row", result);
 
         // Get data from database
         _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
-        OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count - 1;
+        OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count;
         _ = OrderDetail_DataGrid.Focus();
 
         // Make orderline related cells available
@@ -469,7 +471,7 @@ public partial class storageOrder : Page
         InitializeHelper();
         string result = string.Empty;
         result = _helper.UpdateTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice, OrderlineId);
-        UpdateStatus(result);
+        UpdateStatus("row", result);
         
         GetRowData();
 
@@ -576,7 +578,7 @@ public partial class storageOrder : Page
 
         string result = string.Empty;
         result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
-        UpdateStatus(result);
+        UpdateStatus("order", result);
 
         // Get data from database
         _dt = _helper.GetDataTblOrder();
@@ -633,7 +635,7 @@ public partial class storageOrder : Page
             string result = string.Empty;
             result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
             string _tempresult = _helper.UpdateSupplierTblOrderline(OrderId, SupplierId);
-            UpdateStatus(result);
+            UpdateStatus("order", result);
         }
 
         GetData();
@@ -650,6 +652,7 @@ public partial class storageOrder : Page
 
     }
     #endregion Click Delete button (on Order toolbar)
+    
     #endregion Toolbar for Orders
 
     #region Insert new row in table: Supplyorder
@@ -685,7 +688,7 @@ public partial class storageOrder : Page
 
         string result = string.Empty;
         result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
-        UpdateStatus(result);
+        UpdateStatus("order", result);
     }
 
 
@@ -701,23 +704,27 @@ public partial class storageOrder : Page
 
         string result = string.Empty;
         result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
-        UpdateStatus(result);
+        UpdateStatus("row", result);
     }
     #endregion Update Order Row
 
     #region Update status
-    private void UpdateStatus(string msg)
+    private void UpdateStatus(string area, string msg)
     {
         if (!String.IsNullOrEmpty(msg))
         {
             if (!msg.StartsWith("Error") && !msg.StartsWith("Status"))
             {
-                textBoxStatus.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss"));
+                if (area == "order") 
+                { textBoxStatus.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
+                else { textBoxStatusSC.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); } 
                 Debug.WriteLine(String.Format("{0} - Status: {1}", DateTime.Now.ToString("HH:mm:ss"), msg));
             }
             else
             {
-                textBoxStatus.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss"));
+                if (area == "order")
+                { textBoxStatus.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
+                else { textBoxStatusSC.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); } 
                 Debug.WriteLine(String.Format("{0} - {1}", DateTime.Now.ToString("HH:mm:ss"), msg));
             }
         }
