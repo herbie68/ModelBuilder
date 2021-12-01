@@ -197,7 +197,7 @@ namespace Modelbuilder
         /// <param name="currencyConversionRate"></param>
         /// <param name="currencyId"></param>
         /// <returns></returns>
-        public int ExecuteNonQueryTblCurrency(string sqlText, string currencyCode, string currencySymbol, string currencyName, float currencyConversionRate, int currencyId = 0)
+        public int ExecuteNonQueryTblCurrency(string sqlText, string currencyCode, string currencySymbol, string currencyName, double currencyConversionRate, int currencyId = 0)
         {
             int rowsAffected = 0;
 
@@ -209,8 +209,8 @@ namespace Modelbuilder
                 // Add Int values
                 cmd.Parameters.Add("@currencyId", MySqlDbType.Int32).Value = currencyId;
 
-                // Add Float values
-                cmd.Parameters.Add("@currencyConversionRate", MySqlDbType.Float).Value = currencyConversionRate;
+                // Add Double values
+                cmd.Parameters.Add("@currencyConversionRate", MySqlDbType.Double).Value = currencyConversionRate;
 
                 // Add VarChar values
                 cmd.Parameters.Add("@currencyCode", MySqlDbType.VarChar).Value = DBNull.Value;

@@ -44,7 +44,7 @@ namespace Modelbuilder
                 return;
             }
 
-            float _ConversionRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString());
+            double _ConversionRate = double.Parse(Row_Selected["currency_ConversionRate"].ToString());
             inpCurrencyId.Text = Row_Selected["currency_Id"].ToString();
             inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString().ToUpper();
             inpCurrencyName.Text = Row_Selected["currency_Name"].ToString();
@@ -70,7 +70,7 @@ namespace Modelbuilder
                 //Database dbConnection = new Database();
                 dbConnection.Connect();
 
-                float tmpRate = float.Parse(inpCurrencyRate.Text);
+                double tmpRate = double.Parse(inpCurrencyRate.Text);
                 inpCurrencyRate.Text = tmpRate.ToString("n4");
 
                 dbConnection.SqlCommand = "UPDATE ";

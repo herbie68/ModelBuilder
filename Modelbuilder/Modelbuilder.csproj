@@ -19,6 +19,7 @@
     <None Remove="Resources\appSave.png" />
     <None Remove="Resources\appSettings.png" />
     <None Remove="Resources\appUndo.png" />
+    <None Remove="Resources\calculator.png" />
     <None Remove="Resources\Logo.gif" />
     <None Remove="Resources\logo.ico" />
     <None Remove="Resources\metadata.png" />
@@ -61,6 +62,7 @@
     <None Remove="Resources\projectImport.png" />
     <None Remove="Resources\projectManagement.png" />
     <None Remove="Resources\projectReport.png" />
+    <None Remove="Resources\recalculate.png" />
     <None Remove="Resources\rtftoolbarAlignCenter.png" />
     <None Remove="Resources\rtftoolbarAlignLeft.png" />
     <None Remove="Resources\rtftoolbarAlignRight.png" />
@@ -124,6 +126,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\calculator.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icon1.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -158,6 +163,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\orderShop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\recalculate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\rtftoolbarAlignCenter.png">
