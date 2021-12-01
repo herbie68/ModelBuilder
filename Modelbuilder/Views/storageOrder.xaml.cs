@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Xml.Linq;
 
@@ -262,9 +263,11 @@ public partial class storageOrder : Page
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
         }
 
-        valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
-        cboxCategory.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
-        //cboxCategory.SelectedItem= _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
+        if (valueProductId.Text != string.Empty)
+        {
+            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
+            cboxCategory.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
+        }
     }
     #endregion
 
@@ -328,15 +331,27 @@ public partial class storageOrder : Page
         _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
 
         // Populate data in datagrid from datatable
-        OrderDetail_DataGrid.DataContext = _dtSC;
-        OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count - 1;
-        _ = OrderDetail_DataGrid.Focus();
+        //OrderDetail_DataGrid.DataContext = _dtSC;
+        //OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count;
+        SetFocusOnGrid(OrderDetail_DataGrid, OrderDetail_DataGrid.Items.Count - 1);
 
         // Make orderline related cells available
         //cboxOrderRowEditable.IsChecked = true;
     }
     #endregion Toolbar button for Orderlines: New
 
+    #region Set focus to newly added datagrid row
+    private void SetFocusOnGrid(DataGrid grid, int index)
+    {
+        grid.ScrollIntoView(grid.Items.GetItemAt(index));
+        grid.SelectionMode = DataGridSelectionMode.Single;
+        grid.SelectionUnit = DataGridSelectionUnit.FullRow;
+        grid.SelectedIndex = index;
+
+        DataGridRow row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(index);
+        row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+    }
+    #endregion Set focus to newly added datagrid row
     #region Toolbar button for Orderlines: Save
     private void OrderlinesToolbarButtonSave(object sender, RoutedEventArgs e)
     {
