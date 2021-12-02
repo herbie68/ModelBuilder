@@ -584,6 +584,30 @@ internal class HelperOrder
     }
     #endregion Execute Non Query Table: SupplyOrderline
 
+    #region Check if an item exists in table: productsupplier
+    public int CheckProductForSupplier(int SupplierId = 0, int ProductId = 0)
+    {
+        int result = 0;
+        string sqlText = "SELECT COUNT(*) FROM productsupplier WHERE productSupplier_SupplierId = @SupplierId AND productSupplier_ProductId = @ProductId";
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            {
+                cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
+                cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
+                
+                result = cmd.ExecuteNonQuery();
+            }
+            con.Close();
+        }
+        return result;
+    }
+    #endregion Check if an item exists in table: productsupplier
+
     #region Execute Non Query Supplier in Table: SupplyOrderline
     public int ExecuteNonQuerySupplierTblOrderline(string sqlText, int SupplierId, int OrderId)
     {

@@ -237,7 +237,7 @@ public partial class storageOrder : Page
     private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no product is selected do nothing
-        if (cboxProduct.Text == String.Empty) { return; }
+        //if (cboxProduct.Text == String.Empty) { return; }
 
         foreach (HelperOrder.Product item in e.AddedItems)
         {
@@ -245,19 +245,21 @@ public partial class storageOrder : Page
             valueProductName.Text = item.ProductName.ToString();
         }
 
+        var SupplierHasProduct = _helper.CheckProductForSupplier(int.Parse(valueSupplierId.Text), int.Parse(valueProductId.Text));
+
         // If there is no price entered, retrieve the default price from the database
-        if (inpPrice.Text == string.Empty) 
+        if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00") 
         { 
             // Check if product is in table for this supplier, if not return value will be -1
             string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
 
-            if (_tmpPrice != "-1")
+            if (SupplierHasProduct == 0)
             {
-                inpPrice.Text = _tmpPrice.ToString();
+                inpPrice.Text = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
             }
             else
             {
-                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");
+                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");                
             }
 
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
@@ -266,7 +268,8 @@ public partial class storageOrder : Page
         if (valueProductId.Text != string.Empty)
         {
             valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
-            cboxCategory.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
+            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
+            if (valueCategoryName.Text != string.Empty) { cboxCategory.SelectedValuePath = valueCategoryName.Text; }
         }
     }
     #endregion
@@ -274,24 +277,28 @@ public partial class storageOrder : Page
     #region Selection changed: Combobox Project
     private void cboxProject_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        //If no project is selected do nothing
+        //if (cboxProject.Text == String.Empty) { return; }
+        
         foreach (HelperOrder.Project item in e.AddedItems)
         {
             valueProjectId.Text = item.ProjectId.ToString();
             valueProjectName.Text = item.ProjectName.ToString();
         }
-
     }
     #endregion Selection changed: Combobox Project
 
     #region Selection changed: Combobox Categroy
     private void cboxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        //If no category is selected do nothing
+        //if (cboxCategory.Text == String.Empty) { return; }
+
         foreach (HelperOrder.Category item in e.AddedItems)
         {
             valueCategoryId.Text = item.CategoryId.ToString();
             valueCategoryName.Text = item.CategoryName.ToString();
         }
-
     }
     #endregion Selection changed: Combobox Category
 
@@ -331,7 +338,7 @@ public partial class storageOrder : Page
         _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
 
         // Populate data in datagrid from datatable
-        //OrderDetail_DataGrid.DataContext = _dtSC;
+        OrderDetail_DataGrid.DataContext = _dtSC;
         //OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count;
         SetFocusOnGrid(OrderDetail_DataGrid, OrderDetail_DataGrid.Items.Count - 1);
 
@@ -349,9 +356,13 @@ public partial class storageOrder : Page
         grid.SelectedIndex = index;
 
         DataGridRow row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(index);
-        row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+        if(index != 0)
+        {
+            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+        }
     }
     #endregion Set focus to newly added datagrid row
+
     #region Toolbar button for Orderlines: Save
     private void OrderlinesToolbarButtonSave(object sender, RoutedEventArgs e)
     {
