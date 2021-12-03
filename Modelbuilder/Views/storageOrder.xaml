@@ -271,7 +271,7 @@
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
                                               x:Name="cboxCategory" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource CategoryComboTemplate}"
-                                              TextSearch.TextPath="categoryName" SelectionChanged="cboxCategory_SelectionChanged" SelectedValuePath="categoryName"
+                                               SelectionChanged="cboxCategory_SelectionChanged"
                                               Grid.Row="1" Grid.Column="2" Width="150"/>
                                     
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 

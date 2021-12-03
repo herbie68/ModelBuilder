@@ -10,6 +10,7 @@ using System.Diagnostics;
 using ConnectionNamespace;
 using Org.BouncyCastle.Math;
 using static Modelbuilder.HelperOrder;
+using System.Windows.Controls;
 
 namespace Modelbuilder;
 
@@ -451,6 +452,42 @@ internal class HelperOrder
     }
     #endregion Update Table: SupplyOrderline
 
+    #region Delete row in Table: SupplyOrder
+    public string DeleteTblSupplyOrder(int orderId)
+    {
+        string result = string.Empty;
+        string sqlText = "DELETE FROM SupplyOrder WHERE order_Id=@orderId";
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTblSupplyOrderId(sqlText, orderId);
+
+            if (rowsAffected > 0)
+            {
+
+                result = String.Format("Rij verwijderd.");
+            }
+            else
+            {
+                result = "Rij niet verwijderd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine("Error (DeleteTblSupplyOrder - MySqlException): " + ex.Message);
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error (DeleteTblSupplyOrder): " + ex.Message);
+            throw;
+        }
+
+        return result;
+    }
+    #endregion Delete row in Table: SupplyOrder
+
+
     #region Update SupplierId in Table: Supplyorderline
     public string UpdateSupplierTblOrderline(int OrderId, int SupplierId)
     {
@@ -545,6 +582,31 @@ internal class HelperOrder
         return rowsAffected;
     }
     #endregion Execute Non Query Table: SupplyOrder
+
+    #region Execute Non Query Table SupplyOrder_Id: SupplyOrder
+    public int ExecuteNonQueryTblSupplyOrderId(string sqlText, int orderId = 0)
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            {
+
+                //add parameters setting string values to DBNull.Value
+                cmd.Parameters.Add("@orderId", MySqlDbType.Int32).Value = orderId;
+
+                //execute; returns the number of rows affected
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+        }
+
+        return rowsAffected;
+    }
+    #endregion Execute Non Query Table SupplyOrder_Id: SupplyOrder
 
     #region Execute Non Query Table: SupplyOrderline
     public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderlineId = 0)
@@ -706,13 +768,22 @@ internal class HelperOrder
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
-        for (int i = 0; i < dtSelection.Rows.Count; i++)
+        // To add the default line "Select a product"to the dropdownlist at the first position, there has to be an extra row added, so Rows.count + 1,
+        // but for the real products this +1 has to be substraced again otherwise it points to the wrong row
+        for (int i = 0; i < dtSelection.Rows.Count + 1; i++)
         {
-            productList.Add(new Product
+            if (i == 0)
             {
-                ProductName = dtSelection.Rows[i][0].ToString(),
-                ProductId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
-            });
+                productList.Add(new Product { ProductName = "Selecteer een product", ProductId = 0 });
+            }
+            else
+            {
+                productList.Add(new Product
+                {
+                    ProductName = dtSelection.Rows[i - 1][0].ToString(),
+                    ProductId = int.Parse(dtSelection.Rows[i - 1][1].ToString(), Culture)
+                });
+            }
         };
         return productList;
     }

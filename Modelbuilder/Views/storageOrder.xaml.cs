@@ -237,7 +237,7 @@ public partial class storageOrder : Page
     private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no product is selected do nothing
-        //if (cboxProduct.Text == String.Empty) { return; }
+        //if(cboxProduct.Text == string.Empty || cboxProduct.Text == "") { return; }
 
         foreach (HelperOrder.Product item in e.AddedItems)
         {
@@ -265,11 +265,29 @@ public partial class storageOrder : Page
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
         }
 
+        // If there is no quantity entered, retrieve the default order quantity of the item
+        if(inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
+        {
+            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_StandardOrderQuantity", "Int")));
+        }
+
         if (valueProductId.Text != string.Empty)
         {
             valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
             valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
-            if (valueCategoryName.Text != string.Empty) { cboxCategory.SelectedValuePath = valueCategoryName.Text; }
+            if (valueCategoryName.Text != string.Empty) 
+            { 
+                cboxCategory.Text = valueCategoryName.Text;
+
+                foreach (Category category in cboxCategory.Items)
+                {
+                    if (category.CategoryName == valueCategoryName.Text)
+                    {
+                        cboxCategory.SelectedItem = category;
+                        break;
+                    }
+                }
+            }
         }
     }
     #endregion
@@ -317,18 +335,18 @@ public partial class storageOrder : Page
         var OrderlineProjectName = "";
         var OrderlineCategoryName = "";
 
-        // if values are entered but OrderlineId is missing this means values for a new project are already filled before creating a new record
-        if (valueOrderlineId.Text == string.Empty)
-        {
-            if (valueProductId.Text != string.Empty) { OrderlineProductId = int.Parse(valueProductId.Text); }
-            if (valueProjectId.Text != string.Empty) { OrderlineProjectId = int.Parse(valueProjectId.Text); }
-            if (valueCategoryId.Text != string.Empty) { OrderlineCategoryId = int.Parse(valueCategoryId.Text); }
-            if (valueProjectName.Text != string.Empty) { OrderlineProjectName = valueProjectName.Text; }
-            if (valueProductName.Text != string.Empty) { OrderlineProductName = valueProductName.Text; }
-            if (valueCategoryName.Text != string.Empty) { OrderlineCategoryName = valueCategoryName.Text; }
-            if (inpNumber.Text == String.Empty) { OrderlineNumber = 0; } else { OrderlineNumber = double.Parse(inpNumber.Text); }
-            if (inpPrice.Text == String.Empty) { OrderlinePrice = 0; } else { OrderlinePrice = double.Parse(inpPrice.Text); }
-        }
+        valueProductId.Text = string.Empty;
+        valueProductName.Text = string.Empty;
+        valueProjectId.Text = string.Empty;
+        valueProjectName.Text= string.Empty;
+        valueCategoryId.Text= string.Empty;
+        valueCategoryName.Text= string.Empty;
+        inpPrice.Text = "0,00";
+        inpNumber.Text = "0,00";
+
+        cboxCategory.SelectedItem = null;
+        cboxProduct.SelectedItem = null;
+        cboxProject.SelectedItem = null;
 
         InitializeHelper();
         var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice);
@@ -584,10 +602,24 @@ public partial class storageOrder : Page
     #region Click Delete button (on Order toolbar)
     private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
     {
+        //since the DataGrid DataContext is set to the DataTable, 
+        //the DataTable is updated when data is modified in the DataGrid
+        //get last row
+        DataRow row = _dt.Rows[_dt.Rows.Count - 1];
+
+        int OrderId = int.Parse(valueOrderId.Text);
+
+        InitializeHelper();
+
+        string result = string.Empty;
+        result = _helper.DeleteTblSupplyOrder(OrderId);
+        UpdateStatus("Order", result);
+
+        //TODO: After deleting the order we have to check if there are orderrows on this orderId and if Yes delete all those lines
 
     }
     #endregion Click Delete button (on Order toolbar)
-    
+
     #endregion Toolbar for Orders
 
     #region Insert new row in table: Supplyorder
