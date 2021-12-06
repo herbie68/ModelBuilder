@@ -230,7 +230,7 @@ internal class HelperOrder
                 resultString = ((int)cmd.ExecuteScalar()).ToString();
                 break;
             case "string":
-                resultString= (string)cmd.ExecuteScalar();
+                resultString= (string)cmd.ExecuteScalar().ToString();
                 break;
             default:
                 resultString = (string)cmd.ExecuteScalar();
@@ -487,6 +487,49 @@ internal class HelperOrder
     }
     #endregion Delete row in Table: SupplyOrder
 
+    #region Delete row in Table: SupplyOrderline
+    public string DeleteTblSupplyOrderline(int Id, string Type)
+    {
+        string result = string.Empty;
+        string sqlText = "";
+
+        if (Type == "order")
+        {
+            sqlText = "DELETE FROM SupplyOrderline WHERE orderline_OrderId=@OrderId";
+        }
+        else
+        {
+            sqlText = "DELETE FROM SupplyOrderline WHERE orderline_Id=@OrderId";
+        }
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTblSupplyOrderId(sqlText, Id);
+
+            if (rowsAffected > 0)
+            {
+
+                result = String.Format("Rij verwijderd.");
+            }
+            else
+            {
+                result = "Rij niet verwijderd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine("Error (DeleteTblSupplyOrderline - MySqlException): " + ex.Message);
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error (DeleteTblSupplyOrderline): " + ex.Message);
+            throw;
+        }
+
+        return result;
+    }
+    #endregion Delete row in Table: SupplyOrderline
 
     #region Update SupplierId in Table: Supplyorderline
     public string UpdateSupplierTblOrderline(int OrderId, int SupplierId)
@@ -669,6 +712,28 @@ internal class HelperOrder
         return result;
     }
     #endregion Check if an item exists in table: productsupplier
+
+    #region Check if there are orderrows for givven project
+    public int CheckOrderRowsForOrder(int OrderId = 0)
+    {
+        int result = 0;
+        string sqlText = "SELECT COUNT(*) FROM supplyorderline WHERE orderline_OrderId = @OrderId";
+
+        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        {
+            //open
+            con.Open();
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            {
+                cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
+                result = cmd.ExecuteNonQuery();
+            }
+            con.Close();
+        }
+        return result;
+    }
+    #endregion Check if there are orderrows for given project
 
     #region Execute Non Query Supplier in Table: SupplyOrderline
     public int ExecuteNonQuerySupplierTblOrderline(string sqlText, int SupplierId, int OrderId)

@@ -268,7 +268,7 @@ public partial class storageOrder : Page
         // If there is no quantity entered, retrieve the default order quantity of the item
         if(inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
         {
-            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_StandardOrderQuantity", "Int")));
+            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_StandardOrderQuantity", "double")));
         }
 
         if (valueProductId.Text != string.Empty)
@@ -438,66 +438,29 @@ public partial class storageOrder : Page
     #region Toolbar button for Orderlines: Delete
     private void OrderlinesToolbarButtonDelete(object sender, RoutedEventArgs e)
     {
+        int rowIndex = _currentDataGridIndex;
 
+        InitializeHelper();
+
+        string result = string.Empty;
+        result = _helper.DeleteTblSupplyOrderline(int.Parse(valueOrderlineId.Text), "row");
+        UpdateStatus("Row", result);
+
+
+        GetRowData();
+
+        if (rowIndex == 0)
+        {
+            OrderDetail_DataGrid.SelectedIndex = 0;        }
+        else
+        {
+            OrderDetail_DataGrid.SelectedIndex = rowIndex - 1;
+        }
+
+        OrderDetail_DataGrid.Focus();
     }
     #endregion Toolbar button for Orderlines: Delete
     #endregion Toolbar for order rows
-
-    #region Get content of Memofield
-    private void GetMemo(int index)
-    {
-        string ContentOrderMemo = string.Empty;
-
-        if (_dt != null && index >= 0 && index < _dt.Rows.Count)
-        {
-            //set value
-            DataRow row = _dt.Rows[index];
-
-
-            if (row["order_Memo"] != null && row["order_Memo"] != DBNull.Value)
-            {
-                //get value from DataTable
-                ContentOrderMemo = row["order_Memo"].ToString();
-            }
-
-            if (!String.IsNullOrEmpty(ContentOrderMemo))
-            {
-                //clear existing data
-                inpOrderMemo.Document.Blocks.Clear();
-
-                //convert to byte[]
-                byte[] dataArr = Encoding.UTF8.GetBytes(ContentOrderMemo);
-
-                using (MemoryStream ms = new(dataArr))
-                {
-                    //load data
-                    TextRange flowDocRange = new TextRange(inpOrderMemo.Document.ContentStart, inpOrderMemo.Document.ContentEnd);
-                    flowDocRange.Load(ms, DataFormats.Rtf);
-                }
-            }
-        }
-    }
-    #endregion Get content of Memofield
-
-    #region Get rich text from flow document
-    private string GetRichTextFromFlowDocument(FlowDocument fDoc)
-    {
-        string result = string.Empty;
-
-        //convert to string
-        if (fDoc != null)
-        {
-            TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                tr.Save(ms, DataFormats.Rtf);
-                result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-            }
-        }
-        return result;
-    }
-    #endregion
 
     #region Toolbar for Orders
     #region Click New button (on Order toolbar)
@@ -562,8 +525,8 @@ public partial class storageOrder : Page
         var CurrencyRate = 0.0000;
         var ShippingCosts = 0.00;
         var OrderCosts = 0.00;
-         
-        if (valueOrderId.Text != String.Empty) {OrderId = int.Parse(valueOrderId.Text);}
+
+        if (valueOrderId.Text != String.Empty) { OrderId = int.Parse(valueOrderId.Text); }
         if (valueSupplierId.Text != String.Empty) { SupplierId = int.Parse(valueSupplierId.Text); }
         if (valueSupplierName.Text != String.Empty) { SupplierName = valueSupplierName.Text; }
         if (inpOrderNumber.Text != String.Empty) { OrderNumber = inpOrderNumber.Text; }
@@ -602,25 +565,95 @@ public partial class storageOrder : Page
     #region Click Delete button (on Order toolbar)
     private void ToolbarButtonDelete(object sender, RoutedEventArgs e)
     {
-        //since the DataGrid DataContext is set to the DataTable, 
-        //the DataTable is updated when data is modified in the DataGrid
-        //get last row
-        DataRow row = _dt.Rows[_dt.Rows.Count - 1];
-
-        int OrderId = int.Parse(valueOrderId.Text);
+        int rowIndex = _currentDataGridIndex;
 
         InitializeHelper();
 
         string result = string.Empty;
-        result = _helper.DeleteTblSupplyOrder(OrderId);
+        result = _helper.DeleteTblSupplyOrder(int.Parse(valueOrderId.Text));
         UpdateStatus("Order", result);
 
         //TODO: After deleting the order we have to check if there are orderrows on this orderId and if Yes delete all those lines
 
+        var _tempOrders = _helper.CheckOrderRowsForOrder(int.Parse(valueOrderId.Text));
+
+        if (_tempOrders != 0)
+        {
+            result = _helper.DeleteTblSupplyOrderline(int.Parse(valueOrderId.Text), "order");
+            UpdateStatus("Order", result);
+        }
+
+        GetData();
+
+        if (rowIndex == 0)
+        {
+            OrderCode_DataGrid.SelectedIndex = 0;
+        }
+        else
+        {
+            OrderCode_DataGrid.SelectedIndex = rowIndex - 1;
+        }
+
+        OrderCode_DataGrid.Focus();
     }
     #endregion Click Delete button (on Order toolbar)
-
     #endregion Toolbar for Orders
+
+    #region Get content of Memofield
+    private void GetMemo(int index)
+    {
+        string ContentOrderMemo = string.Empty;
+
+        if (_dt != null && index >= 0 && index < _dt.Rows.Count)
+        {
+            //set value
+            DataRow row = _dt.Rows[index];
+
+
+            if (row["order_Memo"] != null && row["order_Memo"] != DBNull.Value)
+            {
+                //get value from DataTable
+                ContentOrderMemo = row["order_Memo"].ToString();
+            }
+
+            if (!String.IsNullOrEmpty(ContentOrderMemo))
+            {
+                //clear existing data
+                inpOrderMemo.Document.Blocks.Clear();
+
+                //convert to byte[]
+                byte[] dataArr = Encoding.UTF8.GetBytes(ContentOrderMemo);
+
+                using (MemoryStream ms = new(dataArr))
+                {
+                    //load data
+                    TextRange flowDocRange = new TextRange(inpOrderMemo.Document.ContentStart, inpOrderMemo.Document.ContentEnd);
+                    flowDocRange.Load(ms, DataFormats.Rtf);
+                }
+            }
+        }
+    }
+    #endregion Get content of Memofield
+
+    #region Get rich text from flow document
+    private string GetRichTextFromFlowDocument(FlowDocument fDoc)
+    {
+        string result = string.Empty;
+
+        //convert to string
+        if (fDoc != null)
+        {
+            TextRange tr = new TextRange(fDoc.ContentStart, fDoc.ContentEnd);
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                tr.Save(ms, DataFormats.Rtf);
+                result = System.Text.Encoding.UTF8.GetString(ms.ToArray());
+            }
+        }
+        return result;
+    }
+    #endregion
 
     #region Insert new row in table: Supplyorder
     private void InsertOrderRow(int dgIndex)
