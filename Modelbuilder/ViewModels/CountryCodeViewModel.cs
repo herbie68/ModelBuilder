@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     internal class CountryCodeViewModel
     {

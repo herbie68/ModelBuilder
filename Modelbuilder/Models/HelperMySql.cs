@@ -1,41 +1,31 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Globalization;
 
 namespace Modelbuilder
 {
-    public class HelperMySQL
+    public class HelperMySql
     {
         #region public Variables
-        public string ConnectionStr { get; set; } = string.Empty;
+        public string ConnectionStr { get; set; }
 
-        public string DbBrandTable = "brand";
-        public string DbCategoryTable = "category";
-        public string DbCountryTable = "country";
-        public string DbCurrencyTable = "currency";
-        public string DbProductTable = "product";
-        public string DbProductSupplierTable = "productsupplier";
-        public string DbProjectTable = "project";
-        public string DbStorageTable = "storage";
-        public string DbSupplierTable = "supplier";
-        public string DbUnitTable = "unit";
-        public string DbWorktypeTable = "worktype";
-        public string DbContactTypeTable = "contacttype";
+        private const string DbBrandTable = "brand";
+        private const string DbCategoryTable = "category";
+        private const string DbCountryTable = "country";
+        private const string DbCurrencyTable = "currency";
+        private const string DbStorageTable = "storage";
+        private const string DbSupplierTable = "supplier";
+        private const string DbContactTypeTable = "contacttype";
 
-        public CultureInfo Culture = new("nl-NL");
+        private readonly CultureInfo Culture = new("nl-NL");
 
         #endregion public Variables
 
         #region Connector to database
-        public HelperMySQL(string serverName, string databaseName, string username, string userPwd)
+        public HelperMySql(string serverName, string databaseName, string username, string userPwd)
         {
             ConnectionStr = string.Format("Server={0};Database={1};Uid={2};Pwd={3};", serverName, databaseName, username, userPwd);
         }
 
-        public HelperMySQL(string serverName, int portNumber, string databaseName, string username, string userPwd)
+        public HelperMySql(string serverName, int portNumber, string databaseName, string username, string userPwd)
         {
             ConnectionStr = string.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4};", serverName, portNumber, databaseName, username, userPwd);
         }
@@ -891,7 +881,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij toegevoegd.");
+                    result = "Rij toegevoegd.";
                 }
                 else
                 {
@@ -901,7 +891,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (UpdateTblSupplier - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -926,7 +916,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij toegevoegd.");
+                    result = "Rij toegevoegd.";
                 }
                 else
                 {
@@ -971,7 +961,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -1305,7 +1295,7 @@ namespace Modelbuilder
             switch (Base)
             {
                 case "Brand":
-                    sqlText = "SELECT brand_Name, brand_Id FROM brand ORDER by brand_Id";
+                    sqlText = "SELECT Name, Id FROM brand ORDER by Id";
                     break;
                 default:
                     sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
@@ -1500,8 +1490,8 @@ namespace Modelbuilder
                 TableName = DatabaseTable
             };
 
-            dbConnection.SqlSelectionString = "brand_Name, brand_Id";
-            dbConnection.SqlOrderByString = "brand_Id";
+            dbConnection.SqlSelectionString = "Name, Id";
+            dbConnection.SqlOrderByString = "Name";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
@@ -1560,7 +1550,7 @@ namespace Modelbuilder
             public string currencySymbol { get; set; }
             public string currencyId { get; set; }
         }
-         #endregion
+        #endregion
 
         #region Create object for all storage locations in table for dropdown
         public class Storage

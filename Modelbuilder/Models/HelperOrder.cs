@@ -1,16 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Diagnostics;
-using ConnectionNamespace;
-using Org.BouncyCastle.Math;
-using static Modelbuilder.HelperOrder;
-using System.Windows.Controls;
 
 namespace Modelbuilder;
 
@@ -22,17 +10,17 @@ internal class HelperOrder
     /// ***************************************************************************************
     ///   Table Fieldname           	Variable            Parameter      		Type
     ///   -----------------------------------------------------------------------------------
-    ///   order_Id						Id					@Id					int
-    ///   order_SupplierId				SupplierId			@SupplierId			int
-    ///   order_SupplierName            SupplierName        @SupplierName       varchar
-    ///   order_Date 					OrderDate			@OrderDate			date
-    ///   order_CurrencySymbol 			CurrencySymbol		@CurrencySymbol		string(2)
-    ///   order_CurrencyConversionRate 	ConversionRate		@ConversionRate		double (6.4)
-    ///   order_ShippingCosts 			ShippingCosts		@ShippingCosts		double (6,2)
-    ///   order_OrderCosts 				OrderCosts			@OrderCosts			double (6,2)
-    ///   order_Memo 					OrderMemo				@OrderMemo				string
-    ///   order_Closed 					OrderClosed			@OrderClosed		bool (0 or 1)
-    ///   order_ClosedDate 				OrderClosedDate		@OrderClosedDate	date
+    ///   Id						Id					@Id					int
+    ///   SupplierId				SupplierId			@SupplierId			int
+    ///   SupplierName              SupplierName        @SupplierName       varchar
+    ///   Date 					    OrderDate			@OrderDate			date
+    ///   CurrencySymbol 			CurrencySymbol		@CurrencySymbol		string(2)
+    ///   CurrencyConversionRate 	ConversionRate		@ConversionRate		double (6.4)
+    ///   ShippingCosts 			ShippingCosts		@ShippingCosts		double (6,2)
+    ///   OrderCosts 				OrderCosts			@OrderCosts			double (6,2)
+    ///   Memo 					    OrderMemo			@OrderMemo			string
+    ///   Closed 					OrderClosed			@OrderClosed		bool (0 or 1)
+    ///   ClosedDate 				OrderClosedDate		@OrderClosedDate	date
     /// ***************************************************************************************
 
     /// ***************************************************************************************
@@ -40,24 +28,32 @@ internal class HelperOrder
     /// ***************************************************************************************
     ///   Table Fieldname               Variable            Parameter           Type
     ///   ----------------------------------------------------------------------------------
-    ///   orderline_Id                  Id                  @Id                 int
-    ///   orderline_OrderId             OrderId             @OrderId            int
-    ///   orderline_ProductId           ProductId           @ProductId          int
-    ///   orderline_ProductName         ProductName         @ProductName        varchar
-    ///   orderline_ProjectId           ProjectId           @ProjectId          int
-    ///   orderline_ProjectName         ProjectName         @ProjectName        varchar
-    ///   orderline_CategoryId          CategoryId          @CategoryId         int
-    ///   orderline_CategoryName        CategoryName        @CategoryName       varchar
-    ///   orderline_Number              Number              @Number             double
-    ///   orderline_Price               Price               @Price              double
-    ///   orderline_RealRowTotal        RealRowTotal        @RealRowTot         double
-    ///   orderline_Closed              RowClosed           @RowClosed          bool (0 or 1)
-    ///   orderline_ClosedDate          RowClosedDate       @RowClosedDate      date
+    ///   Id                  Id                  @Id                 int
+    ///   OrderId             OrderId             @OrderId            int
+    ///   ProductId           ProductId           @ProductId          int
+    ///   ProductName         ProductName         @ProductName        varchar
+    ///   ProjectId           ProjectId           @ProjectId          int
+    ///   ProjectName         ProjectName         @ProjectName        varchar
+    ///   CategoryId          CategoryId          @CategoryId         int
+    ///   CategoryName        CategoryName        @CategoryName       varchar
+    ///   Number              Number              @Number             double
+    ///   Price               Price               @Price              double
+    ///   RealRowTotal        RealRowTotal        @RealRowTot         double
+    ///   Closed              RowClosed           @RowClosed          bool (0 or 1)
+    ///   ClosedDate          RowClosedDate       @RowClosedDate      date
     /// ***************************************************************************************
+    /// 
+    /// Examples how to use joins to get values from different tables
+    /// Give me a list of all products where the supplier has a price for a product
+    /// SELECT product_Name, productsupplier_SupplierName, product_Price, productsupplier_ProductPrice FROM product INNER JOIN productsupplier ON product_Id = productSupplier_ProductId
+    ///
+    /// Give me a list with brandnames for all products
+    /// SELECT product_Name, brand1_Name FROM product INNER JOIN brand ON product_BrandId = brand1_Id
+
     #endregion Available databasefields
 
     #region public Variables
-    public string ConnectionStr { get; set; } = string.Empty;
+    public string ConnectionStr { get; set; }
 
     public string DbCategoryTable = "category";
     public string DbOrderTable = "supplyorder";
@@ -167,7 +163,6 @@ internal class HelperOrder
     #region Get Data from Table: Currency (GetConversionrate)
     public string GetConversionRate(int Id = 0)
     {
-        DataTable dt = new DataTable();
         string sqlText = string.Empty;
         string resultString = String.Empty;
         float resultFloat = 0;
@@ -190,7 +185,7 @@ internal class HelperOrder
 
         resultFloat = (float)cmd.ExecuteScalar();
 
-        resultString=resultFloat.ToString();   
+        resultString = resultFloat.ToString();
 
         return resultString;
     }
@@ -230,10 +225,10 @@ internal class HelperOrder
                 resultString = ((int)cmd.ExecuteScalar()).ToString();
                 break;
             case "string":
-                resultString= (string)cmd.ExecuteScalar().ToString();
+                resultString = cmd.ExecuteScalar().ToString();
                 break;
             default:
-                resultString = (string)cmd.ExecuteScalar();
+                resultString = cmd.ExecuteScalar().ToString();
                 break;
         }
 
@@ -299,9 +294,8 @@ internal class HelperOrder
     {
         string sqlText = string.Empty;
         string resultString = String.Empty;
-        // SELECT SUM(quantityOrdered * priceEach)  orderTotal FROM orderdetails WHERE orderNumber = 10100;
         sqlText = "SELECT SUM(orderline_Number * orderline_Price) RowTotal FROM supplyorderline WHERE orderline_OrderId = @OrderId ";
- 
+
         MySqlConnection con = new MySqlConnection(ConnectionStr);
 
         con.Open();
@@ -335,7 +329,7 @@ internal class HelperOrder
             if (rowsAffected > 0)
             {
 
-                result = String.Format("Rij toegevoegd.");
+                result = "Rij toegevoegd.";
             }
             else
             {
@@ -345,7 +339,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Error (UpdateTblOrder - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -369,7 +363,7 @@ internal class HelperOrder
             if (rowsAffected > 0)
             {
 
-                result = String.Format("Rij toegevoegd.");
+                result = "Rij toegevoegd.";
             }
             else
             {
@@ -379,7 +373,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Error (UpdateTblOrderline - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -406,7 +400,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Fout (UpdateTblOrder - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -417,13 +411,13 @@ internal class HelperOrder
         return result;
     }
     #endregion Update Table: Supplyorder
-    
+
     #region Update Table: SupplyOrderline
     public string UpdateTblOrderline(int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderLineId)
     {
         string result = string.Empty;
         string sqlText = "UPDATE supplyorderline SET orderline_OrderId = @OrderId, orderline_SupplierId = @SupplierId, orderline_ProductId = @ProductId, orderline_ProductName = @ProductName, orderline_ProjectId = @ProjectId, orderline_ProjectName = @ProjectName, orderline_CategoryId = @CategoryId, orderline_CategoryName = @CategoryName, orderline_Number = @Number, orderline_Price = @Price WHERE orderline_Id = @OrderlineId;";
-        
+
         try
         {
             int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, SupplierId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price, OrderLineId);
@@ -431,7 +425,7 @@ internal class HelperOrder
             if (rowsAffected > 0)
             {
 
-                result = String.Format("Rij toegevoegd.");
+                result = "Rij toegevoegd.";
             }
             else
             {
@@ -441,7 +435,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Error (UpdateTblOrderline - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -465,7 +459,7 @@ internal class HelperOrder
             if (rowsAffected > 0)
             {
 
-                result = String.Format("Rij verwijderd.");
+                result = "Rij verwijderd.";
             }
             else
             {
@@ -475,7 +469,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Error (DeleteTblSupplyOrder - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -509,7 +503,7 @@ internal class HelperOrder
             if (rowsAffected > 0)
             {
 
-                result = String.Format("Rij verwijderd.");
+                result = "Rij verwijderd.";
             }
             else
             {
@@ -519,7 +513,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Error (DeleteTblSupplyOrderline - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -535,7 +529,6 @@ internal class HelperOrder
     public string UpdateSupplierTblOrderline(int OrderId, int SupplierId)
     {
         string result = string.Empty;
-        //UPDATE supplyorderline SET orderline_SupplierId = 6 WHERE orderline_OrderId = 1;
         string sqlText = "UPDATE supplyorderline SET orderline_SupplierId = @SupplierId WHERE orderline_OrderId = @OrderId;";
 
         try
@@ -548,7 +541,7 @@ internal class HelperOrder
         catch (MySqlException ex)
         {
             Debug.WriteLine("Fout (UpdateSupplierTblOrderline - MySqlException): " + ex.Message);
-            throw ex;
+            throw;
         }
         catch (Exception ex)
         {
@@ -580,7 +573,7 @@ internal class HelperOrder
             cmd.Parameters.Add("@ShippingCosts", MySqlDbType.Double).Value = ShippingCosts;
             cmd.Parameters.Add("@OrderCosts", MySqlDbType.Double).Value = OrderCosts;
             cmd.Parameters.Add("@ConversionRate", MySqlDbType.Double).Value = ConversionRate;
-                
+
             // Date parameters
             cmd.Parameters.Add("@OrderDate", MySqlDbType.Date).Value = DBNull.Value;
 
@@ -675,7 +668,7 @@ internal class HelperOrder
                 // double parameters
                 cmd.Parameters.Add("@Number", MySqlDbType.Double).Value = Number;
                 cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = Price;
-    
+
                 // Add VarChar values
                 cmd.Parameters.Add("@ProductName", MySqlDbType.VarChar).Value = ProductName;
                 cmd.Parameters.Add("@ProjectName", MySqlDbType.VarChar).Value = ProjectName;
@@ -704,7 +697,7 @@ internal class HelperOrder
             {
                 cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
                 cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
-                
+
                 result = cmd.ExecuteNonQuery();
             }
             con.Close();
@@ -786,7 +779,7 @@ internal class HelperOrder
                 SupplierCurrencySymbol = dtSelection.Rows[i][2].ToString(),
                 SupplierCurrencyId = int.Parse(dtSelection.Rows[i][3].ToString(), Culture)
             });
-        };
+        }
         return supplierList;
     }
     #endregion Fill Supplier dropdown
@@ -813,7 +806,7 @@ internal class HelperOrder
                 ProjectName = dtSelection.Rows[i][0].ToString(),
                 ProjectId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
             });
-        };
+        }
         return projectList;
     }
     #endregion Fill the Project dropdown
@@ -849,7 +842,7 @@ internal class HelperOrder
                     ProductId = int.Parse(dtSelection.Rows[i - 1][1].ToString(), Culture)
                 });
             }
-        };
+        }
         return productList;
     }
     #endregion Fill the Project dropdown
@@ -877,7 +870,7 @@ internal class HelperOrder
                 CategoryId = int.Parse(dtCategorySelection.Rows[i][1].ToString(), Culture)
             });
 
-        };
+        }
         return categoryList;
     }
     #endregion

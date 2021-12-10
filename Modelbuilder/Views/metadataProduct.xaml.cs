@@ -1,7 +1,7 @@
 ﻿namespace Modelbuilder;
 public partial class metadataProduct : Page
 {
-    private HelperMySQL _helper;
+    private HelperMySql _helper;
     private DataTable _dt, _dtPS;
     private int _dbRowCount;
     private int _currentDataGridIndex, _currentDataGridPSIndex;
@@ -9,8 +9,8 @@ public partial class metadataProduct : Page
 
     public metadataProduct()
     {
-        var BrandList = new List<HelperMySQL.Brand>();
-        var SupplierList = new List<HelperMySQL.Supplier>();
+        var BrandList = new List<HelperMySql.Brand>();
+        var SupplierList = new List<HelperMySql.Supplier>();
         InitializeComponent();
 
         InitializeHelper();
@@ -50,7 +50,7 @@ public partial class metadataProduct : Page
 
         string tmpStr = "";
         //update status
-        if (_dt.Rows.Count != 1) { tmpStr = "s"; };
+        if (_dt.Rows.Count != 1) { tmpStr = "s"; }
         string msg = "Status: " + _dt.Rows.Count + " producten" + tmpStr + " ingelezen.";
         UpdateStatus(msg);
     }
@@ -97,7 +97,7 @@ public partial class metadataProduct : Page
     {
         if (_helper == null)
         {
-            _helper = new HelperMySQL("localhost", 3306, "modelbuilder", "root", "admin");
+            _helper = new HelperMySql("localhost", 3306, "modelbuilder", "root", "admin");
         }
     }
     #endregion
@@ -173,7 +173,7 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Brand in the combobox by default
-        foreach (HelperMySQL.Brand brand in cboxProductBrand.Items)
+        foreach (HelperMySql.Brand brand in cboxProductBrand.Items)
         {
             if (brand.BrandName == Row_Selected["product_BrandName"].ToString())
             {
@@ -251,7 +251,7 @@ public partial class metadataProduct : Page
 
 
         //Select the saved Supplier in the combobox by default
-        foreach (HelperMySQL.Supplier supplier in cboxProductSupplier.Items)
+        foreach (HelperMySql.Supplier supplier in cboxProductSupplier.Items)
         //foreach (Supplier supplier in cboxProductSupplier.Items)
         {
             if (supplier.SupplierName == Row_Selected["productSupplier_SupplierName"].ToString())
@@ -270,7 +270,7 @@ public partial class metadataProduct : Page
     #region The Selection in the ProductBrand combobox has changed
     private void cboxBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        foreach (HelperMySQL.Brand item in e.AddedItems)
+        foreach (HelperMySql.Brand item in e.AddedItems)
         {
             valueBrandId.Text = item.BrandId.ToString();
             valueBrandName.Text = item.BrandName;
@@ -281,7 +281,7 @@ public partial class metadataProduct : Page
     #region The Selection in the ProductSupplier combobox has changed
     private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        foreach (HelperMySQL.Supplier item in e.AddedItems)
+        foreach (HelperMySql.Supplier item in e.AddedItems)
         {
             valueProductSupplierSupplierId.Text = item.SupplierId.ToString();
             valueProductSupplierSupplierName.Text = item.SupplierName;
@@ -925,8 +925,8 @@ public partial class metadataProduct : Page
             TableName = DatabaseBrandTable
         };
 
-        dbBrandConnection.SqlSelectionString = "brand_Name, brand_Id";
-        dbBrandConnection.SqlOrderByString = "brand_Id";
+        dbBrandConnection.SqlSelectionString = "Name, Id";
+        dbBrandConnection.SqlOrderByString = "Id";
         dbBrandConnection.TableName = DatabaseBrandTable;
 
         DataTable dtBrandSelection = dbBrandConnection.LoadSpecificMySqlData();

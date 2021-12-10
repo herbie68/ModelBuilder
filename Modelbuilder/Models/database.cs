@@ -1,6 +1,6 @@
 ﻿using ConnectionNamespace;
+
 using MySql.Data.MySqlClient;
-using System.Data;
 
 namespace Modelbuilder
 {

@@ -1,19 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelbuilder
 {
     internal class HelperSupplier
     {
         #region public Variables
-        public string ConnectionStr { get; set; } = string.Empty;
+        public string ConnectionStr { get; set; }
 
         public string DbBrandTable = "brand";
         public string DbCategoryTable = "category";
@@ -58,7 +50,7 @@ namespace Modelbuilder
             }
         }
         #endregion Execute NonQuery
-       
+
         #region Execute Non Query Table: SupplierContact
         public int ExecuteNonQueryTblSupplierContact(string sqlText, int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail, int supplierContactContactId = 0)
         {
@@ -335,7 +327,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij toegevoegd.");
+                    result = "Rij toegevoegd.";
                 }
                 else
                 {
@@ -345,7 +337,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (UpdateTblSupplier - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -370,7 +362,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij toegevoegd.");
+                    result = "Rij toegevoegd.";
                 }
                 else
                 {
@@ -380,7 +372,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -404,7 +396,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij verwijderd.");
+                    result = "Rij verwijderd.";
                 }
                 else
                 {
@@ -414,7 +406,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (DeleteTblSupplier - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -439,7 +431,7 @@ namespace Modelbuilder
                 if (rowsAffected > 0)
                 {
 
-                    result = String.Format("Rij verwijderd.");
+                    result = "Rij verwijderd.";
                 }
                 else
                 {
@@ -449,7 +441,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -477,7 +469,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Fout (UpdateTblSupplier - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -505,7 +497,7 @@ namespace Modelbuilder
             catch (MySqlException ex)
             {
                 Debug.WriteLine("Fout (UpdateTblProductSupplier - MySqlException): " + ex.Message);
-                throw ex;
+                throw;
             }
             catch (Exception ex)
             {
@@ -520,7 +512,7 @@ namespace Modelbuilder
         #region Execute Query Table
         public DataTable ExecuteQuery(string Base)
         {
-            string result = string.Empty, sqlText = string.Empty;
+            string sqlText = string.Empty;
 
             switch (Base)
             {
@@ -572,7 +564,7 @@ namespace Modelbuilder
             {
                 CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
                     int.Parse(dtCountrySelection.Rows[i][1].ToString())));
-            };
+            }
             return CountryList;
         }
         #endregion
@@ -598,7 +590,7 @@ namespace Modelbuilder
             {
                 CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
                     dtCurrencySelection.Rows[i][1].ToString()));
-            };
+            }
             return CurrencyList;
         }
         #endregion
@@ -627,7 +619,7 @@ namespace Modelbuilder
                     SupplierCurrencySymbol = dtSelection.Rows[i][2].ToString(),
                     SupplierCurrencyId = int.Parse(dtSelection.Rows[i][3].ToString(), Culture)
                 });
-            };
+            }
             return supplierList;
         }
         #endregion
@@ -654,7 +646,7 @@ namespace Modelbuilder
                     ContactTypeName = dtSelection.Rows[i][0].ToString(),
                     ContactTypeId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
                 });
-            };
+            }
             return contactTypeList;
         }
         #endregion

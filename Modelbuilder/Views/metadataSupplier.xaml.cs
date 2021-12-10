@@ -1,15 +1,4 @@
-﻿using K4os.Compression.LZ4.Internal;
-
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-
+﻿
 using static Modelbuilder.HelperSupplier;
 
 namespace Modelbuilder
@@ -358,7 +347,7 @@ namespace Modelbuilder
 
             InitializeHelper();
 
-            var result = _helper.InsertTblSupplierContact(supplierId,  supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            var result = _helper.InsertTblSupplierContact(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
             UpdateStatus(result);
 
             // Get data from database
@@ -563,31 +552,31 @@ namespace Modelbuilder
                 supplierContactContactTypeName = valueContactTypeName.Text;
             }
 
-            if(inpSupplierContactPhone.Text != "")
-            { 
-                supplierContactContactPhone = inpSupplierContactPhone.Text; 
+            if (inpSupplierContactPhone.Text != "")
+            {
+                supplierContactContactPhone = inpSupplierContactPhone.Text;
             }
 
             if (inpSupplierContactMail.Text != "")
-            { 
-                supplierContactContactMail = inpSupplierContactMail.Text; 
+            {
+                supplierContactContactMail = inpSupplierContactMail.Text;
             }
 
             InitializeHelper();
             string result = string.Empty;
             result = _helper.UpdateTblSupplierContact(supplierContactContactId, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
             UpdateStatus(result);
-}
+        }
 
-#endregion
+        #endregion
 
         #region Fill Country dropdown
         static List<Country> CountryList()
         {
-        Database dbCountryConnection = new()
-        {
-        TableName = DatabaseCountryTable
-        };
+            Database dbCountryConnection = new()
+            {
+                TableName = DatabaseCountryTable
+            };
 
             dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
             dbCountryConnection.SqlOrderByString = "country_Id";

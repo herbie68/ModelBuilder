@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls.Primitives;
-using System.Windows.Documents;
-using System.Xml.Linq;
-
+﻿
 using static Modelbuilder.HelperOrder;
 
 namespace Modelbuilder.Views;
@@ -30,8 +26,8 @@ public partial class storageOrder : Page
         cboxCategory.ItemsSource = _helper.GetCategoryList(CategoryList);
 
         GetData();
-    } 
-     
+    }
+
     #region InitializeHelper (connect to database)
     private void InitializeHelper()
     {
@@ -167,8 +163,8 @@ public partial class storageOrder : Page
 
         foreach (Product product in cboxProduct.Items)
         {
-          if (product.ProductName == _tempProduct)
-                {
+            if (product.ProductName == _tempProduct)
+            {
                 cboxProduct.SelectedItem = product;
                 break;
             }
@@ -177,7 +173,7 @@ public partial class storageOrder : Page
 
         #region Select the saved Project in the Project combobox by default
         string _tempProject = Row_Selected["orderline_ProjectName"].ToString();
-        if (_tempProject=="") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
+        if (_tempProject == "") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
 
         foreach (Project project in cboxProject.Items)
         {
@@ -248,8 +244,8 @@ public partial class storageOrder : Page
         var SupplierHasProduct = _helper.CheckProductForSupplier(int.Parse(valueSupplierId.Text), int.Parse(valueProductId.Text));
 
         // If there is no price entered, retrieve the default price from the database
-        if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00") 
-        { 
+        if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00")
+        {
             // Check if product is in table for this supplier, if not return value will be -1
             string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
 
@@ -259,14 +255,14 @@ public partial class storageOrder : Page
             }
             else
             {
-                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");                
+                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");
             }
 
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
         }
 
         // If there is no quantity entered, retrieve the default order quantity of the item
-        if(inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
+        if (inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
         {
             inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_StandardOrderQuantity", "double")));
         }
@@ -275,8 +271,8 @@ public partial class storageOrder : Page
         {
             valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
             valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
-            if (valueCategoryName.Text != string.Empty) 
-            { 
+            if (valueCategoryName.Text != string.Empty)
+            {
                 cboxCategory.Text = valueCategoryName.Text;
 
                 foreach (Category category in cboxCategory.Items)
@@ -297,7 +293,7 @@ public partial class storageOrder : Page
     {
         //If no project is selected do nothing
         //if (cboxProject.Text == String.Empty) { return; }
-        
+
         foreach (HelperOrder.Project item in e.AddedItems)
         {
             valueProjectId.Text = item.ProjectId.ToString();
@@ -338,9 +334,9 @@ public partial class storageOrder : Page
         valueProductId.Text = string.Empty;
         valueProductName.Text = string.Empty;
         valueProjectId.Text = string.Empty;
-        valueProjectName.Text= string.Empty;
-        valueCategoryId.Text= string.Empty;
-        valueCategoryName.Text= string.Empty;
+        valueProjectName.Text = string.Empty;
+        valueCategoryId.Text = string.Empty;
+        valueCategoryName.Text = string.Empty;
         inpPrice.Text = "0,00";
         inpNumber.Text = "0,00";
 
@@ -374,7 +370,7 @@ public partial class storageOrder : Page
         grid.SelectedIndex = index;
 
         DataGridRow row = (DataGridRow)grid.ItemContainerGenerator.ContainerFromIndex(index);
-        if(index != 0)
+        if (index != 0)
         {
             row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
@@ -451,7 +447,8 @@ public partial class storageOrder : Page
 
         if (rowIndex == 0)
         {
-            OrderDetail_DataGrid.SelectedIndex = 0;        }
+            OrderDetail_DataGrid.SelectedIndex = 0;
+        }
         else
         {
             OrderDetail_DataGrid.SelectedIndex = rowIndex - 1;
@@ -692,7 +689,7 @@ public partial class storageOrder : Page
     }
 
 
-#endregion
+    #endregion
 
     #region Update Order row
     private void UpdateOrderRow(int OrderId, int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double CurrencyRate, double ShippingCosts, double OrderCosts, string OrderMemo)
@@ -715,16 +712,16 @@ public partial class storageOrder : Page
         {
             if (!msg.StartsWith("Error") && !msg.StartsWith("Status"))
             {
-                if (area == "order") 
+                if (area == "order")
                 { textBoxStatus.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
-                else { textBoxStatusSC.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); } 
+                else { textBoxStatusSC.Text = String.Format("Status: {0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
                 Debug.WriteLine(String.Format("{0} - Status: {1}", DateTime.Now.ToString("HH:mm:ss"), msg));
             }
             else
             {
                 if (area == "order")
                 { textBoxStatus.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
-                else { textBoxStatusSC.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); } 
+                else { textBoxStatusSC.Text = String.Format("{0} ({1})", msg, DateTime.Now.ToString("HH:mm:ss")); }
                 Debug.WriteLine(String.Format("{0} - {1}", DateTime.Now.ToString("HH:mm:ss"), msg));
             }
         }

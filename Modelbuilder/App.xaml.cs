@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using System.Windows;
-using System.Windows.Markup;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -12,7 +8,6 @@ namespace Modelbuilder
         App()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-NL");
-            //FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
     }
 }

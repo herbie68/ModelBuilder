@@ -1,9 +1,4 @@
-﻿using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     /// <summary>
     /// Interaction logic for metadataCountry.xaml

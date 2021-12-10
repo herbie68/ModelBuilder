@@ -1,27 +1,4 @@
-﻿using Microsoft.Win32;
-
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using static Modelbuilder.HelperMySQL;
-
-namespace Modelbuilder.Views
+﻿namespace Modelbuilder.Views
 {
     /// <summary>
     /// Interaction logic for metadataProject.xaml
@@ -136,16 +113,16 @@ namespace Modelbuilder.Views
             inpProjectName.Text = Row_Selected["project_Name"].ToString();
             inpProjectStartdate.Text = Row_Selected["project_Startdate"].ToString();
             inpProjectEnddate.Text = Row_Selected["project_Enddate"].ToString();
-            
+
             if (Row_Selected["project_Closed"].ToString() == "1")
-            { 
+            {
                 inpProjectClosed.IsChecked = true;
                 dispProjectExpEnddate.Visibility = Visibility.Hidden;
                 lblExpEndDate.Visibility = Visibility.Hidden;
                 inpProjectEnddate.Visibility = Visibility.Visible;
                 lblProjectEndDate.Visibility = Visibility.Visible;
             }
-            else 
+            else
             {
                 inpProjectClosed.IsChecked = false;
                 inpProjectEnddate.Visibility = Visibility.Hidden;
