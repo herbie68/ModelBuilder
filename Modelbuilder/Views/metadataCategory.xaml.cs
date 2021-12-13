@@ -2,13 +2,26 @@
 {
     public partial class metadataCategory : Page
     {
+        private HelperCategory _helper;
+        private const string BackSlash = "\\";
         private readonly string DatabaseTable = "category";
 
         public metadataCategory()
         {
             InitializeComponent();
+            InitializeHelper();
             BuildTree();
         }
+
+        #region InitializeHelper (connect to database)
+        private void InitializeHelper()
+        {
+            if (_helper == null)
+            {
+                _helper = new HelperCategory("localhost", 3306, "modelbuilder", "root", "admin");
+            }
+        }
+        #endregion InitializeHelper (connect to database)
 
         #region Command Binding CanExecute region
         private void CommonCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -20,7 +33,7 @@
         #region Buildtree
         public void BuildTree()
         {
-            Database dbConnection = new Database
+            Database dbConnection = new()
             {
                 TableName = DatabaseTable
             };
@@ -28,7 +41,7 @@
             _ = new DataTable();
 
             dbConnection.SqlSelectionString = "*";
-            dbConnection.SqlOrderByString = "category_Fullpath";
+            dbConnection.SqlOrderByString = "FullPath";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtCategoryCodes = dbConnection.LoadSpecificMySqlData();
@@ -37,16 +50,16 @@
             dsCategoryCodes.Tables.Add(dtCategoryCodes);
 
             // add a relationship
-            dsCategoryCodes.Relations.Add("rsParentChild", dsCategoryCodes.Tables[DatabaseTable].Columns["category_Id"], dsCategoryCodes.Tables[DatabaseTable].Columns["category_ParentId"]);
+            dsCategoryCodes.Relations.Add("rsParentChild", dsCategoryCodes.Tables[DatabaseTable].Columns["Id"], dsCategoryCodes.Tables[DatabaseTable].Columns["ParentId"]);
 
             foreach (DataRow row in dsCategoryCodes.Tables[DatabaseTable].Rows)
             {
-                if (row["category_ParentId"] == DBNull.Value)
+                if (row["ParentId"] == DBNull.Value)
                 {
                     TreeViewItem root = new TreeViewItem();
-                    root.Header = row["category_Name"].ToString();
-                    root.Name = "P" + row["category_Id"].ToString();
-                    root.Tag = row["category_Fullpath"].ToString();
+                    root.Header = row["Name"].ToString();
+                    root.Name = "P" + row["Id"].ToString();
+                    root.Tag = row["FullPath"].ToString();
                     treeViewCategory.Items.Add(root);
                     PopulateTree(row, root);
                 }
@@ -59,9 +72,9 @@
             foreach (DataRow row in dr.GetChildRows("rsParentChild"))
             {
                 TreeViewItem cChild = new TreeViewItem();
-                cChild.Header = row["category_Name"].ToString();
-                cChild.Name = "P" + row["category_ParentId"].ToString() + "C" + row["category_Id"].ToString(); // Store ID and Parent_Id in the tag
-                cChild.Tag = row["category_Fullpath"].ToString();
+                cChild.Header = row["Name"].ToString();
+                cChild.Name = "P" + row["ParentId"].ToString() + "C" + row["Id"].ToString(); // Store ID and Parent_Id in the tag
+                cChild.Tag = row["FullPath"].ToString();
                 pNode.Items.Add(cChild);
                 //Recursively build the tree
                 PopulateTree(row, cChild);
@@ -112,18 +125,17 @@
         #endregion SelectedItemChanged
 
         #region Add a Sub category
-
         private void ButtonAddSubCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new();
             dialogCategory.LabelDialogCategory.Text = "Subcategory toevoegen";
             dialogCategory.ShowDialog();
 
-            Database dbConnection = new();
+            HelperCategory dbConnection = new();
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`category_Name`, `category_FullPath`, `category_ParentId`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`, `ParentId`) " + "VALUES('" +
                 dialogCategory.diaLogCategoryValue + "', '" +
                 valueFullpath.Text.Replace("\\", "\\\\") + "\\\\" + dialogCategory.diaLogCategoryValue + "', '" +
                 valueId.Text + "');";
@@ -131,7 +143,6 @@
             dbConnection.TableName = DatabaseTable;
 
             int ID = dbConnection.UpdateMySqlDataRecord();
-            DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
 
             // Insert new value to the teeview so refresh of treeview not needed
             TreeViewItem cChild = new TreeViewItem();
@@ -141,11 +152,9 @@
             TreeViewItem ParentItem = treeViewCategory.SelectedItem as TreeViewItem;
             ParentItem.Items.Add(cChild);
         }
-
         #endregion Add a Sub category
 
         #region Add a Main (root) category
-
         private void ButtonAddMainCategory(object sender, RoutedEventArgs e)
         {
             dialogCategory dialogCategory = new dialogCategory();
@@ -156,12 +165,11 @@
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`category_Name`, `category_FullPath`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`) " + "VALUES('" +
                 dialogCategory.diaLogCategoryValue + "', '" +
                 dialogCategory.diaLogCategoryValue + "');";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
-            DataTable dtCategoryCodes = dbConnection.LoadMySqlData();
 
             // Insert new value to the teeview so refresh of treeview not needed
             TreeViewItem root = new();
@@ -170,7 +178,6 @@
             root.Tag = dialogCategory.diaLogCategoryValue;
             treeViewCategory.Items.Add(root);
         }
-
         #endregion Add a Main (root) category
 
         #region Delete a category, including all subs under the selected catogory
@@ -179,9 +186,8 @@
             Database dbConnection = new Database();
             dbConnection.Connect();
 
-            int ID = int.Parse(valueId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE category_Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
+            dbConnection.SqlCommandString = " WHERE FullPath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
             dbConnection.TableName = DatabaseTable;
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
@@ -210,20 +216,20 @@
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "category_Name = '" + inpCategoryName.Text + "' WHERE " +
-                    "category_Id = " + valueId.Text + ";";
+                    "Name = '" + inpCategoryName.Text + "' WHERE " +
+                    "Id = " + valueId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
                 _ = dbConnection.UpdateMySqlDataRecord();
 
-                string OriginalPath = valueParentFullpath.Text + "\\" + valueOriginalName.Text;
-                string NewPath = valueParentFullpath.Text + "\\" + inpCategoryName.Text;
+                string OriginalPath = valueParentFullpath.Text + BackSlash + valueOriginalName.Text;
+                string NewPath = valueParentFullpath.Text + BackSlash + inpCategoryName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "category_Fullpath = REPLACE(category_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
-                    NewPath.Replace("\\", "\\\\") + "') WHERE " +
-                    "category_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
+                    "FullPath = REPLACE(FullPath, '" + OriginalPath.Replace(BackSlash, "\\\\") + "', '" +
+                    NewPath.Replace(BackSlash, "\\\\") + "') WHERE " +
+                    "FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
 
                 dbConnection.TableName = DatabaseTable;
 
@@ -280,9 +286,6 @@
                 }
 
                 Panel itemsHostPanel = (Panel)VisualTreeHelper.GetChild(itemsPresenter, 0);
-
-                // Ensure that the generator for this panel has been created.
-                UIElementCollection children = itemsHostPanel.Children;
 
                 for (int i = 0, count = container.Items.Count; i < count; i++)
                 {
