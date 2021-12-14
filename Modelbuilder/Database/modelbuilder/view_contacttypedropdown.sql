@@ -5,19 +5,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `unit`;
-CREATE TABLE IF NOT EXISTS `unit` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `Modifief` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `unit_Name` (`Name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DELETE FROM `unit`;
-/*!40000 ALTER TABLE `unit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `unit` ENABLE KEYS */;
+DROP VIEW IF EXISTS `view_contacttypedropdown`;
+DROP TABLE IF EXISTS `view_contacttypedropdown`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_contacttypedropdown` AS select `c`.`Id` AS `Id`,`c`.`Name` AS `Name` from `contacttype` `c` order by `c`.`Name`;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

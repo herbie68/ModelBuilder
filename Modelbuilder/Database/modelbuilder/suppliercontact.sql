@@ -7,22 +7,24 @@
 
 DROP TABLE IF EXISTS `suppliercontact`;
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
-  `suppliercontact_Id` int NOT NULL AUTO_INCREMENT,
-  `suppliercontact_SupplierId` int DEFAULT '0',
-  `suppliercontact_Name` varchar(150) DEFAULT '',
-  `suppliercontact_TypeId` int DEFAULT '1',
-  `suppliercontact_TypeName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `suppliercontact_Mail` varchar(150) DEFAULT '',
-  `suppliercontact_Phone` varchar(150) DEFAULT '',
-  PRIMARY KEY (`suppliercontact_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Supplier_Id` int DEFAULT '0',
+  `Name` varchar(150) DEFAULT '',
+  `Contacttype_Id` int DEFAULT '1',
+  `Mail` varchar(150) DEFAULT '',
+  `Phone` varchar(150) DEFAULT '',
+  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`),
+  KEY `Supplier_Id` (`Supplier_Id`),
+  KEY `Contacttype_Id` (`Contacttype_Id`) /*!80000 INVISIBLE */,
+  KEY `Name` (`Name`),
+  CONSTRAINT `FK_SupContact_Contacttype_Id` FOREIGN KEY (`Contacttype_Id`) REFERENCES `contacttype` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_SupContact_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `suppliercontact`;
 /*!40000 ALTER TABLE `suppliercontact` DISABLE KEYS */;
-INSERT INTO `suppliercontact` (`suppliercontact_Id`, `suppliercontact_SupplierId`, `suppliercontact_Name`, `suppliercontact_TypeId`, `suppliercontact_TypeName`, `suppliercontact_Mail`, `suppliercontact_Phone`) VALUES
-	(1, 7, NULL, 4, 'Algemeen', 'info@hobby-en-modelbouw.nl', '0294-266587'),
-	(3, 5, 'Name5-1', 1, '', NULL, NULL),
-	(24, 1, 'test', 3, 'Administratie', NULL, NULL);
 /*!40000 ALTER TABLE `suppliercontact` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

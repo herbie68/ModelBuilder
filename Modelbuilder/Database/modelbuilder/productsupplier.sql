@@ -7,24 +7,27 @@
 
 DROP TABLE IF EXISTS `productsupplier`;
 CREATE TABLE IF NOT EXISTS `productsupplier` (
-  `productSupplier_Id` int NOT NULL AUTO_INCREMENT,
-  `productSupplier_ProductId` int NOT NULL DEFAULT '0',
-  `productSupplier_SupplierId` int NOT NULL DEFAULT '0',
-  `productSupplier_SupplierName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `productSupplier_CurrencyId` int NOT NULL DEFAULT '0',
-  `productSupplier_CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `productSupplier_ProductNumber` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `productSupplier_ProductName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `productSupplier_ProductPrice` double NOT NULL DEFAULT '0',
-  `productSupplier_Default` varchar(1) DEFAULT '',
-  PRIMARY KEY (`productSupplier_Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Product_Id` int NOT NULL DEFAULT '0',
+  `Supplier_Id` int NOT NULL DEFAULT '0',
+  `Currency_Id` int NOT NULL DEFAULT '0',
+  `ProductNumber` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Price` double NOT NULL DEFAULT '0',
+  `Default` varchar(1) DEFAULT '',
+  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`) USING BTREE,
+  KEY `Product_Id` (`Product_Id`) /*!80000 INVISIBLE */,
+  KEY `Supplier_Id` (`Supplier_Id`),
+  KEY `Currency_Id` (`Currency_Id`),
+  CONSTRAINT `FK_ProdSupplier_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ProdSupplier_Product_Id` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ProdSupplier_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
 
 DELETE FROM `productsupplier`;
 /*!40000 ALTER TABLE `productsupplier` DISABLE KEYS */;
-INSERT INTO `productsupplier` (`productSupplier_Id`, `productSupplier_ProductId`, `productSupplier_SupplierId`, `productSupplier_SupplierName`, `productSupplier_CurrencyId`, `productSupplier_CurrencySymbol`, `productSupplier_ProductNumber`, `productSupplier_ProductName`, `productSupplier_ProductPrice`, `productSupplier_Default`) VALUES
-	(11, 7, 6, 'Modelbouw Krikke', 1, '€', '123456', 'Proxxon Bankschroef', 29.5, '*'),
-	(12, 7, 5, 'Modelbouw-Dordrecht', 1, '€', 'TT5537', 'Bankschroef', 32.5, '');
 /*!40000 ALTER TABLE `productsupplier` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

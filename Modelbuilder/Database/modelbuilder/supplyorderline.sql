@@ -7,35 +7,35 @@
 
 DROP TABLE IF EXISTS `supplyorderline`;
 CREATE TABLE IF NOT EXISTS `supplyorderline` (
-  `orderline_Id` int NOT NULL AUTO_INCREMENT,
-  `orderline_OrderId` int NOT NULL DEFAULT '0',
-  `orderline_SupplierId` int NOT NULL DEFAULT '0',
-  `orderline_ProductId` int DEFAULT '0',
-  `orderline_ProductName` varchar(150) DEFAULT '',
-  `orderline_ProjectId` int DEFAULT '0',
-  `orderline_ProjectName` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `orderline_CategoryId` int DEFAULT '0',
-  `orderline_CategoryName` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `orderline_Number` double(6,2) DEFAULT '0.00',
-  `orderline_Price` double(6,2) DEFAULT '0.00',
-  `orderline_RealRowTotal` double(6,2) DEFAULT '0.00',
-  `orderline_Closed` tinyint DEFAULT '0',
-  `orderline_ClosedDate` date DEFAULT NULL,
-  PRIMARY KEY (`orderline_Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Supplyorder_Id` int NOT NULL DEFAULT '0',
+  `Supplier_Id` int NOT NULL DEFAULT '0',
+  `Product_Id` int DEFAULT '0',
+  `SupplierProductName` varchar(150) DEFAULT '',
+  `Project_Id` int DEFAULT '0',
+  `Category_Id` int DEFAULT '0',
+  `Amount` double(6,2) DEFAULT '0.00',
+  `Price` double(6,2) DEFAULT '0.00',
+  `RealRowTotal` double(6,2) DEFAULT '0.00',
+  `Closed` tinyint DEFAULT '0',
+  `ClosedDate` date DEFAULT NULL,
+  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`) USING BTREE,
+  KEY `FK_OrderRow_Supplyorder_Id` (`Supplyorder_Id`),
+  KEY `FK_OrderRow_Supplier_Id` (`Supplier_Id`),
+  KEY `FK_OrderRow_Product_Id` (`Product_Id`),
+  KEY `FK_OrderRow_Project_Id` (`Project_Id`),
+  KEY `FK_OrderRow_Category_Id` (`Category_Id`),
+  CONSTRAINT `FK_OrderRow_Category_Id` FOREIGN KEY (`Category_Id`) REFERENCES `category` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Product_Id` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Project_Id` FOREIGN KEY (`Project_Id`) REFERENCES `project` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Supplyorder_Id` FOREIGN KEY (`Supplyorder_Id`) REFERENCES `supplyorder` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorderline`;
 /*!40000 ALTER TABLE `supplyorderline` DISABLE KEYS */;
-INSERT INTO `supplyorderline` (`orderline_Id`, `orderline_OrderId`, `orderline_SupplierId`, `orderline_ProductId`, `orderline_ProductName`, `orderline_ProjectId`, `orderline_ProjectName`, `orderline_CategoryId`, `orderline_CategoryName`, `orderline_Number`, `orderline_Price`, `orderline_RealRowTotal`, `orderline_Closed`, `orderline_ClosedDate`) VALUES
-	(6, 2, 5, 9, 'Potlood', 1, 'Silhouet (Groningen 1893)', 520, 'Afwerkingerking', 3.00, 1.00, 0.00, 0, NULL),
-	(7, 2, 5, 7, 'Proxxon bankschroef 150mm', 0, '', 0, '', 1.00, 2.50, 0.00, 0, NULL),
-	(8, 2, 5, 7, 'Proxxon bankschroef 150mm', 2, 'Yacht Mary', 0, '', 1.00, 12.50, 0.00, 0, NULL),
-	(10, 2, 5, 7, 'Proxxon bankschroef 150mm', 1, 'Silhouet (Groningen 1893)', 0, '', 1.00, 32.50, 0.00, 0, NULL),
-	(13, 2, 5, 9, 'Potlood', 3, 'Zuiderzee Botter', 513, 'Penselen', 1.00, 32.50, 0.00, 0, NULL),
-	(14, 2, 5, 9, 'Potlood', 1, 'Silhouet (Groningen 1893)', 510, 'Afwerkingerking', 2.00, 1.00, 0.00, 0, NULL),
-	(22, 2, 5, 0, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0, NULL),
-	(23, 3, 5, 0, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0, NULL),
-	(24, 3, 5, 7, 'Proxxon bankschroef 150mm', 1, 'Silhouet (Groningen 1893)', 0, '', 1.00, 32.50, 0.00, 0, NULL);
 /*!40000 ALTER TABLE `supplyorderline` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

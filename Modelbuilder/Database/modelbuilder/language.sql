@@ -10,16 +10,14 @@ CREATE TABLE IF NOT EXISTS `language` (
   `language_Id` int NOT NULL AUTO_INCREMENT,
   `language_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `language_Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`language_Id`) USING BTREE,
   UNIQUE KEY `language_code` (`language_Code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `language`;
 /*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` (`language_Id`, `language_Code`, `language_Name`) VALUES
-	(1, 'NL', 'Nederlands'),
-	(2, 'EN', 'English'),
-	(3, 'DE', 'Deutsch');
 /*!40000 ALTER TABLE `language` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

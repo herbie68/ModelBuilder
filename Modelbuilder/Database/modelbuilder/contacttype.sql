@@ -7,18 +7,21 @@
 
 DROP TABLE IF EXISTS `contacttype`;
 CREATE TABLE IF NOT EXISTS `contacttype` (
-  `contacttype_Id` int NOT NULL AUTO_INCREMENT,
-  `contacttype_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  PRIMARY KEY (`contacttype_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  `Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`),
+  KEY `Name` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `contacttype`;
 /*!40000 ALTER TABLE `contacttype` DISABLE KEYS */;
-INSERT INTO `contacttype` (`contacttype_Id`, `contacttype_Name`) VALUES
-	(1, ''),
-	(2, 'Verkoop'),
-	(3, 'Administratie'),
-	(4, 'Algemeen');
+INSERT INTO `contacttype` (`Id`, `Name`, `Created`, `Modified`) VALUES
+	(1, '', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
+	(2, 'Verkoop', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
+	(3, 'Administratie', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
+	(4, 'Algemeen', '2021-12-14 11:57:57', '2021-12-14 11:57:57');
 /*!40000 ALTER TABLE `contacttype` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
