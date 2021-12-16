@@ -2,7 +2,7 @@
 {
     public partial class metadataCategory : Page
     {
-        private HelperCategory _helper;
+        private HelperMySql _helper;
         private const string BackSlash = "\\";
         private readonly string DatabaseTable = "category";
 
@@ -18,7 +18,7 @@
         {
             if (_helper == null)
             {
-                _helper = new HelperCategory("localhost", 3306, "modelbuilder", "root", "admin");
+                _helper = new HelperMySql("localhost", 3306, "modelbuilder", "root", "admin");
             }
         }
         #endregion InitializeHelper (connect to database)
@@ -131,7 +131,7 @@
             dialogCategory.LabelDialogCategory.Text = "Subcategory toevoegen";
             dialogCategory.ShowDialog();
 
-            HelperCategory dbConnection = new();
+            Database dbConnection = new();
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";

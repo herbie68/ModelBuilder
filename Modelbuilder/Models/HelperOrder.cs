@@ -1,7 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-
-namespace Modelbuilder;
-
+﻿namespace Modelbuilder;
 internal class HelperOrder
 {
     #region Available databasefields
@@ -97,7 +94,7 @@ internal class HelperOrder
     #region Get Data from Table: SupplyOrder
     public DataTable GetDataTblOrder(int OrderId = 0)
     {
-        DataTable dt = new DataTable();
+        DataTable dt = new();
         string sqlText = string.Empty;
 
         if (OrderId > 0)

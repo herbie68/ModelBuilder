@@ -31,18 +31,6 @@ namespace Modelbuilder
         public CultureInfo Culture = new("nl-NL");
         #endregion public Variables
 
-        #region Connector to database
-        public HelperCategory(string serverName, string databaseName, string username, string userPwd)
-        {
-            ConnectionStr = string.Format("Server={0};Database={1};Uid={2};Pwd={3};", serverName, databaseName, username, userPwd);
-        }
-
-        public HelperCategory(string serverName, int portNumber, string databaseName, string username, string userPwd)
-        {
-            ConnectionStr = string.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4};", serverName, portNumber, databaseName, username, userPwd);
-        }
-        #endregion Connector to database
-
         #region Execute Non Query
         public void ExecuteNonQuery(string sqlText)
         {
@@ -101,45 +89,5 @@ namespace Modelbuilder
             return rowsAffected;
         }
         #endregion
-
-        #region Fill Category dropdown
-        public List<Category> CategoryList()
-        {
-
-            Database dbCategoryConnection = new()
-            {
-                TableName = DbCategoryTable
-            };
-
-            dbCategoryConnection.SqlSelectionString = "Name, Id";
-            dbCategoryConnection.SqlOrderByString = "Id";
-            dbCategoryConnection.TableName = DbCategoryTable;
-
-            DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
-
-            List<Category> CategoryList = new();
-
-            for (int i = 0; i < dtCategorySelection.Rows.Count; i++)
-            {
-                CategoryList.Add(new Category(dtCategorySelection.Rows[i][0].ToString(),
-                    int.Parse(dtCategorySelection.Rows[i][1].ToString())));
-            };
-            return CategoryList;
-        }
-        #endregion Fill Category dropdown
-
-        #region Create object for all categories in table for dropdown
-        public class Category
-        {
-            public Category(string Name, int Id)
-            {
-                categoryName = Name;
-                categoryId = Id;
-            }
-
-            public string categoryName { get; set; }
-            public int categoryId { get; set; }
-        }
-        #endregion Create object for all categories in table for dropdown
     }
 }

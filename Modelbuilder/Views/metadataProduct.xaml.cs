@@ -1,7 +1,8 @@
 ﻿namespace Modelbuilder;
 public partial class metadataProduct : Page
 {
-    private HelperMySql _helper;
+    private HelperGeneral _helperGeneral;
+    private HelperProduct _helper;
     private DataTable _dt, _dtPS;
     private int _dbRowCount;
     private int _currentDataGridIndex, _currentDataGridPSIndex;
@@ -9,16 +10,19 @@ public partial class metadataProduct : Page
 
     public metadataProduct()
     {
-        var BrandList = new List<HelperMySql.Brand>();
-        var SupplierList = new List<HelperMySql.Supplier>();
+        var BrandList = new List<HelperGeneral.Brand>();
+        var SupplierList = new List<HelperGeneral.Supplier>();
+        var CategoryList = new List<HelperGeneral.Category>();
+        var StorageList =new List<HelperGeneral.Storage>();
+        var UnitList = new List<HelperGeneral.Unit>();
         InitializeComponent();
 
         InitializeHelper();
-        cboxProductCategory.ItemsSource = CategoryList();
-        cboxProductSupplier.ItemsSource = _helper.GetSupplierList(SupplierList);
-        cboxProductStorage.ItemsSource = StorageList();
-        cboxProductBrand.ItemsSource = _helper.GetBrandList(BrandList);
-        cboxProductUnit.ItemsSource = UnitList();
+        cboxProductCategory.ItemsSource = _helperGeneral.GetCategoryList(CategoryList);
+        cboxProductSupplier.ItemsSource = _helperGeneral.GetSupplierList(SupplierList);
+        cboxProductStorage.ItemsSource = _helperGeneral.GetStorageList(StorageList);
+        cboxProductBrand.ItemsSource = _helperGeneral.GetBrandList(BrandList);
+        cboxProductUnit.ItemsSource = _helperGeneral.GetUnitList(UnitList);
 
         GetData();
     }
@@ -95,9 +99,9 @@ public partial class metadataProduct : Page
     #region InitializeHelper (connect to database)
     private void InitializeHelper()
     {
-        if (_helper == null)
+        if (_helperGeneral == null)
         {
-            _helper = new HelperMySql("localhost", 3306, "modelbuilder", "root", "admin");
+            _helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
         }
     }
     #endregion

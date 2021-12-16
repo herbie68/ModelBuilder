@@ -69,7 +69,7 @@ namespace Modelbuilder
 
             // Get data from database
             _dt = _helper.GetDataTblSupplier();
-            //_dtSC = _helper.GetDataTblSupplierContact();
+            //_dtSC = _helperGeneral.GetDataTblSupplierContact();
 
             // Populate data in datagrid from datatable
             SupplierCode_DataGrid.DataContext = _dt;
