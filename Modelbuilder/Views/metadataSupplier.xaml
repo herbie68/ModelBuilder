@@ -211,7 +211,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Functie"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplierContactType" 
 									ItemTemplate="{StaticResource ContactTypeComboTemplate}" TextSearch.TextPath="ContactTypeName" 
-									SelectionChanged="cboxSupplierContactType_SelectionChanged" 
+									SelectionChanged="cboxSupplierSelectionChanged" 
 									Grid.Row="3" Width="360" SelectedIndex="0" IsEnabled="False">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
@@ -231,16 +231,16 @@
                         <!--#region Suppliers per product datagrid section-->
                         <StackPanel Grid.Column="1" Margin="5">
                             <!--#region Datagrid definition-->
-                            <DataGrid x:Name="SupplierContact_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
-							SelectionChanged="SupplierContact_DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="True"
+                            <DataGrid x:Name="DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
+							SelectionChanged="DataGrid_SelectionChanged" IsSynchronizedWithCurrentItem="True"
 							Padding="3" Height="270" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_Id}" />
-                                    <DataGridTextColumn Header="TypeId" Visibility="Hidden" Width="30" Binding="{Binding suppliercontact_TypeId}" />
-                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding suppliercontact_TypeName}" />
-                                    <DataGridTextColumn Header="Telefoon" Width="120" Binding="{Binding suppliercontact_Phone}" />
-                                    <DataGridTextColumn Header="E-Mail" Width="*" Binding="{Binding suppliercontact_Mail}" />
-                                    <DataGridTextColumn Header="Naam" Width="150" Binding="{Binding suppliercontact_Name}" />
+                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding Id}" />
+                                    <DataGridTextColumn Header="TypeId" Visibility="Hidden" Width="30" Binding="{Binding TypeId}" />
+                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding TypeName}" />
+                                    <DataGridTextColumn Header="Telefoon" Width="120" Binding="{Binding Phone}" />
+                                    <DataGridTextColumn Header="E-Mail" Width="*" Binding="{Binding Mail}" />
+                                    <DataGridTextColumn Header="Naam" Width="150" Binding="{Binding Name}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                             <!--#endregion-->
@@ -369,16 +369,16 @@
                       ItemsSource="{Binding}" SelectionChanged="SupplierCode_DataGrid_SelectionChanged"
                       Height="260">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding supplier_Code}" />
-                    <DataGridTextColumn Header="Naam" Width="180" Binding="{Binding supplier_Name}" />
-                    <DataGridTextColumn Header="Adres" Width="180" Binding="{Binding supplier_Address1}" />
-                    <DataGridTextColumn Header="Postcode" Width="80" Binding="{Binding supplier_Zip}" />
-                    <DataGridTextColumn Header="Plaats" Width="120" Binding="{Binding supplier_City}" />
-                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_CurrencyId}" />
-                    <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding supplier_CurrencySymbol}" />
-                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding supplier_CountryId}" />
-                    <DataGridTextColumn Header="Land" Width="*" Binding="{Binding supplier_CountryName}" />
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding Code}" />
+                    <DataGridTextColumn Header="Naam" Width="180" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Adres" Width="180" Binding="{Binding Address1}" />
+                    <DataGridTextColumn Header="Postcode" Width="80" Binding="{Binding Zip}" />
+                    <DataGridTextColumn Header="Plaats" Width="120" Binding="{Binding City}" />
+                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding CurrencyId}" />
+                    <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding CurrencySymbol}" />
+                    <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding CountryId}" />
+                    <DataGridTextColumn Header="Land" Width="*" Binding="{Binding CountryName}" />
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->

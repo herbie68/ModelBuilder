@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `Modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
   UNIQUE KEY `barnd_Name` (`Name`) USING BTREE,
-  KEY `brand_Name` (`Name`) USING BTREE
+  KEY `Name` (`Name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of brands for tools, kits, suplies and all other stuf';
 
 DELETE FROM `brand`;

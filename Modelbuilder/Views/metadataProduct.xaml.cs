@@ -71,10 +71,10 @@ public partial class metadataProduct : Page
             DataRow row = _dt.Rows[index];
 
 
-            if (row["product_Memo"] != null && row["product_Memo"] != DBNull.Value)
+            if (row["Memo"] != null && row["Memo"] != DBNull.Value)
             {
                 //get value from DataTable
-                ContentProductMemo = row["product_Memo"].ToString();
+                ContentProductMemo = row["Memo"].ToString();
             }
 
             if (!String.IsNullOrEmpty(ContentProductMemo))
@@ -118,30 +118,30 @@ public partial class metadataProduct : Page
 
         GetMemo(dg.SelectedIndex);
 
-        var _Minimalstock = double.Parse(Row_Selected["product_MinimalStock"].ToString());
-        var _StandardOrderQuantity = double.Parse(Row_Selected["product_StandardOrderQuantity"].ToString());
-        var _Price = double.Parse(Row_Selected["product_Price"].ToString());
+        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString());
+        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString());
+        var _Price = double.Parse(Row_Selected["Price"].ToString());
 
-        valueProductId.Text = Row_Selected["product_Id"].ToString();
-        valueCategoryId.Text = Row_Selected["product_CategoryId"].ToString();
-        valueCategoryName.Text = Row_Selected["product_CategoryName"].ToString();
-        valueStorageId.Text = Row_Selected["product_StorageId"].ToString();
-        valueStorageName.Text = Row_Selected["product_StorageName"].ToString();
-        valueBrandId.Text = Row_Selected["product_BrandId"].ToString();
-        valueBrandName.Text = Row_Selected["product_BrandName"].ToString();
-        valueUnitId.Text = Row_Selected["product_UnitId"].ToString();
-        valueUnitName.Text = Row_Selected["product_UnitName"].ToString();
-        valueImageRotationAngle.Text = Row_Selected["product_ImageRotationAngle"].ToString();
-        inpProductCode.Text = Row_Selected["product_Code"].ToString();
-        inpProductName.Text = Row_Selected["product_Name"].ToString();
+        valueProductId.Text = Row_Selected["Id"].ToString();
+        valueCategoryId.Text = Row_Selected["CategoryId"].ToString();
+        valueCategoryName.Text = Row_Selected["CategoryName"].ToString();
+        valueStorageId.Text = Row_Selected["StorageId"].ToString();
+        valueStorageName.Text = Row_Selected["StorageName"].ToString();
+        valueBrandId.Text = Row_Selected["BrandId"].ToString();
+        valueBrandName.Text = Row_Selected["BrandName"].ToString();
+        valueUnitId.Text = Row_Selected["UnitId"].ToString();
+        valueUnitName.Text = Row_Selected["UnitName"].ToString();
+        valueImageRotationAngle.Text = Row_Selected["ImageRotationAngle"].ToString();
+        inpProductCode.Text = Row_Selected["Code"].ToString();
+        inpProductName.Text = Row_Selected["Name"].ToString();
         inpProductMinimalStock.Text = _Minimalstock.ToString("#,##0.00;- #,##0.00");
         inpProductStandardOrderQuantity.Text = _StandardOrderQuantity.ToString("#,##0.00;- #,##0.00");
         inpProductPrice.Text = _Price.ToString("€ #,##0.00;€ - #,##0.00");
 
         // Retrieve Product Image            
-        if (Row_Selected["product_Image"].ToString() != "")
+        if (Row_Selected["Image"].ToString() != "")
         {
-            byte[] productImageByte = (byte[])Row_Selected["product_Image"];
+            byte[] productImageByte = (byte[])Row_Selected["Image"];
             var stream = new MemoryStream(productImageByte);
             PngBitmapDecoder decoder = new PngBitmapDecoder(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             BitmapSource source = decoder.Frames[0];
@@ -157,7 +157,7 @@ public partial class metadataProduct : Page
         // When there is an existing Product selected the supplier tabpage can be activated
         SupplierTab.IsEnabled = inpProductCode.Text != "";
 
-        if (Row_Selected["product_ProjectCosts"].ToString() == "0")
+        if (Row_Selected["ProjectCosts"].ToString() == "0")
         {
             chkProjectProjectCosts.IsChecked = false;
         }
@@ -169,7 +169,7 @@ public partial class metadataProduct : Page
         //Select the saved Category in the combobox by default
         foreach (Category category in cboxProductCategory.Items)
         {
-            if (category.categoryName == Row_Selected["product_CategoryName"].ToString())
+            if (category.categoryName == Row_Selected["CategoryName"].ToString())
             {
                 cboxProductCategory.SelectedItem = category;
                 break;
@@ -179,7 +179,7 @@ public partial class metadataProduct : Page
         //Select the saved Brand in the combobox by default
         foreach (HelperMySql.Brand brand in cboxProductBrand.Items)
         {
-            if (brand.BrandName == Row_Selected["product_BrandName"].ToString())
+            if (brand.BrandName == Row_Selected["BrandName"].ToString())
             {
                 cboxProductBrand.SelectedItem = brand;
             }
@@ -189,7 +189,7 @@ public partial class metadataProduct : Page
         //Select the saved Unit in the combobox by default
         foreach (Unit unit in cboxProductUnit.Items)
         {
-            if (unit.unitName == Row_Selected["product_UnitName"].ToString())
+            if (unit.unitName == Row_Selected["UnitName"].ToString())
             {
                 cboxProductUnit.SelectedItem = unit;
                 break;
@@ -199,7 +199,7 @@ public partial class metadataProduct : Page
         //Select the saved Storage location in the combobox by default
         foreach (Storage storage in cboxProductStorage.Items)
         {
-            if (storage.storageName == Row_Selected["product_StorageName"].ToString())
+            if (storage.storageName == Row_Selected["StorageName"].ToString())
             {
                 cboxProductStorage.SelectedItem = storage;
                 break;
@@ -234,17 +234,17 @@ public partial class metadataProduct : Page
 
         float _ProductPrice = 0;
 
-        if (Row_Selected["productSupplier_ProductPrice"].ToString() != "") { _ProductPrice = float.Parse(Row_Selected["productSupplier_ProductPrice"].ToString()); };
+        if (Row_Selected["ProductPrice"].ToString() != "") { _ProductPrice = float.Parse(Row_Selected["ProductPrice"].ToString()); };
 
-        valueProductSupplierId.Text = Row_Selected["productSupplier_Id"].ToString();
-        valueProductSupplierSupplierId.Text = Row_Selected["productSupplier_SupplierId"].ToString();
-        valueProductSupplierSupplierName.Text = Row_Selected["productSupplier_SupplierName"].ToString();
-        valueProductSupplierCurrencyId.Text = Row_Selected["productSupplier_CurrencyId"].ToString();
-        inpSupplierProductNumber.Text = Row_Selected["productSupplier_ProductNumber"].ToString();
-        inpSupplierProductName.Text = Row_Selected["productSupplier_ProductName"].ToString();
-        dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
+        valueProductSupplierId.Text = Row_Selected["Id"].ToString();
+        valueProductSupplierSupplierId.Text = Row_Selected["SupplierId"].ToString();
+        valueProductSupplierSupplierName.Text = Row_Selected["SupplierName"].ToString();
+        valueProductSupplierCurrencyId.Text = Row_Selected["CurrencyId"].ToString();
+        inpSupplierProductNumber.Text = Row_Selected["ProductNumber"].ToString();
+        inpSupplierProductName.Text = Row_Selected["ProductName"].ToString();
+        dispProductSupplierCurrencySymbol.Text = Row_Selected["CurrencySymbol"].ToString();
         inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
-        if (Row_Selected["productSupplier_Default"].ToString() == "*")
+        if (Row_Selected["Default"].ToString() == "*")
         {
             chkSupplierDefault.IsChecked = true;
         }
@@ -258,13 +258,13 @@ public partial class metadataProduct : Page
         foreach (HelperMySql.Supplier supplier in cboxProductSupplier.Items)
         //foreach (Supplier supplier in cboxProductSupplier.Items)
         {
-            if (supplier.SupplierName == Row_Selected["productSupplier_SupplierName"].ToString())
+            if (supplier.SupplierName == Row_Selected["SupplierName"].ToString())
             {
                 cboxProductSupplier.SelectedItem = supplier;
-                valueProductSupplierSupplierId.Text = Row_Selected["productSupplier_SupplierId"].ToString();
-                valueProductSupplierSupplierName.Text = Row_Selected["productSupplier_SupplierName"].ToString();
-                valueProductSupplierCurrencyId.Text = Row_Selected["productSupplier_CurrencyId"].ToString();
-                dispProductSupplierCurrencySymbol.Text = Row_Selected["productSupplier_CurrencySymbol"].ToString();
+                valueProductSupplierSupplierId.Text = Row_Selected["SupplierId"].ToString();
+                valueProductSupplierSupplierName.Text = Row_Selected["SupplierName"].ToString();
+                valueProductSupplierCurrencyId.Text = Row_Selected["CurrencyId"].ToString();
+                dispProductSupplierCurrencySymbol.Text = Row_Selected["CurrencySymbol"].ToString();
                 break;
             }
         }
@@ -272,7 +272,7 @@ public partial class metadataProduct : Page
     #endregion
 
     #region The Selection in the ProductBrand combobox has changed
-    private void cboxBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         foreach (HelperMySql.Brand item in e.AddedItems)
         {
@@ -283,7 +283,7 @@ public partial class metadataProduct : Page
     #endregion
 
     #region The Selection in the ProductSupplier combobox has changed
-    private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         foreach (HelperMySql.Supplier item in e.AddedItems)
         {
@@ -798,8 +798,8 @@ public partial class metadataProduct : Page
             TableName = DatabaseCategoryTable
         };
 
-        dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
-        dbCategoryConnection.SqlOrderByString = "category_Id";
+        dbCategoryConnection.SqlSelectionString = "Name, Id";
+        dbCategoryConnection.SqlOrderByString = "Id";
         dbCategoryConnection.TableName = DatabaseCategoryTable;
 
         DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
@@ -840,8 +840,8 @@ public partial class metadataProduct : Page
             TableName = DatabaseStorageTable
         };
 
-        dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
-        dbStorageConnection.SqlOrderByString = "storage_Id";
+        dbStorageConnection.SqlSelectionString = "Name, Id";
+        dbStorageConnection.SqlOrderByString = "Id";
         dbStorageConnection.TableName = DatabaseStorageTable;
 
         DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
@@ -886,9 +886,9 @@ public partial class metadataProduct : Page
             TableName = DatabaseSupplierTable
         };
 
-        //dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_CurrencySymbol, supplier_Id";
-        dbSupplierConnection.SqlSelectionString = "supplier_Name, supplier_CurrencySymbol, supplier_CurrencyId, supplier_Id";
-        dbSupplierConnection.SqlOrderByString = "supplier_Id";
+        //dbSupplierConnection.SqlSelectionString = "Name, CurrencySymbol, Id";
+        dbSupplierConnection.SqlSelectionString = "Name, CurrencySymbol, CurrencyId, Id";
+        dbSupplierConnection.SqlOrderByString = "Id";
         dbSupplierConnection.TableName = DatabaseSupplierTable;
 
         DataTable dtSupplierSelection = dbSupplierConnection.LoadSpecificMySqlData();
@@ -971,8 +971,8 @@ public partial class metadataProduct : Page
             TableName = DatabaseUnitTable
         };
 
-        dbUnitConnection.SqlSelectionString = "unit_Name, unit_Id";
-        dbUnitConnection.SqlOrderByString = "unit_Id";
+        dbUnitConnection.SqlSelectionString = "Name, Id";
+        dbUnitConnection.SqlOrderByString = "Id";
         dbUnitConnection.TableName = DatabaseUnitTable;
 
         DataTable dtUnitSelection = dbUnitConnection.LoadSpecificMySqlData();

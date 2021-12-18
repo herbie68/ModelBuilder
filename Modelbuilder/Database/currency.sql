@@ -7,18 +7,18 @@
 
 DROP TABLE IF EXISTS `currency`;
 CREATE TABLE IF NOT EXISTS `currency` (
-  `currency_Id` int NOT NULL AUTO_INCREMENT,
-  `currency_Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `currency_Symbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `currency_Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `currency_ConversionRate` double(6,4) DEFAULT '1.0000',
-  PRIMARY KEY (`currency_Id`) USING BTREE,
-  UNIQUE KEY `currency_Code` (`currency_Code`) USING BTREE
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Symbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ConversionRate` double(6,4) DEFAULT '1.0000',
+  PRIMARY KEY (`Id`) USING BTREE,
+  UNIQUE KEY `Code` (`Code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `currency`;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
-INSERT INTO `currency` (`currency_Id`, `currency_Code`, `currency_Symbol`, `currency_Name`, `currency_ConversionRate`) VALUES
+INSERT INTO `currency` (`Id`, `Code`, `Symbol`, `Name`, `ConversionRate`) VALUES
 	(1, 'EUR', '€', 'Euro', 1.0000),
 	(2, 'GBP', '£', 'Britse pond', 1.1079),
 	(3, 'USD', '$', 'Amerikaanse dollar', 0.8442),

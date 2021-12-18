@@ -131,7 +131,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Merk"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" 
                                                 ItemTemplate="{StaticResource BrandComboTemplate}" 
-                                                TextSearch.TextPath="brandName" SelectionChanged="cboxBrand_SelectionChanged"
+                                                TextSearch.TextPath="brandName" SelectionChanged="cboxSelectionChanged"
                                                 Grid.Row="1" Grid.Column="1" Width="350">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
@@ -361,7 +361,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Text="Leverancier"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier"  IsTabStop="False"
                                               ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="supplierName" 
-                                              SelectionChanged="cboxSupplier_SelectionChanged" 
+                                              SelectionChanged="cboxSelectionChanged" 
                                               Grid.Row="1" Width="360" SelectedIndex="0" IsEnabled="False">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
@@ -399,8 +399,8 @@
                                       SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged" 
                                       Padding="3" Height="265" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding productSupplier_ProductId}" />
-                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding productSupplier_Default}">
+                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding ProductId}" />
+                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding Default}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -408,11 +408,11 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding productSupplier_SupplierName}" />
-                                    <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding productSupplier_ProductNumber}" />
-                                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding productSupplier_ProductName}" />
-                                    <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding productSupplier_ProductCurrencySymbol}" />
-                                    <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding productSupplier_ProductPrice, StringFormat={}{0:n2}}">
+                                    <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding SupplierName}" />
+                                    <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding ProductNumber}" />
+                                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding ProductName}" />
+                                    <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding ProductCurrencySymbol}" />
+                                    <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding ProductPrice, StringFormat={}{0:n2}}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -477,12 +477,12 @@
                     Padding="3" SelectionChanged="ProductCode_DataGrid_SelectionChanged" Height="285" Margin="5,0"
                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding product_Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding product_Code}" />
-                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding product_Name}" />
-                    <DataGridTextColumn Header="Category" Width="180" Binding="{Binding product_CategoryName}" />
-                    <DataGridTextColumn Header="Locatie" Width="180" Binding="{Binding product_StorageName}" />
-                    <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding product_Pice}" />
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding Code}" />
+                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Category" Width="180" Binding="{Binding CategoryName}" />
+                    <DataGridTextColumn Header="Locatie" Width="180" Binding="{Binding StorageName}" />
+                    <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding Pice}" />
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->

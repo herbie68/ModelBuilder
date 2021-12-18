@@ -8,9 +8,9 @@
 DROP TABLE IF EXISTS `productsupplier`;
 CREATE TABLE IF NOT EXISTS `productsupplier` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Product_Id` int NOT NULL DEFAULT '0',
-  `Supplier_Id` int NOT NULL DEFAULT '0',
-  `Currency_Id` int NOT NULL DEFAULT '0',
+  `Id` int NOT NULL DEFAULT '0',
+  `Id` int NOT NULL DEFAULT '0',
+  `Id` int NOT NULL DEFAULT '0',
   `ProductNumber` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Price` double NOT NULL DEFAULT '0',
@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS `productsupplier` (
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
-  KEY `Product_Id` (`Product_Id`) /*!80000 INVISIBLE */,
-  KEY `Supplier_Id` (`Supplier_Id`),
-  KEY `Currency_Id` (`Currency_Id`),
-  CONSTRAINT `FK_ProdSupplier_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_ProdSupplier_Product_Id` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_ProdSupplier_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `Id` (`Id`) /*!80000 INVISIBLE */,
+  KEY `Id` (`Id`),
+  KEY `Id` (`Id`),
+  CONSTRAINT `FK_ProdId` FOREIGN KEY (`Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ProdId` FOREIGN KEY (`Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ProdId` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
 
 DELETE FROM `productsupplier`;

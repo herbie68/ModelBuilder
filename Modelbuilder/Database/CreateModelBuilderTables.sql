@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  UNIQUE INDEX `brand_Name` USING BTREE (`Name`) VISIBLE)
+  UNIQUE INDEX `Name` USING BTREE (`Name`) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `currency` (
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY USING BTREE (`Id`),
-  UNIQUE INDEX `currency_Code` USING BTREE (`Code`) VISIBLE)
+  UNIQUE INDEX `Code` USING BTREE (`Code`) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
@@ -103,14 +103,14 @@ DROP TABLE IF EXISTS `country` ;
 CREATE TABLE IF NOT EXISTS `country` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Code` VARCHAR(4) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
-  `Defaultcurrency_Symbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
+  `DefaultSymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
   `Name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `Defaultcurrency_Id` INT NULL DEFAULT NULL,
+  `DefaultId` INT NULL DEFAULT NULL,
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY USING BTREE (`Id`),
-  UNIQUE INDEX `country_Code_UNIQUE` USING BTREE (`Code`) VISIBLE,
-  CONSTRAINT `FK_Country_Currency_Id` FOREIGN KEY (`Defaultcurrency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE )
+  UNIQUE INDEX `Code_UNIQUE` USING BTREE (`Code`) VISIBLE,
+  CONSTRAINT `FK_Id` FOREIGN KEY (`DefaultId`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
@@ -149,38 +149,38 @@ CREATE TABLE IF NOT EXISTS `product` (
   `MinimalStock` DOUBLE(6,2) NULL DEFAULT '0.00',
   `StandardOrderQuantity` DOUBLE(6,2) NULL DEFAULT '0.00',
   `ProjectCosts` INT NULL DEFAULT '0',
-  `Unit_Id` INT NULL DEFAULT NULL,
+  `Id` INT NULL DEFAULT NULL,
   `ImageRotationAngle` VARCHAR(4) NULL DEFAULT '0',
   `Image` LONGBLOB NULL DEFAULT NULL,
-  `Brand_Id` INT NULL DEFAULT NULL,
-  `Category_Id` INT NULL DEFAULT NULL,
-  `Storage_Id` INT NULL DEFAULT NULL,
+  `Id` INT NULL DEFAULT NULL,
+  `Id` INT NULL DEFAULT NULL,
+  `Id` INT NULL DEFAULT NULL,
   `Memo` LONGTEXT NULL DEFAULT NULL,
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   UNIQUE INDEX `Code` (`Code` ASC) INVISIBLE,
-  INDEX `Brand_Id` (`Brand_Id` ASC) VISIBLE,
-  INDEX `Category_Id` (`Category_Id` ASC) INVISIBLE,
-  INDEX `Unit_Id` (`Unit_Id` ASC) INVISIBLE,
-  INDEX `Storage_Id` (`Storage_Id` ASC) VISIBLE,
-  CONSTRAINT `FK_Product_Brand_Id`
-    FOREIGN KEY (`Brand_Id`)
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  INDEX `Id` (`Id` ASC) INVISIBLE,
+  INDEX `Id` (`Id` ASC) INVISIBLE,
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `brand` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_Product_Category_Id`
-    FOREIGN KEY (`Category_Id`)
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `category` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_Product_Unit_Id`
-    FOREIGN KEY (`Unit_Id`)
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `unit` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_Product_Storage_Id`
-    FOREIGN KEY (`Storage_Id`)
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `storage` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -197,9 +197,9 @@ DROP TABLE IF EXISTS `productsupplier` ;
 
 CREATE TABLE IF NOT EXISTS `productsupplier` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Product_Id` INT NOT NULL DEFAULT '0',
-  `Supplier_Id` INT NOT NULL DEFAULT '0',
-  `Currency_Id` INT NOT NULL DEFAULT '0',
+  `Id` INT NOT NULL DEFAULT '0',
+  `Id` INT NOT NULL DEFAULT '0',
+  `Id` INT NOT NULL DEFAULT '0',
   `ProductNumber` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
   `Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
   `Price` DOUBLE NOT NULL DEFAULT '0',
@@ -207,21 +207,21 @@ CREATE TABLE IF NOT EXISTS `productsupplier` (
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY USING BTREE (`Id`),
-  INDEX `Product_Id` (`Product_Id` ASC) INVISIBLE,
-  INDEX `Supplier_Id` (`Supplier_Id` ASC) VISIBLE,
-  INDEX `Currency_Id` (`Currency_Id` ASC) VISIBLE,
-  CONSTRAINT `FK_ProdSupplier_Product_Id`
-    FOREIGN KEY (`Product_Id`)
+  INDEX `Id` (`Id` ASC) INVISIBLE,
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  CONSTRAINT `FK_ProdId`
+    FOREIGN KEY (`Id`)
     REFERENCES `product` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_ProdSupplier_Supplier_Id`
-    FOREIGN KEY (`Supplier_Id`)
+  CONSTRAINT `FK_ProdId`
+    FOREIGN KEY (`Id`)
     REFERENCES `supplier` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_ProdSupplier_Currency_Id`
-    FOREIGN KEY (`Currency_Id`)
+  CONSTRAINT `FK_ProdId`
+    FOREIGN KEY (`Id`)
     REFERENCES `currency` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -296,22 +296,22 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `MinShippingCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
   `OrderCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
   `Memo` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `Country_Id` INT NOT NULL DEFAULT '1',
-  `Currency_Id` INT NOT NULL DEFAULT '1',
+  `Id` INT NOT NULL DEFAULT '1',
+  `Id` INT NOT NULL DEFAULT '1',
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   UNIQUE INDEX `Code` (`Code` ASC) INVISIBLE,
   INDEX `Name` (`Name` ASC) INVISIBLE,
-  INDEX `Currency_Id` (`Currency_Id` ASC) INVISIBLE,
-  INDEX `Country_Id` (`Country_Id` ASC) VISIBLE,
-  CONSTRAINT `FK_Supplier_Currency_Id`
-    FOREIGN KEY (`Currency_Id`)
+  INDEX `Id` (`Id` ASC) INVISIBLE,
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `currency` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_Supplier_Country_Id`
-    FOREIGN KEY (`Country_Id`)
+  CONSTRAINT `FK_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `country` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -328,24 +328,24 @@ DROP TABLE IF EXISTS `suppliercontact` ;
 
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Supplier_Id` INT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
   `Name` VARCHAR(150) NULL DEFAULT '',
-  `Contacttype_Id` INT NULL DEFAULT '1',
+  `Id` INT NULL DEFAULT '1',
   `Mail` VARCHAR(150) NULL DEFAULT '',
   `Phone` VARCHAR(150) NULL DEFAULT '',
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  INDEX `Supplier_Id` (`Supplier_Id` ASC) VISIBLE,
-  INDEX `Contacttype_Id` (`Contacttype_Id` ASC) INVISIBLE,
+  INDEX `Id` (`Id` ASC) VISIBLE,
+  INDEX `Id` (`Id` ASC) INVISIBLE,
   INDEX `Name` (`Name` ASC) VISIBLE,
-  CONSTRAINT `FK_SupContact_Supplier_Id`
-    FOREIGN KEY (`Supplier_Id`)
+  CONSTRAINT `FK_SupContact_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `supplier` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_SupContact_Contacttype_Id`
-    FOREIGN KEY (`Contacttype_Id`)
+  CONSTRAINT `FK_SupContact_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `contacttype` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -362,8 +362,8 @@ DROP TABLE IF EXISTS `supplyorder` ;
 
 CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Supplier_Id` INT NULL DEFAULT '0',
-  `Currency_Id` INT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
   `OrderNumber` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
   `OrderDate` DATE NULL DEFAULT NULL,
   `CurrencySymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '€',
@@ -377,13 +377,13 @@ CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY USING BTREE (`Id`),
   INDEX `OrderNumber` (`OrderNumber`) VISIBLE,
-  CONSTRAINT `FK_Order_Supplier_Id`
-    FOREIGN KEY (`Supplier_Id`)
+  CONSTRAINT `FK_Order_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `supplier` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_Order_Currency_Id`
-    FOREIGN KEY (`Currency_Id`)
+  CONSTRAINT `FK_Order_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `currency` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -401,12 +401,12 @@ DROP TABLE IF EXISTS `supplyorderline` ;
 
 CREATE TABLE IF NOT EXISTS `supplyorderline` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Supplyorder_Id` INT NOT NULL DEFAULT '0',
-  `Supplier_Id` INT NOT NULL DEFAULT '0',
-  `Product_Id` INT NULL DEFAULT '0',
+  `Id` INT NOT NULL DEFAULT '0',
+  `Id` INT NOT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
   `SupplierProductName` VARCHAR(150) NULL DEFAULT '',
-  `Project_Id` INT NULL DEFAULT '0',
-  `Category_Id` INT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
+  `Id` INT NULL DEFAULT '0',
   `Amount` DOUBLE(6,2) NULL DEFAULT '0.00',
   `Price` DOUBLE(6,2) NULL DEFAULT '0.00',
   `RealRowTotal` DOUBLE(6,2) NULL DEFAULT '0.00',
@@ -415,28 +415,28 @@ CREATE TABLE IF NOT EXISTS `supplyorderline` (
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY USING BTREE (`Id`),
-  CONSTRAINT `FK_OrderRow_Supplyorder_Id`
-    FOREIGN KEY (`Supplyorder_Id`)
+  CONSTRAINT `FK_OrderRow_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `supplyorder` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Supplier_Id`
-    FOREIGN KEY (`Supplier_Id`)
+  CONSTRAINT `FK_OrderRow_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `supplier` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Product_Id`
-    FOREIGN KEY (`Product_Id`)
+  CONSTRAINT `FK_OrderRow_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `product` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Project_Id`
-    FOREIGN KEY (`Project_Id`)
+  CONSTRAINT `FK_OrderRow_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `project` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Category_Id`
-    FOREIGN KEY (`Category_Id`)
+  CONSTRAINT `FK_OrderRow_Id`
+    FOREIGN KEY (`Id`)
     REFERENCES `category` (`Id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -458,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `unit` (
   `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `Modifief` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  UNIQUE INDEX `unit_Name` (`Name` ASC) VISIBLE)
+  UNIQUE INDEX `Name` (`Name` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
@@ -493,7 +493,7 @@ DROP VIEW IF EXISTS `view_Product` ;
 CREATE OR REPLACE VIEW view_Product 
 	AS SELECT p.Name AS `Product`, p.Price AS `Price`, s.Name AS 'Supplier product', s.Price AS `Supplier price`
 		FROM product p
-			INNER JOIN productsupplier s ON p.Id = s.Product_Id
+			INNER JOIN productsupplier s ON p.Id = s.Id
 	ORDER BY p.Name;
 
 
@@ -544,9 +544,9 @@ DROP VIEW IF EXISTS `view_ProdBrandCatStorage` ;
 CREATE  OR REPLACE VIEW view_ProdBrandCatStorage 
 	AS SELECT p.id AS `ID`, p.name AS `Product`, b.name AS `Brand`, c.name AS `Category`, s.name AS `Supplier`
    	FROM product p
-			INNER JOIN brand b ON p.brand_id = b.id
-			INNER JOIN category c ON p.category_id = c.id
-			INNER JOIN storage s ON p.storage_id = s.id
+			INNER JOIN brand b ON p.id = b.id
+			INNER JOIN category c ON p.id = c.id
+			INNER JOIN storage s ON p.id = s.id
 	ORDER BY p.name;
 
 SET SQL_MODE=@OLD_SQL_MODE;

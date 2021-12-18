@@ -84,7 +84,7 @@
         #endregion Buildtree
 
         #region SelectedItemChanged
-        private void treeViewCategory_SelectedItemChanged(object sender, RoutedEventArgs e)
+        private void treeViewSelectedItemChanged(object sender, RoutedEventArgs e)
         {
             // Changed RoutedPropertyChangedEventArgs<object> e into RoutedEventArgs e
             TreeViewItem SelectedItem = treeViewCategory.SelectedItem as TreeViewItem;

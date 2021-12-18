@@ -8,8 +8,8 @@
 DROP TABLE IF EXISTS `supplyorder`;
 CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Supplier_Id` int DEFAULT '0',
-  `Currency_Id` int DEFAULT '0',
+  `Id` int DEFAULT '0',
+  `Id` int DEFAULT '0',
   `OrderNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `OrderDate` date DEFAULT NULL,
   `CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
@@ -23,10 +23,10 @@ CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
   KEY `OrderNumber` (`OrderNumber`),
-  KEY `FK_Order_Supplier_Id` (`Supplier_Id`),
-  KEY `FK_Order_Currency_Id` (`Currency_Id`),
-  CONSTRAINT `FK_Order_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_Order_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_Order_Id` (`Id`),
+  KEY `FK_Order_Id` (`Id`),
+  CONSTRAINT `FK_Order_Id` FOREIGN KEY (`Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_Order_Id` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorder`;

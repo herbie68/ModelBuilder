@@ -24,13 +24,13 @@ USE `ModelBuilder` ;
 DROP TABLE IF EXISTS `brand` ;
 
 CREATE TABLE IF NOT EXISTS `brand` (
-  `brand_Id` INT NOT NULL AUTO_INCREMENT,
-  `brand_Name` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
-  `brand_TimeStamp` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `brand_Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`brand_Id`),
-  UNIQUE INDEX `brand_Name` USING BTREE (`brand_Name`) VISIBLE,
-  INDEX `brand_Name` (`brand_Name` ASC) VISIBLE)
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `TimeStamp` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Name` USING BTREE (`Name`) VISIBLE,
+  INDEX `Name` (`Name` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8mb4
@@ -44,11 +44,11 @@ COMMENT = 'List of brands for tools, kits, suplies and all other stuf';
 DROP TABLE IF EXISTS `category` ;
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_Id` INT NOT NULL AUTO_INCREMENT,
-  `category_Name` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `category_Fullpath` VARCHAR(120) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `category_ParentId` INT NULL DEFAULT NULL,
-  PRIMARY KEY USING BTREE (`category_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Fullpath` VARCHAR(120) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `ParentId` INT NULL DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 782
 DEFAULT CHARACTER SET = utf8mb4
@@ -72,9 +72,9 @@ CREATE TABLE IF NOT EXISTS `timestamps` (
 DROP TABLE IF EXISTS `contacttype` ;
 
 CREATE TABLE IF NOT EXISTS `contacttype` (
-  `contacttype_Id` INT NOT NULL AUTO_INCREMENT,
-  `contacttype_Name` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  PRIMARY KEY (`contacttype_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
@@ -87,13 +87,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `country` ;
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `country_Id` INT NOT NULL AUTO_INCREMENT,
-  `country_Code` VARCHAR(4) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
-  `country_Defaultcurrency_Symbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
-  `country_Name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `country_Defaultcurrency_Id` INT NULL DEFAULT NULL,
-  PRIMARY KEY USING BTREE (`country_Id`),
-  UNIQUE INDEX `country_Code_UNIQUE` USING BTREE (`country_Code`) VISIBLE)
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Code` VARCHAR(4) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `DefaultSymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
+  `Name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `DefaultId` INT NULL DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`Id`),
+  UNIQUE INDEX `Code_UNIQUE` USING BTREE (`Code`) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8mb4
@@ -106,13 +106,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `currency` ;
 
 CREATE TABLE IF NOT EXISTS `currency` (
-  `currency_Id` INT NOT NULL AUTO_INCREMENT,
-  `currency_Code` VARCHAR(4) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
-  `currency_Symbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
-  `currency_Name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
-  `currency_ConversionRate` DOUBLE(6,4) NULL DEFAULT '1.0000',
-  PRIMARY KEY USING BTREE (`currency_Id`),
-  UNIQUE INDEX `currency_Code` USING BTREE (`currency_Code`) VISIBLE)
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Code` VARCHAR(4) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
+  `Symbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
+  `Name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `ConversionRate` DOUBLE(6,4) NULL DEFAULT '1.0000',
+  PRIMARY KEY USING BTREE (`Id`),
+  UNIQUE INDEX `Code` USING BTREE (`Code`) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
@@ -142,31 +142,31 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `product` ;
 
 CREATE TABLE IF NOT EXISTS `product` (
-  `product_Id` INT NOT NULL AUTO_INCREMENT,
-  `product_Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `product_Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `product_Dimensions` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `product_Price` DOUBLE(10,2) NULL DEFAULT '0.00',
-  `product_MinimalStock` DOUBLE(6,2) NULL DEFAULT '0.00',
-  `product_StandardOrderQuantity` DOUBLE(6,2) NULL DEFAULT '0.00',
-  `product_ProjectCosts` INT NULL DEFAULT '0',
-  `product_UnitId` INT NULL DEFAULT NULL,
-  `product_UnitName` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `product_ImageRotationAngle` VARCHAR(4) NULL DEFAULT '0',
-  `product_Image` LONGBLOB NULL DEFAULT NULL,
-  `product_BrandId` INT NULL DEFAULT NULL,
-  `product_BrandName` VARCHAR(150) NULL DEFAULT NULL,
-  `product_CategoryId` INT NULL DEFAULT NULL,
-  `product_CategoryName` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `product_StorageId` INT NULL DEFAULT NULL,
-  `product_StorageName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `product_Memo` LONGTEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`product_Id`),
-  UNIQUE INDEX `product_Code` (`product_Code` ASC) VISIBLE,
-  INDEX `product_BrandName` (`product_BrandName` ASC) VISIBLE,
-  CONSTRAINT `FK_product_brand`
-    FOREIGN KEY (`product_BrandName`)
-    REFERENCES `brand` (`brand_Name`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Dimensions` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `Price` DOUBLE(10,2) NULL DEFAULT '0.00',
+  `MinimalStock` DOUBLE(6,2) NULL DEFAULT '0.00',
+  `StandardOrderQuantity` DOUBLE(6,2) NULL DEFAULT '0.00',
+  `ProjectCosts` INT NULL DEFAULT '0',
+  `UnitId` INT NULL DEFAULT NULL,
+  `UnitName` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `ImageRotationAngle` VARCHAR(4) NULL DEFAULT '0',
+  `Image` LONGBLOB NULL DEFAULT NULL,
+  `BrandId` INT NULL DEFAULT NULL,
+  `BrandName` VARCHAR(150) NULL DEFAULT NULL,
+  `CategoryId` INT NULL DEFAULT NULL,
+  `CategoryName` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `StorageId` INT NULL DEFAULT NULL,
+  `StorageName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Memo` LONGTEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Code` (`Code` ASC) VISIBLE,
+  INDEX `BrandName` (`BrandName` ASC) VISIBLE,
+  CONSTRAINT `FK_brand`
+    FOREIGN KEY (`BrandName`)
+    REFERENCES `brand` (`Name`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
@@ -179,17 +179,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `productsupplier` ;
 
 CREATE TABLE IF NOT EXISTS `productsupplier` (
-  `productSupplier_Id` INT NOT NULL AUTO_INCREMENT,
-  `productSupplier_ProductId` INT NOT NULL DEFAULT '0',
-  `productSupplier_SupplierId` INT NOT NULL DEFAULT '0',
-  `productSupplier_SupplierName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `productSupplier_CurrencyId` INT NOT NULL DEFAULT '0',
-  `productSupplier_CurrencySymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `productSupplier_ProductNumber` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `productSupplier_ProductName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `productSupplier_ProductPrice` DOUBLE NOT NULL DEFAULT '0',
-  `productSupplier_Default` VARCHAR(1) NULL DEFAULT '',
-  PRIMARY KEY USING BTREE (`productSupplier_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `ProductId` INT NOT NULL DEFAULT '0',
+  `SupplierId` INT NOT NULL DEFAULT '0',
+  `SupplierName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `CurrencyId` INT NOT NULL DEFAULT '0',
+  `CurrencySymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `ProductNumber` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `ProductName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `ProductPrice` DOUBLE NOT NULL DEFAULT '0',
+  `Default` VARCHAR(1) NULL DEFAULT '',
+  PRIMARY KEY USING BTREE (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
@@ -203,17 +203,17 @@ COMMENT = 'List for all products per supplier';
 DROP TABLE IF EXISTS `project` ;
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `project_Id` INT NOT NULL AUTO_INCREMENT,
-  `project_Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
-  `project_Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `project_StartDate` DATE NULL DEFAULT NULL,
-  `project_EndDate` DATE NULL DEFAULT NULL,
-  `project_ExpectedTime` INT NULL DEFAULT NULL,
-  `project_Image` LONGBLOB NULL DEFAULT NULL,
-  `project_ImageRotationAngle` VARCHAR(4) NULL DEFAULT '0',
-  `project_Closed` TINYINT NULL DEFAULT '0',
-  `project_Memo` LONGTEXT NULL DEFAULT NULL,
-  PRIMARY KEY USING BTREE (`project_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '',
+  `Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `StartDate` DATE NULL DEFAULT NULL,
+  `EndDate` DATE NULL DEFAULT NULL,
+  `ExpectedTime` INT NULL DEFAULT NULL,
+  `Image` LONGBLOB NULL DEFAULT NULL,
+  `ImageRotationAngle` VARCHAR(4) NULL DEFAULT '0',
+  `Closed` TINYINT NULL DEFAULT '0',
+  `Memo` LONGTEXT NULL DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
@@ -226,11 +226,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `storage` ;
 
 CREATE TABLE IF NOT EXISTS `storage` (
-  `storage_Id` INT NOT NULL AUTO_INCREMENT,
-  `storage_ParentId` INT NULL DEFAULT NULL,
-  `storage_FullPath` VARCHAR(400) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `storage_Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  PRIMARY KEY (`storage_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `ParentId` INT NULL DEFAULT NULL,
+  `FullPath` VARCHAR(400) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 265
 DEFAULT CHARACTER SET = utf8mb4
@@ -243,25 +243,25 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `supplier` ;
 
 CREATE TABLE IF NOT EXISTS `supplier` (
-  `supplier_Id` INT NOT NULL AUTO_INCREMENT,
-  `supplier_Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `supplier_Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `supplier_Address1` VARCHAR(150) NULL DEFAULT NULL,
-  `supplier_Address2` VARCHAR(150) NULL DEFAULT NULL,
-  `supplier_Zip` VARCHAR(15) NULL DEFAULT NULL,
-  `supplier_City` VARCHAR(40) NULL DEFAULT NULL,
-  `supplier_Url` VARCHAR(255) NULL DEFAULT NULL,
-  `supplier_ShippingCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
-  `supplier_OrderCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
-  `supplier_MinShippingCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
-  `supplier_MinOrderCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
-  `supplier_Memo` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
-  `supplier_CurrencyId` INT NOT NULL DEFAULT '1',
-  `supplier_CurrencySymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
-  `supplier_CountryId` INT NOT NULL DEFAULT '1',
-  `supplier_CountryName` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT 'Nederland',
-  PRIMARY KEY (`supplier_Id`),
-  UNIQUE INDEX `supplier_Code` (`supplier_Code` ASC) VISIBLE)
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Code` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Name` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `Address1` VARCHAR(150) NULL DEFAULT NULL,
+  `Address2` VARCHAR(150) NULL DEFAULT NULL,
+  `Zip` VARCHAR(15) NULL DEFAULT NULL,
+  `City` VARCHAR(40) NULL DEFAULT NULL,
+  `Url` VARCHAR(255) NULL DEFAULT NULL,
+  `ShippingCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
+  `OrderCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
+  `MinShippingCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
+  `MinOrderCosts` DOUBLE(6,2) NOT NULL DEFAULT '0.00',
+  `Memo` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `CurrencyId` INT NOT NULL DEFAULT '1',
+  `CurrencySymbol` VARCHAR(2) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '€',
+  `CountryId` INT NOT NULL DEFAULT '1',
+  `CountryName` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT 'Nederland',
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Code` (`Code` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
@@ -274,14 +274,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `suppliercontact` ;
 
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
-  `suppliercontact_Id` INT NOT NULL AUTO_INCREMENT,
-  `suppliercontact_SupplierId` INT NULL DEFAULT '0',
-  `suppliercontact_Name` VARCHAR(150) NULL DEFAULT '',
-  `suppliercontact_TypeId` INT NULL DEFAULT '1',
-  `suppliercontact_TypeName` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `suppliercontact_Mail` VARCHAR(150) NULL DEFAULT '',
-  `suppliercontact_Phone` VARCHAR(150) NULL DEFAULT '',
-  PRIMARY KEY (`suppliercontact_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `SupplierId` INT NULL DEFAULT '0',
+  `Name` VARCHAR(150) NULL DEFAULT '',
+  `TypeId` INT NULL DEFAULT '1',
+  `TypeName` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `Mail` VARCHAR(150) NULL DEFAULT '',
+  `Phone` VARCHAR(150) NULL DEFAULT '',
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
@@ -321,21 +321,21 @@ ROW_FORMAT = DYNAMIC;
 DROP TABLE IF EXISTS `supplyorderline` ;
 
 CREATE TABLE IF NOT EXISTS `supplyorderline` (
-  `orderline_Id` INT NOT NULL AUTO_INCREMENT,
-  `orderline_OrderId` INT NOT NULL DEFAULT '0',
-  `orderline_SupplierId` INT NOT NULL DEFAULT '0',
-  `orderline_ProductId` INT NULL DEFAULT '0',
-  `orderline_ProductName` VARCHAR(150) NULL DEFAULT '',
-  `orderline_ProjectId` INT NULL DEFAULT '0',
-  `orderline_ProjectName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `orderline_CategoryId` INT NULL DEFAULT '0',
-  `orderline_CategoryName` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
-  `orderline_Number` DOUBLE(6,2) NULL DEFAULT '0.00',
-  `orderline_Price` DOUBLE(6,2) NULL DEFAULT '0.00',
-  `orderline_RealRowTotal` DOUBLE(6,2) NULL DEFAULT '0.00',
-  `orderline_Closed` TINYINT NULL DEFAULT '0',
-  `orderline_ClosedDate` DATE NULL DEFAULT NULL,
-  PRIMARY KEY USING BTREE (`orderline_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `OrderId` INT NOT NULL DEFAULT '0',
+  `SupplierId` INT NOT NULL DEFAULT '0',
+  `ProductId` INT NULL DEFAULT '0',
+  `ProductName` VARCHAR(150) NULL DEFAULT '',
+  `ProjectId` INT NULL DEFAULT '0',
+  `ProjectName` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `CategoryId` INT NULL DEFAULT '0',
+  `CategoryName` VARCHAR(55) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT '',
+  `Number` DOUBLE(6,2) NULL DEFAULT '0.00',
+  `Price` DOUBLE(6,2) NULL DEFAULT '0.00',
+  `RealRowTotal` DOUBLE(6,2) NULL DEFAULT '0.00',
+  `Closed` TINYINT NULL DEFAULT '0',
+  `ClosedDate` DATE NULL DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
@@ -349,10 +349,10 @@ ROW_FORMAT = DYNAMIC;
 DROP TABLE IF EXISTS `unit` ;
 
 CREATE TABLE IF NOT EXISTS `unit` (
-  `unit_Id` INT NOT NULL AUTO_INCREMENT,
-  `unit_Name` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '0',
-  PRIMARY KEY (`unit_Id`),
-  UNIQUE INDEX `unit_Name` (`unit_Name` ASC) VISIBLE)
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Name` (`Name` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
@@ -365,11 +365,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `worktype` ;
 
 CREATE TABLE IF NOT EXISTS `worktype` (
-  `worktype_Id` INT NOT NULL AUTO_INCREMENT,
-  `worktype_ParentId` INT NULL DEFAULT NULL,
-  `worktype_Name` CHAR(150) NULL DEFAULT NULL,
-  `worktype_FullPath` CHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`worktype_Id`))
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `ParentId` INT NULL DEFAULT NULL,
+  `Name` CHAR(150) NULL DEFAULT NULL,
+  `FullPath` CHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 30
 DEFAULT CHARACTER SET = utf8mb4

@@ -7,7 +7,7 @@
 
 DROP VIEW IF EXISTS `view_prodbrandcatstorage`;
 DROP TABLE IF EXISTS `view_prodbrandcatstorage`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_prodbrandcatstorage` AS select `p`.`Id` AS `ID`,`p`.`Name` AS `Product`,`b`.`Name` AS `Brand`,`c`.`Name` AS `Category`,`s`.`Name` AS `Supplier` from (((`product` `p` join `brand` `b` on((`p`.`Brand_Id` = `b`.`Id`))) join `category` `c` on((`p`.`Category_Id` = `c`.`Id`))) join `storage` `s` on((`p`.`Storage_Id` = `s`.`Id`))) order by `p`.`Name`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_prodbrandcatstorage` AS select `p`.`Id` AS `ID`,`p`.`Name` AS `Product`,`b`.`Name` AS `Brand`,`c`.`Name` AS `Category`,`s`.`Name` AS `Supplier` from (((`product` `p` join `brand` `b` on((`p`.`Id` = `b`.`Id`))) join `category` `c` on((`p`.`Id` = `c`.`Id`))) join `storage` `s` on((`p`.`Id` = `s`.`Id`))) order by `p`.`Name`;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

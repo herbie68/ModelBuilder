@@ -63,7 +63,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Categoriën.
         /// </summary>
-        public static string metadataCategory_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataCategory.Page.Title", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Landen.
         /// </summary>
-        public static string metadataCountry_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataCountry.Page.Title", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta.
         /// </summary>
-        public static string metadataCurrency_Field_Currency {
+        public static string metadataField_Currency {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.Currency", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta code.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyCode {
+        public static string metadataField_CurrencyCode {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyCode", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta omschrijving.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyName {
+        public static string metadataField_CurrencyName {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyName", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Omrekenkoers.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyRate {
+        public static string metadataField_CurrencyRate {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyRate", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Koers.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyRateShort {
+        public static string metadataField_CurrencyRateShort {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyRateShort", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta symbool.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencySymbol {
+        public static string metadataField_CurrencySymbol {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencySymbol", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta.
         /// </summary>
-        public static string metadataCurrency_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataCurrency.Page.Title", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta toevoegen.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Add {
+        public static string metadataToolbar_Button_Tooltip_Add {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Add", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Geslecteerde valuta verwijderen.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Delete {
+        public static string metadataToolbar_Button_Tooltip_Delete {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Delete", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Wijzigingen opslaan.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Save {
+        public static string metadataToolbar_Button_Tooltip_Save {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Save", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Producten.
         /// </summary>
-        public static string metadataProduct_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataProduct.Page.Title", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Projecten.
         /// </summary>
-        public static string metadataProject_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataProject.Page.Title", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Projectgegevens.
         /// </summary>
-        public static string metadataProject_TabItemHeader_General {
+        public static string metadataTabItemHeader_General {
             get {
                 return ResourceManager.GetString("metadataProject.TabItemHeader.General", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Aanvullende informatie.
         /// </summary>
-        public static string metadataProject_TabItemHeader_Memo {
+        public static string metadataTabItemHeader_Memo {
             get {
                 return ResourceManager.GetString("metadataProject.TabItemHeader.Memo", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Kosten.
         /// </summary>
-        public static string metadataProject_TabItemHeader_ProjectCosts {
+        public static string metadataTabItemHeader_ProjectCosts {
             get {
                 return ResourceManager.GetString("metadataProject.TabItemHeader.ProjectCosts", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Bouwtijden.
         /// </summary>
-        public static string metadataProject_TabItemHeader_TimeManagement {
+        public static string metadataTabItemHeader_TimeManagement {
             get {
                 return ResourceManager.GetString("metadataProject.TabItemHeader.TimeManagement", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Opslaglocaties.
         /// </summary>
-        public static string metadataStorage_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataStorage.Page.Title", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Leveranciers.
         /// </summary>
-        public static string metadataSupplier_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataSupplier.Page.Title", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Werksoorten.
         /// </summary>
-        public static string metadataWorktype_Page_Title {
+        public static string metadataPage_Title {
             get {
                 return ResourceManager.GetString("metadataWorktype.Page.Title", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Categorie.
         /// </summary>
-        public static string Order_Orderline_Field_Category {
+        public static string Order_Field_Category {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Category", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Afgeleverd.
         /// </summary>
-        public static string Order_Orderline_Field_Closed {
+        public static string Order_Field_Closed {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Closed", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Leverdatum.
         /// </summary>
-        public static string Order_Orderline_Field_ClosedDate {
+        public static string Order_Field_ClosedDate {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.ClosedDate", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Aantal.
         /// </summary>
-        public static string Order_Orderline_Field_Number {
+        public static string Order_Field_Number {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Number", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Stukprijs.
         /// </summary>
-        public static string Order_Orderline_Field_Price {
+        public static string Order_Field_Price {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Price", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Stukprijs in de valuta van de leverancier.
         /// </summary>
-        public static string Order_Orderline_Field_Price_Tooltip {
+        public static string Order_Field_Price_Tooltip {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Price.Tooltip", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Produkt.
         /// </summary>
-        public static string Order_Orderline_Field_Product {
+        public static string Order_Field_Product {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Product", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
-        public static string Order_Orderline_Field_Project {
+        public static string Order_Field_Project {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Project", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Totaal.
         /// </summary>
-        public static string Order_Orderline_Field_Total {
+        public static string Order_Field_Total {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Total", resourceCulture);
             }

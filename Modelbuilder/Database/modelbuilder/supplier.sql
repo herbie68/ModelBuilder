@@ -19,17 +19,17 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `MinShippingCosts` double(6,2) NOT NULL DEFAULT '0.00',
   `OrderCosts` double(6,2) NOT NULL DEFAULT '0.00',
   `Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `Country_Id` int NOT NULL DEFAULT '1',
-  `Currency_Id` int NOT NULL DEFAULT '1',
+  `Id` int NOT NULL DEFAULT '1',
+  `Id` int NOT NULL DEFAULT '1',
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Code` (`Code`) /*!80000 INVISIBLE */,
   KEY `Name` (`Name`) /*!80000 INVISIBLE */,
-  KEY `Currency_Id` (`Currency_Id`) /*!80000 INVISIBLE */,
-  KEY `Country_Id` (`Country_Id`),
-  CONSTRAINT `FK_Supplier_Country_Id` FOREIGN KEY (`Country_Id`) REFERENCES `country` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_Supplier_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `Id` (`Id`) /*!80000 INVISIBLE */,
+  KEY `Id` (`Id`),
+  CONSTRAINT `FK_Id` FOREIGN KEY (`Id`) REFERENCES `country` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_Id` FOREIGN KEY (`Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `supplier`;

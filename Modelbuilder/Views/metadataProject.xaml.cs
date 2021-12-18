@@ -60,10 +60,10 @@
                 DataRow row = _dt.Rows[index];
 
 
-                if (row["project_Memo"] != null && row["project_Memo"] != DBNull.Value)
+                if (row["Memo"] != null && row["Memo"] != DBNull.Value)
                 {
                     //get value from DataTable
-                    ContentProjectMemo = row["project_Memo"].ToString();
+                    ContentProjectMemo = row["Memo"].ToString();
                 }
 
                 if (!String.IsNullOrEmpty(ContentProjectMemo))
@@ -107,14 +107,14 @@
 
             GetMemo(dg.SelectedIndex);
 
-            valueProjectId.Text = Row_Selected["project_Id"].ToString();
-            valueImageRotationAngle.Text = Row_Selected["project_ImageRotationAngle"].ToString();
-            inpProjectCode.Text = Row_Selected["project_Code"].ToString();
-            inpProjectName.Text = Row_Selected["project_Name"].ToString();
-            inpProjectStartdate.Text = Row_Selected["project_Startdate"].ToString();
-            inpProjectEnddate.Text = Row_Selected["project_Enddate"].ToString();
+            valueProjectId.Text = Row_Selected["Id"].ToString();
+            valueImageRotationAngle.Text = Row_Selected["ImageRotationAngle"].ToString();
+            inpProjectCode.Text = Row_Selected["Code"].ToString();
+            inpProjectName.Text = Row_Selected["Name"].ToString();
+            inpProjectStartdate.Text = Row_Selected["Startdate"].ToString();
+            inpProjectEnddate.Text = Row_Selected["Enddate"].ToString();
 
-            if (Row_Selected["project_Closed"].ToString() == "1")
+            if (Row_Selected["Closed"].ToString() == "1")
             {
                 inpProjectClosed.IsChecked = true;
                 dispProjectExpEnddate.Visibility = Visibility.Hidden;
@@ -132,9 +132,9 @@
             }
 
             // Retrieve Product Image            
-            if (Row_Selected["project_Image"].ToString() != "")
+            if (Row_Selected["Image"].ToString() != "")
             {
-                byte[] projectImageByte = (byte[])Row_Selected["project_Image"];
+                byte[] projectImageByte = (byte[])Row_Selected["Image"];
                 var stream = new MemoryStream(projectImageByte);
                 PngBitmapDecoder decoder = new PngBitmapDecoder(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
                 BitmapSource source = decoder.Frames[0];

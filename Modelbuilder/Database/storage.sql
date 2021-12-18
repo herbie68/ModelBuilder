@@ -7,16 +7,16 @@
 
 DROP TABLE IF EXISTS `storage`;
 CREATE TABLE IF NOT EXISTS `storage` (
-  `storage_Id` int NOT NULL AUTO_INCREMENT,
-  `storage_ParentId` int DEFAULT NULL,
-  `storage_FullPath` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `storage_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  PRIMARY KEY (`storage_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `ParentId` int DEFAULT NULL,
+  `FullPath` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `storage`;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` (`storage_Id`, `storage_ParentId`, `storage_FullPath`, `storage_Name`) VALUES
+INSERT INTO `storage` (`Id`, `ParentId`, `FullPath`, `Name`) VALUES
 	(1, NULL, 'Herberts Werf', 'Herberts Werf'),
 	(2, 1, 'Herberts Werf\\Hoge kast', 'Hoge kast'),
 	(3, 2, 'Herberts Werf\\Hoge kast\\Hoge kast  - Planken', 'Hoge kast  - Planken'),

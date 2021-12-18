@@ -8,19 +8,19 @@
 DROP TABLE IF EXISTS `suppliercontact`;
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Supplier_Id` int DEFAULT '0',
+  `Id` int DEFAULT '0',
   `Name` varchar(150) DEFAULT '',
-  `Contacttype_Id` int DEFAULT '1',
+  `Id` int DEFAULT '1',
   `Mail` varchar(150) DEFAULT '',
   `Phone` varchar(150) DEFAULT '',
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  KEY `Supplier_Id` (`Supplier_Id`),
-  KEY `Contacttype_Id` (`Contacttype_Id`) /*!80000 INVISIBLE */,
+  KEY `Id` (`Id`),
+  KEY `Id` (`Id`) /*!80000 INVISIBLE */,
   KEY `Name` (`Name`),
-  CONSTRAINT `FK_SupContact_Contacttype_Id` FOREIGN KEY (`Contacttype_Id`) REFERENCES `contacttype` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_SupContact_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_SupContact_Id` FOREIGN KEY (`Id`) REFERENCES `contacttype` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_SupContact_Id` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `suppliercontact`;

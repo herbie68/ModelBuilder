@@ -42,10 +42,10 @@ internal class HelperOrder
     /// 
     /// Examples how to use joins to get values from different tables
     /// Give me a list of all products where the supplier has a price for a product
-    /// SELECT product_Name, productsupplier_SupplierName, product_Price, productsupplier_ProductPrice FROM product INNER JOIN productsupplier ON product_Id = productSupplier_ProductId
+    /// SELECT Name, SupplierName, Price, ProductPrice FROM product INNER JOIN productsupplier ON Id = ProductId
     ///
     /// Give me a list with brandnames for all products
-    /// SELECT product_Name, brand1_Name FROM product INNER JOIN brand ON product_BrandId = brand1_Id
+    /// SELECT Name, brand1_Name FROM product INNER JOIN brand ON BrandId = brand1_Id
 
     #endregion Available databasefields
 
@@ -132,7 +132,7 @@ internal class HelperOrder
 
         if (Id > 0)
         {
-            sqlText = "SELECT * from SupplyOrderline where orderline_OrderId = @Id";
+            sqlText = "SELECT * from SupplyOrderline where OrderId = @Id";
         }
         else
         {
@@ -166,7 +166,7 @@ internal class HelperOrder
 
         if (Id > 0)
         {
-            sqlText = "SELECT currency_ConversionRate from Currency where currency_Id = @Id";
+            sqlText = "SELECT ConversionRate from Currency where Id = @Id";
         }
         else
         {
@@ -238,7 +238,7 @@ internal class HelperOrder
     {
         string sqlText = string.Empty;
         string resultString = String.Empty;
-        // SELECT productSupplier_ProductPrice FROM productSupplier WHERE productSupplier_ProductId = 1 AND productSupplier_SupplierId = 7 
+        // SELECT ProductPrice FROM productSupplier WHERE ProductId = 1 AND SupplierId = 7 
         if (Id1 > 0)
         {
             sqlText = "SELECT " + RetrieveField + " FROM " + Table + " WHERE " + ConditionField1 + " = @Id1 " + Condition1.ToUpper() + " " + ConditionField2 + " = @Id2 ";
@@ -291,7 +291,7 @@ internal class HelperOrder
     {
         string sqlText = string.Empty;
         string resultString = String.Empty;
-        sqlText = "SELECT SUM(orderline_Number * orderline_Price) RowTotal FROM supplyorderline WHERE orderline_OrderId = @OrderId ";
+        sqlText = "SELECT SUM(Number * Price) RowTotal FROM supplyorderline WHERE OrderId = @OrderId ";
 
         MySqlConnection con = new MySqlConnection(ConnectionStr);
 
@@ -351,7 +351,7 @@ internal class HelperOrder
     public string InsertTblOrderline(int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO SupplyOrderline (orderline_OrderId, orderline_SupplierId, orderline_ProductId, orderline_ProductName, orderline_ProjectId, orderline_ProjectName, orderline_CategoryId, orderline_CategoryName, orderline_Number, orderline_Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProductName, @ProjectId, @ProjectName, @CategoryId, @CategoryName, @Number, @Price);";
+        string sqlText = "INSERT INTO SupplyOrderline (OrderId, SupplierId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProductName, @ProjectId, @ProjectName, @CategoryId, @CategoryName, @Number, @Price);";
 
         try
         {
@@ -413,7 +413,7 @@ internal class HelperOrder
     public string UpdateTblOrderline(int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderLineId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE supplyorderline SET orderline_OrderId = @OrderId, orderline_SupplierId = @SupplierId, orderline_ProductId = @ProductId, orderline_ProductName = @ProductName, orderline_ProjectId = @ProjectId, orderline_ProjectName = @ProjectName, orderline_CategoryId = @CategoryId, orderline_CategoryName = @CategoryName, orderline_Number = @Number, orderline_Price = @Price WHERE orderline_Id = @OrderlineId;";
+        string sqlText = "UPDATE supplyorderline SET OrderId = @OrderId, SupplierId = @SupplierId, ProductId = @ProductId, ProductName = @ProductName, ProjectId = @ProjectId, ProjectName = @ProjectName, CategoryId = @CategoryId, CategoryName = @CategoryName, Number = @Number, Price = @Price WHERE Id = @OrderlineId;";
 
         try
         {
@@ -486,11 +486,11 @@ internal class HelperOrder
 
         if (Type == "order")
         {
-            sqlText = "DELETE FROM SupplyOrderline WHERE orderline_OrderId=@OrderId";
+            sqlText = "DELETE FROM SupplyOrderline WHERE OrderId=@OrderId";
         }
         else
         {
-            sqlText = "DELETE FROM SupplyOrderline WHERE orderline_Id=@OrderId";
+            sqlText = "DELETE FROM SupplyOrderline WHERE Id=@OrderId";
         }
 
         try
@@ -526,7 +526,7 @@ internal class HelperOrder
     public string UpdateSupplierTblOrderline(int OrderId, int SupplierId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE supplyorderline SET orderline_SupplierId = @SupplierId WHERE orderline_OrderId = @OrderId;";
+        string sqlText = "UPDATE supplyorderline SET SupplierId = @SupplierId WHERE OrderId = @OrderId;";
 
         try
         {
@@ -616,7 +616,7 @@ internal class HelperOrder
     }
     #endregion Execute Non Query Table: SupplyOrder
 
-    #region Execute Non Query Table SupplyOrder_Id: SupplyOrder
+    #region Execute Non Query Table Id: SupplyOrder
     public int ExecuteNonQueryTblSupplyOrderId(string sqlText, int orderId = 0)
     {
         int rowsAffected = 0;
@@ -639,7 +639,7 @@ internal class HelperOrder
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table SupplyOrder_Id: SupplyOrder
+    #endregion Execute Non Query Table Id: SupplyOrder
 
     #region Execute Non Query Table: SupplyOrderline
     public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderlineId = 0)
@@ -683,7 +683,7 @@ internal class HelperOrder
     public int CheckProductForSupplier(int SupplierId = 0, int ProductId = 0)
     {
         int result = 0;
-        string sqlText = "SELECT COUNT(*) FROM productsupplier WHERE productSupplier_SupplierId = @SupplierId AND productSupplier_ProductId = @ProductId";
+        string sqlText = "SELECT COUNT(*) FROM productsupplier WHERE SupplierId = @SupplierId AND ProductId = @ProductId";
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
         {
@@ -707,7 +707,7 @@ internal class HelperOrder
     public int CheckOrderRowsForOrder(int OrderId = 0)
     {
         int result = 0;
-        string sqlText = "SELECT COUNT(*) FROM supplyorderline WHERE orderline_OrderId = @OrderId";
+        string sqlText = "SELECT COUNT(*) FROM supplyorderline WHERE OrderId = @OrderId";
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
         {
@@ -761,8 +761,8 @@ internal class HelperOrder
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "supplier_Name, supplier_Id, supplier_CurrencySymbol, supplier_CurrencyId";
-        dbConnection.SqlOrderByString = "supplier_Id";
+        dbConnection.SqlSelectionString = "Name, Id, CurrencySymbol, CurrencyId";
+        dbConnection.SqlOrderByString = "Id";
         dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
@@ -790,8 +790,8 @@ internal class HelperOrder
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "project_Name, project_Id";
-        dbConnection.SqlOrderByString = "project_Id";
+        dbConnection.SqlSelectionString = "Name, Id";
+        dbConnection.SqlOrderByString = "Id";
         dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
@@ -817,8 +817,8 @@ internal class HelperOrder
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "product_Name, product_Id";
-        dbConnection.SqlOrderByString = "product_Id";
+        dbConnection.SqlSelectionString = "Name, Id";
+        dbConnection.SqlOrderByString = "Id";
         dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
@@ -853,8 +853,8 @@ internal class HelperOrder
             TableName = DbCategoryTable
         };
 
-        dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
-        dbCategoryConnection.SqlOrderByString = "category_Id";
+        dbCategoryConnection.SqlSelectionString = "Name, Id";
+        dbCategoryConnection.SqlOrderByString = "Id";
         dbCategoryConnection.TableName = DbCategoryTable;
 
         DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();

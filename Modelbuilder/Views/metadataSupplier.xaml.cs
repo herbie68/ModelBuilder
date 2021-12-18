@@ -73,7 +73,7 @@ namespace Modelbuilder
 
             // Populate data in datagrid from datatable
             SupplierCode_DataGrid.DataContext = _dt;
-            //SupplierContact_DataGrid.DataContext = _dtSC;
+            //DataGrid.DataContext = _dtSC;
 
             // Set value
             _dbRowCount = _dt.Rows.Count;
@@ -112,10 +112,10 @@ namespace Modelbuilder
                 DataRow row = _dt.Rows[index];
 
 
-                if (row["supplier_Memo"] != null && row["supplier_Memo"] != DBNull.Value)
+                if (row["Memo"] != null && row["Memo"] != DBNull.Value)
                 {
                     //get value from DataTable
-                    ContentSupplierMemo = row["supplier_Memo"].ToString();
+                    ContentSupplierMemo = row["Memo"].ToString();
                 }
 
                 if (!String.IsNullOrEmpty(ContentSupplierMemo))
@@ -154,27 +154,27 @@ namespace Modelbuilder
 
             double _MinimalShippingCosts = 0, _ShippingCosts = 0, _MinimalOrderCosts = 0, _OrderCosts = 0;
 
-            if (Row_Selected["supplier_MinShippingCosts"].ToString() != "") { _MinimalShippingCosts = double.Parse(Row_Selected["supplier_MinShippingCosts"].ToString()); }
-            if (Row_Selected["supplier_ShippingCosts"].ToString() != "") { _ShippingCosts = double.Parse(Row_Selected["supplier_ShippingCosts"].ToString()); }
-            if (Row_Selected["supplier_MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["supplier_MinOrderCosts"].ToString()); }
-            if (Row_Selected["supplier_OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["supplier_OrderCosts"].ToString()); }
+            if (Row_Selected["MinShippingCosts"].ToString() != "") { _MinimalShippingCosts = double.Parse(Row_Selected["MinShippingCosts"].ToString()); }
+            if (Row_Selected["ShippingCosts"].ToString() != "") { _ShippingCosts = double.Parse(Row_Selected["ShippingCosts"].ToString()); }
+            if (Row_Selected["MinOrderCosts"].ToString() != "") { _MinimalOrderCosts = double.Parse(Row_Selected["MinOrderCosts"].ToString()); }
+            if (Row_Selected["OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["OrderCosts"].ToString()); }
 
-            valueSupplierId.Text = Row_Selected["supplier_Id"].ToString();
-            valueCountryId.Text = Row_Selected["supplier_CountryId"].ToString();
-            valueCountryName.Text = Row_Selected["supplier_CountryName"].ToString();
-            valueCurrencyId.Text = Row_Selected["supplier_CurrencyId"].ToString();
-            valueCurrencySymbol.Text = Row_Selected["supplier_CurrencySymbol"].ToString();
-            inpSupplierCode.Text = Row_Selected["supplier_Code"].ToString();
-            inpSupplierName.Text = Row_Selected["supplier_Name"].ToString();
-            inpSupplierAddress1.Text = Row_Selected["supplier_Address1"].ToString();
-            inpSupplierAddress2.Text = Row_Selected["supplier_Address2"].ToString();
-            inpSupplierZip.Text = Row_Selected["supplier_Zip"].ToString();
-            inpSupplierCity.Text = Row_Selected["supplier_City"].ToString();
+            valueSupplierId.Text = Row_Selected["Id"].ToString();
+            valueCountryId.Text = Row_Selected["CountryId"].ToString();
+            valueCountryName.Text = Row_Selected["CountryName"].ToString();
+            valueCurrencyId.Text = Row_Selected["CurrencyId"].ToString();
+            valueCurrencySymbol.Text = Row_Selected["CurrencySymbol"].ToString();
+            inpSupplierCode.Text = Row_Selected["Code"].ToString();
+            inpSupplierName.Text = Row_Selected["Name"].ToString();
+            inpSupplierAddress1.Text = Row_Selected["Address1"].ToString();
+            inpSupplierAddress2.Text = Row_Selected["Address2"].ToString();
+            inpSupplierZip.Text = Row_Selected["Zip"].ToString();
+            inpSupplierCity.Text = Row_Selected["City"].ToString();
             inpSupplierShippingCosts.Text = _ShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierMinShippingCosts.Text = _MinimalShippingCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierOrderCosts.Text = _OrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
             inpSupplierMinOrderCosts.Text = _MinimalOrderCosts.ToString("€ #,##0.00;€ - #,##0.00");
-            inpSupplierUrl.Text = Row_Selected["supplier_Url"].ToString();
+            inpSupplierUrl.Text = Row_Selected["Url"].ToString();
 
             // Empty the fields on the SupplierContact tab
             inpSupplierContactMail.Text = "";
@@ -186,7 +186,7 @@ namespace Modelbuilder
             //Select the saved Country in the combobox by default
             foreach (Country country in cboxSupplierCountry.Items)
             {
-                if (country.countryName == Row_Selected["supplier_CountryName"].ToString())
+                if (country.countryName == Row_Selected["CountryName"].ToString())
                 {
                     cboxSupplierCountry.SelectedItem = country;
                     break;
@@ -196,7 +196,7 @@ namespace Modelbuilder
             //Select the saved Currency in the combobox by default
             foreach (Currency currency in cboxSupplierCurrency.Items)
             {
-                if (currency.currencySymbol == Row_Selected["supplier_CurrencySymbol"].ToString())
+                if (currency.currencySymbol == Row_Selected["CurrencySymbol"].ToString())
                 {
                     cboxSupplierCurrency.SelectedItem = currency;
                     break;
@@ -209,13 +209,13 @@ namespace Modelbuilder
             _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Populate data in datagrid from datatable after clearing the current gatagrid
-            SupplierContact_DataGrid.DataContext = _dtSC;
+            DataGrid.DataContext = _dtSC;
 
         }
         #endregion
 
         #region Selection changed: SupplierContacts
-        private void SupplierContact_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // When a row in the datagrid is selected, all fields can be enablen
             inpSupplierContactName.IsEnabled = true;
@@ -230,16 +230,16 @@ namespace Modelbuilder
             //set value
             int _currentDataGridSCTIndex = dgSCT.SelectedIndex;
 
-            valueSupplierContactId.Text = Row_Selected["suppliercontact_Id"].ToString();
-            inpSupplierContactName.Text = Row_Selected["suppliercontact_Name"].ToString();
-            inpSupplierContactPhone.Text = Row_Selected["suppliercontact_Phone"].ToString();
-            inpSupplierContactMail.Text = Row_Selected["suppliercontact_Mail"].ToString();
+            valueSupplierContactId.Text = Row_Selected["Id"].ToString();
+            inpSupplierContactName.Text = Row_Selected["Name"].ToString();
+            inpSupplierContactPhone.Text = Row_Selected["Phone"].ToString();
+            inpSupplierContactMail.Text = Row_Selected["Mail"].ToString();
 
 
             //Select the saved Contacttype in the combobox by default
             foreach (ContactType contacttype in cboxSupplierContactType.Items)
             {
-                if (contacttype.ContactTypeName == Row_Selected["suppliercontact_TypeName"].ToString())
+                if (contacttype.ContactTypeName == Row_Selected["TypeName"].ToString())
                 {
                     cboxSupplierContactType.SelectedItem = contacttype;
                     valueContactTypeId.Text = contacttype.ContactTypeId.ToString();
@@ -251,7 +251,7 @@ namespace Modelbuilder
         #endregion
 
         #region Selection changed: Combobox Contacts
-        private void cboxSupplierContactType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cboxSupplierSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (HelperSupplier.ContactType item in e.AddedItems)
             {
@@ -354,56 +354,56 @@ namespace Modelbuilder
             _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Populate data in datagrid from datatable
-            SupplierContact_DataGrid.DataContext = _dtSC;
-            SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
-            _ = SupplierContact_DataGrid.Focus();
+            DataGrid.DataContext = _dtSC;
+            DataGrid.SelectedItem = DataGrid.Items.Count - 1;
+            _ = DataGrid.Focus();
         }
         #endregion
 
         #region Click Save Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonSave(object sender, RoutedEventArgs e)
         {
-            int rowIndex = SupplierContact_DataGrid.SelectedIndex;
+            int rowIndex = DataGrid.SelectedIndex;
 
             if (valueSupplierContactId.Text != "")
             {
-                UpdateRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
+                UpdateRowSupplierContact(DataGrid.SelectedIndex);
             }
 
             //GetData();
             _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Make sure the eddited row in the datagrid is selected
-            SupplierContact_DataGrid.DataContext = _dtSC;
-            SupplierContact_DataGrid.SelectedIndex = rowIndex;
-            _ = SupplierContact_DataGrid.Focus();
+            DataGrid.DataContext = _dtSC;
+            DataGrid.SelectedIndex = rowIndex;
+            _ = DataGrid.Focus();
         }
         #endregion
 
         #region Click Delete Contact button (on supplier contacts toolbar)
         private void SupplierContactToolbarButtonDelete(object sender, RoutedEventArgs e)
         {
-            int rowIndex = SupplierContact_DataGrid.SelectedIndex;
+            int rowIndex = DataGrid.SelectedIndex;
 
-            DeleteRowSupplierContact(SupplierContact_DataGrid.SelectedIndex);
+            DeleteRowSupplierContact(DataGrid.SelectedIndex);
 
             GetData();
 
             if (rowIndex == 0)
             {
-                SupplierContact_DataGrid.SelectedIndex = 0;
+                DataGrid.SelectedIndex = 0;
             }
             else
             {
-                SupplierContact_DataGrid.SelectedIndex = rowIndex - 1;
+                DataGrid.SelectedIndex = rowIndex - 1;
             }
 
             _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Make sure the eddited row in the datagrid is selected
-            SupplierContact_DataGrid.DataContext = _dtSC;
-            SupplierContact_DataGrid.SelectedIndex = rowIndex - 1;
-            _ = SupplierContact_DataGrid.Focus();
+            DataGrid.DataContext = _dtSC;
+            DataGrid.SelectedIndex = rowIndex - 1;
+            _ = DataGrid.Focus();
         }
         #endregion
 
@@ -416,9 +416,9 @@ namespace Modelbuilder
             _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
 
             // Populate data in datagrid from datatable
-            SupplierContact_DataGrid.DataContext = _dtSC;
-            SupplierContact_DataGrid.SelectedItem = SupplierContact_DataGrid.Items.Count - 1;
-            _ = SupplierContact_DataGrid.Focus();
+            DataGrid.DataContext = _dtSC;
+            DataGrid.SelectedItem = DataGrid.Items.Count - 1;
+            _ = DataGrid.Focus();
         }
         #endregion
 
@@ -578,8 +578,8 @@ namespace Modelbuilder
                 TableName = DatabaseCountryTable
             };
 
-            dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
-            dbCountryConnection.SqlOrderByString = "country_Id";
+            dbCountryConnection.SqlSelectionString = "Name, Id";
+            dbCountryConnection.SqlOrderByString = "Id";
             dbCountryConnection.TableName = DatabaseCountryTable;
 
             DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
@@ -604,8 +604,8 @@ namespace Modelbuilder
                 TableName = DatabaseCurrencyTable
             };
 
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
-            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.SqlSelectionString = "Symbol, Id";
+            dbCurrencyConnection.SqlOrderByString = "Id";
             dbCurrencyConnection.TableName = DatabaseCurrencyTable;
 
             DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();

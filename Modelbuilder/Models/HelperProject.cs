@@ -117,7 +117,7 @@ public class HelperProject
     }
     #endregion
 
-    #region Execute Non Query Table Project_Id: Project
+    #region Execute Non Query Table Id: Project
     public int ExecuteNonQueryTblProjectId(string sqlText, int projectId = 0)
     {
         int rowsAffected = 0;
@@ -140,7 +140,7 @@ public class HelperProject
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table Project_Id: Project
+    #endregion Execute Non Query Table Id: Project
 
     #region Get Data from Table: Project
     public DataTable GetDataTblProject(int projectId = 0)
@@ -150,7 +150,7 @@ public class HelperProject
 
         if (projectId > 0)
         {
-            sqlText = "SELECT * from Project where project_Id = @projectId";
+            sqlText = "SELECT * from Project where Id = @projectId";
         }
         else
         {
@@ -178,7 +178,7 @@ public class HelperProject
     public string InsertTblProject(string projectCode, string projectName, string projectStartDate, string projectEndDate, int projectClosed, string projectMemo, string projectImageRotationAngle, byte[] projectImage)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Project (project_Code, project_Name, project_StartDate, project_EndDate, project_Closed, project_Memo, project_ImageRotationAngle, project_Image) VALUES (@projectCode, @projectName, @projectStartDate, @projectEndDate, @projectClosed, @projectmemo, @projectImageRotationAngle, @projectImage);";
+        string sqlText = "INSERT INTO Project (Code, Name, StartDate, EndDate, Closed, Memo, ImageRotationAngle, Image) VALUES (@projectCode, @projectName, @projectStartDate, @projectEndDate, @projectClosed, @projectmemo, @projectImageRotationAngle, @projectImage);";
 
         try
         {
@@ -213,7 +213,7 @@ public class HelperProject
     public string DeleteTblProject(int projectId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM Project WHERE project_Id=@projectId";
+        string sqlText = "DELETE FROM Project WHERE Id=@projectId";
 
         try
         {
@@ -248,7 +248,7 @@ public class HelperProject
     public string UpdateTblProject(int projectId, string projectCode, string projectName, string projectStartDate, string projectEndDate, int projectClosed, string projectMemo, string projectImageRotationAngle, byte[] projectImage)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Project SET project_Code = @projectCode, project_Name = @projectName, project_StartDate = @projectStartDate, project_EndDate = @projectEndDate, project_Closed = @projectClosed, project_Memo = @projectMemo, project_ImageRotationAngle = @projectImageRotationAngle, project_Image = @projectImage WHERE project_Id = @projectId;";
+        string sqlText = "UPDATE Project SET Code = @projectCode, Name = @projectName, StartDate = @projectStartDate, EndDate = @projectEndDate, Closed = @projectClosed, Memo = @projectMemo, ImageRotationAngle = @projectImageRotationAngle, Image = @projectImage WHERE Id = @projectId;";
 
         try
         {

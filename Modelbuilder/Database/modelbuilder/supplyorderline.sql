@@ -8,12 +8,12 @@
 DROP TABLE IF EXISTS `supplyorderline`;
 CREATE TABLE IF NOT EXISTS `supplyorderline` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Supplyorder_Id` int NOT NULL DEFAULT '0',
-  `Supplier_Id` int NOT NULL DEFAULT '0',
-  `Product_Id` int DEFAULT '0',
+  `Id` int NOT NULL DEFAULT '0',
+  `Id` int NOT NULL DEFAULT '0',
+  `Id` int DEFAULT '0',
   `SupplierProductName` varchar(150) DEFAULT '',
-  `Project_Id` int DEFAULT '0',
-  `Category_Id` int DEFAULT '0',
+  `Id` int DEFAULT '0',
+  `Id` int DEFAULT '0',
   `Amount` double(6,2) DEFAULT '0.00',
   `Price` double(6,2) DEFAULT '0.00',
   `RealRowTotal` double(6,2) DEFAULT '0.00',
@@ -22,16 +22,16 @@ CREATE TABLE IF NOT EXISTS `supplyorderline` (
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
-  KEY `FK_OrderRow_Supplyorder_Id` (`Supplyorder_Id`),
-  KEY `FK_OrderRow_Supplier_Id` (`Supplier_Id`),
-  KEY `FK_OrderRow_Product_Id` (`Product_Id`),
-  KEY `FK_OrderRow_Project_Id` (`Project_Id`),
-  KEY `FK_OrderRow_Category_Id` (`Category_Id`),
-  CONSTRAINT `FK_OrderRow_Category_Id` FOREIGN KEY (`Category_Id`) REFERENCES `category` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Product_Id` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Project_Id` FOREIGN KEY (`Project_Id`) REFERENCES `project` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_OrderRow_Supplyorder_Id` FOREIGN KEY (`Supplyorder_Id`) REFERENCES `supplyorder` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_OrderRow_Id` (`Id`),
+  KEY `FK_OrderRow_Id` (`Id`),
+  KEY `FK_OrderRow_Id` (`Id`),
+  KEY `FK_OrderRow_Id` (`Id`),
+  KEY `FK_OrderRow_Id` (`Id`),
+  CONSTRAINT `FK_OrderRow_Id` FOREIGN KEY (`Id`) REFERENCES `category` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Id` FOREIGN KEY (`Id`) REFERENCES `product` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Id` FOREIGN KEY (`Id`) REFERENCES `project` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Id` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_OrderRow_Id` FOREIGN KEY (`Id`) REFERENCES `supplyorder` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorderline`;

@@ -7,15 +7,15 @@
 
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE IF NOT EXISTS `unit` (
-  `unit_Id` int NOT NULL AUTO_INCREMENT,
-  `unit_Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  PRIMARY KEY (`unit_Id`),
-  UNIQUE KEY `unit_Name` (`unit_Name`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Name` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `unit`;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
-INSERT INTO `unit` (`unit_Id`, `unit_Name`) VALUES
+INSERT INTO `unit` (`Id`, `Name`) VALUES
 	(1, ''),
 	(6, 'cm'),
 	(11, 'dl'),

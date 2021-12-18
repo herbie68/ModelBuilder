@@ -7,19 +7,19 @@
 
 DROP TABLE IF EXISTS `suppliercontact`;
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
-  `suppliercontact_Id` int NOT NULL AUTO_INCREMENT,
-  `suppliercontact_SupplierId` int DEFAULT '0',
-  `suppliercontact_Name` varchar(150) DEFAULT '',
-  `suppliercontact_TypeId` int DEFAULT '1',
-  `suppliercontact_TypeName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `suppliercontact_Mail` varchar(150) DEFAULT '',
-  `suppliercontact_Phone` varchar(150) DEFAULT '',
-  PRIMARY KEY (`suppliercontact_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `SupplierId` int DEFAULT '0',
+  `Name` varchar(150) DEFAULT '',
+  `TypeId` int DEFAULT '1',
+  `TypeName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  `Mail` varchar(150) DEFAULT '',
+  `Phone` varchar(150) DEFAULT '',
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `suppliercontact`;
 /*!40000 ALTER TABLE `suppliercontact` DISABLE KEYS */;
-INSERT INTO `suppliercontact` (`suppliercontact_Id`, `suppliercontact_SupplierId`, `suppliercontact_Name`, `suppliercontact_TypeId`, `suppliercontact_TypeName`, `suppliercontact_Mail`, `suppliercontact_Phone`) VALUES
+INSERT INTO `suppliercontact` (`Id`, `SupplierId`, `Name`, `TypeId`, `TypeName`, `Mail`, `Phone`) VALUES
 	(1, 7, NULL, 4, 'Algemeen', 'info@hobby-en-modelbouw.nl', '0294-266587'),
 	(3, 5, 'Name5-1', 1, '', NULL, NULL),
 	(24, 1, 'test', 3, 'Administratie', NULL, NULL);

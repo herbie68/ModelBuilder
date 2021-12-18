@@ -129,7 +129,7 @@ namespace Modelbuilder
 
             // These two rows are cemmented out because its causing an error when storing a Supplier
             // Unsure why in this general read function specificly a currency Id is read.
-            // var reader = retrieveData.GetOrdinal("currency_Id");
+            // var reader = retrieveData.GetOrdinal("Id");
             // int ID = retrieveData.GetInt32(reader);
 
             int reader = retrieveData.GetOrdinal(TableId);

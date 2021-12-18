@@ -12,17 +12,17 @@
     <Grid Margin="0,2,0,-2">
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataCurrency_Page_Title}" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataPage_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyName}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRate}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="{x:Static p:Cultures.metadataField_CurrencyCode}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="{x:Static p:Cultures.metadataField_CurrencyName}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="{x:Static p:Cultures.metadataField_CurrencySymbol}" />
+        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="{x:Static p:Cultures.metadataField_CurrencyRate}" />
 
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyCode"      Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyName"      Width="450" Margin="170,97,0,0" />
@@ -33,13 +33,13 @@
 
         <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,185,10,0">
             <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Add}" Click="ToolbarButtonNew">
+                <Button ToolTip="{x:Static p:Cultures.metadataToolbar_Button_Tooltip_Add}" Click="ToolbarButtonNew">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button ToolTip="L{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Delete}" Click="ToolbarButtonDelete">
+                <Button ToolTip="L{x:Static p:Cultures.metadataToolbar_Button_Tooltip_Delete}" Click="ToolbarButtonDelete">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Save}" Click="ToolbarButtonSave">
+                <Button ToolTip="{x:Static p:Cultures.metadataToolbar_Button_Tooltip_Save}" Click="ToolbarButtonSave">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -48,11 +48,11 @@
         <DataGrid x:Name="CurrencyCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
                   Margin="10,226,10,0" SelectionChanged="CurrencyCode_DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding currency_Id}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" Width="80" Binding="{Binding currency_Code}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" Width="100" Binding="{Binding currency_Symbol}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRateShort}" Width="90" Binding="{Binding currency_ConversionRate}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_Currency}" Width="*" Binding="{Binding currency_Name}" />
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataField_CurrencyCode}" Width="80" Binding="{Binding Code}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataField_CurrencySymbol}" Width="100" Binding="{Binding Symbol}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataField_CurrencyRateShort}" Width="90" Binding="{Binding ConversionRate}" />
+                <DataGridTextColumn Header="{x:Static p:Cultures.metadataField_Currency}" Width="*" Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -15,12 +15,12 @@ internal class HelperProduct
     ///   MinimalStock 	            MinimalStock		    @MinimalStock		    double (6,4)
     ///   StandardOrderQuantity     StandardOrderQuantity   @StandardOrderQuantity  double (6,4)
     ///   ProjectCosts   			ProjectCosts		    @ProjectCosts		    double (6,2)
-    ///   Unit_Id 				    UnitId			        @UnitId			        int
+    ///   Id 				    UnitId			        @UnitId			        int
     ///   ImageRotationAngle 		ImageRotationAngle		@ImageRotationAngle		varchar
     ///   Image 					Image			        @Image		            longblob
-    ///   Brand_Id 				    BrandId		            @BrandId	            int
-    ///   Category_Id               CategoryId              @CategoryId             int
-    ///   Storage_Id                StorageId               @StorageId              int
+    ///   Id 				    BrandId		            @BrandId	            int
+    ///   Id               CategoryId              @CategoryId             int
+    ///   Id                StorageId               @StorageId              int
     ///   Memo                      Memo                    @Memo                   longtext
     ///   Created                                                                   datetime
     ///   Modified                                                                  datetime
@@ -32,9 +32,9 @@ internal class HelperProduct
     ///   Table Fieldname               Variable            Parameter           Type
     ///   ----------------------------------------------------------------------------------
     ///   Id                            Id                  @Id                 int
-    ///   Supplier_Id                   SupplierId          @SupplierId         int
-    ///   Product_Id                    ProductId           @ProductId          int
-    ///   Currency_Id                   CurrencyId          @CurrencyId         int
+    ///   Id                   SupplierId          @SupplierId         int
+    ///   Id                    ProductId           @ProductId          int
+    ///   Id                   CurrencyId          @CurrencyId         int
     ///   ProductNumber                 ProductNumber       @ProductNumber      varchar
     ///   Name                          Name                @Name               varchar
     ///   Price                         Price               @Price              double (6,2)
@@ -45,10 +45,10 @@ internal class HelperProduct
     /// 
     /// Examples how to use joins to get values from different tables
     /// Give me a list of all products where the supplier has a price for a product
-    /// SELECT product_Name, SupplierName, product_Price, ProductPrice FROM product INNER JOIN productsupplier ON product_Id = ProductId
+    /// SELECT Name, SupplierName, Price, ProductPrice FROM product INNER JOIN productsupplier ON Id = ProductId
     ///
     /// Give me a list with brandnames for all products
-    /// SELECT product_Name, brand1_Name FROM product INNER JOIN brand ON product_BrandId = brand1_Id
+    /// SELECT Name, brand1_Name FROM product INNER JOIN brand ON BrandId = brand1_Id
     #endregion Available databasefields
 
     #region public Variables
@@ -299,7 +299,7 @@ internal class HelperProduct
     }
     #endregion Execute Non Query Table: ProductSupplier
 
-    #region Execute Non Query Table Product_Id: Product
+    #region Execute Non Query Table Id: Product
     public int ExecuteNonQueryTblProductId(string sqlText, int productId = 0)
     {
         int rowsAffected = 0;
@@ -322,7 +322,7 @@ internal class HelperProduct
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table Supplier_Id: Product
+    #endregion Execute Non Query Table Id: Product
 
     #region Execute Non Query Table ProductSupplierId: ProductSupplier
     public int ExecuteNonQueryTblProductSupplierId(string sqlText, int productSupplierId = 0)
@@ -347,7 +347,7 @@ internal class HelperProduct
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
+    #endregion Execute Non Query Table Id: ProductSupplier
 
     #region Get Data from Table: Product
     public DataTable GetDataTblProduct(int productId = 0)
@@ -357,7 +357,7 @@ internal class HelperProduct
 
         if (productId > 0)
         {
-            sqlText = "SELECT * from Product where product_Id = @productId";
+            sqlText = "SELECT * from Product where Id = @productId";
         }
         else
         {
@@ -419,7 +419,7 @@ internal class HelperProduct
     public string InsertTblProduct(string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo, product_ImageRotationAngle, product_Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
+        string sqlText = "INSERT INTO Product (Code, Name, MinimalStock, StandardOrderQuantity, Price, ProjectCosts, CategoryId, CategoryName, StorageId, StorageName, BrandId, BrandName, UnitId, UnitName, Memo, ImageRotationAngle, Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
 
         try
         {
@@ -488,7 +488,7 @@ internal class HelperProduct
     public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo, product_ImageRotationAngle = @productImageRotationAngle, product_Image = @productImage WHERE product_Id = @productId;";
+        string sqlText = "UPDATE Product SET Code = @productCode, name = @productName, MinimalStock = @productMinimalStock,StandardOrderQuantity = @productStandardOrderQuantity, Price = @productPrice, ProjectCosts = @productProjectCosts, CategoryId = @productCategoryId, CategoryName = @productCategoryName, StorageId = @productStorageId, StorageName = @productStorageName, BrandId = @productBrandId, BrandName = @productBrandName, UnitId = @productUnitId, UnitName = @productUnitName, Memo = @productMemo, ImageRotationAngle = @productImageRotationAngle, Image = @productImage WHERE Id = @productId;";
 
         try
         {

@@ -54,7 +54,7 @@
         </ToolBarTray>
 
         <TreeView x:Name="treeViewWorktype" 
-                  SelectedItemChanged="treeViewWorktype_SelectedItemChanged"
+                  SelectedItemChanged="treeViewSelectedItemChanged"
                   HorizontalAlignment="Left"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"

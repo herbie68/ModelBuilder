@@ -158,7 +158,7 @@ public partial class storageOrder : Page
         _currentDataGridIndex = dg.SelectedIndex;
 
         #region Select the saved Product in the Product combobox by default
-        string _tempProduct = Row_Selected["orderline_ProductName"].ToString();
+        string _tempProduct = Row_Selected["ProductName"].ToString();
         cboxProduct.Text = _tempProduct;
 
         foreach (Product product in cboxProduct.Items)
@@ -172,7 +172,7 @@ public partial class storageOrder : Page
         #endregion Select the saved Product in the Product combobox by default
 
         #region Select the saved Project in the Project combobox by default
-        string _tempProject = Row_Selected["orderline_ProjectName"].ToString();
+        string _tempProject = Row_Selected["ProjectName"].ToString();
         if (_tempProject == "") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
 
         foreach (Project project in cboxProject.Items)
@@ -186,7 +186,7 @@ public partial class storageOrder : Page
         #endregion Select the saved Project in the Project combobox by default
 
         #region Select the saved Category in the Category combobox by default
-        string _tempCategory = Row_Selected["orderline_CategoryName"].ToString();
+        string _tempCategory = Row_Selected["CategoryName"].ToString();
         cboxCategory.Text = _tempCategory;
 
         foreach (Category category in cboxCategory.Items)
@@ -199,14 +199,14 @@ public partial class storageOrder : Page
         }
         #endregion Select the saved Category in the Category combobox by default
 
-        valueOrderlineId.Text = Row_Selected["orderline_Id"].ToString();
-        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["orderline_Number"].ToString()));
-        inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["orderline_Price"].ToString()));
+        valueOrderlineId.Text = Row_Selected["Id"].ToString();
+        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["Number"].ToString()));
+        inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["Price"].ToString()));
     }
     #endregion Datagrid selectionchanged for OrderRow
 
     #region Selection changed: Combobox Supplier
-    private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         foreach (HelperOrder.Supplier item in e.AddedItems)
         {
@@ -216,13 +216,13 @@ public partial class storageOrder : Page
             inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
         }
 
-        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "currency_ConversionRate", "double")));
-        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_ShippingCosts", "double")));
-        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_OrderCosts", "double")));
-        //inpCurrencyRate.Text = _helperGeneral.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "currency_ConversionRate", "float");
-        //inpShippingCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_ShippingCosts", "double");
-        valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_MinShippingCosts", "double");
-        //inpOrderCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "supplier_OrderCosts", "double");
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "ConversionRate", "double")));
+        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "ShippingCosts", "double")));
+        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "OrderCosts", "double")));
+        //inpCurrencyRate.Text = _helperGeneral.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "ConversionRate", "float");
+        //inpShippingCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "ShippingCosts", "double");
+        valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "MinShippingCosts", "double");
+        //inpOrderCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "OrderCosts", "double");
         //inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
         //inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpShippingCosts.Text));
         //inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text));
@@ -230,7 +230,7 @@ public partial class storageOrder : Page
     #endregion Selection changed: Combobox Supplier
 
     #region Selection changed: Combobox Product
-    private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no product is selected do nothing
         //if(cboxProduct.Text == string.Empty || cboxProduct.Text == "") { return; }
@@ -247,15 +247,15 @@ public partial class storageOrder : Page
         if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00")
         {
             // Check if product is in table for this supplier, if not return value will be -1
-            string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
+            string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "ProductPrice", "Double", "SupplierId", int.Parse(valueSupplierId.Text), "AND", "ProductId", int.Parse(valueProductId.Text));
 
             if (SupplierHasProduct == 0)
             {
-                inpPrice.Text = _helper.GetSingleDataMultiSelect("ProductSupplier", "productSupplier_ProductPrice", "Double", "productSupplier_SupplierId", int.Parse(valueSupplierId.Text), "AND", "productSupplier_ProductId", int.Parse(valueProductId.Text));
+                inpPrice.Text = _helper.GetSingleDataMultiSelect("ProductSupplier", "ProductPrice", "Double", "SupplierId", int.Parse(valueSupplierId.Text), "AND", "ProductId", int.Parse(valueProductId.Text));
             }
             else
             {
-                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_Price", "Double");
+                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "Price", "Double");
             }
 
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
@@ -264,13 +264,13 @@ public partial class storageOrder : Page
         // If there is no quantity entered, retrieve the default order quantity of the item
         if (inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
         {
-            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_StandardOrderQuantity", "double")));
+            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "StandardOrderQuantity", "double")));
         }
 
         if (valueProductId.Text != string.Empty)
         {
-            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryId", "int");
-            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "product_CategoryName", "string");
+            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "CategoryId", "int");
+            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "CategoryName", "string");
             if (valueCategoryName.Text != string.Empty)
             {
                 cboxCategory.Text = valueCategoryName.Text;
@@ -289,7 +289,7 @@ public partial class storageOrder : Page
     #endregion
 
     #region Selection changed: Combobox Project
-    private void cboxProject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no project is selected do nothing
         //if (cboxProject.Text == String.Empty) { return; }
@@ -303,7 +303,7 @@ public partial class storageOrder : Page
     #endregion Selection changed: Combobox Project
 
     #region Selection changed: Combobox Categroy
-    private void cboxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no category is selected do nothing
         //if (cboxCategory.Text == String.Empty) { return; }
@@ -510,7 +510,7 @@ public partial class storageOrder : Page
     #region Click Save Data button (on Order toolbar)
     private void ToolbarButtonSave(object sender, RoutedEventArgs e)
     {
-        // On save order detail information has to be saved, but also orderline_SupplierId of existing orderrows
+        // On save order detail information has to be saved, but also SupplierId of existing orderrows
 
         int rowIndex = _currentDataGridIndex;
         var OrderId = 0;

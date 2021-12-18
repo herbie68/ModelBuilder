@@ -1,3 +1,3 @@
-category_Id,category_ParentId,category_Name,category_Fullpath,category_Created,category_Modified
+Id,ParentId,Name,Fullpath,Created,Modified
 1,NULL,Afwerking,Afwerking,"2021-12-10 12:39:38","2021-12-10 12:39:38"
 2,1,Veroudering/Bruinering,Afwerking\Veroudering/Bruinering,"2021-12-10 12:39:38","2021-12-10 12:39:38"

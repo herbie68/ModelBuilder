@@ -7,16 +7,16 @@
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_Id` int NOT NULL AUTO_INCREMENT,
-  `category_Name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `category_Fullpath` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `category_ParentId` int DEFAULT NULL,
-  PRIMARY KEY (`category_Id`) USING BTREE
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Fullpath` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ParentId` int DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=782 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `category`;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `category_ParentId`) VALUES
+INSERT INTO `category` (`Id`, `Name`, `Fullpath`, `ParentId`) VALUES
 	(510, 'Afwerkingerking', 'Afwerking', NULL),
 	(511, 'Veroudering/Bruinering', 'Afwerking\\Veroudering/Bruinering', 510),
 	(512, 'Maskering', 'Afwerking\\Maskering', 510),

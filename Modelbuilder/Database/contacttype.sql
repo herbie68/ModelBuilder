@@ -7,14 +7,14 @@
 
 DROP TABLE IF EXISTS `contacttype`;
 CREATE TABLE IF NOT EXISTS `contacttype` (
-  `contacttype_Id` int NOT NULL AUTO_INCREMENT,
-  `contacttype_Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  PRIMARY KEY (`contacttype_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `contacttype`;
 /*!40000 ALTER TABLE `contacttype` DISABLE KEYS */;
-INSERT INTO `contacttype` (`contacttype_Id`, `contacttype_Name`) VALUES
+INSERT INTO `contacttype` (`Id`, `Name`) VALUES
 	(1, ''),
 	(2, 'Verkoop'),
 	(3, 'Administratie'),

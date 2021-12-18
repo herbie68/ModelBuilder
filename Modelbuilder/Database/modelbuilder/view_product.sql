@@ -7,7 +7,7 @@
 
 DROP VIEW IF EXISTS `view_product`;
 DROP TABLE IF EXISTS `view_product`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_product` AS select `p`.`Name` AS `Product`,`p`.`Price` AS `Price`,`s`.`Name` AS `Supplier product`,`s`.`Price` AS `Supplier price` from (`product` `p` join `productsupplier` `s` on((`p`.`Id` = `s`.`Product_Id`))) order by `p`.`Name`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_product` AS select `p`.`Name` AS `Product`,`p`.`Price` AS `Price`,`s`.`Name` AS `Supplier product`,`s`.`Price` AS `Supplier price` from (`product` `p` join `productsupplier` `s` on((`p`.`Id` = `s`.`Id`))) order by `p`.`Name`;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

@@ -7,16 +7,16 @@
 
 DROP TABLE IF EXISTS `worktype`;
 CREATE TABLE IF NOT EXISTS `worktype` (
-  `worktype_Id` int NOT NULL AUTO_INCREMENT,
-  `worktype_ParentId` int DEFAULT NULL,
-  `worktype_Name` char(150) DEFAULT NULL,
-  `worktype_FullPath` char(255) DEFAULT NULL,
-  PRIMARY KEY (`worktype_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `ParentId` int DEFAULT NULL,
+  `Name` char(150) DEFAULT NULL,
+  `FullPath` char(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `worktype`;
 /*!40000 ALTER TABLE `worktype` DISABLE KEYS */;
-INSERT INTO `worktype` (`worktype_Id`, `worktype_ParentId`, `worktype_Name`, `worktype_FullPath`) VALUES
+INSERT INTO `worktype` (`Id`, `ParentId`, `Name`, `FullPath`) VALUES
 	(1, NULL, 'Voorbereiding', 'Voorbereiding'),
 	(2, NULL, 'Opruimen', 'Opruimen'),
 	(3, NULL, 'Romp', 'Romp'),

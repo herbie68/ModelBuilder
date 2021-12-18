@@ -541,7 +541,7 @@ public class HelperMySql
     }
     #endregion Execute Non Query Table: Supplier
 
-    #region Execute Non Query Table Supplier_Id: Supplier
+    #region Execute Non Query Table Id: Supplier
     public int ExecuteNonQueryTblSupplierId(string sqlText, int supplierId = 0)
     {
         int rowsAffected = 0;
@@ -564,9 +564,9 @@ public class HelperMySql
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table Supplier_Id: Supplier
+    #endregion Execute Non Query Table Id: Supplier
 
-    #region Execute Non Query Table Product_Id: Product
+    #region Execute Non Query Table Id: Product
     public int ExecuteNonQueryTblProductId(string sqlText, int productId = 0)
     {
         int rowsAffected = 0;
@@ -589,7 +589,7 @@ public class HelperMySql
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table Supplier_Id: Product
+    #endregion Execute Non Query Table Id: Product
 
     #region Execute Non Query Table ProductSupplierId: ProductSupplier
     public int ExecuteNonQueryTblProductSupplierId(string sqlText, int productSupplierId = 0)
@@ -614,7 +614,7 @@ public class HelperMySql
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
+    #endregion Execute Non Query Table Id: ProductSupplier
 
     #region Execute Non Query Table ProductSupplierId: SupplierContact
     public int ExecuteNonQueryTblSupplierContactId(string sqlText, int supplierContactId = 0)
@@ -639,7 +639,7 @@ public class HelperMySql
 
         return rowsAffected;
     }
-    #endregion Execute Non Query Table ProductSupplier_Id: ProductSupplier
+    #endregion Execute Non Query Table Id: ProductSupplier
 
     #region Uncheck the DefaultSupplier: ProductSupplier
     public int UncheckDefaultSupplierTblProductSupplier(string sqlText, int productSupplierId, int productSupplierProductId)
@@ -675,7 +675,7 @@ public class HelperMySql
 
         if (supplierId > 0)
         {
-            sqlText = "SELECT * from Supplier where supplier_Id = @supplierId";
+            sqlText = "SELECT * from Supplier where Id = @supplierId";
         }
         else
         {
@@ -708,7 +708,7 @@ public class HelperMySql
 
         if (productId > 0)
         {
-            sqlText = "SELECT * from Product where product_Id = @productId";
+            sqlText = "SELECT * from Product where Id = @productId";
         }
         else
         {
@@ -741,7 +741,7 @@ public class HelperMySql
 
         if (ProductId > 0)
         {
-            sqlText = "SELECT * from ProductSupplier where productSupplier_ProductId = @ProductId";
+            sqlText = "SELECT * from ProductSupplier where ProductId = @ProductId";
         }
         else
         {
@@ -774,7 +774,7 @@ public class HelperMySql
 
         if (SupplierId > 0)
         {
-            sqlText = "SELECT * from SupplierContact where suppliercontact_SupplierId = @SupplierId";
+            sqlText = "SELECT * from SupplierContact where SupplierId = @SupplierId";
         }
         else
         {
@@ -807,11 +807,11 @@ public class HelperMySql
 
         if (supplierCountryName != "")
         {
-            sqlText = "SELECT country_Id, country_Code FROM country WHERE country_Name = @supplierCountryName";
+            sqlText = "SELECT Id, Code FROM country WHERE Name = @supplierCountryName";
         }
         else
         {
-            sqlText = "SELECT country_Id, country_Code, country_Name FROM Country";
+            sqlText = "SELECT Id, Code, Name FROM Country";
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -841,11 +841,11 @@ public class HelperMySql
 
         if (supplierCurrencySymbol != "")
         {
-            sqlText = "SELECT currency_Id, from Currency WHERE currency_Symbol = @supplierCurrencySymbol";
+            sqlText = "SELECT Id, from Currency WHERE Symbol = @supplierCurrencySymbol";
         }
         else
         {
-            sqlText = "SELECT currency_Id, currency_Symbol from Currency";
+            sqlText = "SELECT Id, Symbol from Currency";
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -870,7 +870,7 @@ public class HelperMySql
     public string InsertTblSupplier(string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, string supplierMemo, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, double supplierOrderCosts, double supplierMinOrderCosts)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Supplier (supplier_Code, supplier_Name, supplier_Address1, supplier_Address2, supplier_Zip, supplier_City, supplier_Url, supplier_Memo, supplier_CountryId, supplier_CountryName, supplier_CurrencyId, supplier_CurrencySymbol, supplier_ShippingCosts, supplier_MinShippingCosts) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountryId, @supplierCountryName, @supplierCurrencyId, @supplierCurrencySymbol, @supplierOrderCosts, @supplierMinOrderCosts);";
+        string sqlText = "INSERT INTO Supplier (Code, Name, Address1, Address2, Zip, City, Url, Memo, CountryId, CountryName, CurrencyId, CurrencySymbol, ShippingCosts, MinShippingCosts) VALUES (@supplierCode, @supplierName, @supplierAddress1, @supplierAddress2, @supplierZip, @supplierCity, @supplierUrl, @supplierMemo, @supplierCountryId, @supplierCountryName, @supplierCurrencyId, @supplierCurrencySymbol, @supplierOrderCosts, @supplierMinOrderCosts);";
 
         try
         {
@@ -905,7 +905,7 @@ public class HelperMySql
     public string InsertTblProduct(string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Product (product_Code, product_Name, product_MinimalStock, product_StandardOrderQuantity, product_Price, product_ProjectCosts, product_CategoryId, product_CategoryName, product_StorageId, product_StorageName, product_BrandId, product_BrandName, product_UnitId, product_UnitName, product_Memo, product_ImageRotationAngle, product_Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
+        string sqlText = "INSERT INTO Product (Code, Name, MinimalStock, StandardOrderQuantity, Price, ProjectCosts, CategoryId, CategoryName, StorageId, StorageName, BrandId, BrandName, UnitId, UnitName, Memo, ImageRotationAngle, Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
 
         try
         {
@@ -940,7 +940,7 @@ public class HelperMySql
     public string InsertTblProductSupplier(int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, string productSupplierDefault)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO ProductSupplier (productSupplier_ProductId, productSupplier_SupplierId, productSupplier_SupplierName, productSupplier_CurrencyId, productSupplier_CurrencySymbol, productSupplier_ProductNumber,  productSupplier_ProductName, productSupplier_ProductPrice, productSupplier_Default) VALUES (@productSupplierProductId, @productSupplierSupplierId, @productSupplierSupplierName, @productSupplierCurrencyId, @productSupplierCurrencySymbol, @productSupplierProductNumber, @productSupplierProductName, @productSupplierProductPrice, @productSupplierDefault);";
+        string sqlText = "INSERT INTO ProductSupplier (ProductId, SupplierId, SupplierName, CurrencyId, CurrencySymbol, ProductNumber,  ProductName, ProductPrice, Default) VALUES (@productSupplierProductId, @productSupplierSupplierId, @productSupplierSupplierName, @productSupplierCurrencyId, @productSupplierCurrencySymbol, @productSupplierProductNumber, @productSupplierProductName, @productSupplierProductPrice, @productSupplierDefault);";
 
         try
         {
@@ -974,7 +974,7 @@ public class HelperMySql
     public string InsertTblSupplierContact(int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO SupplierContact (suppliercontact_SupplierId, suppliercontact_Name, suppliercontact_TypeId, suppliercontact_TypeName, suppliercontact_Phone, suppliercontact_Mail) VALUES (@supplierId, @supplierContactContactName, @supplierContactContactTypeId, @supplierContactContactTypeName, @supplierContactContactPhone, @supplierContactContactMail);";
+        string sqlText = "INSERT INTO SupplierContact (SupplierId, Name, TypeId, TypeName, Phone, Mail) VALUES (@supplierId, @supplierContactContactName, @supplierContactContactTypeId, @supplierContactContactTypeName, @supplierContactContactPhone, @supplierContactContactMail);";
 
         try
         {
@@ -1008,7 +1008,7 @@ public class HelperMySql
     public string DeleteTblSupplier(int supplierId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM Supplier WHERE supplier_Id=@supplierId";
+        string sqlText = "DELETE FROM Supplier WHERE Id=@supplierId";
 
         try
         {
@@ -1043,7 +1043,7 @@ public class HelperMySql
     public string DeleteTblProduct(int productId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM Product WHERE product_Id=@productId";
+        string sqlText = "DELETE FROM Product WHERE Id=@productId";
 
         try
         {
@@ -1078,7 +1078,7 @@ public class HelperMySql
     public string DeleteTblProductSupplier(int productSupplierId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM ProductSupplier WHERE productSupplier_Id=@productSupplierId";
+        string sqlText = "DELETE FROM ProductSupplier WHERE Id=@productSupplierId";
 
         try
         {
@@ -1113,7 +1113,7 @@ public class HelperMySql
     public string DeleteTblSupplierContact(int supplierContactId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM SupplierContact WHERE supplierContact_Id=@supplierContactId";
+        string sqlText = "DELETE FROM SupplierContact WHERE Id=@supplierContactId";
 
         try
         {
@@ -1148,7 +1148,7 @@ public class HelperMySql
     public string UpdateTblSupplier(int supplierId, string supplierCode, string supplierName, string supplierAddress1, string supplierAddress2, string supplierZip, string supplierCity, string supplierUrl, int supplierCountryId, string supplierCountryName, int supplierCurrencyId, string supplierCurrencySymbol, string supplierMemo, double supplierOrderCosts, double supplierMinOrderCosts)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Supplier SET supplier_Code = @supplierCode, supplier_name = @supplierName, supplier_Address1 = @supplierAddress1, supplier_Address2 = @supplierAddress2, supplier_Zip = @supplierZip, supplier_City = @supplierCity, supplier_Url = @supplierUrl, supplier_CountryId = @supplierCountryId, supplier_CountryName = @supplierCountryName, supplier_CurrencyId = @supplierCurrencyId, supplier_CurrencySymbol = @supplierCurrencySymbol, supplier_Memo = @supplierMemo, supplier_ShippingCosts = @supplierShippingCosts, supplier_MinShippingCosts = @supplierMinShippingCosts WHERE supplier_Id = @supplierId;";
+        string sqlText = "UPDATE Supplier SET Code = @supplierCode, name = @supplierName, Address1 = @supplierAddress1, Address2 = @supplierAddress2, Zip = @supplierZip, City = @supplierCity, Url = @supplierUrl, CountryId = @supplierCountryId, CountryName = @supplierCountryName, CurrencyId = @supplierCurrencyId, CurrencySymbol = @supplierCurrencySymbol, Memo = @supplierMemo, ShippingCosts = @supplierShippingCosts, MinShippingCosts = @supplierMinShippingCosts WHERE Id = @supplierId;";
 
         try
         {
@@ -1176,7 +1176,7 @@ public class HelperMySql
     public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo, product_ImageRotationAngle = @productImageRotationAngle, product_Image = @productImage WHERE product_Id = @productId;";
+        string sqlText = "UPDATE Product SET Code = @productCode, name = @productName, MinimalStock = @productMinimalStock,StandardOrderQuantity = @productStandardOrderQuantity, Price = @productPrice, ProjectCosts = @productProjectCosts, CategoryId = @productCategoryId, CategoryName = @productCategoryName, StorageId = @productStorageId, StorageName = @productStorageName, BrandId = @productBrandId, BrandName = @productBrandName, UnitId = @productUnitId, UnitName = @productUnitName, Memo = @productMemo, ImageRotationAngle = @productImageRotationAngle, Image = @productImage WHERE Id = @productId;";
 
         try
         {
@@ -1204,7 +1204,7 @@ public class HelperMySql
     public string UpdateTblProductSupplier(int productSupplierId, int productSupplierProductId, int productSupplierSupplierId, string productSupplierSupplierName, int productSupplierCurrencyId, string productSupplierCurrencySymbol, string productSupplierProductNumber, string productSupplierProductName, float productSupplierProductPrice, string productSupplierDefault)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE ProductSupplier SET productSupplier_ProductId = @productSupplierProductId, productSupplier_SupplierId = @productSupplierSupplierId, productSupplier_SupplierName = @productSupplierSupplierName, productSupplier_CurrencyId = @productSupplierCurrencyId, productSupplier_CurrencySymbol = @productSupplierCurrencySymbol, productSupplier_ProductNumber = @productSupplierProductNumber,  productSupplier_ProductName = @productSupplierProductName, productSupplier_ProductPrice = @productSupplierProductPrice, productSupplier_Default = @productSupplierDefault WHERE productSupplier_Id = @productSupplierId;";
+        string sqlText = "UPDATE ProductSupplier SET ProductId = @productSupplierProductId, SupplierId = @productSupplierSupplierId, SupplierName = @productSupplierSupplierName, CurrencyId = @productSupplierCurrencyId, CurrencySymbol = @productSupplierCurrencySymbol, ProductNumber = @productSupplierProductNumber,  ProductName = @productSupplierProductName, ProductPrice = @productSupplierProductPrice, Default = @productSupplierDefault WHERE Id = @productSupplierId;";
 
         try
         {
@@ -1232,7 +1232,7 @@ public class HelperMySql
     public string UpdateTblSupplierContact(int supplierContactContactId, int supplierId, string supplierContactContactName, int supplierContactContactTypeId, string supplierContactContactTypeName, string supplierContactContactPhone, string supplierContactContactMail)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE SupplierContact SET suppliercontact_SupplierId=@supplierId, suppliercontact_Name=@supplierContactContactName, suppliercontact_TypeId=@supplierContactContactTypeId, suppliercontact_TypeName=@supplierContactContactTypeName, suppliercontact_Phone=@supplierContactContactPhone, suppliercontact_Mail=@supplierContactContactMail WHERE suppliercontact_Id = @supplierContactContactId;";
+        string sqlText = "UPDATE SupplierContact SET SupplierId=@supplierId, Name=@supplierContactContactName, TypeId=@supplierContactContactTypeId, TypeName=@supplierContactContactTypeName, Phone=@supplierContactContactPhone, Mail=@supplierContactContactMail WHERE Id = @supplierContactContactId;";
 
         try
         {
@@ -1260,7 +1260,7 @@ public class HelperMySql
     public string UncheckDefaultSupplierTblProductSupplier(int productSupplierId, int productSupplierProductId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE ProductSupplier SET productSupplier_Default = '' WHERE productSupplier_Id != @productSupplierId AND productSupplier_ProductId = @productSupplierProductId;";
+        string sqlText = "UPDATE ProductSupplier SET Default = '' WHERE Id != @productSupplierId AND ProductId = @productSupplierProductId;";
 
         try
         {
@@ -1295,7 +1295,7 @@ public class HelperMySql
                 sqlText = "SELECT Name, Id FROM brand ORDER by Id";
                 break;
             default:
-                sqlText = "UPDATE Product SET product_Code = @productCode, product_name = @productName, product_MinimalStock = @productMinimalStock,product_StandardOrderQuantity = @productStandardOrderQuantity, product_Price = @productPrice, product_SupplierProductNumber = @productSupplierProductNumber, product_ProjectCosts = @productProjectCosts, product_CategoryId = @productCategoryId, product_CategoryName = @productCategoryName, product_StorageId = @productStorageId, product_StorageName = @productStorageName, product_SupplierId = @productSupplierId, product_SupplierName = @productSupplierName, product_BrandId = @productBrandId, product_BrandName = @productBrandName, product_UnitId = @productUnitId, product_UnitName = @productUnitName, product_Memo = @productMemo WHERE product_Id = @productId;";
+                sqlText = "UPDATE Product SET Code = @productCode, name = @productName, MinimalStock = @productMinimalStock,StandardOrderQuantity = @productStandardOrderQuantity, Price = @productPrice, SupplierProductNumber = @productSupplierProductNumber, ProjectCosts = @productProjectCosts, CategoryId = @productCategoryId, CategoryName = @productCategoryName, StorageId = @productStorageId, StorageName = @productStorageName, SupplierId = @productSupplierId, SupplierName = @productSupplierName, BrandId = @productBrandId, BrandName = @productBrandName, UnitId = @productUnitId, UnitName = @productUnitName, Memo = @productMemo WHERE Id = @productId;";
                 break;
         }
 
@@ -1327,8 +1327,8 @@ public class HelperMySql
             TableName = DbCategoryTable
         };
 
-        dbCategoryConnection.SqlSelectionString = "category_Name, category_Id";
-        dbCategoryConnection.SqlOrderByString = "category_Id";
+        dbCategoryConnection.SqlSelectionString = "Name, Id";
+        dbCategoryConnection.SqlOrderByString = "Id";
         dbCategoryConnection.TableName = DbCategoryTable;
 
         DataTable dtCategorySelection = dbCategoryConnection.LoadSpecificMySqlData();
@@ -1353,8 +1353,8 @@ public class HelperMySql
             TableName = DbCountryTable
         };
 
-        dbCountryConnection.SqlSelectionString = "country_Name, country_Id";
-        dbCountryConnection.SqlOrderByString = "country_Id";
+        dbCountryConnection.SqlSelectionString = "Name, Id";
+        dbCountryConnection.SqlOrderByString = "Id";
         dbCountryConnection.TableName = DbCountryTable;
 
         DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
@@ -1379,8 +1379,8 @@ public class HelperMySql
             TableName = DbCurrencyTable
         };
 
-        dbCurrencyConnection.SqlSelectionString = "currency_Symbol, currency_Id";
-        dbCurrencyConnection.SqlOrderByString = "currency_Id";
+        dbCurrencyConnection.SqlSelectionString = "Symbol, Id";
+        dbCurrencyConnection.SqlOrderByString = "Id";
         dbCurrencyConnection.TableName = DbCurrencyTable;
 
         DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
@@ -1405,8 +1405,8 @@ public class HelperMySql
             TableName = DbStorageTable
         };
 
-        dbStorageConnection.SqlSelectionString = "storage_Name, storage_Id";
-        dbStorageConnection.SqlOrderByString = "storage_Id";
+        dbStorageConnection.SqlSelectionString = "Name, Id";
+        dbStorageConnection.SqlOrderByString = "Id";
         dbStorageConnection.TableName = DbStorageTable;
 
         DataTable dtStorageSelection = dbStorageConnection.LoadSpecificMySqlData();
@@ -1431,8 +1431,8 @@ public class HelperMySql
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "supplier_Name, supplier_Id, supplier_CurrencySymbol, supplier_CurrencyId";
-        dbConnection.SqlOrderByString = "supplier_Id";
+        dbConnection.SqlSelectionString = "Name, Id, CurrencySymbol, CurrencyId";
+        dbConnection.SqlOrderByString = "Id";
         dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
@@ -1460,8 +1460,8 @@ public class HelperMySql
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "contacttype_Name, contacttype_Id";
-        dbConnection.SqlOrderByString = "contacttype_Name";
+        dbConnection.SqlSelectionString = "Name, Id";
+        dbConnection.SqlOrderByString = "Name";
         dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
