@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     internal class CountryCodeViewModel
     {
         public List<string> CurrencyCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
-        public string TableId = "country_Id";
+        public string TableId = "Id";
 
         public CountryCodeViewModel()
         {
@@ -19,8 +16,8 @@ namespace Modelbuilder
             };
 
             //DataTable dataTable = new DataTable();
-            dbCurrencyConnection.SqlSelectionString = "currency_Symbol";
-            dbCurrencyConnection.SqlOrderByString = "currency_Id";
+            dbCurrencyConnection.SqlSelectionString = "Symbol";
+            dbCurrencyConnection.SqlOrderByString = "Id";
             dbCurrencyConnection.TableName = DatabaseCurrencyTable;
 
             DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();

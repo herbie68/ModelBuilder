@@ -1,10 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     public partial class metadataStorage : Page
     {
@@ -25,9 +19,9 @@ namespace Modelbuilder
 
         #endregion Command Binding CanExecute region
 
-        #region treeviewStorage_SelectedItemChanged
+        #region treeviewSelectedItemChanged
 
-        private void treeViewStorage_SelectedItemChanged(object sender, RoutedEventArgs e)
+        private void treeViewSelectedItemChanged(object sender, RoutedEventArgs e)
         {
             // Changed RoutedPropertyChangedEventArgs<object> e into RoutedEventArgs e
             TreeViewItem SelectedItem = treeViewStorage.SelectedItem as TreeViewItem;
@@ -64,7 +58,7 @@ namespace Modelbuilder
             treeViewStorage.ContextMenu = treeViewStorage.Resources["FolderContext"] as System.Windows.Controls.ContextMenu;
         }
 
-        #endregion treeviewStorage_SelectedItemChanged
+        #endregion treeviewSelectedItemChanged
 
         #region Build Storage tree
 
@@ -80,7 +74,7 @@ namespace Modelbuilder
             // https://stackoverflow.com/questions/24569156/display-treeviewitem-as-grid-rows-in-wpf
 
             dbConnection.SqlSelectionString = "*";
-            dbConnection.SqlOrderByString = "storage_Fullpath";
+            dbConnection.SqlOrderByString = "Fullpath";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtStorageCodes = dbConnection.LoadSpecificMySqlData();
@@ -88,16 +82,16 @@ namespace Modelbuilder
             dsStorageCodes.Tables.Add(dtStorageCodes);
 
             // add a relationship
-            dsStorageCodes.Relations.Add("rsStorageParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["storage_Id"], dsStorageCodes.Tables[DatabaseTable].Columns["storage_ParentId"]);
+            dsStorageCodes.Relations.Add("rsStorageParentChild", dsStorageCodes.Tables[DatabaseTable].Columns["Id"], dsStorageCodes.Tables[DatabaseTable].Columns["ParentId"]);
 
             foreach (DataRow row in dsStorageCodes.Tables[DatabaseTable].Rows)
             {
-                if (row["Storage_ParentId"] == DBNull.Value)
+                if (row["ParentId"] == DBNull.Value)
                 {
                     TreeViewItem root = new TreeViewItem();
-                    root.Header = row["Storage_Name"].ToString();
-                    root.Name = "P" + row["Storage_Id"].ToString();
-                    root.Tag = row["Storage_Fullpath"].ToString();
+                    root.Header = row["Name"].ToString();
+                    root.Name = "P" + row["Id"].ToString();
+                    root.Tag = row["Fullpath"].ToString();
                     treeViewStorage.Items.Add(root);
                     PopulateTree(row, root);
                 }
@@ -109,9 +103,9 @@ namespace Modelbuilder
             foreach (DataRow row in dr.GetChildRows("rsStorageParentChild"))
             {
                 TreeViewItem cChild = new TreeViewItem();
-                cChild.Header = row["Storage_Name"].ToString();
-                cChild.Name = "P" + row["Storage_ParentId"].ToString() + "C" + row["Storage_Id"].ToString(); // Store ID and Parent_Id in the tag
-                cChild.Tag = row["Storage_Fullpath"].ToString();
+                cChild.Header = row["Name"].ToString();
+                cChild.Name = "P" + row["ParentId"].ToString() + "C" + row["Id"].ToString(); // Store ID and Parent_Id in the tag
+                cChild.Tag = row["Fullpath"].ToString();
                 pNode.Items.Add(cChild);
                 //Recursively build the tree
                 PopulateTree(row, cChild);
@@ -132,7 +126,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`Storage_Name`, `Storage_FullPath`, `Storage_ParentId`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`, `ParentId`) " + "VALUES('" +
                 dialogStorageLocation.diaLogStorageLocationValue + "', '" +
                 valueFullpath.Text.Replace("\\", "\\\\") + "\\\\" + dialogStorageLocation.diaLogStorageLocationValue + "', '" +
                 valueId.Text + "');";
@@ -164,7 +158,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`Storage_Name`, `Storage_FullPath`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`) " + "VALUES('" +
                 dialogStorageLocation.diaLogStorageLocationValue + "', '" +
                 dialogStorageLocation.diaLogStorageLocationValue + "');";
             dbConnection.TableName = DatabaseTable;
@@ -190,7 +184,7 @@ namespace Modelbuilder
 
             int ID = int.Parse(valueId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE Storage_Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
+            dbConnection.SqlCommandString = " WHERE Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
             dbConnection.TableName = DatabaseTable;
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
@@ -221,11 +215,11 @@ namespace Modelbuilder
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "storage_Id = '" + valueId.Text + "', " +
-                    "storage_Name = '" + inpStorageLocationName.Text + "', " +
-                    "storage_FullPath = '" + valueParentFullpath.Text + "', " +
-                    "storage_ParentId = '" + valueParentId.Text + "' WHERE " +
-                    "storage_FullPath = " + valueParentFullpath.Text + ";";
+                    "Id = '" + valueId.Text + "', " +
+                    "Name = '" + inpStorageLocationName.Text + "', " +
+                    "FullPath = '" + valueParentFullpath.Text + "', " +
+                    "ParentId = '" + valueParentId.Text + "' WHERE " +
+                    "FullPath = " + valueParentFullpath.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 

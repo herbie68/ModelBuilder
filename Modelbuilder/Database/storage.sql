@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Host:                         localhost
--- Server versie:                8.0.25 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Versie:              11.3.0.6295
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -12,25 +5,18 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Databasestructuur van modelbuilder wordt geschreven
-CREATE DATABASE IF NOT EXISTS `modelbuilder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `modelbuilder`;
-
--- Structuur van  tabel modelbuilder.storage wordt geschreven
 DROP TABLE IF EXISTS `storage`;
 CREATE TABLE IF NOT EXISTS `storage` (
-  `storage_Id` int NOT NULL AUTO_INCREMENT,
-  `storage_ParentId` int DEFAULT NULL,
-  `storage_FullPath` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `storage_Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  PRIMARY KEY (`storage_Id`)
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `ParentId` int DEFAULT NULL,
+  `FullPath` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumpen data van tabel modelbuilder.storage: ~105 rows (ongeveer)
 DELETE FROM `storage`;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` (`storage_Id`, `storage_ParentId`, `storage_FullPath`, `storage_Name`) VALUES
+INSERT INTO `storage` (`Id`, `ParentId`, `FullPath`, `Name`) VALUES
 	(1, NULL, 'Herberts Werf', 'Herberts Werf'),
 	(2, 1, 'Herberts Werf\\Hoge kast', 'Hoge kast'),
 	(3, 2, 'Herberts Werf\\Hoge kast\\Hoge kast  - Planken', 'Hoge kast  - Planken'),

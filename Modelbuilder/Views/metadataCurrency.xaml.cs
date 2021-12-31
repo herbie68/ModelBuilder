@@ -1,8 +1,4 @@
-﻿using System.Data;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Text.RegularExpressions;
 
 namespace Modelbuilder
 {
@@ -44,11 +40,11 @@ namespace Modelbuilder
                 return;
             }
 
-            float _ConversionRate = float.Parse(Row_Selected["currency_ConversionRate"].ToString());
-            inpCurrencyId.Text = Row_Selected["currency_Id"].ToString();
-            inpCurrencyCode.Text = Row_Selected["currency_Code"].ToString().ToUpper();
-            inpCurrencyName.Text = Row_Selected["currency_Name"].ToString();
-            inpCurrencySymbol.Text = Row_Selected["currency_Symbol"].ToString();
+            double _ConversionRate = double.Parse(Row_Selected["ConversionRate"].ToString());
+            inpCurrencyId.Text = Row_Selected["Id"].ToString();
+            inpCurrencyCode.Text = Row_Selected["Code"].ToString().ToUpper();
+            inpCurrencyName.Text = Row_Selected["Name"].ToString();
+            inpCurrencySymbol.Text = Row_Selected["Symbol"].ToString();
             inpCurrencyRate.Text = _ConversionRate.ToString("#,####0.0000");
         }
 
@@ -70,16 +66,16 @@ namespace Modelbuilder
                 //Database dbConnection = new Database();
                 dbConnection.Connect();
 
-                float tmpRate = float.Parse(inpCurrencyRate.Text);
+                double tmpRate = double.Parse(inpCurrencyRate.Text);
                 inpCurrencyRate.Text = tmpRate.ToString("n4");
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "currency_Code = '" + inpCurrencyCode.Text.ToUpper() + "', " +
-                    "currency_Name = '" + inpCurrencyName.Text + "', " +
-                    "currency_Symbol = '" + inpCurrencySymbol.Text + "', " +
-                    "currency_ConversionRate = '" + inpCurrencyRate.Text.Replace(",", ".") + "' WHERE " +
-                    "currency_Id = " + inpCurrencyId.Text + ";";
+                    "Code = '" + inpCurrencyCode.Text.ToUpper() + "', " +
+                    "Name = '" + inpCurrencyName.Text + "', " +
+                    "Symbol = '" + inpCurrencySymbol.Text + "', " +
+                    "ConversionRate = '" + inpCurrencyRate.Text.Replace(",", ".") + "' WHERE " +
+                    "Id = " + inpCurrencyId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
@@ -91,7 +87,7 @@ namespace Modelbuilder
 
                 // Make sure the eddited row in the datagrid is selected
                 CurrencyCode_DataGrid.SelectedIndex = int.Parse(inpCurrencyId.Text) - 1;
-                CurrencyCode_DataGrid.Focus();
+                _ = CurrencyCode_DataGrid.Focus();
             }
         }
 
@@ -101,7 +97,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(currency_Code,currency_Name,currency_Id, currency_Symbol, currency_ConversionRate) VALUES('*','',0, '', 0);";
+            dbConnection.SqlCommandString = "(Code,Name,Id, Symbol, ConversionRate) VALUES('*','',0, '', 0);";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
             inpCurrencyId.Text = ID.ToString();
@@ -110,7 +106,7 @@ namespace Modelbuilder
             // Load the data from the database into the datagrid
             CurrencyCode_DataGrid.DataContext = dtCurrencyCodes;
             CurrencyCode_DataGrid.SelectedIndex = dtCurrencyCodes.Rows.Count - 1;
-            CurrencyCode_DataGrid.Focus();
+            _ = CurrencyCode_DataGrid.Focus();
             inpCurrencyCode.Text = "";
         }
 
@@ -124,7 +120,7 @@ namespace Modelbuilder
 
             int ID = int.Parse(inpCurrencyId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE currency_Id = " + ID + ";";
+            dbConnection.SqlCommandString = " WHERE Id = " + ID + ";";
             dbConnection.TableName = DatabaseTable;
             _ = dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
@@ -146,7 +142,7 @@ namespace Modelbuilder
                 CurrencyCode_DataGrid.SelectedIndex = row - 1;
             }
 
-            CurrencyCode_DataGrid.Focus();
+            _ = CurrencyCode_DataGrid.Focus();
         }
 
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
