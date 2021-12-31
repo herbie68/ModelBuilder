@@ -116,7 +116,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="0" Text="{x:Static p:Cultures.Order_Order_Field_Supplier}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxSupplier" 
-                                              ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="SupplierName" SelectionChanged="cboxSelectionChanged"
+                                              ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="SupplierName" SelectionChanged="cboxSupplier_SelectionChanged"
                                               Grid.Row="1" Grid.Column="0" Width="350"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
@@ -249,34 +249,34 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="0" 
-                                               Text="{x:Static p:Cultures.Order_Field_Product}"/>
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Product}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
                                               x:Name="cboxProduct" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource ProductComboTemplate}" 
-                                              TextSearch.TextPath="productName" SelectionChanged="cboxSelectionChanged"
+                                              TextSearch.TextPath="productName" SelectionChanged="cboxProduct_SelectionChanged"
                                               Grid.Row="1" Grid.Column="0" Width="360"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="1" 
-                                               Text="{x:Static p:Cultures.Order_Field_Project}"/>
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Project}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
                                               x:Name="cboxProject" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource ProjectComboTemplate}"
-                                              TextSearch.TextPath="projectName" SelectionChanged="cboxSelectionChanged"
+                                              TextSearch.TextPath="projectName" SelectionChanged="cboxProject_SelectionChanged"
                                               Grid.Row="1" Grid.Column="1" Width="200"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                Grid.Row="0" Grid.Column="2" 
-                                               Text="{x:Static p:Cultures.Order_Field_Category}"/>
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Category}"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
                                               x:Name="cboxCategory" IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource CategoryComboTemplate}"
-                                               SelectionChanged="cboxSelectionChanged"
+                                               SelectionChanged="cboxCategory_SelectionChanged"
                                               Grid.Row="1" Grid.Column="2" Width="150"/>
                                     
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                HorizontalAlignment="Right" Grid.Row="0" Grid.Column="3" 
-                                               Text="{x:Static p:Cultures.Order_Field_Number}"/>
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Number}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpNumber" 
                                              HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3" 
                                              IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}" 
@@ -285,11 +285,11 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
                                                HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4" 
-                                               Text="{x:Static p:Cultures.Order_Field_Price}"/>
+                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Price}"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpPrice" 
                                              HorizontalAlignment="Right" Grid.Row="1" Grid.Column="4" 
                                              IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
-                                             Width="70" ToolTip="{x:Static p:Cultures.Order_Field_Price_Tooltip}"/>
+                                             Width="70" ToolTip="{x:Static p:Cultures.Order_Orderline_Field_Price_Tooltip}"/>
                                 </Grid>
                             </GroupBox>
                             <!--#endregion  Orderdetails-->

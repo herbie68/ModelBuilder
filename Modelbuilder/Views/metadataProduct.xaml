@@ -5,22 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Modelbuilder"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1000"
+      d:DesignHeight="800" d:DesignWidth="1600"
       Title="metadataProduct">
 
     <!--#region Page resources -->
     <Page.Resources>
         <DataTemplate  x:Key="CategoryComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=categoryName}" />
-                <TextBlock Text="{Binding Path=categoryId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CategoryName}" />
+                <TextBlock Text="{Binding Path=CategoryId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate  x:Key="StorageComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=storageName}" />
-                <TextBlock Text="{Binding Path=storageId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=StorageName}" />
+                <TextBlock Text="{Binding Path=StorageId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
 
@@ -35,8 +35,8 @@
 
         <DataTemplate  x:Key="CountryComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=countryName}" />
-                <TextBlock Text="{Binding Path=countryId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CountryName}" />
+                <TextBlock Text="{Binding Path=CountryId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
 
@@ -49,8 +49,8 @@
 
         <DataTemplate  x:Key="UnitComboTemplate" >
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Text="{Binding Path=unitName}" />
-                <TextBlock Text="{Binding Path=unitId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=UnitName}" />
+                <TextBlock Text="{Binding Path=UnitId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -71,16 +71,11 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierName" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueImageRotationAngle" Text="0"/>
                 </StackPanel>
@@ -121,6 +116,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width=".3*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
@@ -131,7 +127,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Merk"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" 
                                                 ItemTemplate="{StaticResource BrandComboTemplate}" 
-                                                TextSearch.TextPath="brandName" SelectionChanged="cboxSelectionChanged"
+                                                TextSearch.TextPath="BrandName" SelectionChanged="cboxBrand_SelectionChanged"
                                                 Grid.Row="1" Grid.Column="1" Width="350">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
@@ -146,7 +142,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Categorie" 
                                                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource CategoryComboTemplate}"
-                                                x:Name="cboxProductCategory" TextSearch.TextPath="categoryName" 
+                                                x:Name="cboxProductCategory" TextSearch.TextPath="CategoryName" SelectionChanged="cboxCategory_SelectionChanged"
                                                 Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="700" SelectedIndex="0"/>
                                 </Grid>
                             </GroupBox>
@@ -170,9 +166,11 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width="1.3*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
@@ -186,14 +184,19 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="2" Text="Verpakkingseenheid"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource UnitComboTemplate}" 
-                                              x:Name="cboxProductUnit" TextSearch.TextPath="unitName" 
-                                              Grid.Column="2" Grid.Row="1" Width="200" SelectedIndex="0" />
-                                    
+                                              x:Name="cboxProductUnit" TextSearch.TextPath="UnitName" SelectionChanged="cboxUnit_SelectionChanged"
+                                              Grid.Column="2" Grid.Row="1" Width="120" SelectedIndex="0" />
+
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="3" Text="Afmetingen"/>
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductDimensions" 
+                                             HorizontalContentAlignment="Right" Grid.Row="1" Grid.Column="3" Width="170"/>
+
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="Voorraadlocatie"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}"  ItemTemplate="{StaticResource StorageComboTemplate}" 
-                                              x:Name="cboxProductStorage" TextSearch.TextPath="storageName" 
-                                              Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Width="700" SelectedIndex="0"/>
+                                              x:Name="cboxProductStorage" TextSearch.TextPath="StorageName" SelectionChanged="cboxStorage_SelectionChanged"
+                                              Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Width="700" SelectedIndex="0"/>
+
                                 </Grid>                                
                             </GroupBox>
                             <!--#endregion-->
@@ -361,8 +364,8 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Text="Leverancier"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier"  IsTabStop="False"
                                               ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="supplierName" 
-                                              SelectionChanged="cboxSelectionChanged" 
-                                              Grid.Row="1" Width="360" SelectedIndex="0" IsEnabled="False">
+                                              SelectionChanged="cboxSupplier_SelectionChanged" 
+                                              Grid.Row="1" Width="360" SelectedIndex="0" IsEnabled="True">
                                         <ComboBox.ItemContainerStyleSelector>
                                             <StyleSelector/>
                                         </ComboBox.ItemContainerStyleSelector>
@@ -370,11 +373,11 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Artikelnummer bij leverancier"/>
                                     <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" 
-                                             Grid.Row="3" Width="360" IsEnabled="False"/>
+                                             Grid.Row="3" Width="360" IsEnabled="True"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Omschrijving" Grid.Row="4"/>
                                     <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductName" 
-                                             Grid.Row="5" Width="360" IsEnabled="False"/>
+                                             Grid.Row="5" Width="360" IsEnabled="True"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Prijs" Grid.Row="6"/>
                                     <StackPanel Orientation="Horizontal" Grid.Row="7">
@@ -382,11 +385,11 @@
                                              BorderBrush="{x:Null}" Background="#FFE5E5E5" TextWrapping="Wrap" IsReadOnly="True" 
                                              VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Width="15" IsTabStop="False"/>
                                         <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductPrice" 
-                                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="70" IsEnabled="False"/>
+                                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="70" IsEnabled="True"/>
                                     </StackPanel>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Standaard leverancier" Grid.Row="8"/>
-                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkSupplierDefault" Grid.Row="9"  IsEnabled="False"/>
+                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkSupplierDefault" Grid.Row="9"  IsEnabled="True"/>
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
@@ -400,7 +403,9 @@
                                       Padding="3" Height="265" Margin="5,0" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding ProductId}" />
-                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding Default}">
+                                    <DataGridTextColumn Header="Supplier_Id" Visibility="Hidden" Width="70" Binding="{Binding SupplierId}" />
+                                    <DataGridTextColumn Header="Currency_Id" Visibility="Hidden" Width="70" Binding="{Binding CurrencyId}" />
+                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding DefaultSupplier}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -410,9 +415,9 @@
                                     </DataGridTextColumn>
                                     <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding SupplierName}" />
                                     <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding ProductNumber}" />
-                                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding ProductName}" />
-                                    <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding ProductCurrencySymbol}" />
-                                    <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding ProductPrice, StringFormat={}{0:n2}}">
+                                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding CurrencySymbol}" />
+                                    <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding Price, StringFormat={}{0:n2}}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -478,11 +483,11 @@
                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding Code}" />
+                    <DataGridTextColumn Header="Zoeknaam" Width="120" Binding="{Binding Code}" />
                     <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Category" Width="180" Binding="{Binding CategoryName}" />
                     <DataGridTextColumn Header="Locatie" Width="180" Binding="{Binding StorageName}" />
-                    <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding Pice}" />
+                    <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding Price}" />
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->

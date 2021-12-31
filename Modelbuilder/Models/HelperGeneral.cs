@@ -144,7 +144,7 @@ internal class HelperGeneral
     #endregion
 
     #region Fill Country dropdown
-    public List<Country> CountryList()
+    public List<Country> GetCountryList(List<Country> countryList)
     {
 
         string DatabaseTable = DbCountryTable;
@@ -155,20 +155,48 @@ internal class HelperGeneral
 
         dbConnection.SqlSelectionString = "Name, Id";
         dbConnection.SqlOrderByString = "Id";
-        dbConnection.TableName = DbCountryTable;
+        dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
-        List<Country> CountryList = new();
+        for (int i = 0; i < dtSelection.Rows.Count; i++)
+        {
+            countryList.Add(new Country
+            {
+                CountryName = dtSelection.Rows[i][0].ToString(),
+                CountryId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
+            });
+        }
+        return countryList;
+    }
+    #endregion
+
+    #region Fill Currency dropdown
+    public List<Currency> GetCurrencyList(List<Currency> currencyList)
+    {
+        string DatabaseTable = DbCurrencyTable;
+        Database dbConnection = new()
+        {
+            TableName = DatabaseTable
+        };
+
+        dbConnection.SqlSelectionString = "Symbol, Id";
+        dbConnection.SqlOrderByString = "Id";
+        dbConnection.TableName = DatabaseTable;
+
+        DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
         for (int i = 0; i < dtSelection.Rows.Count; i++)
         {
-            CountryList.Add(new Country(dtSelection.Rows[i][0].ToString(),
-                int.Parse(dtSelection.Rows[i][1].ToString())));
+            currencyList.Add(new Currency
+            {
+                CurrencySymbol = dtSelection.Rows[i][0].ToString(),
+                CurrencyId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
+            });
         }
-        return CountryList;
+        return currencyList;
     }
-    #endregion
+    # endregion Currency dropdown
 
     #region Fill Project dropdown
     public List<Project> GetProjectList(List<Project> projectList)
@@ -293,15 +321,15 @@ internal class HelperGeneral
     #region Fill Unit dropdown
     public List<Unit> GetUnitList(List<Unit> unitList)
     {
-
+        string DatabaseTable = DbUnitTable;
         Database dbConnection = new()
         {
-            TableName = DbUnitTable
+            TableName = DatabaseTable
         };
 
         dbConnection.SqlSelectionString = "Name, Id";
         dbConnection.SqlOrderByString = "Id";
-        dbConnection.TableName = DbCategoryTable;
+        dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
@@ -346,16 +374,18 @@ internal class HelperGeneral
     #region Create object for all countries in table for dropdown
     public class Country
     {
-        public Country(string Name, int Id)
-        {
-            countryName = Name;
-            countryId = Id;
-        }
-
-        public string countryName { get; set; }
-        public int countryId { get; set; }
+        public string CountryName { get; set; }
+        public int CountryId { get; set; }
     }
     #endregion
+
+    #region Create object for all currencies in table for dropdown
+    public class Currency
+    {
+        public string CurrencySymbol { get; set; }
+        public int CurrencyId { get; set; }
+    }
+    #endregion Create object for all currencies in table for dropdown
 
     #region Create object for all projects in table for dropdown
     public class Project

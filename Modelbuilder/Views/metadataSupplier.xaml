@@ -12,15 +12,15 @@
     <Page.Resources>
         <DataTemplate  x:Key="CurrencyComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=currencySymbol}" />
-                <TextBlock Text="{Binding Path=currencyId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CurrencySymbol}" />
+                <TextBlock Text="{Binding Path=CurrencyId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate  x:Key="CountryComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=countryName}" />
-                <TextBlock Text="{Binding Path=countryId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CountryName}" />
+                <TextBlock Text="{Binding Path=CountryId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
 
@@ -49,12 +49,9 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal" >
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryId"/>
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCountryName"/>
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencyId"/>
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCurrencySymbol"/>
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierContactId"/>
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeId"/>
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueContactTypeName"/>
                 </StackPanel>
                 <!--#endregion-->
             </Grid>
@@ -100,6 +97,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}"
@@ -131,13 +129,13 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                            Grid.Row="9" Grid.Column="0" Text="Land"/>
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                           Grid.Row="9" Grid.Column="1" Text="Standaard aluta"/>
+                                           Grid.Row="9" Grid.Column="1" Text="Standaard valuta"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
-                                          ItemTemplate="{StaticResource CountryComboTemplate}" 
-                                          x:Name="cboxSupplierCountry" SelectedIndex="0" Cursor="Arrow"
+                                          ItemTemplate="{StaticResource CountryComboTemplate}" SelectionChanged="cboxCountry_SelectionChanged"
+                                          x:Name="cboxSupplierCountry" SelectedIndex="0" Cursor="Arrow" TextSearch.TextPath="CountryName"
                                           Grid.Row="10" Grid.Column="0" Width="280"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" 
-                                          ItemTemplate="{StaticResource CurrencyComboTemplate}" 
+                                          ItemTemplate="{StaticResource CurrencyComboTemplate}" SelectionChanged="cboxCurrency_SelectionChanged" 
                                           x:Name="cboxSupplierCurrency" SelectedIndex="0" Cursor="Arrow"
                                           Grid.Row="10" Grid.Column="1" Width="90"/>
 
@@ -159,13 +157,8 @@
                                     
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                            Grid.Row="15" Grid.Column="0" Text="Orderkosten"/>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                           Grid.Row="15" Grid.Column="1" Text="Tot bedrag"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" 
                                          x:Name="inpSupplierOrderCosts" Grid.Column="0" Grid.Row="16" Width="150" />
-                                    <TextBox Style="{DynamicResource NumericTextBox}" 
-                                         x:Name="inpSupplierMinOrderCosts" 
-                                         Grid.Row="16" Grid.Column="1" Width="150" />
                                 </Grid>
                             </GroupBox>
                             <!--#endregion-->
@@ -237,7 +230,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="30" Binding="{Binding Id}" />
                                     <DataGridTextColumn Header="TypeId" Visibility="Hidden" Width="30" Binding="{Binding TypeId}" />
-                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding TypeName}" />
+                                    <DataGridTextColumn Header="Functie" Width="120" Binding="{Binding Name}" />
                                     <DataGridTextColumn Header="Telefoon" Width="120" Binding="{Binding Phone}" />
                                     <DataGridTextColumn Header="E-Mail" Width="*" Binding="{Binding Mail}" />
                                     <DataGridTextColumn Header="Naam" Width="150" Binding="{Binding Name}" />

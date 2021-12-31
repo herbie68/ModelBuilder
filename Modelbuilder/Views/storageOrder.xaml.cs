@@ -206,7 +206,7 @@ public partial class storageOrder : Page
     #endregion Datagrid selectionchanged for OrderRow
 
     #region Selection changed: Combobox Supplier
-    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         foreach (HelperOrder.Supplier item in e.AddedItems)
         {
@@ -230,7 +230,7 @@ public partial class storageOrder : Page
     #endregion Selection changed: Combobox Supplier
 
     #region Selection changed: Combobox Product
-    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no product is selected do nothing
         //if(cboxProduct.Text == string.Empty || cboxProduct.Text == "") { return; }
@@ -289,7 +289,7 @@ public partial class storageOrder : Page
     #endregion
 
     #region Selection changed: Combobox Project
-    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxProject_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no project is selected do nothing
         //if (cboxProject.Text == String.Empty) { return; }
@@ -303,7 +303,7 @@ public partial class storageOrder : Page
     #endregion Selection changed: Combobox Project
 
     #region Selection changed: Combobox Categroy
-    private void cboxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void cboxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //If no category is selected do nothing
         //if (cboxCategory.Text == String.Empty) { return; }

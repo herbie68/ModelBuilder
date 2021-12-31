@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Cultures.metadataPage_Title}"/>
+                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Cultures.metadataProject_Page_Title}"/>
 
                 <!--#region Hiddenfields-->
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
@@ -30,7 +30,7 @@
             </Grid>
             <Path Style="{DynamicResource TitleLine}"/>
             <TabControl Height="450" Style="{DynamicResource Default TabControl}">
-                <TabItem Header="{x:Static p:Cultures.metadataTabItemHeader_General}" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_General}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
@@ -292,7 +292,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="{x:Static p:Cultures.metadataTabItemHeader_Memo}" x:Name="MemoTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" x:Name="MemoTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
@@ -359,13 +359,13 @@
                 <!--#endregion Tabpage for memo field-->
                 
                 <!--#region Tabpage for time information -->
-                <TabItem Header="{x:Static p:Cultures.metadataTabItemHeader_TimeManagement}" x:Name="TimeTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" x:Name="TimeTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>
                 </TabItem>
                 <!--#region Tabpage for project costs information -->
-                <TabItem Header="{x:Static p:Cultures.metadataTabItemHeader_ProjectCosts}" x:Name="CostsTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}" x:Name="CostsTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
                     </Grid>

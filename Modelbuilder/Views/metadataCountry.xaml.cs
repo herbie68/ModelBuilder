@@ -46,8 +46,8 @@
             inpCountryId.Text = Row_Selected["Id"].ToString();
             inpCountryCode.Text = Row_Selected["Code"].ToString();
             inpCountryName.Text = Row_Selected["Name"].ToString();
-            inpCountryCurrencyId.Text = Row_Selected["DefaultId"].ToString();
-            cboxCountryCurrency.Text = Row_Selected["DefaultSymbol"].ToString();
+            inpCountryCurrencyId.Text = Row_Selected["Defaultcurrency_Id"].ToString();
+            cboxCountryCurrency.Text = Row_Selected["Defaultcurrency_Symbol"].ToString();
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
@@ -78,8 +78,8 @@
                 dbConnection.SqlCommandString = " SET " +
                     "Code = '" + inpCountryCode.Text + "', " +
                     "Name = '" + inpCountryName.Text + "', " +
-                    "DefaultSymbol = '" + cboxCountryCurrency.Text + "', " +
-                    "DefaultId = '" + currencyId + "' WHERE " +
+                    "Defaultcurrency_Symbol = '" + cboxCountryCurrency.Text + "', " +
+                    "Defaultcurrency_Id = '" + currencyId + "' WHERE " +
                     "Id = " + inpCountryId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
@@ -102,7 +102,7 @@
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(Code,Name,DefaultId, DefaultSymbol) VALUES('*','',0, '');";
+            dbConnection.SqlCommandString = "(Code,Name,Defaultcurrency_Id, Defaultcurrency_Symbol) VALUES('*','',0, '');";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
             inpCountryId.Text = ID.ToString();

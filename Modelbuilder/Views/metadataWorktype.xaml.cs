@@ -2,7 +2,7 @@
 {
     public partial class metadataWorktype : Page
     {
-        private readonly string DatabaseTable = "Worktype";
+        private readonly string DatabaseTable = "worktype";
 
         public metadataWorktype()
         {
@@ -20,7 +20,7 @@
         #region Buildtree
         public void BuildTree()
         {
-            Database dbConnection = new Database
+            Database dbConnection = new()
             {
                 TableName = DatabaseTable
             };

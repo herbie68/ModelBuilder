@@ -55,16 +55,31 @@ internal class HelperProduct
     public string ConnectionStr { get; set; }
 
     public string DbProductTable = "product";
+    public string DbProductView = "view_product";
     public string DbProductSupplierTable = "productsupplier";
+    public string DbProductSupplierView = "view_productsupplier";
 
     public CultureInfo Culture = new("nl-NL");
     #endregion public Variables
+
+    #region Connector to database
+    public HelperProduct(string serverName, string databaseName, string username, string userPwd)
+    {
+        ConnectionStr = string.Format("Server={0};Database={1};Uid={2};Pwd={3};", serverName, databaseName, username, userPwd);
+    }
+
+    public HelperProduct(string serverName, int portNumber, string databaseName, string username, string userPwd)
+    {
+        ConnectionStr = string.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4};", serverName, portNumber, databaseName, username, userPwd);
+    }
+    #endregion Connector to database
+
 
     #region Delete row in Table: Product
     public string DeleteTblProduct(int productId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM Product WHERE Id=@productId";
+        string sqlText = "DELETE FROM " + DbProductTable + " WHERE Id=@productId";
 
         try
         {
@@ -99,7 +114,7 @@ internal class HelperProduct
     public string DeleteTblProductSupplier(int productSupplierId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM ProductSupplier WHERE Id=@productSupplierId";
+        string sqlText = "DELETE FROM " + DbProductSupplierTable + " WHERE Id=@productSupplierId";
 
         try
         {
@@ -155,7 +170,7 @@ internal class HelperProduct
     /// <param name="productMemo"></param>
     /// <param name="productId"></param>
     /// <returns></returns>
-    public int ExecuteNonQueryTblProduct(string sqlText, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage, int productId = 0)
+    public int ExecuteNonQueryTblProduct(string sqlText, string Code, string Name, double MinimalStock, double StandardOrderQuantity, double Price, int ProjectCosts, int CategoryId, int StorageId, int BrandId, int UnitId, string Memo, string ImageRotationAngle, byte[] Image, string Dimensions, int Id = 0)
     {
         int rowsAffected = 0;
 
@@ -165,73 +180,55 @@ internal class HelperProduct
 
             using MySqlCommand cmd = new(sqlText, con);
             // Add Int values
-            cmd.Parameters.Add("@productBrandId", MySqlDbType.Int32).Value = productBrandId;
-            cmd.Parameters.Add("@productCategoryId", MySqlDbType.Int32).Value = productCategoryId;
-            cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
-            cmd.Parameters.Add("@productProjectCosts", MySqlDbType.Int32).Value = productProjectCosts;
-            cmd.Parameters.Add("@productStorageId", MySqlDbType.Int32).Value = productStorageId;
-            cmd.Parameters.Add("@productUnitId", MySqlDbType.Int32).Value = productUnitId;
+            cmd.Parameters.Add("@BrandId", MySqlDbType.Int32).Value = BrandId;
+            cmd.Parameters.Add("@CategoryId", MySqlDbType.Int32).Value = CategoryId;
+            cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
+            cmd.Parameters.Add("@ProjectCosts", MySqlDbType.Int32).Value = ProjectCosts;
+            cmd.Parameters.Add("@StorageId", MySqlDbType.Int32).Value = StorageId;
+            cmd.Parameters.Add("@UnitId", MySqlDbType.Int32).Value = UnitId;
 
             // Add Double values
-            cmd.Parameters.Add("@productMinimalStock", MySqlDbType.Double).Value = productMinimalStock;
-            cmd.Parameters.Add("@productPrice", MySqlDbType.Double).Value = productPrice;
-            cmd.Parameters.Add("@productStandardOrderQuantity", MySqlDbType.Double).Value = productStandardOrderQuantity;
+            cmd.Parameters.Add("@MinimalStock", MySqlDbType.Double).Value = MinimalStock;
+            cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = Price;
+            cmd.Parameters.Add("@StandardOrderQuantity", MySqlDbType.Double).Value = StandardOrderQuantity;
 
             // Add VarChar values
-            cmd.Parameters.Add("@productBrandName", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productCategoryName", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productCode", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productName", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productStorageName", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productUnitName", MySqlDbType.VarChar).Value = DBNull.Value;
-            cmd.Parameters.Add("@productImageRotationAngle", MySqlDbType.VarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@Code", MySqlDbType.VarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@Name", MySqlDbType.VarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@Dimensions", MySqlDbType.VarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@ImageRotationAngle", MySqlDbType.VarChar).Value = DBNull.Value;
 
             // Add LongText values
-            cmd.Parameters.Add("@productMemo", MySqlDbType.LongText).Value = DBNull.Value;
+            cmd.Parameters.Add("@Memo", MySqlDbType.LongText).Value = DBNull.Value;
 
             // Add Images
-            cmd.Parameters.Add("@productImage", MySqlDbType.Blob).Value = productImage;
+            cmd.Parameters.Add("@Image", MySqlDbType.Blob).Value = Image;
 
 
             //set values
-            if (!String.IsNullOrEmpty(productBrandName))
+             if (!String.IsNullOrEmpty(Code))
             {
-                cmd.Parameters["@productBrandName"].Value = productBrandName;
+                cmd.Parameters["@Code"].Value = Code;
             }
 
-            if (!String.IsNullOrEmpty(productCategoryName))
+            if (!String.IsNullOrEmpty(Name))
             {
-                cmd.Parameters["@productCategoryName"].Value = productCategoryName;
+                cmd.Parameters["@Name"].Value = Name;
             }
 
-            if (!String.IsNullOrEmpty(productCode))
+            if (!String.IsNullOrEmpty(Dimensions))
             {
-                cmd.Parameters["@productCode"].Value = productCode;
+                cmd.Parameters["@Dimensions"].Value = Dimensions;
             }
 
-            if (!String.IsNullOrEmpty(productName))
+            if (!String.IsNullOrEmpty(Memo))
             {
-                cmd.Parameters["@productName"].Value = productName;
+                cmd.Parameters["@Memo"].Value = Memo;
             }
 
-            if (!String.IsNullOrEmpty(productStorageName))
+            if (!String.IsNullOrEmpty(ImageRotationAngle))
             {
-                cmd.Parameters["@productStorageName"].Value = productStorageName;
-            }
-
-            if (!String.IsNullOrEmpty(productUnitName))
-            {
-                cmd.Parameters["@productUnitName"].Value = productUnitName;
-            }
-
-            if (!String.IsNullOrEmpty(productMemo))
-            {
-                cmd.Parameters["@productMemo"].Value = productMemo;
-            }
-
-            if (!String.IsNullOrEmpty(productImageRotationAngle))
-            {
-                cmd.Parameters["@productImageRotationAngle"].Value = productImageRotationAngle;
+                cmd.Parameters["@ImageRotationAngle"].Value = ImageRotationAngle;
             }
 
             rowsAffected = cmd.ExecuteNonQuery();
@@ -241,7 +238,7 @@ internal class HelperProduct
     #endregion
 
     #region Execute Non Query Table: ProductSupplier
-    public int ExecuteNonQueryTblProductSupplier(string sqlText, int ProductId, int SupplierId, string SupplierName, int CurrencyId, string CurrencySymbol, string ProductNumber, string ProductName, float ProductPrice, string Default, int Id = 0)
+    public int ExecuteNonQueryTblProductSupplier(string sqlText, int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default, int Id = 0)
     {
         int rowsAffected = 0;
 
@@ -256,25 +253,13 @@ internal class HelperProduct
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
                 cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
                 cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
-                cmd.Parameters.Add("@SupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
                 cmd.Parameters.Add("@CurrencyId", MySqlDbType.Int32).Value = CurrencyId;
-                cmd.Parameters.Add("@CurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
                 cmd.Parameters.Add("@ProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
                 cmd.Parameters.Add("@ProductName", MySqlDbType.VarChar).Value = DBNull.Value;
-                cmd.Parameters.Add("@ProductPrice", MySqlDbType.Float).Value = ProductPrice;
+                cmd.Parameters.Add("@ProductPrice", MySqlDbType.Double).Value = ProductPrice;
                 cmd.Parameters.Add("@Default", MySqlDbType.VarChar).Value = DBNull.Value;
 
                 //set values
-                if (!String.IsNullOrEmpty(SupplierName))
-                {
-                    cmd.Parameters["@SupplierName"].Value = SupplierName;
-                }
-
-                if (!String.IsNullOrEmpty(CurrencySymbol))
-                {
-                    cmd.Parameters["@CurrencySymbol"].Value = CurrencySymbol;
-                }
-
                 if (!String.IsNullOrEmpty(ProductNumber))
                 {
                     cmd.Parameters["@ProductNumber"].Value = ProductNumber;
@@ -357,11 +342,11 @@ internal class HelperProduct
 
         if (productId > 0)
         {
-            sqlText = "SELECT * from Product where Id = @productId";
+            sqlText = "SELECT * from " + DbProductView + " where Id = @productId";
         }
         else
         {
-            sqlText = "SELECT * from Product";
+            sqlText = "SELECT * from " + DbProductView;
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -390,11 +375,11 @@ internal class HelperProduct
 
         if (ProductId > 0)
         {
-            sqlText = "SELECT * from ProductSupplier where ProductId = @ProductId";
+            sqlText = "SELECT * FROM " + DbProductSupplierView + " WHERE Product_Id = @ProductId";
         }
         else
         {
-            sqlText = "SELECT * from ProductSupplier";
+            sqlText = "SELECT * FROM " + DbProductSupplierView;
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -416,14 +401,14 @@ internal class HelperProduct
     #endregion Get Data from Table: Product
 
     #region Insert in Table: Product
-    public string InsertTblProduct(string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
+    public string InsertTblProduct(string Code, string Name, double MinimalStock, double StandardOrderQuantity, double Price, int ProjectCosts, int CategoryId, int StorageId, int BrandId, int UnitId, string Memo, string ImageRotationAngle, byte[] Image, string Dimensions)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO Product (Code, Name, MinimalStock, StandardOrderQuantity, Price, ProjectCosts, CategoryId, CategoryName, StorageId, StorageName, BrandId, BrandName, UnitId, UnitName, Memo, ImageRotationAngle, Image) VALUES (@productCode, @productName, @productMinimalStock, @productStandardOrderQuantity, @productPrice, @productProjectCosts, @productCategoryId, @productCategoryName, @productStorageId, @productStorageName, @productBrandId, @productBrandName, @productUnitId, @productUnitName, @productMemo, @productImageRotationAngle, @productImage);";
+        string sqlText = "INSERT INTO " + DbProductTable + " (Code, Name, MinimalStock, StandardOrderQuantity, Price, ProjectCosts, Category_Id, Storage_Id, Brand_Id, Unit_Id, Memo, ImageRotationAngle, Image, Dimensions) VALUES (@Code, @Name, @MinimalStock, @StandardOrderQuantity, @Price, @ProjectCosts, @CategoryId, @StorageId, @BrandId, @UnitId, @Memo, @ImageRotationAngle, @Image, @Dimensions);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productImageRotationAngle, productImage);
+            int rowsAffected = ExecuteNonQueryTblProduct(sqlText, Code, Name, MinimalStock, StandardOrderQuantity, Price, ProjectCosts, CategoryId, StorageId, BrandId, UnitId, Memo, ImageRotationAngle, Image, Dimensions);
 
             if (rowsAffected > 0)
             {
@@ -451,14 +436,14 @@ internal class HelperProduct
     #endregion Insert in Table: Product
 
     #region Insert in Table: ProductSupplier
-    public string InsertTblProductSupplier(int ProductId, int SupplierId, string SupplierName, int CurrencyId, string CurrencySymbol, string ProductNumber, string ProductName, float ProductPrice, string Default)
+    public string InsertTblProductSupplier(int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO ProductSupplier (ProductId, SupplierId, SupplierName, CurrencyId, CurrencySymbol, ProductNumber,  ProductName, ProductPrice, Default) VALUES (@ProductId, @SupplierId, @SupplierName, @CurrencyId, @CurrencySymbol, @ProductNumber, @ProductName, @ProductPrice, @Default);";
+        string sqlText = "INSERT INTO " + DbProductSupplierTable + " (Product_Id, Supplier_Id, Currency_Id, ProductNumber,  ProductName, Price, DefaultSupplier) VALUES (@ProductId, @SupplierId, @CurrencyId, @ProductNumber, @ProductName, @ProductPrice, @Default);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, SupplierName, CurrencyId, CurrencySymbol, ProductNumber, ProductName, ProductPrice, Default);
+            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, CurrencyId, ProductNumber, ProductName, ProductPrice, Default);
 
             if (rowsAffected > 0)
             {
@@ -485,14 +470,14 @@ internal class HelperProduct
     #endregion
 
     #region Update Table: Product
-    public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, string productCategoryName, int productStorageId, string productStorageName, int productBrandId, string productBrandName, int productUnitId, string productUnitName, string productMemo, string productImageRotationAngle, byte[] productImage)
+    public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, int productStorageId, int productBrandId, int productUnitId, string productMemo, string productImageRotationAngle, byte[] productImage, string productDimensions)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Product SET Code = @productCode, name = @productName, MinimalStock = @productMinimalStock,StandardOrderQuantity = @productStandardOrderQuantity, Price = @productPrice, ProjectCosts = @productProjectCosts, CategoryId = @productCategoryId, CategoryName = @productCategoryName, StorageId = @productStorageId, StorageName = @productStorageName, BrandId = @productBrandId, BrandName = @productBrandName, UnitId = @productUnitId, UnitName = @productUnitName, Memo = @productMemo, ImageRotationAngle = @productImageRotationAngle, Image = @productImage WHERE Id = @productId;";
+        string sqlText = "UPDATE " + DbProductTable + " SET Code = @Code, name = @Name, MinimalStock = @MinimalStock,StandardOrderQuantity = @StandardOrderQuantity, Price = @Price, ProjectCosts = @ProjectCosts, Category_Id = @CategoryId, Storage_Id = @StorageId, Brand_Id = @BrandId, Unit_Id = @UnitId, Memo = @Memo, ImageRotationAngle = @ImageRotationAngle, Image = @Image, Dimensions = @Dimensions WHERE Id = @Id;";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productCategoryName, productStorageId, productStorageName, productBrandId, productBrandName, productUnitId, productUnitName, productMemo, productImageRotationAngle, productImage, productId);
+            int rowsAffected = ExecuteNonQueryTblProduct(sqlText, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, productMemo, productImageRotationAngle, productImage, productDimensions, productId);
 
             //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
             result = rowsAffected > 0 ? productName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -513,14 +498,14 @@ internal class HelperProduct
     #endregion Update Table: Product
 
     #region Update Table: ProductSupplier
-    public string UpdateTblProductSupplier(int Id, int ProductId, int SupplierId, string SupplierName, int CurrencyId, string CurrencySymbol, string ProductNumber, string ProductName, float ProductPrice, string Default)
+    public string UpdateTblProductSupplier(int Id, int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE ProductSupplier SET ProductId = @ProductId, SupplierId = @SupplierId, SupplierName = @SupplierName, CurrencyId = @CurrencyId, CurrencySymbol = @CurrencySymbol, ProductNumber = @ProductNumber,  ProductName = @ProductName, ProductPrice = @ProductPrice, Default = @Default WHERE Id = @Id;";
+        string sqlText = "UPDATE " + DbProductSupplierTable + " SET Product_Id = @ProductId, Supplier_Id = @SupplierId, Currency_Id = @CurrencyId, ProductNumber = @ProductNumber,  ProductName = @ProductName, Price = @ProductPrice, DefaultSupplier = @Default WHERE Id = @Id;";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, SupplierName, CurrencyId, CurrencySymbol, ProductNumber, ProductName, ProductPrice, Default, Id);
+            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, CurrencyId, ProductNumber, ProductName, ProductPrice, Default, Id);
 
             //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
             result = rowsAffected > 0 ? ProductName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -570,7 +555,7 @@ internal class HelperProduct
     public string UncheckDefaultSupplierTblProductSupplier(int Id, int ProductId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE ProductSupplier SET Default = '' WHERE Id != @Id AND ProductId = @ProductId;";
+        string sqlText = "UPDATE " + DbProductSupplierTable + " SET DefaultSupplier = '' WHERE Id != @Id AND Product_Id = @ProductId;";
 
         try
         {
