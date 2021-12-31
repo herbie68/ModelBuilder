@@ -1,9 +1,4 @@
-﻿using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     /// <summary>
     /// Interaction logic for metadataCountry.xaml
@@ -48,11 +43,11 @@ namespace Modelbuilder
             {
                 return;
             }
-            inpCountryId.Text = Row_Selected["country_Id"].ToString();
-            inpCountryCode.Text = Row_Selected["country_Code"].ToString();
-            inpCountryName.Text = Row_Selected["country_Name"].ToString();
-            inpCountryCurrencyId.Text = Row_Selected["country_Defaultcurrency_Id"].ToString();
-            cboxCountryCurrency.Text = Row_Selected["country_Defaultcurrency_Symbol"].ToString();
+            inpCountryId.Text = Row_Selected["Id"].ToString();
+            inpCountryCode.Text = Row_Selected["Code"].ToString();
+            inpCountryName.Text = Row_Selected["Name"].ToString();
+            inpCountryCurrencyId.Text = Row_Selected["Defaultcurrency_Id"].ToString();
+            cboxCountryCurrency.Text = Row_Selected["Defaultcurrency_Symbol"].ToString();
         }
 
         private void ToolbarButtonSave(object sender, RoutedEventArgs e)
@@ -65,8 +60,8 @@ namespace Modelbuilder
                 };
 
                 dbCurrencyConnection.Connect();
-                dbCurrencyConnection.SqlCommandString = "currency_Id";
-                dbCurrencyConnection.SqlWhereString = "currency_Symbol = '" + cboxCountryCurrency.Text + "'";
+                dbCurrencyConnection.SqlCommandString = "Id";
+                dbCurrencyConnection.SqlWhereString = "Symbol = '" + cboxCountryCurrency.Text + "'";
 
                 long currencyId = dbCurrencyConnection.RetrieveSpecificIdFromMySqlData();
                 inpCountryCurrencyId.Text = currencyId.ToString();
@@ -81,11 +76,11 @@ namespace Modelbuilder
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "country_Code = '" + inpCountryCode.Text + "', " +
-                    "country_Name = '" + inpCountryName.Text + "', " +
-                    "country_Defaultcurrency_Symbol = '" + cboxCountryCurrency.Text + "', " +
-                    "country_Defaultcurrency_Id = '" + currencyId + "' WHERE " +
-                    "country_Id = " + inpCountryId.Text + ";";
+                    "Code = '" + inpCountryCode.Text + "', " +
+                    "Name = '" + inpCountryName.Text + "', " +
+                    "Defaultcurrency_Symbol = '" + cboxCountryCurrency.Text + "', " +
+                    "Defaultcurrency_Id = '" + currencyId + "' WHERE " +
+                    "Id = " + inpCountryId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
@@ -107,7 +102,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(country_Code,country_Name,country_Defaultcurrency_Id, country_Defaultcurrency_Symbol) VALUES('*','',0, '');";
+            dbConnection.SqlCommandString = "(Code,Name,Defaultcurrency_Id, Defaultcurrency_Symbol) VALUES('*','',0, '');";
             dbConnection.TableName = DatabaseTable;
             int ID = dbConnection.UpdateMySqlDataRecord();
             inpCountryId.Text = ID.ToString();
@@ -130,7 +125,7 @@ namespace Modelbuilder
 
             int ID = int.Parse(inpCountryId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE country_Id = " + ID + ";";
+            dbConnection.SqlCommandString = " WHERE Id = " + ID + ";";
             dbConnection.TableName = DatabaseTable;
             _ = dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();

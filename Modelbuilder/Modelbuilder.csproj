@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+	<Copyright>Herbert Nijkamp $(Year)</Copyright>
+	<NeutralLanguage>nl-NL</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +19,7 @@
     <None Remove="Resources\appSave.png" />
     <None Remove="Resources\appSettings.png" />
     <None Remove="Resources\appUndo.png" />
+    <None Remove="Resources\calculator.png" />
     <None Remove="Resources\Logo.gif" />
     <None Remove="Resources\logo.ico" />
     <None Remove="Resources\metadata.png" />
@@ -24,6 +27,7 @@
     <None Remove="Resources\metadataCategoryExport.png" />
     <None Remove="Resources\metadataCategoryImport.png" />
     <None Remove="Resources\metadataCategoryReport.png" />
+    <None Remove="Resources\metadataContact.png" />
     <None Remove="Resources\metadataCountry.png" />
     <None Remove="Resources\metadataCountryExport.png" />
     <None Remove="Resources\metadataCountryImport.png" />
@@ -50,11 +54,15 @@
     <None Remove="Resources\metadataWorktypeReport.png" />
     <None Remove="Resources\noImage.png" />
     <None Remove="Resources\options.png" />
+    <None Remove="Resources\orderCart.png" />
+    <None Remove="Resources\orderCartAdd.png" />
+    <None Remove="Resources\orderShop.png" />
     <None Remove="Resources\projectEdit.png" />
     <None Remove="Resources\projectExport.png" />
     <None Remove="Resources\projectImport.png" />
     <None Remove="Resources\projectManagement.png" />
     <None Remove="Resources\projectReport.png" />
+    <None Remove="Resources\recalculate.png" />
     <None Remove="Resources\rtftoolbarAlignCenter.png" />
     <None Remove="Resources\rtftoolbarAlignLeft.png" />
     <None Remove="Resources\rtftoolbarAlignRight.png" />
@@ -99,6 +107,10 @@
     <None Remove="Resources\toolbarRight.png" />
     <None Remove="Resources\toolbarRotate.png" />
     <None Remove="Resources\toolbarSave.png" />
+    <None Remove="Resources\toolbarSmallAdd.png" />
+    <None Remove="Resources\toolbarSmallCancel.png" />
+    <None Remove="Resources\toolbarSmallDelete.png" />
+    <None Remove="Resources\toolbarSmallSave.png" />
     <None Remove="Resources\toolbarStart.png" />
   </ItemGroup>
 
@@ -114,6 +126,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\calculator.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icon1.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -135,7 +150,22 @@
     <Resource Include="Resources\appRedo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\metadataContact.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\noImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\orderCart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\orderCartAdd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\orderShop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\recalculate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\rtftoolbarAlignCenter.png">
@@ -390,9 +420,36 @@
     <Resource Include="Resources\timeReport.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\toolbarSmallAdd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarSmallCancel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarSmallDelete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarSmallSave.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\toolbarStart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Languages\Cultures.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Cultures.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Languages\Cultures.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Cultures.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -405,6 +462,10 @@
     <Page Update="Views\metadataWorktype.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\" />
   </ItemGroup>
 
 </Project>

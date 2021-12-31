@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:modelbuilder="clr-namespace:Modelbuilder"
+    xmlns:p="clr-namespace:Modelbuilder.Languages"
     Title="metadataCountry"
     d:DesignHeight="800"
     d:DesignWidth="1000"
@@ -47,11 +48,11 @@
         <DataGrid x:Name="CountryCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
                   Margin="10,206,10,0" SelectionChanged="CountryCode_DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding country_Id}" />
-                <DataGridTextColumn Header="Land code" Width="80" Binding="{Binding country_Code}" />
-                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding country_Defaultcurrency_Id}" />
-                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding country_Defaultcurrency_Symbol}" />
-                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding country_Name}" />
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Land code" Width="80" Binding="{Binding Code}" />
+                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding DefaultId}" />
+                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding DefaultSymbol}" />
+                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

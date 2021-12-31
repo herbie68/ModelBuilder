@@ -37,7 +37,12 @@
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
-        
+
+        <Style x:Key="SubTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontStyle" Value="Italic" />
+        </Style>
+
         <Style x:Key="TitleLine" TargetType="Path">
             <Setter Property="Grid.Row" Value="1"/>
             <Setter Property="Grid.Column" Value="1" />
@@ -78,8 +83,33 @@
             <Setter Property="Background" Value="#FFE5E5E5"/>
         </Style>
 
-        <Style x:Key="Default TabItem" TargetType="TabItem">
+        <Style x:Key="Default TabItem1" TargetType="TabItem">
             <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderThickness" Value="1,1,1,0"/>
+        </Style>
+
+        <Style TargetType="TabItem" x:Key="Default TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gray" CornerRadius="6,6,0,0" Margin="5,0">
+                            <ContentPresenter x:Name="ContentSite"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                ContentSource="Header"
+                                Margin="10,2"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFFFEA00"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#FFE5E5E5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <!--#endregion-->
 
@@ -105,7 +135,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
-
+        
         <Style x:Key="DefaultTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -113,6 +143,34 @@
             <Setter Property="Text" Value="" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Padding" Value="2"/>
+        </Style>
+
+        <Style x:Key="NonEditableTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="Text" Value="" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+
+        <Style x:Key="DefaultDataPicker" TargetType="DatePicker">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="NonEditableNumericTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="Text" Value="{Binding Amount, Mode=TwoWay}" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="InputScope" Value="Number" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="IsEnabled" Value="False"/>
         </Style>
 
         <Style x:Key="NumericTextBox" TargetType="TextBox">
@@ -125,15 +183,21 @@
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Padding" Value="2"/>
+            <Setter Property="IsEnabled" Value="True"/>
         </Style>
 
         <Style x:Key="HiddenTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Width" Value="Auto" />
-            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="Text" Value="" />
         </Style>
+
+        <Style x:Key="HiddenCheckBox" TargetType="CheckBox">
+            <Setter Property="Visibility" Value="Visible" />
+        </Style>
+
 
         <Style x:Key="DefaultComboBox" TargetType="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -222,10 +286,10 @@
             <Setter Property="Margin" Value="0, 0, 10, 0"/>
         </Style>
 
-        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
-            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
+        <Style x:Key="ToolBarCancelIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarCancel.png" />
             <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
 
         <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
@@ -234,10 +298,40 @@
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
 
+        <Style x:Key="ToolBarSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+        </Style>
+
         <Style x:Key="ToolBarRotateIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
             <Setter Property="Height" Value="21" />
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallAddIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallAdd.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="0, 0, 4, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallCancelIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallCancel.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallDeleteIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallDelete.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="ToolBarSmallSaveIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarSmallSave.png" />
+            <Setter Property="Height" Value="12" />
+            <Setter Property="Margin" Value="4, 0, 4, 0"/>
         </Style>
         <!--#endregion-->
         

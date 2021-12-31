@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     internal class CountryListViewModel
     {
@@ -14,8 +11,8 @@ namespace Modelbuilder
                 TableName = DatabaseTable
             };
 
-            dbConnection.SqlSelectionString = "country_Name, country_Id";
-            dbConnection.SqlOrderByString = "country_Id";
+            dbConnection.SqlSelectionString = "Name, Id";
+            dbConnection.SqlOrderByString = "Id";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtSelection = dbConnection.LoadSpecificMySqlData();

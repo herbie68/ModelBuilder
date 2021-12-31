@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="metadataCategory.Page.Title" xml:space="preserve">
+    <value>Kategorien</value>
+  </data>
+  <data name="metadataCountry.Page.Title" xml:space="preserve">
+    <value>Länder</value>
+  </data>
+  <data name="metadataCurrency.Page.Title" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="metadataProduct.Page.Title" xml:space="preserve">
+    <value>Produkte</value>
+  </data>
+  <data name="metadataProject.Page.Title" xml:space="preserve">
+    <value>Projekte</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.General" xml:space="preserve">
+    <value>Projektdaten</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.Memo" xml:space="preserve">
+    <value>Zusätzliche Informationen</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.ProjectCosts" xml:space="preserve">
+    <value>Projektkosten</value>
+  </data>
+  <data name="metadataProject.TabItemHeader.TimeManagement" xml:space="preserve">
+    <value>Bauwzeiten</value>
+  </data>
+  <data name="metadataStorage.Page.Title" xml:space="preserve">
+    <value>Speicherplats</value>
+  </data>
+  <data name="metadataSupplier.Page.Title" xml:space="preserve">
+    <value>Lieferanten</value>
+  </data>
+  <data name="metadataWorktype.Page.Title" xml:space="preserve">
+    <value>Arbeitstypen</value>
+  </data>
+  <data name="Order.Page.Title" xml:space="preserve">
+    <value>Bestellung</value>
+  </data>
+  <data name="Order.Page.SubTitle" xml:space="preserve">
+    <value>Geben Sie die Bestellung pro Lieferant ein, pro Zeile können Sie angeben, ob ein Artikel in den Projektkosten enthalten ist</value>
+  </data>
+  <data name="Order.TabItemHeader.Memo" xml:space="preserve">
+    <value>Zusätzliche Informationen</value>
+  </data>
+  <data name="Order.TabItemHeader.General" xml:space="preserve">
+    <value>Bestellung</value>
+  </data>
+  <data name="toolbarButton.Text.Cut" xml:space="preserve">
+    <value>Ausschneiden</value>
+  </data>
+  <data name="toolbarButton.Text.Copy" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="toolbarButton.Text.Paste" xml:space="preserve">
+    <value>Einfugen</value>
+  </data>
+  <data name="toolbarButton.Font.Bold" xml:space="preserve">
+    <value>Fett</value>
+  </data>
+  <data name="toolbarButton.Font.Italic" xml:space="preserve">
+    <value>Kursiv</value>
+  </data>
+  <data name="toolbarButton.Text.Redo" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="toolbarButton.Font.Underline" xml:space="preserve">
+    <value>Unterstrichen</value>
+  </data>
+  <data name="toolbarButton.Text.Undo" xml:space="preserve">
+    <value>Rückgänig</value>
+  </data>
+  <data name="toolbarButton.List.Number" xml:space="preserve">
+    <value>Nummerierte Liste</value>
+  </data>
+  <data name="toolbarButton.List.Bullet" xml:space="preserve">
+    <value>Aufzählung</value>
+  </data>
+  <data name="toolbarButton.Indent.Increase" xml:space="preserve">
+    <value>Einzug erhöhen</value>
+  </data>
+  <data name="toolbarButton.Indent.Decrease" xml:space="preserve">
+    <value>Einzug verringern</value>
+  </data>
+  <data name="Order.Order.Field.ClosedDate" xml:space="preserve">
+    <value>Lieferdatum</value>
+  </data>
+  <data name="Order.Order.Field.Closed" xml:space="preserve">
+    <value>Gelieverd</value>
+  </data>
+  <data name="Order.Order.Field.CurrencyRate" xml:space="preserve">
+    <value>Tauschrate</value>
+  </data>
+  <data name="Order.Order.Field.CurrencySymbol" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="Order.Order.Field.Supplier" xml:space="preserve">
+    <value>Lieferanten</value>
+  </data>
+  <data name="Order.Order.Field.OrderCosts" xml:space="preserve">
+    <value>Bestellkosten</value>
+  </data>
+  <data name="Order.Order.Field.ShippingCosts" xml:space="preserve">
+    <value>Versandkosten</value>
+  </data>
+  <data name="Order.Order.Field.OrderDate" xml:space="preserve">
+    <value>Auftragsdatum</value>
+  </data>
+  <data name="Order.Orderline.Field.Closed" xml:space="preserve">
+    <value>Gelieverd</value>
+  </data>
+  <data name="Order.Orderline.Field.ClosedDate" xml:space="preserve">
+    <value>Lieferdatum</value>
+  </data>
+  <data name="Order.Orderline.Field.Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Order.Orderline.Field.Number" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="Order.Orderline.Field.Price" xml:space="preserve">
+    <value>Stückpreis</value>
+  </data>
+  <data name="Order.Orderline.Field.Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Order.Group.Orderinformation" xml:space="preserve">
+    <value>Bestelldetails</value>
+  </data>
+  <data name="Order.Order.Group.Orderline" xml:space="preserve">
+    <value>Bestellzeile</value>
+  </data>
+  <data name="toolbarButton.Action.New" xml:space="preserve">
+    <value>Zeile hinzufügen</value>
+  </data>
+  <data name="toolbarButton.Action.Delete" xml:space="preserve">
+    <value>Gewälte Zeile löschen</value>
+  </data>
+  <data name="toolbarButton.Action.Save" xml:space="preserve">
+    <value>Daten speichern</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyName" xml:space="preserve">
+    <value>Währung beschreibung</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyCode" xml:space="preserve">
+    <value>Wärungscode</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencySymbol" xml:space="preserve">
+    <value>Währungszeichen</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRate" xml:space="preserve">
+    <value>Wechselkurs</value>
+  </data>
+  <data name="metadataCurrency.Field.Currency" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRateShort" xml:space="preserve">
+    <value>Wechselkurs</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Add" xml:space="preserve">
+    <value>Währung hinzufügen</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Delete" xml:space="preserve">
+    <value>Ausgewählte Währung löschen</value>
+  </data>
+  <data name="metadataCurrency.Toolbar.Button.Tooltip.Save" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="Order.Order.Group.Orderlist" xml:space="preserve">
+    <value>Bestell daten</value>
+  </data>
+  <data name="Order.Orderlist.Field.Price" xml:space="preserve">
+    <value>Stückpreis</value>
+  </data>
+  <data name="Order.Orderlist.Field.Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderline.Field.Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tooltip" xml:space="preserve">
+    <value>Stückpreis in Lieferantenwährung</value>
+  </data>
+  <data name="Order.Orderline.Field.Total" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="Order.OrderlineTotals.GrandTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Order.OrderlineTotals.Ordercosts" xml:space="preserve">
+    <value>Bestellkosten</value>
+  </data>
+  <data name="Order.OrderlineTotals.RowTotal" xml:space="preserve">
+    <value>Total Bestelregeln</value>
+  </data>
+  <data name="Order.OrderlineTotals.ShippingCosts" xml:space="preserve">
+    <value>Versandkosten</value>
+  </data>
+  <data name="Order.OrderlineTotals" xml:space="preserve">
+    <value>Summen</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Ausgewählte Auftragszeile löschen</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.New" xml:space="preserve">
+    <value>Neue Auftragszeile einfugen</value>
+  </data>
+  <data name="Order.Orderlist.Toolbar.Button.Save" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="Order.Toolbar.Button.Save" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="Order.Toolbar.Button.New" xml:space="preserve">
+    <value>Bestellung hinzufügen</value>
+  </data>
+  <data name="Order.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Ausgewählte Bestellung löschen</value>
+  </data>
+  <data name="Order.Datagrid.Header.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderCompleted" xml:space="preserve">
+    <value>Ausgeliefert</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderDate" xml:space="preserve">
+    <value>Bestell datum</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierId" xml:space="preserve">
+    <value>SupplierID</value>
+  </data>
+  <data name="Order.Datagrid.Header.SupplierName" xml:space="preserve">
+    <value>Lieferanten</value>
+  </data>
+  <data name="Order.Order.Field.OrderNumber" xml:space="preserve">
+    <value>Bestellnummer</value>
+  </data>
+  <data name="Order.Datagrid.Header.OrderNumber" xml:space="preserve">
+    <value>Bestell Nummer</value>
+  </data>
+  <data name="Order.TabItemHeader.Orderrows" xml:space="preserve">
+    <value>Bestell daten</value>
+  </data>
+</root>

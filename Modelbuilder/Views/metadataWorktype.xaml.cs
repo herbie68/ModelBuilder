@@ -1,15 +1,8 @@
-﻿using System;
-using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     public partial class metadataWorktype : Page
     {
-        private readonly string DatabaseTable = "Worktype";
+        private readonly string DatabaseTable = "worktype";
 
         public metadataWorktype()
         {
@@ -27,7 +20,7 @@ namespace Modelbuilder
         #region Buildtree
         public void BuildTree()
         {
-            Database dbConnection = new Database
+            Database dbConnection = new()
             {
                 TableName = DatabaseTable
             };
@@ -35,7 +28,7 @@ namespace Modelbuilder
             _ = new DataTable();
 
             dbConnection.SqlSelectionString = "*";
-            dbConnection.SqlOrderByString = "Worktype_Fullpath";
+            dbConnection.SqlOrderByString = "Fullpath";
             dbConnection.TableName = DatabaseTable;
 
             DataTable dtWorktypeCodes = dbConnection.LoadSpecificMySqlData();
@@ -44,16 +37,16 @@ namespace Modelbuilder
             dsWorktypeCodes.Tables.Add(dtWorktypeCodes);
 
             // add a relationship
-            dsWorktypeCodes.Relations.Add("rsParentChild", dsWorktypeCodes.Tables[DatabaseTable].Columns["worktype_Id"], dsWorktypeCodes.Tables[DatabaseTable].Columns["worktype_ParentId"]);
+            dsWorktypeCodes.Relations.Add("rsParentChild", dsWorktypeCodes.Tables[DatabaseTable].Columns["Id"], dsWorktypeCodes.Tables[DatabaseTable].Columns["ParentId"]);
 
             foreach (DataRow row in dsWorktypeCodes.Tables[DatabaseTable].Rows)
             {
-                if (row["worktype_ParentId"] == DBNull.Value)
+                if (row["ParentId"] == DBNull.Value)
                 {
                     TreeViewItem root = new TreeViewItem();
-                    root.Header = row["worktype_Name"].ToString();
-                    root.Name = "P" + row["worktype_Id"].ToString();
-                    root.Tag = row["worktype_Fullpath"].ToString();
+                    root.Header = row["Name"].ToString();
+                    root.Name = "P" + row["Id"].ToString();
+                    root.Tag = row["Fullpath"].ToString();
                     treeViewWorktype.Items.Add(root);
                     PopulateTree(row, root);
                 }
@@ -66,9 +59,9 @@ namespace Modelbuilder
             foreach (DataRow row in dr.GetChildRows("rsParentChild"))
             {
                 TreeViewItem cChild = new TreeViewItem();
-                cChild.Header = row["worktype_Name"].ToString();
-                cChild.Name = "P" + row["worktype_ParentId"].ToString() + "C" + row["worktype_Id"].ToString(); // Store ID and Parent_Id in the tag
-                cChild.Tag = row["worktype_Fullpath"].ToString();
+                cChild.Header = row["Name"].ToString();
+                cChild.Name = "P" + row["ParentId"].ToString() + "C" + row["Id"].ToString(); // Store ID and Parent_Id in the tag
+                cChild.Tag = row["Fullpath"].ToString();
                 pNode.Items.Add(cChild);
                 //Recursively build the tree
                 PopulateTree(row, cChild);
@@ -78,7 +71,7 @@ namespace Modelbuilder
         #endregion Buildtree
 
         #region SelectedItemChanged
-        private void treeViewWorktype_SelectedItemChanged(object sender, RoutedEventArgs e)
+        private void treeViewSelectedItemChanged(object sender, RoutedEventArgs e)
         {
             // Changed RoutedPropertyChangedEventArgs<object> e into RoutedEventArgs e
             TreeViewItem SelectedItem = treeViewWorktype.SelectedItem as TreeViewItem;
@@ -131,7 +124,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`worktype_Name`, `worktype_FullPath`, `worktype_ParentId`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`, `ParentId`) " + "VALUES('" +
                 dialogWorktype.diaLogWorktypeValue + "', '" +
                 valueFullpath.Text.Replace("\\", "\\\\") + "\\\\" + dialogWorktype.diaLogWorktypeValue + "', '" +
                 valueId.Text + "');";
@@ -164,7 +157,7 @@ namespace Modelbuilder
             dbConnection.Connect();
 
             dbConnection.SqlCommand = "INSERT INTO ";
-            dbConnection.SqlCommandString = "(`worktype_Name`, `worktype_FullPath`) " + "VALUES('" +
+            dbConnection.SqlCommandString = "(`Name`, `FullPath`) " + "VALUES('" +
                 dialogWorktype.diaLogWorktypeValue + "', '" +
                 dialogWorktype.diaLogWorktypeValue + "');";
             dbConnection.TableName = DatabaseTable;
@@ -189,7 +182,7 @@ namespace Modelbuilder
 
             int ID = int.Parse(valueId.Text);
             dbConnection.SqlCommand = "DELETE FROM ";
-            dbConnection.SqlCommandString = " WHERE worktype_Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
+            dbConnection.SqlCommandString = " WHERE Fullpath LIKE '" + valueFullpath.Text.Replace("\\", "\\\\\\\\") + "%';";
             dbConnection.TableName = DatabaseTable;
             dbConnection.UpdateMySqlDataRecord();
             _ = dbConnection.LoadMySqlData();
@@ -218,8 +211,8 @@ namespace Modelbuilder
 
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "worktype_Name = '" + inpWorktypeName.Text + "' WHERE " +
-                    "worktype_Id = " + valueId.Text + ";";
+                    "Name = '" + inpWorktypeName.Text + "' WHERE " +
+                    "Id = " + valueId.Text + ";";
 
                 dbConnection.TableName = DatabaseTable;
 
@@ -229,9 +222,9 @@ namespace Modelbuilder
                 string NewPath = valueParentFullpath.Text + "\\" + inpWorktypeName.Text;
                 dbConnection.SqlCommand = "UPDATE ";
                 dbConnection.SqlCommandString = " SET " +
-                    "worktype_Fullpath = REPLACE(worktype_Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
+                    "Fullpath = REPLACE(Fullpath, '" + OriginalPath.Replace("\\", "\\\\") + "', '" +
                     NewPath.Replace("\\", "\\\\") + "') WHERE " +
-                    "worktype_FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
+                    "FullPath LIKE ('" + OriginalPath.Replace("\\", "\\\\\\\\") + "%');";
 
                 dbConnection.TableName = DatabaseTable;
 

@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Host:                         localhost
--- Server versie:                8.0.25 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Versie:              11.3.0.6295
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -12,25 +5,18 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Databasestructuur van modelbuilder wordt geschreven
-CREATE DATABASE IF NOT EXISTS `modelbuilder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `modelbuilder`;
-
--- Structuur van  tabel modelbuilder.category wordt geschreven
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_Id` int NOT NULL AUTO_INCREMENT,
-  `category_Name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `category_Fullpath` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `category_ParentId` int DEFAULT NULL,
-  PRIMARY KEY (`category_Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=777 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Fullpath` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ParentId` int DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=782 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
--- Dumpen data van tabel modelbuilder.category: ~167 rows (ongeveer)
 DELETE FROM `category`;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `category_ParentId`) VALUES
+INSERT INTO `category` (`Id`, `Name`, `Fullpath`, `ParentId`) VALUES
 	(510, 'Afwerkingerking', 'Afwerking', NULL),
 	(511, 'Veroudering/Bruinering', 'Afwerking\\Veroudering/Bruinering', 510),
 	(512, 'Maskering', 'Afwerking\\Maskering', 510),
@@ -125,11 +111,6 @@ INSERT INTO `category` (`category_Id`, `category_Name`, `category_Fullpath`, `ca
 	(601, 'Rond', 'Materiaal\\Noten\\Rond', 597),
 	(602, 'Vierkant', 'Materiaal\\Noten\\Vierkant', 597),
 	(603, 'Vuren', 'Materiaal\\Vuren', 531),
-	(604, 'Lat', 'Materiaal\\Vuren\\Lat', 602),
-	(605, 'Plaat', 'Materiaal\\Vuren\\Plaat', 602),
-	(606, 'Profiel', 'Materiaal\\Vuren\\Profiel', 602),
-	(607, 'Rond', 'Materiaal\\Vuren\\Rond', 602),
-	(608, 'Vierkant', 'Materiaal\\Vuren\\Vierkant', 602),
 	(609, 'Zeilen', 'Materiaal\\Zeilen', 531),
 	(610, 'Bruin', 'Materiaal\\Zeilen\\Bruin', 609),
 	(611, 'Creme', 'Materiaal\\Zeilen\\Creme', 609),
