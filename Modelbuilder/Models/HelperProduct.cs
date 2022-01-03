@@ -74,7 +74,6 @@ internal class HelperProduct
     }
     #endregion Connector to database
 
-
     #region Delete row in Table: Product
     public string DeleteTblProduct(int productId)
     {
