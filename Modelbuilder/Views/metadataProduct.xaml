@@ -69,13 +69,13 @@
                 <!--#region Hiddenfields-->
                 <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" TextChanged="ProductAllowNewSaveDeleteValidation" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId" TextChanged="ProductAllowNewSaveDeleteValidation"  />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId"  TextChanged="ProductAllowNewSaveDeleteValidation" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueImageRotationAngle" Text="0"/>
                 </StackPanel>
@@ -122,7 +122,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="0" Grid.Column="0" Text="Zoeknaam"/>
                                     <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" 
-                                                Grid.Row="1" Grid.Column="0" Width="230" CharacterCasing="Upper"/>
+                                                Grid.Row="1" Grid.Column="0" Width="230" CharacterCasing="Upper" TextChanged="ProductAllowNewSaveDeleteValidation"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Merk"/>
                                     <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" 
@@ -137,7 +137,7 @@
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Productnaam"/>
                                     <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" 
-                                                Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Width="700" />
+                                                Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Width="700"  TextChanged="ProductAllowNewSaveDeleteValidation" />
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Categorie" 
                                                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
@@ -432,14 +432,14 @@
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <ToolBarTray Style="{DynamicResource DefaultToolBarTray}">
                                     <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="supplierToolbar">
-                                        <Button ToolTip="Leverancier voor product toevoegen" Click="supplierToolbarButtonNew">
-                                            <Image Style="{DynamicResource ToolBarAddIcon}" />
+                                        <Button ToolTip="Leverancier voor product toevoegen" Click="supplierToolbarButtonNew" x:Name="btnNewProductSupplier">
+                                            <Image Style="{DynamicResource ToolBarAddIcon}" IsEnabled="False"/>
                                         </Button>
-                                        <Button ToolTip="Wijzigingen opslaan" Click="supplierToolbarButtonSave">
-                                            <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                                        <Button ToolTip="Wijzigingen opslaan" Click="supplierToolbarButtonSave" x:Name="btnSaveProductSupplier">
+                                            <Image Style="{DynamicResource ToolBarSaveIcon}" IsEnabled="False" />
                                         </Button>
-                                        <Button ToolTip="Leverancier verwijderen uit de tabel" Click="SupplierToolbarButtonDelete">
-                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                        <Button ToolTip="Leverancier verwijderen uit de tabel" Click="SupplierToolbarButtonDelete" x:Name="btnDeleteProductSupplier">
+                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" IsEnabled="False" />
                                         </Button>
                                     </ToolBar>
                                 </ToolBarTray>
@@ -464,14 +464,14 @@
             <!--#region Toolbar for datagrid-->
             <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
                 <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
-                    <Button ToolTip="Product toevoegen" Click="ToolbarButtonNew">
-                        <Image Style="{DynamicResource ToolBarAddIcon}" />
+                    <Button ToolTip="Product toevoegen" Click="ToolbarButtonNew" x:Name="btnNewProduct">
+                        <Image Style="{DynamicResource ToolBarAddIcon}" IsEnabled="False"/>
                     </Button>
-                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
-                        <Image Style="{DynamicResource ToolBarSaveIcon}" />
+                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave" x:Name="btnSaveProduct">
+                        <Image Style="{DynamicResource ToolBarSaveIcon}" IsEnabled="False"/>
                     </Button>
-                    <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete">
-                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                    <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete" x:Name="btnDeleteProduct">
+                        <Image Style="{DynamicResource ToolBarDeleteIcon}" IsEnabled="False"/>
                     </Button>
                 </ToolBar>
             </ToolBarTray>

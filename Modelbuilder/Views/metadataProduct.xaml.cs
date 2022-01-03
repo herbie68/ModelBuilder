@@ -1,4 +1,7 @@
-﻿namespace Modelbuilder;
+﻿using Org.BouncyCastle.Asn1.Crmf;
+using System.Windows.Controls;
+
+namespace Modelbuilder;
 public partial class metadataProduct : Page
 {
     private HelperGeneral _helperGeneral;
@@ -22,6 +25,11 @@ public partial class metadataProduct : Page
         cboxProductStorage.ItemsSource = _helperGeneral.GetStorageList(StorageList);
         cboxProductBrand.ItemsSource = _helperGeneral.GetBrandList(BrandList);
         cboxProductUnit.ItemsSource = _helperGeneral.GetUnitList(UnitList);
+
+        //By default  the toolbarbuttons have to be disabled, this doesn't work from within the xaml
+        btnNewProduct.IsEnabled = false;
+        btnSaveProduct.IsEnabled = false;
+        btnDeleteProduct.IsEnabled = false;
 
         GetData();
     }
@@ -803,4 +811,77 @@ public partial class metadataProduct : Page
         }
     }
     #endregion
+
+    #region Validation if Product Code and Name are filled in order to add/save the record
+    private void ProductAllowNewSaveDeleteValidation(object sender, TextChangedEventArgs e)
+    {
+        EnableButtons();
+    }
+    private void EnableButtons()
+    {
+        #region Enable or Disable buttons on Product Toolbar
+        // Add new product button can be selected if No Product_Id exists and a ProductCode and ProductName are filled
+        if (valueProductId.Text == string.Empty && inpProductCode.Text != string.Empty && inpProductName.Text != string.Empty)
+        { 
+            btnNewProduct.IsEnabled = true; 
+        }
+        else
+        {
+            btnNewProduct.IsEnabled = false;
+        }
+
+        // Save existing product button can be selected if ProductId exists and a ProductCode and ProductName are filled
+        if (valueProductId.Text != string.Empty && inpProductCode.Text != string.Empty && inpProductName.Text != string.Empty)
+        {
+            btnSaveProduct.IsEnabled = true;
+        }
+        else
+        {
+            btnSaveProduct.IsEnabled = false;
+        }
+
+        // Delete existing product button can be selected if ProductId 
+        if (valueProductId.Text != string.Empty)
+        {
+            btnDeleteProduct.IsEnabled = true;
+        }
+        else
+        {
+            btnDeleteProduct.IsEnabled = false;
+        }
+        #endregion Enable or Disable buttons on Product Toolbar
+
+        #region Enable or Disable buttons on ProductSupplier Toolbar
+        // Add new product button can be selected if No Product_Id exists and a ProductCode and ProductName are filled
+        if (valueProductSupplierId.Text == string.Empty && valueProductSupplierSupplierId.Text != string.Empty)
+        {
+            btnNewProductSupplier.IsEnabled = true;
+        }
+        else
+        {
+            btnNewProductSupplier.IsEnabled = false;
+        }
+
+        // Save existing product button can be selected if ProductId exists and a ProductCode and ProductName are filled
+        if (valueProductSupplierId.Text != string.Empty && valueProductSupplierSupplierId.Text != string.Empty)
+        {
+            btnSaveProductSupplier.IsEnabled = true;
+        }
+        else
+        {
+            btnSaveProductSupplier.IsEnabled = false;
+        }
+
+        // Delete existing product button can be selected if ProductId 
+        if (valueProductSupplierId.Text != string.Empty)
+        {
+            btnDeleteProductSupplier.IsEnabled = true;
+        }
+        else
+        {
+            btnDeleteProductSupplier.IsEnabled = false;
+        }
+        #endregion Enable or Disable buttons on ProductSupplier Toolbar
+    }
+    #endregion Validation if Product Code and Name are filled in order to add/save the record
 }
