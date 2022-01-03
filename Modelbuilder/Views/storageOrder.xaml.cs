@@ -1,29 +1,28 @@
-﻿
-using static Modelbuilder.HelperOrder;
-
-namespace Modelbuilder.Views;
+﻿namespace Modelbuilder;
 public partial class storageOrder : Page
 {
+    private HelperGeneral _helperGeneral;
     private HelperOrder _helper;
     private DataTable _dt, _dtSC;
     private int _dbRowCount, _dbRowCountSC;
     private int _currentDataGridIndex;
+    private string DbProductSupplierTable = "productsupplier";
 
     public storageOrder()
     {
-        var SupplierList = new List<HelperOrder.Supplier>();
-        var ProjectList = new List<HelperOrder.Project>();
-        var ProductList = new List<HelperOrder.Product>();
-        var CategoryList = new List<HelperOrder.Category>();
+        var SupplierList = new List<HelperGeneral.Supplier>();
+        var ProjectList = new List<HelperGeneral.Project>();
+        var ProductList = new List<HelperGeneral.Product>();
+        var CategoryList = new List<HelperGeneral.Category>();
 
         InitializeComponent();
         InitializeHelper();
 
         // Fill the dropdowns
-        cboxSupplier.ItemsSource = _helper.GetSupplierList(SupplierList);
-        cboxProject.ItemsSource = _helper.GetProjectList(ProjectList);
-        cboxProduct.ItemsSource = _helper.GetProductList(ProductList);
-        cboxCategory.ItemsSource = _helper.GetCategoryList(CategoryList);
+        cboxSupplier.ItemsSource = _helperGeneral.GetSupplierList(SupplierList);
+        cboxProject.ItemsSource = _helperGeneral.GetProjectList(ProjectList);
+        cboxProduct.ItemsSource = _helperGeneral.GetProductList(ProductList);
+        cboxCategory.ItemsSource = _helperGeneral.GetCategoryList(CategoryList);
 
         GetData();
     }
@@ -33,7 +32,13 @@ public partial class storageOrder : Page
     {
         if (_helper == null)
         {
-            _helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
+            //_helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
+            _helper = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+        }
+        if (_helperGeneral == null)
+        {
+            //_helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
+            _helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
         }
     }
     #endregion InitializeHelper (connect to database)
@@ -102,11 +107,11 @@ public partial class storageOrder : Page
         GetMemo(dg.SelectedIndex);
 
         #region Select the saved Supplier in the Supplier combobox by default
-        string _tempSupplier = Row_Selected["order_SupplierName"].ToString();
+        string _tempSupplier = Row_Selected["SupplierName"].ToString();
         cboxSupplier.Text = _tempSupplier;
 
         //Select the saved Supplier in the combobox by default
-        foreach (Supplier supplier in cboxSupplier.Items)
+        foreach (HelperGeneral.Supplier supplier in cboxSupplier.Items)
         {
             if (supplier.SupplierName == _tempSupplier)
             {
@@ -116,15 +121,15 @@ public partial class storageOrder : Page
         }
         #endregion Select the saved Supplier in the Supplier combobox by default
 
-        valueOrderId.Text = Row_Selected["order_Id"].ToString();
-        inpOrderNumber.Text = Row_Selected["order_OrderNumber"].ToString();
-        inpOrderDate.Text = Row_Selected["order_Date"].ToString();
-        inpCurrencySymbol.Text = Row_Selected["order_CurrencySymbol"].ToString();
-        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(Row_Selected["order_CurrencyConversionRate"].ToString()));
-        inpShippingCosts.Text = Row_Selected["order_ShippingCosts"].ToString();
-        inpOrderCosts.Text = Row_Selected["order_OrderCosts"].ToString();
+        valueOrderId.Text = Row_Selected["Id"].ToString();
+        inpOrderNumber.Text = Row_Selected["OrderNumber"].ToString();
+        inpOrderDate.Text = Row_Selected["OrderDate"].ToString();
+        inpCurrencySymbol.Text = Row_Selected["OrderCurrencySymbol"].ToString();
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(Row_Selected["OrderConversionRate"].ToString()));
+        inpShippingCosts.Text = Row_Selected["ShippingCosts"].ToString();
+        inpOrderCosts.Text = Row_Selected["OrderCosts"].ToString();
 
-        int _TempOrderClosed = int.Parse(Row_Selected["order_Closed"].ToString());
+        int _TempOrderClosed = int.Parse(Row_Selected["Closed"].ToString());
         if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
 
         // Retrieve list of OrderRows for this Order from database
@@ -161,7 +166,7 @@ public partial class storageOrder : Page
         string _tempProduct = Row_Selected["ProductName"].ToString();
         cboxProduct.Text = _tempProduct;
 
-        foreach (Product product in cboxProduct.Items)
+        foreach (HelperGeneral.Product product in cboxProduct.Items)
         {
             if (product.ProductName == _tempProduct)
             {
@@ -175,7 +180,7 @@ public partial class storageOrder : Page
         string _tempProject = Row_Selected["ProjectName"].ToString();
         if (_tempProject == "") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
 
-        foreach (Project project in cboxProject.Items)
+        foreach (HelperGeneral.Project project in cboxProject.Items)
         {
             if (project.ProjectName == _tempProject)
             {
@@ -189,7 +194,7 @@ public partial class storageOrder : Page
         string _tempCategory = Row_Selected["CategoryName"].ToString();
         cboxCategory.Text = _tempCategory;
 
-        foreach (Category category in cboxCategory.Items)
+        foreach (HelperGeneral.Category category in cboxCategory.Items)
         {
             if (category.CategoryName == _tempCategory)
             {
@@ -200,7 +205,7 @@ public partial class storageOrder : Page
         #endregion Select the saved Category in the Category combobox by default
 
         valueOrderlineId.Text = Row_Selected["Id"].ToString();
-        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["Number"].ToString()));
+        inpNumber.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["Amount"].ToString()));
         inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(Row_Selected["Price"].ToString()));
     }
     #endregion Datagrid selectionchanged for OrderRow
@@ -208,7 +213,7 @@ public partial class storageOrder : Page
     #region Selection changed: Combobox Supplier
     private void cboxSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        foreach (HelperOrder.Supplier item in e.AddedItems)
+        foreach (HelperGeneral.Supplier item in e.AddedItems)
         {
             valueSupplierId.Text = item.SupplierId.ToString();
             valueSupplierName.Text = item.SupplierName.ToString();
@@ -216,12 +221,12 @@ public partial class storageOrder : Page
             inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
         }
 
-        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "ConversionRate", "double")));
-        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "ShippingCosts", "double")));
-        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "OrderCosts", "double")));
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "currency", "ConversionRate", "double")));
+        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "ShippingCosts", "double")));
+        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "OrderCosts", "double")));
         //inpCurrencyRate.Text = _helperGeneral.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "ConversionRate", "float");
         //inpShippingCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "ShippingCosts", "double");
-        valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "MinShippingCosts", "double");
+        valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "MinShippingCosts", "double");
         //inpOrderCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "OrderCosts", "double");
         //inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
         //inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpShippingCosts.Text));
@@ -232,10 +237,9 @@ public partial class storageOrder : Page
     #region Selection changed: Combobox Product
     private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        //If no product is selected do nothing
-        //if(cboxProduct.Text == string.Empty || cboxProduct.Text == "") { return; }
+        if (cboxProduct.SelectedIndex == -1) { return; }
 
-        foreach (HelperOrder.Product item in e.AddedItems)
+        foreach (HelperGeneral.Product item in e.AddedItems)
         {
             valueProductId.Text = item.ProductId.ToString();
             valueProductName.Text = item.ProductName.ToString();
@@ -247,15 +251,15 @@ public partial class storageOrder : Page
         if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00")
         {
             // Check if product is in table for this supplier, if not return value will be -1
-            string _tmpPrice = _helper.GetSingleDataMultiSelect("ProductSupplier", "ProductPrice", "Double", "SupplierId", int.Parse(valueSupplierId.Text), "AND", "ProductId", int.Parse(valueProductId.Text));
+            string _tmpPrice = _helper.GetSingleDataMultiSelect(DbProductSupplierTable, "Price", "Double", "Supplier_Id", int.Parse(valueSupplierId.Text), "AND", "Product_Id", int.Parse(valueProductId.Text));
 
             if (SupplierHasProduct == 0)
             {
-                inpPrice.Text = _helper.GetSingleDataMultiSelect("ProductSupplier", "ProductPrice", "Double", "SupplierId", int.Parse(valueSupplierId.Text), "AND", "ProductId", int.Parse(valueProductId.Text));
+                inpPrice.Text = _helper.GetSingleDataMultiSelect(DbProductSupplierTable, "Price", "Double", "Supplier_Id", int.Parse(valueSupplierId.Text), "AND", "Product_Id", int.Parse(valueProductId.Text));
             }
             else
             {
-                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "Price", "Double");
+                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "product", "Price", "Double");
             }
 
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
@@ -264,18 +268,18 @@ public partial class storageOrder : Page
         // If there is no quantity entered, retrieve the default order quantity of the item
         if (inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
         {
-            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "StandardOrderQuantity", "double")));
+            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "product", "StandardOrderQuantity", "double")));
         }
 
         if (valueProductId.Text != string.Empty)
         {
-            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "CategoryId", "int");
-            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "Product", "CategoryName", "string");
+            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "product", "Category_Id", "int");
+            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueCategoryId.Text), "category", "Name", "string");
             if (valueCategoryName.Text != string.Empty)
             {
                 cboxCategory.Text = valueCategoryName.Text;
 
-                foreach (Category category in cboxCategory.Items)
+                foreach (HelperGeneral.Category category in cboxCategory.Items)
                 {
                     if (category.CategoryName == valueCategoryName.Text)
                     {
@@ -294,7 +298,7 @@ public partial class storageOrder : Page
         //If no project is selected do nothing
         //if (cboxProject.Text == String.Empty) { return; }
 
-        foreach (HelperOrder.Project item in e.AddedItems)
+        foreach (HelperGeneral.Project item in e.AddedItems)
         {
             valueProjectId.Text = item.ProjectId.ToString();
             valueProjectName.Text = item.ProjectName.ToString();
@@ -307,8 +311,9 @@ public partial class storageOrder : Page
     {
         //If no category is selected do nothing
         //if (cboxCategory.Text == String.Empty) { return; }
+        if (cboxCategory.SelectedIndex == -1) { return; }
 
-        foreach (HelperOrder.Category item in e.AddedItems)
+        foreach (HelperGeneral.Category item in e.AddedItems)
         {
             valueCategoryId.Text = item.CategoryId.ToString();
             valueCategoryName.Text = item.CategoryName.ToString();
@@ -322,14 +327,23 @@ public partial class storageOrder : Page
     {
         var OrderlineOrderId = int.Parse(valueOrderId.Text);
         var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
-        var OrderlineProductId = 0;
-        var OrderlineProjectId = 0;
-        var OrderlineCategoryId = 0;
-        var OrderlineNumber = 0.00;
-        var OrderlinePrice = 0.00;
-        var OrderlineProductName = "";
-        var OrderlineProjectName = "";
-        var OrderlineCategoryName = "";
+        var OrderlineProductId = int.Parse(valueProductId.Text);
+        var OrderlineProjectId = int.Parse(valueProjectId.Text);
+        var OrderlineCategoryId = int.Parse(valueCategoryId.Text);
+        var OrderlineNumber = double.Parse(inpNumber.Text);
+        var OrderlinePrice = double.Parse(inpPrice.Text);
+
+        InitializeHelper();
+        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice);
+        UpdateStatus("row", result);
+
+        // Get data from database
+        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
+
+        // Populate data in datagrid from datatable
+        OrderDetail_DataGrid.DataContext = _dtSC;
+        //OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count;
+        SetFocusOnGrid(OrderDetail_DataGrid, OrderDetail_DataGrid.Items.Count - 1);
 
         valueProductId.Text = string.Empty;
         valueProductName.Text = string.Empty;
@@ -341,23 +355,14 @@ public partial class storageOrder : Page
         inpNumber.Text = "0,00";
 
         cboxCategory.SelectedItem = null;
+        cboxCategory.SelectedIndex = -1;
+        cboxCategory.Text= string.Empty;
         cboxProduct.SelectedItem = null;
-        cboxProject.SelectedItem = null;
-
-        InitializeHelper();
-        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice);
-        UpdateStatus("row", result);
-
-        // Get data from database
-        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
-
-        // Populate data in datagrid from datatable
-        OrderDetail_DataGrid.DataContext = _dtSC;
-        //OrderDetail_DataGrid.SelectedItem = OrderDetail_DataGrid.Items.Count;
-        SetFocusOnGrid(OrderDetail_DataGrid, OrderDetail_DataGrid.Items.Count - 1);
-
-        // Make orderline related cells available
-        //cboxOrderRowEditable.IsChecked = true;
+        cboxProduct.SelectedIndex = -1;
+        cboxProduct.Text= string.Empty;
+        cboxProject.SelectedItem = null;      
+        cboxProject.SelectedIndex = -1;
+        cboxProject.Text= string.Empty;
     }
     #endregion Toolbar button for Orderlines: New
 
@@ -404,7 +409,7 @@ public partial class storageOrder : Page
 
         InitializeHelper();
         string result = string.Empty;
-        result = _helper.UpdateTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProductName, OrderlineProjectId, OrderlineProjectName, OrderlineCategoryId, OrderlineCategoryName, OrderlineNumber, OrderlinePrice, OrderlineId);
+        result = _helper.UpdateTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice, OrderlineId);
         UpdateStatus("row", result);
 
         // Retrieve list of OrderRows for this Order from database
@@ -464,6 +469,7 @@ public partial class storageOrder : Page
     private void ToolbarButtonNew(object sender, RoutedEventArgs e)
     {
         var SupplierId = 0;
+        var CurrencyId = 0;
         var SupplierName = "";
         var OrderNumber = "";
         var OrderDate = "";
@@ -473,6 +479,7 @@ public partial class storageOrder : Page
         var OrderCosts = 0.00;
 
         if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
+        if (valueCurrencyId.Text == String.Empty) { CurrencyId = 0; } else { CurrencyId = int.Parse(valueCurrencyId.Text); }
         if (valueSupplierName.Text == String.Empty) { SupplierName = ""; } else { SupplierName = valueSupplierName.Text; }
         if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
         if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
@@ -490,7 +497,7 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         string result = string.Empty;
-        result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
+        result = _helper.InsertTblOrder(SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
         UpdateStatus("order", result);
 
         // Get data from database
@@ -515,7 +522,7 @@ public partial class storageOrder : Page
         int rowIndex = _currentDataGridIndex;
         var OrderId = 0;
         var SupplierId = 0;
-        var SupplierName = "";
+        var CurrencyId = 0;
         var OrderNumber = "";
         var OrderDate = "";
         var CurrencySymbol = "";
@@ -525,7 +532,7 @@ public partial class storageOrder : Page
 
         if (valueOrderId.Text != String.Empty) { OrderId = int.Parse(valueOrderId.Text); }
         if (valueSupplierId.Text != String.Empty) { SupplierId = int.Parse(valueSupplierId.Text); }
-        if (valueSupplierName.Text != String.Empty) { SupplierName = valueSupplierName.Text; }
+        if (valueCurrencyId.Text != String.Empty) { CurrencyId = int.Parse(valueCurrencyId.Text); }
         if (inpOrderNumber.Text != String.Empty) { OrderNumber = inpOrderNumber.Text; }
         if (inpOrderDate.Text != String.Empty) { OrderDate = inpOrderDate.Text; }
         if (inpCurrencySymbol.Text != String.Empty) { CurrencySymbol = inpCurrencySymbol.Text; }
@@ -546,7 +553,7 @@ public partial class storageOrder : Page
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+            result = _helper.UpdateTblOrder(OrderId, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
             string _tempresult = _helper.UpdateSupplierTblOrderline(OrderId, SupplierId);
             UpdateStatus("order", result);
         }
@@ -607,10 +614,10 @@ public partial class storageOrder : Page
             DataRow row = _dt.Rows[index];
 
 
-            if (row["order_Memo"] != null && row["order_Memo"] != DBNull.Value)
+            if (row["Memo"] != null && row["Memo"] != DBNull.Value)
             {
                 //get value from DataTable
-                ContentOrderMemo = row["order_Memo"].ToString();
+                ContentOrderMemo = row["Memo"].ToString();
             }
 
             if (!String.IsNullOrEmpty(ContentOrderMemo))
@@ -661,7 +668,7 @@ public partial class storageOrder : Page
         DataRow row = _dt.Rows[_dt.Rows.Count - 1];
 
         var SupplierId = 0;
-        var SupplierName = "";
+        var CurrencyId = 0;
         var OrderNumber = "";
         var OrderDate = "";
         var CurrencySymbol = "";
@@ -670,7 +677,7 @@ public partial class storageOrder : Page
         var OrderCosts = 0.00;
 
         if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
-        if (valueSupplierName.Text == String.Empty) { SupplierName = ""; } else { SupplierName = valueSupplierName.Text; }
+        if (valueCurrencyId.Text == String.Empty) { CurrencyId = 0; } else { CurrencyId = int.Parse(valueCurrencyId.Text); }
         if (inpOrderNumber.Text == String.Empty) { OrderNumber = ""; } else { OrderNumber = inpOrderNumber.Text; }
         if (inpOrderDate.Text == String.Empty) { OrderDate = ""; } else { OrderDate = inpOrderDate.Text; }
         if (inpCurrencySymbol.Text == String.Empty) { CurrencySymbol = ""; } else { CurrencySymbol = inpCurrencySymbol.Text; }
@@ -684,7 +691,7 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         string result = string.Empty;
-        result = _helper.InsertTblOrder(SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        result = _helper.InsertTblOrder(SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
         UpdateStatus("order", result);
     }
 
@@ -692,7 +699,7 @@ public partial class storageOrder : Page
     #endregion
 
     #region Update Order row
-    private void UpdateOrderRow(int OrderId, int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double CurrencyRate, double ShippingCosts, double OrderCosts, string OrderMemo)
+    private void UpdateOrderRow(int OrderId, int SupplierId, int CurrencyId, string OrderNumber, string OrderDate, string CurrencySymbol, double CurrencyRate, double ShippingCosts, double OrderCosts, string OrderMemo)
     {
         //convert RTF to string
         string memo = GetRichTextFromFlowDocument(inpOrderMemo.Document);
@@ -700,7 +707,7 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         string result = string.Empty;
-        result = _helper.UpdateTblOrder(OrderId, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        result = _helper.UpdateTblOrder(OrderId, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
         UpdateStatus("row", result);
     }
     #endregion Update Order Row

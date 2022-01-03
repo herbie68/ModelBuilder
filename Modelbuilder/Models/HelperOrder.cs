@@ -54,7 +54,9 @@ internal class HelperOrder
 
     public string DbCategoryTable = "category";
     public string DbOrderTable = "supplyorder";
+    public string DbOrderView = "view_supplyorder";
     public string DbOrderLineTable = "supplyorderline";
+    public string DbOrderLineView = "view_supplyorderline";
     public string DbCurrencyTable = "currency";
     public string DbProductTable = "product";
     public string DbProductSupplierTable = "productsupplier";
@@ -99,11 +101,11 @@ internal class HelperOrder
 
         if (OrderId > 0)
         {
-            sqlText = "SELECT * from supplyorder where order_Id = @IdOrder";
+            sqlText = "SELECT * from " + DbOrderView + " where Id = @IdOrder";
         }
         else
         {
-            sqlText = "SELECT * from supplyorder";
+            sqlText = "SELECT * from " + DbOrderView;
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -132,11 +134,11 @@ internal class HelperOrder
 
         if (Id > 0)
         {
-            sqlText = "SELECT * from SupplyOrderline where OrderId = @Id";
+            sqlText = "SELECT * from " + DbOrderLineView + " where Supplyorder_Id = @Id";
         }
         else
         {
-            sqlText = "SELECT * from SupplyOrderline";
+            sqlText = "SELECT * from " + DbOrderLineView;
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -191,30 +193,37 @@ internal class HelperOrder
     #region Get Single Data from provided Table
     public string GetSingleData(int Id = 0, string Table = "", string Field = "", string Type = "")
     {
-        string sqlText = string.Empty;
-        string resultString = String.Empty;
-
+        string sqlText;
         if (Id > 0)
         {
-            sqlText = "SELECT " + Field + " from " + Table + " where " + Table.ToLower() + "_Id = @Id";
+            sqlText = "SELECT " + Field + " from " + Table.ToLower() + " where Id = @Id";
         }
         else
         {
-            sqlText = "SELECT * from " + Table;
+            sqlText = "SELECT * from " + Table.ToLower();
         }
 
         MySqlConnection con = new MySqlConnection(ConnectionStr);
 
         con.Open();
 
-        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+        MySqlCommand cmd = new(sqlText, con);
         cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
 
+        string resultString;
         switch (Type.ToLower())
         {
             case "double":
-                resultString = ((double)cmd.ExecuteScalar()).ToString();
+                try
+                {
+                    resultString = ((double)cmd.ExecuteScalar()).ToString();
+                }
+                catch (NullReferenceException)
+                {
+                    resultString = "-1";
+                }
                 break;
+
             case "float":
                 resultString = ((float)cmd.ExecuteScalar()).ToString();
                 break;
@@ -222,13 +231,12 @@ internal class HelperOrder
                 resultString = ((int)cmd.ExecuteScalar()).ToString();
                 break;
             case "string":
-                resultString = cmd.ExecuteScalar().ToString();
+                resultString = (string)cmd.ExecuteScalar();
                 break;
             default:
-                resultString = cmd.ExecuteScalar().ToString();
+                resultString = (string)cmd.ExecuteScalar();
                 break;
         }
-
         return resultString;
     }
     #endregion Get Single Data from provided Table
@@ -241,11 +249,11 @@ internal class HelperOrder
         // SELECT ProductPrice FROM productSupplier WHERE ProductId = 1 AND SupplierId = 7 
         if (Id1 > 0)
         {
-            sqlText = "SELECT " + RetrieveField + " FROM " + Table + " WHERE " + ConditionField1 + " = @Id1 " + Condition1.ToUpper() + " " + ConditionField2 + " = @Id2 ";
+            sqlText = "SELECT " + RetrieveField + " FROM " + Table.ToLower() + " WHERE " + ConditionField1 + " = @Id1 " + Condition1.ToUpper() + " " + ConditionField2 + " = @Id2 ";
         }
         else
         {
-            sqlText = "SELECT * from " + Table;
+            sqlText = "SELECT * from " + Table.ToLower();
         }
 
         MySqlConnection con = new MySqlConnection(ConnectionStr);
@@ -291,7 +299,7 @@ internal class HelperOrder
     {
         string sqlText = string.Empty;
         string resultString = String.Empty;
-        sqlText = "SELECT SUM(Number * Price) RowTotal FROM supplyorderline WHERE OrderId = @OrderId ";
+        sqlText = "SELECT SUM(Number * Price) RowTotal FROM " + DbOrderLineTable + " WHERE OrderId = @OrderId ";
 
         MySqlConnection con = new MySqlConnection(ConnectionStr);
 
@@ -314,14 +322,14 @@ internal class HelperOrder
     #endregion Get Orderrowtotals for OrderId
 
     #region Insert in Table: SupplyOrder
-    public string InsertTblOrder(int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
+    public string InsertTblOrder(int SupplierId, int CurrencyId, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO SupplyOrder (order_SupplierId, order_SupplierName, order_Ordernumber, order_Date, order_CurrencySymbol, order_CurrencyConversionRate, order_ShippingCosts, order_OrderCosts, order_Memo) VALUES (@SupplierId, @SupplierName, @OrderNumber, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @OrderMemo);";
+        string sqlText = "INSERT INTO " + DbOrderTable + " (Supplier_Id, Currency_Id, Ordernumber, OrderDate, CurrencySymbol, CurrencyConversionRate, ShippingCosts, OrderCosts, Memo) VALUES (@SupplierId, @CurrencyId, @OrderNumber, @OrderDate, @CurrencySymbol, @ConversionRate, @ShippingCosts, @OrderCosts, @OrderMemo);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrder(sqlText, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo);
+            int rowsAffected = ExecuteNonQueryTblOrder(sqlText, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo);
 
             if (rowsAffected > 0)
             {
@@ -348,14 +356,14 @@ internal class HelperOrder
     #endregion Insert in Table: SupplyOrder
 
     #region Insert in Table: SupplyOrderline
-    public string InsertTblOrderline(int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price)
+    public string InsertTblOrderline(int OrderId, int SupplierId, int ProductId, int ProjectId, int CategoryId, double Number, double Price)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO SupplyOrderline (OrderId, SupplierId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProductName, @ProjectId, @ProjectName, @CategoryId, @CategoryName, @Number, @Price);";
+        string sqlText = "INSERT INTO " + DbOrderLineTable + " (SupplyOrder_Id, Supplier_Id, Product_Id, Project_Id, Category_Id, Amount, Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProjectId, @CategoryId, @Number, @Price);";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, SupplierId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price);
+            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, SupplierId, ProductId, ProjectId, CategoryId, Number, Price);
 
             if (rowsAffected > 0)
             {
@@ -382,14 +390,14 @@ internal class HelperOrder
     #endregion Insert in Table: SupplyOrderline
 
     #region Update Table: Supplyorder
-    public string UpdateTblOrder(int OrderId, int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
+    public string UpdateTblOrder(int OrderId, int SupplierId, int CurrencyId, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE Supplyorder SET order_SupplierId = @SupplierId, order_SupplierName = @SupplierName, order_OrderNumber = @OrderNumber, order_Date = @OrderDate, order_CurrencySymbol = @CurrencySymbol, order_CurrencyConversionRate = @ConversionRate, order_ShippingCosts = @ShippingCosts, order_OrderCosts = @OrderCosts, order_Memo = @OrderMemo WHERE order_Id = @OrderId;";
+        string sqlText = "UPDATE " + DbOrderTable + " SET Supplier_Id = @SupplierId, Currency_Id = @CurrencyId, OrderNumber = @OrderNumber, OrderDate = @OrderDate, CurrencySymbol = @CurrencySymbol, CurrencyConversionRate = @ConversionRate, ShippingCosts = @ShippingCosts, OrderCosts = @OrderCosts, Memo = @OrderMemo WHERE Id = @OrderId;";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrder(sqlText, SupplierId, SupplierName, OrderNumber, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo, OrderId);
+            int rowsAffected = ExecuteNonQueryTblOrder(sqlText, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, ConversionRate, ShippingCosts, OrderCosts, OrderMemo, OrderId);
 
             //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
             result = rowsAffected > 0 ? OrderNumber + " bijgewerkt." : "Geen wijzigingen door te voeren.";
@@ -410,14 +418,14 @@ internal class HelperOrder
     #endregion Update Table: Supplyorder
 
     #region Update Table: SupplyOrderline
-    public string UpdateTblOrderline(int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderLineId)
+    public string UpdateTblOrderline(int OrderId, int SupplierId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, int OrderLineId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE supplyorderline SET OrderId = @OrderId, SupplierId = @SupplierId, ProductId = @ProductId, ProductName = @ProductName, ProjectId = @ProjectId, ProjectName = @ProjectName, CategoryId = @CategoryId, CategoryName = @CategoryName, Number = @Number, Price = @Price WHERE Id = @OrderlineId;";
+        string sqlText = "UPDATE " + DbOrderLineTable + " SET Supplyorder_Id = @OrderId, Supplier_Id = @SupplierId, Product_Id = @ProductId, Project_Id = @ProjectId, Category_Id = @CategoryId, Amount = @Number, Price = @Price WHERE Id = @OrderlineId;";
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, SupplierId, ProductId, ProductName, ProjectId, ProjectName, CategoryId, CategoryName, Number, Price, OrderLineId);
+            int rowsAffected = ExecuteNonQueryTblOrderline(sqlText, OrderId, SupplierId, ProductId, ProjectId, CategoryId, Number, Price, OrderLineId);
 
             if (rowsAffected > 0)
             {
@@ -447,7 +455,7 @@ internal class HelperOrder
     public string DeleteTblSupplyOrder(int orderId)
     {
         string result = string.Empty;
-        string sqlText = "DELETE FROM SupplyOrder WHERE order_Id=@orderId";
+        string sqlText = "DELETE FROM " + DbOrderTable + " WHERE order_Id=@orderId";
 
         try
         {
@@ -486,11 +494,11 @@ internal class HelperOrder
 
         if (Type == "order")
         {
-            sqlText = "DELETE FROM SupplyOrderline WHERE OrderId=@OrderId";
+            sqlText = "DELETE FROM " + DbOrderLineTable + " WHERE OrderId=@OrderId";
         }
         else
         {
-            sqlText = "DELETE FROM SupplyOrderline WHERE Id=@OrderId";
+            sqlText = "DELETE FROM " + DbOrderLineTable + " WHERE Id=@OrderId";
         }
 
         try
@@ -526,7 +534,7 @@ internal class HelperOrder
     public string UpdateSupplierTblOrderline(int OrderId, int SupplierId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE supplyorderline SET SupplierId = @SupplierId WHERE OrderId = @OrderId;";
+        string sqlText = "UPDATE " + DbOrderLineTable + " SET SupplierId = @SupplierId WHERE OrderId = @OrderId;";
 
         try
         {
@@ -551,11 +559,11 @@ internal class HelperOrder
     #endregion Update SupplierId in Table: Supplyorderline
 
     #region Execute Non Query Table: SupplyOrder
-    public int ExecuteNonQueryTblOrder(string sqlText, int SupplierId, string SupplierName, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo, int OrderId = 0)
+    public int ExecuteNonQueryTblOrder(string sqlText, int SupplierId, int CurrencyId, string OrderNumber, string OrderDate, string CurrencySymbol, double ConversionRate, double ShippingCosts, double OrderCosts, string OrderMemo, int OrderId = 0)
     {
         int rowsAffected = 0;
 
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        using (MySqlConnection con = new(ConnectionStr))
         {
             //open
             con.Open();
@@ -565,6 +573,7 @@ internal class HelperOrder
             // int parameters
             cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
             cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
+            cmd.Parameters.Add("@CurrencyId", MySqlDbType.Int32).Value = CurrencyId;
 
             // double parameters
             cmd.Parameters.Add("@ShippingCosts", MySqlDbType.Double).Value = ShippingCosts;
@@ -576,7 +585,6 @@ internal class HelperOrder
 
 
             // Add VarChar values
-            cmd.Parameters.Add("@SupplierName", MySqlDbType.VarChar).Value = DBNull.Value;
             cmd.Parameters.Add("@OrderNumber", MySqlDbType.VarChar).Value = DBNull.Value;
             cmd.Parameters.Add("@CurrencySymbol", MySqlDbType.VarChar).Value = DBNull.Value;
 
@@ -584,11 +592,6 @@ internal class HelperOrder
             cmd.Parameters.Add("@OrderMemo", MySqlDbType.LongText).Value = DBNull.Value;
 
             //set values
-            if (!String.IsNullOrEmpty(SupplierName))
-            {
-                cmd.Parameters["@SupplierName"].Value = SupplierName;
-            }
-
             if (!String.IsNullOrEmpty(OrderNumber))
             {
                 cmd.Parameters["@OrderNumber"].Value = OrderNumber;
@@ -642,16 +645,16 @@ internal class HelperOrder
     #endregion Execute Non Query Table Id: SupplyOrder
 
     #region Execute Non Query Table: SupplyOrderline
-    public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int SupplierId, int ProductId, string ProductName, int ProjectId, string ProjectName, int CategoryId, string CategoryName, double Number, double Price, int OrderlineId = 0)
+    public int ExecuteNonQueryTblOrderline(string sqlText, int OrderId, int SupplierId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, int OrderlineId = 0)
     {
         int rowsAffected = 0;
 
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        using (MySqlConnection con = new (ConnectionStr))
         {
             //open
             con.Open();
 
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            using (MySqlCommand cmd = new(sqlText, con))
             {
                 // add parameters setting string values to DBNull.Value
                 // int parameters
@@ -666,11 +669,6 @@ internal class HelperOrder
                 cmd.Parameters.Add("@Number", MySqlDbType.Double).Value = Number;
                 cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = Price;
 
-                // Add VarChar values
-                cmd.Parameters.Add("@ProductName", MySqlDbType.VarChar).Value = ProductName;
-                cmd.Parameters.Add("@ProjectName", MySqlDbType.VarChar).Value = ProjectName;
-                cmd.Parameters.Add("@CategoryName", MySqlDbType.VarChar).Value = CategoryName;
-
                 //execute; returns the number of rows affected
                 rowsAffected = cmd.ExecuteNonQuery();
             }
@@ -683,9 +681,9 @@ internal class HelperOrder
     public int CheckProductForSupplier(int SupplierId = 0, int ProductId = 0)
     {
         int result = 0;
-        string sqlText = "SELECT COUNT(*) FROM productsupplier WHERE SupplierId = @SupplierId AND ProductId = @ProductId";
+        string sqlText = "SELECT COUNT(*) FROM " + DbProductSupplierTable + " WHERE Supplier_Id = @SupplierId AND Product_Id = @ProductId";
 
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        using (MySqlConnection con = new(ConnectionStr))
         {
             //open
             con.Open();
@@ -707,14 +705,14 @@ internal class HelperOrder
     public int CheckOrderRowsForOrder(int OrderId = 0)
     {
         int result = 0;
-        string sqlText = "SELECT COUNT(*) FROM supplyorderline WHERE OrderId = @OrderId";
+        string sqlText = "SELECT COUNT(*) FROM " + DbOrderLineTable + " WHERE OrderId = @OrderId";
 
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        using (MySqlConnection con = new(ConnectionStr))
         {
             //open
             con.Open();
 
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
+            using (MySqlCommand cmd = new(sqlText, con))
             {
                 cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
                 result = cmd.ExecuteNonQuery();
@@ -735,16 +733,12 @@ internal class HelperOrder
             //open
             con.Open();
 
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-            {
-                // add parameters setting string values to DBNull.Value
-                // int parameters
-                cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
-                cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
+            using MySqlCommand cmd = new MySqlCommand(sqlText, con);
+            cmd.Parameters.Add("@OrderId", MySqlDbType.Int32).Value = OrderId;
+            cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
 
-                //execute; returns the number of rows affected
-                rowsAffected = cmd.ExecuteNonQuery();
-            }
+            //execute; returns the number of rows affected
+            rowsAffected = cmd.ExecuteNonQuery();
         }
         return rowsAffected;
     }
