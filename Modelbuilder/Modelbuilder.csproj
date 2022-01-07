@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Icon1.ico" />
+    <None Remove="Resources\acceptreceipt.png" />
     <None Remove="Resources\app.png" />
     <None Remove="Resources\appExit.png" />
     <None Remove="Resources\appHelp.png" />
@@ -86,6 +87,7 @@
     <None Remove="Resources\rtftoolbarTextcolor.png" />
     <None Remove="Resources\rtftoolbarUnderline.png" />
     <None Remove="Resources\rtftoolbarUndo.png" />
+    <None Remove="Resources\shipping.png" />
     <None Remove="Resources\storageManagement.png" />
     <None Remove="Resources\storageOrder.png" />
     <None Remove="Resources\storageRecieve.png" />
@@ -113,6 +115,7 @@
     <None Remove="Resources\toolbarSmallDelete.png" />
     <None Remove="Resources\toolbarSmallSave.png" />
     <None Remove="Resources\toolbarStart.png" />
+    <None Remove="Resources\trashbin.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -127,6 +130,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\acceptreceipt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\calculator.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -236,6 +242,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\rtftoolbarUndo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\shipping.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Test.png">
@@ -437,6 +446,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarStart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\trashbin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

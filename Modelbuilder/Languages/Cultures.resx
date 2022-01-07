@@ -322,7 +322,7 @@
     <value>Nieuwe bestelregel toevoegen</value>
   </data>
   <data name="Order.Orderlist.Toolbar.Button.Delete" xml:space="preserve">
-    <value>Verwijder geselkteerde bestelregel</value>
+    <value>Verwijder geselecteerde bestelregel</value>
   </data>
   <data name="Order.Orderlist.Toolbar.Button.Save" xml:space="preserve">
     <value>Wijzigingen opslaan</value>
@@ -372,16 +372,16 @@
   <data name="Receipt.TabItemHeader.Memo" xml:space="preserve">
     <value>Aanvullende informatie</value>
   </data>
-  <data name="Receipt.Toolbar.Button.Apply" xml:space="preserve">
+  <data name="Receipt.Button.Apply" xml:space="preserve">
     <value>Verwerken</value>
   </data>
-  <data name="Receipt.Toolbar.Button.Cancel" xml:space="preserve">
+  <data name="Receipt.Button.Cancel" xml:space="preserve">
     <value>Vervallen</value>
   </data>
-  <data name="Receipt.Toolbar.Tooltip.Button.Apply" xml:space="preserve">
+  <data name="Receipt.Button.Tooltip.Apply" xml:space="preserve">
     <value>Verwerk de ingevoerde ontvangsten</value>
   </data>
-  <data name="Receipt.Toolbar.Tooltip.Button.Cancel" xml:space="preserve">
+  <data name="Receipt.Button.Tooltip.Cancel" xml:space="preserve">
     <value>Laat de openstaande bestelregel vervallen, wordt niet meer geleverd.</value>
   </data>
   <data name="Receipt.Group.Receiptline" xml:space="preserve">
@@ -401,5 +401,8 @@
   </data>
   <data name="Receipt.Group.Receiptline.Field.Date" xml:space="preserve">
     <value>Leverdatum</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Location" xml:space="preserve">
+    <value>Voorraadlocatie</value>
   </data>
 </root>

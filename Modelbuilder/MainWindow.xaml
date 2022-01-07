@@ -63,13 +63,13 @@
                 <RibbonGroup x:Name="Storage" Header="Voorraadbeheer">
                     <RibbonSplitButton LargeImageSource=".\Resources\storageManagement.png" Label="Voorraad beheer">
                         <RibbonMenuItem ImageSource=".\Resources\storageOrder.png" Header="Bestellen" Click="ShowOrderPage"/>
-                        <RibbonMenuItem ImageSource=".\Resources\storageRecieve.png" Header="Ontvangsten" />
+                        <RibbonMenuItem ImageSource=".\Resources\storageRecieve.png" Header="Ontvangsten" Click="ShowOrderReceiptPage"/>
                         <RibbonSeparator></RibbonSeparator>
                         <RibbonMenuItem ImageSource=".\Resources\projectImport.png" Header="Importeer projecten" />
                         <RibbonMenuItem ImageSource=".\Resources\projectExport.png" Header="Exporteer projecten" />
                     </RibbonSplitButton>
                     <RibbonMenuItem Header="Bestellen" ImageSource=".\Resources\storageOrder.png"  Click="ShowOrderPage"/>
-                    <RibbonMenuItem Header="Ontvangsten" ImageSource=".\Resources\storageRecieve.png" />
+                    <RibbonMenuItem Header="Ontvangsten" ImageSource=".\Resources\storageRecieve.png"  Click="ShowOrderReceiptPage"/>
                     <RibbonMenuButton LargeImageSource=".\Resources\storageReports.png" Label="Overzichten">
                         <RibbonMenuItem ImageSource=".\Resources\storageReportOverview.png" Header="Voorraadoverzicht" />
                         <RibbonMenuItem ImageSource=".\Resources\storageReportRecieve.png" Header="Bestelling-overzicht" />

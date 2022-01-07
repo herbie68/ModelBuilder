@@ -278,6 +278,20 @@
             <Setter Property="Padding" Value="2"/>
         </Style>
         <!--#endregion-->
+        
+        <!--#region  Button Icon resources-->
+        <Style x:Key="ReceiptCancelIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\trashbin.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+        </Style>
+
+        <Style x:Key="ReceiptAcceptIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\acceptreceipt.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+        </Style>
+        <!--#endregion  Button Icon resources-->
 
         <!--#region Toolbar Icon resources-->
         <Style x:Key="ToolBarAddIcon" TargetType="Image">

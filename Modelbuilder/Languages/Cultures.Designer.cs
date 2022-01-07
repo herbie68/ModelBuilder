@@ -565,7 +565,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verwijder geselkteerde bestelregel.
+        ///   Looks up a localized string similar to Verwijder geselecteerde bestelregel.
         /// </summary>
         public static string Order_Orderlist_Toolbar_Button_Delete {
             get {
@@ -664,6 +664,42 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verwerken.
+        /// </summary>
+        public static string Receipt_Button_Apply {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vervallen.
+        /// </summary>
+        public static string Receipt_Button_Cancel {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwerk de ingevoerde ontvangsten.
+        /// </summary>
+        public static string Receipt_Button_Tooltip_Apply {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Tooltip.Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laat de openstaande bestelregel vervallen, wordt niet meer geleverd..
+        /// </summary>
+        public static string Receipt_Button_Tooltip_Cancel {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Tooltip.Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Levering.
         /// </summary>
         public static string Receipt_Group_Receiptline {
@@ -687,6 +723,15 @@ namespace Modelbuilder.Languages {
         public static string Receipt_Group_Receiptline_Field_Date {
             get {
                 return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Location {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Location", resourceCulture);
             }
         }
         
@@ -741,42 +786,6 @@ namespace Modelbuilder.Languages {
         public static string Receipt_TabItemHeader_Memo {
             get {
                 return ResourceManager.GetString("Receipt.TabItemHeader.Memo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verwerken.
-        /// </summary>
-        public static string Receipt_Toolbar_Button_Apply {
-            get {
-                return ResourceManager.GetString("Receipt.Toolbar.Button.Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vervallen.
-        /// </summary>
-        public static string Receipt_Toolbar_Button_Cancel {
-            get {
-                return ResourceManager.GetString("Receipt.Toolbar.Button.Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verwerk de ingevoerde ontvangsten.
-        /// </summary>
-        public static string Receipt_Toolbar_Tooltip_Button_Apply {
-            get {
-                return ResourceManager.GetString("Receipt.Toolbar.Tooltip.Button.Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Laat de openstaande bestelregel vervallen, wordt niet meer geleverd..
-        /// </summary>
-        public static string Receipt_Toolbar_Tooltip_Button_Cancel {
-            get {
-                return ResourceManager.GetString("Receipt.Toolbar.Tooltip.Button.Cancel", resourceCulture);
             }
         }
         
