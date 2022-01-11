@@ -9,27 +9,27 @@ DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Code` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-  `DefaultSymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '€',
+  `Defaultcurrency_Symbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '€',
   `Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `DefaultId` int DEFAULT NULL,
+  `Defaultcurrency_Id` int DEFAULT NULL,
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
-  UNIQUE KEY `Code_UNIQUE` (`Code`) USING BTREE,
-  KEY `FK_Id` (`DefaultId`),
-  CONSTRAINT `FK_Id` FOREIGN KEY (`DefaultId`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `country_Code_UNIQUE` (`Code`) USING BTREE,
+  KEY `FK_Country_Currency_Id` (`Defaultcurrency_Id`),
+  CONSTRAINT `FK_Country_Currency_Id` FOREIGN KEY (`Defaultcurrency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `country`;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
-INSERT INTO `country` (`Id`, `Code`, `DefaultSymbol`, `Name`, `DefaultId`, `Created`, `Modified`) VALUES
-	(1, 'NL', '€', 'Nederland', 1, '2021-12-14 15:07:11', '2021-12-14 15:07:47'),
-	(2, 'UK', '£', 'Engeland', 2, '2021-12-14 15:07:11', '2021-12-14 15:07:51'),
-	(3, 'US', '$', 'Verenigde staten', 3, '2021-12-14 15:07:11', '2021-12-14 15:07:53'),
-	(4, 'DE', '€', 'Duitsland', 1, '2021-12-14 15:07:11', '2021-12-14 15:07:54'),
-	(5, 'ESP', '€', 'Spanje', 1, '2021-12-14 15:07:11', '2021-12-14 15:07:55'),
-	(6, 'CH', 'Y', 'China', 4, '2021-12-14 15:07:11', '2021-12-14 15:07:57'),
-	(7, 'IT', '€', 'Italë', 1, '2021-12-14 15:07:11', '2021-12-14 15:07:58');
+INSERT INTO `country` (`Id`, `Code`, `Defaultcurrency_Symbol`, `Name`, `Defaultcurrency_Id`, `Created`, `Modified`) VALUES
+	(1, 'NL', '€', 'Nederland', 1, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(2, 'UK', '£', 'Engeland', 2, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(3, 'US', '$', 'Verenigde staten', 3, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(4, 'DE', '€', 'Duitsland', 1, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(5, 'ESP', '€', 'Spanje', 1, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(6, 'CH', 'Y', 'China', 4, '2021-12-23 11:15:36', '2021-12-23 11:15:36'),
+	(7, 'IT', '€', 'Italë', 1, '2021-12-23 11:15:36', '2021-12-23 11:15:36');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

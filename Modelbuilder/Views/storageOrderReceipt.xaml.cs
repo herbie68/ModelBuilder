@@ -45,19 +45,19 @@ namespace Modelbuilder
         {
             if (_helperOrder == null)
             {
-                //_helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
-                _helperOrder = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperOrder = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
+                //_helperOrder = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
             }
             if (_helperGeneral == null)
             {
-                //_helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-                _helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
+                //_helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
             }
 
             if (_helperReceipt == null)
             {
-                //_helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
-                _helperReceipt = new HelperReceipt("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperReceipt= new HelperReceipt("localhost", 3306, "modelbuilder", "root", "admin");
+                //_helperReceipt = new HelperReceipt("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
             }
         }
         #endregion InitializeHelper (connect to database)

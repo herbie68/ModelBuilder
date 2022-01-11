@@ -8,15 +8,29 @@
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE IF NOT EXISTS `unit` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `Name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modifief` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `Name` (`Name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `unit_Name` (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `unit`;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` (`Id`, `Name`, `Created`, `Modifief`) VALUES
+	(1, '', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(2, 'cm', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(3, 'dl', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(4, 'Fles', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(5, 'gr', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(6, 'kg', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(7, 'ltr', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(8, 'mgr', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(9, 'ml', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(10, 'mm', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(11, 'mtr', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(12, 'Set', '2021-12-29 11:06:11', '2021-12-29 11:06:11'),
+	(13, 'Stuk', '2021-12-29 11:06:11', '2021-12-29 11:06:11');
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -13,15 +13,16 @@ CREATE TABLE IF NOT EXISTS `contacttype` (
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   KEY `Name` (`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `contacttype`;
 /*!40000 ALTER TABLE `contacttype` DISABLE KEYS */;
 INSERT INTO `contacttype` (`Id`, `Name`, `Created`, `Modified`) VALUES
-	(1, '', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
-	(2, 'Verkoop', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
-	(3, 'Administratie', '2021-12-14 11:57:57', '2021-12-14 11:57:57'),
-	(4, 'Algemeen', '2021-12-14 11:57:57', '2021-12-14 11:57:57');
+	(1, '', '2021-12-23 08:57:24', '2021-12-23 08:57:24'),
+	(2, 'Verkoop', '2021-12-23 08:57:24', '2021-12-23 08:57:24'),
+	(3, 'Administratie', '2021-12-23 08:57:24', '2021-12-23 08:57:24'),
+	(4, 'Algemeen', '2021-12-23 08:57:24', '2021-12-23 08:57:24'),
+	(5, 'Service', '2021-12-23 08:57:24', '2021-12-23 08:57:24');
 /*!40000 ALTER TABLE `contacttype` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -99,12 +99,13 @@ namespace Modelbuilder
         {
             if (_helpergeneral == null)
             {
-                //_helpergeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-                _helpergeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helpergeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
+                //_helpergeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
             }
             if (_helper == null)
             {
-                _helper = new HelperSupplier("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                //_helper = new HelperSupplier("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helper = new HelperSupplier("localhost", 3306, "modelbuilder", "root", "admin");
             }
         }
         #endregion

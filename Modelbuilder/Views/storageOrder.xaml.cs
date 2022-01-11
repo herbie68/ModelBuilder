@@ -32,13 +32,13 @@ public partial class storageOrder : Page
     {
         if (_helper == null)
         {
-            //_helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
-            _helper = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
+            //_helper = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
         }
         if (_helperGeneral == null)
         {
-            //_helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-            _helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
+            //_helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
         }
     }
     #endregion InitializeHelper (connect to database)
