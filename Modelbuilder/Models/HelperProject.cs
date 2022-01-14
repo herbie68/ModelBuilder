@@ -5,6 +5,9 @@ namespace Modelbuilder;
 public class HelperProject
 {
     #region public Variables
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
     public string ConnectionStr { get; set; } = string.Empty;
 
     public string DbBrandTable = "brand";

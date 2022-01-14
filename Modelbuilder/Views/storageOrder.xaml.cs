@@ -739,6 +739,9 @@ public partial class storageOrder : Page
     // private bool dataChanged = false; // Unsaved textchanges
 
     private string privateText = null; // Content of RTFBox in txt-Format
+    /// <summary>
+    /// Gets or Sets the text.
+    /// </summary>
     public string text
     {
         get
@@ -754,6 +757,9 @@ public partial class storageOrder : Page
 
     private string ShowRow; // aktuelle Zeile der Cursorposition
     private int _CurrentRow = 1;
+    /// <summary>
+    /// Gets or Sets the current row.
+    /// </summary>
     public int CurrentRow
     {
         get { return _CurrentRow; }
@@ -771,6 +777,9 @@ public partial class storageOrder : Page
     private string ShowColumn; // aktuelle Spalte der Cursorposition
     private int _CurrentColumn = 1;
 
+    /// <summary>
+    /// Gets or Sets the current column.
+    /// </summary>
     public int CurrentColumn
     {
         get { return _CurrentColumn; }

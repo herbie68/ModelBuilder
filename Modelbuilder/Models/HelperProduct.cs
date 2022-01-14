@@ -52,6 +52,12 @@ internal class HelperProduct
     #endregion Available databasefields
 
     #region public Variables
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
     public string ConnectionStr { get; set; }
 
     public string DbProductTable = "product";

@@ -3,6 +3,9 @@
 public class HelperMySql
 {
     #region public Variables
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
     public string ConnectionStr { get; set; }
 
     private const string DbBrandTable = "brand";
@@ -1516,7 +1519,13 @@ public class HelperMySql
             categoryId = Id;
         }
 
+        /// <summary>
+        /// Gets or Sets the category name.
+        /// </summary>
         public string categoryName { get; set; }
+        /// <summary>
+        /// Gets or Sets the category id.
+        /// </summary>
         public int categoryId { get; set; }
     }
     #endregion
@@ -1530,7 +1539,13 @@ public class HelperMySql
             countryId = Id;
         }
 
+        /// <summary>
+        /// Gets or Sets the country name.
+        /// </summary>
         public string countryName { get; set; }
+        /// <summary>
+        /// Gets or Sets the country id.
+        /// </summary>
         public int countryId { get; set; }
     }
     #endregion
@@ -1544,7 +1559,13 @@ public class HelperMySql
             currencyId = Id;
         }
 
+        /// <summary>
+        /// Gets or Sets the currency symbol.
+        /// </summary>
         public string currencySymbol { get; set; }
+        /// <summary>
+        /// Gets or Sets the currency id.
+        /// </summary>
         public string currencyId { get; set; }
     }
     #endregion
@@ -1557,7 +1578,13 @@ public class HelperMySql
             storageName = Name;
             storageId = Id;
         }
+        /// <summary>
+        /// Gets or Sets the storage name.
+        /// </summary>
         public string storageName { get; set; }
+        /// <summary>
+        /// Gets or Sets the storage id.
+        /// </summary>
         public int storageId { get; set; }
     }
     #endregion
@@ -1565,9 +1592,21 @@ public class HelperMySql
     #region Create object for all suppliers in table for dropdown
     public class Supplier
     {
+        /// <summary>
+        /// Gets or Sets the supplier name.
+        /// </summary>
         public string SupplierName { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier id.
+        /// </summary>
         public int SupplierId { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier currency symbol.
+        /// </summary>
         public string SupplierCurrencySymbol { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier currency id.
+        /// </summary>
         public int SupplierCurrencyId { get; set; }
     }
     #endregion
@@ -1575,7 +1614,13 @@ public class HelperMySql
     #region Create object for all contacttypes in table for dropdown
     public class ContactType
     {
+        /// <summary>
+        /// Gets or Sets the contact type name.
+        /// </summary>
         public string ContactTypeName { get; set; }
+        /// <summary>
+        /// Gets or Sets the contact type id.
+        /// </summary>
         public int ContactTypeId { get; set; }
     }
     #endregion
@@ -1583,7 +1628,13 @@ public class HelperMySql
     #region Create object for all brands in table for dropdown
     public class Brand
     {
+        /// <summary>
+        /// Gets or Sets the brand name.
+        /// </summary>
         public string BrandName { get; set; }
+        /// <summary>
+        /// Gets or Sets the brand id.
+        /// </summary>
         public int BrandId { get; set; }
     }
     #endregion

@@ -50,6 +50,12 @@ internal class HelperOrder
     #endregion Available databasefields
 
     #region public Variables
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
     public string ConnectionStr { get; set; }
 
     public string DbCategoryTable = "category";
@@ -871,9 +877,21 @@ internal class HelperOrder
     #region Create object for all suppliers in table for dropdown
     public class Supplier
     {
+        /// <summary>
+        /// Gets or Sets the supplier name.
+        /// </summary>
         public string SupplierName { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier id.
+        /// </summary>
         public int SupplierId { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier currency symbol.
+        /// </summary>
         public string SupplierCurrencySymbol { get; set; }
+        /// <summary>
+        /// Gets or Sets the supplier currency id.
+        /// </summary>
         public int SupplierCurrencyId { get; set; }
     }
     #endregion Create object for all suppliers in table for dropdown
@@ -881,7 +899,13 @@ internal class HelperOrder
     #region Create object for all projects in table for dropdown
     public class Project
     {
+        /// <summary>
+        /// Gets or Sets the project name.
+        /// </summary>
         public string ProjectName { get; set; }
+        /// <summary>
+        /// Gets or Sets the project id.
+        /// </summary>
         public int ProjectId { get; set; }
     }
     #endregion Create object for all projects in table for dropdown
@@ -889,7 +913,13 @@ internal class HelperOrder
     #region Create object for all categories in table for dropdown
     public class Category
     {
+        /// <summary>
+        /// Gets or Sets the category name.
+        /// </summary>
         public string CategoryName { get; set; }
+        /// <summary>
+        /// Gets or Sets the category id.
+        /// </summary>
         public int CategoryId { get; set; }
     }
     #endregion
@@ -897,7 +927,13 @@ internal class HelperOrder
     #region Create object for all products in table for dropdown
     public class Product
     {
+        /// <summary>
+        /// Gets or Sets the product name.
+        /// </summary>
         public string ProductName { get; set; }
+        /// <summary>
+        /// Gets or Sets the product id.
+        /// </summary>
         public int ProductId { get; set; }
     }
     #endregion Create object for all products in table for dropdown    

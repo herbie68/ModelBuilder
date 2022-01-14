@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Check Database", "Check Database\Check Database.csproj", "{4A4CD366-05D9-4261-A104-895D993EA0E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,15 +22,19 @@ Global
 		{D2CFA488-29A8-4444-8B49-9FEF627B5CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2CFA488-29A8-4444-8B49-9FEF627B5CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2CFA488-29A8-4444-8B49-9FEF627B5CD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4CD366-05D9-4261-A104-895D993EA0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4CD366-05D9-4261-A104-895D993EA0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4CD366-05D9-4261-A104-895D993EA0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4CD366-05D9-4261-A104-895D993EA0E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.xaml,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($File.$Key)\\W","Extensions":".vbhtml","IsCaseSensitive":false,"SingleLineComment":null},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\.($Key)","Extensions":".ts,.html","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\.$Key","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
-		SolutionGuid = {FAB57B63-8559-407E-BEB1-B8E10CD1688E}
-		RESX_NeutralResourcesLanguage = nl-NL
-		RESX_AutoCreateNewLanguageFiles = True
 		RESX_ExcelExportMode = MultipleSheets
+		RESX_AutoCreateNewLanguageFiles = True
+		RESX_NeutralResourcesLanguage = nl-NL
+		SolutionGuid = {FAB57B63-8559-407E-BEB1-B8E10CD1688E}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.xaml,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($File.$Key)\\W","Extensions":".vbhtml","IsCaseSensitive":false,"SingleLineComment":null},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\.($Key)","Extensions":".ts,.html","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\.$Key","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
 	EndGlobalSection
 EndGlobal

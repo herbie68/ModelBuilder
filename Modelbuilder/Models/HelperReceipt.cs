@@ -8,6 +8,9 @@ namespace Modelbuilder;
 internal class HelperReceipt
 {
     #region public Variables
+    /// <summary>
+    /// Gets or Sets the connection str.
+    /// </summary>
     public string ConnectionStr { get; set; }
 
     public string DbCategoryTable = "category";
