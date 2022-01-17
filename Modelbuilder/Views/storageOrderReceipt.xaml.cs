@@ -1,23 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
-    /// <summary>
-    /// Interaction logic for storageOrderReceipt.xaml
-    /// </summary>
     public partial class storageOrderReceipt : Page
     {
         private HelperGeneral _helperGeneral;
@@ -45,19 +27,16 @@ namespace Modelbuilder
         {
             if (_helperOrder == null)
             {
-                _helperOrder = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
-                //_helperOrder = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperOrder = new HelperOrder(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
             if (_helperGeneral == null)
             {
-                _helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-                //_helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
 
             if (_helperReceipt == null)
             {
-                _helperReceipt= new HelperReceipt("localhost", 3306, "modelbuilder", "root", "admin");
-                //_helperReceipt = new HelperReceipt("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helperReceipt= new HelperReceipt(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion InitializeHelper (connect to database)
@@ -153,7 +132,9 @@ namespace Modelbuilder
 
             //set value
             _currentDataGridIndex = dg.SelectedIndex;
-
+            inpProductName.Text = Row_Selected["ProductName"].ToString();
+            inpNumber.Text = Row_Selected["OpenAmount"].ToString();
+            inpDeliveryDate.SelectedDate = DateTime.Now.Date;
             #region Select the saved Storage location in the Storage combobox by default
             string _tempStorage = Row_Selected["StorageName"].ToString();
             cboxStorage.Text = _tempStorage;
@@ -168,6 +149,8 @@ namespace Modelbuilder
                 }
             }
             #endregion Select the saved Storage location in the Storage combobox by default
+
+
         }
         #endregion Datagrid Selection Changed: Orderline
 

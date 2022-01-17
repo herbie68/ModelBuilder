@@ -365,7 +365,7 @@ internal class HelperOrder
     public string InsertTblOrderline(int OrderId, int SupplierId, int ProductId, int ProjectId, int CategoryId, double Number, double Price)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO " + DbOrderLineTable + " (SupplyOrder_Id, Supplier_Id, Product_Id, Project_Id, Category_Id, Amount, Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProjectId, @CategoryId, @Number, @Price);";
+        string sqlText = "INSERT INTO " + DbOrderLineTable + " (SupplyOrder_Id, Supplier_Id, Product_Id, Project_Id, Category_Id, Amount, OpenAmount, Price) VALUES (@OrderId, @SupplierId, @ProductId, @ProjectId, @CategoryId, @Number, @Number, @Price);";
 
         try
         {
@@ -427,7 +427,7 @@ internal class HelperOrder
     public string UpdateTblOrderline(int OrderId, int SupplierId, int ProductId, int ProjectId, int CategoryId, double Number, double Price, int OrderLineId)
     {
         string result = string.Empty;
-        string sqlText = "UPDATE " + DbOrderLineTable + " SET Supplyorder_Id = @OrderId, Supplier_Id = @SupplierId, Product_Id = @ProductId, Project_Id = @ProjectId, Category_Id = @CategoryId, Amount = @Number, Price = @Price WHERE Id = @OrderlineId;";
+        string sqlText = "UPDATE " + DbOrderLineTable + " SET Supplyorder_Id = @OrderId, Supplier_Id = @SupplierId, Product_Id = @ProductId, Project_Id = @ProjectId, Category_Id = @CategoryId, Amount = @Number, OpenAmount = @Number, Price = @Price WHERE Id = @OrderlineId;";
 
         try
         {

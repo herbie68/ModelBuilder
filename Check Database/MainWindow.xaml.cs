@@ -30,10 +30,7 @@ namespace Check_Database
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
 
         #region InitializeHelper (connect to database)

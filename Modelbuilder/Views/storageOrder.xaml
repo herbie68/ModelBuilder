@@ -180,7 +180,7 @@
                                             <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_SupplierName}" 
                                         Width="270" Binding="{Binding SupplierName}" />
                                             <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderNumber}" 
-                                        Width="90" Binding="{Binding Number}" />
+                                        Width="90" Binding="{Binding OrderNumber}" />
                                             <DataGridTextColumn Header="{x:Static p:Cultures.Order_Datagrid_Header_OrderDate}" 
                                         Width="80" 
                                         Binding="{Binding OrderDate, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />

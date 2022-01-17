@@ -14,6 +14,8 @@ global using System.Windows.Input;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 global using MySql.Data.MySqlClient;
+global using ConnectionNamespace;
+global using MySql;
 
 using Modelbuilder.Views;
 

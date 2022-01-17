@@ -117,13 +117,13 @@ namespace Modelbuilder
         {
             if (_helpergeneral == null)
             {
-                _helpergeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-                //_helpergeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helpergeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+                //_helpergeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
             }
             if (_helper == null)
             {
-                //_helper = new HelperSupplier("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
-                _helper = new HelperSupplier("localhost", 3306, "modelbuilder", "root", "admin");
+                //_helper = new HelperSupplier("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
+                _helper = new HelperSupplier(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion

@@ -1,17 +1,7 @@
-﻿using ConnectionNamespace;
-
-using MySql.Data.MySqlClient;
-
-namespace Modelbuilder;
-/// <summary>
-/// Initializes a new instance of the <see cref="HelperGeneral"/> class.
-/// </summary>
+﻿namespace Modelbuilder;
 internal class HelperGeneral
 {
     #region public Variables
-    /// <summary>
-    /// Gets or Sets the connection str.
-    /// </summary>
     public string ConnectionStr { get; set; }
 
     public string DbBrandTable = "brand";
@@ -26,50 +16,24 @@ internal class HelperGeneral
     public string DbProjectTable = "project";
     public string DbStorageTable = "storage";
     public string DbSupplierTable = "supplier";
+    public string DbSupplierView = "view_supplier";
     public string DbUnitTable = "unit";
     public string DbWorktypeTable = "worktype";
 
     public CultureInfo Culture = new("nl-NL");
 
-    /// <summary>
-    /// Gets or Sets the sql order by string.
-    /// </summary>
     public string SqlOrderByString { get; set; }
-    /// <summary>
-    /// Gets or Sets the sql selection string.
-    /// </summary>
     public string SqlSelectionString { get; set; }
-    /// <summary>
-    /// Gets or Sets the sql where string.
-    /// </summary>
     public string SqlWhereString { get; set; }
-    /// <summary>
-    /// Gets or Sets the table name.
-    /// </summary>
     public string TableName { get; set; }
     #endregion public Variables
 
     #region Connector to database
-    /// <summary>
-    /// Initializes a new instance of the <see cref="HelperGeneral"/> class.
-    /// </summary>
-    /// <param name="serverName">The server name.</param>
-    /// <param name="databaseName">The database name.</param>
-    /// <param name="username">The username.</param>
-    /// <param name="userPwd">The user pwd.</param>
     public HelperGeneral(string serverName, string databaseName, string username, string userPwd)
     {
         ConnectionStr = string.Format("Server={0};Database={1};Uid={2};Pwd={3};", serverName, databaseName, username, userPwd);
     }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="HelperGeneral"/> class.
-    /// </summary>
-    /// <param name="serverName">The server name.</param>
-    /// <param name="portNumber">The port number.</param>
-    /// <param name="databaseName">The database name.</param>
-    /// <param name="username">The username.</param>
-    /// <param name="userPwd">The user pwd.</param>
     public HelperGeneral(string serverName, int portNumber, string databaseName, string username, string userPwd)
     {
         ConnectionStr = string.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4};", serverName, portNumber, databaseName, username, userPwd);
@@ -77,10 +41,6 @@ internal class HelperGeneral
     #endregion Connector to database
 
     #region Execute Non Query
-    /// <summary>
-    /// Executes the non query.
-    /// </summary>
-    /// <param name="sqlText">The sql text.</param>
     public void ExecuteNonQuery(string sqlText)
     {
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -98,11 +58,6 @@ internal class HelperGeneral
     #region Create lists to populate dropdowns for order Page
     #region Fill the dropdownlists
     #region Fill Brand dropdown
-    /// <summary>
-    /// Gets the brand list.
-    /// </summary>
-    /// <param name="brandList">The brand list.</param>
-    /// <returns><![CDATA[List<Brand>]]></returns>
     public List<Brand> GetBrandList(List<Brand> brandList)
     {
         string DatabaseTable = DbBrandTable;
@@ -130,11 +85,6 @@ internal class HelperGeneral
     #endregion Brand dropdown
 
     #region Fill Category dropdown
-    /// <summary>
-    /// Gets the category list.
-    /// </summary>
-    /// <param name="categoryList">The category list.</param>
-    /// <returns><![CDATA[List<Category>]]></returns>
     public List<Category> GetCategoryList(List<Category> categoryList)
     {
 
@@ -164,11 +114,6 @@ internal class HelperGeneral
     #endregion
 
     #region Fill ContactType dropdown
-    /// <summary>
-    /// Gets the contact type list.
-    /// </summary>
-    /// <param name="contactTypeList">The contact type list.</param>
-    /// <returns><![CDATA[List<ContactType>]]></returns>
     public List<ContactType> GetContactTypeList(List<ContactType> contactTypeList)
     {
         string DatabaseTable = DbContactTypeTable;
@@ -196,11 +141,6 @@ internal class HelperGeneral
     #endregion
 
     #region Fill Country dropdown
-    /// <summary>
-    /// Gets the country list.
-    /// </summary>
-    /// <param name="countryList">The country list.</param>
-    /// <returns><![CDATA[List<Country>]]></returns>
     public List<Country> GetCountryList(List<Country> countryList)
     {
 
@@ -229,11 +169,6 @@ internal class HelperGeneral
     #endregion
 
     #region Fill Currency dropdown
-    /// <summary>
-    /// Gets the currency list.
-    /// </summary>
-    /// <param name="currencyList">The currency list.</param>
-    /// <returns><![CDATA[List<Currency>]]></returns>
     public List<Currency> GetCurrencyList(List<Currency> currencyList)
     {
         string DatabaseTable = DbCurrencyTable;
@@ -354,13 +289,13 @@ internal class HelperGeneral
     #region Fill Supplier dropdown
     public List<Supplier> GetSupplierList(List<Supplier> supplierList)
     {
-        string DatabaseTable = DbSupplierTable;
+        string DatabaseTable = DbSupplierView;
         Database dbConnection = new()
         {
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "Name, Id, CurrencySymbol, CurrencyId";
+        dbConnection.SqlSelectionString = "Name, Id, Currency, Currency_Id";
         dbConnection.SqlOrderByString = "Id";
         dbConnection.TableName = DatabaseTable;
 
@@ -454,13 +389,7 @@ internal class HelperGeneral
     #region Create object for all countries in table for dropdown
     public class Country
     {
-        /// <summary>
-        /// Gets or Sets the country name.
-        /// </summary>
         public string CountryName { get; set; }
-        /// <summary>
-        /// Gets or Sets the country id.
-        /// </summary>
         public int CountryId { get; set; }
     }
     #endregion
