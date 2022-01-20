@@ -41,7 +41,8 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderlineId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductName" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
+                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOpenAmount" />
                     <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxReceiptRowEditable" IsChecked="False"/>
                 </StackPanel>
                 <!-- End of "Do not remove" part-->
@@ -96,9 +97,12 @@
                                                     Grid.Row="3" Grid.Column="0" Width="175" Height="24" Margin="2"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Grid.Column="1" Margin="2"
-                                                   Text="{x:Static p:Cultures.Receipt_Group_Receiptline_Field_Amount}" Height="16" VerticalAlignment="Center" Width="Auto"/>
+                                                   Text="{x:Static p:Cultures.Receipt_Group_Receiptline_Field_Amount}" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto"/>
                                     <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpNumber" 
-                                                 HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.Row="3" Grid.Column="1" 
+                                                 HorizontalAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="3" Grid.Column="1" 
+                                                 Width="50" Height="22" Margin="2"/>
+                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" x:Name="displUnit" 
+                                                 HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom"
                                                  Width="50" Height="22" Margin="2"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Column="0" Grid.ColumnSpan="3" Margin="2" Grid.Row="4"

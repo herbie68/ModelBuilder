@@ -707,7 +707,7 @@ internal class HelperOrder
     }
     #endregion Check if an item exists in table: productsupplier
 
-    #region Check if there are orderrows for givven project
+    #region Check if there are orderrows for given project
     public int CheckOrderRowsForOrder(int OrderId = 0)
     {
         int result = 0;
