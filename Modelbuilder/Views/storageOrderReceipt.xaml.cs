@@ -27,18 +27,9 @@ namespace Modelbuilder
         #region InitializeHelper (connect to database)
         private void InitializeHelper()
         {
-            if (_helperOrder == null)
-            {
-                _helperOrder = new HelperOrder(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-            }
             if (_helperGeneral == null)
             {
                 _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-            }
-
-            if (_helperReceipt == null)
-            {
-                _helperReceipt= new HelperReceipt(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion InitializeHelper (connect to database)
@@ -49,7 +40,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             // Get data from database
-            _dt = _helperReceipt.GetData(HelperReceipt.DbOrderView);
+            _dt = _helperGeneral.GetData(HelperGeneral.DbOpenOrderView);
 
             // Populate data in datagrid from datatable
             OrderCode_DataGrid.DataContext = _dt;
@@ -73,7 +64,7 @@ namespace Modelbuilder
             InitializeHelper();
 
             // Get data from database
-            _dtSC = _helperReceipt.GetData(HelperReceipt.DbOrderLineView, "Supplyorder_Id",int.Parse(valueOrderId.Text));
+            _dtSC = _helperGeneral.GetData(HelperGeneral.DbOpenOrderLineView, HelperGeneral.DbOpenOrderLineFieldNameSupplyOrderId, int.Parse(valueOrderId.Text));
 
             // Populate data in datagrid from datatable
             OrderlineCode_DataGrid.DataContext = _dtSC;
@@ -128,7 +119,6 @@ namespace Modelbuilder
             if (inpProductName.Text == String.Empty) { ProductName = ""; } else { ProductName = inpProductName.Text; }
             if (inpNumber.Text == String.Empty) { AmountReceived = 0.00; } else { AmountReceived = double.Parse(inpNumber.Text); }
 
-            //if (valueOpenAmount.Text == inpNumber.Text) { OrderlineClosed = 1; } else { OrderlineClosed = 0; };
             AmountRest = double.Parse(valueOpenAmount.Text) - double.Parse(inpNumber.Text);
 
             if (AmountRest <= 0) 
@@ -137,53 +127,72 @@ namespace Modelbuilder
                 LineClosed = 1;
             }
 
-            // UPDATE OpenAmount FROM supplyorderline WHERE Id = int.Parse(valueOrderlineId.Text)
-            _helperReceipt.UpdateFieldInTable(HelperReceipt.DbOrderLineTable, "Id", valueOrderlineId.Text, "int", "OpenAmount", AmountRest.ToString(), "double", "Closed", LineClosed.ToString(), "int", "ClosedDate", inpDeliveryDate.Text, "date");
+            _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
+            {   {HelperGeneral.DbOrderLineFieldNameId, HelperGeneral.DbOrderLineFieldTypeId , valueOrderlineId.Text} }, new string[3, 3]
+            {   {HelperGeneral.DbOrderLineFieldNameOpenAmount, HelperGeneral.DbOrderLineFieldTypeOpenAmount, AmountRest.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameClosed, HelperGeneral.DbOrderLineFieldTypeClosed, LineClosed.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameClosedDate, HelperGeneral.DbOrderLineFieldTypeClosedDate, inpDeliveryDate.Text} });
 
-            // Check if Product Id excists in stock table
-            // if yes, Amount has to be changed, oif no record has to be added
-            // TODO: Always new line added, instead replacint amout for excisting row
-            var _tempRecordCount = _helperReceipt.CheckForRecords(HelperReceipt.DbStockView, "product_Id", int.Parse(valueProductId.Text), "storage_Id", int.Parse(valueStorageId.Text));
+            // Check if Product Id excists in stock table if yes, Amount has to be changed, if no record has to be added
+            var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[2, 3]
+            {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
+                {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text} }); 
+
             if (_tempRecordCount > 0)
             {
                 // Get Stock Id
-                var StockId = int.Parse(_helperReceipt.GetValueFromTable(HelperReceipt.DbStockView, "Id", "int", "product_Id", int.Parse(valueProductId.Text), "", "storage_Id", int.Parse(valueStorageId.Text), ""));
-                
-                // Get Corrunt Stock Amount
-                var Amount = double.Parse(_helperReceipt.GetValueFromTable(HelperReceipt.DbStockView, "Amount", "double", "product_Id", int.Parse(valueProductId.Text), "", "storage_Id", int.Parse(valueStorageId.Text), ""));
+                var StockId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockView, new string[2, 3]
+                {   {HelperGeneral.DbStockViewFieldNameProductId, HelperGeneral.DbStockViewFieldTypeProductId, valueProductId.Text},
+                    {HelperGeneral.DbStockViewFieldNameStorageId, HelperGeneral.DbStockViewFieldTypeStorageId, valueStorageId.Text} }, new string[1, 3]
+                {   {HelperGeneral.DbStockViewFieldNameId, HelperGeneral.DbStockViewFieldTypeId, ""} }));
+
+                // Get Currunt Stock Amount
+                var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[2, 3]
+                {   {HelperGeneral.DbStockTableFieldNameProductId,  HelperGeneral.DbStockTableFieldNameProductId, valueProductId.Text},
+                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text } }, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" }}));
                 
                 // Calculate new Stock Amount
                 var AmountNew = Amount + double.Parse(inpNumber.Text);
-                
+
                 // Update stock record with new Soch Amount
-                _helperReceipt.UpdateFieldInTable(HelperReceipt.DbStockTable, "Id", StockId.ToString(), "int", "product_Id", valueProductId.Text, "int", "storage_Id", valueStorageId.Text, "int", "Amount", AmountNew.ToString(), "double");
+                //_helperReceipt.UpdateFieldInTable(HelperGeneral.DbStockTable, "Id", StockId.ToString(), "int", "product_Id", valueProductId.Text, "int", "storage_Id", valueStorageId.Text, "int", "Amount", AmountNew.ToString(), "double");
+                _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[1, 3]
+                {   {HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId , StockId.ToString()} }, new string[3, 3]
+                {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
+                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text},
+                    {HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, AmountNew.ToString()} });
             }
             else
             {
-                _helperReceipt.InsertInTable(HelperReceipt.DbStockTable,
-                    "product_Id", "int", valueProductId.Text,
-                    "storage_Id", "int", valueStorageId.Text,
-                    "Amount", "double", inpNumber.Text);
+                _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[3, 3]
+                {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
+                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text },
+                    {HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, inpNumber.Text } });
             }
 
             // Add record to the StockLog table
-            _helperReceipt.InsertInTable(HelperReceipt.DbStocklogTable,
-                "product_Id", "int", valueProductId.Text,
-                "storage_Id", "int", valueStorageId.Text,
-                "supplyorder_Id", "int", valueOrderId.Text,
-                "supplyorderline_Id", "int", valueOrderlineId.Text,
-                "AmountReceived", "double", inpNumber.Text,
-                "Date", "date", inpDeliveryDate.Text);
-
+            _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[6, 3]
+            {   {HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId , valueProductId.Text},
+                {HelperGeneral.DbStocklogTableFieldNameStorageId, HelperGeneral.DbStocklogTableFieldTypeStorageId, valueStorageId.Text },
+                {HelperGeneral.DbStocklogTableFieldNameSupplyOrderId, HelperGeneral.DbStocklogTableFieldTypeSupplyOrderId, valueOrderId.Text},
+                {HelperGeneral.DbStocklogTableFieldNameSupplyOrderlineId, HelperGeneral.DbStocklogTableFieldTypeSupplyOrderlineId, valueOrderlineId.Text },
+                {HelperGeneral.DbStocklogTableFieldNameAmountReceived, HelperGeneral.DbStocklogTableFieldTypeAmountReceived, inpNumber.Text },
+                {HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpDeliveryDate.Text } });
 
             // Finaly check if All orderlines are closed If Yes close the Order
+            var _tempOpenOrderLinesCount = _helperGeneral.CheckForRecords(HelperGeneral.DbOrderLineTable, new string[2, 3]
+            {   {HelperGeneral.DbOrderLineFieldNameOrderId, HelperGeneral.DbOrderLineFieldTypeOrderId, valueOrderId.Text},
+                {HelperGeneral.DbOrderLineFieldNameClosed, HelperGeneral.DbOrderLineFieldTypeClosed, "0" } }); 
 
-        //TODO: This part does not work, Order is not closed
-            var _tempOpenOrderLinesCount = _helperReceipt.CheckForRecords(HelperReceipt.DbOrderLineTable, "supplyorder_Id", int.Parse(valueOrderId.Text), "Closed", 0);
-            if(_tempOpenOrderLinesCount == 0)
+            if (_tempOpenOrderLinesCount == 0)
             {
                 // No open orderlines left for this order
-                _helperReceipt.UpdateFieldInTable(HelperReceipt.DbOrderTable, "Id", valueOrderId.Text, "int", "Closed", "1", "int", "ClosedDate", inpDeliveryDate.Text, "date");
+                _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderTable, new string[1, 3]
+                {   {HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldTypeId , valueOrderId.Text} }, new string[2, 3]
+                {   {HelperGeneral.DbOrderTableFieldNameClosed, HelperGeneral.DbOrderTableFieldTypeClosed, "1"},
+                    {HelperGeneral.DbOrderTableFieldNameClosedDate, HelperGeneral.DbOrderTableFieldTypeClosedDate, inpDeliveryDate.Text} });
+                GetOrderData();
             }
             GetOrderRowData();
             inpDeliveryDate.Text = String.Empty;
