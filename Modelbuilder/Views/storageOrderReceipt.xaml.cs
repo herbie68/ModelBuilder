@@ -5,8 +5,6 @@ namespace Modelbuilder
     public partial class storageOrderReceipt : Page
     {
         private HelperGeneral _helperGeneral;
-        private HelperOrder _helperOrder;
-        private HelperReceipt _helperReceipt;
         private DataTable _dt, _dtSC;
         private int _dbRowCount, _dbRowCountSC;
         private int _currentDataGridIndex;
@@ -155,7 +153,7 @@ namespace Modelbuilder
                 // Calculate new Stock Amount
                 var AmountNew = Amount + double.Parse(inpNumber.Text);
 
-                // Update stock record with new Soch Amount
+                // Update stock record with new Stock Amount
                 //_helperReceipt.UpdateFieldInTable(HelperGeneral.DbStockTable, "Id", StockId.ToString(), "int", "product_Id", valueProductId.Text, "int", "storage_Id", valueStorageId.Text, "int", "Amount", AmountNew.ToString(), "double");
                 _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[1, 3]
                 {   {HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId , StockId.ToString()} }, new string[3, 3]

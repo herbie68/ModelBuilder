@@ -29,7 +29,7 @@ internal class HelperGeneral
     public static string DbStockTableFieldNameProductId = "product_Id";
     public static string DbStockTableFieldTypeProductId = "int";
     public static string DbStockTableFieldNameStorageId = "storage_Id";
-    public static string DbStockTableFieldTypeStorageId = "Int";
+    public static string DbStockTableFieldTypeStorageId = "int";
     public static string DbStockTableFieldNameAmount = "Amount";
     public static string DbStockTableFieldTypeAmount = "double";
     public static string DbStockViewFieldNameId = "Id";
@@ -213,11 +213,20 @@ internal class HelperGeneral
                 case "date":
                     String[] _tempDates = WhereFields[i, 2].Split("-");
                     var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                    cmd.Parameters.Add("@" + Fields[i, 2], MySqlDbType.String).Value = _tempDate;
+                    cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
         }
-        string resultString = (string)cmd.ExecuteScalar();
+        string resultString="";
+        int resultInt;
+        double resultDouble;
+        float resultFloat;
+
+        if (Fields[0, 1].ToLower() == "string" || Fields[0, 1].ToLower() == "date") { resultString = (string)cmd.ExecuteScalar(); };
+        if (Fields[0, 1].ToLower() == "int") { resultInt = (int)cmd.ExecuteScalar(); resultString = resultInt.ToString(); };
+        if (Fields[0, 1].ToLower() == "double") { resultDouble = (double)cmd.ExecuteScalar(); resultString = resultDouble.ToString(); };
+        if (Fields[0, 1].ToLower() == "float") { resultFloat = (float)cmd.ExecuteScalar(); resultString = resultFloat.ToString(); };
+        //string resultString = (string)cmd.ExecuteScalar();
 
         return resultString;
     }
@@ -270,7 +279,7 @@ internal class HelperGeneral
                         case "date":
                             String[] _tempDates = WhereFields[i, 2].Split("-");
                             var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                            cmd.Parameters.Add("@" + WhereFields[i, 2], MySqlDbType.String).Value = _tempDate;
+                            cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                             break;
                     }
                 }
@@ -411,11 +420,11 @@ internal class HelperGeneral
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                        cmd.Parameters.Add("@" + Fields[i, 2], MySqlDbType.String).Value = _tempDate;
+                        cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                 }
-                rowsAffected = cmd.ExecuteNonQuery();
             }
+            rowsAffected = cmd.ExecuteNonQuery();
         }
         return rowsAffected;
     }
@@ -448,7 +457,7 @@ internal class HelperGeneral
                     case "date":
                         String[] _tempDates = WhereFields[i, 2].Split("-");
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                        cmd.Parameters.Add("@" + WhereFields[i, 2], MySqlDbType.String).Value = _tempDate;
+                        cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                 }
             }
@@ -472,7 +481,7 @@ internal class HelperGeneral
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                        cmd.Parameters.Add("@" + Fields[i, 2], MySqlDbType.String).Value = _tempDate;
+                        cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                 }
             }
