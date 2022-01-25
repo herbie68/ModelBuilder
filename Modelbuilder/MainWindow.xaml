@@ -70,6 +70,7 @@
                     </RibbonSplitButton>
                     <RibbonMenuItem Header="Bestellen" ImageSource=".\Resources\storageOrder.png"  Click="ShowOrderPage"/>
                     <RibbonMenuItem Header="Ontvangsten" ImageSource=".\Resources\storageRecieve.png"  Click="ShowOrderReceiptPage"/>
+                    <RibbonMenuItem Header="Voorraadmutaties" ImageSource=".\Resources\storageChange.png" Click="ShowStockChangesPage"/>
                     <RibbonMenuButton LargeImageSource=".\Resources\storageReports.png" Label="Overzichten">
                         <RibbonMenuItem ImageSource=".\Resources\storageReportOverview.png" Header="Voorraadoverzicht" />
                         <RibbonMenuItem ImageSource=".\Resources\storageReportRecieve.png" Header="Bestelling-overzicht" />

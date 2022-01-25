@@ -23,9 +23,6 @@ using Modelbuilder.Views;
 
 namespace Modelbuilder;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     //Connectiondata
@@ -35,13 +32,13 @@ public partial class MainWindow : Window
     public static readonly int port = 3306;
     public static readonly string uid = "Xf4RToJiEC";
     public static readonly string password = "UQ0xrOlmlK";
-    */
 
     public static readonly string server = "localhost";
     public static readonly string database = "modelbuilder";
     public static readonly int port = 3306;
     public static readonly string uid = "root";
     public static readonly string password = "admin";
+    */
 
     public MainWindow()
     {
@@ -62,8 +59,14 @@ public partial class MainWindow : Window
     {
         Main.Content = new storageOrderReceipt();
     }
-
     #endregion Call Order Recieve Page
+
+    #region Call Stock Changes Page
+    private void ShowStockChangesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new storageStockChanges();
+    }
+    #endregion Call Stock Changes Page
     #endregion Maintain orders and deliveries
 
     #region Metadata pages

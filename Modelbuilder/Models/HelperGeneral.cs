@@ -308,7 +308,6 @@ internal class HelperGeneral
     }
     #endregion Get Max value for Field from table
 
-
     #region Check if there is a record in the table based (returns no of records)
     public int CheckForRecords(string Table, string[,] WhereFields)
     {
