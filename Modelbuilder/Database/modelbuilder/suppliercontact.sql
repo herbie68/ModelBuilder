@@ -8,23 +8,30 @@
 DROP TABLE IF EXISTS `suppliercontact`;
 CREATE TABLE IF NOT EXISTS `suppliercontact` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Id` int DEFAULT '0',
+  `Supplier_Id` int DEFAULT '0',
   `Name` varchar(150) DEFAULT '',
-  `Id` int DEFAULT '1',
+  `Contacttype_Id` int DEFAULT '1',
   `Mail` varchar(150) DEFAULT '',
   `Phone` varchar(150) DEFAULT '',
   `Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
-  KEY `Id` (`Id`),
-  KEY `Id` (`Id`) /*!80000 INVISIBLE */,
+  KEY `Supplier_Id` (`Supplier_Id`),
+  KEY `Contacttype_Id` (`Contacttype_Id`) /*!80000 INVISIBLE */,
   KEY `Name` (`Name`),
-  CONSTRAINT `FK_SupContact_Id` FOREIGN KEY (`Id`) REFERENCES `contacttype` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_SupContact_Id` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_SupContact_Contacttype_Id` FOREIGN KEY (`Contacttype_Id`) REFERENCES `contacttype` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_SupContact_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `suppliercontact`;
 /*!40000 ALTER TABLE `suppliercontact` DISABLE KEYS */;
+INSERT INTO `suppliercontact` (`Id`, `Supplier_Id`, `Name`, `Contacttype_Id`, `Mail`, `Phone`, `Created`, `Modified`) VALUES
+	(1, 1, 'Agemeen', 2, 'sales@cornwallmodelboats.co.uk', '+44 1840 211009', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(2, 2, 'Algemeen', 2, 'info@modelbouw-dordrecht.nl', '+31 78 6312711', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(3, 3, 'Ron', 2, 'ron@krikke.net', '+31 50 3140306', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(4, 4, 'Iwan en Petra', 2, 'info@hobby-en-modelbouw.nl', '+31 294 266587', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(5, 5, 'Algemeen', 2, 'info@meijerenblessing.nl', '+31 10 4145591', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(6, 6, 'Klantenservice', 5, 'info@toolstation.nl', '+31 71 5815050', '2022-01-11 11:33:27', '2022-01-11 11:33:27');
 /*!40000 ALTER TABLE `suppliercontact` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

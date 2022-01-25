@@ -2,6 +2,9 @@
 {
     internal class CurrencyCodeViewModel
     {
+        /// <summary>
+        /// Gets or Sets the currency collection.
+        /// </summary>
         public List<string> CurrencyCollection { get; set; }
         private readonly string DatabaseCurrencyTable = "currency";
         public string TableId = "Id";

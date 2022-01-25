@@ -8,14 +8,14 @@
 DROP TABLE IF EXISTS `supplyorder`;
 CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Id` int NOT NULL AUTO_INCREMENT,
-  `Id` int DEFAULT '0',
-  `Id` int DEFAULT '0',
+  `Supplier_Id` int DEFAULT '0',
+  `Currency_Id` int DEFAULT '0',
   `OrderNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `OrderDate` date DEFAULT NULL,
   `CurrencySymbol` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '€',
-  `CurrencyConversionRate` double(6,4) DEFAULT '0.0000',
-  `ShippingCosts` double(10,2) DEFAULT '0.00',
-  `OrderCosts` double(10,2) DEFAULT '0.00',
+  `CurrencyConversionRate` double DEFAULT '0',
+  `ShippingCosts` double DEFAULT '0',
+  `OrderCosts` double DEFAULT '0',
   `Memo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `Closed` tinyint DEFAULT '0',
   `ClosedDate` date DEFAULT NULL,
@@ -23,14 +23,16 @@ CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
   KEY `OrderNumber` (`OrderNumber`),
-  KEY `FK_Order_Id` (`Id`),
-  KEY `FK_Order_Id` (`Id`),
-  CONSTRAINT `FK_Order_Id` FOREIGN KEY (`Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_Order_Id` FOREIGN KEY (`Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+  KEY `FK_Order_Supplier_Id` (`Supplier_Id`),
+  KEY `FK_Order_Currency_Id` (`Currency_Id`),
+  CONSTRAINT `FK_Order_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_Order_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorder`;
 /*!40000 ALTER TABLE `supplyorder` DISABLE KEYS */;
+INSERT INTO `supplyorder` (`Id`, `Supplier_Id`, `Currency_Id`, `OrderNumber`, `OrderDate`, `CurrencySymbol`, `CurrencyConversionRate`, `ShippingCosts`, `OrderCosts`, `Memo`, `Closed`, `ClosedDate`, `Created`, `Modified`) VALUES
+	(1, 6, 1, 'OWW079696020', '2021-10-23', '€', 1, 5, 0, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}', 0, '2022-01-21', '2022-01-17 14:56:59', '2022-01-21 11:20:47');
 /*!40000 ALTER TABLE `supplyorder` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

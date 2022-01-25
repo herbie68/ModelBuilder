@@ -108,13 +108,13 @@ public partial class metadataProduct : Page
     {
         if (_helperGeneral == null)
         {
-            //_helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-            _helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+            //_helperGeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
         }
         if (_helper == null)
         {
-            //_helper = new HelperProduct("localhost", 3306, "modelbuilder", "root", "admin");
-            _helper = new HelperProduct("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helper = new HelperProduct(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+            //_helper = new HelperProduct("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
         }
     }
     #endregion

@@ -18,7 +18,7 @@
         {
             if (_helper == null)
             {
-                _helper = new HelperMySql("localhost", 3306, "modelbuilder", "root", "admin");
+                _helper = new HelperMySql(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion InitializeHelper (connect to database)

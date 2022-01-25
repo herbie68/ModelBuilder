@@ -235,7 +235,7 @@
     <value>Deliverydate</value>
   </data>
   <data name="Order.Orderline.Field.Number" xml:space="preserve">
-    <value>Number</value>
+    <value>Amount</value>
   </data>
   <data name="Order.Orderline.Field.Price" xml:space="preserve">
     <value>Price</value>
@@ -359,5 +359,56 @@
   </data>
   <data name="Order.TabItemHeader.Orderrows" xml:space="preserve">
     <value>Order details</value>
+  </data>
+  <data name="Receipt.Page.Title" xml:space="preserve">
+    <value>Receipts</value>
+  </data>
+  <data name="Receipt.Page.SubTitle" xml:space="preserve">
+    <value>Registration of deliveries per order line</value>
+  </data>
+  <data name="Receipt.TabItemHeader.Memo" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Receipt.TabItemHeader.General" xml:space="preserve">
+    <value>Order/Receipt</value>
+  </data>
+  <data name="Receipt.Button.Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Receipt.Button.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Receipt.Button.Tooltip.Apply" xml:space="preserve">
+    <value>Process the entered receipts</value>
+  </data>
+  <data name="Receipt.Group.Receiptline" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Receipt.Group.Receipts" xml:space="preserve">
+    <value>Open deliveries</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="general.Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Amount" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Date" xml:space="preserve">
+    <value>Deliverydate</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Location" xml:space="preserve">
+    <value>Storagelocation</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Title" xml:space="preserve">
+    <value>Cancel order line</value>
+  </data>
+  <data name="Receipt.Button.Tooltip.Cancel" xml:space="preserve">
+    <value>Let the open order line expire, will no longer be delivered.</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
+    <value>Cancel the rest of this orderline? Booked receipts on this orderline remain</value>
   </data>
 </root>

@@ -1,1 +1,0 @@
-CREATE VIEW `view_Product` AS SELECT Name, SupplierName, Price, ProductPrice FROM product INNER JOIN productsupplier ON Id = ProductId

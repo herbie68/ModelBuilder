@@ -360,4 +360,55 @@
   <data name="Order.TabItemHeader.Orderrows" xml:space="preserve">
     <value>Bestell daten</value>
   </data>
+  <data name="Receipt.Page.Title" xml:space="preserve">
+    <value>Annahme</value>
+  </data>
+  <data name="Receipt.Page.SubTitle" xml:space="preserve">
+    <value>Erfassung der Lieferungen pro Auftragszeile</value>
+  </data>
+  <data name="Receipt.TabItemHeader.Memo" xml:space="preserve">
+    <value>Zusätzliche Informationen</value>
+  </data>
+  <data name="Receipt.TabItemHeader.General" xml:space="preserve">
+    <value>Bestellung/Annahme</value>
+  </data>
+  <data name="Receipt.Button.Apply" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Receipt.Button.Cancel" xml:space="preserve">
+    <value>Auslauf</value>
+  </data>
+  <data name="Receipt.Button.Tooltip.Apply" xml:space="preserve">
+    <value>Verarbeiten Sie die eingegebenen Belege</value>
+  </data>
+  <data name="Receipt.Group.Receiptline" xml:space="preserve">
+    <value>Lieferung</value>
+  </data>
+  <data name="Receipt.Group.Receipts" xml:space="preserve">
+    <value>Offene Lieferungen</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="general.Amount" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Amount" xml:space="preserve">
+    <value>Geliefert</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Date" xml:space="preserve">
+    <value>Lieferdatum</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Location" xml:space="preserve">
+    <value>Speicherplatz</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Title" xml:space="preserve">
+    <value>Auftragszeile stornieren</value>
+  </data>
+  <data name="Receipt.Button.Tooltip.Cancel" xml:space="preserve">
+    <value>Lassen Sie die offene Bestellzeile auslaufen, wird nicht mehr geliefert.</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
+    <value>Möchten Sie den ausstehenden Teil der ausgewählten Bestellung stornieren? Alle bereits gebuchten Belege werden gespeichert</value>
+  </data>
 </root>

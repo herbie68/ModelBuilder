@@ -15,6 +15,9 @@ namespace Modelbuilder
         private int _currentDataGridIndex;
         private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="metadataSupplier"/> class.
+        /// </summary>
         public metadataSupplier()
         {
             var ContactTypeList = new List<HelperGeneral.ContactType>();
@@ -39,7 +42,13 @@ namespace Modelbuilder
                 currencyId = Id;
             }
 
+            /// <summary>
+            /// Gets or Sets the currency symbol.
+            /// </summary>
             public string currencySymbol { get; set; }
+            /// <summary>
+            /// Gets or Sets the currency id.
+            /// </summary>
             public string currencyId { get; set; }
         }
         #endregion
@@ -53,7 +62,13 @@ namespace Modelbuilder
                 countryId = Id;
             }
 
+            /// <summary>
+            /// Gets or Sets the country name.
+            /// </summary>
             public string countryName { get; set; }
+            /// <summary>
+            /// Gets or Sets the country id.
+            /// </summary>
             public string countryId { get; set; }
         }
         #endregion
@@ -95,16 +110,20 @@ namespace Modelbuilder
         #endregion
 
         #region InitializeHelper (connect to database)
+        /// <summary>
+        /// Initializes the helper.
+        /// </summary>
         private void InitializeHelper()
         {
             if (_helpergeneral == null)
             {
-                //_helpergeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-                _helpergeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                _helpergeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+                //_helpergeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
             }
             if (_helper == null)
             {
-                _helper = new HelperSupplier("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+                //_helper = new HelperSupplier("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
+                _helper = new HelperSupplier(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion
@@ -146,6 +165,11 @@ namespace Modelbuilder
         #endregion
 
         #region Selection changed: Supplier
+        /// <summary>
+        /// Suppliers the code_ data grid_ selection changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void SupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = (DataGrid)sender;
@@ -732,6 +756,9 @@ namespace Modelbuilder
         // private bool dataChanged = false; // Unsaved textchanges
 
         private string privateText = null; // Content of RTFBox in txt-Format
+        /// <summary>
+        /// Gets or Sets the text.
+        /// </summary>
         public string text
         {
             get
@@ -747,6 +774,9 @@ namespace Modelbuilder
 
         private string ShowRow; // aktuelle Zeile der Cursorposition
         private int _CurrentRow = 1;
+        /// <summary>
+        /// Gets or Sets the current row.
+        /// </summary>
         public int CurrentRow
         {
             get { return _CurrentRow; }
@@ -762,6 +792,9 @@ namespace Modelbuilder
         private string ShowColumn; // aktuelle Spalte der Cursorposition
         private int _CurrentColumn = 1;
 
+        /// <summary>
+        /// Gets or Sets the current column.
+        /// </summary>
         public int CurrentColumn
         {
             get { return _CurrentColumn; }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Modelbuilder
 {
+    /// <summary>
+    /// The helper category.
+    /// </summary>
     internal class HelperCategory
     {
         #region Available databasefields
@@ -26,12 +29,20 @@ namespace Modelbuilder
         #endregion Available databasefields
 
         #region public Variables
+        /// <summary>
+        /// Gets or Sets the connection str.
+        /// </summary>
         public string ConnectionStr { get; set; }
+
         public string DbCategoryTable = "category";
         public CultureInfo Culture = new("nl-NL");
         #endregion public Variables
 
         #region Execute Non Query
+        /// <summary>
+        /// Executes the non query.
+        /// </summary>
+        /// <param name="sqlText">The sql text.</param>
         public void ExecuteNonQuery(string sqlText)
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionStr))

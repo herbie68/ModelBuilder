@@ -32,13 +32,11 @@ public partial class storageOrder : Page
     {
         if (_helper == null)
         {
-            //_helper = new HelperOrder("localhost", 3306, "modelbuilder", "root", "admin");
-            _helper = new HelperOrder("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helper = new HelperOrder(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
         }
         if (_helperGeneral == null)
         {
-            //_helperGeneral = new HelperGeneral("localhost", 3306, "modelbuilder", "root", "admin");
-            _helperGeneral = new HelperGeneral("db4free.net", 3306, "modelbuilder", "herbie68", "9b9749c1");
+            _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
         }
     }
     #endregion InitializeHelper (connect to database)
@@ -739,6 +737,9 @@ public partial class storageOrder : Page
     // private bool dataChanged = false; // Unsaved textchanges
 
     private string privateText = null; // Content of RTFBox in txt-Format
+    /// <summary>
+    /// Gets or Sets the text.
+    /// </summary>
     public string text
     {
         get
@@ -754,6 +755,9 @@ public partial class storageOrder : Page
 
     private string ShowRow; // aktuelle Zeile der Cursorposition
     private int _CurrentRow = 1;
+    /// <summary>
+    /// Gets or Sets the current row.
+    /// </summary>
     public int CurrentRow
     {
         get { return _CurrentRow; }
@@ -771,6 +775,9 @@ public partial class storageOrder : Page
     private string ShowColumn; // aktuelle Spalte der Cursorposition
     private int _CurrentColumn = 1;
 
+    /// <summary>
+    /// Gets or Sets the current column.
+    /// </summary>
     public int CurrentColumn
     {
         get { return _CurrentColumn; }

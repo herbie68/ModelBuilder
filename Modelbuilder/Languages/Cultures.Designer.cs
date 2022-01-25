@@ -61,6 +61,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aantal.
+        /// </summary>
+        public static string general_Amount {
+            get {
+                return ResourceManager.GetString("general.Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categoriën.
         /// </summary>
         public static string metadataCategory_Page_Title {
@@ -99,8 +108,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta omschrijving.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyName
-        {
+        public static string metadataCurrency_Field_CurrencyName {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyName", resourceCulture);
             }
@@ -109,8 +117,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Omrekenkoers.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyRate
-        {
+        public static string metadataCurrency_Field_CurrencyRate {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyRate", resourceCulture);
             }
@@ -119,8 +126,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Koers.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencyRateShort
-        {
+        public static string metadataCurrency_Field_CurrencyRateShort {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyRateShort", resourceCulture);
             }
@@ -129,8 +135,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta symbool.
         /// </summary>
-        public static string metadataCurrency_Field_CurrencySymbol
-        {
+        public static string metadataCurrency_Field_CurrencySymbol {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencySymbol", resourceCulture);
             }
@@ -139,8 +144,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta.
         /// </summary>
-        public static string metadataCurrency_Page_Title
-        {
+        public static string metadataCurrency_Page_Title {
             get {
                 return ResourceManager.GetString("metadataCurrency.Page.Title", resourceCulture);
             }
@@ -149,8 +153,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Valuta toevoegen.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Add
-        {
+        public static string metadataCurrency_Toolbar_Button_Tooltip_Add {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Add", resourceCulture);
             }
@@ -159,8 +162,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Geslecteerde valuta verwijderen.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Delete
-        {
+        public static string metadataCurrency_Toolbar_Button_Tooltip_Delete {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Delete", resourceCulture);
             }
@@ -169,8 +171,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Wijzigingen opslaan.
         /// </summary>
-        public static string metadataCurrency_Toolbar_Button_Tooltip_Save
-        {
+        public static string metadataCurrency_Toolbar_Button_Tooltip_Save {
             get {
                 return ResourceManager.GetString("metadataCurrency.Toolbar.Button.Tooltip.Save", resourceCulture);
             }
@@ -269,8 +270,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Geleverd.
         /// </summary>
-        public static string Order_Datagrid_Header_OrderCompleted
-        {
+        public static string Order_Datagrid_Header_OrderCompleted {
             get {
                 return ResourceManager.GetString("Order.Datagrid.Header.OrderCompleted", resourceCulture);
             }
@@ -279,8 +279,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Besteldatum.
         /// </summary>
-        public static string Order_Datagrid_Header_OrderDate
-        {
+        public static string Order_Datagrid_Header_OrderDate {
             get {
                 return ResourceManager.GetString("Order.Datagrid.Header.OrderDate", resourceCulture);
             }
@@ -424,8 +423,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Categorie.
         /// </summary>
-        public static string Order_Orderline_Field_Category
-        {
+        public static string Order_Orderline_Field_Category {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Category", resourceCulture);
             }
@@ -434,8 +432,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Afgeleverd.
         /// </summary>
-        public static string Order_Orderline_Field_Closed
-        {
+        public static string Order_Orderline_Field_Closed {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Closed", resourceCulture);
             }
@@ -444,8 +441,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Leverdatum.
         /// </summary>
-        public static string Order_Orderline_Field_ClosedDate
-        {
+        public static string Order_Orderline_Field_ClosedDate {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.ClosedDate", resourceCulture);
             }
@@ -454,8 +450,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Aantal.
         /// </summary>
-        public static string Order_Orderline_Field_Number
-        {
+        public static string Order_Orderline_Field_Number {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Number", resourceCulture);
             }
@@ -464,8 +459,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Stukprijs.
         /// </summary>
-        public static string Order_Orderline_Field_Price
-        {
+        public static string Order_Orderline_Field_Price {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Price", resourceCulture);
             }
@@ -474,8 +468,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Stukprijs in de valuta van de leverancier.
         /// </summary>
-        public static string Order_Orderline_Field_Price_Tooltip
-        {
+        public static string Order_Orderline_Field_Price_Tooltip {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Price.Tooltip", resourceCulture);
             }
@@ -484,8 +477,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Produkt.
         /// </summary>
-        public static string Order_Orderline_Field_Product
-        {
+        public static string Order_Orderline_Field_Product {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Product", resourceCulture);
             }
@@ -494,8 +486,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
-        public static string Order_Orderline_Field_Project
-        {
+        public static string Order_Orderline_Field_Project {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Project", resourceCulture);
             }
@@ -504,8 +495,7 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Totaal.
         /// </summary>
-        public static string Order_Orderline_Field_Total
-        {
+        public static string Order_Orderline_Field_Total {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Total", resourceCulture);
             }
@@ -575,7 +565,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verwijder geselkteerde bestelregel.
+        ///   Looks up a localized string similar to Verwijder geselecteerde bestelregel.
         /// </summary>
         public static string Order_Orderlist_Toolbar_Button_Delete {
             get {
@@ -670,6 +660,150 @@ namespace Modelbuilder.Languages {
         public static string Order_Toolbar_Button_Save {
             get {
                 return ResourceManager.GetString("Order.Toolbar.Button.Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwerken.
+        /// </summary>
+        public static string Receipt_Button_Apply {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vervallen.
+        /// </summary>
+        public static string Receipt_Button_Cancel {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwerk de ingevoerde ontvangsten.
+        /// </summary>
+        public static string Receipt_Button_Tooltip_Apply {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Tooltip.Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laat de openstaande bestelregel vervallen, wordt niet meer geleverd..
+        /// </summary>
+        public static string Receipt_Button_Tooltip_Cancel {
+            get {
+                return ResourceManager.GetString("Receipt.Button.Tooltip.Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wil je het openstaande deel van de geslelecteerde bestelling laten vervallen? Eventueel geboekte ontvangsten blijven  wel bewaard.
+        /// </summary>
+        public static string Receipt_ConfirmCancel_Message {
+            get {
+                return ResourceManager.GetString("Receipt.ConfirmCancel.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laat bestelregel vervallen.
+        /// </summary>
+        public static string Receipt_ConfirmCancel_Title {
+            get {
+                return ResourceManager.GetString("Receipt.ConfirmCancel.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levering.
+        /// </summary>
+        public static string Receipt_Group_Receiptline {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ontvangen.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Amount {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Date {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Location {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Product {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Openstaande bestellingen.
+        /// </summary>
+        public static string Receipt_Group_Receipts {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receipts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registratie van de leveringen per orderregel.
+        /// </summary>
+        public static string Receipt_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("Receipt.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ontvangsten.
+        /// </summary>
+        public static string Receipt_Page_Title {
+            get {
+                return ResourceManager.GetString("Receipt.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestelling/Ontvangst.
+        /// </summary>
+        public static string Receipt_TabItemHeader_General {
+            get {
+                return ResourceManager.GetString("Receipt.TabItemHeader.General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aanvullende informatie.
+        /// </summary>
+        public static string Receipt_TabItemHeader_Memo {
+            get {
+                return ResourceManager.GetString("Receipt.TabItemHeader.Memo", resourceCulture);
             }
         }
         

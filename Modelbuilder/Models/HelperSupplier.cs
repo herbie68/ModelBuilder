@@ -5,6 +5,9 @@ namespace Modelbuilder
     internal class HelperSupplier
     {
         #region public Variables
+        /// <summary>
+        /// Gets or Sets the connection str.
+        /// </summary>
         public string ConnectionStr { get; set; }
 
         public string DbBrandTable = "brand";
@@ -650,7 +653,13 @@ namespace Modelbuilder
                 countryId = Id;
             }
 
+            /// <summary>
+            /// Gets or Sets the country name.
+            /// </summary>
             public string countryName { get; set; }
+            /// <summary>
+            /// Gets or Sets the country id.
+            /// </summary>
             public int countryId { get; set; }
         }
         #endregion
@@ -664,7 +673,13 @@ namespace Modelbuilder
                 currencyId = Id;
             }
 
+            /// <summary>
+            /// Gets or Sets the currency symbol.
+            /// </summary>
             public string currencySymbol { get; set; }
+            /// <summary>
+            /// Gets or Sets the currency id.
+            /// </summary>
             public string currencyId { get; set; }
         }
         #endregion
@@ -672,9 +687,21 @@ namespace Modelbuilder
         #region Create object for all suppliers in table for dropdown
         public class Supplier
         {
+            /// <summary>
+            /// Gets or Sets the supplier name.
+            /// </summary>
             public string SupplierName { get; set; }
+            /// <summary>
+            /// Gets or Sets the supplier id.
+            /// </summary>
             public int SupplierId { get; set; }
+            /// <summary>
+            /// Gets or Sets the supplier currency symbol.
+            /// </summary>
             public string SupplierCurrencySymbol { get; set; }
+            /// <summary>
+            /// Gets or Sets the supplier currency id.
+            /// </summary>
             public int SupplierCurrencyId { get; set; }
         }
         #endregion
@@ -682,7 +709,13 @@ namespace Modelbuilder
         #region Create object for all contacttypes in table for dropdown
         public class ContactType
         {
+            /// <summary>
+            /// Gets or Sets the contact type name.
+            /// </summary>
             public string ContactTypeName { get; set; }
+            /// <summary>
+            /// Gets or Sets the contact type id.
+            /// </summary>
             public int ContactTypeId { get; set; }
         }
         #endregion

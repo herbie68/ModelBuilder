@@ -14,6 +14,8 @@ global using System.Windows.Input;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 global using MySql.Data.MySqlClient;
+global using ConnectionNamespace;
+global using MySql;
 
 using Modelbuilder.Views;
 
@@ -48,15 +50,21 @@ public partial class MainWindow : Window
 
     #region Maintain orders and deliveries
     #region Call Order Page
-
     private void ShowOrderPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new storageOrder();
     }
 
     #endregion Call Order Page
-    #endregion Maintain orders and deliveries
 
+    #region Call Order RecievePage
+    private void ShowOrderReceiptPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new storageOrderReceipt();
+    }
+
+    #endregion Call Order Recieve Page
+    #endregion Maintain orders and deliveries
 
     #region Metadata pages
     #region Call Country Page
