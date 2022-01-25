@@ -26,12 +26,12 @@ CREATE TABLE IF NOT EXISTS `suppliercontact` (
 DELETE FROM `suppliercontact`;
 /*!40000 ALTER TABLE `suppliercontact` DISABLE KEYS */;
 INSERT INTO `suppliercontact` (`Id`, `Supplier_Id`, `Name`, `Contacttype_Id`, `Mail`, `Phone`, `Created`, `Modified`) VALUES
-	(1, 1, 'Agemeen', 2, 'sales@cornwallmodelboats.co.uk', '+44 1840 211009', '2021-12-29 12:36:09', '2021-12-29 12:36:09'),
-	(2, 2, 'Algemeen', 2, 'info@modelbouw-dordrecht.nl', '+31 78 6312711', '2021-12-29 12:36:09', '2021-12-29 12:36:09'),
-	(3, 3, 'Ron', 2, 'ron@krikke.net', '+31 50 3140306', '2021-12-29 12:36:09', '2021-12-29 12:36:09'),
-	(4, 4, 'Iwan en Petra', 2, 'info@hobby-en-modelbouw.nl', '+31 294 266587', '2021-12-29 12:36:09', '2021-12-29 12:36:09'),
-	(5, 5, 'Algemeen', 2, 'info@meijerenblessing.nl', '+31 10 4145591', '2021-12-29 12:36:09', '2021-12-29 12:36:09'),
-	(6, 6, 'Klantenservice', 5, 'Info@toolstation.nl', '+31 71 5815050', '2021-12-30 07:45:08', '2021-12-30 07:47:03');
+	(1, 1, 'Agemeen', 2, 'sales@cornwallmodelboats.co.uk', '+44 1840 211009', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(2, 2, 'Algemeen', 2, 'info@modelbouw-dordrecht.nl', '+31 78 6312711', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(3, 3, 'Ron', 2, 'ron@krikke.net', '+31 50 3140306', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(4, 4, 'Iwan en Petra', 2, 'info@hobby-en-modelbouw.nl', '+31 294 266587', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(5, 5, 'Algemeen', 2, 'info@meijerenblessing.nl', '+31 10 4145591', '2022-01-11 11:33:27', '2022-01-11 11:33:27'),
+	(6, 6, 'Klantenservice', 5, 'info@toolstation.nl', '+31 71 5815050', '2022-01-11 11:33:27', '2022-01-11 11:33:27');
 /*!40000 ALTER TABLE `suppliercontact` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

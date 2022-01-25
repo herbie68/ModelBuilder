@@ -7,7 +7,7 @@
 
 DROP VIEW IF EXISTS `view_supplyopenorder`;
 DROP TABLE IF EXISTS `view_supplyopenorder`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`herbie68`@`%` SQL SECURITY DEFINER VIEW `view_supplyopenorder` AS select `so`.`Id` AS `Id`,`so`.`Supplier_Id` AS `Supplier_Id`,`s`.`Name` AS `SupplierName`,`so`.`OrderNumber` AS `OrderNumber`,`so`.`OrderDate` AS `OrderDate`,`so`.`Closed` AS `Closed`,`so`.`ClosedDate` AS `ClosedDate` from (`supplyorder` `so` join `supplier` `s` on((`so`.`Supplier_Id` = `s`.`Id`))) where (`so`.`Closed` = '0');
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_supplyopenorder` AS select `so`.`Id` AS `Id`,`so`.`Supplier_Id` AS `Supplier_Id`,`s`.`Name` AS `SupplierName`,`so`.`OrderNumber` AS `OrderNumber`,`so`.`OrderDate` AS `OrderDate`,`so`.`Closed` AS `Closed`,`so`.`ClosedDate` AS `ClosedDate` from (`supplyorder` `so` join `supplier` `s` on((`so`.`Supplier_Id` = `s`.`Id`))) where (`so`.`Closed` = '0');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

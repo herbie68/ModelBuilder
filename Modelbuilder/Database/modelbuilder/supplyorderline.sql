@@ -33,13 +33,13 @@ CREATE TABLE IF NOT EXISTS `supplyorderline` (
   CONSTRAINT `FK_OrderRow_Project_Id` FOREIGN KEY (`Project_Id`) REFERENCES `project` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_OrderRow_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_OrderRow_Supplyorder_Id` FOREIGN KEY (`Supplyorder_Id`) REFERENCES `supplyorder` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorderline`;
 /*!40000 ALTER TABLE `supplyorderline` DISABLE KEYS */;
 INSERT INTO `supplyorderline` (`Id`, `Supplyorder_Id`, `Supplier_Id`, `Product_Id`, `SupplierProductName`, `Project_Id`, `Category_Id`, `Amount`, `OpenAmount`, `Price`, `RealRowTotal`, `Closed`, `ClosedDate`, `Created`, `Modified`) VALUES
-	(1, 2, 6, 2, '', 5, 9, 1, 1, 4.07, 0, 0, NULL, '2022-01-03 13:47:48', '2022-01-05 15:08:57'),
-	(5, 2, 6, 4, '', 5, 9, 1, 1, 4.07, 0, 0, NULL, '2022-01-03 14:25:31', '2022-01-05 15:08:58');
+	(1, 1, 6, 1, '', 5, 9, 1, 0, 4.07, 0, 1, '2022-01-21', '2022-01-17 14:57:52', '2022-01-21 11:25:03'),
+	(2, 1, 6, 2, '', 5, 9, 1, 1, 4.07, 0, 0, '2021-10-25', '2022-01-17 14:58:01', '2022-01-21 11:24:27');
 /*!40000 ALTER TABLE `supplyorderline` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

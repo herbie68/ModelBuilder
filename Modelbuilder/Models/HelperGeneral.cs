@@ -1,4 +1,6 @@
-﻿namespace Modelbuilder;
+﻿using Google.Protobuf.WellKnownTypes;
+
+namespace Modelbuilder;
 internal class HelperGeneral
 {
     #region public Variables
@@ -78,6 +80,8 @@ internal class HelperGeneral
     public static string DbOrderLineFieldTypeId = "int";
     public static string DbOrderLineFieldNameOrderId = "supplyorder_Id";
     public static string DbOrderLineFieldTypeOrderId = "int";
+    public static string DbOrderLineFieldNameAmount = "Amount";
+    public static string DbOrderLineFieldTypeAmount = "double";
     public static string DbOrderLineFieldNameOpenAmount = "OpenAmount";
     public static string DbOrderLineFieldTypeOpenAmount = "double";
     public static string DbOrderLineFieldNameClosed = "Closed";
@@ -231,6 +235,79 @@ internal class HelperGeneral
         return resultString;
     }
     #endregion Get Field(s) from table
+
+    #region Get Max value for Field from table
+    public string GetMaxValueFromTable(string Table, string[,] WhereFields, string[,] Fields)
+    {
+        // There is an Id or String available for each condition, so one of them has a value the other one is 0 or ""
+        string sqlText = "SELECT ";
+        string prefix = "";
+
+        for (int i = 0; i < Fields.GetLength(0); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlText = sqlText + prefix + "MAX(" + Fields[i, 0] + ")";
+        }
+
+        sqlText = sqlText + " FROM " + Table.ToLower() + " ";
+        prefix = "";
+
+        if (WhereFields.GetLength(0) > 0)
+        {
+            sqlText += " WHERE ";
+
+            for (int i = 0; i < WhereFields.GetLength(0); i++)
+            {
+                if (i != 0) { prefix = " AND "; }
+                sqlText = sqlText + prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0];
+            }
+        }
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+
+        for (int i = 0; i < WhereFields.GetLength(0); i++)
+        {
+            switch (WhereFields[i, 1].ToLower())
+            {
+                case "string":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = WhereFields[i, 2];
+                    break;
+                case "int":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Int32).Value = int.Parse(WhereFields[i, 2]);
+                    break;
+                case "double":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Double).Value = double.Parse(WhereFields[i, 2]);
+                    break;
+                case "float":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                    break;
+                case "date":
+                    String[] _tempDates = WhereFields[i, 2].Split("-");
+                    var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
+                    cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
+                    break;
+            }
+        }
+        string resultString = "";
+        int resultInt;
+        double resultDouble;
+        float resultFloat;
+        DateTime resultDate;
+
+        if (Fields[0, 1].ToLower() == "string") { resultString = (string)cmd.ExecuteScalar(); };
+        if (Fields[0, 1].ToLower() == "int") { resultInt = (int)cmd.ExecuteScalar(); resultString = resultInt.ToString(); };
+        if (Fields[0, 1].ToLower() == "double") { resultDouble = (double)cmd.ExecuteScalar(); resultString = resultDouble.ToString(); };
+        if (Fields[0, 1].ToLower() == "float") { resultFloat = (float)cmd.ExecuteScalar(); resultString = resultFloat.ToString(); };
+        if (Fields[0, 1].ToLower() == "date") { resultDate = (DateTime)cmd.ExecuteScalar(); resultString = resultDate.ToShortDateString(); };
+
+        return resultString;
+    }
+    #endregion Get Max value for Field from table
+
 
     #region Check if there is a record in the table based (returns no of records)
     public int CheckForRecords(string Table, string[,] WhereFields)
@@ -391,6 +468,51 @@ internal class HelperGeneral
     }
     #endregion Update Table: SupplyOrderline
 
+    #region Delete record from Table
+    public string DeleteRecordFromTable(string Table, string[,] WhereFields)
+    {
+        string result = string.Empty;
+        string sqlText = "DELETE FROM " + Table.ToLower() + " WHERE ";
+
+        string prefix = "";
+
+        if (WhereFields.GetLength(0) > 0)
+        {
+            for (int i = 0; i < WhereFields.GetLength(0); i++)
+            {
+                if (i != 0) { prefix = " AND "; }
+                sqlText = sqlText + prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0];
+            }
+        }
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTable(sqlText, WhereFields);
+
+            if (rowsAffected > 0)
+            {
+
+                result = "Rij verwijderd.";
+            }
+            else
+            {
+                result = "Rij niet verwiijdersd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine("Error (Delete from Table - MySqlException): " + ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error (Delete from Table): " + ex.Message);
+            throw;
+        }
+        return result;
+    }
+    #endregion Delete record from Table
+
     #region Execute Non Query Table
     public int ExecuteNonQueryTable(string sqlText, string[,] Fields)
     {
@@ -488,6 +610,7 @@ internal class HelperGeneral
             rowsAffected = cmd.ExecuteNonQuery();
         }
         return rowsAffected;
+    
     }
     #endregion Execute Non Query Table
 

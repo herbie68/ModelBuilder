@@ -700,6 +700,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wil je het openstaande deel van de geslelecteerde bestelling laten vervallen? Eventueel geboekte ontvangsten blijven  wel bewaard.
+        /// </summary>
+        public static string Receipt_ConfirmCancel_Message {
+            get {
+                return ResourceManager.GetString("Receipt.ConfirmCancel.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laat bestelregel vervallen.
+        /// </summary>
+        public static string Receipt_ConfirmCancel_Title {
+            get {
+                return ResourceManager.GetString("Receipt.ConfirmCancel.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Levering.
         /// </summary>
         public static string Receipt_Group_Receiptline {

@@ -381,9 +381,6 @@
   <data name="Receipt.Button.Tooltip.Apply" xml:space="preserve">
     <value>Verarbeiten Sie die eingegebenen Belege</value>
   </data>
-  <data name="Receipt.Button.Tooltip.Cancel" xml:space="preserve">
-    <value>Lassen Sie die offene Bestellzeile auslaufen, wird nicht mehr geliefert.</value>
-  </data>
   <data name="Receipt.Group.Receiptline" xml:space="preserve">
     <value>Lieferung</value>
   </data>
@@ -404,5 +401,14 @@
   </data>
   <data name="Receipt.Group.Receiptline.Field.Location" xml:space="preserve">
     <value>Speicherplatz</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Title" xml:space="preserve">
+    <value>Auftragszeile stornieren</value>
+  </data>
+  <data name="Receipt.Button.Tooltip.Cancel" xml:space="preserve">
+    <value>Lassen Sie die offene Bestellzeile auslaufen, wird nicht mehr geliefert.</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
+    <value>Möchten Sie den ausstehenden Teil der ausgewählten Bestellung stornieren? Alle bereits gebuchten Belege werden gespeichert</value>
   </data>
 </root>

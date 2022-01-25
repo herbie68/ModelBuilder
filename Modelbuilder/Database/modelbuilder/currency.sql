@@ -16,16 +16,16 @@ CREATE TABLE IF NOT EXISTS `currency` (
   `Modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
   UNIQUE KEY `currency_Code` (`Code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DELETE FROM `currency`;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
 INSERT INTO `currency` (`Id`, `Code`, `Symbol`, `Name`, `ConversionRate`, `Created`, `Modified`) VALUES
-	(1, 'EUR', '€', 'Euro', 1.0000, '2021-12-23 11:14:58', '2021-12-23 11:14:58'),
-	(2, 'GBP', '£', 'Britse pond', 1.1079, '2021-12-23 11:14:58', '2021-12-23 11:14:58'),
-	(3, 'USD', '$', 'Amerikaanse dollar', 0.8442, '2021-12-23 11:14:58', '2021-12-23 11:14:58'),
-	(4, 'YEN', 'Y', 'Yen', 3.3400, '2021-12-23 11:14:58', '2021-12-23 11:14:58'),
-	(5, 'TST', 'T', 'Testje', 1.2300, '2021-12-23 11:14:58', '2021-12-23 11:14:58');
+	(1, 'EUR', '€', 'Euro', 1.0000, '2022-01-10 16:36:03', '2022-01-10 16:43:55'),
+	(2, 'GBP', '£', 'Britse pond', 1.1079, '2022-01-10 16:36:03', '2022-01-10 16:44:01'),
+	(3, 'USD', '$', 'Amerikaanse dollar', 0.8442, '2022-01-10 16:36:03', '2022-01-10 16:44:05'),
+	(4, 'YEN', 'Y', 'Yen', 3.3400, '2022-01-10 16:36:03', '2022-01-10 16:44:08'),
+	(5, 'TST', 'T', 'Testje', 1.2300, '2022-01-10 16:36:03', '2022-01-10 16:44:16');
 /*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

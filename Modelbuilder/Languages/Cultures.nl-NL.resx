@@ -405,4 +405,10 @@
   <data name="Receipt.Group.Receiptline.Field.Location" xml:space="preserve">
     <value>Voorraadlocatie</value>
   </data>
+  <data name="Receipt.ConfirmCancel.Title" xml:space="preserve">
+    <value>Laat bestelregel vervallen</value>
+  </data>
+  <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
+    <value>Wil je het openstaande deel van de geslelecteerde bestelling laten vervallen? Eventueel geboekte ontvangsten blijven  wel bewaard</value>
+  </data>
 </root>
