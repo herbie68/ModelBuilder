@@ -1,5 +1,7 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 
+using System.Windows.Controls.Primitives;
+
 namespace Modelbuilder;
 internal class HelperGeneral
 {
@@ -307,7 +309,6 @@ internal class HelperGeneral
         return resultString;
     }
     #endregion Get Max value for Field from table
-
 
     #region Check if there is a record in the table based (returns no of records)
     public int CheckForRecords(string Table, string[,] WhereFields)
@@ -1046,5 +1047,65 @@ internal class HelperGeneral
     #endregion
     #endregion Helper classes to for creating objects to populate dropdowns
     #endregion Create lists to populate dropdowns for order Page
+
+    #region Get value from datagrid cell
+    public DataGridCell GetCell(DataGrid datagrid, int row, int column)
+    {
+
+        DataGridRow rowContainer = GetRow(datagrid, row);
+        if (rowContainer != null)
+        {
+            DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(rowContainer);
+
+            if (presenter == null)
+            {
+                datagrid.ScrollIntoView(rowContainer, datagrid.Columns[column]);
+                presenter = GetVisualChild<DataGridCellsPresenter>(rowContainer);
+            }
+            DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(column);
+
+            return cell;
+        }
+        return null;
+    }
+
+    public DataGridRow GetRow(DataGrid datagrid, int index)
+    {
+        DataGridRow row = (DataGridRow)datagrid.ItemContainerGenerator.ContainerFromIndex(index);
+
+        if (row == null)
+        {
+            datagrid.UpdateLayout();
+            datagrid.ScrollIntoView(datagrid.Items[index]);
+            row = (DataGridRow)datagrid.ItemContainerGenerator.ContainerFromIndex(index);
+        }
+        return row;
+    }
+
+
+    public static T GetVisualChild<T>(Visual parent) where T : Visual
+    {
+        T child = default(T);
+
+        int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+
+        for (int i = 0; i < numVisuals; i++)
+        {
+            Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+            child = v as T;
+            if (child == null)
+            {
+                child = GetVisualChild<T>
+                (v);
+            }
+
+            if (child != null)
+            {
+                break;
+            }
+        }
+        return child;
+    }
+    #endregion Get value from datagrid cell
 }
 

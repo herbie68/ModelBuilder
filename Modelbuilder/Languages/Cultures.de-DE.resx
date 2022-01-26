@@ -411,4 +411,49 @@
   <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
     <value>Möchten Sie den ausstehenden Teil der ausgewählten Bestellung stornieren? Alle bereits gebuchten Belege werden gespeichert</value>
   </data>
+  <data name="storageStock.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.ProductId" xml:space="preserve">
+    <value>ProduktId</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.StorageId" xml:space="preserve">
+    <value>LagerId</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.UnitId" xml:space="preserve">
+    <value>EinheitId</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.UnitName" xml:space="preserve">
+    <value>Einheit</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.StorageName" xml:space="preserve">
+    <value>Lagerort</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.ProductName" xml:space="preserve">
+    <value>Produktname</value>
+  </data>
+  <data name="storageStock.Datagrid.Header.Amount" xml:space="preserve">
+    <value>Auf Lager</value>
+  </data>
+  <data name="storageStock.Page.Title" xml:space="preserve">
+    <value>Bestandsverwaltung</value>
+  </data>
+  <data name="storageStock.Page.SubTitle" xml:space="preserve">
+    <value>Geben Sie den korrekten Lagerbestand pro Artikel ein</value>
+  </data>
+  <data name="Status.Read" xml:space="preserve">
+    <value>eingelesen</value>
+  </data>
+  <data name="Status.Stock.Amount" xml:space="preserve">
+    <value>Menge für</value>
+  </data>
+  <data name="Status.Stock.Changed" xml:space="preserve">
+    <value>verändert</value>
+  </data>
+  <data name="Status.Stock.Product" xml:space="preserve">
+    <value>produkt</value>
+  </data>
+  <data name="Status.Stock.Products" xml:space="preserve">
+    <value>e</value>
+  </data>
 </root>

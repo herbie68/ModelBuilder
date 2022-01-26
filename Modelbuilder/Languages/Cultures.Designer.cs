@@ -808,6 +808,141 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ingelezen.
+        /// </summary>
+        public static string Status_Read {
+            get {
+                return ResourceManager.GetString("Status.Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoeveelheid voor.
+        /// </summary>
+        public static string Status_Stock_Amount {
+            get {
+                return ResourceManager.GetString("Status.Stock.Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gewijzigd.
+        /// </summary>
+        public static string Status_Stock_Changed {
+            get {
+                return ResourceManager.GetString("Status.Stock.Changed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product.
+        /// </summary>
+        public static string Status_Stock_Product {
+            get {
+                return ResourceManager.GetString("Status.Stock.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en.
+        /// </summary>
+        public static string Status_Stock_Products {
+            get {
+                return ResourceManager.GetString("Status.Stock.Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Op voorraad.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_Amount {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_Id {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProduktId.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_ProductId {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.ProductId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Productnaam.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_ProductName {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OpslagId.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_StorageId {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.StorageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadlokatie.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_StorageName {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.StorageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EenheidId.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_UnitId {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.UnitId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheid.
+        /// </summary>
+        public static string storageStock_Datagrid_Header_UnitName {
+            get {
+                return ResourceManager.GetString("storageStock.Datagrid.Header.UnitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geef per artikel de correcte voorraad in.
+        /// </summary>
+        public static string storageStock_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("storageStock.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraad beheer.
+        /// </summary>
+        public static string storageStock_Page_Title {
+            get {
+                return ResourceManager.GetString("storageStock.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geselecteerde regel verwijderen.
         /// </summary>
         public static string toolbarButton_Action_Delete {

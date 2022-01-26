@@ -88,6 +88,7 @@
     <None Remove="Resources\rtftoolbarUnderline.png" />
     <None Remove="Resources\rtftoolbarUndo.png" />
     <None Remove="Resources\shipping.png" />
+    <None Remove="Resources\storageChange.png" />
     <None Remove="Resources\storageManagement.png" />
     <None Remove="Resources\storageOrder.png" />
     <None Remove="Resources\storageRecieve.png" />
@@ -246,6 +247,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\shipping.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\storageChange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Test.png">
