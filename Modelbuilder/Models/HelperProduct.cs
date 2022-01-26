@@ -151,30 +151,6 @@ internal class HelperProduct
     #endregion Delete row in Table: Product
 
     #region Execute Non Query Table: Product
-    /// <summary>
-    /// Parameters necesary to execute non query
-    /// </summary>
-    /// <param name="sqlText"></param>
-    /// <param name="productCode"></param>
-    /// <param name="productName"></param>
-    /// <param name="productMinimalStock"></param>
-    /// <param name="productStandardOrderQuantity"></param>
-    /// <param name="productPrice"></param>
-    /// <param name="ProductNumber"></param>
-    /// <param name="productProjectCosts"></param>
-    /// <param name="productCategoryId"></param>
-    /// <param name="productCategoryName"></param>
-    /// <param name="productStorageId"></param>
-    /// <param name="productStorageName"></param>
-    /// <param name="Id"></param>
-    /// <param name="Name"></param>
-    /// <param name="productBrandId"></param>
-    /// <param name="productBrandName"></param>
-    /// <param name="productUnitId"></param>
-    /// <param name="productUnitName"></param>
-    /// <param name="productMemo"></param>
-    /// <param name="productId"></param>
-    /// <returns></returns>
     public int ExecuteNonQueryTblProduct(string sqlText, string Code, string Name, double MinimalStock, double StandardOrderQuantity, double Price, int ProjectCosts, int CategoryId, int StorageId, int BrandId, int UnitId, string Memo, string ImageRotationAngle, byte[] Image, string Dimensions, int Id = 0)
     {
         int rowsAffected = 0;

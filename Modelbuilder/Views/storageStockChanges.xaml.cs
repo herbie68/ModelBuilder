@@ -86,10 +86,6 @@ public partial class storageStockChanges : Page
 
         if (valueRow.Text != "")
         {
-            //var v1 = _helperGeneral.GetCell(dg, int.Parse(valueRow.Text), 6);
-            //var v2 = v1.Content;
-            //var v3 = Convert.ToString(v2 as TextBox);
-
             var _NewAmount = Convert.ToDouble((_helperGeneral.GetCell(dg, int.Parse(valueRow.Text), 6).Content as TextBox).Text);
             if (_NewAmount != double.Parse(valueAmount.Text))
             {

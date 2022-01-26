@@ -310,6 +310,28 @@ internal class HelperGeneral
     }
     #endregion Get Max value for Field from table
 
+
+    #region Get Latest added Id from table
+    public string GetLatestIdFromTable(string Table)
+    {
+        // There is an Id or String available for each condition, so one of them has a value the other one is 0 or ""
+        string sqlText = "SELECT MAX(Id) FROM " + Table.ToLower();
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText, con);
+
+        string resultString = ((int)cmd.ExecuteScalar()).ToString();
+
+        //resultString = ((int)cmd.ExecuteScalar()).ToString();
+
+        return resultString;
+    }
+    #endregion Get Latest added Id from table
+
+
     #region Check if there is a record in the table based (returns no of records)
     public int CheckForRecords(string Table, string[,] WhereFields)
     {
