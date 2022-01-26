@@ -441,4 +441,19 @@
   <data name="storageStock.Page.SubTitle" xml:space="preserve">
     <value>Geben Sie den korrekten Lagerbestand pro Artikel ein</value>
   </data>
+  <data name="Status.Read" xml:space="preserve">
+    <value>eingelesen</value>
+  </data>
+  <data name="Status.Stock.Amount" xml:space="preserve">
+    <value>Menge für</value>
+  </data>
+  <data name="Status.Stock.Changed" xml:space="preserve">
+    <value>verändert</value>
+  </data>
+  <data name="Status.Stock.Product" xml:space="preserve">
+    <value>produkt</value>
+  </data>
+  <data name="Status.Stock.Products" xml:space="preserve">
+    <value>e</value>
+  </data>
 </root>

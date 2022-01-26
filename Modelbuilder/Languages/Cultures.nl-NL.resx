@@ -441,4 +441,19 @@
   <data name="storageStock.Page.Title" xml:space="preserve">
     <value>Voorraad beheer</value>
   </data>
+  <data name="Status.Read" xml:space="preserve">
+    <value>ingelezen</value>
+  </data>
+  <data name="Status.Stock.Amount" xml:space="preserve">
+    <value>Hoeveelheid voor</value>
+  </data>
+  <data name="Status.Stock.Changed" xml:space="preserve">
+    <value>gewijzigd</value>
+  </data>
+  <data name="Status.Stock.Product" xml:space="preserve">
+    <value>product</value>
+  </data>
+  <data name="Status.Stock.Products" xml:space="preserve">
+    <value>en</value>
+  </data>
 </root>

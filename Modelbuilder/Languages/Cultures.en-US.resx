@@ -441,4 +441,19 @@
   <data name="storageStock.Page.SubTitle" xml:space="preserve">
     <value>Enter the correct stock per item</value>
   </data>
+  <data name="Status.Read" xml:space="preserve">
+    <value>read</value>
+  </data>
+  <data name="Status.Stock.Amount" xml:space="preserve">
+    <value>Stock amount for</value>
+  </data>
+  <data name="Status.Stock.Changed" xml:space="preserve">
+    <value>changed</value>
+  </data>
+  <data name="Status.Stock.Product" xml:space="preserve">
+    <value>product</value>
+  </data>
+  <data name="Status.Stock.Products" xml:space="preserve">
+    <value>s</value>
+  </data>
 </root>

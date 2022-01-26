@@ -808,6 +808,51 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ingelezen.
+        /// </summary>
+        public static string Status_Read {
+            get {
+                return ResourceManager.GetString("Status.Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoeveelheid voor.
+        /// </summary>
+        public static string Status_Stock_Amount {
+            get {
+                return ResourceManager.GetString("Status.Stock.Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gewijzigd.
+        /// </summary>
+        public static string Status_Stock_Changed {
+            get {
+                return ResourceManager.GetString("Status.Stock.Changed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product.
+        /// </summary>
+        public static string Status_Stock_Product {
+            get {
+                return ResourceManager.GetString("Status.Stock.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en.
+        /// </summary>
+        public static string Status_Stock_Products {
+            get {
+                return ResourceManager.GetString("Status.Stock.Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Op voorraad.
         /// </summary>
         public static string storageStock_Datagrid_Header_Amount {
