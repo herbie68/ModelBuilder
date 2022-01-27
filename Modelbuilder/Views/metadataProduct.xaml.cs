@@ -132,10 +132,9 @@ public partial class metadataProduct : Page
         _currentDataGridIndex = dg.SelectedIndex;
 
         GetMemo(dg.SelectedIndex);
-
-        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString().Replace(".", ","));
-        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString().Replace(".", ","));
-        var _Price = double.Parse(Row_Selected["Price"].ToString().Replace(".", ","));
+        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString().Replace(",", "").Replace(".", ","));
+        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString().Replace(",", "").Replace(".", ","));
+        var _Price = double.Parse(Row_Selected["Price"].ToString().Replace(",", "").Replace(".", ","));
 
         valueProductId.Text = Row_Selected["Id"].ToString();
         valueCategoryId.Text = Row_Selected["Category_Id"].ToString();
@@ -568,7 +567,20 @@ public partial class metadataProduct : Page
     {
         int rowIndex = _currentDataGridIndex;
 
-        DeleteRowProduct(ProductCode_DataGrid.SelectedIndex);
+        // Delete product from Stocklog Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStocklogTable, new string[1, 3]
+        {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text } });
+
+        // Delete product from Stock Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[1, 3]
+        {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } });
+        // Delete product from product supplierTable
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductSupplierTable, new string[1, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductId.Text } });
+
+        // Delete product from product Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+        {   { HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } });
 
         GetData();
 

@@ -20,10 +20,16 @@ internal class HelperGeneral
 
     public static string DbProductTable = "product";
     public static string DbProductView = "view_product";
+    public static string DbProductTableFieldNameId = "Id";
+    public static string DbProductTableFieldTypeId = "int";
+
 
     public static string DbProductSupplierTable = "productsupplier";
     public static string DbProductSupplierView = "view_productsupplier";
-
+    public static string DbProductSupplierTableFieldNameId = "Id";
+    public static string DbProductSupplierTableFieldTypeId = "int";
+    public static string DbProductSupplierTableFieldNameProductId = "Product_Id";
+    public static string DbProductSupplierTableFieldTypeProductId = "int";
     public static string DbProjectTable = "project";
 
     public static string DbStockTable = "stock";
@@ -310,7 +316,6 @@ internal class HelperGeneral
     }
     #endregion Get Max value for Field from table
 
-
     #region Get Latest added Id from table
     public string GetLatestIdFromTable(string Table)
     {
@@ -330,7 +335,6 @@ internal class HelperGeneral
         return resultString;
     }
     #endregion Get Latest added Id from table
-
 
     #region Check if there is a record in the table based (returns no of records)
     public int CheckForRecords(string Table, string[,] WhereFields)
