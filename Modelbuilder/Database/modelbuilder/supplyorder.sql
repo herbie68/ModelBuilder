@@ -5,7 +5,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `supplyorder`;
 CREATE TABLE IF NOT EXISTS `supplyorder` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Supplier_Id` int DEFAULT '0',
@@ -27,12 +26,12 @@ CREATE TABLE IF NOT EXISTS `supplyorder` (
   KEY `FK_Order_Currency_Id` (`Currency_Id`),
   CONSTRAINT `FK_Order_Currency_Id` FOREIGN KEY (`Currency_Id`) REFERENCES `currency` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_Order_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorder`;
 /*!40000 ALTER TABLE `supplyorder` DISABLE KEYS */;
 INSERT INTO `supplyorder` (`Id`, `Supplier_Id`, `Currency_Id`, `OrderNumber`, `OrderDate`, `CurrencySymbol`, `CurrencyConversionRate`, `ShippingCosts`, `OrderCosts`, `Memo`, `Closed`, `ClosedDate`, `Created`, `Modified`) VALUES
-	(1, 6, 1, 'OWW079696020', '2021-10-23', '€', 1, 5, 0, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}', 0, '2022-01-21', '2022-01-17 14:56:59', '2022-01-21 11:20:47');
+	(2, 6, 1, '1234', '2022-01-03', '€', 1, 5, 0, '{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql}\r\n}', 1, '2022-01-24', '2022-01-24 16:40:33', '2022-01-25 11:21:27');
 /*!40000 ALTER TABLE `supplyorder` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
