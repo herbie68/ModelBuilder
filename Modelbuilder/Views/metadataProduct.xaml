@@ -53,6 +53,12 @@
                 <TextBlock Text="{Binding Path=UnitId}" Visibility="Hidden"/>
             </StackPanel>
         </DataTemplate>
+        
+        <!-- Styling for DataGridColumns -->
+        <Style x:Key="CellRightAlign">
+            <Setter Property="Control.HorizontalAlignment"
+            Value="Right" />
+        </Style>
     </Page.Resources>
     <!--#endregion-->
 
@@ -121,7 +127,7 @@
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" 
                                                Grid.Row="0" Grid.Column="0" Text="Zoeknaam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode" 
+                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode"
                                                 Grid.Row="1" Grid.Column="0" Width="230" CharacterCasing="Upper" TextChanged="ProductAllowNewSaveDeleteValidation"/>
 
                                     <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Merk"/>
@@ -478,16 +484,17 @@
             <!--#endregion-->
 
             <!--#region Datagrid definition-->
-            <DataGrid x:Name="ProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
+            <!-- d:ItemSource="{d:SampleData" will show Sample Data during design, is ignored on build-->
+            <DataGrid x:Name="ProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData}"
                     Padding="3" SelectionChanged="ProductCode_DataGrid_SelectionChanged" Height="285" Margin="5,0"
                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="120" Binding="{Binding Code}" />
+                    <DataGridTextColumn Header="Zoeknaam" Width="140" Binding="{Binding Code}" />
                     <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Category" Width="180" Binding="{Binding CategoryName}" />
-                    <DataGridTextColumn Header="Locatie" Width="180" Binding="{Binding StorageName}" />
-                    <DataGridTextColumn Header="Prijs" Width="120" Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Category" Width="200" Binding="{Binding CategoryName}" />
+                    <DataGridTextColumn Header="Locatie" Width="220" Binding="{Binding StorageName}" />
+                    <DataGridTextColumn Header="Prijs" HeaderStyle="{StaticResource CellRightAlign}" Width="100" Binding="{Binding Price, StringFormat={}{0:n2}}" ElementStyle="{StaticResource CellRightAlign}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->

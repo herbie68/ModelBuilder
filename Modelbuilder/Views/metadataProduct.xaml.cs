@@ -1,4 +1,6 @@
-﻿using Org.BouncyCastle.Asn1.Crmf;
+﻿using Google.Protobuf.WellKnownTypes;
+
+using Org.BouncyCastle.Asn1.Crmf;
 using System.Windows.Controls;
 
 namespace Modelbuilder;
@@ -130,10 +132,9 @@ public partial class metadataProduct : Page
         _currentDataGridIndex = dg.SelectedIndex;
 
         GetMemo(dg.SelectedIndex);
-
-        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString().Replace(".", ","));
-        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString().Replace(".", ","));
-        var _Price = double.Parse(Row_Selected["Price"].ToString().Replace(".", ","));
+        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString().Replace(",", "").Replace(".", ","));
+        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString().Replace(",", "").Replace(".", ","));
+        var _Price = double.Parse(Row_Selected["Price"].ToString().Replace(",", "").Replace(".", ","));
 
         valueProductId.Text = Row_Selected["Id"].ToString();
         valueCategoryId.Text = Row_Selected["Category_Id"].ToString();
@@ -415,7 +416,7 @@ public partial class metadataProduct : Page
             { productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", ".")); }
 
             if (inpProductPrice.Text != "")
-            { productPrice = double.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", "")); }
+            { productPrice = double.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", "")); }
 
             if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
 
@@ -461,6 +462,12 @@ public partial class metadataProduct : Page
 
         string result = string.Empty;
         result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
+        valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
+        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
+            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
+
+
         UpdateStatus(result);
 
         // Get data from database
@@ -560,7 +567,20 @@ public partial class metadataProduct : Page
     {
         int rowIndex = _currentDataGridIndex;
 
-        DeleteRowProduct(ProductCode_DataGrid.SelectedIndex);
+        // Delete product from Stocklog Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStocklogTable, new string[1, 3]
+        {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text } });
+
+        // Delete product from Stock Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[1, 3]
+        {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } });
+        // Delete product from product supplierTable
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductSupplierTable, new string[1, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductId.Text } });
+
+        // Delete product from product Table
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+        {   { HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } });
 
         GetData();
 
@@ -696,7 +716,7 @@ public partial class metadataProduct : Page
         var productDimensions = inpProductDimensions.Text;
         var productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", "."));
         var productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));
-        var productPrice = double.Parse(inpProductPrice.Text.Replace(",", ".").Replace("€", "").Replace(" ", ""));
+        var productPrice = double.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", ""));
         var productSupplierProductNumber = inpSupplierProductNumber.Text;
         if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
         { productProjectCosts = 0; }
@@ -725,6 +745,11 @@ public partial class metadataProduct : Page
 
         string result = string.Empty;
         result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
+        valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
+        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
+            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
+
         UpdateStatus(result);
     }
     #endregion Insert new row in Product Table
@@ -740,6 +765,9 @@ public partial class metadataProduct : Page
 
             string result = string.Empty;
             result = _helper.DeleteTblProduct(productId);
+            _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[2, 3]
+            {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
+                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
             UpdateStatus(result);
         }
     }
