@@ -5,7 +5,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `supplyorderline`;
 CREATE TABLE IF NOT EXISTS `supplyorderline` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Supplyorder_Id` int NOT NULL DEFAULT '0',
@@ -33,13 +32,14 @@ CREATE TABLE IF NOT EXISTS `supplyorderline` (
   CONSTRAINT `FK_OrderRow_Project_Id` FOREIGN KEY (`Project_Id`) REFERENCES `project` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_OrderRow_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_OrderRow_Supplyorder_Id` FOREIGN KEY (`Supplyorder_Id`) REFERENCES `supplyorder` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 DELETE FROM `supplyorderline`;
 /*!40000 ALTER TABLE `supplyorderline` DISABLE KEYS */;
 INSERT INTO `supplyorderline` (`Id`, `Supplyorder_Id`, `Supplier_Id`, `Product_Id`, `SupplierProductName`, `Project_Id`, `Category_Id`, `Amount`, `OpenAmount`, `Price`, `RealRowTotal`, `Closed`, `ClosedDate`, `Created`, `Modified`) VALUES
-	(1, 1, 6, 1, '', 5, 9, 1, 0, 4.07, 0, 1, '2022-01-21', '2022-01-17 14:57:52', '2022-01-21 11:25:03'),
-	(2, 1, 6, 2, '', 5, 9, 1, 1, 4.07, 0, 0, '2021-10-25', '2022-01-17 14:58:01', '2022-01-21 11:24:27');
+	(9, 2, 6, 2, '', 5, 9, 2, 0, 4.07, 0, 1, '2022-01-24', '2022-01-24 16:41:12', '2022-01-24 17:03:14'),
+	(12, 2, 6, 2, '', 5, 9, 1, 0, 4.07, 0, 1, '2022-01-23', '2022-01-25 09:10:34', '2022-01-25 09:12:42'),
+	(14, 2, 6, 2, '', 5, 9, 2, 0, 4.07, 0, 1, NULL, '2022-01-25 11:07:51', '2022-01-25 11:20:15');
 /*!40000 ALTER TABLE `supplyorderline` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
