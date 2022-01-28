@@ -456,4 +456,217 @@
   <data name="Status.Stock.Products" xml:space="preserve">
     <value>s</value>
   </data>
+  <data name="main.Ribbon.Exit.Tooltip" xml:space="preserve">
+    <value>Close application</value>
+  </data>
+  <data name="main.Ribbon.Help.Tooltip" xml:space="preserve">
+    <value>Application help</value>
+  </data>
+  <data name="main.Ribbon.Print.Tooltip" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="main.Ribbon.Redo.Tooltip" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="main.Ribbon.Save.Tooltip" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="main.Ribbon.Undo.Tooltip" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="main.Ribbon.Exit.Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="main.Ribbon.Help.Header" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="main.Ribbon.Print.Header" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="main.Ribbon.Redo.Header" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="main.Ribbon.Save.Header" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="main.Ribbon.Undo.Header" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="main.Ribbon.About.Header" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="main.Ribbon.Settings.Header" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="main.Ribbon.Settings.Tooltip" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="main.Ribbon.About.Tooltip" xml:space="preserve">
+    <value>Information about the application</value>
+  </data>
+  <data name="main.Title" xml:space="preserve">
+    <value>Modelbuilder Management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Config.Header" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Header" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Config.Button.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Group.Header" xml:space="preserve">
+    <value>Master data</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Edit.Label" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Edit.Label" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Export.Header" xml:space="preserve">
+    <value>Export countries</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Import.Header" xml:space="preserve">
+    <value>Import countries</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Report.Header" xml:space="preserve">
+    <value>Country report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Report.Header" xml:space="preserve">
+    <value>Category Report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Export.Header" xml:space="preserve">
+    <value>Export categories</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Import.Header" xml:space="preserve">
+    <value>Import categories</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Edit.Label" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Export.Header" xml:space="preserve">
+    <value>Export currencies</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Import.Header" xml:space="preserve">
+    <value>Import currencies</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Report.Header" xml:space="preserve">
+    <value>Currency report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Edit.Label" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Export.Header" xml:space="preserve">
+    <value>Export products</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Import.Header" xml:space="preserve">
+    <value>Import products</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Report.Header" xml:space="preserve">
+    <value>Product report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Edit.Label" xml:space="preserve">
+    <value>Storage locations</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Export.Header" xml:space="preserve">
+    <value>Export storage locations</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Import.Header" xml:space="preserve">
+    <value>Import storage locations</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Report.Header" xml:space="preserve">
+    <value>Report of storage locations</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectButton.Label" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageButton.Label" xml:space="preserve">
+    <value>Inventory management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReceipt.Header" xml:space="preserve">
+    <value>Receipts</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Orders.Header" xml:space="preserve">
+    <value>Open orders</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.MetadataButton.Label" xml:space="preserve">
+    <value>Master data</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Edit.Label" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Edit.Label" xml:space="preserve">
+    <value>Work types</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.Group.Header" xml:space="preserve">
+    <value>Time registration</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeButton.Label" xml:space="preserve">
+    <value>Time registration</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeEdit.Header" xml:space="preserve">
+    <value>Time registration</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeReport.Header" xml:space="preserve">
+    <value>Hours Report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeExport.Header" xml:space="preserve">
+    <value>Export hours</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeImport.Header" xml:space="preserve">
+    <value>Import hours</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.Group.Header" xml:space="preserve">
+    <value>Project management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectEdit.Header" xml:space="preserve">
+    <value>Project management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectReport.Header" xml:space="preserve">
+    <value>Project overview</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectExport.Header" xml:space="preserve">
+    <value>Export projects</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectImport.Header" xml:space="preserve">
+    <value>Import projects</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.Group.Header" xml:space="preserve">
+    <value>Inventory management</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageOrder.Header" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageEdit.Header" xml:space="preserve">
+    <value>Inventory Transactions</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageEdit.Tooltip" xml:space="preserve">
+    <value>Make stock corrections</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Storage.Header" xml:space="preserve">
+    <value>Stock Overview</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Usage.Header" xml:space="preserve">
+    <value>Consumption per project</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Report.Header" xml:space="preserve">
+    <value>Overview suppliers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Import.Header" xml:space="preserve">
+    <value>Import suppliers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Export.Header" xml:space="preserve">
+    <value>Export suppliers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Report.Header" xml:space="preserve">
+    <value>Overview work types</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Import.Header" xml:space="preserve">
+    <value>Import work types</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Export.Header" xml:space="preserve">
+    <value>Export work types</value>
+  </data>
 </root>

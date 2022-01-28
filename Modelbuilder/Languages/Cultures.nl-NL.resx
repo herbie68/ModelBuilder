@@ -456,4 +456,217 @@
   <data name="Status.Stock.Products" xml:space="preserve">
     <value>en</value>
   </data>
+  <data name="main.Ribbon.Exit.Tooltip" xml:space="preserve">
+    <value>Programma afsluiten</value>
+  </data>
+  <data name="main.Ribbon.Help.Tooltip" xml:space="preserve">
+    <value>Hulp bij het programma</value>
+  </data>
+  <data name="main.Ribbon.Print.Tooltip" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="main.Ribbon.Redo.Tooltip" xml:space="preserve">
+    <value>Herhalen</value>
+  </data>
+  <data name="main.Ribbon.Save.Tooltip" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="main.Ribbon.Undo.Tooltip" xml:space="preserve">
+    <value>Ongedaan maken</value>
+  </data>
+  <data name="main.Ribbon.Exit.Header" xml:space="preserve">
+    <value>Afsluiten</value>
+  </data>
+  <data name="main.Ribbon.Help.Header" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="main.Ribbon.Print.Header" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="main.Ribbon.Redo.Header" xml:space="preserve">
+    <value>Herhalen</value>
+  </data>
+  <data name="main.Ribbon.Save.Header" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="main.Ribbon.Undo.Header" xml:space="preserve">
+    <value>Ongedaan</value>
+  </data>
+  <data name="main.Ribbon.About.Header" xml:space="preserve">
+    <value>Over...</value>
+  </data>
+  <data name="main.Ribbon.About.Tooltip" xml:space="preserve">
+    <value>Informatie over de applicatie</value>
+  </data>
+  <data name="main.Ribbon.Settings.Header" xml:space="preserve">
+    <value>Instelligen</value>
+  </data>
+  <data name="main.Ribbon.Settings.Tooltip" xml:space="preserve">
+    <value>Applicatie instellingen</value>
+  </data>
+  <data name="main.Title" xml:space="preserve">
+    <value>Modelbouwer beheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Config.Header" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Header" xml:space="preserve">
+    <value>Beheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Config.Button.Label" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.Group.Header" xml:space="preserve">
+    <value>Tijdregistratie</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeButton.Label" xml:space="preserve">
+    <value>Tijdregistratie</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeEdit.Header" xml:space="preserve">
+    <value>Tijdregistratie</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeExport.Header" xml:space="preserve">
+    <value>Exporteer uren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeReport.Header" xml:space="preserve">
+    <value>Urenrapportage</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Time.TimeImport.Header" xml:space="preserve">
+    <value>Importeer uren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.Group.Header" xml:space="preserve">
+    <value>Projectenbeheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectButton.Label" xml:space="preserve">
+    <value>Projecten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectEdit.Header" xml:space="preserve">
+    <value>Projectbeheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectReport.Header" xml:space="preserve">
+    <value>Projectenoverzicht</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectExport.Header" xml:space="preserve">
+    <value>Exporteer projecten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Project.ProjectImport.Header" xml:space="preserve">
+    <value>Importeer projecten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.Group.Header" xml:space="preserve">
+    <value>Voorraadbeheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageButton.Label" xml:space="preserve">
+    <value>Voorraad beheer</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageOrder.Header" xml:space="preserve">
+    <value>Bestellen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReceipt.Header" xml:space="preserve">
+    <value>Ontvangsten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageEdit.Header" xml:space="preserve">
+    <value>Voorraadmutaties</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageEdit.Tooltip" xml:space="preserve">
+    <value>Voorraad correcties doorvoeren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Storage.Header" xml:space="preserve">
+    <value>Voorraadoverzicht</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Orders.Header" xml:space="preserve">
+    <value>Openstaande bestellingen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Storage.StorageReport.Usage.Header" xml:space="preserve">
+    <value>Verbruik per project</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Group.Header" xml:space="preserve">
+    <value>Stambestanden</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.MetadataButton.Label" xml:space="preserve">
+    <value>Stambestanden</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Edit.Label" xml:space="preserve">
+    <value>Artikelen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Report.Header" xml:space="preserve">
+    <value>Overzicht artikelen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Import.Header" xml:space="preserve">
+    <value>Importeer artikelen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Export.Header" xml:space="preserve">
+    <value>Exporteer artikelen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Edit.Label" xml:space="preserve">
+    <value>Categorieën</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Report.Header" xml:space="preserve">
+    <value>Overzicht categorieën</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Import.Header" xml:space="preserve">
+    <value>Importeer categorieën</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Export.Header" xml:space="preserve">
+    <value>Exporteer categorieën</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Edit.Label" xml:space="preserve">
+    <value>Landen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Report.Header" xml:space="preserve">
+    <value>Overzicht landen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Import.Header" xml:space="preserve">
+    <value>Importeer landen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Export.Header" xml:space="preserve">
+    <value>Exporteer landen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Edit.Label" xml:space="preserve">
+    <value>Leveranciers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Report.Header" xml:space="preserve">
+    <value>Overzicht leveranciers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Import.Header" xml:space="preserve">
+    <value>Importeer leveranciers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Export.Header" xml:space="preserve">
+    <value>Exporteer leveranciers</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Edit.Label" xml:space="preserve">
+    <value>Locaties</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Report.Header" xml:space="preserve">
+    <value>Overzicht locaties</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Import.Header" xml:space="preserve">
+    <value>Importeer locaties</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Export.Header" xml:space="preserve">
+    <value>Exporteer locaties</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Edit.Label" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Report.Header" xml:space="preserve">
+    <value>Overzicht valuta</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Import.Header" xml:space="preserve">
+    <value>Importeer valuta</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Export.Header" xml:space="preserve">
+    <value>Exporteer valuta</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Edit.Label" xml:space="preserve">
+    <value>Werksoorten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Report.Header" xml:space="preserve">
+    <value>Overzicht werksoorten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Import.Header" xml:space="preserve">
+    <value>Importeer werksoorten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Export.Header" xml:space="preserve">
+    <value>Exporteer werksoorten</value>
+  </data>
 </root>

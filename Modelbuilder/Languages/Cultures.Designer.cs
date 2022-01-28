@@ -70,6 +70,645 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Over....
+        /// </summary>
+        public static string main_Ribbon_About_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.About.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informatie over de applicatie.
+        /// </summary>
+        public static string main_Ribbon_About_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.About.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afsluiten.
+        /// </summary>
+        public static string main_Ribbon_Exit_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Exit.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programma afsluiten.
+        /// </summary>
+        public static string main_Ribbon_Exit_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Exit.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string main_Ribbon_Help_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Help.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hulp bij het programma.
+        /// </summary>
+        public static string main_Ribbon_Help_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Help.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afdrukken.
+        /// </summary>
+        public static string main_Ribbon_Print_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Print.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afdrukken.
+        /// </summary>
+        public static string main_Ribbon_Print_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Print.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herhalen.
+        /// </summary>
+        public static string main_Ribbon_Redo_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Redo.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herhalen.
+        /// </summary>
+        public static string main_Ribbon_Redo_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Redo.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaan.
+        /// </summary>
+        public static string main_Ribbon_Save_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Save.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaan.
+        /// </summary>
+        public static string main_Ribbon_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Save.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instellingen.
+        /// </summary>
+        public static string main_Ribbon_Settings_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Settings.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applicatie instellingen.
+        /// </summary>
+        public static string main_Ribbon_Settings_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Settings.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instellingen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Config_Button_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Config.Button.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instellingen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Config_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Config.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beheer.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stambestanden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Group_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Group.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorieën.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer categorieën.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer categorieën.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht categorieën.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer landen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer landen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht landen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer valuta.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer valuta.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht valuta.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Currency.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikelen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer artikelen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht artikelen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locaties.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer locaties.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer locaties.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht locaties.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.StorageLocation.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoorten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer werksoorten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer werksoorten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht werksoorten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stambestanden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_MetadataButton_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.MetadataButton.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projectenbeheer.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_Group_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.Group.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projecten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_ProjectButton_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.ProjectButton.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projectbeheer.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_ProjectEdit_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.ProjectEdit.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer projecten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_ProjectExport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.ProjectExport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer projecten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_ProjectImport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.ProjectImport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projectenoverzicht.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Project_ProjectReport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Project.ProjectReport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadbeheer.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_Group_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.Group.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraad beheer.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageButton_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageButton.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadmutaties.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageEdit_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageEdit.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraad correcties doorvoeren.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageEdit_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageEdit.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestellen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageOrder_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageOrder.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ontvangsten.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageReceipt_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageReceipt.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Openstaande bestellingen.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageReport_Orders_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageReport.Orders.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadoverzicht.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageReport_Storage_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageReport.Storage.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verbruik per project.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Storage_StorageReport_Usage_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Storage.StorageReport.Usage.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdregistratie.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_Group_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.Group.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdregistratie.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_TimeButton_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.TimeButton.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdregistratie.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_TimeEdit_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.TimeEdit.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer uren.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_TimeExport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.TimeExport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer uren.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_TimeImport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.TimeImport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Urenrapportage.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Time_TimeReport_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Time.TimeReport.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongedaan.
+        /// </summary>
+        public static string main_Ribbon_Undo_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Undo.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongedaan maken.
+        /// </summary>
+        public static string main_Ribbon_Undo_Tooltip {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Undo.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modelbouwer beheer.
+        /// </summary>
+        public static string main_Title {
+            get {
+                return ResourceManager.GetString("main.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categoriën.
         /// </summary>
         public static string metadataCategory_Page_Title {
