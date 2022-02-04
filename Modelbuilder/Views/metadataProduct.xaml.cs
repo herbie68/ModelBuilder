@@ -1,9 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
-using Org.BouncyCastle.Asn1.Crmf;
-using System.Windows.Controls;
-
-namespace Modelbuilder;
+﻿namespace Modelbuilder;
 public partial class metadataProduct : Page
 {
     private HelperGeneral _helperGeneral;

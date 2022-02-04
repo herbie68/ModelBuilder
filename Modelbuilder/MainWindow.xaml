@@ -39,7 +39,7 @@
             <RibbonTab x:Name="MainTab" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Header}">
                 <RibbonGroup x:Name="Time" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_Group_Header}">
                     <RibbonSplitButton LargeImageSource=".\Resources\timeManagement.png"            Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeButton_Label}" KeyTip="V">
-                        <RibbonMenuItem ImageSource=".\Resources\timeEdit.png"                      Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}" />
+                        <RibbonMenuItem ImageSource=".\Resources\timeEdit.png"                      Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}" Click="ShowTimeManagementPage"/>
                         <RibbonMenuItem ImageSource=".\Resources\timeReport.png"                    Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}" />
                         <RibbonSeparator></RibbonSeparator>
                         <RibbonMenuItem ImageSource=".\Resources\timeImport.png"                    Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeImport_Header}" KeyTip="T" />

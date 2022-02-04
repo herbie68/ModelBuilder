@@ -70,6 +70,60 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ingelezen.
+        /// </summary>
+        public static string general_Read {
+            get {
+                return ResourceManager.GetString("general.Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string general_Status {
+            get {
+                return ResourceManager.GetString("general.Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tijdregistratieregel.
+        /// </summary>
+        public static string general_TimeEntrie {
+            get {
+                return ResourceManager.GetString("general.TimeEntrie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string general_TimeEntries {
+            get {
+                return ResourceManager.GetString("general.TimeEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product gebruik regel.
+        /// </summary>
+        public static string GeneralProductUsageEntrie {
+            get {
+                return ResourceManager.GetString("GeneralProductUsageEntrie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string GeneralProductUsageEntries {
+            get {
+                return ResourceManager.GetString("GeneralProductUsageEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Over....
         /// </summary>
         public static string main_Ribbon_About_Header {
@@ -1303,6 +1357,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verwijder geselecteerde regel.
+        /// </summary>
+        public static string ProductEntry_Toolbar_Button_Delete {
+            get {
+                return ResourceManager.GetString("ProductEntry.Toolbar.Button.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieuwe regel toevoegen.
+        /// </summary>
+        public static string ProductEntry_Toolbar_Button_New {
+            get {
+                return ResourceManager.GetString("ProductEntry.Toolbar.Button.New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verwerken.
         /// </summary>
         public static string Receipt_Button_Apply {
@@ -1578,6 +1650,232 @@ namespace Modelbuilder.Languages {
         public static string storageStock_Page_Title {
             get {
                 return ResourceManager.GetString("storageStock.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijder geselecteerde regel.
+        /// </summary>
+        public static string TimeEntry_Toolbar_Button_Delete {
+            get {
+                return ResourceManager.GetString("TimeEntry.Toolbar.Button.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieuwe regel toevoegen.
+        /// </summary>
+        public static string TimeEntry_Toolbar_Button_New {
+            get {
+                return ResourceManager.GetString("TimeEntry.Toolbar.Button.New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingevoerde gegevens opslaan.
+        /// </summary>
+        public static string TimeEntry_Toolbar_Button_Save {
+            get {
+                return ResourceManager.GetString("TimeEntry.Toolbar.Button.Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikt.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_AmountUsed {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.AmountUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_CategoryId {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.CategoryId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_CategoryName {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.CategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opmerking.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_Comment {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijd.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_ElapsedTime {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.ElapsedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eindtijd.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_EndTime {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_Id {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_ProductId {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.ProductId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikel.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_ProductName {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_ProjectId {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.ProjectId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_ProjectName {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.ProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starttijd.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_StartTime {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaglocatie Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_StorageId {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.StorageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaglocatie.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_StorageName {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.StorageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totaal gewerkte uren.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_TotalTime {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkzaamheden Id.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_WorktypeId {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.WorktypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkzaamheden.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Header_WorktypeName {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Header.WorktypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        public static string TimeManagement_Field_Date {
+            get {
+                return ResourceManager.GetString("TimeManagement.Field.Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registreer het aantal gewerkte uren op datum, per soort werkzaamheden. Eventueel materiaalverbruik kan op dat tabblad worden geregistreerd.
+        ///Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en project worden geselecteerd.
+        /// </summary>
+        public static string TimeManagement_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("TimeManagement.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Urenregistratie.
+        /// </summary>
+        public static string TimeManagement_Page_Title {
+            get {
+                return ResourceManager.GetString("TimeManagement.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materiaalverbruik.
+        /// </summary>
+        public static string TimeManagement_TabItemHeader_Product {
+            get {
+                return ResourceManager.GetString("TimeManagement.TabItemHeader.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdregistratie.
+        /// </summary>
+        public static string TimeManagement_TabItemHeader_Time {
+            get {
+                return ResourceManager.GetString("TimeManagement.TabItemHeader.Time", resourceCulture);
             }
         }
         

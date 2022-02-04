@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-
-namespace Modelbuilder;
+﻿namespace Modelbuilder;
 
 public class HelperProject
 {

@@ -296,32 +296,32 @@
         <!--#region Toolbar Icon resources-->
         <Style x:Key="ToolBarAddIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
-            <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="0, 0, 5, 0"/>
         </Style>
 
         <Style x:Key="ToolBarCancelIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarCancel.png" />
-            <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
         </Style>
 
         <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarDelete.png" />
-            <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
         </Style>
 
         <Style x:Key="ToolBarSaveIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
-            <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="5, 0, 5, 0"/>
         </Style>
 
         <Style x:Key="ToolBarRotateIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
-            <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
         </Style>
 
         <Style x:Key="ToolBarSmallAddIcon" TargetType="Image">

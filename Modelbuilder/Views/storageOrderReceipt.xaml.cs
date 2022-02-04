@@ -1,6 +1,4 @@
-﻿using MySqlX.XDevAPI.Common;
-
-namespace Modelbuilder;
+﻿namespace Modelbuilder;
 public partial class storageOrderReceipt : Page
 {
     private HelperGeneral _helperGeneral;

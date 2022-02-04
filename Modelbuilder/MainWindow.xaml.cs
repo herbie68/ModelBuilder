@@ -1,4 +1,8 @@
-﻿global using Microsoft.Win32;
+﻿global using ConnectionNamespace;
+
+global using Microsoft.Win32;
+
+global using MySql.Data.MySqlClient;
 
 global using System;
 global using System.Collections.Generic;
@@ -13,9 +17,6 @@ global using System.Windows.Documents;
 global using System.Windows.Input;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
-global using MySql.Data.MySqlClient;
-global using ConnectionNamespace;
-global using MySql;
 
 using Modelbuilder.Views;
 
@@ -44,6 +45,13 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    #region TimeManagement
+    private void ShowTimeManagementPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new timemanagement();
+    }
+    #endregion TimeManegement
 
     #region Maintain orders and deliveries
     #region Call Order Page

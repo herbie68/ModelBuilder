@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
+﻿
 using System.Windows.Controls.Primitives;
 
 namespace Modelbuilder;
@@ -70,6 +69,78 @@ internal class HelperGeneral
 
     public static string DbSupplierContactTable = "suppliercontact";
     public static string DbSupplierContactView = "view_suppliercontact";
+
+    #region Time
+    public static string DbTimeTable = "time";
+    public static string DbTimeTableFieldNameId = "Id";
+    public static string DbTimeTableFieldTypeId = "int";
+    public static string DbTimeTableFieldNameProjectId = "project_Id";
+    public static string DbTimeTableFieldTypeProjectId = "int";
+    public static string DbTimeTableFieldNameWorktypeId = "worktype_Id";
+    public static string DbTimeTableFieldTypeWorktypeId = "int";
+    public static string DbTimeTableFieldNameDate = "Date";
+    public static string DbTimeTableFieldTypeDate = "date";
+    public static string DbTimeTableFieldNameStartTime = "StartTime";
+    public static string DbTimeTableFieldTypeStartTime = "time";
+    public static string DbTimeTableFieldNameEndTime = "EndTime";
+    public static string DbTimeTableFieldTypeEndTime = "Time";
+
+    public static string DbTimeView = "view_time";
+    public static string DbTimeViewFieldNameId = "Id";
+    public static string DbTimeViewFieldTypeId = "int";
+    public static string DbTimeViewFieldNameProjectId = "ProjectId";
+    public static string DbTimeViewFieldTypeProjectId = "int";
+    public static string DbTimeViewFieldNameWorktypeId = "WorktypeId";
+    public static string DbTimeViewFieldTypeWorktypeId = "int";
+    public static string DbTimeViewFieldNameProjectName = "ProjectName";
+    public static string DbTimeViewFieldTypeProjectName = "string";
+    public static string DbTimeViewFieldNameWorktypeName = "WorktypeName";
+    public static string DbTimeViewFieldTypeWorktypeName = "string";
+    public static string DbTimeViewFieldNameDate = "Date";
+    public static string DbTimeViewFieldTypeDate = "date";
+    public static string DbTimeViewFieldNameStartTime = "StartTime";
+    public static string DbTimeViewFieldTypeStartTime = "time";
+    public static string DbTimeViewFieldNameEndTime = "EndTime";
+    public static string DbTimeViewFieldTypeEndTime = "Time";
+    #endregion Time
+
+    #region ProductUsage
+    public static string DbProductUsageTable = "productusage";
+    public static string DbProductUsageTableFieldNameId = "Id";
+    public static string DbProductUsageTableFieldTypeId = "int";
+    public static string DbProductUsageTableFieldNameProjectId = "project_Id";
+    public static string DbProductUsageTableFieldTypeProjectId = "int";
+    public static string DbProductUsageTableFieldNameProductId = "product_Id";
+    public static string DbProductUsageTableFieldTypeProductId = "int";
+    public static string DbProductUsageTableFieldNameAmountReceived = "AmountUsed";
+    public static string DbProductUsageTableFieldTypeAmountReceived = "double";
+    public static string DbProductUsageTableFieldNameDate = "Date";
+    public static string DbProductUsageTableFieldTypeDate = "date";
+
+    public static string DbProductUsageView = "viewproductusage";
+    public static string DbProductUsageViewFieldNameId = "Id";
+    public static string DbProductUsageViewFieldTypeId = "int";
+    public static string DbProductUsageViewFieldNameProjectId = "ProjectId";
+    public static string DbProductUsageViewFieldTypeProjectId = "int";
+    public static string DbProductUsageViewFieldNameProductId = "ProductId";
+    public static string DbProductUsageViewFieldTypeProductId = "int";
+    public static string DbProductUsageViewFieldNameStorageId = "StorageId";
+    public static string DbProductUsageViewFieldTypeStorageId = "int";
+    public static string DbProductUsageViewFieldNameCategoryId = "CategoryId";
+    public static string DbProductUsageViewFieldTypeCategoryId = "int";
+    public static string DbProductUsageViewFieldNameProjectName = "ProjectName";
+    public static string DbProductUsageViewFieldTypeProjectName = "string";
+    public static string DbProductUsageViewFieldNameProductName = "ProductName";
+    public static string DbProductUsageViewFieldTypeProductName = "string";
+    public static string DbProductUsageViewFieldNameStorageName = "StorageName";
+    public static string DbProductUsageViewFieldTypeStorageName = "string";
+    public static string DbProductUsageViewFieldNameCategoryName = "CategoryName";
+    public static string DbProductUsageViewFieldTypeCategoryName = "string";
+    public static string DbProductUsageViewFieldNameAmountReceived = "AmountUsed";
+    public static string DbProductUsageViewFieldTypeAmountReceived = "double";
+    public static string DbProductUsageViewFieldNameDate = "Date";
+    public static string DbProductUsageViewFieldTypeDate = "date";
+    #endregion ProductUsage
 
     public static string DbOrderTable = "supplyorder";
     public static string DbOrderView = "view_supplyorder";
@@ -169,6 +240,60 @@ internal class HelperGeneral
             
             da.Fill(dt);
         }
+        return dt;
+    }
+    public DataTable GetData ( string Table, string[,] WhereFields )
+    {
+        DataTable dt = new ();
+
+        string sqlText = "SELECT * FROM " + Table.ToLower() + " WHERE ";
+        string prefix = "";
+
+        if (WhereFields.GetLength ( 0 ) > 0)
+        {
+            for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+            {
+                if (i != 0) { prefix = " AND "; }
+                sqlText = sqlText + prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0];
+            }
+        }
+
+        MySqlConnection con = new MySqlConnection ( ConnectionStr );
+
+        con.Open ();
+
+        MySqlCommand cmd = new MySqlCommand ( sqlText, con );
+
+        for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+        {
+            switch (WhereFields[i, 1].ToLower ())
+            {
+                case "string":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                    break;
+                case "int":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( WhereFields[i, 2] );
+                    break;
+                case "double":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Double ).Value = double.Parse ( WhereFields[i, 2] );
+                    break;
+                case "float":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Float ).Value = float.Parse ( WhereFields[i, 2] );
+                    break;
+                case "time":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                    break;
+                case "date":
+                    String[] _tempDates = WhereFields[i, 2].Split ( "-" );
+                    var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
+                    break;
+            }
+        }
+
+        using MySqlDataAdapter da = new ( cmd );
+        da.Fill ( dt );
+
         return dt;
     }
     #endregion Get Data from TableView or Table
@@ -927,6 +1052,33 @@ internal class HelperGeneral
         return unitList;
     }
     #endregion
+
+    #region Fill Worktype dropdown
+    public List<Worktype> GetWorktypeList ( List<Worktype> worktypeList )
+    {
+        string DatabaseTable = DbWorktypeTable;
+        Database dbConnection = new ()
+        {
+            TableName = DatabaseTable
+        };
+
+        dbConnection.SqlSelectionString = "Name, Id";
+        dbConnection.SqlOrderByString = "Fullpath";
+        dbConnection.TableName = DatabaseTable;
+
+        DataTable dtSelection = dbConnection.LoadSpecificMySqlData ();
+
+        for (int i = 0; i < dtSelection.Rows.Count; i++)
+        {
+            worktypeList.Add ( new Worktype
+            {
+                WorktypeName = dtSelection.Rows[i][0].ToString (),
+                WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture )
+            } );
+        }
+        return worktypeList;
+    }
+    #endregion
     #endregion Fill the dropdownlists
 
     #region Helper classes to for creating objects to populate dropdowns
@@ -997,13 +1149,7 @@ internal class HelperGeneral
     #region Create object for all projects in table for dropdown
     public class Project
     {
-        /// <summary>
-        /// Gets or Sets the project name.
-        /// </summary>
         public string ProjectName { get; set; }
-        /// <summary>
-        /// Gets or Sets the project id.
-        /// </summary>
         public int ProjectId { get; set; }
     }
     #endregion Create object for all projects in table for dropdown
@@ -1069,6 +1215,14 @@ internal class HelperGeneral
         /// Gets or Sets the unit id.
         /// </summary>
         public int UnitId { get; set; }
+    }
+    #endregion
+
+    #region Create object for all worktypes in table for dropdown
+    public class Worktype
+    {
+        public string WorktypeName { get; set; }
+        public int WorktypeId { get; set; }
     }
     #endregion
     #endregion Helper classes to for creating objects to populate dropdowns

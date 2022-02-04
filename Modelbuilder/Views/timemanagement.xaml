@@ -1,0 +1,467 @@
+﻿<Page
+    x:Class="Modelbuilder.timemanagement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Modelbuilder"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Modelbuilder.Languages"
+    Title="timemanagement"
+    d:DesignHeight="800"
+    d:DesignWidth="1000"
+    mc:Ignorable="d">
+
+    <!--#region Page resources-->
+    <Page.Resources>
+        <DataTemplate x:Key="ProjectComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ProjectName}" />
+                <TextBlock Text="{Binding Path=ProjectId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ProductComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ProductName}" />
+                <TextBlock Text="{Binding Path=ProductId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="WorktypeComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=WorktypeName}" />
+                <TextBlock Text="{Binding Path=WorktypeId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
+
+        <!--  Styling for DataGridColumns  -->
+        <Style x:Key="CellRightAlign">
+            <Setter Property="Control.HorizontalAlignment" Value="Right" />
+        </Style>
+    </Page.Resources>
+    <!--#endregion-->
+
+    <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Style="{DynamicResource MainBorder}">
+        <Grid>
+            <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+                <!--  region Title of the page  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Style="{DynamicResource Title}"
+                        Text="{x:Static p:Cultures.TimeManagement_Page_Title}" />
+
+                    <!--#region Hiddenfields-->
+                    <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBox x:Name="valueTimeId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueProjectId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueProductUsageId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueWorktypeId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueProductId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueCategoryId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueStorageId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueStockId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueStocklogId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueStoredAmount" Style="{DynamicResource HiddenTextBox}" />
+                        <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
+                        <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBSaveButtonEnable" Text="Collapsed"/>
+                        
+                    </StackPanel>
+                    <!--  End of "Do not remove" part  -->
+                    <!--#endregion Hiddenfields-->
+                </Grid>
+
+                <Path Style="{DynamicResource TitleLine}" />
+                <TextBlock
+                    Grid.Column="0"
+                    Style="{DynamicResource SubTitle}"
+                    Text="{x:Static p:Cultures.TimeManagement_Page_SubTitle}" />
+                <!--  endregion Title of the page  -->
+
+                <!--#region Time and usage Management-->
+                <TabControl Height="700" Style="{DynamicResource Default TabControl}">
+                    <!--#region Time Management-->
+                    <TabItem Header="{x:Static p:Cultures.TimeManagement_TabItemHeader_Time}" Style="{DynamicResource Default TabItem}">
+                        <Grid>
+                            <StackPanel Margin="5">
+                                <!--#region Time entry: General field area-->
+                                <GroupBox Opacity="1">
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal" Background="Transparent" >
+                                            <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\TimeManagement.png"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.Receipt_Group_Receiptline}"/>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="350" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="25" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Static p:Cultures.TimeManagement_Field_Date}" />
+                                        <DatePicker Style="{DynamicResource DefaultDataPicker}" x:Name="inpEntryDate" Grid.Row="1" Grid.Column="0" Width="150" SelectedDateChanged="DataPickerSelectionChanged"/>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectName}"/>
+                                        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProject" 
+                                                  ItemTemplate="{StaticResource ProjectComboTemplate}" TextSearch.TextPath="ProjectName" SelectionChanged="cboxProject_SelectionChanged"
+                                                  Grid.Row="1" Grid.Column="2" Width="350"/>
+
+                                </Grid>
+                                </GroupBox>
+                                <GroupBox Opacity="1">
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal" Background="Transparent" >
+                                            <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\TimeEdit.png"/>
+                                            <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.Receipt_Group_Receiptline}"/>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="25" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="70" x:Name="inpStartTime" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="70" x:Name="inpEndtTime" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Width="70" x:Name="dispStartTime" IsEnabled="False"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeName}"/>
+                                        <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource WorktypeComboTemplate}"  TextSearch.TextPath="worktypeName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="5" Width="Auto" x:Name="inpComment" />
+
+                                    </Grid>
+
+                                </GroupBox>
+                                <!--#endregion Time entry: General field area-->
+
+                                <!--#region Toolbar for datagrid-->
+                                <ToolBarTray Margin="1" Style="{DynamicResource DefaultToolBarTray}">
+                                    <ToolBar
+                                        x:Name="TimeEntryToolbar"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Style="{DynamicResource DefaultToolBar}">
+                                        <Button
+                                            x:Name="ToolbarButtonNewTimeEntry" Padding="0"
+                                            Click="TimeToolbarButtonNew"
+                                            ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_New}">
+                                            <Image Style="{DynamicResource ToolBarAddIcon}" Visibility="{Binding ElementName=TBAddButtonEnable, Path=Text}"/>
+                                        </Button>
+                                        <Button
+                                            x:Name="ToolbarButtonSaveTimeEntry" Padding="0"
+                                            Click="TimeToolbarButtonSave"
+                                            ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_Save}">
+                                            <Image Style="{DynamicResource ToolBarSaveIcon}" Visibility="{Binding ElementName=TBSaveButtonEnable, Path=Text}"/>
+                                        </Button>
+                                        <Button
+                                            x:Name="ToolbarButtonDeleteTimeEntry" Padding="0"
+                                            Click="TimeToolbarButtonDelete"
+                                            ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_Delete}">
+                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                                <!--#endregion Toolbar for datagrid-->
+
+                                <!--#region Time Entry datagrid-->
+                                <DataGrid
+                                    x:Name="Time_DataGrid"
+                                    Height="545"
+                                    Padding="3"
+                                    d:ItemsSource="{d:SampleData}"
+                                    ItemsSource="{Binding}"
+                                    SelectionChanged="Time_DataGrid_SelectionChanged"
+                                    Style="{DynamicResource DefaultDataGrid}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding Id}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Id}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding project_Id}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding worktype_Id}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding StartTime}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"
+                                            IsReadOnly="False" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding EndTime}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"
+                                            IsReadOnly="False" />
+                                        <DataGridTextColumn
+                                            Width="80"
+                                            Binding="{Binding EndTime}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"
+                                            IsReadOnly="False" />
+                                        <DataGridTextColumn
+                                            Width="180"
+                                            Binding="{Binding WorktypeName}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeName}"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding EndTime}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}"
+                                            IsReadOnly="False" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <!--#endregion Time Entry datagrid-->
+
+                                <!--#region Time etries Status bar-->
+                                <DockPanel
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Height="30"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Background="LightGray">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="55" />
+                                            <ColumnDefinition Width="35" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                Text="{x:Static p:Cultures.general_Amount}" />
+                                            <TextBlock VerticalAlignment="Center" Text=":" />
+                                        </StackPanel>
+                                        <TextBox
+                                            x:Name="RecordCountTimeRows"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            IsReadOnly="True" />
+                                        <TextBox
+                                            x:Name="textBoxStatusTimeRows"
+                                            Grid.Column="2"
+                                            Height="17"
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            Background="LightGray"
+                                            IsReadOnly="True" />
+                                    </Grid>
+                                </DockPanel>
+                                <!--#endregion Order Row Status bar-->
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion Time Management-->
+
+                    <!--#region Usage Management-->
+                    <TabItem Header="{x:Static p:Cultures.TimeManagement_TabItemHeader_Product}" Style="{DynamicResource Default TabItem}">
+                        <Grid>
+                            <StackPanel Margin="5">
+                                <!--#region Product Usage entry: General field area-->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="10" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        IsEnabled="False"
+                                        Text="{x:Static p:Cultures.TimeManagement_Field_Date}" />
+                                    <TextBox x:Name="dispSelectedDate" Grid.Row="0" Grid.Column="2" IsEnabled="False"/>
+                                </Grid>
+                                <!--#endregion Product Usage entry: General field area-->
+
+                                <!--#region Product Usage Toolbar for datagrid-->
+                                <ToolBarTray Margin="3" Style="{DynamicResource DefaultToolBarTray}">
+                                    <ToolBar
+                                        x:Name="ProductUsageEntryToolbar"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Style="{DynamicResource DefaultToolBar}">
+                                        <Button
+                                            x:Name="ToolbarButtonNewProductUsageEntry"
+                                            Click="ProductUsageToolbarButtonNew"
+                                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_New}">
+                                            <Image Style="{DynamicResource ToolBarAddIcon}" />
+                                        </Button>
+                                        <Button
+                                            x:Name="ToolbarButtonDeleteProductUsageEntry"
+                                            Click="ProductUsageToolbarButtonDelete"
+                                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Delete}">
+                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                                <!--#endregion Product Usage Toolbar for datagrid-->
+                                
+                                <!--#region Product Usage Entry datagrid-->
+                                <DataGrid
+                                    x:Name="ProductUsage_DataGrid"
+                                    Height="545"
+                                    Padding="3"
+                                    d:ItemsSource="{d:SampleData}"
+                                    ItemsSource="{Binding}"
+                                    SelectionChanged="ProductUsage_DataGrid_SelectionChanged"
+                                    Style="{DynamicResource DefaultDataGrid}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding Id}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Id}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding ProjectId}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding ProductId}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProductId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding CategoryId}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_CategoryId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridComboBoxColumn
+                                            x:Name="cboxProjectProduct"
+                                            Width="210"
+                                            DisplayMemberPath="ProjectName"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectName}"
+                                            IsReadOnly="False"
+                                            ItemsSource="{Binding Project}"
+                                            SelectedValueBinding="{Binding ProjectId, Mode=TwoWay}"
+                                            SelectedValuePath="ProjectId" />
+                                        <DataGridComboBoxColumn
+                                            x:Name="cboxProduct"
+                                            Width="*"
+                                            DisplayMemberPath="ProductName"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProductName}"
+                                            IsReadOnly="False"
+                                            ItemsSource="{Binding Product}"
+                                            SelectedValueBinding="{Binding ProductId, Mode=TwoWay}"
+                                            SelectedValuePath="ProductId" />
+                                        <DataGridTextColumn
+                                            Width="210"
+                                            Binding="{Binding CategoryName}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_CategoryName}"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding AmountUsed, Mode=TwoWay}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_AmountUsed}"
+                                            IsReadOnly="False" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <!--#endregion Product Usage Entry datagrid-->
+                                
+                                <!--#region Product Usage Status bar-->
+                                <DockPanel
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Height="30"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Background="LightGray">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="55" />
+                                            <ColumnDefinition Width="35" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                Text="{x:Static p:Cultures.general_Amount}" />
+                                            <TextBlock VerticalAlignment="Center" Text=":" />
+                                        </StackPanel>
+                                        <TextBox
+                                            x:Name="RecordCountProductRows"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            IsReadOnly="True" />
+                                        <TextBox
+                                            x:Name="textBoxStatusProductRows"
+                                            Grid.Column="2"
+                                            Height="17"
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            Background="LightGray"
+                                            IsReadOnly="True" />
+                                    </Grid>
+                                </DockPanel>
+                                <!--#endregion Product Usage Row Status bar-->
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion Usage Management-->
+
+                </TabControl>
+                <!--  #end region Time and usage Management  -->
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>

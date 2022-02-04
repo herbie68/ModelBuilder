@@ -6,7 +6,7 @@ public partial class storageOrder : Page
     private DataTable _dt, _dtSC;
     private int _dbRowCount, _dbRowCountSC;
     private int _currentDataGridIndex;
-    private string DbProductSupplierTable = "productsupplier";
+    private readonly string DbProductSupplierTable = "productsupplier";
 
     public storageOrder()
     {
