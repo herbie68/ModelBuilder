@@ -1062,7 +1062,7 @@ internal class HelperGeneral
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "Name, Id";
+        dbConnection.SqlSelectionString = "Name, Id, ParentId";
         dbConnection.SqlOrderByString = "Fullpath";
         dbConnection.TableName = DatabaseTable;
 
@@ -1070,11 +1070,27 @@ internal class HelperGeneral
 
         for (int i = 0; i < dtSelection.Rows.Count; i++)
         {
-            worktypeList.Add ( new Worktype
+            if(dtSelection.Rows[i][2] == DBNull.Value) 
             {
-                WorktypeName = dtSelection.Rows[i][0].ToString (),
-                WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture )
-            } );
+                worktypeList.Add ( new Worktype
+                {
+                    WorktypeName = dtSelection.Rows[i][0].ToString (),
+                    WorktypeDisplayName = dtSelection.Rows[i][0].ToString (),
+                    WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture ),
+                    WorktypeParentId = 0
+                } );
+            }
+            else 
+            {
+                worktypeList.Add ( new Worktype
+                {
+                    WorktypeName = "    " + dtSelection.Rows[i][0].ToString (),
+                    WorktypeDisplayName = dtSelection.Rows[i][0].ToString (),
+                    WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture ),
+                    WorktypeParentId = int.Parse ( dtSelection.Rows[i][2].ToString (), Culture )
+                } );
+            }
+
         }
         return worktypeList;
     }
@@ -1085,13 +1101,7 @@ internal class HelperGeneral
     #region Create object for all brands in table for dropdown
     public class Brand
     {
-        /// <summary>
-        /// Gets or Sets the brand name.
-        /// </summary>
         public string BrandName { get; set; }
-        /// <summary>
-        /// Gets or Sets the brand id.
-        /// </summary>
         public int BrandId { get; set; }
     }
     #endregion Create object for all brands in table for dropdown
@@ -1099,13 +1109,7 @@ internal class HelperGeneral
     #region Create object for all categories in table for dropdown
     public class Category
     {
-        /// <summary>
-        /// Gets or Sets the category name.
-        /// </summary>
         public string CategoryName { get; set; }
-        /// <summary>
-        /// Gets or Sets the category id.
-        /// </summary>
         public int CategoryId { get; set; }
     }
     #endregion
@@ -1113,13 +1117,7 @@ internal class HelperGeneral
     #region Create object for all contacttypes in table for dropdown
     public class ContactType
     {
-        /// <summary>
-        /// Gets or Sets the contact type name.
-        /// </summary>
         public string ContactTypeName { get; set; }
-        /// <summary>
-        /// Gets or Sets the contact type id.
-        /// </summary>
         public int ContactTypeId { get; set; }
     }
     #endregion
@@ -1135,13 +1133,7 @@ internal class HelperGeneral
     #region Create object for all currencies in table for dropdown
     public class Currency
     {
-        /// <summary>
-        /// Gets or Sets the currency symbol.
-        /// </summary>
         public string CurrencySymbol { get; set; }
-        /// <summary>
-        /// Gets or Sets the currency id.
-        /// </summary>
         public int CurrencyId { get; set; }
     }
     #endregion Create object for all currencies in table for dropdown
@@ -1157,13 +1149,7 @@ internal class HelperGeneral
     #region Create object for all products in table for dropdown
     public class Product
     {
-        /// <summary>
-        /// Gets or Sets the product name.
-        /// </summary>
         public string ProductName { get; set; }
-        /// <summary>
-        /// Gets or Sets the product id.
-        /// </summary>
         public int ProductId { get; set; }
     }
     #endregion Create object for all products in table for dropdown    
@@ -1171,13 +1157,7 @@ internal class HelperGeneral
     #region Create object for all storage locations in table for dropdown
     public class Storage
     {
-        /// <summary>
-        /// Gets or Sets the storage name.
-        /// </summary>
         public string StorageName { get; set; }
-        /// <summary>
-        /// Gets or Sets the storage id.
-        /// </summary>
         public int StorageId { get; set; }
     }
     #endregion Create object for all storage locations in table for dropdown
@@ -1185,21 +1165,9 @@ internal class HelperGeneral
     #region Create object for all suppliers in table for dropdown
     public class Supplier
     {
-        /// <summary>
-        /// Gets or Sets the supplier name.
-        /// </summary>
         public string SupplierName { get; set; }
-        /// <summary>
-        /// Gets or Sets the supplier id.
-        /// </summary>
         public int SupplierId { get; set; }
-        /// <summary>
-        /// Gets or Sets the supplier currency symbol.
-        /// </summary>
         public string SupplierCurrencySymbol { get; set; }
-        /// <summary>
-        /// Gets or Sets the supplier currency id.
-        /// </summary>
         public int SupplierCurrencyId { get; set; }
     }
     #endregion Create object for all suppliers in table for dropdown
@@ -1207,13 +1175,7 @@ internal class HelperGeneral
     #region Create object for all units in table for dropdown
     public class Unit
     {
-        /// <summary>
-        /// Gets or Sets the unit name.
-        /// </summary>
         public string UnitName { get; set; }
-        /// <summary>
-        /// Gets or Sets the unit id.
-        /// </summary>
         public int UnitId { get; set; }
     }
     #endregion
@@ -1222,7 +1184,9 @@ internal class HelperGeneral
     public class Worktype
     {
         public string WorktypeName { get; set; }
+        public string WorktypeDisplayName { get; set; }
         public int WorktypeId { get; set; }
+        public int WorktypeParentId { get; set; }
     }
     #endregion
     #endregion Helper classes to for creating objects to populate dropdowns

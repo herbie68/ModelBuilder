@@ -161,10 +161,12 @@ public partial class timemanagement : Page
             if(inpEntryDate.Text == "")
             {
                 TBAddButtonEnable.Text = "Collapsed";
+                cboxTimeEntryEditable.IsChecked = false;
             }
             else
             {
                 TBAddButtonEnable.Text = "Visible";
+                    cboxTimeEntryEditable.IsChecked = true; ;
             }
         }
 
@@ -179,10 +181,12 @@ public partial class timemanagement : Page
         if (valueProjectId.Text == "") 
         {
             TBAddButtonEnable.Text = "Collapsed";
+            cboxTimeEntryEditable.IsChecked = false;
         }
         else
         {
             TBAddButtonEnable.Text = "Visible";
+            cboxTimeEntryEditable.IsChecked = true;
         }
 
     }
@@ -190,6 +194,9 @@ public partial class timemanagement : Page
 
     private void cboxWorktype_SelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
-
+        foreach (HelperGeneral.Worktype item in e.AddedItems)
+        {
+            valueSelectedWorktype.Text = item.WorktypeDisplayName.ToString ();
+        }
     }
 }

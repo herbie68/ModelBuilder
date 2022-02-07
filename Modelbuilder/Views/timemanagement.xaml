@@ -30,6 +30,7 @@
         <DataTemplate x:Key="WorktypeComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=WorktypeName}" />
+                <TextBlock Text="{Binding Path=WorktypeDisplayName}" Visibility="Hidden"/>
                 <TextBlock Text="{Binding Path=WorktypeId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
@@ -70,6 +71,7 @@
                         <TextBox x:Name="valueStockId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStocklogId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStoredAmount" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueSelectedWorktype" Style="{DynamicResource HiddenTextBox}" Width="30" />
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
@@ -157,7 +159,7 @@
                                         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"/>
                                         <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Width="70" x:Name="dispStartTime" IsEnabled="False"/>
                                         <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeName}"/>
-                                        <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource WorktypeComboTemplate}"  TextSearch.TextPath="worktypeName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource WorktypeComboTemplate}"  TextSearch.TextPath="worktypeDisplayName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <TextBlock Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <TextBox Grid.Row="1" Grid.Column="5" Width="Auto" x:Name="inpComment" />
 
