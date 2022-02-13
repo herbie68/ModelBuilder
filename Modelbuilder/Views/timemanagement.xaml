@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Modelbuilder"
+    xmlns:local="clr-namespace:Modelbuilder" 
+    xmlns:t="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Modelbuilder.Languages"
     Title="timemanagement"
@@ -26,11 +27,68 @@
                 <TextBlock Text="{Binding Path=ProductId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
+        
+        <DataTemplate x:Key="HourComboTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="00" IsEnabled="True"/>
+                <TextBlock Text="01" IsEnabled="True"/>
+                <TextBlock Text="02" IsEnabled="True"/>
+                <TextBlock Text="03" IsEnabled="True"/>
+                <TextBlock Text="04" IsEnabled="True"/>
+                <TextBlock Text="05" IsEnabled="True"/>
+                <TextBlock Text="06" IsEnabled="True"/>
+                <TextBlock Text="07" IsEnabled="True"/>
+                <TextBlock Text="08" IsEnabled="True"/>
+                <TextBlock Text="09" IsEnabled="True"/>
+                <TextBlock Text="10" IsEnabled="True"/>
+                <TextBlock Text="11" IsEnabled="True"/>
+                <TextBlock Text="12" IsEnabled="True"/>
+                <TextBlock Text="13" IsEnabled="True"/>
+                <TextBlock Text="14" IsEnabled="True"/>
+                <TextBlock Text="15" IsEnabled="True"/>
+                <TextBlock Text="16" IsEnabled="True"/>
+                <TextBlock Text="17" IsEnabled="True"/>
+                <TextBlock Text="18" IsEnabled="True"/>
+                <TextBlock Text="19" IsEnabled="True"/>
+                <TextBlock Text="20" IsEnabled="True"/>
+                <TextBlock Text="21" IsEnabled="True"/>
+                <TextBlock Text="22" IsEnabled="True"/>
+                <TextBlock Text="23" IsEnabled="True"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MinuteComboTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="00" IsEnabled="True"/>
+                <TextBlock Text="05" IsEnabled="True"/>
+                <TextBlock Text="10" IsEnabled="True"/>
+                <TextBlock Text="15" IsEnabled="True"/>
+                <TextBlock Text="20" IsEnabled="True"/>
+                <TextBlock Text="25" IsEnabled="True"/>
+                <TextBlock Text="30" IsEnabled="True"/>
+                <TextBlock Text="35" IsEnabled="True"/>
+                <TextBlock Text="40" IsEnabled="True"/>
+                <TextBlock Text="45" IsEnabled="True"/>
+                <TextBlock Text="50" IsEnabled="True"/>
+                <TextBlock Text="55" IsEnabled="True"/>
+            </StackPanel>
+        </DataTemplate>
 
         <DataTemplate x:Key="WorktypeComboTemplate">
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=WorktypeSpacer}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, Path=IsSelected}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <TextBlock Text="{Binding Path=WorktypeName}" />
-                <TextBlock Text="{Binding Path=WorktypeDisplayName}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=WorktypeFullpath}" Visibility="Hidden"/>
                 <TextBlock Text="{Binding Path=WorktypeId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
@@ -70,13 +128,15 @@
                         <TextBox x:Name="valueStorageId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStockId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStocklogId" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueStartTime" Style="{DynamicResource HiddenTextBox}" />
+                        <TextBox x:Name="valueEndTime" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStoredAmount" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueSelectedWorktype" Style="{DynamicResource HiddenTextBox}" Width="30" />
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBTimeErrorVisible" Text="Collapsed"/>
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBSaveButtonEnable" Text="Collapsed"/>
-                        
                     </StackPanel>
                     <!--  End of "Do not remove" part  -->
                     <!--#endregion Hiddenfields-->
@@ -150,18 +210,38 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="20" />
                                             <RowDefinition Height="25" />
+                                            <RowDefinition Height="20" />
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"/>
-                                        <TextBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="70" x:Name="inpStartTime" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpStartHour"  
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyHourInput" MaxLength="2" TextChanged="TimeEntryChanged"/>
+                                            <TextBlock Margin="3" Text=":"/>
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpStartMinute" 
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyMinuteInput" MaxLength="2" TextChanged="TimeEntryChanged"/>
+                                        </StackPanel>
                                         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"/>
-                                        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="70" x:Name="inpEndtTime" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"/>
-                                        <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Width="70" x:Name="dispStartTime" IsEnabled="False"/>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpEndHour"
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyHourInput" MaxLength="2" TextChanged="TimeEntryChanged"/>
+                                            <TextBlock Margin="3" Text=":"/>
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpEndMinute"  
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyMinuteInput" MaxLength="2" TextChanged="TimeEntryChanged" LostFocus="CheckEndTime"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding ElementName=TBTimeErrorVisible, Path=Text}">
+                                            <Image Source=".\..\Resources\warning.png" Height="20" Width="20" HorizontalAlignment="Right" />
+                                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Static p:Cultures.TimeManagement_TimeEntryError}" Foreground="Red" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"/>
+                                        <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Width="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" x:Name="dispElapsedTime" IsEnabled="False"/>
                                         <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeName}"/>
-                                        <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource WorktypeComboTemplate}"  TextSearch.TextPath="worktypeDisplayName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
+                                        <ComboBox Style="{DynamicResource DefaultComboBox}" 
+                                                  ItemTemplate="{StaticResource WorktypeComboTemplate}" 
+                                                  SelectedItem="{Binding SelectedObject.worktypeName}" TextSearch.TextPath="worktypeName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <TextBlock Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <TextBox Grid.Row="1" Grid.Column="5" Width="Auto" x:Name="inpComment" />
+                                        <Image x:Name="image" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="65" Margin="40,18,0,0" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
 
                                     </Grid>
 

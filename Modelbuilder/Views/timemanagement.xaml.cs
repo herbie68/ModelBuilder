@@ -1,13 +1,13 @@
-﻿namespace Modelbuilder;
+﻿using System.Text.RegularExpressions;
+
+namespace Modelbuilder;
 
 public partial class timemanagement : Page
 {
     private HelperGeneral _helperGeneral;
     private HelperProduct _helperProduct;
     private DataTable _dt;
-    private DataTable _dtPS;
     private int _dbRowCount;
-    private int _currentDataGridIndex;
     public timemanagement()
     {
         var ProjectList = new List<HelperGeneral.Project>();
@@ -192,11 +192,74 @@ public partial class timemanagement : Page
     }
     #endregion Selection changed: Date
 
+    #region Selection changed on Combobox: cboxWorktype
     private void cboxWorktype_SelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
         foreach (HelperGeneral.Worktype item in e.AddedItems)
         {
-            valueSelectedWorktype.Text = item.WorktypeDisplayName.ToString ();
+            valueSelectedWorktype.Text = item.WorktypeName.ToString ();
+            valueWorktypeId.Text = item.WorktypeId.ToString ();
         }
     }
+    #endregion Selection changed on Combobox: cboxWorktype
+
+    #region Make Time entries Numeric Only, and validate entered hours or minutes
+    #region Handle Input of hours
+    private void OnlyHourInput ( object sender, TextCompositionEventArgs e )
+    {
+        Regex regex = new Regex ( "[^0-9]+" );
+        //e.Handled = regex.IsMatch ( e.Text );
+        e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 23 );
+    }
+    #endregion Handle Input of hours
+
+    #region Handle Input of minutes
+    private void OnlyMinuteInput ( object sender, TextCompositionEventArgs e )
+    {
+        Regex regex = new Regex ( "[^0-9]+" );
+        //e.Handled = regex.IsMatch ( e.Text );
+        e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 59 );
+    }
+    #endregion Handle Input of minutes
+
+    public static bool IsValidTime(string content, int min, int max )
+    {
+        int i;
+        return int.TryParse ( content, out i ) && i >= min && i <= max;
+    }
+    #endregion Make Time entries Numeric Only
+
+    #region Calculate entered time to minutes and calculate elapsed time
+    private void TimeEntryChanged ( object sender, TextChangedEventArgs e )
+    {
+        TBTimeErrorVisible.Text = "Collapsed";
+        if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty) { valueStartTime.Text = (int.Parse ( inpStartHour.Text ) * 60 + int.Parse ( inpStartMinute.Text )).ToString (); }
+        if (inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty) { valueEndTime.Text = (int.Parse ( inpEndHour.Text ) * 60 + int.Parse ( inpEndMinute.Text )).ToString (); }
+        if (valueStartTime.Text != string.Empty && valueEndTime.Text != string.Empty)
+        {
+            var ElapsedTotalMinutes = int.Parse ( valueEndTime.Text ) - int.Parse ( valueStartTime.Text );
+            var ElapsedHours = ("0" + (ElapsedTotalMinutes / 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes / 60).ToString ()).Length - 2, 2 );
+            var temp1 = (ElapsedTotalMinutes / 60).ToString ();
+            var temp2 = ("0" + (ElapsedTotalMinutes / 60).ToString ());
+            var temp3 = temp2.Length;
+            var ElapsedMinutes = ("0" + (ElapsedTotalMinutes % 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes % 60).ToString ()).Length - 2, 2 );
+            dispElapsedTime.Text = ElapsedHours + ":" + ElapsedMinutes;
+        }
+    }
+    #endregion Calculate entered time to minutes and calculate elapsed time
+
+    #region Check if entered enttime is after the entered starttime
+    private void CheckEndTime ( object sender, RoutedEventArgs e )
+    {
+        // If a end time has been entered this should be bigger then the starting time, if this is incorrect a message will be shown, fields EndHour and EndMinute will be cleared and Focus on EndHour field
+       if(int.Parse(valueStartTime.Text) > int.Parse ( valueEndTime.Text ))
+        {
+            inpEndHour.Text = String.Empty;
+            inpEndMinute.Text = String.Empty;
+            TBTimeErrorVisible.Text = "Visible";
+            inpEndHour.Focusable = true;
+            inpEndHour.Focus ();
+        }
+    }
+    #endregion Check if entered enttime is after the entered starttime
 }

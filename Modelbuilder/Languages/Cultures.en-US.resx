@@ -769,4 +769,7 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
     <value>Save entered values</value>
   </data>
+  <data name="TimeManagement.TimeEntryError" xml:space="preserve">
+    <value>End time is before the start time</value>
+  </data>
 </root>

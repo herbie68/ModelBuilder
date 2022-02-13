@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using System.Windows.Controls.Primitives;
 
 namespace Modelbuilder;
@@ -1062,7 +1063,7 @@ internal class HelperGeneral
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "Name, Id, ParentId";
+        dbConnection.SqlSelectionString = "Name, Id, ParentId, FullPath";
         dbConnection.SqlOrderByString = "Fullpath";
         dbConnection.TableName = DatabaseTable;
 
@@ -1075,20 +1076,26 @@ internal class HelperGeneral
                 worktypeList.Add ( new Worktype
                 {
                     WorktypeName = dtSelection.Rows[i][0].ToString (),
-                    WorktypeDisplayName = dtSelection.Rows[i][0].ToString (),
                     WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture ),
                     WorktypeParentId = 0
                 } );
             }
             else 
             {
+                // In the Fullpath the dept of the item is visible by the number of \ in the fullpath
+                //string _tempString = dtSelection.Rows[i][3].ToString ();
+                //char _tempChar = '\\';
+                var freq = dtSelection.Rows[i][3].ToString ().Count ( f => (f == '\\') );
+                string _spacer = new string ( ' ', freq * 3 );
+                //int freq = _tempString.Count(f => (f == _tempChar));
+
                 worktypeList.Add ( new Worktype
                 {
-                    WorktypeName = "    " + dtSelection.Rows[i][0].ToString (),
-                    WorktypeDisplayName = dtSelection.Rows[i][0].ToString (),
+                    WorktypeSpacer = _spacer,
+                    WorktypeName = dtSelection.Rows[i][0].ToString (),
                     WorktypeId = int.Parse ( dtSelection.Rows[i][1].ToString (), Culture ),
                     WorktypeParentId = int.Parse ( dtSelection.Rows[i][2].ToString (), Culture )
-                } );
+                } ); ;
             }
 
         }
@@ -1184,7 +1191,8 @@ internal class HelperGeneral
     public class Worktype
     {
         public string WorktypeName { get; set; }
-        public string WorktypeDisplayName { get; set; }
+        public string WorktypeSpacer { get; set; }
+        public string WorktypeFullpath { get; set; }
         public int WorktypeId { get; set; }
         public int WorktypeParentId { get; set; }
     }

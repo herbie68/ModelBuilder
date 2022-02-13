@@ -117,6 +117,7 @@
     <None Remove="Resources\toolbarSmallSave.png" />
     <None Remove="Resources\toolbarStart.png" />
     <None Remove="Resources\trashbin.png" />
+    <None Remove="Resources\warning.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -124,9 +125,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
-    <PackageReference Include="Caliburn.Micro.Core" Version="4.0.173" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="MySql.Data" Version="8.0.27" />
   </ItemGroup>
@@ -456,6 +454,9 @@
     <Resource Include="Resources\trashbin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -483,10 +484,6 @@
     <Page Update="Views\metadataWorktype.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
   </ItemGroup>
 
 </Project>

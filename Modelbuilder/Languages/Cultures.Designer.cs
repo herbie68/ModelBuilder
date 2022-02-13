@@ -1880,6 +1880,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eindtijd ligt voor de starttijd.
+        /// </summary>
+        public static string TimeManagement_TimeEntryError {
+            get {
+                return ResourceManager.GetString("TimeManagement.TimeEntryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geselecteerde regel verwijderen.
         /// </summary>
         public static string toolbarButton_Action_Delete {

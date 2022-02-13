@@ -769,4 +769,7 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
     <value>Eingefuhrte data Speichern</value>
   </data>
+  <data name="TimeManagement.TimeEntryError" xml:space="preserve">
+    <value>Die Endzeit liegt vor der Startzeit</value>
+  </data>
 </root>

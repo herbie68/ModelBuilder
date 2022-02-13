@@ -769,4 +769,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
     <value>Ingevoerde gegevens opslaan</value>
   </data>
+  <data name="TimeManagement.TimeEntryError" xml:space="preserve">
+    <value>Eindtijd ligt voor de starttijd</value>
+  </data>
 </root>
