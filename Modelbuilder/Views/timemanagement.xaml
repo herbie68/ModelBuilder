@@ -310,17 +310,35 @@
                                             Width="70"
                                             Binding="{Binding StartTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"
-                                            IsReadOnly="True" />
+                                            IsReadOnly="True" >
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
                                         <DataGridTextColumn
                                             Width="70"
                                             Binding="{Binding EndTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"
-                                            IsReadOnly="True" />
+                                            IsReadOnly="True" >
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
                                         <DataGridTextColumn
                                             Width="80"
                                             Binding="{Binding ElapsedTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"
-                                            IsReadOnly="True" />
+                                            IsReadOnly="True" >
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
                                         <DataGridTextColumn
                                             Width="180"
                                             Binding="{Binding WorktypeName}"

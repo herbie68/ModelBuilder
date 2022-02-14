@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 using static Modelbuilder.HelperClass;
 
@@ -203,7 +204,6 @@ public partial class timemanagement : Page
     #region Selection changed: Date
     private void DataPickerSelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
-        // TODO: When date selected, check if there is data in the datagrid and if yes Get the project_Id too set the Project Combobox
         GetTimeEntryData();
         if (valueProjectId.Text == "") 
         {
@@ -224,7 +224,32 @@ public partial class timemanagement : Page
                 TBAddButtonEnable.Text = "Collapsed";
             }
         }
+        // Check if there are records for the selected date
+        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
+        { { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text } });
 
+        if (_RecordCount > 0)
+        {
+            var ProjectId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbTimeTable, new string[1, 3]
+            { { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text } }, new string[1, 3]
+            { { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId, "" }}));
+
+            var _tempProject = _helperGeneral.GetValueFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
+            { { HelperGeneral.DbProductUsageViewFieldNameProjectId, HelperGeneral.DbProductUsageViewFieldTypeProjectId, ProjectId.ToString() } }, new string[1, 3]
+            { { HelperGeneral.DbProductUsageViewFieldNameProjectName, HelperGeneral.DbProductUsageViewFieldTypeProjectName, "" }});
+
+            valueProductId.Text = ProjectId.ToString();
+
+            //Select the saved project in the combobox
+            foreach (HelperGeneral.Project project in cboxProject.Items)
+            {
+                if (project.ProjectName == _tempProject)
+                {
+                    cboxProject.SelectedItem = project;
+                    break;
+                }
+            }
+        }
     }
     #endregion Selection changed: Date
 

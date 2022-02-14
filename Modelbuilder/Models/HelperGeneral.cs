@@ -362,7 +362,7 @@ internal class HelperGeneral
         double resultDouble;
         float resultFloat;
 
-        if (Fields[0, 1].ToLower() == "string" || Fields[0, 1].ToLower() == "date") { resultString = (string)cmd.ExecuteScalar(); };
+        if (Fields[0, 1].ToLower() == "string" || Fields[0, 1].ToLower() == "date" || Fields[0, 1].ToLower() == "time") { resultString = (string)cmd.ExecuteScalar(); };
         if (Fields[0, 1].ToLower() == "int") { resultInt = (int)cmd.ExecuteScalar(); resultString = resultInt.ToString(); };
         if (Fields[0, 1].ToLower() == "double") { resultDouble = (double)cmd.ExecuteScalar(); resultString = resultDouble.ToString(); };
         if (Fields[0, 1].ToLower() == "float") { resultFloat = (float)cmd.ExecuteScalar(); resultString = resultFloat.ToString(); };
