@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
+using static Modelbuilder.HelperClass;
+
 namespace Modelbuilder;
 
 public partial class timemanagement : Page
@@ -8,6 +10,8 @@ public partial class timemanagement : Page
     private HelperProduct _helperProduct;
     private DataTable _dt;
     private int _dbRowCount;
+    private HelperClass az;
+
     public timemanagement()
     {
         var ProjectList = new List<HelperGeneral.Project>();
@@ -86,11 +90,23 @@ public partial class timemanagement : Page
     #endregion Datagrid selection changed on Product usage
 
     #region Clicked button: Add new Time entry row
-    private void TimeToolbarButtonNew ( object sender, RoutedEventArgs e )
+    private void TimeToolbarButtonNew(object sender, RoutedEventArgs e)
     {
-        _helperGeneral.InsertInTable ( HelperGeneral.DbTimeTable, new string[2, 3] 
+        az = new HelperClass();
+        // Save Date AS date, Project_Id AS int, Worktype_Id AS int, StartTime AS time, EndTime AS time, Comment AS varchar
+        var StartTime = az.AddZeros(inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros(inpStartMinute.Text.Trim(), 2) + ":00";
+        var EndTime = az.AddZeros(inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros(inpEndMinute.Text.Trim(), 2) + ":00";
+        var Comment = "";
+
+        if (inpComment.Text != string.Empty) { Comment = inpComment.Text; }
+        _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[6, 3]
         {   { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text },
-            { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId,valueProjectId.Text} }) ;
+            { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId,valueProjectId.Text},
+            { HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldTypeStartTime, StartTime },
+            { HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldTypeEndTime, EndTime },
+            { HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldTypeWorktypeId, valueWorktypeId.Text },
+            { HelperGeneral.DbTimeTableFieldNameComment, HelperGeneral.DbTimeTableFieldTypeComment, Comment }
+        });
 
         valueTimeId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbTimeTable).ToString();
 
@@ -160,13 +176,23 @@ public partial class timemanagement : Page
             valueProjectId.Text = project.ProjectId.ToString();
             if(inpEntryDate.Text == "")
             {
+                TBAddTimeEntryEnable.Text = "Collapsed";
                 TBAddButtonEnable.Text = "Collapsed";
                 cboxTimeEntryEditable.IsChecked = false;
             }
             else
             {
-                TBAddButtonEnable.Text = "Visible";
-                    cboxTimeEntryEditable.IsChecked = true; ;
+                TBAddTimeEntryEnable.Text = "Visible";
+                cboxTimeEntryEditable.IsChecked = true;
+                // check time entries, if also available add button can become visible
+                if(inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+                {
+                    TBAddButtonEnable.Text = "Visible";
+                }
+                else
+                {
+                    TBAddButtonEnable.Text = "Collapsed";
+                }
             }
         }
 
@@ -177,16 +203,26 @@ public partial class timemanagement : Page
     #region Selection changed: Date
     private void DataPickerSelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
+        // TODO: When date selected, check if there is data in the datagrid and if yes Get the project_Id too set the Project Combobox
         GetTimeEntryData();
         if (valueProjectId.Text == "") 
         {
-            TBAddButtonEnable.Text = "Collapsed";
+            TBAddTimeEntryEnable.Text = "Collapsed";
             cboxTimeEntryEditable.IsChecked = false;
         }
         else
         {
-            TBAddButtonEnable.Text = "Visible";
+            TBAddTimeEntryEnable.Text = "Visible";
             cboxTimeEntryEditable.IsChecked = true;
+            // check time entries, if also available add button can become visible
+            if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+            {
+                TBAddButtonEnable.Text = "Visible";
+            }
+            else
+            {
+                TBAddButtonEnable.Text = "Collapsed";
+            }
         }
 
     }
@@ -200,6 +236,16 @@ public partial class timemanagement : Page
             valueSelectedWorktype.Text = item.WorktypeName.ToString ();
             valueWorktypeId.Text = item.WorktypeId.ToString ();
         }
+        // check time entries, if also available add button can become visible
+        if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+        {
+            TBAddButtonEnable.Text = "Visible";
+        }
+        else
+        {
+            TBAddButtonEnable.Text = "Collapsed";
+        }
+
     }
     #endregion Selection changed on Combobox: cboxWorktype
 
@@ -244,6 +290,15 @@ public partial class timemanagement : Page
             var temp3 = temp2.Length;
             var ElapsedMinutes = ("0" + (ElapsedTotalMinutes % 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes % 60).ToString ()).Length - 2, 2 );
             dispElapsedTime.Text = ElapsedHours + ":" + ElapsedMinutes;
+        }
+        // check time entries, if also available add button can become visible
+        if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+        {
+            TBAddButtonEnable.Text = "Visible";
+        }
+        else
+        {
+            TBAddButtonEnable.Text = "Collapsed";
         }
     }
     #endregion Calculate entered time to minutes and calculate elapsed time

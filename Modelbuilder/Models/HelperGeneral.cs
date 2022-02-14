@@ -84,7 +84,9 @@ internal class HelperGeneral
     public static string DbTimeTableFieldNameStartTime = "StartTime";
     public static string DbTimeTableFieldTypeStartTime = "time";
     public static string DbTimeTableFieldNameEndTime = "EndTime";
-    public static string DbTimeTableFieldTypeEndTime = "Time";
+    public static string DbTimeTableFieldTypeEndTime = "time";
+    public static string DbTimeTableFieldNameComment = "Comment";
+    public static string DbTimeTableFieldTypeComment = "string";
 
     public static string DbTimeView = "view_time";
     public static string DbTimeViewFieldNameId = "Id";
@@ -102,7 +104,7 @@ internal class HelperGeneral
     public static string DbTimeViewFieldNameStartTime = "StartTime";
     public static string DbTimeViewFieldTypeStartTime = "time";
     public static string DbTimeViewFieldNameEndTime = "EndTime";
-    public static string DbTimeViewFieldTypeEndTime = "Time";
+    public static string DbTimeViewFieldTypeEndTime = "time";
     #endregion Time
 
     #region ProductUsage
@@ -696,6 +698,9 @@ internal class HelperGeneral
                         String[] _tempDates = Fields[i, 2].Split("-");
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = Fields[i, 2];
                         break;
                 }
             }

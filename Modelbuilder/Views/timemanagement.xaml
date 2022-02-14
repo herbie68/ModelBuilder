@@ -107,7 +107,7 @@
                 <!--  region Title of the page  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -135,6 +135,7 @@
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBTimeErrorVisible" Text="Collapsed"/>
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddTimeEntryEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBSaveButtonEnable" Text="Collapsed"/>
                     </StackPanel>
@@ -271,7 +272,7 @@
                                             x:Name="ToolbarButtonDeleteTimeEntry" Padding="0"
                                             Click="TimeToolbarButtonDelete"
                                             ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_Delete}">
-                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" />
+                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" Visibility="{Binding ElementName=TBSaveButtonEnable, Path=Text}"/>
                                         </Button>
                                     </ToolBar>
                                 </ToolBarTray>
@@ -309,17 +310,17 @@
                                             Width="70"
                                             Binding="{Binding StartTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"
-                                            IsReadOnly="False" />
+                                            IsReadOnly="True" />
                                         <DataGridTextColumn
                                             Width="70"
                                             Binding="{Binding EndTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"
-                                            IsReadOnly="False" />
+                                            IsReadOnly="True" />
                                         <DataGridTextColumn
                                             Width="80"
-                                            Binding="{Binding EndTime}"
+                                            Binding="{Binding ElapsedTime}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"
-                                            IsReadOnly="False" />
+                                            IsReadOnly="True" />
                                         <DataGridTextColumn
                                             Width="180"
                                             Binding="{Binding WorktypeName}"
@@ -327,9 +328,9 @@
                                             IsReadOnly="True" />
                                         <DataGridTextColumn
                                             Width="*"
-                                            Binding="{Binding EndTime}"
+                                            Binding="{Binding Comment}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}"
-                                            IsReadOnly="False" />
+                                            IsReadOnly="True" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <!--#endregion Time Entry datagrid-->

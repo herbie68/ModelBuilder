@@ -5,14 +5,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `time`;
 CREATE TABLE IF NOT EXISTS `time` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `project_Id` int NOT NULL DEFAULT '0',
   `worktype_Id` int NOT NULL DEFAULT '0',
   `Date` date NOT NULL,
-  `StartTime` time NOT NULL,
-  `EndTime` time NOT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL,
   `Comment` varchar(1050) NOT NULL DEFAULT '',
   `Created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -21,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `time` (
   KEY `FK_TimeWorktype_Id` (`worktype_Id`),
   CONSTRAINT `FK_TimeProject_Id` FOREIGN KEY (`project_Id`) REFERENCES `project` (`Id`),
   CONSTRAINT `FK_TimeWorktype_Id` FOREIGN KEY (`worktype_Id`) REFERENCES `worktype` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store the working time as entered in the Time Management page';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store the working time as entered in the Time Management page';
 
 DELETE FROM `time`;
 /*!40000 ALTER TABLE `time` DISABLE KEYS */;
