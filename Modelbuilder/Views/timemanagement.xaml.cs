@@ -56,7 +56,7 @@ public partial class timemanagement : Page
 
         // Get data from database
         _dt = _helperGeneral.GetData(HelperGeneral.DbTimeView, new string[1, 3]
-        {   {HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text } } );
+        {   {HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } } );
 
         // Populate data in datagrid from datatable
         Time_DataGrid.DataContext = _dt;
@@ -101,7 +101,7 @@ public partial class timemanagement : Page
 
         if (inpComment.Text != string.Empty) { Comment = inpComment.Text; }
         _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[6, 3]
-        {   { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text },
+        {   { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text },
             { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId,valueProjectId.Text},
             { HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldTypeStartTime, StartTime },
             { HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldTypeEndTime, EndTime },
@@ -224,19 +224,25 @@ public partial class timemanagement : Page
                 TBAddButtonEnable.Text = "Collapsed";
             }
         }
+
+        //String[] _tempDates = inpEntryDate.Text.Split("-");
+        //az = new HelperClass();
+        // Add leading zero's to date and month
+        //inpEntryDate.Text = az.AddZeros(_tempDates[0], 2) + "-" + az.AddZeros(_tempDates[1], 2) + _tempDates[2];
+
         // Check if there are records for the selected date
         var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
-        { { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text } });
+        { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
 
         if (_RecordCount > 0)
         {
             var ProjectId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbTimeTable, new string[1, 3]
-            { { HelperGeneral.DbTimeTableFieldNameDate, HelperGeneral.DbTimeTableFieldTypeDate, inpEntryDate.Text } }, new string[1, 3]
+            { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
             { { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId, "" }}));
 
             var _tempProject = _helperGeneral.GetValueFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
-            { { HelperGeneral.DbProductUsageViewFieldNameProjectId, HelperGeneral.DbProductUsageViewFieldTypeProjectId, ProjectId.ToString() } }, new string[1, 3]
-            { { HelperGeneral.DbProductUsageViewFieldNameProjectName, HelperGeneral.DbProductUsageViewFieldTypeProjectName, "" }});
+            { { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId, ProjectId.ToString() } }, new string[1, 3]
+            { { HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeName, "" }});
 
             valueProductId.Text = ProjectId.ToString();
 

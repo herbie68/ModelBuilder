@@ -30,7 +30,14 @@ internal class HelperGeneral
     public static string DbProductSupplierTableFieldTypeId = "int";
     public static string DbProductSupplierTableFieldNameProductId = "Product_Id";
     public static string DbProductSupplierTableFieldTypeProductId = "int";
+    
     public static string DbProjectTable = "project";
+    public static string DbProjectTableFieldNameId = "Id";
+    public static string DbProjectTableFieldTypeId = "int";
+    public static string DbProjectTableFieldNameName = "Name";
+    public static string DbProjectTableFieldTypeName = "string";
+    public static string DbProjectTableFieldNameCode = "Code";
+    public static string DbProjectTableFieldTypeCode = "string";
 
     public static string DbStockTable = "stock";
     public static string DbStockView = "view_stock";
@@ -79,8 +86,8 @@ internal class HelperGeneral
     public static string DbTimeTableFieldTypeProjectId = "int";
     public static string DbTimeTableFieldNameWorktypeId = "worktype_Id";
     public static string DbTimeTableFieldTypeWorktypeId = "int";
-    public static string DbTimeTableFieldNameDate = "Date";
-    public static string DbTimeTableFieldTypeDate = "date";
+    public static string DbTimeTableFieldNameWorkDate = "WorkDate";
+    public static string DbTimeTableFieldTypeWorkDate = "date";
     public static string DbTimeTableFieldNameStartTime = "StartTime";
     public static string DbTimeTableFieldTypeStartTime = "time";
     public static string DbTimeTableFieldNameEndTime = "EndTime";
@@ -99,12 +106,16 @@ internal class HelperGeneral
     public static string DbTimeViewFieldTypeProjectName = "string";
     public static string DbTimeViewFieldNameWorktypeName = "WorktypeName";
     public static string DbTimeViewFieldTypeWorktypeName = "string";
-    public static string DbTimeViewFieldNameDate = "Date";
+    public static string DbTimeViewFieldNameDate = "WorkDate";
     public static string DbTimeViewFieldTypeDate = "date";
     public static string DbTimeViewFieldNameStartTime = "StartTime";
-    public static string DbTimeViewFieldTypeStartTime = "time";
+    public static string DbTimeViewFieldTypeStartTime = "string";
     public static string DbTimeViewFieldNameEndTime = "EndTime";
-    public static string DbTimeViewFieldTypeEndTime = "time";
+    public static string DbTimeViewFieldTypeEndTime = "string";
+    public static string DbTimeViewFieldNameElapsedTime = "ELapsedTime";
+    public static string DbTimeViewFieldTypeElapsedTime = "string";
+    public static string DbTimeViewFieldNameComment = "Comment";
+    public static string DbTimeViewFieldTypeComment = "string";
     #endregion Time
 
     #region ProductUsage
@@ -181,6 +192,7 @@ internal class HelperGeneral
 
 
     public CultureInfo Culture = new("nl-NL");
+    private HelperClass az;
 
     public string SqlOrderByString { get; set; }
     public string SqlSelectionString { get; set; }
@@ -352,11 +364,15 @@ internal class HelperGeneral
                     break;
                 case "date":
                     String[] _tempDates = WhereFields[i, 2].Split("-");
-                    var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
-                    cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
+
+                    // Add leading zero's to date and month
+                    az = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + az.AddZeros(_tempDates[1], 2) + "-" + az.AddZeros(_tempDates[0], 2);
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
         }
+
         string resultString="";
         int resultInt;
         double resultDouble;
