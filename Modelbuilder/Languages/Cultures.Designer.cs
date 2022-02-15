@@ -1672,11 +1672,29 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opnieuw beginnen met de invoer.
+        /// </summary>
+        public static string TimeEntry_Toolbar_Button_Reset {
+            get {
+                return ResourceManager.GetString("TimeEntry.Toolbar.Button.Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ingevoerde gegevens opslaan.
         /// </summary>
         public static string TimeEntry_Toolbar_Button_Save {
             get {
                 return ResourceManager.GetString("TimeEntry.Toolbar.Button.Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale werktijd:.
+        /// </summary>
+        public static string Timemanagement_Datagrid_Footer_TotalElapsedTime {
+            get {
+                return ResourceManager.GetString("Timemanagement.Datagrid.Footer.TotalElapsedTime", resourceCulture);
             }
         }
         

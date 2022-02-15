@@ -772,4 +772,10 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeManagement.TimeEntryError" xml:space="preserve">
     <value>Eindtijd ligt voor de starttijd</value>
   </data>
+  <data name="Timemanagement.Datagrid.Footer.TotalElapsedTime" xml:space="preserve">
+    <value>Totale werktijd:</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Opnieuw beginnen met de invoer</value>
+  </data>
 </root>

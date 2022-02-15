@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Modelbuilder.Languages"
     Title="timemanagement"
-    d:DesignHeight="800"
+    d:DesignHeight="610"
     d:DesignWidth="1000"
     mc:Ignorable="d">
 
@@ -131,13 +131,15 @@
                         <TextBox x:Name="valueStartTime" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueEndTime" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStoredAmount" Style="{DynamicResource HiddenTextBox}" />
-                        <TextBox x:Name="valueSelectedWorktype" Style="{DynamicResource HiddenTextBox}" Width="30" />
+                        <TextBox x:Name="valueSelectedWorktype" Style="{DynamicResource HiddenTextBox}" />
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBTimeErrorVisible" Text="Collapsed"/>
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddTimeEntryEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBSaveButtonEnable" Text="Collapsed"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBResetButtonEnable" Text="Collapsed"/>
+
                     </StackPanel>
                     <!--  End of "Do not remove" part  -->
                     <!--#endregion Hiddenfields-->
@@ -151,7 +153,7 @@
                 <!--  endregion Title of the page  -->
 
                 <!--#region Time and usage Management-->
-                <TabControl Height="700" Style="{DynamicResource Default TabControl}">
+                <TabControl Height="500" Style="{DynamicResource Default TabControl}">
                     <!--#region Time Management-->
                     <TabItem Header="{x:Static p:Cultures.TimeManagement_TabItemHeader_Time}" Style="{DynamicResource Default TabItem}">
                         <Grid>
@@ -191,7 +193,7 @@
 
                                 </Grid>
                                 </GroupBox>
-                                <GroupBox Opacity="1">
+                                <GroupBox Opacity="1" Name="TimeEntryFields">
                                     <GroupBox.Header>
                                         <StackPanel Orientation="Horizontal" Background="Transparent" >
                                             <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\TimeEdit.png"/>
@@ -214,13 +216,18 @@
                                             <RowDefinition Height="20" />
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                                   Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"/>
                                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
-                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpStartHour"  
-                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyHourInput" MaxLength="2" TextChanged="TimeEntryChanged"/>
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                                     Width="20" x:Name="inpStartHour" MaxLength="2" TextChanged="TimeEntryChanged" 
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"
+                                                     PreviewTextInput="OnlyHourInput" />
                                             <TextBlock Margin="3" Text=":"/>
-                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="20" x:Name="inpStartMinute" 
-                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}" PreviewTextInput="OnlyMinuteInput" MaxLength="2" TextChanged="TimeEntryChanged"/>
+                                            <TextBox HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                                     Width="20" x:Name="inpStartMinute" MaxLength="2" TextChanged="TimeEntryChanged" 
+                                                     IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"
+                                                     PreviewTextInput="OnlyMinuteInput"/>
                                         </StackPanel>
                                         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_EndTime}"/>
                                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
@@ -241,7 +248,7 @@
                                                   ItemTemplate="{StaticResource WorktypeComboTemplate}" 
                                                   SelectedItem="{Binding SelectedObject.worktypeName}" TextSearch.TextPath="worktypeName" Margin="2" Grid.Row="1" Grid.Column="4" Width="180" x:Name="cboxWorktype" SelectionChanged="cboxWorktype_SelectionChanged" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <TextBlock Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
-                                        <TextBox Grid.Row="1" Grid.Column="5" Width="Auto" x:Name="inpComment" />
+                                        <TextBox Grid.Row="1" Grid.Column="5" Width="Auto" x:Name="inpComment" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}"/>
                                         <Image x:Name="image" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="65" Margin="40,18,0,0" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
 
                                     </Grid>
@@ -274,6 +281,12 @@
                                             ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_Delete}">
                                             <Image Style="{DynamicResource ToolBarDeleteIcon}" Visibility="{Binding ElementName=TBSaveButtonEnable, Path=Text}"/>
                                         </Button>
+                                        <Button
+                                            x:Name="ToolbarButtonResetTimeEntry" Padding="0"
+                                            Click="TimeToolbarButtonReset"
+                                            ToolTip="{x:Static p:Cultures.TimeEntry_Toolbar_Button_Reset}">
+                                            <Image Style="{DynamicResource ToolBarResetIcon}" Visibility="{Binding ElementName=TBResetButtonEnable, Path=Text}"/>
+                                        </Button>
                                     </ToolBar>
                                 </ToolBarTray>
                                 <!--#endregion Toolbar for datagrid-->
@@ -281,7 +294,7 @@
                                 <!--#region Time Entry datagrid-->
                                 <DataGrid
                                     x:Name="Time_DataGrid"
-                                    Height="545"
+                                    Height="210"
                                     Padding="3"
                                     d:ItemsSource="{d:SampleData}"
                                     ItemsSource="{Binding}"
@@ -352,10 +365,38 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <!--#endregion Time Entry datagrid-->
-
+                                
+                                <!--#region Total elapsed time row-->
+                                <DockPanel Grid.Row="1" Grid.Column="0" Height="30" Margin="0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="2"/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Background="Black"/>
+                                        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5" 
+                                                   Text="{x:Static p:Cultures.Timemanagement_Datagrid_Footer_TotalElapsedTime}" FontWeight="Bold"/>
+                                        <TextBox Grid.Column="1" Grid.Row="1" Width="75" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                                                 HorizontalAlignment="Right" HorizontalContentAlignment="Right" x:Name="dispElapsedTotal" IsEnabled="False" 
+                                                 Style="{DynamicResource DefaultTextBox}" Background="White"/>
+                                        <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Background="Black"/>
+                                        
+                                        <TextBlock Grid.Row="4" Grid.ColumnSpan="3" Background="Black"/>
+                                    </Grid>
+                                </DockPanel>
+                                <!--#endregion Total elapsed time row-->
+                                
                                 <!--#region Time etries Status bar-->
                                 <DockPanel
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     Grid.Column="0"
                                     Height="30"
                                     Margin="5"
@@ -398,7 +439,7 @@
                     <!--#endregion Time Management-->
 
                     <!--#region Usage Management-->
-                    <TabItem Header="{x:Static p:Cultures.TimeManagement_TabItemHeader_Product}" Style="{DynamicResource Default TabItem}">
+                    <TabItem Header="{x:Static p:Cultures.TimeManagement_TabItemHeader_Product}" Style="{DynamicResource Default TabItem}" IsEnabled="{Binding ElementName=cboxTimeEntryEditable, Path=IsChecked}">
                         <Grid>
                             <StackPanel Margin="5">
                                 <!--#region Product Usage entry: General field area-->

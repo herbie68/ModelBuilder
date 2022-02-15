@@ -6,7 +6,7 @@
         xmlns:p="clr-namespace:Modelbuilder.Languages"
         xmlns:local="clr-namespace:Modelbuilder"
         mc:Ignorable="d"
-                Title="{x:Static p:Cultures.main_Title}" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon=".\Resources\logo.gif">
+        Title="{x:Static p:Cultures.main_Title}" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon=".\Resources\logo.gif">
 
     <Grid>
         <Ribbon x:Name="mainRibbon" Grid.ColumnSpan="4">
@@ -45,7 +45,7 @@
                         <RibbonMenuItem ImageSource=".\Resources\timeImport.png"                    Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeImport_Header}" KeyTip="T" />
                         <RibbonMenuItem ImageSource=".\Resources\timeExport.png"                    Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeExport_Header}" KeyTip="S" />
                     </RibbonSplitButton>
-                    <RibbonMenuItem x:Name="TimeSheet" ImageSource=".\Resources\timeEdit.png"       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}" />
+                    <RibbonMenuItem x:Name="TimeSheet" ImageSource=".\Resources\timeEdit.png"       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}" Click="ShowTimeManagementPage"/>
                     <RibbonMenuItem x:Name="TimeReport" ImageSource=".\Resources\timeReport.png"    Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}" />
                 </RibbonGroup>
 

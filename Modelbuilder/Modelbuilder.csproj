@@ -108,6 +108,7 @@
     <None Remove="Resources\toolbarDelete.png" />
     <None Remove="Resources\toolbarEnd.png" />
     <None Remove="Resources\toolbarLeft.png" />
+    <None Remove="Resources\toolbarReset.png" />
     <None Remove="Resources\toolbarRight.png" />
     <None Remove="Resources\toolbarRotate.png" />
     <None Remove="Resources\toolbarSave.png" />
@@ -266,6 +267,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarReset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarRight.png">

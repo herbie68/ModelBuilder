@@ -772,4 +772,10 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="TimeManagement.TimeEntryError" xml:space="preserve">
     <value>End time is before the start time</value>
   </data>
+  <data name="Timemanagement.Datagrid.Footer.TotalElapsedTime" xml:space="preserve">
+    <value>Total working time:</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Reset Time entry input</value>
+  </data>
 </root>

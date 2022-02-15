@@ -312,6 +312,12 @@
             <Setter Property="Margin" Value="5, 0, 0, 0"/>
         </Style>
 
+        <Style x:Key="ToolBarResetIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\toolbarReset.png" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+        </Style>
+
         <Style x:Key="ToolBarSaveIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
             <Setter Property="Height" Value="14" />

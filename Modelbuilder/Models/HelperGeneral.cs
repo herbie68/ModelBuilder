@@ -755,6 +755,9 @@ internal class HelperGeneral
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
                         cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
+                    case "time":
+                        cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = Fields[i, 2];
+                        break;
                 }
             }
 
@@ -778,6 +781,9 @@ internal class HelperGeneral
                         String[] _tempDates = Fields[i, 2].Split("-");
                         var _tempDate = _tempDates[2] + "-" + _tempDates[1] + "-" + _tempDates[0];
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = Fields[i, 2];
                         break;
                 }
             }
