@@ -1898,11 +1898,29 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eind tijd is al als werktijd gebruikt.
+        /// </summary>
+        public static string TimeManagement_TimeEntryEndTimeExistError {
+            get {
+                return ResourceManager.GetString("TimeManagement.TimeEntryEndTimeExistError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Eindtijd ligt voor de starttijd.
         /// </summary>
         public static string TimeManagement_TimeEntryError {
             get {
                 return ResourceManager.GetString("TimeManagement.TimeEntryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start tijd is al als werktijd gebruikt.
+        /// </summary>
+        public static string TimeManagement_TimeEntryStartTimeExistError {
+            get {
+                return ResourceManager.GetString("TimeManagement.TimeEntryStartTimeExistError", resourceCulture);
             }
         }
         

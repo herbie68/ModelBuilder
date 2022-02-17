@@ -778,4 +778,10 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
     <value>Opnieuw beginnen met de invoer</value>
   </data>
+  <data name="TimeManagement.TimeEntryStartTimeExistError" xml:space="preserve">
+    <value>Start tijd is al als werktijd gebruikt</value>
+  </data>
+  <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
+    <value>Eind tijd is al als werktijd gebruikt</value>
+  </data>
 </root>

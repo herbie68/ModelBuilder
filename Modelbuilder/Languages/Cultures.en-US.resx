@@ -778,4 +778,10 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
     <value>Reset Time entry input</value>
   </data>
+  <data name="TimeManagement.TimeEntryStartTimeExistError" xml:space="preserve">
+    <value>Start time is already used as working time</value>
+  </data>
+  <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
+    <value>End time has already been used as working time</value>
+  </data>
 </root>

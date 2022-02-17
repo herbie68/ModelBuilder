@@ -794,6 +794,46 @@ internal class HelperGeneral
     }
     #endregion Execute Non Query Table
 
+    #region Create List for available working hours
+    public List<WorkingHours> GetWorkingHoursList(List<WorkingHours> workinghoursList, string WorkingDate)
+    {
+        string DatabaseTable = DbTimeTable;
+        Database dbConnection = new()
+        {
+            TableName = DatabaseTable
+        };
+
+        String[] _tempDate = WorkingDate.Split("-");
+        var _tempWorkingDate = _tempDate[2] + "-" + ("0" + _tempDate[1]).Substring(("0" + _tempDate[1]).Length - 2, 2) + "-" + ("0" + _tempDate[0]).Substring(("0" + _tempDate[0]).Length - 2, 2);
+
+
+        dbConnection.SqlSelectionString = "HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime";
+        dbConnection.SqlOrderByString = "StartTime";
+        dbConnection.SqlWhereString = "WorkDate=\"" + _tempWorkingDate + "\"";
+        dbConnection.TableName = DatabaseTable;
+
+        DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
+
+        for (int i = 0; i < dtSelection.Rows.Count; i++)
+        {
+            workinghoursList.Add(new WorkingHours
+            {
+                StartTime = int.Parse(dtSelection.Rows[i][0].ToString()),
+                EndTime = int.Parse(dtSelection.Rows[i][1].ToString(), Culture)
+            });
+        }
+        return workinghoursList;
+    }
+    #endregion Create List for available working hours
+
+    #region Create object for all workinghours in table for specific date
+    public class WorkingHours
+    {
+        public int StartTime { get; set; }
+        public int EndTime { get; set; }
+    }
+    #endregion Create object for all workinghours in table for specific date
+
     #region Create lists to populate dropdowns for order Page
     #region Fill the dropdownlists
     #region Fill Brand dropdown

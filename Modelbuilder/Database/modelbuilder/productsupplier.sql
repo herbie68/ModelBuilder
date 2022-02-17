@@ -1,10 +1,20 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server versie:                8.0.26 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Versie:              11.3.0.6337
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Structuur van  tabel modelbuilder.productsupplier wordt geschreven
 CREATE TABLE IF NOT EXISTS `productsupplier` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Product_Id` int NOT NULL DEFAULT '0',
@@ -25,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `productsupplier` (
   CONSTRAINT `FK_ProdSupplier_Supplier_Id` FOREIGN KEY (`Supplier_Id`) REFERENCES `supplier` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List for all products per supplier';
 
+-- Dumpen data van tabel modelbuilder.productsupplier: ~2 rows (ongeveer)
 DELETE FROM `productsupplier`;
 /*!40000 ALTER TABLE `productsupplier` DISABLE KEYS */;
 INSERT INTO `productsupplier` (`Id`, `Product_Id`, `Supplier_Id`, `Currency_Id`, `ProductNumber`, `ProductName`, `Price`, `DefaultSupplier`, `Created`, `Modified`) VALUES
@@ -32,6 +43,7 @@ INSERT INTO `productsupplier` (`Id`, `Product_Id`, `Supplier_Id`, `Currency_Id`,
 	(4, 2, 6, 1, '10893', 'Everbuild secondelijm hoge viscosoteit', 4.07, '*', '2022-01-10 16:49:00', '2022-01-10 16:55:27');
 /*!40000 ALTER TABLE `productsupplier` ENABLE KEYS */;
 
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

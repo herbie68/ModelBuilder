@@ -1,50 +1,22 @@
 ﻿// using ConnectionNamespace;
 
+using System.Xml;
+
 namespace Modelbuilder
 {
-    /// <summary>
-    /// The database.
-    /// </summary>
     public class Database
     {
-        /// <summary>
-        /// Gets or Sets the table name.
-        /// </summary>
         public string TableName { get; set; }
-        /// <summary>
-        /// Gets or Sets the data table.
-        /// </summary>
         public string DataTable { get; set; }
-        /// <summary>
-        /// Gets or Sets the sql command.
-        /// </summary>
         public string SqlCommand { get; set; }
-        /// <summary>
-        /// Gets or Sets the table id.
-        /// </summary>
         public string TableId { get; set; }
-        /// <summary>
-        /// Gets or Sets the sql command string.
-        /// </summary>
         public string SqlCommandString { get; set; }
-        /// <summary>
-        /// Gets or Sets the sql selection string.
-        /// </summary>
         public string SqlSelectionString { get; set; }
-        /// <summary>
-        /// Gets or Sets the sql order by string.
-        /// </summary>
         public string SqlOrderByString { get; set; }
-        /// <summary>
-        /// Gets or Sets the sql where string.
-        /// </summary>
         public string SqlWhereString { get; set; }
 
         public static MySqlConnection myConnection = null;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Connect()
         {
             myConnection = new MySqlConnection(Connection_Query.connectionString);
@@ -53,10 +25,6 @@ namespace Modelbuilder
             connection.Open();
         }
 
-        /// <summary>
-        /// Loads the my sql data.
-        /// </summary>
-        /// <returns>A DataTable.</returns>
         public DataTable LoadMySqlData()
         {
             string mySelectQuery = "SELECT * FROM " + Connection_Query.database + "." + TableName;
@@ -73,10 +41,6 @@ namespace Modelbuilder
             return tempDatatable;
         }
 
-        /// <summary>
-        /// Loads the specific my sql data.
-        /// </summary>
-        /// <returns>A DataTable.</returns>
         public DataTable LoadSpecificMySqlData()
         {
             string OrderString = "", WhereString = "";
@@ -119,10 +83,6 @@ namespace Modelbuilder
             return tempDataTable;
         }
 
-        /// <summary>
-        /// Updates the my sql data record.
-        /// </summary>
-        /// <returns>An int.</returns>
         public int UpdateMySqlDataRecord()
         {
             MySqlCommand SqlCmdUpdate = new MySqlCommand
@@ -143,10 +103,6 @@ namespace Modelbuilder
             return (int)ID;
         }
 
-        /// <summary>
-        /// Retrieves the specific id from my sql data.
-        /// </summary>
-        /// <returns>An int.</returns>
         public int RetrieveSpecificIdFromMySqlData()
         {
             string WhereString;

@@ -1,13 +1,25 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server versie:                8.0.26 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Versie:              11.3.0.6337
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Structuur van  view modelbuilder.view_supplyorder wordt geschreven
+-- Tijdelijke tabel wordt verwijderd, en definitieve VIEW wordt aangemaakt.
 DROP TABLE IF EXISTS `view_supplyorder`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_supplyorder` AS select `so`.`Id` AS `Id`,`so`.`Supplier_Id` AS `Supplier_Id`,`s`.`Name` AS `SupplierName`,`s`.`ShippingCosts` AS `ShippingCosts`,`s`.`MinShippingCosts` AS `MinShippingCosts`,`s`.`OrderCosts` AS `OrderCosts`,`s`.`Currency_Id` AS `DefaulCurrencyIdSupplier`,`cs`.`Symbol` AS `DefaulCurrencySymbolSupplier`,`cs`.`ConversionRate` AS `DefaulCurrencyConversionRateSupplier`,`so`.`Currency_Id` AS `Currency_Id`,`c`.`Symbol` AS `DefaultOrderCurrencySymbol`,`c`.`ConversionRate` AS `DefaultOrderConversionRate`,`so`.`OrderNumber` AS `OrderNumber`,`so`.`OrderDate` AS `OrderDate`,`so`.`CurrencySymbol` AS `OrderCurrencySymbol`,`so`.`CurrencyConversionRate` AS `OrderConversionRate`,`so`.`ShippingCosts` AS `OrderShippingCosts`,`so`.`OrderCosts` AS `OrderOrderCosts`,`so`.`Closed` AS `Closed`,`so`.`ClosedDate` AS `ClosedDate`,`so`.`Memo` AS `Memo` from (((`supplyorder` `so` join `supplier` `s` on((`so`.`Supplier_Id` = `s`.`Id`))) join `currency` `c` on((`so`.`Currency_Id` = `c`.`Id`))) join `currency` `cs` on((`s`.`Currency_Id` = `cs`.`Id`)));
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_supplyorder` AS select `so`.`Id` AS `Id`,`so`.`Supplier_Id` AS `Supplier_Id`,`s`.`Name` AS `SupplierName`,`s`.`ShippingCosts` AS `ShippingCosts`,`s`.`MinShippingCosts` AS `MinShippingCosts`,`s`.`OrderCosts` AS `OrderCosts`,`s`.`Currency_Id` AS `DefaulCurrencyIdSupplier`,`cs`.`Symbol` AS `DefaulCurrencySymbolSupplier`,`cs`.`ConversionRate` AS `DefaulCurrencyConversionRateSupplier`,`so`.`Currency_Id` AS `Currency_Id`,`c`.`Symbol` AS `DefaultOrderCurrencySymbol`,`c`.`ConversionRate` AS `DefaultOrderConversionRate`,`so`.`OrderNumber` AS `OrderNumber`,`so`.`OrderDate` AS `OrderDate`,`so`.`CurrencySymbol` AS `OrderCurrencySymbol`,`so`.`CurrencyConversionRate` AS `OrderConversionRate`,`so`.`ShippingCosts` AS `OrderShippingCosts`,`so`.`OrderCosts` AS `OrderOrderCosts`,`so`.`Closed` AS `Closed`,`so`.`ClosedDate` AS `ClosedDate`,`so`.`Memo` AS `Memo` from (((`supplyorder` `so` join `supplier` `s` on((`so`.`Supplier_Id` = `s`.`Id`))) join `currency` `c` on((`so`.`Currency_Id` = `c`.`Id`))) join `currency` `cs` on((`s`.`Currency_Id` = `cs`.`Id`)));
 
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

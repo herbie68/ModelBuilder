@@ -1,5 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
+
+using MySql.Data.MySqlClient;
 
 using static Modelbuilder.HelperClass;
 
@@ -9,6 +12,7 @@ public partial class timemanagement : Page
 {
     private HelperGeneral _helperGeneral;
     private HelperProduct _helperProduct;
+    private HelperTimeManagement _helperTimeManagement;
     private DataTable _dt;
     private int _dbRowCount;
     private HelperClass az;
@@ -23,7 +27,6 @@ public partial class timemanagement : Page
         InitializeComponent();
         InitializeHelper();
 
-        //cboxProduct.ItemsSource = _helperGeneral.GetProductList(ProductList);
         cboxProject.ItemsSource = _helperGeneral.GetProjectList(ProjectList);
         cboxWorktype.ItemsSource = _helperGeneral.GetWorktypeList ( WorktypeList );
         cboxProjectProduct.ItemsSource = _helperGeneral.GetProjectList ( ProjectList );
@@ -39,6 +42,10 @@ public partial class timemanagement : Page
         if (_helperProduct == null)
         {
             _helperProduct = new HelperProduct(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+        }
+        if (_helperTimeManagement == null)
+        {
+            _helperTimeManagement = new HelperTimeManagement(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
         }
     }
     #endregion
@@ -72,18 +79,26 @@ public partial class timemanagement : Page
         string msg = Languages.Cultures.general_Status +  ": " + _dt.Rows.Count + " " + Languages.Cultures.general_TimeEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
         UpdateStatus("time", msg);
 
-        // Get the total elapsed time for this work date
-        var ElapsedMinutes= _helperGeneral.GetValueFromTable(HelperGeneral.DbTimeView, new string[1, 3]
-        { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
-        { { "SUM(ElapsedMinutes)", "double", "" }});
-        var _tempElapsedHours= int.Parse(ElapsedMinutes.ToString())/60;
-        var _tempElapsedMinutes=int.Parse(ElapsedMinutes.ToString())%60;
-        dispElapsedTotal.Text= _tempElapsedHours.ToString() +":"+_tempElapsedMinutes.ToString();
 
-        //Prevent possility to Change date and prodiect durung time entry edit
-        inpEntryDate.IsEnabled = false;
-        cboxProject.IsEnabled = false;
-        TBResetButtonEnable.Text = "Visible";
+        // Check if there are records for the selected date
+        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
+        { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
+
+        // Get the total elapsed time for this work date
+        if (_RecordCount > 0)
+        {
+            var ElapsedMinutes = _helperGeneral.GetValueFromTable(HelperGeneral.DbTimeView, new string[1, 3]
+            { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
+            { { "SUM(ElapsedMinutes)", "double", "" }});
+            var _tempElapsedHours = int.Parse(ElapsedMinutes.ToString()) / 60;
+            var _tempElapsedMinutes = int.Parse(ElapsedMinutes.ToString()) % 60;
+            dispElapsedTotal.Text = _tempElapsedHours.ToString() + ":" + _tempElapsedMinutes.ToString();
+
+            //Prevent possility to Change date and prodiect durung time entry edit
+            inpEntryDate.IsEnabled = false;
+            cboxProject.IsEnabled = false;
+            TBResetButtonEnable.Text = "Visible";
+        }
     }
     #endregion Get the Time Entry data
 
@@ -155,12 +170,10 @@ public partial class timemanagement : Page
             { HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldTypeWorktypeId, valueWorktypeId.Text },
             { HelperGeneral.DbTimeTableFieldNameComment, HelperGeneral.DbTimeTableFieldTypeComment, Comment }
         });
+        ClearAllFields("addrecord");
 
-        valueTimeId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbTimeTable).ToString();
+        GetTimeEntryData();
 
-        GetTimeEntryData ();
-        Time_DataGrid.SelectedIndex = _dbRowCount - 1;
-        Time_DataGrid.Focus ();
     }
     #endregion Clicked button: Add new Time entry row
 
@@ -192,19 +205,21 @@ public partial class timemanagement : Page
             { HelperGeneral.DbTimeTableFieldNameComment, HelperGeneral.DbTimeTableFieldTypeComment, Comment }
         });
 
-        valueTimeId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbTimeTable).ToString();
-
         GetTimeEntryData();
-        Time_DataGrid.SelectedIndex = _dbRowCount - 1;
-        Time_DataGrid.Focus();
+        ClearAllFields("saverecord");
     }
     #endregion Clicked button: Save Time Entry row
 
     #region Clicked button: Delete Time entry row
     private void TimeToolbarButtonDelete ( object sender, RoutedEventArgs e )
     {
+        int rowIndex = _currentDataGridIndex;
+
         _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbTimeTable, new string[1, 3]
          { { HelperGeneral.DbTimeTableFieldNameId, HelperGeneral.DbTimeTableFieldTypeId, valueTimeId.Text }});
+
+        GetTimeEntryData();
+        ClearAllFields("delete");
     }
     #endregion Clicked button: Delete Time entry row
 
@@ -247,22 +262,22 @@ public partial class timemanagement : Page
             valueProjectId.Text = project.ProjectId.ToString();
             if(inpEntryDate.Text == "")
             {
-                TBAddTimeEntryEnable.Text = "Collapsed";
-                TBAddButtonEnable.Text = "Collapsed";
+                TBAddTimeEntryEnable.Text = "collapsed";
+                TBAddButtonEnable.Text = "collapsed";
                 cboxTimeEntryEditable.IsChecked = false;
             }
             else
             {
-                TBAddTimeEntryEnable.Text = "Visible";
+                TBAddTimeEntryEnable.Text = "visible";
                 cboxTimeEntryEditable.IsChecked = true;
                 // check time entries, if also available add button can become visible
-                if(inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+                if(inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty && TBAddButtonEnable.Text.ToLower()=="collapsed")
                 {
-                    TBAddButtonEnable.Text = "Visible";
+                    TBAddButtonEnable.Text = "visible";
                 }
                 else
                 {
-                    TBAddButtonEnable.Text = "Collapsed";
+                    TBAddButtonEnable.Text = "collapsed";
                 }
             }
         }
@@ -290,15 +305,15 @@ public partial class timemanagement : Page
             TBAddTimeEntryEnable.Text = "Visible";
             cboxTimeEntryEditable.IsChecked = true;
             // check time entries, if also available add button can become visible
-            if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
+            if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty && TBAddButtonEnable.Text.ToLower()=="collapsed")
             {
-                TBAddButtonEnable.Text = "Visible";
+                TBAddButtonEnable.Text = "visible";
             }
             else
             {
-                TBAddButtonEnable.Text = "Collapsed";
+                TBAddButtonEnable.Text = "collapsed";
             }
-            TBResetButtonEnable.Text = "Visible";
+            TBResetButtonEnable.Text = "visible";
         }
 
         if (_RecordCount > 0)
@@ -337,13 +352,13 @@ public partial class timemanagement : Page
         // check time entries, if also available add button can become visible
         if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
         {
-            TBAddButtonEnable.Text = "Visible";
+            TBAddButtonEnable.Text = "visible";
         }
         else
         {
-            TBAddButtonEnable.Text = "Collapsed";
+            TBAddButtonEnable.Text = "collapsed";
         }
-        TBResetButtonEnable.Text = "Visible";
+        TBResetButtonEnable.Text = "visible";
 
     }
     #endregion Selection changed on Combobox: cboxWorktype
@@ -352,6 +367,7 @@ public partial class timemanagement : Page
     #region Handle Input of hours
     private void OnlyHourInput ( object sender, TextCompositionEventArgs e )
     {
+        if (cboxCleaningFields.IsChecked == true) { return; }
         Regex regex = new Regex ( "[^0-9]+" );
         //e.Handled = regex.IsMatch ( e.Text );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 23 );
@@ -361,6 +377,7 @@ public partial class timemanagement : Page
     #region Handle Input of minutes
     private void OnlyMinuteInput ( object sender, TextCompositionEventArgs e )
     {
+        if (cboxCleaningFields.IsChecked == true) { return; }
         Regex regex = new Regex ( "[^0-9]+" );
         //e.Handled = regex.IsMatch ( e.Text );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 59 );
@@ -377,6 +394,7 @@ public partial class timemanagement : Page
     #region Calculate entered time to minutes and calculate elapsed time
     private void TimeEntryChanged ( object sender, TextChangedEventArgs e )
     {
+        if (cboxCleaningFields.IsChecked == true) { return; }
         TBTimeErrorVisible.Text = "Collapsed";
         if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty) { valueStartTime.Text = (int.Parse ( inpStartHour.Text ) * 60 + int.Parse ( inpStartMinute.Text )).ToString (); }
         if (inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty) { valueEndTime.Text = (int.Parse ( inpEndHour.Text ) * 60 + int.Parse ( inpEndMinute.Text )).ToString (); }
@@ -390,15 +408,85 @@ public partial class timemanagement : Page
             var ElapsedMinutes = ("0" + (ElapsedTotalMinutes % 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes % 60).ToString ()).Length - 2, 2 );
             dispElapsedTime.Text = ElapsedHours + ":" + ElapsedMinutes;
         }
+
+        #region check if Starttime does not excist in a range of entered time entries
+        if(inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpStartMinute.Text.Length == 2)
+        {
+            // Get list with: SELECT HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime FROM time WHERE WorkDate = "22-02-01"
+            var _tempStartTime = (int.Parse(inpStartHour.Text) * 60 + int.Parse(inpStartMinute.Text));
+            var WorkingHoursList = new List<HelperTimeManagement.WorkingHours>();
+            var SqlSelectionString = "HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime";
+            var _tempDate = inpEntryDate.Text.Split("-");
+            var _tempWorkDate = _tempDate[2] + "-" + ("0" + _tempDate[1]).Substring(("0" + _tempDate[1]).Length - 2, 2) + "-" + ("0" + _tempDate[0]).Substring(("0" + _tempDate[0]).Length - 2, 2);
+            var AvailableWorkingHours = _helperTimeManagement.GetWorkingHoursList(WorkingHoursList, HelperGeneral.DbTimeTable, SqlSelectionString, new string[1, 3]
+            {
+                {HelperGeneral.DbTimeTableFieldNameWorkDate, "string", _tempWorkDate }
+            }, HelperGeneral.DbTimeTableFieldNameStartTime);
+
+            for (int i = 0; i < AvailableWorkingHours.Count; i++)
+            {
+                if( _tempStartTime >= AvailableWorkingHours[i].StartTime && 
+                    _tempStartTime < AvailableWorkingHours[i].EndTime)
+                {
+                    TBTimeErrorStartVisible.Text = "visible";
+                    cboxCleaningFields.IsChecked = true;
+                    inpStartMinute.Clear();
+                    inpStartHour.Clear();
+                    inpStartHour.Focus();
+                    cboxCleaningFields.IsChecked= false;
+                    break;
+                }
+                TBTimeErrorStartVisible.Text = "collapsed";
+            }
+        }
+        #endregion check if Starttime does not excist in a range of entered time entries
+
+        #region check if Endtime does not excist in a range of entered time entries
+        if (inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && inpEndMinute.Text.Length == 2)
+        {
+            var _tempEndTime = (int.Parse(inpEndHour.Text) * 60 + int.Parse(inpEndMinute.Text));
+            var WorkingHoursList = new List<HelperTimeManagement.WorkingHours>();
+            var SqlSelectionString = "HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime";
+            var _tempDate = inpEntryDate.Text.Split("-");
+            var _tempWorkDate = _tempDate[2] + "-" + ("0" + _tempDate[1]).Substring(("0" + _tempDate[1]).Length - 2, 2) + "-" + ("0" + _tempDate[0]).Substring(("0" + _tempDate[0]).Length - 2, 2);
+            var AvailableWorkingHours = _helperTimeManagement.GetWorkingHoursList(WorkingHoursList, HelperGeneral.DbTimeTable, SqlSelectionString, new string[1, 3]
+            {
+                {HelperGeneral.DbTimeTableFieldNameWorkDate, "string", _tempWorkDate }
+            }, HelperGeneral.DbTimeTableFieldNameStartTime);
+
+            var minStartTime = AvailableWorkingHours.Min(t => t.StartTime);
+            var maxStartTime = AvailableWorkingHours.Max(t => t.StartTime); 
+            for (int i = 0; i < AvailableWorkingHours.Count; i++)
+            {
+                if (_tempEndTime <= AvailableWorkingHours[i].EndTime)
+                {
+                    if (
+                        (_tempEndTime > AvailableWorkingHours[i].StartTime && _tempEndTime < AvailableWorkingHours[i].EndTime) || _tempEndTime > minStartTime)
+                    {
+                        TBTimeErrorEndVisible.Text = "visible";
+                        cboxCleaningFields.IsChecked = true;
+                        inpEndMinute.Clear();
+                        inpEndHour.Clear();
+                        inpEndHour.Focus();
+                        cboxCleaningFields.IsChecked = false;
+                        break;
+                    }
+                    TBTimeErrorEndVisible.Text = "collapsed";
+                }
+            }
+        }
+        #endregion check if Endtime does not excist in a range of entered time entries
+
+
         // check time entries, if also available add button can become visible
         if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
         {
             // Only enable add button if save button is not available
-            if(TBSaveButtonEnable.Text == "Visible") { TBAddButtonEnable.Text = "Collapsed"; } else { TBAddButtonEnable.Text = "Visible"; }
+            if(TBSaveButtonEnable.Text == "Visible") { TBAddButtonEnable.Text = "collapsed"; } else { TBAddButtonEnable.Text = "visible"; }
         }
         else
         {
-            TBAddButtonEnable.Text = "Collapsed";
+            TBAddButtonEnable.Text = "collapsed";
         }
     }
     #endregion Calculate entered time to minutes and calculate elapsed time
@@ -421,11 +509,19 @@ public partial class timemanagement : Page
     #region Toolbar Reset button pressed 
     private void TimeToolbarButtonReset(object sender, RoutedEventArgs e)
     {
+        ClearAllFields("reset");
+        InitializeComponent();
+    }
+    #endregion Toolbar Reset button pressed
+
+    #region Clear all fields
+    private void ClearAllFields(string Why)
+    {
+        cboxCleaningFields.IsChecked = true;
         valueCategoryId.Clear();
         valueEndTime.Clear();
         valueProductId.Clear();
         valueProductUsageId.Clear();
-        valueProjectId.Clear();
         valueSelectedWorktype.Clear();
         valueStartTime.Clear();
         valueStockId.Clear();
@@ -433,30 +529,34 @@ public partial class timemanagement : Page
         valueStorageId.Clear();
         valueStoredAmount.Clear();
         valueTimeId.Clear();
-        valueWorktypeId.Clear();
-        valueSelectedWorktype.Clear();
-        cboxProject.SelectedItem = null;
-        cboxWorktype.SelectedItem = null;
         inpComment.Clear();
         inpEndHour.Clear();
         inpEndMinute.Clear();
-        inpEntryDate.Text = string.Empty;
         inpStartHour.Clear();
         inpStartMinute.Clear();
         dispElapsedTime.Clear();
         dispElapsedTotal.Clear();
         cboxProductEntryEditable.IsChecked = false;
-        cboxTimeEntryEditable.IsChecked = false;
-        TBAddButtonEnable.Text = "collapsed";
-        TBAddTimeEntryEnable.Text = "collapsed";
         TBResetButtonEnable.Text = "collapsed";
         TBSaveButtonEnable.Text = "collapsed";
         TBTimeErrorVisible.Text = "collapsed";
 
-        inpEntryDate.IsEnabled = true;
-        cboxProject.IsEnabled = true;
-        Time_DataGrid.DataContext = null;
-        InitializeComponent();
+        if(Why.ToLower() == "reset") 
+        { 
+            valueProjectId.Clear();
+            valueWorktypeId.Clear();
+            valueSelectedWorktype.Clear();
+            cboxProject.SelectedItem = null;
+            cboxWorktype.SelectedItem = null;
+            cboxTimeEntryEditable.IsChecked = false;
+            TBAddButtonEnable.Text = "collapsed";
+            TBAddTimeEntryEnable.Text = "collapsed";
+            inpEntryDate.IsEnabled = true;
+            cboxProject.IsEnabled = true;
+            Time_DataGrid.DataContext = null;
+            inpEntryDate.Text = string.Empty;
+        }
+        cboxCleaningFields.IsChecked= false;
     }
-    #endregion Toolbar Reset button pressed
+    #endregion Clear all fields
 }

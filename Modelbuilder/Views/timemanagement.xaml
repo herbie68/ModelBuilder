@@ -139,7 +139,9 @@
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBAddButtonEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBSaveButtonEnable" Text="Collapsed"/>
                         <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBResetButtonEnable" Text="Collapsed"/>
-
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBTimeErrorStartVisible" Text="Collapsed"/>
+                        <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="TBTimeErrorEndVisible" Text="Collapsed"/>
+                        <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxCleaningFields" IsChecked="False"/>
                     </StackPanel>
                     <!--  End of "Do not remove" part  -->
                     <!--#endregion Hiddenfields-->
@@ -241,6 +243,15 @@
                                             <Image Source=".\..\Resources\warning.png" Height="20" Width="20" HorizontalAlignment="Right" />
                                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Static p:Cultures.TimeManagement_TimeEntryError}" Foreground="Red" FontWeight="Bold"/>
                                         </StackPanel>
+                                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding ElementName=TBTimeErrorStartVisible, Path=Text}">
+                                            <Image Source=".\..\Resources\warning.png" Height="20" Width="20" HorizontalAlignment="Right" />
+                                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Static p:Cultures.TimeManagement_TimeEntryStartTimeExistError}" Foreground="Red" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding ElementName=TBTimeErrorEndVisible, Path=Text}">
+                                            <Image Source=".\..\Resources\warning.png" Height="20" Width="20" HorizontalAlignment="Right" />
+                                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Static p:Cultures.TimeManagement_TimeEntryEndTimeExistError}" Foreground="Red" FontWeight="Bold"/>
+                                        </StackPanel>
+
                                         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ElapsedTime}"/>
                                         <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Width="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" x:Name="dispElapsedTime" IsEnabled="False"/>
                                         <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Text="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeName}"/>

@@ -1,10 +1,20 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server versie:                8.0.26 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Versie:              11.3.0.6337
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Structuur van  tabel modelbuilder.category wordt geschreven
 CREATE TABLE IF NOT EXISTS `category` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `ParentId` int DEFAULT NULL,
@@ -17,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `FullPath` (`Fullpath`)
 ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumpen data van tabel modelbuilder.category: ~99 rows (ongeveer)
 DELETE FROM `category`;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` (`Id`, `ParentId`, `Name`, `Fullpath`, `Created`, `Modified`) VALUES
@@ -121,6 +132,7 @@ INSERT INTO `category` (`Id`, `ParentId`, `Name`, `Fullpath`, `Created`, `Modifi
 	(104, 100, 'Zwart', 'Materiaal\\Zeilen\\Zwart', '2021-12-23 08:50:06', '2021-12-23 08:50:06');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

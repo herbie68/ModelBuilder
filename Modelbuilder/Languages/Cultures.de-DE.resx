@@ -778,4 +778,10 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
     <value>Zeit eingabe neu starten</value>
   </data>
+  <data name="TimeManagement.TimeEntryStartTimeExistError" xml:space="preserve">
+    <value>Startzeit wird bereits als Arbeitszeit verwendet</value>
+  </data>
+  <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
+    <value>Die Endzeit wurde bereits als Arbeitszeit verwendet</value>
+  </data>
 </root>
