@@ -784,4 +784,19 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
     <value>Eind tijd is al als werktijd gebruikt</value>
   </data>
+  <data name="TimeManagement.Tab.Group.TimeEntry" xml:space="preserve">
+    <value>Tijdinvoer</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.General" xml:space="preserve">
+    <value>Werkdatum en project</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.ProductUsage" xml:space="preserve">
+    <value>Verbruiksregistratie</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Ingevoerde gegevens opslaan</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Opnieuw beginnen met de invoer</value>
+  </data>
 </root>

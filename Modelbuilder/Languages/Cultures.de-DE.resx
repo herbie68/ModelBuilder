@@ -767,7 +767,7 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Neue zeile einfugen</value>
   </data>
   <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
-    <value>Eingefuhrte data Speichern</value>
+    <value>Eingefuhrte daten Speichern</value>
   </data>
   <data name="TimeManagement.TimeEntryError" xml:space="preserve">
     <value>Die Endzeit liegt vor der Startzeit</value>
@@ -783,5 +783,20 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   </data>
   <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
     <value>Die Endzeit wurde bereits als Arbeitszeit verwendet</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.TimeEntry" xml:space="preserve">
+    <value>Zeiteingabe</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.General" xml:space="preserve">
+    <value>Arbeitsdatum un Projeky</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.ProductUsage" xml:space="preserve">
+    <value>Benutzte materialiën</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Eingefuhrte daten Speichern</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Produkt eingabe neu starten</value>
   </data>
 </root>

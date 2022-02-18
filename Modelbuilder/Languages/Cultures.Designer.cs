@@ -1375,6 +1375,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opnieuw beginnen met de invoer.
+        /// </summary>
+        public static string ProductEntry_Toolbar_Button_Reset {
+            get {
+                return ResourceManager.GetString("ProductEntry.Toolbar.Button.Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingevoerde gegevens opslaan.
+        /// </summary>
+        public static string ProductEntry_Toolbar_Button_Save {
+            get {
+                return ResourceManager.GetString("ProductEntry.Toolbar.Button.Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verwerken.
         /// </summary>
         public static string Receipt_Button_Apply {
@@ -1876,6 +1894,33 @@ namespace Modelbuilder.Languages {
         public static string TimeManagement_Page_Title {
             get {
                 return ResourceManager.GetString("TimeManagement.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdatum en project.
+        /// </summary>
+        public static string TimeManagement_Tab_Group_General {
+            get {
+                return ResourceManager.GetString("TimeManagement.Tab.Group.General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verbruiksregistratie.
+        /// </summary>
+        public static string TimeManagement_Tab_Group_ProductUsage {
+            get {
+                return ResourceManager.GetString("TimeManagement.Tab.Group.ProductUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdinvoer.
+        /// </summary>
+        public static string TimeManagement_Tab_Group_TimeEntry {
+            get {
+                return ResourceManager.GetString("TimeManagement.Tab.Group.TimeEntry", resourceCulture);
             }
         }
         

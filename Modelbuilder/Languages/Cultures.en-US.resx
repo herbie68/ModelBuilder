@@ -784,4 +784,19 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
     <value>End time has already been used as working time</value>
   </data>
+  <data name="TimeManagement.Tab.Group.TimeEntry" xml:space="preserve">
+    <value>Time entry</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.General" xml:space="preserve">
+    <value>Workdate and project</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.ProductUsage" xml:space="preserve">
+    <value>Usage entry</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Save entered values</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Reset Product usage entry input</value>
+  </data>
 </root>

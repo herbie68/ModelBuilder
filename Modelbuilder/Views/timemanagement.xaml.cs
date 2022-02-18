@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using System.Xml.Linq;
 
 using MySql.Data.MySqlClient;
@@ -29,7 +30,7 @@ public partial class timemanagement : Page
 
         cboxProject.ItemsSource = _helperGeneral.GetProjectList(ProjectList);
         cboxWorktype.ItemsSource = _helperGeneral.GetWorktypeList ( WorktypeList );
-        cboxProjectProduct.ItemsSource = _helperGeneral.GetProjectList ( ProjectList );
+        cboxProduct.ItemsSource = _helperGeneral.GetProductList ( ProductList );
     }
 
     #region InitializeHelper (connect to database)
@@ -260,6 +261,7 @@ public partial class timemanagement : Page
         {
             cboxProject.SelectedItem = project;
             valueProjectId.Text = project.ProjectId.ToString();
+            dispSelectedProject.Text=project.ProjectName.ToString();
             if(inpEntryDate.Text == "")
             {
                 TBAddTimeEntryEnable.Text = "collapsed";
@@ -291,6 +293,7 @@ public partial class timemanagement : Page
     {
         if (inpEntryDate.Text == string.Empty) { return; }
         // Check if there are records for the selected date
+        dispSelectedDate.Text = inpEntryDate.Text;
         var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
         { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
         if(_RecordCount > 0) { GetTimeEntryData(); }
@@ -390,6 +393,15 @@ public partial class timemanagement : Page
         return int.TryParse ( content, out i ) && i >= min && i <= max;
     }
     #endregion Make Time entries Numeric Only
+
+    #region Handle Input of numerics
+    private void OnlyNumeric(object sender, TextCompositionEventArgs e)
+    {
+        if (cboxCleaningFields.IsChecked == true) { return; }
+        Regex regex = new Regex("[^0-9,]+");
+        e.Handled = regex.IsMatch(e.Text);
+    }
+    #endregion Handle Input of numerics
 
     #region Calculate entered time to minutes and calculate elapsed time
     private void TimeEntryChanged ( object sender, TextChangedEventArgs e )
@@ -559,4 +571,44 @@ public partial class timemanagement : Page
         cboxCleaningFields.IsChecked= false;
     }
     #endregion Clear all fields
+
+    private void ProductUsageToolbarButtonSave(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void ProductUsageToolbarButtonReset(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        foreach (HelperGeneral.Product product in e.AddedItems)
+        {
+            cboxProduct.SelectedItem = product;
+            valueProductId.Text = product.ProductId.ToString();
+            //dispSelectedProduct.Text = product.ProductName.ToString();
+            if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
+            {
+                TBAddProductButtonEnable.Text = "collapsed";
+            }
+            else
+            {
+                TBAddProductButtonEnable.Text = "visible";
+            }
+        }
+    }
+
+    private void AmountUsedChanged(object sender, TextChangedEventArgs e)
+    {
+        if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
+        {
+            TBAddProductButtonEnable.Text = "collapsed";
+        }
+        else
+        {
+            TBAddProductButtonEnable.Text = "visible";
+        }
+    }
 }
