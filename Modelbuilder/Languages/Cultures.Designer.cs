@@ -70,6 +70,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to product gebruik regel.
+        /// </summary>
+        public static string general_ProductUsageEntrie {
+            get {
+                return ResourceManager.GetString("general.ProductUsageEntrie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string general_ProductUsageEntries {
+            get {
+                return ResourceManager.GetString("general.ProductUsageEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ingelezen.
         /// </summary>
         public static string general_Read {
@@ -102,24 +120,6 @@ namespace Modelbuilder.Languages {
         public static string general_TimeEntries {
             get {
                 return ResourceManager.GetString("general.TimeEntries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to product gebruik regel.
-        /// </summary>
-        public static string GeneralProductUsageEntrie {
-            get {
-                return ResourceManager.GetString("GeneralProductUsageEntrie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to s.
-        /// </summary>
-        public static string GeneralProductUsageEntries {
-            get {
-                return ResourceManager.GetString("GeneralProductUsageEntries", resourceCulture);
             }
         }
         

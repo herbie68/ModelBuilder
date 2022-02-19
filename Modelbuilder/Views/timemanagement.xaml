@@ -563,7 +563,7 @@
                                 <!--#region Product Usage Entry datagrid-->
                                 <DataGrid
                                     x:Name="ProductUsage_DataGrid"
-                                    Height="545"
+                                    Height="240"
                                     Padding="3"
                                     d:ItemsSource="{d:SampleData}"
                                     ItemsSource="{Binding}"
@@ -586,6 +586,12 @@
                                             Width="70"
                                             Binding="{Binding ProductId}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProductId}"
+                                            IsReadOnly="True"
+                                            Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="70"
+                                            Binding="{Binding StorageId}"
+                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StorageId}"
                                             IsReadOnly="True"
                                             Visibility="Hidden" />
                                         <DataGridTextColumn

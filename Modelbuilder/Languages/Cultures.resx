@@ -745,10 +745,10 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.TimeEntries" xml:space="preserve">
     <value>s</value>
   </data>
-  <data name="GeneralProductUsageEntrie" xml:space="preserve">
+  <data name="general.ProductUsageEntrie" xml:space="preserve">
     <value>product gebruik regel</value>
   </data>
-  <data name="GeneralProductUsageEntries" xml:space="preserve">
+  <data name="general.ProductUsageEntries" xml:space="preserve">
     <value>s</value>
   </data>
   <data name="general.Read" xml:space="preserve">

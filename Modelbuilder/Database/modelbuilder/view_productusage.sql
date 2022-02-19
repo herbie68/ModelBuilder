@@ -17,7 +17,7 @@
 -- Structuur van  view modelbuilder.view_productusage wordt geschreven
 -- Tijdelijke tabel wordt verwijderd, en definitieve VIEW wordt aangemaakt.
 DROP TABLE IF EXISTS `view_productusage`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_productusage` AS select `u`.`Id` AS `Id`,`u`.`project_Id` AS `ProjectId`,`pj`.`Name` AS `ProjectName`,`u`.`product_Id` AS `ProductId`,`pd`.`Name` AS `ProductName`,`pd`.`Category_Id` AS `CategoryId`,`c`.`Name` AS `CategoryName`,`u`.`Date` AS `Date`,`u`.`AmountUsed` AS `AmountUsed` from (((`productusage` `u` join `project` `pj` on((`u`.`project_Id` = `pj`.`Id`))) join `product` `pd` on((`u`.`product_Id` = `pd`.`Id`))) join `category` `c` on((`pd`.`Category_Id` = `c`.`Id`)));
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_productusage` AS select `pu`.`Id` AS `Id`,`pu`.`project_Id` AS `ProjectId`,`pj`.`Name` AS `ProjectName`,`pu`.`product_Id` AS `ProductId`,`pd`.`Name` AS `ProductName`,`pu`.`storage_Id` AS `StorageId`,`s`.`Name` AS `StorageName`,`pd`.`Category_Id` AS `CategoryId`,`c`.`Name` AS `CategoryName`,`pu`.`UsageDate` AS `UsageDate`,`pu`.`AmountUsed` AS `AmountUsed` from ((((`productusage` `pu` join `project` `pj` on((`pu`.`project_Id` = `pj`.`Id`))) join `product` `pd` on((`pu`.`product_Id` = `pd`.`Id`))) join `storage` `s` on((`pu`.`storage_Id` = `s`.`Id`))) join `category` `c` on((`pd`.`Category_Id` = `c`.`Id`)));
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

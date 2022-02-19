@@ -22,6 +22,8 @@ internal class HelperGeneral
     public static string DbProductView = "view_product";
     public static string DbProductTableFieldNameId = "Id";
     public static string DbProductTableFieldTypeId = "int";
+    public static string DbProductTableFieldNameStorageId = "Storage_Id";
+    public static string DbProductTableFieldTypeStorageId = "int";
 
 
     public static string DbProductSupplierTable = "productsupplier";
@@ -63,10 +65,14 @@ internal class HelperGeneral
     public static string DbStocklogTableFieldTypeStorageId = "int";
     public static string DbStocklogTableFieldNameSupplyOrderId = "supplyorder_Id";
     public static string DbStocklogTableFieldTypeSupplyOrderId = "int";
+    public static string DbStocklogTableFieldNameProductUsageId = "productusage_Id";
+    public static string DbStocklogTableFieldTypeProductUsageId = "int";
     public static string DbStocklogTableFieldNameSupplyOrderlineId = "supplyorderline_Id";
     public static string DbStocklogTableFieldTypeSupplyOrderlineId = "int";
     public static string DbStocklogTableFieldNameAmountReceived = "AmountReceived";
     public static string DbStocklogTableFieldTypeAmountReceived = "double";
+    public static string DbStocklogTableFieldNameAmountUsed = "AmountUsed";
+    public static string DbStocklogTableFieldTypeAmountUsed = "double";
     public static string DbStocklogTableFieldNameDate = "Date";
     public static string DbStocklogTableFieldTypeDate = "date";
 
@@ -126,12 +132,16 @@ internal class HelperGeneral
     public static string DbProductUsageTableFieldTypeProjectId = "int";
     public static string DbProductUsageTableFieldNameProductId = "product_Id";
     public static string DbProductUsageTableFieldTypeProductId = "int";
-    public static string DbProductUsageTableFieldNameAmountReceived = "AmountUsed";
-    public static string DbProductUsageTableFieldTypeAmountReceived = "double";
-    public static string DbProductUsageTableFieldNameDate = "Date";
-    public static string DbProductUsageTableFieldTypeDate = "date";
+    public static string DbProductUsageTableFieldNameStorageId = "storage_Id";
+    public static string DbProductUsageTableFieldTypeStorageId = "int";
+    public static string DbProductUsageTableFieldNameAmountUsed = "AmountUsed";
+    public static string DbProductUsageTableFieldTypeAmountUsed = "double";
+    public static string DbProductUsageTableFieldNameUsageDate = "UsageDate";
+    public static string DbProductUsageTableFieldTypeUsageDate = "date";
+    public static string DbProductUsageTableFieldNameComment = "Comment";
+    public static string DbProductUsageTableFieldTypeComment = "string";
 
-    public static string DbProductUsageView = "viewproductusage";
+    public static string DbProductUsageView = "view_productusage";
     public static string DbProductUsageViewFieldNameId = "Id";
     public static string DbProductUsageViewFieldTypeId = "int";
     public static string DbProductUsageViewFieldNameProjectId = "ProjectId";
@@ -150,10 +160,10 @@ internal class HelperGeneral
     public static string DbProductUsageViewFieldTypeStorageName = "string";
     public static string DbProductUsageViewFieldNameCategoryName = "CategoryName";
     public static string DbProductUsageViewFieldTypeCategoryName = "string";
-    public static string DbProductUsageViewFieldNameAmountReceived = "AmountUsed";
-    public static string DbProductUsageViewFieldTypeAmountReceived = "double";
-    public static string DbProductUsageViewFieldNameDate = "Date";
-    public static string DbProductUsageViewFieldTypeDate = "date";
+    public static string DbProductUsageViewFieldNameAmountUsed = "AmountUsed";
+    public static string DbProductUsageViewFieldTypeAmountUsed = "double";
+    public static string DbProductUsageViewFieldNameUsageDate = "UsageDate";
+    public static string DbProductUsageViewFieldTypeUsageDate = "date";
     #endregion ProductUsage
 
     public static string DbOrderTable = "supplyorder";

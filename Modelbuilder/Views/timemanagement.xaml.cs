@@ -22,15 +22,15 @@ public partial class timemanagement : Page
     public timemanagement()
     {
         var ProjectList = new List<HelperGeneral.Project>();
-        var WorktypeList = new List<HelperGeneral.Worktype> ();
+        var WorktypeList = new List<HelperGeneral.Worktype>();
         var ProductList = new List<HelperGeneral.Product>();
 
         InitializeComponent();
         InitializeHelper();
 
         cboxProject.ItemsSource = _helperGeneral.GetProjectList(ProjectList);
-        cboxWorktype.ItemsSource = _helperGeneral.GetWorktypeList ( WorktypeList );
-        cboxProduct.ItemsSource = _helperGeneral.GetProductList ( ProductList );
+        cboxWorktype.ItemsSource = _helperGeneral.GetWorktypeList(WorktypeList);
+        cboxProduct.ItemsSource = _helperGeneral.GetProductList(ProductList);
     }
 
     #region InitializeHelper (connect to database)
@@ -65,7 +65,7 @@ public partial class timemanagement : Page
 
         // Get data from database
         _dt = _helperGeneral.GetData(HelperGeneral.DbTimeView, new string[1, 3]
-        {   {HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } } );
+        {   {HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
 
         // Populate data in datagrid from datatable
         Time_DataGrid.DataContext = _dt;
@@ -77,7 +77,7 @@ public partial class timemanagement : Page
         string tmpStr = "";
         //update status
         if (_dt.Rows.Count != 1) { tmpStr = Languages.Cultures.general_TimeEntries; }
-        string msg = Languages.Cultures.general_Status +  ": " + _dt.Rows.Count + " " + Languages.Cultures.general_TimeEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
+        string msg = Languages.Cultures.general_Status + ": " + _dt.Rows.Count + " " + Languages.Cultures.general_TimeEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
         UpdateStatus("time", msg);
 
 
@@ -102,6 +102,36 @@ public partial class timemanagement : Page
         }
     }
     #endregion Get the Time Entry data
+
+    #region Get the Product Usage Entry data
+    private void GetProductUsageEntryData()
+    {
+        InitializeHelper();
+
+        // Get data from database
+        _dt = _helperGeneral.GetData(HelperGeneral.DbProductUsageView, new string[1, 3]
+        {   {HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } });
+
+        // Populate data in datagrid from datatable
+        Time_DataGrid.DataContext = _dt;
+
+        // Set value
+        _dbRowCount = _dt.Rows.Count;
+        RecordCountTimeRows.Text = _dbRowCount.ToString();
+
+        string tmpStr = "";
+        //update status
+        if (_dt.Rows.Count != 1) { tmpStr = Languages.Cultures.general_ProductUsageEntries; }
+        string msg = Languages.Cultures.general_Status + ": " + _dt.Rows.Count + " " + Languages.Cultures.general_ProductUsageEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
+        UpdateStatus("productusage", msg);
+
+
+        // Check if there are records for the selected date
+        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbProductUsageView, new string[1, 3]
+        { { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } });
+
+    }
+    #endregion Get the Product Usage Entry data
 
     #region Datagrid selection changed on time entries
     private void Time_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -137,7 +167,7 @@ public partial class timemanagement : Page
             }
         }
         #endregion Select the saved Storage location in the Storage combobox by default
-        
+
         cboxTimeEntryEditable.IsChecked = true;
         TBSaveButtonEnable.Text = "visible";
         TBAddButtonEnable.Text = "collapsed";
@@ -145,7 +175,7 @@ public partial class timemanagement : Page
     #endregion Datagrid selection changed on time entries
 
     #region Datagrid selection changed on Product Usage
-    private void ProductUsage_DataGrid_SelectionChanged ( object sender, SelectionChangedEventArgs e )
+    private void ProductUsage_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //After loading the selectedrow data
         cboxProductEntryEditable.IsChecked = true;
@@ -174,13 +204,69 @@ public partial class timemanagement : Page
         ClearAllFields("addrecord");
 
         GetTimeEntryData();
+        GetProductUsageEntryData();
 
     }
     #endregion Clicked button: Add new Time entry row
 
     #region Clicked button: Add new Product Usage entry row
-    private void ProductUsageToolbarButtonNew ( object sender, RoutedEventArgs e )
+    private void ProductUsageToolbarButtonNew(object sender, RoutedEventArgs e)
     {
+        az = new HelperClass();
+        var StartTime = az.AddZeros(inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros(inpStartMinute.Text.Trim(), 2) + ":00";
+        var EndTime = az.AddZeros(inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros(inpEndMinute.Text.Trim(), 2) + ":00";
+        var Comment = "";
+
+        if (inpProductComment.Text != string.Empty) { Comment = inpProductComment.Text; }
+        var StorageId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+        {   { HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text} }, new string[1, 3]
+        {   { HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, "" }});
+
+        // Write entry to product usage table
+        _helperGeneral.InsertInTable(HelperGeneral.DbProductUsageTable, new string[6, 3]
+        {   { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameProjectId, HelperGeneral.DbProductUsageTableFieldTypeProjectId,valueProjectId.Text},
+            { HelperGeneral.DbProductUsageTableFieldNameProductId, HelperGeneral.DbProductUsageTableFieldTypeProductId, valueProductId.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameAmountUsed, HelperGeneral.DbProductUsageTableFieldTypeAmountUsed, inpAmountUsed.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameStorageId, HelperGeneral.DbProductUsageTableFieldTypeStorageId, StorageId },
+            { HelperGeneral.DbProductUsageTableFieldNameComment, HelperGeneral.DbProductUsageTableFieldTypeComment, Comment }
+        });
+
+        // Update Amount in stock table if exists
+        var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[2, 3]
+        {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
+            { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }});
+
+        if (_tempRecordCount > 0)
+        {
+            var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[2, 3]
+            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
+                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }}, new string[1, 3]
+            {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" }}));
+
+            // Amount cannot be below zero
+            if (Amount - double.Parse(inpAmountUsed.Text) >= 0) { Amount -= double.Parse(inpAmountUsed.Text); } else { Amount = 0; }
+
+            _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[2, 3]
+            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
+                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }}, new string[1, 3]
+            {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, Amount.ToString() }});
+        }
+
+        // Add entry to Stocklog table
+        // product_id, storage_id, productusage_id, AmountUsed, Date
+        _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[5, 3]
+        {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text},
+            { HelperGeneral.DbStocklogTableFieldNameStorageId, HelperGeneral.DbStocklogTableFieldTypeStorageId, StorageId },
+            { HelperGeneral.DbStocklogTableFieldNameProductUsageId, HelperGeneral.DbStocklogTableFieldTypeProductUsageId, valueProductUsageId.Text },
+            { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, inpAmountUsed.Text},
+            { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text} });
+
+        ClearAllFields("addrecord");
+
+        GetTimeEntryData();
+        GetProductUsageEntryData();
+
 
     }
     #endregion Clicked button: Add new Product Usage entry row
@@ -223,13 +309,6 @@ public partial class timemanagement : Page
         ClearAllFields("delete");
     }
     #endregion Clicked button: Delete Time entry row
-
-    #region Clicked button: Delete Product Usage entry row
-    private void ProductUsageToolbarButtonDelete ( object sender, RoutedEventArgs e )
-    {
-
-    }
-    #endregion Clicked button: Delete Product Usage entry row
 
     #region Update status
     private void UpdateStatus(string area, string msg)
@@ -296,7 +375,7 @@ public partial class timemanagement : Page
         dispSelectedDate.Text = inpEntryDate.Text;
         var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
         { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
-        if(_RecordCount > 0) { GetTimeEntryData(); }
+        if(_RecordCount > 0) { GetTimeEntryData(); GetProductUsageEntryData(); }
         
         if (valueProjectId.Text == "") 
         {
@@ -582,6 +661,19 @@ public partial class timemanagement : Page
 
     }
 
+    #region Clicked button: Delete Product Usage entry row
+    private void ProductUsageToolbarButtonDelete(object sender, RoutedEventArgs e)
+    {
+        int rowIndex = _currentDataGridIndex;
+
+        _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductUsageTable, new string[1, 3]
+         { { HelperGeneral.DbProductUsageTableFieldNameId, HelperGeneral.DbProductUsageTableFieldTypeId, valueProductUsageId.Text }});
+
+        GetProductUsageEntryData();
+        ClearAllFields("delete");
+
+    }
+    #endregion Clicked button: Delete Product Usage entry row
     private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         foreach (HelperGeneral.Product product in e.AddedItems)

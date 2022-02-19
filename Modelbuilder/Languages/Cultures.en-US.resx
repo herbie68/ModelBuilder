@@ -745,10 +745,10 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="general.TimeEntries" xml:space="preserve">
     <value>s</value>
   </data>
-  <data name="GeneralProductUsageEntrie" xml:space="preserve">
+  <data name="general.ProductUsageEntrie" xml:space="preserve">
     <value>product Usage entrie row</value>
   </data>
-  <data name="GeneralProductUsageEntries" xml:space="preserve">
+  <data name="general.ProductUsageEntries" xml:space="preserve">
     <value>s</value>
   </data>
   <data name="general.Read" xml:space="preserve">
