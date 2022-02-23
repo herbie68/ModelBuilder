@@ -62,6 +62,10 @@ public partial class timemanagement : Page
     private void GetTimeEntryData()
     {
         InitializeHelper();
+        // Check if table contains data for the selected date, if not return
+        var _TimeRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbTimeTable, new string[1, 3]
+        { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } } );
+        if (_TimeRecordCount == 0) { return; }
 
         // Get data from database
         _dt = _helperGeneral.GetData(HelperGeneral.DbTimeView, new string[1, 3]
@@ -80,26 +84,18 @@ public partial class timemanagement : Page
         string msg = Languages.Cultures.general_Status + ": " + _dt.Rows.Count + " " + Languages.Cultures.general_TimeEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
         UpdateStatus("time", msg);
 
-
-        // Check if there are records for the selected date
-        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
-        { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
-
         // Get the total elapsed time for this work date
-        if (_RecordCount > 0)
-        {
-            var ElapsedMinutes = _helperGeneral.GetValueFromTable(HelperGeneral.DbTimeView, new string[1, 3]
-            { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
-            { { "SUM(ElapsedMinutes)", "double", "" }});
-            var _tempElapsedHours = int.Parse(ElapsedMinutes.ToString()) / 60;
-            var _tempElapsedMinutes = int.Parse(ElapsedMinutes.ToString()) % 60;
-            dispElapsedTotal.Text = _tempElapsedHours.ToString() + ":" + _tempElapsedMinutes.ToString();
+        var ElapsedMinutes = _helperGeneral.GetValueFromTable(HelperGeneral.DbTimeView, new string[1, 3]
+        { { HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
+        { { "SUM(ElapsedMinutes)", "double", "" }});
+        var _tempElapsedHours = int.Parse(ElapsedMinutes.ToString()) / 60;
+        var _tempElapsedMinutes = int.Parse(ElapsedMinutes.ToString()) % 60;
+        dispElapsedTotal.Text = _tempElapsedHours.ToString() + ":" + _tempElapsedMinutes.ToString();
 
-            //Prevent possility to Change date and prodiect durung time entry edit
-            inpEntryDate.IsEnabled = false;
-            cboxProject.IsEnabled = false;
-            TBResetButtonEnable.Text = "Visible";
-        }
+        //Prevent possility to Change date and prodiect durung time entry edit
+        inpEntryDate.IsEnabled = false;
+        cboxProject.IsEnabled = false;
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Get the Time Entry data
 
@@ -108,12 +104,17 @@ public partial class timemanagement : Page
     {
         InitializeHelper();
 
+        // Check if table contains data for the selected date, if not return
+        var _ProductRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbProductUsageTable, new string[1, 3]
+        { { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } } );
+        if (_ProductRecordCount == 0) { return; }
+
         // Get data from database
         _dt = _helperGeneral.GetData(HelperGeneral.DbProductUsageView, new string[1, 3]
         {   {HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } });
 
         // Populate data in datagrid from datatable
-        Time_DataGrid.DataContext = _dt;
+        ProductUsage_DataGrid.DataContext = _dt;
 
         // Set value
         _dbRowCount = _dt.Rows.Count;
@@ -125,11 +126,6 @@ public partial class timemanagement : Page
         string msg = Languages.Cultures.general_Status + ": " + _dt.Rows.Count + " " + Languages.Cultures.general_ProductUsageEntrie + tmpStr + " " + Languages.Cultures.general_Read + ".";
         UpdateStatus("productusage", msg);
 
-
-        // Check if there are records for the selected date
-        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbProductUsageView, new string[1, 3]
-        { { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } });
-
     }
     #endregion Get the Product Usage Entry data
 
@@ -139,6 +135,7 @@ public partial class timemanagement : Page
         DataGrid dg = (DataGrid)sender;
 
         if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+        cboxCleaningFields.IsChecked = true;
 
         //set values
         _currentDataGridIndex = dg.SelectedIndex;
@@ -148,13 +145,12 @@ public partial class timemanagement : Page
         inpStartMinute.Text = _tempStartTime[1];
         inpEndHour.Text = _tempEndTime[0];
         inpEndMinute.Text = _tempEndTime[1];
+        dispElapsedTime.Text = Row_Selected["ElapsedTime"].ToString();
         inpComment.Text = Row_Selected["Comment"].ToString();
-        valueWorktypeId.Text = Row_Selected["WorktypeId"].ToString();
-        valueSelectedWorktype.Text = Row_Selected["WorktypeName"].ToString();
         valueTimeId.Text = Row_Selected["Id"].ToString();
 
-        #region Select the saved Storage location in the Storage combobox by default
-        string _tempWorktype = Row_Selected["WorktypeName"].ToString();
+        #region Select the saved Worktype location in the Worktype combobox by default
+        string _tempWorktype = Row_Selected["WorktypeName"].ToString ();
         cboxWorktype.Text = _tempWorktype;
 
         //Select the saved Worktype in the combobox by default
@@ -166,17 +162,25 @@ public partial class timemanagement : Page
                 break;
             }
         }
-        #endregion Select the saved Storage location in the Storage combobox by default
+
+        valueWorktypeId.Text = Row_Selected["WorktypeId"].ToString ();
+        valueSelectedWorktype.Text = Row_Selected["WorktypeName"].ToString ();
+        #endregion Select the saved Worktype location in the Worktype combobox by default
+
 
         cboxTimeEntryEditable.IsChecked = true;
         TBSaveButtonEnable.Text = "visible";
         TBAddButtonEnable.Text = "collapsed";
+        cboxCleaningFields.IsChecked = false;
     }
     #endregion Datagrid selection changed on time entries
 
     #region Datagrid selection changed on Product Usage
     private void ProductUsage_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        DataGrid dg = (DataGrid)sender;
+        if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+
         //After loading the selectedrow data
         cboxProductEntryEditable.IsChecked = true;
 
@@ -186,10 +190,9 @@ public partial class timemanagement : Page
     #region Clicked button: Add new Time entry row
     private void TimeToolbarButtonNew(object sender, RoutedEventArgs e)
     {
-        az = new HelperClass();
         // Save Date AS date, Project_Id AS int, Worktype_Id AS int, StartTime AS time, EndTime AS time, Comment AS varchar
-        var StartTime = az.AddZeros(inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros(inpStartMinute.Text.Trim(), 2) + ":00";
-        var EndTime = az.AddZeros(inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros(inpEndMinute.Text.Trim(), 2) + ":00";
+        var StartTime = az.AddZeros ( inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros ( inpStartMinute.Text.Trim(), 2) + ":00";
+        var EndTime = az.AddZeros ( inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros ( inpEndMinute.Text.Trim(), 2) + ":00";
         var Comment = "";
 
         if (inpComment.Text != string.Empty) { Comment = inpComment.Text; }
@@ -213,51 +216,38 @@ public partial class timemanagement : Page
     private void ProductUsageToolbarButtonNew(object sender, RoutedEventArgs e)
     {
         az = new HelperClass();
-        var StartTime = az.AddZeros(inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros(inpStartMinute.Text.Trim(), 2) + ":00";
-        var EndTime = az.AddZeros(inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros(inpEndMinute.Text.Trim(), 2) + ":00";
-        var Comment = "";
-
-        if (inpProductComment.Text != string.Empty) { Comment = inpProductComment.Text; }
-        var StorageId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductTable, new string[1, 3]
-        {   { HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text} }, new string[1, 3]
-        {   { HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, "" }});
 
         // Write entry to product usage table
-        _helperGeneral.InsertInTable(HelperGeneral.DbProductUsageTable, new string[6, 3]
+        _helperGeneral.InsertInTable(HelperGeneral.DbProductUsageTable, new string[5, 3]
         {   { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text },
             { HelperGeneral.DbProductUsageTableFieldNameProjectId, HelperGeneral.DbProductUsageTableFieldTypeProjectId,valueProjectId.Text},
             { HelperGeneral.DbProductUsageTableFieldNameProductId, HelperGeneral.DbProductUsageTableFieldTypeProductId, valueProductId.Text },
             { HelperGeneral.DbProductUsageTableFieldNameAmountUsed, HelperGeneral.DbProductUsageTableFieldTypeAmountUsed, inpAmountUsed.Text },
-            { HelperGeneral.DbProductUsageTableFieldNameStorageId, HelperGeneral.DbProductUsageTableFieldTypeStorageId, StorageId },
-            { HelperGeneral.DbProductUsageTableFieldNameComment, HelperGeneral.DbProductUsageTableFieldTypeComment, Comment }
+            { HelperGeneral.DbProductUsageTableFieldNameComment, HelperGeneral.DbProductUsageTableFieldTypeComment, inpProductComment.Text }
         });
 
         // Update Amount in stock table if exists
-        var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[2, 3]
-        {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
-            { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }});
+        var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[1, 3]
+        {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text} });
 
         if (_tempRecordCount > 0)
         {
-            var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[2, 3]
-            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
-                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }}, new string[1, 3]
+            var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[1, 3]
+            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text} }, new string[1, 3]
             {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" }}));
 
             // Amount cannot be below zero
             if (Amount - double.Parse(inpAmountUsed.Text) >= 0) { Amount -= double.Parse(inpAmountUsed.Text); } else { Amount = 0; }
 
-            _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[2, 3]
-            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
-                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, StorageId }}, new string[1, 3]
+            _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[1, 3]
+            {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text} }, new string[1, 3]
             {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, Amount.ToString() }});
         }
 
         // Add entry to Stocklog table
         // product_id, storage_id, productusage_id, AmountUsed, Date
-        _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[5, 3]
+        _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[4, 3]
         {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text},
-            { HelperGeneral.DbStocklogTableFieldNameStorageId, HelperGeneral.DbStocklogTableFieldTypeStorageId, StorageId },
             { HelperGeneral.DbStocklogTableFieldNameProductUsageId, HelperGeneral.DbStocklogTableFieldTypeProductUsageId, valueProductUsageId.Text },
             { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, inpAmountUsed.Text},
             { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text} });
@@ -274,10 +264,9 @@ public partial class timemanagement : Page
     #region Clicked button: Save Time Entry row
     private void TimeToolbarButtonSave ( object sender, RoutedEventArgs e )
     {
-        az = new HelperClass();
         // Save Date AS date, Project_Id AS int, Worktype_Id AS int, StartTime AS time, EndTime AS time, Comment AS varchar
-        var StartTime = az.AddZeros(inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros(inpStartMinute.Text.Trim(), 2) + ":00";
-        var EndTime = az.AddZeros(inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros(inpEndMinute.Text.Trim(), 2) + ":00";
+        var StartTime = az.AddZeros ( inpStartHour.Text.Trim(), 2) + ":" + az.AddZeros ( inpStartMinute.Text.Trim(), 2) + ":00";
+        var EndTime = az.AddZeros ( inpEndHour.Text.Trim(), 2) + ":" + az.AddZeros ( inpEndMinute.Text.Trim(), 2) + ":00";
         var Comment = "";
 
         if (inpComment.Text != string.Empty) { Comment = inpComment.Text; }
@@ -300,8 +289,6 @@ public partial class timemanagement : Page
     #region Clicked button: Delete Time entry row
     private void TimeToolbarButtonDelete ( object sender, RoutedEventArgs e )
     {
-        int rowIndex = _currentDataGridIndex;
-
         _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbTimeTable, new string[1, 3]
          { { HelperGeneral.DbTimeTableFieldNameId, HelperGeneral.DbTimeTableFieldTypeId, valueTimeId.Text }});
 
@@ -373,10 +360,17 @@ public partial class timemanagement : Page
         if (inpEntryDate.Text == string.Empty) { return; }
         // Check if there are records for the selected date
         dispSelectedDate.Text = inpEntryDate.Text;
-        var _RecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeView, new string[1, 3]
+        az = new HelperClass ();
+        dispSelectedDate.Text = inpEntryDate.Text;
+
+        var _TimeRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeTable, new string[1, 3]
         { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } });
-        if(_RecordCount > 0) { GetTimeEntryData(); GetProductUsageEntryData(); }
-        
+
+        var _ProductRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbProductUsageTable, new string[1, 3]
+        { { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text } } );
+        if (_TimeRecordCount > 0) { GetTimeEntryData(); }
+        if (_ProductRecordCount > 0) { GetProductUsageEntryData (); }
+
         if (valueProjectId.Text == "") 
         {
             TBAddTimeEntryEnable.Text = "Collapsed";
@@ -398,7 +392,7 @@ public partial class timemanagement : Page
             TBResetButtonEnable.Text = "visible";
         }
 
-        if (_RecordCount > 0)
+        if (_TimeRecordCount > 0)
         {
             var ProjectId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbTimeTable, new string[1, 3]
             { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, inpEntryDate.Text } }, new string[1, 3]
@@ -451,7 +445,6 @@ public partial class timemanagement : Page
     {
         if (cboxCleaningFields.IsChecked == true) { return; }
         Regex regex = new Regex ( "[^0-9]+" );
-        //e.Handled = regex.IsMatch ( e.Text );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 23 );
     }
     #endregion Handle Input of hours
@@ -461,7 +454,6 @@ public partial class timemanagement : Page
     {
         if (cboxCleaningFields.IsChecked == true) { return; }
         Regex regex = new Regex ( "[^0-9]+" );
-        //e.Handled = regex.IsMatch ( e.Text );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 59 );
     }
     #endregion Handle Input of minutes
@@ -487,15 +479,14 @@ public partial class timemanagement : Page
     {
         if (cboxCleaningFields.IsChecked == true) { return; }
         TBTimeErrorVisible.Text = "Collapsed";
+        var _RecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbTimeTable, new string[1, 3]
+            { { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, dispSelectedDate.Text } } );
         if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty) { valueStartTime.Text = (int.Parse ( inpStartHour.Text ) * 60 + int.Parse ( inpStartMinute.Text )).ToString (); }
         if (inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty) { valueEndTime.Text = (int.Parse ( inpEndHour.Text ) * 60 + int.Parse ( inpEndMinute.Text )).ToString (); }
         if (valueStartTime.Text != string.Empty && valueEndTime.Text != string.Empty)
         {
             var ElapsedTotalMinutes = int.Parse ( valueEndTime.Text ) - int.Parse ( valueStartTime.Text );
             var ElapsedHours = ("0" + (ElapsedTotalMinutes / 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes / 60).ToString ()).Length - 2, 2 );
-            var temp1 = (ElapsedTotalMinutes / 60).ToString ();
-            var temp2 = ("0" + (ElapsedTotalMinutes / 60).ToString ());
-            var temp3 = temp2.Length;
             var ElapsedMinutes = ("0" + (ElapsedTotalMinutes % 60).ToString ()).Substring ( ("0" + (ElapsedTotalMinutes % 60).ToString ()).Length - 2, 2 );
             dispElapsedTime.Text = ElapsedHours + ":" + ElapsedMinutes;
         }
@@ -503,6 +494,7 @@ public partial class timemanagement : Page
         #region check if Starttime does not excist in a range of entered time entries
         if(inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpStartMinute.Text.Length == 2)
         {
+            if (_RecordCount == 0) { return; }
             // Get list with: SELECT HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime FROM time WHERE WorkDate = "22-02-01"
             var _tempStartTime = (int.Parse(inpStartHour.Text) * 60 + int.Parse(inpStartMinute.Text));
             var WorkingHoursList = new List<HelperTimeManagement.WorkingHours>();
@@ -535,6 +527,7 @@ public partial class timemanagement : Page
         #region check if Endtime does not excist in a range of entered time entries
         if (inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && inpEndMinute.Text.Length == 2)
         {
+            if (_RecordCount == 0) { return; }
             var _tempEndTime = (int.Parse(inpEndHour.Text) * 60 + int.Parse(inpEndMinute.Text));
             var WorkingHoursList = new List<HelperTimeManagement.WorkingHours>();
             var SqlSelectionString = "HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime";
@@ -567,7 +560,6 @@ public partial class timemanagement : Page
             }
         }
         #endregion check if Endtime does not excist in a range of entered time entries
-
 
         // check time entries, if also available add button can become visible
         if (inpStartHour.Text != string.Empty && inpStartMinute.Text != string.Empty && inpEndHour.Text != string.Empty && inpEndMinute.Text != string.Empty && valueSelectedWorktype.Text != string.Empty)
@@ -617,7 +609,6 @@ public partial class timemanagement : Page
         valueStartTime.Clear();
         valueStockId.Clear();
         valueStocklogId.Clear();
-        valueStorageId.Clear();
         valueStoredAmount.Clear();
         valueTimeId.Clear();
         inpComment.Clear();
@@ -653,19 +644,17 @@ public partial class timemanagement : Page
 
     private void ProductUsageToolbarButtonSave(object sender, RoutedEventArgs e)
     {
-
+        // Do some stuff
     }
 
     private void ProductUsageToolbarButtonReset(object sender, RoutedEventArgs e)
     {
-
+        // Do some stuff
     }
 
     #region Clicked button: Delete Product Usage entry row
     private void ProductUsageToolbarButtonDelete(object sender, RoutedEventArgs e)
     {
-        int rowIndex = _currentDataGridIndex;
-
         _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProductUsageTable, new string[1, 3]
          { { HelperGeneral.DbProductUsageTableFieldNameId, HelperGeneral.DbProductUsageTableFieldTypeId, valueProductUsageId.Text }});
 
@@ -680,7 +669,6 @@ public partial class timemanagement : Page
         {
             cboxProduct.SelectedItem = product;
             valueProductId.Text = product.ProductId.ToString();
-            //dispSelectedProduct.Text = product.ProductName.ToString();
             if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
             {
                 TBAddProductButtonEnable.Text = "collapsed";

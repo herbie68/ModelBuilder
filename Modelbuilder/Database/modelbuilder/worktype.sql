@@ -1,20 +1,11 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server versie:                8.0.26 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Versie:              11.3.0.6337
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Structuur van  tabel modelbuilder.worktype wordt geschreven
+DROP TABLE IF EXISTS `worktype`;
 CREATE TABLE IF NOT EXISTS `worktype` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `ParentId` int DEFAULT NULL,
@@ -25,7 +16,6 @@ CREATE TABLE IF NOT EXISTS `worktype` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumpen data van tabel modelbuilder.worktype: ~27 rows (ongeveer)
 DELETE FROM `worktype`;
 /*!40000 ALTER TABLE `worktype` DISABLE KEYS */;
 INSERT INTO `worktype` (`Id`, `ParentId`, `Name`, `FullPath`, `Created`, `Modified`) VALUES
@@ -58,7 +48,6 @@ INSERT INTO `worktype` (`Id`, `ParentId`, `Name`, `FullPath`, `Created`, `Modifi
 	(27, 21, 'Kraaiennest', 'Opbouw\\Masten\\Kraaiennest', '2022-01-11 12:10:00', '2022-01-11 12:10:00');
 /*!40000 ALTER TABLE `worktype` ENABLE KEYS */;
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,20 +1,11 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server versie:                8.0.26 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Versie:              11.3.0.6337
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Structuur van  tabel modelbuilder.brand wordt geschreven
+DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -24,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `brand` (
   UNIQUE KEY `brand_Name` (`Name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of brands for tools, kits, suplies and all other stuf';
 
--- Dumpen data van tabel modelbuilder.brand: ~51 rows (ongeveer)
 DELETE FROM `brand`;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
 INSERT INTO `brand` (`Id`, `Name`, `Modified`, `Created`) VALUES
@@ -81,7 +71,6 @@ INSERT INTO `brand` (`Id`, `Name`, `Modified`, `Created`) VALUES
 	(51, 'ZAP', '2021-12-23 07:45:07', '2021-12-23 07:45:07');
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,7 +40,12 @@ internal class HelperTimeManagement
     {
         DataTable dt = new ();
 
-        string sqlText = "SELECT " + SelectString + " FROM " + Table.ToLower() + " WHERE ";
+        StringBuilder sqlText = new StringBuilder ( "SELECT " );
+        sqlText.Append ( SelectString );
+        sqlText.Append(" FROM ");
+        sqlText.Append ( Table.ToLower () );
+        sqlText.Append ( " WHERE " );
+
         string prefix = "";
 
         if (WhereFields.GetLength ( 0 ) > 0)
@@ -48,17 +53,20 @@ internal class HelperTimeManagement
             for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
             {
                 if (i != 0) { prefix = " AND "; }
-                sqlText = sqlText + prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0];
+                sqlText.Append ( prefix );
+                sqlText.Append ( WhereFields[i, 0] );
+                sqlText.Append ("=@");
+                sqlText.Append ( WhereFields[i, 0] );
             }
         }
 
-        if (OrderBy != string.Empty) { sqlText += " ORDER BY " + OrderBy; }
+        if (OrderBy != string.Empty) { sqlText.Append ( " ORDER BY " ); sqlText.Append(OrderBy); }
         
         MySqlConnection con = new MySqlConnection ( ConnectionStr );
 
         con.Open ();
 
-        MySqlCommand cmd = new MySqlCommand ( sqlText, con );
+        MySqlCommand cmd = new MySqlCommand ( sqlText.ToString(), con );
 
         for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
         {

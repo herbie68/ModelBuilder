@@ -41,7 +41,6 @@
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOrderlineId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueSupplierId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
                     <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueOpenAmount" />
                     <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxReceiptRowEditable" IsChecked="False"/>
                 </StackPanel>

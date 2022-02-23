@@ -46,7 +46,7 @@ public partial class storageOrderReceipt : Page
 
         string tmpStr = "";
         //update status
-        if (_dt.Rows.Count != 1) { tmpStr = "s"; };
+        if (_dt.Rows.Count != 1) { tmpStr = "s"; }
         string msg = "Status: " + _dt.Rows.Count + " Bestelling" + tmpStr + " ingelezen.";
 
         UpdateStatus("order", msg);
@@ -71,7 +71,7 @@ public partial class storageOrderReceipt : Page
 
         string tmpStr = "";
         //update status
-        if (_dtSC.Rows.Count != 1) { tmpStr = "s"; };
+        if (_dtSC.Rows.Count != 1) { tmpStr = "s"; }
         string msg = "Status: " + _dtSC.Rows.Count + " Bestelregels" + tmpStr + " ingelezen.";
 
         UpdateStatus("row", msg);
@@ -171,18 +171,9 @@ public partial class storageOrderReceipt : Page
     #region Button Apply receipt pressed
     private void ButtonApply(object sender, RoutedEventArgs e)
     {
-        var (OrderId, OrderlineId, SupplierId, StorageId, SupplyOrderlineId, ProductId, LineClosed) = (0, 0, 0, 0, 0, 0, 0);
+        var LineClosed = 0;
         var (ProductName, ReceivedDate) = ("", "");
         var (AmountReceived, AmountRest) = (0.00, 0.00);
-
-        if (valueOrderId.Text == String.Empty) { OrderId = 0; } else { OrderId = int.Parse(valueOrderId.Text); }
-        if (valueOrderlineId.Text == String.Empty) { OrderlineId = 0; } else { OrderlineId = int.Parse(valueOrderlineId.Text); }
-        if (valueSupplierId.Text == String.Empty) { SupplierId = 0; } else { SupplierId = int.Parse(valueSupplierId.Text); }
-        if (valueProductId.Text == String.Empty) { ProductId = 0; } else { ProductId = int.Parse(valueProductId.Text); }
-        if (valueStorageId.Text == String.Empty) { StorageId = 0; } else { StorageId = int.Parse(valueStorageId.Text); }
-        if (inpDeliveryDate.Text == String.Empty) { ReceivedDate = ""; } else { ReceivedDate = inpDeliveryDate.Text; }
-        if (inpProductName.Text == String.Empty) { ProductName = ""; } else { ProductName = inpProductName.Text; }
-        if (inpNumber.Text == String.Empty) { AmountReceived = 0.00; } else { AmountReceived = double.Parse(inpNumber.Text); }
 
         AmountRest = double.Parse(valueOpenAmount.Text) - double.Parse(inpNumber.Text);
 
@@ -199,22 +190,19 @@ public partial class storageOrderReceipt : Page
                 {HelperGeneral.DbOrderLineFieldNameClosedDate, HelperGeneral.DbOrderLineFieldTypeClosedDate, inpDeliveryDate.Text} });
 
         // Check if Product Id excists in stock table if yes, Amount has to be changed, if no record has to be added
-        var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[2, 3]
-        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
-                {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text} });
+        var _tempRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbStockTable, new string[1, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text} } );
 
         if (_tempRecordCount > 0)
         {
             // Get Stock Id
-            var StockId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockView, new string[2, 3]
-            {   {HelperGeneral.DbStockViewFieldNameProductId, HelperGeneral.DbStockViewFieldTypeProductId, valueProductId.Text},
-                    {HelperGeneral.DbStockViewFieldNameStorageId, HelperGeneral.DbStockViewFieldTypeStorageId, valueStorageId.Text} }, new string[1, 3]
+            var StockId = int.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockView, new string[1, 3]
+            {   {HelperGeneral.DbStockViewFieldNameProductId, HelperGeneral.DbStockViewFieldTypeProductId, valueProductId.Text} }, new string[1, 3]
             {   {HelperGeneral.DbStockViewFieldNameId, HelperGeneral.DbStockViewFieldTypeId, ""} }));
 
             // Get Currunt Stock Amount
-            var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[2, 3]
-            {   {HelperGeneral.DbStockTableFieldNameProductId,  HelperGeneral.DbStockTableFieldNameProductId, valueProductId.Text},
-                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text } }, new string[1, 3]
+            var Amount = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbStockTable, new string[1, 3]
+            {   {HelperGeneral.DbStockTableFieldNameProductId,  HelperGeneral.DbStockTableFieldNameProductId, valueProductId.Text} }, new string[1, 3]
             {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" }}));
 
             // Calculate new Stock Amount
@@ -222,23 +210,20 @@ public partial class storageOrderReceipt : Page
 
             // Update stock record with new Stock Amount
             _helperGeneral.UpdateFieldInTable(HelperGeneral.DbStockTable, new string[1, 3]
-            {   {HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId , StockId.ToString()} }, new string[3, 3]
+            {   {HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId , StockId.ToString()} }, new string[2, 3]
             {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text},
-                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text},
                     {HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, AmountNew.ToString()} });
         }
         else
         {
-            _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[3, 3]
+            _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
             {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-                    {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId, valueStorageId.Text },
                     {HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, inpNumber.Text } });
         }
 
         // Add record to the StockLog table
-        _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[6, 3]
+        _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[5, 3]
         {   {HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId , valueProductId.Text},
-                {HelperGeneral.DbStocklogTableFieldNameStorageId, HelperGeneral.DbStocklogTableFieldTypeStorageId, valueStorageId.Text },
                 {HelperGeneral.DbStocklogTableFieldNameSupplyOrderId, HelperGeneral.DbStocklogTableFieldTypeSupplyOrderId, valueOrderId.Text},
                 {HelperGeneral.DbStocklogTableFieldNameSupplyOrderlineId, HelperGeneral.DbStocklogTableFieldTypeSupplyOrderlineId, valueOrderlineId.Text },
                 {HelperGeneral.DbStocklogTableFieldNameAmountReceived, HelperGeneral.DbStocklogTableFieldTypeAmountReceived, inpNumber.Text },
@@ -302,7 +287,6 @@ public partial class storageOrderReceipt : Page
 
         #region Select the saved Storage location in the Storage combobox by default
         string _tempStorage = Row_Selected["StorageName"].ToString();
-        valueStorageId.Text = Row_Selected["Storage_Id"].ToString();
         cboxStorage.Text = _tempStorage;
 
         //Select the saved Storage location in the combobox by default

@@ -123,7 +123,6 @@
                         <TextBox x:Name="valueWorktypeId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueProductId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueCategoryId" Style="{DynamicResource HiddenTextBox}" />
-                        <TextBox x:Name="valueStorageId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStockId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStocklogId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStartTime" Style="{DynamicResource HiddenTextBox}" />
@@ -307,33 +306,23 @@
                                 <DataGrid
                                     x:Name="Time_DataGrid"
                                     Height="210"
-                                    Padding="3"
+                                    Padding="3" CanUserAddRows="False"
                                     d:ItemsSource="{d:SampleData}"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="Time_DataGrid_SelectionChanged"
                                     Style="{DynamicResource DefaultDataGrid}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn
-                                            Width="70"
-                                            Binding="{Binding Id}"
-                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Id}"
-                                            IsReadOnly="True"
-                                            Visibility="Hidden" />
+                                            Width="70" Binding="{Binding Id}" Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Id}"
+                                            IsReadOnly="True" Visibility="Hidden" />
                                         <DataGridTextColumn
-                                            Width="70"
-                                            Binding="{Binding project_Id}"
-                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectId}"
-                                            IsReadOnly="True"
-                                            Visibility="Hidden" />
+                                            Width="70" Binding="{Binding project_Id}" Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectId}"
+                                            IsReadOnly="True" Visibility="Hidden" />
                                         <DataGridTextColumn
-                                            Width="70"
-                                            Binding="{Binding worktype_Id}"
-                                            Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeId}"
-                                            IsReadOnly="True"
-                                            Visibility="Hidden" />
+                                            Width="70" Binding="{Binding worktype_Id}" Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_WorktypeId}"
+                                            IsReadOnly="True" Visibility="Hidden" />
                                         <DataGridTextColumn
-                                            Width="70"
-                                            Binding="{Binding StartTime}"
+                                            Width="70" Binding="{Binding StartTime}" 
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_StartTime}"
                                             IsReadOnly="True" >
                                             <DataGridTextColumn.ElementStyle>
@@ -564,7 +553,7 @@
                                 <DataGrid
                                     x:Name="ProductUsage_DataGrid"
                                     Height="240"
-                                    Padding="3"
+                                    Padding="3" CanUserAddRows="False"
                                     d:ItemsSource="{d:SampleData}"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="ProductUsage_DataGrid_SelectionChanged"
@@ -597,13 +586,13 @@
                                         <DataGridTextColumn
                                             Width="280"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProductName}"
-                                            IsReadOnly="False"
+                                            IsReadOnly="True"
                                             Binding="{Binding ProductName}"/>
                                         <DataGridTextColumn
                                             Width="110"
                                             Binding="{Binding AmountUsed}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_AmountUsed}"
-                                            IsReadOnly="False">
+                                            IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="HorizontalAlignment" Value="Right" />
