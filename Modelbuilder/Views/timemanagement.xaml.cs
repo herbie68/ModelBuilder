@@ -180,9 +180,31 @@ public partial class timemanagement : Page
     {
         DataGrid dg = (DataGrid)sender;
         if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
+        inpAmountUsed.Text = Row_Selected [ "AmountUsed" ].ToString ();
+        inpProductComment.Text = Row_Selected["Comment"].ToString ();
+        valueProductUsageId.Text = Row_Selected["Id"].ToString ();
+        valueProductId.Text = Row_Selected["ProductId"].ToString ();
+
+        #region Select the saved Product in the Product combobox by default
+        string _tempProduct = Row_Selected["ProductName"].ToString ();
+        cboxProduct.Text = _tempProduct;
+
+        //Select the saved Product in the combobox by default
+        foreach (HelperGeneral.Product product in cboxProduct.Items)
+        {
+            if (product.ProductName == _tempProduct)
+            {
+                cboxProduct.SelectedItem = product;
+                break;
+            }
+        }
+        #endregion Select the saved Product in the Product combobox by default
 
         //After loading the selectedrow data
         cboxProductEntryEditable.IsChecked = true;
+        TBSaveProductButtonEnable.Text = "visible";
+        TBAddProductButtonEnable.Text = "collapsed";
+        cboxCleaningFields.IsChecked = false;
 
     }
     #endregion Datagrid selection changed on Product usage
@@ -226,6 +248,9 @@ public partial class timemanagement : Page
             { HelperGeneral.DbProductUsageTableFieldNameComment, HelperGeneral.DbProductUsageTableFieldTypeComment, inpProductComment.Text }
         });
 
+        //Retrieve the Id of te new record in the productUsage table
+        var _TempProductUsageId = _helperGeneral.GetLatestIdFromTable ( HelperGeneral.DbProductUsageTable );
+
         // Update Amount in stock table if exists
         var _tempRecordCount = _helperGeneral.CheckForRecords(HelperGeneral.DbStockTable, new string[1, 3]
         {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text} });
@@ -248,7 +273,7 @@ public partial class timemanagement : Page
         // product_id, storage_id, productusage_id, AmountUsed, Date
         _helperGeneral.InsertInTable(HelperGeneral.DbStocklogTable, new string[4, 3]
         {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text},
-            { HelperGeneral.DbStocklogTableFieldNameProductUsageId, HelperGeneral.DbStocklogTableFieldTypeProductUsageId, valueProductUsageId.Text },
+            { HelperGeneral.DbStocklogTableFieldNameProductUsageId, HelperGeneral.DbStocklogTableFieldTypeProductUsageId, _TempProductUsageId },
             { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, inpAmountUsed.Text},
             { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text} });
 
@@ -354,6 +379,32 @@ public partial class timemanagement : Page
     }
     #endregion Selection Changed: Project combobox
 
+    #region Selection Changed: Product combobox
+    private void cboxProduct_SelectionChanged ( object sender, SelectionChangedEventArgs e )
+    {
+        foreach (HelperGeneral.Product product in e.AddedItems)
+        {
+            cboxProduct.SelectedItem = product;
+            valueProductId.Text = product.ProductId.ToString ();
+            if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text != string.Empty && valueProductId.Text != string.Empty)
+            {
+                TBAddProductButtonEnable.Text = "collapsed";
+                TBSaveProductButtonEnable.Text = "visible";
+            }
+            else if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text != string.Empty)
+            {
+                TBAddProductButtonEnable.Text = "visible";
+                TBSaveProductButtonEnable.Text = "collapsed";
+            }
+            else
+            {
+                TBAddProductButtonEnable.Text = "collapsed";
+                TBSaveProductButtonEnable.Text = "collapsed";
+            }
+        }
+    }
+    #endregion Selection Changed: Product combobox
+
     #region Selection changed: Date
     private void DataPickerSelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
@@ -417,7 +468,7 @@ public partial class timemanagement : Page
     }
     #endregion Selection changed: Date
 
-    #region Selection changed on Combobox: cboxWorktype
+    #region Selection changed: Worktype Combobox
     private void cboxWorktype_SelectionChanged ( object sender, SelectionChangedEventArgs e )
     {
         foreach (HelperGeneral.Worktype item in e.AddedItems)
@@ -437,14 +488,13 @@ public partial class timemanagement : Page
         TBResetButtonEnable.Text = "visible";
 
     }
-    #endregion Selection changed on Combobox: cboxWorktype
+    #endregion Selection changed: Worktype Combobox
 
     #region Make Time entries Numeric Only, and validate entered hours or minutes
     #region Handle Input of hours
     private void OnlyHourInput ( object sender, TextCompositionEventArgs e )
     {
         if (cboxCleaningFields.IsChecked == true) { return; }
-        Regex regex = new Regex ( "[^0-9]+" );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 23 );
     }
     #endregion Handle Input of hours
@@ -453,7 +503,6 @@ public partial class timemanagement : Page
     private void OnlyMinuteInput ( object sender, TextCompositionEventArgs e )
     {
         if (cboxCleaningFields.IsChecked == true) { return; }
-        Regex regex = new Regex ( "[^0-9]+" );
         e.Handled = !IsValidTime ( ((TextBox)sender).Text + e.Text, 0, 59 );
     }
     #endregion Handle Input of minutes
@@ -539,7 +588,6 @@ public partial class timemanagement : Page
             }, HelperGeneral.DbTimeTableFieldNameStartTime);
 
             var minStartTime = AvailableWorkingHours.Min(t => t.StartTime);
-            var maxStartTime = AvailableWorkingHours.Max(t => t.StartTime); 
             for (int i = 0; i < AvailableWorkingHours.Count; i++)
             {
                 if (_tempEndTime <= AvailableWorkingHours[i].EndTime)
@@ -589,6 +637,20 @@ public partial class timemanagement : Page
     }
     #endregion Check if entered enttime is after the entered starttime
 
+    #region AmountUsed field changed
+    private void AmountUsedChanged ( object sender, TextChangedEventArgs e )
+    {
+        if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
+        {
+            TBAddProductButtonEnable.Text = "collapsed";
+        }
+        else
+        {
+            TBAddProductButtonEnable.Text = "visible";
+        }
+    }
+    #endregion AmountUsed field changed
+
     #region Toolbar Reset button pressed 
     private void TimeToolbarButtonReset(object sender, RoutedEventArgs e)
     {
@@ -607,9 +669,6 @@ public partial class timemanagement : Page
         valueProductUsageId.Clear();
         valueSelectedWorktype.Clear();
         valueStartTime.Clear();
-        valueStockId.Clear();
-        valueStocklogId.Clear();
-        valueStoredAmount.Clear();
         valueTimeId.Clear();
         inpComment.Clear();
         inpEndHour.Clear();
@@ -642,10 +701,125 @@ public partial class timemanagement : Page
     }
     #endregion Clear all fields
 
+    #region Clicked button: Save Product Usage entry row
     private void ProductUsageToolbarButtonSave(object sender, RoutedEventArgs e)
     {
-        // Do some stuff
+        var Comment = "";
+        
+        if (inpProductComment.Text != string.Empty) { Comment = inpProductComment.Text; }
+
+        // Save the eventualy chhanged content of the product Entry fields to the ProductUsage table
+        _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductUsageTable, new string[1, 3]
+        { { HelperGeneral.DbProductUsageTableFieldNameId, HelperGeneral.DbProductUsageTableFieldTypeId, valueProductUsageId.Text } }, new string[5, 3]
+        {
+            { HelperGeneral.DbProductUsageTableFieldNameProjectId, HelperGeneral.DbProductUsageTableFieldTypeProjectId, valueProjectId.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameProductId, HelperGeneral.DbProductUsageTableFieldTypeProductId, valueProductId.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameUsageDate, HelperGeneral.DbProductUsageTableFieldTypeUsageDate, inpEntryDate.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameAmountUsed, HelperGeneral.DbProductUsageTableFieldTypeAmountUsed, inpAmountUsed.Text },
+            { HelperGeneral.DbProductUsageTableFieldNameComment, HelperGeneral.DbProductUsageTableFieldTypeComment, Comment } } );
+
+        // Check if there is an entry for this product on this date in the Stocklog, if yes, we can update this record and calculate if there is a difference in ammount
+        var _tempRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbStocklogTable, new string[2, 3]
+        {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text },
+            { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text }});
+
+        if (_tempRecordCount>0 )
+        {
+            // Firs get the AmountSaved
+            var _tempAmount = double.Parse(_helperGeneral.GetValueFromTable ( HelperGeneral.DbStocklogTable, new string[2, 3]
+            {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text },
+                { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text }}, new string[1, 3]
+            {   { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, "" } } ));
+
+            var _tempChangedAmount = double.Parse ( inpAmountUsed.Text ) - _tempAmount;
+            // Only need to update Stocklog and Stock table when the entered amount differs from the stored amount
+            if (_tempChangedAmount != 0)
+            {
+                // Get record Id
+                var _tempStocklogRecordId = _helperGeneral.GetValueFromTable(HelperGeneral.DbStocklogTable, new string[2,3]
+                {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text },
+                    { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text } }, new string [1,3]
+                {   { HelperGeneral.DbStocklogTableFieldNameId, HelperGeneral.DbStocklogTableFieldTypeId, "" } } );
+
+                // Update the record in the Stocklog with the new used value
+                _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbStocklogTable, new string[1, 3]
+                {   { HelperGeneral.DbStocklogTableFieldNameId, HelperGeneral.DbStocklogTableFieldTypeId, _tempStocklogRecordId }}, new string[1, 3]
+                {   { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, inpAmountUsed.Text } } );
+
+                // Check if there is a record for the article in the Stock Table
+                var _tempStockRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbStockTable, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } } );
+
+                // It there is a record for the product update the stock amount, amount cannot go below 0
+                if (_tempStockRecordCount > 0)
+                {
+                    // Get record Id
+                    var _tempStockRecordId = _helperGeneral.GetValueFromTable ( HelperGeneral.DbStockTable, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text }}, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId, "" } } );
+
+                    var _tempStockAmount = double.Parse ( _helperGeneral.GetValueFromTable ( HelperGeneral.DbStockTable, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } }, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" } } ) );
+
+                    // Save the new Amount, where the used amount is subtracted form the storeed amount
+                    var _tempNewStock = _tempStockAmount - double.Parse ( inpAmountUsed.Text );
+                    if (_tempNewStock < 0) { _tempNewStock=0; }
+
+                    _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbStockTable, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameId, HelperGeneral.DbStockTableFieldTypeId, _tempStockRecordId } }, new string[1, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, _tempNewStock.ToString() } } );
+                }
+                else
+                {
+                    // Add a record for this product in the Stock Table, with Stored Amount value 0
+                    _helperGeneral.InsertInTable ( HelperGeneral.DbStockTable, new string[2, 3]
+                    {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text },
+                        { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "0" } } );
+                }
+            }
+        }
+        else
+        {
+            // There is no record for thes product in the Stocklog table therefore a record will be added
+            _helperGeneral.InsertInTable ( HelperGeneral.DbStocklogTable, new string[3, 3]
+            {   { HelperGeneral.DbStocklogTableFieldNameProductId, HelperGeneral.DbStocklogTableFieldTypeProductId, valueProductId.Text },
+                { HelperGeneral.DbStocklogTableFieldNameDate, HelperGeneral.DbStocklogTableFieldTypeDate, inpEntryDate.Text },
+                { HelperGeneral.DbStocklogTableFieldNameAmountUsed, HelperGeneral.DbStocklogTableFieldTypeAmountUsed, inpAmountUsed.Text } } );
+
+            // Check if there is a record for the article in the Stock Table
+            var _tempStockRecordCount = _helperGeneral.CheckForRecords ( HelperGeneral.DbStockTable, new string[1, 3]
+            {   { HelperGeneral.DbProductUsageTableFieldNameProductId, HelperGeneral.DbProductUsageTableFieldTypeProductId, valueProductId.Text } } );
+
+            // It there is a record for the product update the stock amount, amount cannot go below 0
+            if (_tempStockRecordCount > 0)
+            {
+                var _tempStockAmount = double.Parse ( _helperGeneral.GetValueFromTable ( HelperGeneral.DbStockTable, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } }, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "" } } ) );
+
+                // Save the new Amount, where the used amount is subtracted form the storeed amount
+                var _tempNewStock = _tempStockAmount - double.Parse ( inpAmountUsed.Text );
+                if (_tempNewStock < 0) { _tempNewStock = 0; }
+
+                _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbStockTable, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text } }, new string[1, 3]
+                {   { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, _tempNewStock.ToString() } } );
+            }
+            else
+            {
+                // Add a record for this product in the Stock Table, with Stored Amount value 0
+                _helperGeneral.InsertInTable ( HelperGeneral.DbStockTable, new string[2, 3]
+                {   { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, valueProductId.Text },
+                    { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "0" } } );
+            }
+        }
+
+        GetTimeEntryData ();
+        ClearAllFields ( "saverecord" );
+
     }
+    #endregion Clicked button: Save Product Usage entry row
 
     private void ProductUsageToolbarButtonReset(object sender, RoutedEventArgs e)
     {
@@ -663,32 +837,4 @@ public partial class timemanagement : Page
 
     }
     #endregion Clicked button: Delete Product Usage entry row
-    private void cboxProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        foreach (HelperGeneral.Product product in e.AddedItems)
-        {
-            cboxProduct.SelectedItem = product;
-            valueProductId.Text = product.ProductId.ToString();
-            if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
-            {
-                TBAddProductButtonEnable.Text = "collapsed";
-            }
-            else
-            {
-                TBAddProductButtonEnable.Text = "visible";
-            }
-        }
-    }
-
-    private void AmountUsedChanged(object sender, TextChangedEventArgs e)
-    {
-        if (inpAmountUsed.Text != string.Empty && valueProductUsageId.Text == string.Empty && valueProductId.Text! == string.Empty)
-        {
-            TBAddProductButtonEnable.Text = "collapsed";
-        }
-        else
-        {
-            TBAddProductButtonEnable.Text = "visible";
-        }
-    }
 }

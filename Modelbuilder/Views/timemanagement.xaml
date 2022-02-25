@@ -123,11 +123,8 @@
                         <TextBox x:Name="valueWorktypeId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueProductId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueCategoryId" Style="{DynamicResource HiddenTextBox}" />
-                        <TextBox x:Name="valueStockId" Style="{DynamicResource HiddenTextBox}" />
-                        <TextBox x:Name="valueStocklogId" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueStartTime" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueEndTime" Style="{DynamicResource HiddenTextBox}" />
-                        <TextBox x:Name="valueStoredAmount" Style="{DynamicResource HiddenTextBox}" />
                         <TextBox x:Name="valueSelectedWorktype" Style="{DynamicResource HiddenTextBox}" />
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxTimeEntryEditable" IsChecked="False"/>
                         <CheckBox Style="{DynamicResource HiddenCheckBox}" x:Name="cboxProductEntryEditable" IsChecked="False"/>
@@ -606,7 +603,7 @@
                                         </DataGridTextColumn>
                                         <DataGridTextColumn
                                             Width="*"
-                                            Binding="{Binding ProductComment}"
+                                            Binding="{Binding Comment}"
                                             Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_Comment}"
                                             IsReadOnly="True" />
                                     </DataGrid.Columns>

@@ -456,9 +456,8 @@ public partial class metadataProduct : Page
         string result = string.Empty;
         result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
         valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
-        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
-        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
+        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[1, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text} });
 
 
         UpdateStatus(result);
@@ -739,9 +738,8 @@ public partial class metadataProduct : Page
         string result = string.Empty;
         result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
         valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
-        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
-        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
+        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[1, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text} });
 
         UpdateStatus(result);
     }
@@ -758,9 +756,8 @@ public partial class metadataProduct : Page
 
             string result = string.Empty;
             result = _helper.DeleteTblProduct(productId);
-            _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[2, 3]
-            {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
+            _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[1, 3]
+            {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text} });
             UpdateStatus(result);
         }
     }

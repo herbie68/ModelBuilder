@@ -47,18 +47,18 @@ internal class HelperGeneral
     public static readonly string DbStockTableFieldTypeId = "int";
     public static readonly string DbStockTableFieldNameProductId = "product_Id";
     public static readonly string DbStockTableFieldTypeProductId = "int";
-    public static readonly string DbStockTableFieldNameStorageId = "storage_Id";
-    public static readonly string DbStockTableFieldTypeStorageId = "int";
     public static readonly string DbStockTableFieldNameAmount = "Amount";
     public static readonly string DbStockTableFieldTypeAmount = "double";
     public static readonly string DbStockViewFieldNameId = "Id";
     public static readonly string DbStockViewFieldTypeId = "int";
     public static readonly string DbStockViewFieldNameProductId = "product_Id";
     public static readonly string DbStockViewFieldTypeProductId = "int";
-    public static readonly string DbStockViewFieldNameStorageId = "storage_Id";
-    public static readonly string DbStockViewFieldTypeStorageId = "Int";
+    public static readonly string DbStockViewFieldNameAmount = "Amount";
+    public static readonly string DbStockViewFieldTypeAmount = "double";
 
     public static readonly string DbStocklogTable = "stocklog";
+    public static readonly string DbStocklogTableFieldNameId = "Id";
+    public static readonly string DbStocklogTableFieldTypeId = "int";
     public static readonly string DbStocklogTableFieldNameProductId = "product_Id";
     public static readonly string DbStocklogTableFieldTypeProductId = "int";
     public static readonly string DbStocklogTableFieldNameStorageId = "storage_Id";
@@ -73,7 +73,7 @@ internal class HelperGeneral
     public static readonly string DbStocklogTableFieldTypeAmountReceived = "double";
     public static readonly string DbStocklogTableFieldNameAmountUsed = "AmountUsed";
     public static readonly string DbStocklogTableFieldTypeAmountUsed = "double";
-    public static readonly string DbStocklogTableFieldNameDate = "Date";
+    public static readonly string DbStocklogTableFieldNameDate = "LogDate";
     public static readonly string DbStocklogTableFieldTypeDate = "date";
 
     public static readonly string DbStorageTable = "storage";
