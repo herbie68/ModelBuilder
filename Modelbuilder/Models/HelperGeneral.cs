@@ -8,9 +8,25 @@ internal class HelperGeneral
     #region public Variables
     public string ConnectionStr { get; set; }
 
+    # region Brand table
     public static readonly string DbBrandTable = "brand";
+    public static readonly string DbBrandTableFieldNameBrandId = "Id";
+    public static readonly string DbBrandTableFieldTypeBrandId = "int";
+    public static readonly string DbBrandTableFieldNameBrandName = "Name";
+    public static readonly string DbBrandTableFieldTypeBrandName = "string";
+    #endregion Brand table
 
+    #region Category table
     public static readonly string DbCategoryTable = "category";
+    public static readonly string DbCategoryTableFieldNameCategoryId = "Id";
+    public static readonly string DbCategoryTableFieldTypeCategoryId = "int";
+    public static readonly string DbCategoryTableFieldNameCategoryParentId = "ParentId";
+    public static readonly string DbCategoryTableFieldTypeCategoryParentId = "int";
+    public static readonly string DbCategoryTableFieldNameCategoryName = "Name";
+    public static readonly string DbCategoryTableFieldTypeCategoryName = "string";
+    public static readonly string DbCategoryTableFieldNameCategoryFullpath = "Fullpath";
+    public static readonly string DbCategoryTableFieldTypeCategoryFullpath = "string";
+    #endregion Category table
 
     public static readonly string DbContactTypeTable = "contacttype";
 
@@ -123,7 +139,17 @@ internal class HelperGeneral
     public static readonly string DbStocklogTableFieldTypeDate = "date";
     #endregion Stocklog table
 
+    #region Storage table
     public static readonly string DbStorageTable = "storage";
+    public static readonly string DbStorageTableFieldNameStorageId = "Id";
+    public static readonly string DbStorageTableFieldTypeStorageId = "int";
+    public static readonly string DbStorageTableFieldNameStorageParentId = "ParentId";
+    public static readonly string DbStorageTableFieldTypeStorageParentId = "int";
+    public static readonly string DbStorageTableFieldNameStorageName = "Name";
+    public static readonly string DbStorageTableFieldTypeStorageName = "string";
+    public static readonly string DbStorageTableFieldNameStorageFullpath = "Fullpath";
+    public static readonly string DbStorageTableFieldTypeStorageFullpath = "string";
+    #endregion Storage table
 
     public static readonly string DbSupplierTable = "supplier";
     public static readonly string DbSupplierView = "view_supplier";
@@ -243,8 +269,14 @@ internal class HelperGeneral
     public static readonly string DbOpenOrderLineFieldNameSupplyOrderId = "Supplyorder_Id";
     public static readonly string DbOpenOrderLineFieldTypeSupplyOrderId = "int";
 
+    #region Unit Table
     public static readonly string DbUnitTable = "unit";
+    public static readonly string DbUnitTableFieldNameUnitId = "Id";
+    public static readonly string DbUnitTableFieldTypeUnitId = "int";
+    public static readonly string DbUnitTableFieldNameUnitName = "Name";
+    public static readonly string DbUnitTableFieldTypeUnitName = "string";
 
+    #endregion Unit table
     public static readonly string DbWorktypeTable = "worktype";
 
     private static readonly string SqlSelect = "SELECT ";

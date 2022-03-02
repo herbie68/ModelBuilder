@@ -173,7 +173,13 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Category in the combobox by default
-        string _tempCategory = Row_Selected["CategoryName"].ToString ();
+        var _tempCategory = _helperGeneral.GetValueFromTable(HelperGeneral.DbCategoryTable, new string[1, 3]
+        {
+            { HelperGeneral.DbCategoryTableFieldNameCategoryId, HelperGeneral.DbCategoryTableFieldTypeCategoryId, valueCategoryId.Text }
+        }, new string[1, 3] 
+        {
+            { HelperGeneral.DbCategoryTableFieldNameCategoryName, HelperGeneral.DbCategoryTableFieldTypeCategoryName, "" }
+        });
         cboxProductCategory.Text = _tempCategory;
 
         foreach (HelperGeneral.Category category in cboxProductCategory.Items)
@@ -186,9 +192,17 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Brand in the combobox by default
+        var _tempBrand = _helperGeneral.GetValueFromTable(HelperGeneral.DbBrandTable, new string[1, 3]
+        {
+            { HelperGeneral.DbBrandTableFieldNameBrandId, HelperGeneral.DbBrandTableFieldTypeBrandId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbBrandTableFieldNameBrandName, HelperGeneral.DbBrandTableFieldTypeBrandName, "" }
+        });
+
         foreach (HelperGeneral.Brand brand in cboxProductBrand.Items)
         {
-            if (brand.BrandName == Row_Selected["BrandName"].ToString())
+            if (brand.BrandName == _tempBrand)
             {
                 cboxProductBrand.SelectedItem = brand;
             }
@@ -196,9 +210,16 @@ public partial class metadataProduct : Page
 
 
         //Select the saved Unit in the combobox by default
+        var _tempUnit = _helperGeneral.GetValueFromTable(HelperGeneral.DbUnitTable, new string[1, 3]
+        {
+            { HelperGeneral.DbUnitTableFieldNameUnitId, HelperGeneral.DbUnitTableFieldTypeUnitId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, "" }
+        });
         foreach (HelperGeneral.Unit unit in cboxProductUnit.Items)
         {
-            if (unit.UnitName == Row_Selected["UnitName"].ToString())
+            if (unit.UnitName == _tempUnit)
             {
                 cboxProductUnit.SelectedItem = unit;
                 break;
@@ -206,9 +227,16 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Storage location in the combobox by default
+        var _tempStorage = _helperGeneral.GetValueFromTable(HelperGeneral.DbStorageTable, new string[1, 3]
+        {
+            { HelperGeneral.DbStorageTableFieldNameStorageId, HelperGeneral.DbStorageTableFieldTypeStorageId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbStorageTableFieldNameStorageName, HelperGeneral.DbStorageTableFieldTypeStorageName, "" }
+        });
         foreach (HelperGeneral.Storage storage in cboxProductStorage.Items)
         {
-            if (storage.StorageName == Row_Selected["StorageName"].ToString())
+            if (storage.StorageName == _tempStorage)
             {
                 cboxProductStorage.SelectedItem = storage;
                 break;
@@ -644,16 +672,16 @@ public partial class metadataProduct : Page
         string result = string.Empty;
         //result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
 
-        _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductTable, new string[1, 3]
+        _helperGeneral.UpdateFieldInTable(HelperGeneral.DbProductTable, new string[1, 3]
         {
             {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text }
-        },new string[13, 3]
+        }, new string[13, 3]
 {
             {HelperGeneral.DbProductTableFieldNameCode, HelperGeneral.DbProductTableFieldTypeCode, inpProductCode.Text },
             {HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, inpProductName.Text },
             {HelperGeneral.DbProductTableFieldNameMinimalStock, HelperGeneral.DbProductTableFieldTypeMinimalStock, inpProductMinimalStock.Text.Replace ( ",", "." ) },
             {HelperGeneral.DbProductTableFieldNameStandardOrderQuantity, HelperGeneral.DbProductTableFieldTypeStandardOrderQuantity,inpProductStandardOrderQuantity.Text.Replace ( ",", "." ) },
-            {HelperGeneral.DbProductTableFieldNamePrice, HelperGeneral.DbProductTableFieldTypePrice,inpProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" ) },
+            {HelperGeneral.DbProductTableFieldNamePrice, HelperGeneral.DbProductTableFieldTypePrice,inpProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" ).Replace(".", "").Replace ( ",", "." ) },
             {HelperGeneral.DbProductTableFieldNameProjectCosts, HelperGeneral.DbProductTableFieldTypeProjectCosts, productProjectCosts.ToString() },
             {HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId, valueCategoryId.Text },
             {HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, valueStorageId.Text },
@@ -662,7 +690,8 @@ public partial class metadataProduct : Page
             {HelperGeneral.DbProductTableFieldNameMemo, HelperGeneral.DbProductTableFieldTypeMemo, memo },
             {HelperGeneral.DbProductTableFieldNameImageRotationAngle, HelperGeneral.DbProductTableFieldTypeImageRotationAngle, valueImageRotationAngle.Text },
             {HelperGeneral.DbProductTableFieldNameDimensions, HelperGeneral.DbProductTableFieldTypeDimensions, inpProductDimensions.Text }
-}, productImage, HelperGeneral.DbProductTableFieldNameImage );
+}, productImage, HelperGeneral.DbProductTableFieldNameImage);
+
 
         //UpdateStatus ( result);
     }
