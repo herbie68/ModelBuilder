@@ -151,11 +151,11 @@ public class HelperProject
 
         if (projectId > 0)
         {
-            sqlText = "SELECT * from Project where Id = @projectId";
+            sqlText = "SELECT * from project where Id = @projectId";
         }
         else
         {
-            sqlText = "SELECT * from Project";
+            sqlText = "SELECT * from project";
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))

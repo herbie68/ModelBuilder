@@ -18,21 +18,63 @@ internal class HelperGeneral
 
     public static readonly string DbCountryTable = "country";
 
+    #region Product table
     public static readonly string DbProductTable = "product";
     public static readonly string DbProductView = "view_product";
     public static readonly string DbProductTableFieldNameId = "Id";
     public static readonly string DbProductTableFieldTypeId = "int";
+    public static readonly string DbProductTableFieldNameCode = "Code";
+    public static readonly string DbProductTableFieldTypeCode = "string";
+    public static readonly string DbProductTableFieldNameName = "Name";
+    public static readonly string DbProductTableFieldTypeName = "string";
+    public static readonly string DbProductTableFieldNameDimensions = "Dimensions";
+    public static readonly string DbProductTableFieldTypeDimensions ="string";
+    public static readonly string DbProductTableFieldNamePrice = "Price";
+    public static readonly string DbProductTableFieldTypePrice = "double";
+    public static readonly string DbProductTableFieldNameMinimalStock = "MinimalStock";
+    public static readonly string DbProductTableFieldTypeMinimalStock = "double";
+    public static readonly string DbProductTableFieldNameStandardOrderQuantity = "StandardOrderQuantity";
+    public static readonly string DbProductTableFieldTypeStandardOrderQuantity = "double";
+    public static readonly string DbProductTableFieldNameProjectCosts = "ProjectCosts";
+    public static readonly string DbProductTableFieldTypeProjectCosts = "int";
+    public static readonly string DbProductTableFieldNameUnitId = "Unit_Id";
+    public static readonly string DbProductTableFieldTypeUnitId = "int";
+    public static readonly string DbProductTableFieldNameImageRotationAngle = "ImageRotationAngle";
+    public static readonly string DbProductTableFieldTypeImageRotationAngle = "string";
+    public static readonly string DbProductTableFieldNameImage = "Image";
+    public static readonly string DbProductTableFieldTypeImage = "blob";
+    public static readonly string DbProductTableFieldNameBrandId = "Brand_Id";
+    public static readonly string DbProductTableFieldTypeBrandId = "int";
+    public static readonly string DbProductTableFieldNameCategoryId = "Category_Id";
+    public static readonly string DbProductTableFieldTypeCategoryId = "int";
     public static readonly string DbProductTableFieldNameStorageId = "Storage_Id";
     public static readonly string DbProductTableFieldTypeStorageId = "int";
+    public static readonly string DbProductTableFieldNameMemo = "Memo";
+    public static readonly string DbProductTableFieldTypeMemo = "longtext";
+    #endregion Product table
 
-
+    #region ProductSupplier table
     public static readonly string DbProductSupplierTable = "productsupplier";
     public static readonly string DbProductSupplierView = "view_productsupplier";
     public static readonly string DbProductSupplierTableFieldNameId = "Id";
     public static readonly string DbProductSupplierTableFieldTypeId = "int";
     public static readonly string DbProductSupplierTableFieldNameProductId = "Product_Id";
     public static readonly string DbProductSupplierTableFieldTypeProductId = "int";
-    
+    public static readonly string DbProductSupplierTableFieldNameSupplierId = "Supplier_Id";
+    public static readonly string DbProductSupplierTableFieldTypeSupplierId = "int";
+    public static readonly string DbProductSupplierTableFieldNameCurrencyId = "Currency_Id";
+    public static readonly string DbProductSupplierTableFieldTypeCurrencyId = "int";
+    public static readonly string DbProductSupplierTableFieldNameProductNumber = "ProductNumber";
+    public static readonly string DbProductSupplierTableFieldTypeProductNumber = "string";
+    public static readonly string DbProductSupplierTableFieldNameProductName = "ProductName";
+    public static readonly string DbProductSupplierTableFieldTypeProductName = "string";
+    public static readonly string DbProductSupplierTableFieldNamePrice = "Price";
+    public static readonly string DbProductSupplierTableFieldTypePrice = "double";
+    public static readonly string DbProductSupplierTableFieldNameDefaultSupplier = "DefaultSupplier";
+    public static readonly string DbProductSupplierTableFieldTypeDefaultSupplier = "string";
+    #endregion ProductSupplier table
+
+    #region Project table
     public static readonly string DbProjectTable = "project";
     public static readonly string DbProjectTableFieldNameId = "Id";
     public static readonly string DbProjectTableFieldTypeId = "int";
@@ -40,7 +82,9 @@ internal class HelperGeneral
     public static readonly string DbProjectTableFieldTypeName = "string";
     public static readonly string DbProjectTableFieldNameCode = "Code";
     public static readonly string DbProjectTableFieldTypeCode = "string";
+    #endregion Project table
 
+    #region Stock table
     public static readonly string DbStockTable = "stock";
     public static readonly string DbStockView = "view_stock";
     public static readonly string DbStockTableFieldNameId = "Id";
@@ -55,7 +99,9 @@ internal class HelperGeneral
     public static readonly string DbStockViewFieldTypeProductId = "int";
     public static readonly string DbStockViewFieldNameAmount = "Amount";
     public static readonly string DbStockViewFieldTypeAmount = "double";
+    #endregion Stock table
 
+    #region Stocklog table
     public static readonly string DbStocklogTable = "stocklog";
     public static readonly string DbStocklogTableFieldNameId = "Id";
     public static readonly string DbStocklogTableFieldTypeId = "int";
@@ -75,6 +121,7 @@ internal class HelperGeneral
     public static readonly string DbStocklogTableFieldTypeAmountUsed = "double";
     public static readonly string DbStocklogTableFieldNameDate = "LogDate";
     public static readonly string DbStocklogTableFieldTypeDate = "date";
+    #endregion Stocklog table
 
     public static readonly string DbStorageTable = "storage";
 
@@ -258,7 +305,7 @@ internal class HelperGeneral
         DataTable dt = new();
         StringBuilder sqlText = new();
         sqlText.Append ( SqlSelectAll + SqlFrom + Table.ToLower() );
-
+        
         if (Id > 0)
         {
             sqlText.Append ( SqlWhere + WhereString + "@Id" );
@@ -320,6 +367,12 @@ internal class HelperGeneral
                     break;
                 case "time":
                     cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                    break;
+                case "longtext":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                    break;
+                case "longblob":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Blob ).Value = DBNull.Value;
                     break;
                 case "date":
                     String[] _tempDates = WhereFields[i, 2].Split ( "-" );
@@ -388,6 +441,12 @@ internal class HelperGeneral
                     break;
                 case "float":
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                    break;
+                case "longtext":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                    break;
+                case "longblob":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Blob ).Value = DBNull.Value;
                     break;
                 case "date":
                     String[] _tempDates = WhereFields[i, 2].Split("-");
@@ -463,6 +522,12 @@ internal class HelperGeneral
                     break;
                 case "float":
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                    break;
+                case "longtext":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                    break;
+                case "longblob":
+                    cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Blob ).Value = DBNull.Value;
                     break;
                 case "date":
                     String[] _tempDates = WhereFields[i, 2].Split("-");
@@ -545,6 +610,12 @@ internal class HelperGeneral
                         case "float":
                             cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
                             break;
+                        case "longtext":
+                            cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                            break;
+                        case "longblob":
+                            cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Blob ).Value = DBNull.Value;
+                            break;
                         case "date":
                             String[] _tempDates = WhereFields[i, 2].Split("-");
 
@@ -611,6 +682,55 @@ internal class HelperGeneral
         }
         return result;
     }
+
+    public string InsertInTable ( string Table, string[,] Fields, byte[] Image, string ImageName )
+    {
+        string result = string.Empty;
+        string sqlText = "INSERT INTO " + Table + " ";
+
+        string sqlFields = "(";
+        string sqlValues = "(";
+        string prefix = "";
+
+        for (int i = 0; i < Fields.GetLength ( 0 ); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlFields = string.Concat ( sqlFields, prefix, Fields[i, 0] );
+            sqlValues = string.Concat ( sqlValues, prefix, "@", Fields[i, 0] );
+        }
+
+        sqlFields = string.Concat( sqlFields, ", ", ImageName, ")");
+        sqlValues = string.Concat( sqlValues, ", @", ImageName, ")" );
+
+        sqlText = string.Concat ( sqlText, sqlFields, " VALUES ", sqlValues, ";" );
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTable ( sqlText, Fields, Image: Image, ImageName: ImageName );
+
+            if (rowsAffected > 0)
+            {
+
+                result = "Rij toegevoegd.";
+            }
+            else
+            {
+                result = "Rij niet toegevoegd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine ( "Error (Insert in Table - MySqlException): " + ex.Message );
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine ( "Error (Insert in Table): " + ex.Message );
+            throw;
+        }
+        return result;
+    }
+
     #endregion Insert new record in Table
 
     #region Update Field(s) in Table
@@ -659,6 +779,58 @@ internal class HelperGeneral
         catch (Exception ex)
         {
             Debug.WriteLine("Error (Update Table): " + ex.Message);
+            throw;
+        }
+        return result;
+    }
+
+    public string UpdateFieldInTable ( string Table, string[,] WhereFields, string[,] Fields, byte[] Image, string ImageName )
+    {
+        string result = string.Empty;
+        StringBuilder sqlText = new ();
+        sqlText.Append ( SqlUpdate + Table.ToLower () + SqlSet );
+
+        string prefix = "";
+
+        for (int i = 0; i < Fields.GetLength ( 0 ); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlText.Append ( prefix + Fields[i, 0] + " = @" + Fields[i, 0] );
+        }
+        // Add imagefield to the sqlTextString
+        sqlText.Append ( ", " + ImageName + " = @" + ImageName );
+
+        sqlText.Append ( SqlWhere );
+        prefix = "";
+
+        for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlText.Append ( prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0] );
+        }
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTable ( sqlText.ToString (), WhereFields, Fields, Image, ImageName );
+
+            if (rowsAffected > 0)
+            {
+
+                result = "Rij toegevoegd.";
+            }
+            else
+            {
+                result = "Rij niet toegevoegd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine ( "Error (Update Table - MySqlException): " + ex.Message );
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine ( "Error (Update Table): " + ex.Message );
             throw;
         }
         return result;
@@ -737,6 +909,9 @@ internal class HelperGeneral
                     case "float":
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.Float).Value = float.Parse(Fields[i, 2]);
                         break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        break;
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
 
@@ -751,6 +926,53 @@ internal class HelperGeneral
                 }
             }
             rowsAffected = cmd.ExecuteNonQuery();
+        }
+        return rowsAffected;
+    }
+    public int ExecuteNonQueryTable ( string sqlText, string[,] Fields, byte[] Image, string ImageName )
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new ( ConnectionStr ))
+        {
+            con.Open ();
+
+            using MySqlCommand cmd = new ( sqlText, con );
+            for (int i = 0; i < Fields.GetLength ( 0 ); i++)
+            {
+                switch (Fields[i, 1].ToLower ())
+                {
+                    case "string":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        break;
+                    case "int":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( Fields[i, 2] );
+                        break;
+                    case "double":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Double ).Value = double.Parse ( Fields[i, 2] );
+                        break;
+                    case "float":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Float ).Value = float.Parse ( Fields[i, 2] );
+                        break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        break;
+                    case "date":
+                        String[] _tempDates = Fields[i, 2].Split ( "-" );
+
+                        // Add leading zero's to date and month
+                        az = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        break;
+                }
+            }
+            // Add Image to the commandstring
+            cmd.Parameters.Add ( "@" + ImageName, MySqlDbType.Blob ).Value = Image;
+            rowsAffected = cmd.ExecuteNonQuery ();
         }
         return rowsAffected;
     }
@@ -779,6 +1001,9 @@ internal class HelperGeneral
                         break;
                     case "float":
                         cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                        break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
                         break;
                     case "date":
                         String[] _tempDates = WhereFields[i, 2].Split("-");
@@ -810,6 +1035,9 @@ internal class HelperGeneral
                     case "float":
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.Float).Value = float.Parse(Fields[i, 2]);
                         break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        break;
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
 
@@ -828,6 +1056,88 @@ internal class HelperGeneral
         return rowsAffected;
     
     }
+    public int ExecuteNonQueryTable ( string sqlText, string[,] WhereFields, string[,] Fields, byte[] Image, string ImageName )
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new ( ConnectionStr ))
+        {
+            con.Open ();
+
+            using MySqlCommand cmd = new ( sqlText, con );
+            for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+            {
+                switch (WhereFields[i, 1].ToLower ())
+                {
+                    case "string":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                        break;
+                    case "int":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "double":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Double ).Value = double.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "float":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Float ).Value = float.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        break;
+                    case "date":
+                        String[] _tempDates = WhereFields[i, 2].Split ( "-" );
+
+                        // Add leading zero's to date and month
+                        az = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        break;
+                }
+            }
+
+            for (int i = 0; i < Fields.GetLength ( 0 ); i++)
+            {
+                switch (Fields[i, 1].ToLower ())
+                {
+                    case "string":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        break;
+                    case "int":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( Fields[i, 2] );
+                        break;
+                    case "double":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Double ).Value = double.Parse ( Fields[i, 2] );
+                        break;
+                    case "float":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Float ).Value = float.Parse ( Fields[i, 2] );
+                        break;
+                    case "longtext":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        break;
+                    case "date":
+                        String[] _tempDates = Fields[i, 2].Split ( "-" );
+
+                        // Add leading zero's to date and month
+                        az = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        break;
+                }
+            }
+            // Add Image to the commandstring
+            cmd.Parameters.Add ( "@" + ImageName, MySqlDbType.Blob ).Value = Image;
+            rowsAffected = cmd.ExecuteNonQuery ();
+        }
+        return rowsAffected;
+
+    }
+
     #endregion Execute Non Query Table
 
     #region Create List for available working hours

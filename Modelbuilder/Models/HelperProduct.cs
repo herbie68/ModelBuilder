@@ -80,76 +80,6 @@ internal class HelperProduct
     }
     #endregion Connector to database
 
-    #region Delete row in Table: Product
-    public string DeleteTblProduct(int productId)
-    {
-        string result = string.Empty;
-        string sqlText = "DELETE FROM " + DbProductTable + " WHERE Id=@productId";
-
-        try
-        {
-            int rowsAffected = ExecuteNonQueryTblProductId(sqlText, productId);
-
-            if (rowsAffected > 0)
-            {
-
-                result = "Rij verwijderd.";
-            }
-            else
-            {
-                result = "Rij niet verwijderd.";
-            }
-        }
-        catch (MySqlException ex)
-        {
-            Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
-            throw;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("Error (DeleteTblProduct): " + ex.Message);
-            throw;
-        }
-
-        return result;
-    }
-    #endregion Delete row in Table: Product
-
-    #region Delete row in Table: ProductSupplier
-    public string DeleteTblProductSupplier(int productSupplierId)
-    {
-        string result = string.Empty;
-        string sqlText = "DELETE FROM " + DbProductSupplierTable + " WHERE Id=@productSupplierId";
-
-        try
-        {
-            int rowsAffected = ExecuteNonQueryTblProductSupplierId(sqlText, productSupplierId);
-
-            if (rowsAffected > 0)
-            {
-
-                result = "Rij verwijderd.";
-            }
-            else
-            {
-                result = "Rij niet verwijderd.";
-            }
-        }
-        catch (MySqlException ex)
-        {
-            Debug.WriteLine("Error (DeleteTblProduct - MySqlException): " + ex.Message);
-            throw;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("Error (DeleteTblProduct): " + ex.Message);
-            throw;
-        }
-
-        return result;
-    }
-    #endregion Delete row in Table: Product
-
     #region Execute Non Query Table: Product
     public int ExecuteNonQueryTblProduct(string sqlText, string Code, string Name, double MinimalStock, double StandardOrderQuantity, double Price, int ProjectCosts, int CategoryId, int StorageId, int BrandId, int UnitId, string Memo, string ImageRotationAngle, byte[] Image, string Dimensions, int Id = 0)
     {
@@ -218,53 +148,6 @@ internal class HelperProduct
     }
     #endregion
 
-    #region Execute Non Query Table: ProductSupplier
-    public int ExecuteNonQueryTblProductSupplier(string sqlText, int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default, int Id = 0)
-    {
-        int rowsAffected = 0;
-
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-        {
-            con.Open();
-
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-            {
-
-                //add parameters setting string values to DBNull.Value
-                cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id;
-                cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
-                cmd.Parameters.Add("@SupplierId", MySqlDbType.Int32).Value = SupplierId;
-                cmd.Parameters.Add("@CurrencyId", MySqlDbType.Int32).Value = CurrencyId;
-                cmd.Parameters.Add("@ProductNumber", MySqlDbType.VarChar).Value = DBNull.Value;
-                cmd.Parameters.Add("@ProductName", MySqlDbType.VarChar).Value = DBNull.Value;
-                cmd.Parameters.Add("@ProductPrice", MySqlDbType.Double).Value = ProductPrice;
-                cmd.Parameters.Add("@Default", MySqlDbType.VarChar).Value = DBNull.Value;
-
-                //set values
-                if (!String.IsNullOrEmpty(ProductNumber))
-                {
-                    cmd.Parameters["@ProductNumber"].Value = ProductNumber;
-                }
-
-                if (!String.IsNullOrEmpty(ProductName))
-                {
-                    cmd.Parameters["@ProductName"].Value = ProductName;
-                }
-
-                if (!String.IsNullOrEmpty(Default))
-                {
-                    cmd.Parameters["@Default"].Value = Default;
-                }
-
-                //execute; returns the number of rows affected
-                rowsAffected = cmd.ExecuteNonQuery();
-            }
-        }
-
-        return rowsAffected;
-    }
-    #endregion Execute Non Query Table: ProductSupplier
-
     #region Execute Non Query Table Id: Product
     public int ExecuteNonQueryTblProductId(string sqlText, int productId = 0)
     {
@@ -315,72 +198,6 @@ internal class HelperProduct
     }
     #endregion Execute Non Query Table Id: ProductSupplier
 
-    #region Get Data from Table: Product
-    public DataTable GetDataTblProduct(int productId = 0)
-    {
-        DataTable dt = new DataTable();
-        string sqlText = string.Empty;
-
-        if (productId > 0)
-        {
-            sqlText = "SELECT * from " + DbProductView + " where Id = @productId";
-        }
-        else
-        {
-            sqlText = "SELECT * from " + DbProductView;
-        }
-
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-        {
-            //open
-            con.Open();
-
-            using MySqlCommand cmd = new MySqlCommand(sqlText, con);
-            //add parameter
-            cmd.Parameters.Add("@productId", MySqlDbType.Int32).Value = productId;
-
-            using MySqlDataAdapter da = new(cmd);
-            //use DataAdapter to fill DataTable
-            da.Fill(dt);
-        }
-
-        return dt;
-    }
-    #endregion Get Data from Table: Product
-
-    #region Get Data from Table: ProductSupplier
-    public DataTable GetDataTblProductSupplier(int ProductId = 0)
-    {
-        DataTable dtPS = new DataTable();
-        string sqlText = string.Empty;
-
-        if (ProductId > 0)
-        {
-            sqlText = "SELECT * FROM " + DbProductSupplierView + " WHERE Product_Id = @ProductId";
-        }
-        else
-        {
-            sqlText = "SELECT * FROM " + DbProductSupplierView;
-        }
-
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-        {
-            //open
-            con.Open();
-
-            using MySqlCommand cmd = new MySqlCommand(sqlText, con);
-            //add parameter
-            cmd.Parameters.Add("@ProductId", MySqlDbType.Int32).Value = ProductId;
-
-            using MySqlDataAdapter daPS = new(cmd);
-            //use DataAdapter to fill DataTable
-            daPS.Fill(dtPS);
-        }
-
-        return dtPS;
-    }
-    #endregion Get Data from Table: Product
-
     #region Insert in Table: Product
     public string InsertTblProduct(string Code, string Name, double MinimalStock, double StandardOrderQuantity, double Price, int ProjectCosts, int CategoryId, int StorageId, int BrandId, int UnitId, string Memo, string ImageRotationAngle, byte[] Image, string Dimensions)
     {
@@ -416,40 +233,6 @@ internal class HelperProduct
     }
     #endregion Insert in Table: Product
 
-    #region Insert in Table: ProductSupplier
-    public string InsertTblProductSupplier(int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default)
-    {
-        string result = string.Empty;
-        string sqlText = "INSERT INTO " + DbProductSupplierTable + " (Product_Id, Supplier_Id, Currency_Id, ProductNumber,  ProductName, Price, DefaultSupplier) VALUES (@ProductId, @SupplierId, @CurrencyId, @ProductNumber, @ProductName, @ProductPrice, @Default);";
-
-        try
-        {
-            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, CurrencyId, ProductNumber, ProductName, ProductPrice, Default);
-
-            if (rowsAffected > 0)
-            {
-
-                result = String.Format("Rij toegevoegd.");
-            }
-            else
-            {
-                result = "Rij niet toegevoegd.";
-            }
-        }
-        catch (MySqlException ex)
-        {
-            Debug.WriteLine("Error (UpdateTblProduct - MySqlException): " + ex.Message);
-            throw;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("Error (UpdateTblProduct): " + ex.Message);
-            throw;
-        }
-        return result;
-    }
-    #endregion
-
     #region Update Table: Product
     public string UpdateTblProduct(int productId, string productCode, string productName, double productMinimalStock, double productStandardOrderQuantity, double productPrice, int productProjectCosts, int productCategoryId, int productStorageId, int productBrandId, int productUnitId, string productMemo, string productImageRotationAngle, byte[] productImage, string productDimensions)
     {
@@ -471,34 +254,6 @@ internal class HelperProduct
         catch (Exception ex)
         {
             Debug.WriteLine("Fout (UpdateTblProduct): " + ex.Message);
-            throw;
-        }
-
-        return result;
-    }
-    #endregion Update Table: Product
-
-    #region Update Table: ProductSupplier
-    public string UpdateTblProductSupplier(int Id, int ProductId, int SupplierId, int CurrencyId, string ProductNumber, string ProductName, double ProductPrice, string Default)
-    {
-        string result = string.Empty;
-        string sqlText = "UPDATE " + DbProductSupplierTable + " SET Product_Id = @ProductId, Supplier_Id = @SupplierId, Currency_Id = @CurrencyId, ProductNumber = @ProductNumber,  ProductName = @ProductName, Price = @ProductPrice, DefaultSupplier = @Default WHERE Id = @Id;";
-
-        try
-        {
-            int rowsAffected = ExecuteNonQueryTblProductSupplier(sqlText, ProductId, SupplierId, CurrencyId, ProductNumber, ProductName, ProductPrice, Default, Id);
-
-            //Better alternative for simple If/Then/Else (If rowsAffected>0 then "succes" else "no rows updated")
-            result = rowsAffected > 0 ? ProductName + " bijgewerkt." : "Geen wijzigingen door te voeren.";
-        }
-        catch (MySqlException ex)
-        {
-            Debug.WriteLine("Fout (UpdateTblProductSupplier - MySqlException): " + ex.Message);
-            throw ex;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("Fout (UpdateTblProductSupplier): " + ex.Message);
             throw;
         }
 
