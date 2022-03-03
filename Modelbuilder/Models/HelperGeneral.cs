@@ -290,6 +290,7 @@ internal class HelperGeneral
     private static readonly string SqlMin = " MIN(";
     private static readonly string SqlCount = " COUNT(";
     private static readonly string SqlUpdate = "UPDATE ";
+    private static readonly string SqlInsert = "INSERT INTO ";
     private static readonly string SqlSet = " SET ";
     private static readonly string SqlDelete = "DELETE ";
 
@@ -670,7 +671,7 @@ internal class HelperGeneral
     public string InsertInTable(string Table, string[,] Fields)
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO " + Table + " ";
+        string sqlText = SqlInsert + Table + " ";
 
         string sqlFields = "(";
         string sqlValues = "(";
@@ -718,7 +719,7 @@ internal class HelperGeneral
     public string InsertInTable ( string Table, string[,] Fields, byte[] Image, string ImageName )
     {
         string result = string.Empty;
-        string sqlText = "INSERT INTO " + Table + " ";
+        string sqlText = SqlInsert + Table + " ";
 
         string sqlFields = "(";
         string sqlValues = "(";
@@ -762,7 +763,6 @@ internal class HelperGeneral
         }
         return result;
     }
-
     #endregion Insert new record in Table
 
     #region Update Field(s) in Table
@@ -815,25 +815,17 @@ internal class HelperGeneral
         }
         return result;
     }
+    #endregion Update Table: SupplyOrderline
 
-    public string UpdateFieldInTable ( string Table, string[,] WhereFields, string[,] Fields, byte[] Image, string ImageName )
+    #region Update Memo Field in Table
+    public string UpdateMemoFieldInTable ( string Table, string[,] WhereFields, string FieldName, string FieldContent )
     {
         string result = string.Empty;
         StringBuilder sqlText = new ();
-        sqlText.Append ( SqlUpdate + Table.ToLower () + SqlSet );
-
-        string prefix = "";
-
-        for (int i = 0; i < Fields.GetLength ( 0 ); i++)
-        {
-            if (i != 0) { prefix = ", "; }
-            sqlText.Append ( prefix + Fields[i, 0] + " = @" + Fields[i, 0] );
-        }
-        // Add imagefield to the sqlTextString
-        sqlText.Append ( ", " + ImageName + " = @" + ImageName );
+        sqlText.Append ( SqlUpdate + Table.ToLower () + SqlSet + FieldName + " = @" + FieldName);
 
         sqlText.Append ( SqlWhere );
-        prefix = "";
+        string prefix = "";
 
         for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
         {
@@ -843,7 +835,7 @@ internal class HelperGeneral
 
         try
         {
-            int rowsAffected = ExecuteNonQueryTable ( sqlText.ToString (), WhereFields, Fields, Image, ImageName );
+            int rowsAffected = ExecuteNonQueryTable ( sqlText.ToString (), WhereFields, MemoField: FieldName, MemoContent: FieldContent );
 
             if (rowsAffected > 0)
             {
@@ -867,7 +859,51 @@ internal class HelperGeneral
         }
         return result;
     }
-    #endregion Update Table: SupplyOrderline
+    #endregion Update Memo Field in Table
+
+    #region Update Image Field in Table
+    public string UpdateImageFieldInTable ( string Table, string[,] WhereFields, byte[] ImageContent, string ImageName )
+    {
+        string result = string.Empty;
+        StringBuilder sqlText = new ();
+        sqlText.Append ( SqlUpdate + Table.ToLower () + SqlSet + ImageName + " = @" + ImageName );
+
+        sqlText.Append ( SqlWhere );
+        string prefix = "";
+
+        for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlText.Append ( prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0] );
+        }
+
+        try
+        {
+            int rowsAffected = ExecuteNonQueryTable ( sqlText.ToString (), WhereFields, Image: ImageContent, ImageName: ImageName, "DummyForImage" );
+
+            if (rowsAffected > 0)
+            {
+
+                result = "Rij toegevoegd.";
+            }
+            else
+            {
+                result = "Rij niet toegevoegd.";
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Debug.WriteLine ( "Error (Update Table - MySqlException): " + ex.Message );
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine ( "Error (Update Table): " + ex.Message );
+            throw;
+        }
+        return result;
+    }
+    #endregion Update Memo Field in Table
 
     #region Delete record from Table
     public string DeleteRecordFromTable(string Table, string[,] WhereFields)
@@ -916,6 +952,7 @@ internal class HelperGeneral
     #endregion Delete record from Table
 
     #region Execute Non Query Table
+    #region SqlText + Array with Fields
     public int ExecuteNonQueryTable(string sqlText, string[,] Fields)
     {
         int rowsAffected = 0;
@@ -942,7 +979,7 @@ internal class HelperGeneral
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.Float).Value = float.Parse(Fields[i, 2]);
                         break;
                     case "longtext":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = Fields[i, 2];
                         break;
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
@@ -961,6 +998,9 @@ internal class HelperGeneral
         }
         return rowsAffected;
     }
+    #endregion SqlText + Array with Fields
+
+    #region SqlText + Array with Fields + Image 
     public int ExecuteNonQueryTable ( string sqlText, string[,] Fields, byte[] Image, string ImageName )
     {
         int rowsAffected = 0;
@@ -987,7 +1027,7 @@ internal class HelperGeneral
                         cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Float ).Value = float.Parse ( Fields[i, 2] );
                         break;
                     case "longtext":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.LongText ).Value = Fields[i, 2];
                         break;
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split ( "-" );
@@ -1008,7 +1048,9 @@ internal class HelperGeneral
         }
         return rowsAffected;
     }
+    #endregion SqlText + Array with Fields + Image 
 
+    #region SqlText + Array with WhereFields + Array with Fields
     public int ExecuteNonQueryTable(string sqlText, string[,] WhereFields, string[,] Fields)
     {
         int rowsAffected = 0;
@@ -1035,7 +1077,7 @@ internal class HelperGeneral
                         cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
                         break;
                     case "longtext":
-                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = WhereFields[i, 2];
                         break;
                     case "date":
                         String[] _tempDates = WhereFields[i, 2].Split("-");
@@ -1068,7 +1110,7 @@ internal class HelperGeneral
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.Float).Value = float.Parse(Fields[i, 2]);
                         break;
                     case "longtext":
-                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = Fields[i, 2];
                         break;
                     case "date":
                         String[] _tempDates = Fields[i, 2].Split("-");
@@ -1086,9 +1128,11 @@ internal class HelperGeneral
             rowsAffected = cmd.ExecuteNonQuery();
         }
         return rowsAffected;
-    
     }
-    public int ExecuteNonQueryTable ( string sqlText, string[,] WhereFields, string[,] Fields, byte[] Image, string ImageName )
+    #endregion SqlText + Array with WhereFields + Array with Fields
+
+    #region SqlText + Array with WhereFields + Array with Fields + Image
+    public int ExecuteNonQueryTable ( string sqlText, string[,] WhereFields, byte[] Image, string ImageName, string DummyToMakeUnique )
     {
         int rowsAffected = 0;
 
@@ -1114,7 +1158,7 @@ internal class HelperGeneral
                         cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Float ).Value = float.Parse ( WhereFields[i, 2] );
                         break;
                     case "longtext":
-                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = WhereFields[i, 2];
                         break;
                     case "date":
                         String[] _tempDates = WhereFields[i, 2].Split ( "-" );
@@ -1125,50 +1169,66 @@ internal class HelperGeneral
                         cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
                         break;
                     case "time":
-                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
                         break;
                 }
             }
 
-            for (int i = 0; i < Fields.GetLength ( 0 ); i++)
-            {
-                switch (Fields[i, 1].ToLower ())
-                {
-                    case "string":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
-                        break;
-                    case "int":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( Fields[i, 2] );
-                        break;
-                    case "double":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Double ).Value = double.Parse ( Fields[i, 2] );
-                        break;
-                    case "float":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.Float ).Value = float.Parse ( Fields[i, 2] );
-                        break;
-                    case "longtext":
-                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.LongText ).Value = DBNull.Value;
-                        break;
-                    case "date":
-                        String[] _tempDates = Fields[i, 2].Split ( "-" );
-
-                        // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = _tempDate;
-                        break;
-                    case "time":
-                        cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = Fields[i, 2];
-                        break;
-                }
-            }
             // Add Image to the commandstring
             cmd.Parameters.Add ( "@" + ImageName, MySqlDbType.Blob ).Value = Image;
             rowsAffected = cmd.ExecuteNonQuery ();
         }
         return rowsAffected;
-
     }
+    #endregion SqlText + Array with WhereFields + Image
+
+    #region SqlText + Array with WhereFields + Memo
+    public int ExecuteNonQueryTable ( string sqlText, string[,] WhereFields, string MemoField, string MemoContent )
+    {
+        int rowsAffected = 0;
+
+        using (MySqlConnection con = new ( ConnectionStr ))
+        {
+            con.Open ();
+
+            using MySqlCommand cmd = new ( sqlText, con );
+            for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+            {
+                switch (WhereFields[i, 1].ToLower ())
+                {
+                    case "string":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                        break;
+                    case "int":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Int32 ).Value = int.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "double":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Double ).Value = double.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "float":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.Float ).Value = float.Parse ( WhereFields[i, 2] );
+                        break;
+                    case "date":
+                        String[] _tempDates = WhereFields[i, 2].Split ( "-" );
+
+                        // Add leading zero's to date and month
+                        az = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
+                        break;
+                    case "time":
+                        cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = WhereFields[i, 2];
+                        break;
+                }
+            }
+
+            cmd.Parameters.Add ( "@" + MemoField, MySqlDbType.LongText ).Value = MemoContent;
+
+            rowsAffected = cmd.ExecuteNonQuery ();
+        }
+        return rowsAffected;
+    }
+    #endregion SqlText + Array with WhereFields + Memo
 
     #endregion Execute Non Query Table
 
