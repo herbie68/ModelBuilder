@@ -441,7 +441,7 @@
                                         <Button ToolTip="Leverancier voor product toevoegen" Click="supplierToolbarButtonNew" x:Name="btnNewProductSupplier">
                                             <Image Style="{DynamicResource ToolBarAddIcon}" IsEnabled="False"/>
                                         </Button>
-                                        <Button ToolTip="Wijzigingen opslaan" Click="supplierToolbarButtonSave" x:Name="btnSaveProductSupplier">
+                                        <Button ToolTip="Wijzigingen opslaan" Click="SupplierToolbarButtonSave" x:Name="btnSaveProductSupplier">
                                             <Image Style="{DynamicResource ToolBarSaveIcon}" IsEnabled="False" />
                                         </Button>
                                         <Button ToolTip="Leverancier verwijderen uit de tabel" Click="SupplierToolbarButtonDelete" x:Name="btnDeleteProductSupplier">

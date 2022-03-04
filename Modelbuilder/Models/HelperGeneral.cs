@@ -341,7 +341,7 @@ internal class HelperGeneral
         
         if (Id > 0)
         {
-            sqlText.Append ( SqlWhere + WhereString + "@Id" );
+            sqlText.Append ( SqlWhere + WhereString + "=@Id" );
         }
 
         using (MySqlConnection con = new MySqlConnection(ConnectionStr))
