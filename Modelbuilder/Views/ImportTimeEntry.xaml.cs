@@ -67,7 +67,7 @@ public partial class ImportTimeEntry : Page
         {
             string[] lineField = line.Split(";");
             var ProjectId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
-            {   {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeName, lineField[0] } }, new string[1, 3]
+            {   {HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0] } }, new string[1, 3]
             {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } });
 
             var WorkTypeId = _helperGeneral.GetValueFromTable(HelperGeneral.DbWorktypeTable, new string[1, 3]
@@ -80,8 +80,6 @@ public partial class ImportTimeEntry : Page
                 { HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldTypeStartTime, lineField[2] },
                 { HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldTypeEndTime, lineField[3] },
                 { HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldTypeWorktypeId, WorkTypeId } });
-
-            Console.WriteLine(line, lineField[0]);
         }
     }
 }
