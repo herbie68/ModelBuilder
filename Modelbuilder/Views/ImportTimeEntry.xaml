@@ -35,6 +35,8 @@
                 <Grid Margin="0,25">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
@@ -46,8 +48,39 @@
                     <Button Grid.Column="0" Grid.Row="0" x:Name="btnBrowseFile" Height="30" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Selecteer bestand" ToolTip="Selecteer het te iporteren CSV bestand met tijdregistraties" Click="ClickedSelectFileButton"/>
                     <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text=" :"/>
                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Geen bestand geselecteerd" VerticalAlignment="Center" Width="Auto" Name="dispFileName"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Project" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text=":" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Geen project ingelezen" VerticalAlignment="Center" Name="dispProjectName"/>
                 </Grid>
-                
+                <!--#region Time etry import Status bar-->
+                <DockPanel
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Height="30"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Background="LightGray">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="35" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                            <TextBlock Margin="3" VerticalAlignment="Center" Text="0" Name="dispLineCount"/>
+                            <TextBlock VerticalAlignment="Center" Text="#" />
+                            <TextBlock Margin="3" VerticalAlignment="Center" Text="0" Name="dispTotalLinesCount"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="2">
+                            <TextBlock Margin="3" VerticalAlignment="Center" Text="Status: "/>
+                            <TextBlock Margin="3" VerticalAlignment="Center" Text="Geen regels ingelezen" Name="dispStatusLine"/>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+                <!--#endregion Time entry import Status bar-->
+
 
             </StackPanel>
         </Grid>

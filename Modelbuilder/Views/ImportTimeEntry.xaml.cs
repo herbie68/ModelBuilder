@@ -62,18 +62,22 @@ public partial class ImportTimeEntry : Page
         }
 
         var lines = File.ReadLines(dispFileName.Text);
-
+        dispTotalLinesCount.Text = lines.Count().ToString();
+        var l = 0;
         foreach (string line in lines)
         {
+            dispLineCount.Text = l++.ToString();
             string[] lineField = line.Split(";");
             var ProjectId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
             {   {HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0] } }, new string[1, 3]
             {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } });
+            dispProjectName.Text= lineField[0];
 
             var WorkTypeId = _helperGeneral.GetValueFromTable(HelperGeneral.DbWorktypeTable, new string[1, 3]
             {   {HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldTypeName, lineField[4] } }, new string[1, 3]
             {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } });
 
+            return;
             _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[5, 3]
             {   { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, lineField[1] },
                 { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId,ProjectId},
