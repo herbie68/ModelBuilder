@@ -23,5 +23,5 @@ public class Connection_Query
     // public static readonly string uid = "herbie68";
     // public static readonly string password = "9b9749c1";
 
-    public static string connectionString = "SERVER=" + server + ";PORT=" + port + ";DATABASE=" + database + ";UID=" + uid + ";PASSWORD=" + password + ";";
+    public static readonly string connectionString = "SERVER=" + server + ";PORT=" + port + ";DATABASE=" + database + ";UID=" + uid + ";PASSWORD=" + password + ";";
 }
