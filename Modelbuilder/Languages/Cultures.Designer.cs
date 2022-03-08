@@ -124,6 +124,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort..
+        /// </summary>
+        public static string ImportTimeEntry_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer tijdregistratie.
+        /// </summary>
+        public static string ImportTimeEntry_Title {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Over....
         /// </summary>
         public static string main_Ribbon_About_Header {

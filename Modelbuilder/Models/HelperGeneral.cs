@@ -275,9 +275,21 @@ internal class HelperGeneral
     public static readonly string DbUnitTableFieldTypeUnitId = "int";
     public static readonly string DbUnitTableFieldNameUnitName = "Name";
     public static readonly string DbUnitTableFieldTypeUnitName = "string";
-
     #endregion Unit table
+
+    #region Worktype Table
     public static readonly string DbWorktypeTable = "worktype";
+    public static readonly string DbWorktypeTableFieldNameId = "Id";
+    public static readonly string DbWorktypeTableFieldTypeId = "int";
+    public static readonly string DbWorktypeTableFieldNameParentId = "ParentId";
+    public static readonly string DbWorktypeTableFieldTypeParentId = "int";
+    public static readonly string DbWorktypeTableFieldNameName = "Name";
+    public static readonly string DbWorktypeTableFieldTypeName = "string";
+    public static readonly string DbWorktypeTableFieldNameFullpath = "FullPath";
+    public static readonly string DbWorktypeTableFieldTypeFullpath = "string";
+
+
+    #endregion Worktype Table
 
     private static readonly string SqlSelect = "SELECT ";
     private static readonly string SqlSelectAll = "SELECT *";

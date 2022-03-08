@@ -799,4 +799,10 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
     <value>Produkt eingabe neu starten</value>
   </data>
+  <data name="ImportTimeEntry.Title" xml:space="preserve">
+    <value>Imprtiere Zeiterfassung</value>
+  </data>
+  <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
+    <value>Importiere von CSV datei,</value>
+  </data>
 </root>

@@ -799,4 +799,10 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
     <value>Reset Product usage entry input</value>
   </data>
+  <data name="ImportTimeEntry.Title" xml:space="preserve">
+    <value>Import Time entries</value>
+  </data>
+  <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
+    <value>Import from CSV file, containing Project name, starttime endtime, and worktype.</value>
+  </data>
 </root>
