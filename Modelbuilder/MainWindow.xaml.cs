@@ -1,4 +1,8 @@
-﻿global using Microsoft.Win32;
+﻿global using ConnectionNamespace;
+
+global using Microsoft.Win32;
+
+global using MySql.Data.MySqlClient;
 
 global using System;
 global using System.Collections.Generic;
@@ -13,9 +17,6 @@ global using System.Windows.Documents;
 global using System.Windows.Input;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
-global using MySql.Data.MySqlClient;
-global using ConnectionNamespace;
-global using MySql;
 
 using Modelbuilder.Views;
 
@@ -25,25 +26,27 @@ namespace Modelbuilder;
 
 public partial class MainWindow : Window
 {
-    //Connectiondata
-    /*
-    public static readonly string server = "remotemysql.com";
-    public static readonly string database = "Xf4RToJiEC";
-    public static readonly int port = 3306;
-    public static readonly string uid = "Xf4RToJiEC";
-    public static readonly string password = "UQ0xrOlmlK";
-
-    public static readonly string server = "localhost";
-    public static readonly string database = "modelbuilder";
-    public static readonly int port = 3306;
-    public static readonly string uid = "root";
-    public static readonly string password = "admin";
-    */
-
     public MainWindow()
     {
         InitializeComponent();
     }
+
+    #region TimeManagement
+    #region Show TimeManagement Page
+    private void ShowTimeManagementPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new timemanagement();
+    }
+    #endregion Show TimeManagement Page
+
+    #region Import Time Entries
+    private void ShowTimeEntryImportPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportTimeEntry();
+    }
+    #endregion Import Time Entries
+
+    #endregion TimeManegement
 
     #region Maintain orders and deliveries
     #region Call Order Page
@@ -148,4 +151,5 @@ public partial class MainWindow : Window
     }
 
     #endregion Exit Application
+
 }

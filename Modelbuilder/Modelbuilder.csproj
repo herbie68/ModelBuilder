@@ -59,6 +59,7 @@
     <None Remove="Resources\orderCart.png" />
     <None Remove="Resources\orderCartAdd.png" />
     <None Remove="Resources\orderShop.png" />
+    <None Remove="Resources\productUsage.png" />
     <None Remove="Resources\projectEdit.png" />
     <None Remove="Resources\projectExport.png" />
     <None Remove="Resources\projectImport.png" />
@@ -108,6 +109,7 @@
     <None Remove="Resources\toolbarDelete.png" />
     <None Remove="Resources\toolbarEnd.png" />
     <None Remove="Resources\toolbarLeft.png" />
+    <None Remove="Resources\toolbarReset.png" />
     <None Remove="Resources\toolbarRight.png" />
     <None Remove="Resources\toolbarRotate.png" />
     <None Remove="Resources\toolbarSave.png" />
@@ -117,6 +119,7 @@
     <None Remove="Resources\toolbarSmallSave.png" />
     <None Remove="Resources\toolbarStart.png" />
     <None Remove="Resources\trashbin.png" />
+    <None Remove="Resources\warning.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -124,9 +127,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
-    <PackageReference Include="Caliburn.Micro.Core" Version="4.0.173" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="MySql.Data" Version="8.0.27" />
   </ItemGroup>
@@ -175,6 +175,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\orderShop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\productUsage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\recalculate.png">
@@ -268,6 +271,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\toolbarReset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\toolbarRight.png">
@@ -456,6 +462,9 @@
     <Resource Include="Resources\trashbin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -483,10 +492,6 @@
     <Page Update="Views\metadataWorktype.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
   </ItemGroup>
 
 </Project>

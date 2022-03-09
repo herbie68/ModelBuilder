@@ -1,7 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
-using Org.BouncyCastle.Asn1.Crmf;
-using System.Windows.Controls;
+﻿using K4os.Compression.LZ4.Internal;
 
 namespace Modelbuilder;
 public partial class metadataProduct : Page
@@ -49,7 +46,7 @@ public partial class metadataProduct : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helper.GetDataTblProduct();
+        _dt = _helperGeneral.GetData(HelperGeneral.DbProductTable);
 
         // Populate data in datagrid from datatable
         ProductCode_DataGrid.DataContext = _dt;
@@ -111,12 +108,10 @@ public partial class metadataProduct : Page
         if (_helperGeneral == null)
         {
             _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-            //_helperGeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
         }
         if (_helper == null)
         {
             _helper = new HelperProduct(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-            //_helper = new HelperProduct("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
         }
     }
     #endregion
@@ -132,9 +127,9 @@ public partial class metadataProduct : Page
         _currentDataGridIndex = dg.SelectedIndex;
 
         GetMemo(dg.SelectedIndex);
-        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString().Replace(",", "").Replace(".", ","));
-        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString().Replace(",", "").Replace(".", ","));
-        var _Price = double.Parse(Row_Selected["Price"].ToString().Replace(",", "").Replace(".", ","));
+        var _Minimalstock = double.Parse(Row_Selected["MinimalStock"].ToString());
+        var _StandardOrderQuantity = double.Parse(Row_Selected["StandardOrderQuantity"].ToString());
+        var _Price = double.Parse(Row_Selected["Price"].ToString());
 
         valueProductId.Text = Row_Selected["Id"].ToString();
         valueCategoryId.Text = Row_Selected["Category_Id"].ToString();
@@ -180,9 +175,18 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Category in the combobox by default
+        var _tempCategory = _helperGeneral.GetValueFromTable(HelperGeneral.DbCategoryTable, new string[1, 3]
+        {
+            { HelperGeneral.DbCategoryTableFieldNameCategoryId, HelperGeneral.DbCategoryTableFieldTypeCategoryId, valueCategoryId.Text }
+        }, new string[1, 3] 
+        {
+            { HelperGeneral.DbCategoryTableFieldNameCategoryName, HelperGeneral.DbCategoryTableFieldTypeCategoryName, "" }
+        });
+        cboxProductCategory.Text = _tempCategory;
+
         foreach (HelperGeneral.Category category in cboxProductCategory.Items)
         {
-            if (category.CategoryName == Row_Selected["CategoryName"].ToString())
+            if (category.CategoryName == _tempCategory)
             {
                 cboxProductCategory.SelectedItem = category;
                 break;
@@ -190,19 +194,33 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Brand in the combobox by default
+        var _tempBrand = _helperGeneral.GetValueFromTable(HelperGeneral.DbBrandTable, new string[1, 3]
+        {
+            { HelperGeneral.DbBrandTableFieldNameBrandId, HelperGeneral.DbBrandTableFieldTypeBrandId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbBrandTableFieldNameBrandName, HelperGeneral.DbBrandTableFieldTypeBrandName, "" }
+        });
+
         foreach (HelperGeneral.Brand brand in cboxProductBrand.Items)
         {
-            if (brand.BrandName == Row_Selected["BrandName"].ToString())
+            if (brand.BrandName == _tempBrand)
             {
                 cboxProductBrand.SelectedItem = brand;
             }
         }
 
-
         //Select the saved Unit in the combobox by default
+        var _tempUnit = _helperGeneral.GetValueFromTable(HelperGeneral.DbUnitTable, new string[1, 3]
+        {
+            { HelperGeneral.DbUnitTableFieldNameUnitId, HelperGeneral.DbUnitTableFieldTypeUnitId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, "" }
+        });
         foreach (HelperGeneral.Unit unit in cboxProductUnit.Items)
         {
-            if (unit.UnitName == Row_Selected["UnitName"].ToString())
+            if (unit.UnitName == _tempUnit)
             {
                 cboxProductUnit.SelectedItem = unit;
                 break;
@@ -210,9 +228,16 @@ public partial class metadataProduct : Page
         }
 
         //Select the saved Storage location in the combobox by default
+        var _tempStorage = _helperGeneral.GetValueFromTable(HelperGeneral.DbStorageTable, new string[1, 3]
+        {
+            { HelperGeneral.DbStorageTableFieldNameStorageId, HelperGeneral.DbStorageTableFieldTypeStorageId, valueBrandId.Text }
+        }, new string[1, 3]
+        {
+            { HelperGeneral.DbStorageTableFieldNameStorageName, HelperGeneral.DbStorageTableFieldTypeStorageName, "" }
+        });
         foreach (HelperGeneral.Storage storage in cboxProductStorage.Items)
         {
-            if (storage.StorageName == Row_Selected["StorageName"].ToString())
+            if (storage.StorageName == _tempStorage)
             {
                 cboxProductStorage.SelectedItem = storage;
                 break;
@@ -220,24 +245,16 @@ public partial class metadataProduct : Page
         }
 
         // Retrieve list of suppliers for this product from database
-        _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
+        _dtPS = _helperGeneral.GetData ( HelperGeneral.DbProductSupplierView, "Product_Id", Id: int.Parse ( valueProductId.Text ) );
 
         // Populate data in datagrid from datatable
         ProductSupplierCode_DataGrid.DataContext = _dtPS;
-
     }
     #endregion Selection changed ProductCode
 
     #region Selection changed ProductSupplierCode
     private void ProductSupplierCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        // When a row in the datagrid is selected, all fields can be enablen
-        //inpSupplierProductName.IsEnabled = true;
-        //inpSupplierProductNumber.IsEnabled = true;
-        //inpSupplierProductPrice.IsEnabled = true;
-        //cboxProductSupplier.IsEnabled = true;
-        //chkSupplierDefault.IsEnabled = true;
-
         DataGrid dgPS = (DataGrid)sender;
 
         if (dgPS.SelectedItem is not DataRowView Row_Selected) { return; }
@@ -246,14 +263,13 @@ public partial class metadataProduct : Page
         _currentDataGridPSIndex = dgPS.SelectedIndex;
 
         var _ProductPrice = 0.00;
-        if (Row_Selected["Price"].ToString() != "") { _ProductPrice = double.Parse(Row_Selected["Price"].ToString().Replace(".", ",")); };
+        if (Row_Selected["Price"].ToString() != "") { _ProductPrice = double.Parse(Row_Selected["Price"].ToString().Replace(".", ",")); }
 
         valueProductSupplierId.Text = Row_Selected["Id"].ToString();
         valueProductSupplierSupplierId.Text = Row_Selected["Supplier_Id"].ToString();
         valueProductSupplierCurrencyId.Text = Row_Selected["Currency_Id"].ToString();
         inpSupplierProductNumber.Text = Row_Selected["ProductNumber"].ToString();
         inpSupplierProductName.Text = Row_Selected["Name"].ToString();
-        //dispProductSupplierCurrencySymbol.Text = Row_Selected["CurrencySymbol"].ToString();
         inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
         if (Row_Selected["DefaultSupplier"].ToString() == "*")
         {
@@ -267,7 +283,6 @@ public partial class metadataProduct : Page
 
         //Select the saved Supplier in the combobox by default
         foreach (HelperGeneral.Supplier supplier in cboxProductSupplier.Items)
-        //foreach (Supplier supplier in cboxProductSupplier.Items)
         {
             if (supplier.SupplierName == Row_Selected["SupplierName"].ToString())
             {
@@ -368,8 +383,10 @@ public partial class metadataProduct : Page
 
         if (valueProductId.Text != "")
         {
-            UpdateRowProduct(ProductCode_DataGrid.SelectedIndex);
+            UpdateRowProduct ();
         }
+
+        ClearAllFields ();
 
         GetData();
 
@@ -380,7 +397,7 @@ public partial class metadataProduct : Page
     #endregion Click Save Data button (on toolbar)
 
     #region Click New data row button (on toolbar)
-    private void ToolbarButtonNew(object sender, RoutedEventArgs e)
+    private void ToolbarButtonNew ( object sender, RoutedEventArgs e )
     {
         // When the ProductId is not empty, a excisting row is selected when the add new row button is hit. 
         // In this case a new row with blank values should be added to the dtable and selected.
@@ -388,94 +405,51 @@ public partial class metadataProduct : Page
         // In this case the existing value should be used instead of emptying all the data from the form.
 
         var productProjectCosts = 0;
-        var productCode = "";
-        var productName = "";
-        var productMinimalStock = 0.00;
-        var productStandardOrderQuantity = 0.00;
-        var productPrice = 0.00;
-        var productCategoryId = 1;
-        var productStorageId = 1;
-        var productBrandId = 1;
-        var productUnitId = 1;
-        var productImageRotationAngle = "0";
-        var productDimensions = "";
         byte[] productImage = null;
 
         if (valueProductId.Text == "")
         {
-            // No existing product selected, use formdata if entered
-            // check on entered data on formated field because they throw an error on adding a new row
-            productCode = inpProductCode.Text;
-            productName = inpProductName.Text;
-            productDimensions = inpProductDimensions.Text;
-
-            if (inpProductMinimalStock.Text != "")
-            { productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", ".")); }
-
-            if (inpProductStandardOrderQuantity.Text != "")
-            { productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", ".")); }
-
-            if (inpProductPrice.Text != "")
-            { productPrice = double.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", "")); }
-
             if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
-
-            if (valueCategoryId.Text != "")
-            {
-                productCategoryId = int.Parse(valueCategoryId.Text);
-            }
-
-            if (valueStorageId.Text != "")
-            {
-                productStorageId = int.Parse(valueStorageId.Text);
-            }
-
-            if (valueBrandId.Text != "")
-            {
-                productBrandId = int.Parse(valueBrandId.Text);
-            }
-
-            if (valueUnitId.Text != "")
-            {
-                productUnitId = int.Parse(valueUnitId.Text);
-            }
-
-            productImageRotationAngle = valueImageRotationAngle.Text;
-
             var bitmap = imgProductImage.Source as BitmapSource;
-            var encoder = new PngBitmapEncoder();
+            var encoder = new PngBitmapEncoder ();
 
-            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+            encoder.Frames.Add ( BitmapFrame.Create ( bitmap ) );
 
-            using var stream = new MemoryStream();
-            encoder.Save(stream);
-            productImage = stream.ToArray();
+            using var stream = new MemoryStream ();
+            encoder.Save ( stream );
+            productImage = stream.ToArray ();
         }
 
         //convert RTF to string
-        string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
+        string memo = GetRichTextFromFlowDocument ( inpProductMemo.Document );
 
-        if (_dt.Rows.Count != 0)
-        { DataRow row = _dt.Rows[_dt.Rows.Count - 1]; }
+        InitializeHelper ();
 
-        InitializeHelper();
-
-        string result = string.Empty;
-        result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
+        _helperGeneral.InsertInTable ( HelperGeneral.DbProductTable, new string[13, 3]
+        {
+            {HelperGeneral.DbProductTableFieldNameCode, HelperGeneral.DbProductTableFieldTypeCode, inpProductCode.Text },
+            {HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, inpProductName.Text },
+            {HelperGeneral.DbProductTableFieldNameMinimalStock, HelperGeneral.DbProductTableFieldTypeMinimalStock, inpProductMinimalStock.Text.Replace ( ",", "." ) },
+            {HelperGeneral.DbProductTableFieldNameStandardOrderQuantity, HelperGeneral.DbProductTableFieldTypeStandardOrderQuantity,inpProductStandardOrderQuantity.Text.Replace ( ",", "." ) },
+            {HelperGeneral.DbProductTableFieldNamePrice, HelperGeneral.DbProductTableFieldTypePrice,inpProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" ) },
+            {HelperGeneral.DbProductTableFieldNameProjectCosts, HelperGeneral.DbProductTableFieldTypeProjectCosts, productProjectCosts.ToString() },
+            {HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId, valueCategoryId.Text },
+            {HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, valueStorageId.Text },
+            {HelperGeneral.DbProductTableFieldNameBrandId, HelperGeneral.DbProductTableFieldTypeBrandId, valueBrandId.Text },
+            {HelperGeneral.DbProductTableFieldNameUnitId, HelperGeneral.DbProductTableFieldTypeUnitId, valueUnitId.Text },
+            {HelperGeneral.DbProductTableFieldNameMemo, HelperGeneral.DbProductTableFieldTypeMemo, memo },
+            {HelperGeneral.DbProductTableFieldNameImageRotationAngle, HelperGeneral.DbProductTableFieldTypeImageRotationAngle, valueImageRotationAngle.Text },
+            {HelperGeneral.DbProductTableFieldNameDimensions, HelperGeneral.DbProductTableFieldTypeDimensions, inpProductDimensions.Text }
+        }, productImage, HelperGeneral.DbProductTableFieldNameImage );
         valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
-        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
-        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
-
-
-        UpdateStatus(result);
+        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[1, 3]
+        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text} });
 
         // Get data from database
-        _dt = _helper.GetDataTblProduct();
+        _dt = _helperGeneral.GetData ( HelperGeneral.DbProductTable );
 
         // Populate data in datagrid from datatable
         ProductCode_DataGrid.DataContext = _dt;
-        //dataGridView1.Rows[e.RowIndex].Selected = true;
         if (ProductCode_DataGrid.SelectedItem is not DataRowView Row_Selected)
         {
             return;
@@ -486,73 +460,42 @@ public partial class metadataProduct : Page
     #region Click New data row button (on suppliertoolbar)
     private void supplierToolbarButtonNew(object sender, RoutedEventArgs e)
     {
-        var ProductId = int.Parse(valueProductId.Text);
-        var SupplierId = int.Parse(valueProductSupplierSupplierId.Text);
-        var CurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);
-        var Number = "";
-        var Name = inpProductName.Text;
         var Default = "";
-        var Price = 0.00;
 
         if (valueProductSupplierId.Text == "")
         {
-            // No existng supplier selected, use formdata if entered
-            // check on entered data on formated field because they throw an error on adding a new row
-            if (valueProductSupplierSupplierId.Text == "")
-            {
-                // There is no supplier selected Yet, But is Price is entered
-                // Use default value, to cause no error if the save button is pressed without changing the default supplier (1)
-                valueProductSupplierSupplierId.Text = SupplierId.ToString();
-            }
-
-            // Get the currency from the supplier and add the Id and Symbol to the form
-
-            Number = inpSupplierProductNumber.Text;
-
             // If no supplier specific description has been entered, use the General Product descreprion
-            if(inpSupplierProductName.Text == "") { inpSupplierProductName.Text = Name; } else { Name = inpSupplierProductName.Text; }
-
-            if (inpSupplierProductPrice.Text != "")
-            { Price = double.Parse(inpSupplierProductPrice.Text.Replace("€", "").Replace(" ", "")); }
+            if(inpSupplierProductName.Text == "") { inpSupplierProductName.Text = inpProductName.Text; } else { inpProductName.Text = inpSupplierProductName.Text; }
 
             if ((bool)chkSupplierDefault.IsChecked) { Default = "*"; }
-
         }
 
         InitializeHelper();
 
-        var result = _helper.InsertTblProductSupplier(ProductId, SupplierId, CurrencyId, Number, Name, Price, Default);
-        UpdateStatus(result);
+        _helperGeneral.InsertInTable ( HelperGeneral.DbProductSupplierTable, new string[7, 3]
+            {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNameProductNumber, HelperGeneral.DbProductSupplierTableFieldTypeProductNumber, inpSupplierProductNumber.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
+                { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, Default} } );
 
         // Get data from database
-        _dtPS = _helper.GetDataTblProductSupplier(int.Parse(valueProductId.Text));
+        _dtPS = _helperGeneral.GetData ( HelperGeneral.DbProductSupplierTable, Id: int.Parse ( valueProductId.Text ) );
+
 
         // Populate data in datagrid from datatable
         ProductSupplierCode_DataGrid.DataContext = _dtPS;
-        //DataGrid dg = (DataGrid)sender;
-
-        //if (dg.SelectedItem is not DataRowView Row_Selected)
-        //{
-        //    return;
-        //}
-
     }
     #endregion Click New data row button (on suppliertoolbar)
 
     #region Click Save Data button (on suppliertoolbar)
-    private void supplierToolbarButtonSave(object sender, RoutedEventArgs e)
+    private void SupplierToolbarButtonSave(object sender, RoutedEventArgs e)
     {
         int rowIndex = _currentDataGridPSIndex;
 
-        if (valueProductSupplierId.Text == "")
-        //if (_dtPS.Rows.Count > _dbRowCount)
-        {
-            //InsertRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
-        }
-        else
-        {
-            UpdateRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
-        }
+        if (valueProductSupplierId.Text != "") { UpdateRowProductSupplier(); }
 
         GetData();
 
@@ -602,7 +545,7 @@ public partial class metadataProduct : Page
     {
         int rowIndex = _currentDataGridPSIndex;
 
-        DeleteRowProductSupplier(ProductSupplierCode_DataGrid.SelectedIndex);
+        DeleteRowProductSupplier();
 
         GetData();
 
@@ -620,29 +563,11 @@ public partial class metadataProduct : Page
     #endregion Delete Data button (on SupplierToolbar)
 
     #region Update row Product Table
-    private void UpdateRowProduct(int dgIndex)
+    private void UpdateRowProduct()
     {
-        //when DataGrid SelectionChanged occurs, the value of '_currentDataGridIndex' is set
-        //to DataGrid SelectedIndex
-        //get data from DataTable
-        DataRow row = _dt.Rows[_currentDataGridIndex];
         var productProjectCosts = 0;
 
-        var productId = int.Parse(valueProductId.Text);
-        string productCode = inpProductCode.Text;
-        string productName = inpProductName.Text;
-        var productMinimalStock = float.Parse(inpProductMinimalStock.Text);
-        var productStandardOrderQuantity = float.Parse(inpProductStandardOrderQuantity.Text);
-        var productPrice = float.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", ""));
-        var productSupplierProductNumber = inpSupplierProductNumber.Text;
         if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
-        { productProjectCosts = 0; }
-        var productCategoryId = int.Parse(valueCategoryId.Text);
-        var productStorageId = int.Parse(valueStorageId.Text);
-        var productBrandId = int.Parse(valueBrandId.Text);
-        var productUnitId = int.Parse(valueUnitId.Text);
-        var productDimensions = inpProductDimensions.Text;
-        var productImageRotationAngle = valueImageRotationAngle.Text;
 
         byte[] productImage;
         var bitmap = imgProductImage.Source as BitmapSource;
@@ -661,128 +586,72 @@ public partial class metadataProduct : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.UpdateTblProduct(productId, productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
-        UpdateStatus(result);
+        _helperGeneral.UpdateFieldInTable(HelperGeneral.DbProductTable, new string[1, 3]
+        {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, new string[12, 3]
+        {   {HelperGeneral.DbProductTableFieldNameCode, HelperGeneral.DbProductTableFieldTypeCode, inpProductCode.Text },
+            {HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, inpProductName.Text },
+            {HelperGeneral.DbProductTableFieldNameMinimalStock, HelperGeneral.DbProductTableFieldTypeMinimalStock, inpProductMinimalStock.Text },
+            {HelperGeneral.DbProductTableFieldNameStandardOrderQuantity, HelperGeneral.DbProductTableFieldTypeStandardOrderQuantity,inpProductStandardOrderQuantity.Text },
+            {HelperGeneral.DbProductTableFieldNamePrice, HelperGeneral.DbProductTableFieldTypePrice,inpProductPrice.Text },
+            {HelperGeneral.DbProductTableFieldNameProjectCosts, HelperGeneral.DbProductTableFieldTypeProjectCosts, productProjectCosts.ToString() },
+            {HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId, valueCategoryId.Text },
+            {HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, valueStorageId.Text },
+            {HelperGeneral.DbProductTableFieldNameBrandId, HelperGeneral.DbProductTableFieldTypeBrandId, valueBrandId.Text },
+            {HelperGeneral.DbProductTableFieldNameUnitId, HelperGeneral.DbProductTableFieldTypeUnitId, valueUnitId.Text },
+            {HelperGeneral.DbProductTableFieldNameImageRotationAngle, HelperGeneral.DbProductTableFieldTypeImageRotationAngle, valueImageRotationAngle.Text },
+            {HelperGeneral.DbProductTableFieldNameDimensions, HelperGeneral.DbProductTableFieldTypeDimensions, inpProductDimensions.Text }});
+
+        _helperGeneral.UpdateMemoFieldInTable ( HelperGeneral.DbProductTable, new string[1, 3]
+        {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, HelperGeneral.DbProductTableFieldNameMemo, memo );
+
+        _helperGeneral.UpdateImageFieldInTable(HelperGeneral.DbProductTable, new string[1, 3]
+        {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, productImage, HelperGeneral.DbProductTableFieldNameImage);
     }
     #endregion Update row Product Table
 
     #region Update row ProductSupplier Table
-    private void UpdateRowProductSupplier(int dgIndex)
+    private void UpdateRowProductSupplier ()
     {
-        //var productSupplierId = int.Parse(valueProductSupplierId.Text);
-        var productSupplierId = int.Parse(valueProductSupplierId.Text);                     // Unique Id for the recrd in the ProductSupplier Table
-        var productSupplierProductId = int.Parse(valueProductId.Text);                      // Id of the selected Product
-        var productSupplierSupplierId = int.Parse(valueProductSupplierSupplierId.Text);     // Id of the Supplier selected from the Supplier ComboBox
-        var productSupplierCurrencyId = int.Parse(valueProductSupplierCurrencyId.Text);     // Default Currency Id of the Supplier selected from the Supplier ComboBox
-        var productSupplierCurrencySymbol = dispProductSupplierCurrencySymbol.Text;         // Default Currency Symbol of the Supplier selected from the Supplier ComboBox
-        var productSupplierProductNumber = inpSupplierProductNumber.Text;                   // Product number used by the selected supplier
-        var productSupplierProductName = inpSupplierProductName.Text;                       // Product description used by the selected supplier
-        var productSupplierProductPrice = float.Parse(inpSupplierProductPrice.Text.Replace("€", "").Replace(" ", "")); // Product price used by the selected supplier
         var productSupplierDefault = "";                                                    // Is the selected supplier/product the default product to be used?
         if ((bool)chkSupplierDefault.IsChecked) { productSupplierDefault = "*"; }
 
-        InitializeHelper();
+        InitializeHelper ();
 
         // If the checkbox that for default supplier is selected, the eventual other default supplier should be set to '', because there can only be one default
         if ((bool)chkSupplierDefault.IsChecked)
         {
-            _ = _helper.UncheckDefaultSupplierTblProductSupplier(productSupplierId, productSupplierProductId);
+            _ = _helper.UncheckDefaultSupplierTblProductSupplier ( int.Parse ( valueProductSupplierId.Text ), int.Parse ( valueProductId.Text ) );
         }
 
         string result = string.Empty;
-        result = _helper.UpdateTblProductSupplier(productSupplierId, productSupplierProductId, productSupplierSupplierId, productSupplierCurrencyId, productSupplierProductNumber, productSupplierProductName, productSupplierProductPrice, productSupplierDefault);
-        UpdateStatus(result);
+        _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductSupplierTable, new string[1, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[7, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameProductNumber, HelperGeneral.DbProductSupplierTableFieldTypeProductNumber, inpSupplierProductNumber.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
+            { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, productSupplierDefault} } );
+
+        UpdateStatus (result);
 
         // Get data from database
-        _dtPS = _helper.GetDataTblProductSupplier();
+        _dtPS = _helperGeneral.GetData ( HelperGeneral.DbProductSupplierTable);
+
 
         // Populate data in datagrid from datatable
         ProductSupplierCode_DataGrid.DataContext = _dtPS;
     }
     #endregion Update row ProductSupplier Tabble
 
-    #region Insert new row in Product Table
-    private void InsertRowProduct(int dgIndex)
-    {
-        //since the DataGrid DataContext is set to the DataTable, 
-        //the DataTable is updated when data is modified in the DataGrid
-        //get last row
-        DataRow row = _dt.Rows[_dt.Rows.Count - 1];
-        int productProjectCosts = 0;
-
-        var productCode = inpProductCode.Text;
-        var productName = inpProductName.Text;
-        var productDimensions = inpProductDimensions.Text;
-        var productMinimalStock = double.Parse(inpProductMinimalStock.Text.Replace(",", "."));
-        var productStandardOrderQuantity = double.Parse(inpProductStandardOrderQuantity.Text.Replace(",", "."));
-        var productPrice = double.Parse(inpProductPrice.Text.Replace("€", "").Replace(" ", ""));
-        var productSupplierProductNumber = inpSupplierProductNumber.Text;
-        if ((bool)chkProjectProjectCosts.IsChecked) { productProjectCosts = 1; }
-        { productProjectCosts = 0; }
-        var productCategoryId = int.Parse(valueCategoryId.Text);
-        var productStorageId = int.Parse(valueStorageId.Text);
-        var productBrandId = int.Parse(valueBrandId.Text);
-        var productUnitId = int.Parse(valueUnitId.Text);
-        var productImageRotationAngle = valueImageRotationAngle.Text;
-
-        byte[] productImage;
-        var bitmap = imgProductImage.Source as BitmapSource;
-        var encoder = new PngBitmapEncoder();
-
-        encoder.Frames.Add(BitmapFrame.Create(bitmap));
-
-        using (var stream = new MemoryStream())
-        {
-            encoder.Save(stream);
-            productImage = stream.ToArray();
-        }
-
-        //convert RTF to string
-        string memo = GetRichTextFromFlowDocument(inpProductMemo.Document);
-
-        InitializeHelper();
-
-        string result = string.Empty;
-        result = _helper.InsertTblProduct(productCode, productName, productMinimalStock, productStandardOrderQuantity, productPrice, productProjectCosts, productCategoryId, productStorageId, productBrandId, productUnitId, memo, productImageRotationAngle, productImage, productDimensions);
-        valueProductId.Text = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
-        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
-        {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-            {HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
-
-        UpdateStatus(result);
-    }
-    #endregion Insert new row in Product Table
-
-    #region Delete row from Product table
-    private void DeleteRowProduct(int dgIndex)
-    {
-        if (valueProductId.Text != "")
-        {
-            var productId = int.Parse(valueProductId.Text);
-
-            InitializeHelper();
-
-            string result = string.Empty;
-            result = _helper.DeleteTblProduct(productId);
-            _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbStockTable, new string[2, 3]
-            {   {HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId , valueProductId.Text},
-                { HelperGeneral.DbStockTableFieldNameStorageId, HelperGeneral.DbStockTableFieldTypeStorageId , valueStorageId.Text} });
-            UpdateStatus(result);
-        }
-    }
-    #endregion Delete row from Product table
-
     #region Delete row in ProductSupplier table
-    private void DeleteRowProductSupplier(int dgIndex)
+    private void DeleteRowProductSupplier()
     {
-        int productSupplierId = int.Parse(valueProductSupplierSupplierId.Text);
-
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.DeleteTblProductSupplier(productSupplierId);
-        UpdateStatus(result);
+        _helperGeneral.DeleteRecordFromTable ( HelperGeneral.DbProductSupplierTable, new string[1, 3]
+        {   {HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text} } );
     }
     #endregion Delete row in ProductSupplier table
 
@@ -912,4 +781,36 @@ public partial class metadataProduct : Page
         #endregion Enable or Disable buttons on ProductSupplier Toolbar
     }
     #endregion Validation if Product Code and Name are filled in order to add/save the record
+
+    #region Reset all values to empty
+    private void ClearAllFields ()
+    {
+        valueProductId.Clear ();
+        valueCategoryId.Clear ();
+        valueStorageId.Clear ();
+        valueBrandId.Clear ();
+        valueUnitId.Clear ();
+        valueProductSupplierId.Clear ();
+        valueProductSupplierSupplierId.Clear ();
+        valueProductSupplierCurrencyId.Clear ();
+        valueImageRotationAngle.Clear ();
+        inpProductCode.Clear ();
+        inpProductName.Clear ();
+        inpProductMinimalStock.Clear ();
+        inpProductStandardOrderQuantity.Clear ();
+        inpProductDimensions.Clear ();
+        inpProductPrice.Clear ();
+        inpSupplierProductNumber.Clear ();
+        inpSupplierProductName.Clear ();
+        inpSupplierProductPrice.Clear ();
+        inpProductMemo.Document.Blocks.Clear ();
+        chkProjectProjectCosts.IsChecked = false;
+        chkSupplierDefault.IsChecked = false;
+        cboxProductBrand.SelectedItem = null;
+        cboxProductCategory.SelectedItem = null;
+        cboxProductUnit.SelectedItem = null;
+        cboxProductSupplier.SelectedItem = null;
+        imgProductImage.Source = null;
+    }
+    #endregion
 }

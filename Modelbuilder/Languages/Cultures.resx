@@ -669,4 +669,140 @@
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Export.Header" xml:space="preserve">
     <value>Exporteer werksoorten</value>
   </data>
+  <data name="TimeManagement.Page.Title" xml:space="preserve">
+    <value>Urenregistratie</value>
+  </data>
+  <data name="TimeManagement.Page.SubTitle" xml:space="preserve">
+    <value>Registreer het aantal gewerkte uren op datum, per soort werkzaamheden. Eventueel materiaalverbruik kan op dat tabblad worden geregistreerd.
+Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en project worden geselecteerd</value>
+  </data>
+  <data name="TimeManagement.TabItemHeader.Time" xml:space="preserve">
+    <value>Tijdregistratie</value>
+  </data>
+  <data name="TimeManagement.TabItemHeader.Product" xml:space="preserve">
+    <value>Materiaalverbruik</value>
+  </data>
+  <data name="TimeManagement.Field.Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProjectId" xml:space="preserve">
+    <value>Project Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProductId" xml:space="preserve">
+    <value>Product Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.WorktypeId" xml:space="preserve">
+    <value>Werkzaamheden Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.CategoryId" xml:space="preserve">
+    <value>Categorie Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StorageId" xml:space="preserve">
+    <value>Opslaglocatie Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.CategoryName" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProductName" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProjectName" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StorageName" xml:space="preserve">
+    <value>Opslaglocatie</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.WorktypeName" xml:space="preserve">
+    <value>Werkzaamheden</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StartTime" xml:space="preserve">
+    <value>Starttijd</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.EndTime" xml:space="preserve">
+    <value>Eindtijd</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ElapsedTime" xml:space="preserve">
+    <value>Tijd</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.Comment" xml:space="preserve">
+    <value>Opmerking</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.AmountUsed" xml:space="preserve">
+    <value>Gebruikt</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.TotalTime" xml:space="preserve">
+    <value>Totaal gewerkte uren</value>
+  </data>
+  <data name="general.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="general.TimeEntrie" xml:space="preserve">
+    <value>tijdregistratieregel</value>
+  </data>
+  <data name="general.TimeEntries" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="general.ProductUsageEntrie" xml:space="preserve">
+    <value>product gebruik regel</value>
+  </data>
+  <data name="general.ProductUsageEntries" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="general.Read" xml:space="preserve">
+    <value>ingelezen</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.New" xml:space="preserve">
+    <value>Nieuwe regel toevoegen</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Verwijder geselecteerde regel</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.New" xml:space="preserve">
+    <value>Nieuwe regel toevoegen</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Verwijder geselecteerde regel</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Ingevoerde gegevens opslaan</value>
+  </data>
+  <data name="TimeManagement.TimeEntryError" xml:space="preserve">
+    <value>Eindtijd ligt voor de starttijd</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Footer.TotalElapsedTime" xml:space="preserve">
+    <value>Totale werktijd:</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Opnieuw beginnen met de invoer</value>
+  </data>
+  <data name="TimeManagement.TimeEntryStartTimeExistError" xml:space="preserve">
+    <value>Start tijd is al als werktijd gebruikt</value>
+  </data>
+  <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
+    <value>Eind tijd is al als werktijd gebruikt</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.General" xml:space="preserve">
+    <value>Werkdatum en project</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.TimeEntry" xml:space="preserve">
+    <value>Tijdinvoer</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.ProductUsage" xml:space="preserve">
+    <value>Verbruiksregistratie</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Ingevoerde gegevens opslaan</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Opnieuw beginnen met de invoer</value>
+  </data>
+  <data name="ImportTimeEntry.Title" xml:space="preserve">
+    <value>Importeer tijdregistratie</value>
+  </data>
+  <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort.</value>
+  </data>
 </root>

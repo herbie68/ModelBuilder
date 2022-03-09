@@ -1,7 +1,4 @@
-﻿
-using static Modelbuilder.HelperSupplier;
-
-namespace Modelbuilder
+﻿namespace Modelbuilder
 {
     /// <summary>
     /// Interaction logic for metadataSupplier.xaml
@@ -13,7 +10,7 @@ namespace Modelbuilder
         private DataTable _dt, _dtSC;
         private int _dbRowCount;
         private int _currentDataGridIndex;
-        private static string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
+        private static readonly string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="metadataSupplier"/> class.

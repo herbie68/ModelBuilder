@@ -669,4 +669,140 @@
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Worktype.Export.Header" xml:space="preserve">
     <value>Export work types</value>
   </data>
+  <data name="TimeManagement.Page.Title" xml:space="preserve">
+    <value>Timemanagement</value>
+  </data>
+  <data name="TimeManagement.Page.SubTitle" xml:space="preserve">
+    <value>Register the number of hours worked by date, per worktype. Any material consumption can be registered on that tab
+To be able to enter a new time registration Select a date and project first</value>
+  </data>
+  <data name="TimeManagement.TabItemHeader.Product" xml:space="preserve">
+    <value>Productusage</value>
+  </data>
+  <data name="TimeManagement.TabItemHeader.Time" xml:space="preserve">
+    <value>Timemanagement</value>
+  </data>
+  <data name="TimeManagement.Field.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.CategoryId" xml:space="preserve">
+    <value>Category Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProductId" xml:space="preserve">
+    <value>Product Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProjectId" xml:space="preserve">
+    <value>Project Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StorageId" xml:space="preserve">
+    <value>Storage Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.WorktypeId" xml:space="preserve">
+    <value>Worktype Id</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.CategoryName" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProductName" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ProjectName" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StorageName" xml:space="preserve">
+    <value>Storage</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.WorktypeName" xml:space="preserve">
+    <value>Worktype</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.TotalTime" xml:space="preserve">
+    <value>Total worked hours</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.AmountUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.ElapsedTime" xml:space="preserve">
+    <value>Elapsed time</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Header.StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="general.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="general.TimeEntrie" xml:space="preserve">
+    <value>time entrie row</value>
+  </data>
+  <data name="general.TimeEntries" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="general.ProductUsageEntrie" xml:space="preserve">
+    <value>product Usage entrie row</value>
+  </data>
+  <data name="general.ProductUsageEntries" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="general.Read" xml:space="preserve">
+    <value>read</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Delete selected row</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.New" xml:space="preserve">
+    <value>Add new row</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Delete" xml:space="preserve">
+    <value>Delete selected row</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.New" xml:space="preserve">
+    <value>Add new row</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Save entered values</value>
+  </data>
+  <data name="TimeManagement.TimeEntryError" xml:space="preserve">
+    <value>End time is before the start time</value>
+  </data>
+  <data name="Timemanagement.Datagrid.Footer.TotalElapsedTime" xml:space="preserve">
+    <value>Total working time:</value>
+  </data>
+  <data name="TimeEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Reset Time entry input</value>
+  </data>
+  <data name="TimeManagement.TimeEntryStartTimeExistError" xml:space="preserve">
+    <value>Start time is already used as working time</value>
+  </data>
+  <data name="TimeManagement.TimeEntryEndTimeExistError" xml:space="preserve">
+    <value>End time has already been used as working time</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.TimeEntry" xml:space="preserve">
+    <value>Time entry</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.General" xml:space="preserve">
+    <value>Workdate and project</value>
+  </data>
+  <data name="TimeManagement.Tab.Group.ProductUsage" xml:space="preserve">
+    <value>Usage entry</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Save" xml:space="preserve">
+    <value>Save entered values</value>
+  </data>
+  <data name="ProductEntry.Toolbar.Button.Reset" xml:space="preserve">
+    <value>Reset Product usage entry input</value>
+  </data>
+  <data name="ImportTimeEntry.Title" xml:space="preserve">
+    <value>Import Time entries</value>
+  </data>
+  <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
+    <value>Import from CSV file, containing Project name, starttime endtime, and worktype.</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@ public partial class storageOrder : Page
     private DataTable _dt, _dtSC;
     private int _dbRowCount, _dbRowCountSC;
     private int _currentDataGridIndex;
-    private string DbProductSupplierTable = "productsupplier";
+    private readonly string DbProductSupplierTable = "productsupplier";
 
     public storageOrder()
     {
@@ -222,13 +222,7 @@ public partial class storageOrder : Page
         inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "currency", "ConversionRate", "double")));
         inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "ShippingCosts", "double")));
         inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "OrderCosts", "double")));
-        //inpCurrencyRate.Text = _helperGeneral.GetSingleData(int.Parse(valueCurrencyId.Text), "Currency", "ConversionRate", "float");
-        //inpShippingCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "ShippingCosts", "double");
         valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "MinShippingCosts", "double");
-        //inpOrderCosts.Text = _helperGeneral.GetSingleData(int.Parse(valueSupplierId.Text), "Supplier", "OrderCosts", "double");
-        //inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(inpCurrencyRate.Text));
-        //inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpShippingCosts.Text));
-        //inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text));
     }
     #endregion Selection changed: Combobox Supplier
 
@@ -293,9 +287,6 @@ public partial class storageOrder : Page
     #region Selection changed: Combobox Project
     private void cboxProject_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        //If no project is selected do nothing
-        //if (cboxProject.Text == String.Empty) { return; }
-
         foreach (HelperGeneral.Project item in e.AddedItems)
         {
             valueProjectId.Text = item.ProjectId.ToString();

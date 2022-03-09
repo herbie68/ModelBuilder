@@ -5,10 +5,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `stocklog`;
 CREATE TABLE IF NOT EXISTS `stocklog` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `product_Id` int NOT NULL DEFAULT '0',
-  `storage_Id` int DEFAULT '0',
   `supplyorder_Id` int DEFAULT '0',
   `supplyorderline_Id` int DEFAULT '0',
   `AmountReceived` double DEFAULT '0',
@@ -18,19 +18,17 @@ CREATE TABLE IF NOT EXISTS `stocklog` (
   `Modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`) USING BTREE,
   KEY `FK_StockLog_Product_Id` (`product_Id`) USING BTREE,
-  KEY `FK_StockLog_Storage_Id` (`storage_Id`) USING BTREE,
   KEY `FK_StockLog_SupplyOrderline_Id` (`supplyorderline_Id`),
   KEY `FK_Stocklog_Supplyorder_Id` (`supplyorder_Id`),
   CONSTRAINT `FK_StockLog_Product_Id` FOREIGN KEY (`product_Id`) REFERENCES `product` (`Id`),
-  CONSTRAINT `FK_StockLog_Storage_Id` FOREIGN KEY (`storage_Id`) REFERENCES `storage` (`Id`),
   CONSTRAINT `FK_Stocklog_Supplyorder_Id` FOREIGN KEY (`supplyorder_Id`) REFERENCES `supplyorder` (`Id`),
   CONSTRAINT `FK_StockLog_SupplyOrderline_Id` FOREIGN KEY (`supplyorderline_Id`) REFERENCES `supplyorderline` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Registartion of ordered and received goods';
 
 DELETE FROM `stocklog`;
 /*!40000 ALTER TABLE `stocklog` DISABLE KEYS */;
-INSERT INTO `stocklog` (`Id`, `product_Id`, `storage_Id`, `supplyorder_Id`, `supplyorderline_Id`, `AmountReceived`, `AmountUsed`, `Date`, `Created`, `Modified`) VALUES
-	(9, 2, 242, 2, 9, 1, 0, '2022-01-24', '2022-01-24 16:54:37', '2022-01-24 16:54:37');
+INSERT INTO `stocklog` (`Id`, `product_Id`, `supplyorder_Id`, `supplyorderline_Id`, `AmountReceived`, `AmountUsed`, `Date`, `Created`, `Modified`) VALUES
+	(9, 2, 2, 9, 1, 0, '2022-01-24', '2022-01-24 16:54:37', '2022-01-24 16:54:37');
 /*!40000 ALTER TABLE `stocklog` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
