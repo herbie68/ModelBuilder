@@ -64,7 +64,6 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="55" />
                             <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="35" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
@@ -74,8 +73,8 @@
                             <TextBlock Margin="3" VerticalAlignment="Center" Text="0" Name="dispTotalLinesCount"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Column="2">
-                            <TextBlock Margin="3" VerticalAlignment="Center" Text="Status: "/>
-                            <TextBlock Margin="3" VerticalAlignment="Center" Text="Geen regels ingelezen" Name="dispStatusLine"/>
+                            <TextBlock VerticalAlignment="Center" Text="Status: "/>
+                            <TextBlock VerticalAlignment="Center" Text="Geen regels ingelezen" Name="dispStatusLine"/>
                         </StackPanel>
                     </Grid>
                 </DockPanel>
