@@ -45,12 +45,12 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="0" x:Name="btnBrowseFile" Height="30" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Selecteer bestand" ToolTip="Selecteer het te iporteren CSV bestand met tijdregistraties" Click="ClickedSelectFileButton"/>
+                    <Button Grid.Column="0" Grid.Row="0" x:Name="btnBrowseFile" Height="30" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Content="{x:Static p:Cultures.ImportTimeEntry_Import_Button_Label}" ToolTip="{x:Static p:Cultures.ImportTimeEntry_Import_Button_Tooltip}" Click="ClickedSelectFileButton"/>
                     <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text=" :"/>
-                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Geen bestand geselecteerd" VerticalAlignment="Center" Width="Auto" Name="dispFileName"/>
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Project" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{x:Static p:Cultures.ImportTimeEntry_Import_Button_Filename}" VerticalAlignment="Center" Width="Auto" Name="dispFileName"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static p:Cultures.ImportTimeEntry_Project_Label}" VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text=":" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Geen project ingelezen" VerticalAlignment="Center" Name="dispProjectName"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{x:Static p:Cultures.ImportTimeEntry_Project_Name}" VerticalAlignment="Center" Name="dispProjectName"/>
                 </Grid>
                 <!--#region Time etry import Status bar-->
                 <DockPanel
@@ -73,8 +73,8 @@
                             <TextBlock Margin="3" VerticalAlignment="Center" Text="0" Name="dispTotalLinesCount"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Column="2">
-                            <TextBlock VerticalAlignment="Center" Text="Status: "/>
-                            <TextBlock VerticalAlignment="Center" Text="Geen regels ingelezen" Name="dispStatusLine"/>
+                            <TextBlock VerticalAlignment="Center" Text="{x:Static p:Cultures.ImportTimeEntry_Statusline_Status_Text}"/>
+                            <TextBlock VerticalAlignment="Center" Text="{x:Static p:Cultures.ImportTimeEntry_Statusline_Status_Description}" Name="dispStatusLine"/>
                         </StackPanel>
                     </Grid>
                 </DockPanel>

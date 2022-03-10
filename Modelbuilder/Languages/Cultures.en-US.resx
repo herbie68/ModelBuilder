@@ -803,6 +803,63 @@ To be able to enter a new time registration Select a date and project first</val
     <value>Import Time entries</value>
   </data>
   <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
-    <value>Import from CSV file, containing Project name, starttime endtime, and worktype.</value>
+    <value>Select the time registration CSV file to import</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Label" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the time registration CSV file to be imported</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Filename" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Label" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Name" xml:space="preserve">
+    <value>No project read</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Description" xml:space="preserve">
+    <value>No lines read</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportTimeEntry.FileDialog.Filtertext" xml:space="preserve">
+    <value>Files to import</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Added: </value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Error in line</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed" xml:space="preserve">
+    <value>lines completed</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>lines skipped because of error</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>lines read correctly</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Endtime" xml:space="preserve">
+    <value>End time earlier or equal than the start time</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Projectcode" xml:space="preserve">
+    <value>Wrong project code</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Worktypename" xml:space="preserve">
+    <value>Wrong Worktype name</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in line</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Message" xml:space="preserve">
+    <value>Errors found during import</value>
   </data>
 </root>

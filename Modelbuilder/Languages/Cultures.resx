@@ -803,6 +803,63 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Importeer tijdregistratie</value>
   </data>
   <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
-    <value>Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort.</value>
+    <value>Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Label" xml:space="preserve">
+    <value>Selecteer bestand</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met tijdregistraties</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Filename" xml:space="preserve">
+    <value>Geen bestand geselecteerd</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Label" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Name" xml:space="preserve">
+    <value>Geen project ingelezen</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="ImportTimeEntry.FileDialog.Filtertext" xml:space="preserve">
+    <value>Te importeren bestanden</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Projectcode" xml:space="preserve">
+    <value>Foutieve project code</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Worktypename" xml:space="preserve">
+    <value>Foutieve Werksoort naam</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Endtime" xml:space="preserve">
+    <value>Eindtijd eerder of gelijk dan de starttijd</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in regel</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fouten gevonden tijdens importeren</value>
   </data>
 </root>
