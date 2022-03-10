@@ -1,22 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
-
-using static Modelbuilder.HelperGeneral;
-
-namespace Modelbuilder;
+﻿namespace Modelbuilder;
 
 public partial class ImportTimeEntry : Page
 {
@@ -50,7 +32,7 @@ public partial class ImportTimeEntry : Page
         // Create OpenFileDialog
         Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
         openFileDlg.DefaultExt = ".csv";
-        openFileDlg.Filter = "Import bestanden (.csv)|*.csv";
+        openFileDlg.Filter = Languages.Cultures.ImportTimeEntry_FileDialog_Filtertext + " (.csv)|*.csv";
         openFileDlg.InitialDirectory = @Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         // Launch OpenFileDialog by calling ShowDialog method
@@ -60,7 +42,6 @@ public partial class ImportTimeEntry : Page
         if (result == true)
         {
             dispFileName.Text = openFileDlg.FileName;
-            //var FileContent = System.IO.File.ReadAllText(openFileDlg.FileName);
         }
 
         var lines = File.ReadLines(dispFileName.Text);
@@ -136,7 +117,7 @@ public partial class ImportTimeEntry : Page
 
             if (error == 0)
             {
-                dispStatusLine.Text = "Toegevoegd: " + lineString;
+                dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Added + lineString;
 
                 _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[5, 3]
                 {   { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, lineField[1].ToString() },
@@ -146,38 +127,38 @@ public partial class ImportTimeEntry : Page
                     { HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldTypeWorktypeId, WorkTypeId } });
             }
             else
-            { dispStatusLine.Text = "Fout in regel " + l + " : " + lineString; }
+            { dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Error + " " + l + " : " + lineString; }
 
             lineString = "";
             error = 0;
         }
         dispLineCount.Text = dispTotalLinesCount.Text;
 
-        dispStatusLine.Text = dispTotalLinesCount.Text + " regels verwerkt, " + errorCount.ToString() + " regels overgeslagen vanwege fouten.";
+        dispStatusLine.Text = dispTotalLinesCount.Text + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed + ", " + errorCount.ToString() + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Error + ".";
         if(errorCount > 0)
         {
-            var errorMessage = (int.Parse(dispTotalLinesCount.Text) - errorCount).ToString() + " regels correct ingelezen." + System.Environment.NewLine + errorCount.ToString() + " regels overgeslagen vanwege fouten." + System.Environment.NewLine + System.Environment.NewLine;
+            var errorMessage = (int.Parse(dispTotalLinesCount.Text) - errorCount).ToString() + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Ok + "." + System.Environment.NewLine + errorCount.ToString() + " "+ Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Error + "." + System.Environment.NewLine + System.Environment.NewLine;
 
             for (int i = 0; i < errorList.Count(); i++)
             {
                 switch (errorList[i].Item2)
                 {
                     case 1:
-                        errorMessage += "Foutieve project code";
+                        errorMessage += Languages.Cultures.ImportTimeEntry_Messagebox_Error_Projectcode;
                         break;
                     case 2:
-                        errorMessage += "Foutieve Werksoort naam";
+                        errorMessage += Languages.Cultures.ImportTimeEntry_Messagebox_Error_Worktypename;
                         break;
                     case 3:
-                        errorMessage += "Eindtijd eerder of gelijk dan de starttijd";
+                        errorMessage += Languages.Cultures.ImportTimeEntry_Messagebox_Error_Endtime;
                         break;
                     default:
-                        errorMessage += "Onbekende fout";
+                        errorMessage += Languages.Cultures.ImportTimeEntry_Messagebox_Error_Unknown;
                         break;
                 }
-                errorMessage += " in regel " + errorList[i].Item1 + System.Environment.NewLine + "  >> " + errorList[i].Item3 + System.Environment.NewLine;
+                errorMessage += " " + Languages.Cultures.ImportTimeEntry_Messagebox_Error_Inline + " " + errorList[i].Item1 + System.Environment.NewLine + "  >> " + errorList[i].Item3 + System.Environment.NewLine;
             }
-            MessageBox.Show(errorMessage, "Fouten gevonden tijdens importeren", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(errorMessage, Languages.Cultures.ImportTimeEntry_Messagebox_Error_Message, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

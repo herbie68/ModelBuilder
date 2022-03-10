@@ -124,7 +124,178 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort..
+        ///   Looks up a localized string similar to Te importeren bestanden.
+        /// </summary>
+        public static string ImportTimeEntry_FileDialog_Filtertext {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.FileDialog.Filtertext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen bestand geselecteerd.
+        /// </summary>
+        public static string ImportTimeEntry_Import_Button_Filename {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Import.Button.Filename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer bestand.
+        /// </summary>
+        public static string ImportTimeEntry_Import_Button_Label {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Import.Button.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met tijdregistraties.
+        /// </summary>
+        public static string ImportTimeEntry_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eindtijd eerder of gelijk dan de starttijd.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Endtime {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Endtime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in regel.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Inline {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Inline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fouten gevonden tijdens importeren.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Message {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foutieve project code.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Projectcode {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Projectcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onbekende fout.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Unknown {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foutieve Werksoort naam.
+        /// </summary>
+        public static string ImportTimeEntry_Messagebox_Error_Worktypename {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Messagebox.Error.Worktypename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ImportTimeEntry_Project_Label {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Project.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen project ingelezen.
+        /// </summary>
+        public static string ImportTimeEntry_Project_Name {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Project.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels verwerkt.
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Completed {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels overgeslagen vanwege fouten.
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Completed_Error {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Completed.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels correct ingelezen.
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Completed_Ok {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Completed.Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen regels ingelezen.
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Description {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toegevoegd: .
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Prefix_Added {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Prefix.Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout in regel.
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Prefix_Error {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Prefix.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status: .
+        /// </summary>
+        public static string ImportTimeEntry_Statusline_Status_Text {
+            get {
+                return ResourceManager.GetString("ImportTimeEntry.Statusline.Status.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort.
         /// </summary>
         public static string ImportTimeEntry_SubTitle {
             get {

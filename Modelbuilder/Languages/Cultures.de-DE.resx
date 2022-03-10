@@ -803,6 +803,63 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Imprtiere Zeiterfassung</value>
   </data>
   <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
-    <value>Importiere von CSV datei,</value>
+    <value>Wählen Sie die zu importierende CSV-Datei für die Zeitregistrierung aus</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Label" xml:space="preserve">
+    <value>Datei auswählen</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei für die Zeiterfassung aus</value>
+  </data>
+  <data name="ImportTimeEntry.Import.Button.Filename" xml:space="preserve">
+    <value>Keine Datei gewählt</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Label" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="ImportTimeEntry.Project.Name" xml:space="preserve">
+    <value>Kein Projekt eingelesen</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Description" xml:space="preserve">
+    <value>Keine zeihlen eingelesen</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportTimeEntry.FileDialog.Filtertext" xml:space="preserve">
+    <value>Zu importieren dateïen</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Hinzugefügt: </value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fehler in der Zeile</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed" xml:space="preserve">
+    <value>Zeihlen verarbeitet</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>Zeilen nicht zugefügt weil falsh</value>
+  </data>
+  <data name="ImportTimeEntry.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>Zeihlen korrekt eingelesen</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Endtime" xml:space="preserve">
+    <value>Endzeit früher oder gleich der Startzeit</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Projectcode" xml:space="preserve">
+    <value>Falscher Projektcode</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Worktypename" xml:space="preserve">
+    <value>Falscher Arbeitstypname</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in Zeihle</value>
+  </data>
+  <data name="ImportTimeEntry.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fehler beim Import gefunden</value>
   </data>
 </root>
