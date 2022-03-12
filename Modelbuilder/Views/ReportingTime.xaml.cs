@@ -23,5 +23,6 @@ public partial class ReportingTime : Page
     public ReportingTime()
     {
         InitializeComponent();
+        DataContext = new TimeViewModel();
     }
 }

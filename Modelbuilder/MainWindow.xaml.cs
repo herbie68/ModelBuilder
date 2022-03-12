@@ -40,6 +40,13 @@ public partial class MainWindow : Window
     }
     #endregion Show TimeManagement Page
 
+    #region Show TimeReport Page
+    private void ShowTimeReportPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ReportingTime();
+    }
+    #endregion Show TimeReport Page
+
     #region Import Time Entries
     private void ShowTimeEntryImportPage(object sender, RoutedEventArgs e)
     {

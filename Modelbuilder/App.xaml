@@ -1,9 +1,7 @@
-﻿<Application
-    x:Class="Modelbuilder.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:t="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-    StartupUri="MainWindow.xaml">
+﻿<Application x:Class="Modelbuilder.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:t="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!--#region Default styles-->
         <!--#region Styles for Title region on pages-->
@@ -32,9 +30,9 @@
         </Style>
 
         <Style x:Key="Title" TargetType="TextBlock">
-            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Row" Value="0" />
             <Setter Property="Grid.Column" Value="1" />
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
@@ -45,7 +43,7 @@
         </Style>
 
         <Style x:Key="TitleLine" TargetType="Path">
-            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.Row" Value="1" />
             <Setter Property="Grid.Column" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -58,51 +56,53 @@
             <Setter Property="StrokeThickness" Value="5" />
         </Style>
         <!--#endregion-->
-        
-        <!--#region Space borders on pages and in stackpanels etc -->
+
+        <!--#region Space borders on pages and in stackpanels etc-->
         <Style x:Key="MainBorder" TargetType="Border">
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="10" />
         </Style>
 
         <Style x:Key="InnerBorder" TargetType="Border">
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Padding" Value="5" />
         </Style>
 
-        <!--#region Default Borders -->
+        <!--#region Default Borders-->
         <Style x:Key="ImageBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <!--#endregion-->
         <!--#endregion-->
 
-        <!-- #region Tab controls on pages -->
+        <!--#region Tab controls on pages-->
         <Style x:Key="Default TabControl" TargetType="TabControl">
-            <Setter Property="Margin" Value="0, 15"/>
-            <Setter Property="Background" Value="#FFE5E5E5"/>
+            <Setter Property="Margin" Value="0,15" />
+            <Setter Property="Background" Value="#FFE5E5E5" />
         </Style>
 
         <Style x:Key="Default TabItem1" TargetType="TabItem">
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderThickness" Value="1,1,1,0"/>
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="BorderThickness" Value="1,1,1,0" />
         </Style>
 
-        <Style TargetType="TabItem" x:Key="Default TabItem">
+        <Style x:Key="Default TabItem" TargetType="TabItem">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gray" CornerRadius="6,6,0,0" Margin="5,0">
+                        <Border Name="Border"
+                                Margin="5,0"
+                                BorderBrush="Gray" BorderThickness="1,1,1,0"
+                                CornerRadius="6,6,0,0">
                             <ContentPresenter x:Name="ContentSite"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                ContentSource="Header"
-                                Margin="10,2"/>
+                                              Margin="10,2" HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              ContentSource="Header" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#FFFFEA00"/>
+                                <Setter TargetName="Border" Property="Background" Value="#FFFFEA00" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
                                 <Setter TargetName="Border" Property="Background" Value="#FFE5E5E5" />
@@ -129,21 +129,21 @@
         <Style x:Key="TextBlockBold" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
         <Style x:Key="DefaultCheckBox" TargetType="CheckBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
-        
+
         <Style x:Key="DefaultTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Background" Value="#FFEEEEEE" />
             <Setter Property="Text" Value="" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style x:Key="NonEditableTextBox" TargetType="TextBox">
@@ -152,8 +152,8 @@
             <Setter Property="Background" Value="#FFEEEEEE" />
             <Setter Property="Text" Value="" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Padding" Value="2"/>
-            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="IsEnabled" Value="False" />
         </Style>
 
         <Style x:Key="DefaultDataPicker" TargetType="DatePicker">
@@ -170,8 +170,8 @@
             <Setter Property="InputScope" Value="Number" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Padding" Value="2"/>
-            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="IsEnabled" Value="False" />
         </Style>
 
         <Style x:Key="NumericTextBox" TargetType="TextBox">
@@ -183,8 +183,8 @@
             <Setter Property="InputScope" Value="Number" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Padding" Value="2"/>
-            <Setter Property="IsEnabled" Value="True"/>
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="IsEnabled" Value="True" />
         </Style>
 
         <Style x:Key="HiddenTextBox" TargetType="TextBox">
@@ -205,14 +205,14 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Top" />
             <Setter Property="IsTextSearchEnabled" Value="True" />
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style x:Key="ProductImage" TargetType="Image">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Height" Value="230" />
-            <Setter Property="Width" Value="230"/>
+            <Setter Property="Width" Value="230" />
         </Style>
         <!--#endregion-->
 
@@ -230,12 +230,12 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style x:Key="DefaultToolBarSeperator" TargetType="Separator">
-            <Setter Property="Margin" Value="15 0 10 0"/>
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="15,0,10,0" />
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style x:Key="ImageToolBarTray" TargetType="ToolBarTray">
@@ -251,11 +251,11 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolBarTray.IsLocked" Value="True" />
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style x:Key="ImageToolBarSeperator" TargetType="Separator">
-            <Setter Property="Margin" Value="15 0 10 0"/>
+            <Setter Property="Margin" Value="15,0,10,0" />
         </Style>
 
         <Style x:Key="RtfToolBarTray" TargetType="ToolBarTray">
@@ -274,22 +274,22 @@
         </Style>
 
         <Style x:Key="RtfToolBarSeperator" TargetType="Separator">
-            <Setter Property="Margin" Value="15 0 10 0"/>
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="15,0,10,0" />
+            <Setter Property="Padding" Value="2" />
         </Style>
         <!--#endregion-->
-        
+
         <!--#region  Button Icon resources-->
         <Style x:Key="ReceiptCancelIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\trashbin.png" />
             <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+            <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
 
         <Style x:Key="ReceiptAcceptIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\acceptreceipt.png" />
             <Setter Property="Height" Value="21" />
-            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+            <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
         <!--#endregion  Button Icon resources-->
 
@@ -297,162 +297,162 @@
         <Style x:Key="ToolBarAddIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarAdd.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="0, 0, 5, 0"/>
+            <Setter Property="Margin" Value="0,0,5,0" />
         </Style>
 
         <Style x:Key="ToolBarCancelIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarCancel.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+            <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarDeleteIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarDelete.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+            <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarResetIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarReset.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+            <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarSaveIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSave.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="5, 0, 5, 0"/>
+            <Setter Property="Margin" Value="5,0,5,0" />
         </Style>
 
         <Style x:Key="ToolBarRotateIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarRotate.png" />
             <Setter Property="Height" Value="14" />
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
+            <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarSmallAddIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSmallAdd.png" />
             <Setter Property="Height" Value="12" />
-            <Setter Property="Margin" Value="0, 0, 4, 0"/>
+            <Setter Property="Margin" Value="0,0,4,0" />
         </Style>
 
         <Style x:Key="ToolBarSmallCancelIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSmallCancel.png" />
             <Setter Property="Height" Value="12" />
-            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+            <Setter Property="Margin" Value="4,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarSmallDeleteIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSmallDelete.png" />
             <Setter Property="Height" Value="12" />
-            <Setter Property="Margin" Value="4, 0, 0, 0"/>
+            <Setter Property="Margin" Value="4,0,0,0" />
         </Style>
 
         <Style x:Key="ToolBarSmallSaveIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\toolbarSmallSave.png" />
             <Setter Property="Height" Value="12" />
-            <Setter Property="Margin" Value="4, 0, 4, 0"/>
+            <Setter Property="Margin" Value="4,0,4,0" />
         </Style>
-        
+
         <!--#region RTF Toolbar Icon resources-->
         <Style x:Key="RtfToolBarCutIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarCut.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarCopyIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarCopy.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarPasteIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarPaste.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarUndoIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarUndo.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarRedoIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarRedo.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarBoldIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarBold.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarItalicIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarItalic.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarUnderlineIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarUnderline.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarStrikeoutIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarStrikeout.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarTextcolorIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarTextcolor.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarBackcolorIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarBackcolor.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarAlignLeftIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarAlignLeft.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarAlignCenterIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarAlignCenter.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarAlignRightIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarAlignRight.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarBulletListIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarBulletList.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
-        
+
         <Style x:Key="RtfToolBarNumbersListIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarNumbersList.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarIndentIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarIndent.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarIndentRemoveIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarIndentRemove.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarSubscriptIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarSubscript.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
 
         <Style x:Key="RtfToolBarSuperscriptIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\rtftoolbarSuperscript.png" />
-            <Setter Property="Stretch" Value="None"/>
+            <Setter Property="Stretch" Value="None" />
         </Style>
         <!--#endregion-->
         <!--#endregion-->
@@ -471,94 +471,113 @@
 
         <!--#region Header group resources-->
         <Style x:Key="ImageHeaderGroup" TargetType="Image">
-            <Setter Property="Height" Value="14"/>
-            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="3" />
         </Style>
         <!--#endregion-->
 
-        <!--#region Hide the Toggle button for ComboBox -->
+        <!--#region Hide the Toggle button for ComboBox-->
         <Style x:Key="ComboBoxFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" Margin="4,4,21,4" SnapsToDevicePixels="true"/>
+                        <Rectangle Margin="4,4,21,4"
+                                   SnapsToDevicePixels="true" Stroke="Black"
+                                   StrokeDashArray="1 2" StrokeThickness="1" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
-            <GradientStop Color="#F3F3F3" Offset="0"/>
-            <GradientStop Color="#EBEBEB" Offset="0.5"/>
-            <GradientStop Color="#DDDDDD" Offset="0.5"/>
-            <GradientStop Color="#CDCDCD" Offset="1"/>
+        <LinearGradientBrush x:Key="ButtonNormalBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#F3F3F3" />
+            <GradientStop Offset="0.5" Color="#EBEBEB" />
+            <GradientStop Offset="0.5" Color="#DDDDDD" />
+            <GradientStop Offset="1" Color="#CDCDCD" />
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070" />
         <Geometry x:Key="DownArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
         <Style x:Key="ComboBoxReadonlyToggleButton" TargetType="{x:Type ToggleButton}">
-            <Setter Property="OverridesDefaultStyle" Value="true"/>
-            <Setter Property="IsTabStop" Value="false"/>
-            <Setter Property="Focusable" Value="false"/>
-            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="ClickMode" Value="Press" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <t:ButtonChrome x:Name="Chrome" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}">
+                        <t:ButtonChrome x:Name="Chrome"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                        RenderPressed="{TemplateBinding IsPressed}"
+                                        SnapsToDevicePixels="true">
                             <!-- Remove ToggleButton appearance; we still need the ToggleButton because it displays the content.
                         <Grid HorizontalAlignment="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <Path x:Name="Arrow" Fill="Black" HorizontalAlignment="Center" Margin="3,1,0,0" VerticalAlignment="Center" Data="{StaticResource DownArrowGeometry}"/>
                         </Grid>
-                        -->
+                            -->
                         </t:ButtonChrome>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+                                <Setter TargetName="Chrome" Property="RenderPressed" Value="true" />
                             </Trigger>
                             <!-- Remove ToggleButton appearance trigger
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Fill" TargetName="Arrow" Value="#AFAFAF"/>
                         </Trigger>
-                        -->
+                            -->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" StartPoint="0,0" MappingMode="Absolute">
-            <GradientStop Color="#ABADB3" Offset="0.05"/>
-            <GradientStop Color="#E2E3EA" Offset="0.07"/>
-            <GradientStop Color="#E3E9EF" Offset="1"/>
+        <LinearGradientBrush x:Key="TextBoxBorder" MappingMode="Absolute" StartPoint="0,0" EndPoint="0,20">
+            <GradientStop Offset="0.05" Color="#ABADB3" />
+            <GradientStop Offset="0.07" Color="#E2E3EA" />
+            <GradientStop Offset="1" Color="#E3E9EF" />
         </LinearGradientBrush>
         <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
-            <Setter Property="OverridesDefaultStyle" Value="true"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="MinHeight" Value="0"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="AllowDrop" Value="true" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Background="Transparent" Focusable="false"
+                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
-            <Setter Property="OverridesDefaultStyle" Value="true"/>
-            <Setter Property="IsTabStop" Value="false"/>
-            <Setter Property="Focusable" Value="false"/>
-            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="ClickMode" Value="Press" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <t:ButtonChrome x:Name="Chrome" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RoundCorners="false">
-                            <Path x:Name="Arrow" Fill="Black" HorizontalAlignment="Center" Margin="0,1,0,0" VerticalAlignment="Center" Data="{StaticResource DownArrowGeometry}"/>
+                        <t:ButtonChrome x:Name="Chrome"
+                                        Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                        RenderPressed="{TemplateBinding IsPressed}"
+                                        RoundCorners="false" SnapsToDevicePixels="true">
+                            <Path x:Name="Arrow"
+                                  Margin="0,1,0,0" HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="{StaticResource DownArrowGeometry}"
+                                  Fill="Black" />
                         </t:ButtonChrome>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+                                <Setter TargetName="Chrome" Property="RenderPressed" Value="true" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Fill" TargetName="Arrow" Value="#AFAFAF"/>
+                                <Setter TargetName="Arrow" Property="Fill" Value="#AFAFAF" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -569,91 +588,137 @@
         <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
             <Grid x:Name="Placement" SnapsToDevicePixels="true">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Grid.ColumnSpan="2">
-                    <t:SystemDropShadowChrome x:Name="Shdw" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=Placement}" Color="Transparent">
-                        <Border x:Name="DropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                <Popup x:Name="PART_Popup"
+                       Grid.ColumnSpan="2"
+                       AllowsTransparency="true"
+                       IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       Placement="Bottom"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <t:SystemDropShadowChrome x:Name="Shdw"
+                                              MinWidth="{Binding ActualWidth, ElementName=Placement}"
+                                              MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                              Color="Transparent">
+                        <Border x:Name="DropDownBorder"
+                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                                BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                BorderThickness="1">
                             <ScrollViewer>
-                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </ScrollViewer>
                         </Border>
                     </t:SystemDropShadowChrome>
                 </Popup>
-                <t:ListBoxChrome x:Name="Border" Grid.ColumnSpan="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" RenderMouseOver="{TemplateBinding IsMouseOver}"/>
-                <TextBox x:Name="PART_EditableTextBox" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"/>
+                <t:ListBoxChrome x:Name="Border"
+                                 Grid.ColumnSpan="2"
+                                 Background="{TemplateBinding Background}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 RenderFocused="{TemplateBinding IsKeyboardFocusWithin}"
+                                 RenderMouseOver="{TemplateBinding IsMouseOver}" />
+                <TextBox x:Name="PART_EditableTextBox"
+                         Margin="{TemplateBinding Padding}"
+                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                         IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                         Style="{StaticResource ComboBoxEditableTextBox}" />
                 <!-- Remove the ToggleButton button; now you make the textbox clickable....
                 <ToggleButton Style="{StaticResource ComboBoxToggleButton}" Grid.Column="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-            -->
+                -->
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsKeyboardFocusWithin" Value="true">
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Foreground" Value="Black" />
                 </Trigger>
                 <Trigger Property="IsDropDownOpen" Value="true">
-                    <Setter Property="RenderFocused" TargetName="Border" Value="true"/>
+                    <Setter TargetName="Border" Property="RenderFocused" Value="true" />
                 </Trigger>
                 <Trigger Property="HasItems" Value="false">
-                    <Setter Property="Height" TargetName="DropDownBorder" Value="95"/>
+                    <Setter TargetName="DropDownBorder" Property="Height" Value="95" />
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                    <Setter Property="Background" Value="#FFF4F4F4"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                    <Setter Property="Background" Value="#FFF4F4F4" />
                 </Trigger>
                 <Trigger Property="IsGrouping" Value="true">
-                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
                 </Trigger>
-                <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                    <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5"/>
-                    <Setter Property="Color" TargetName="Shdw" Value="#71000000"/>
+                <Trigger SourceName="PART_Popup" Property="HasDropShadow" Value="true">
+                    <Setter TargetName="Shdw" Property="Margin" Value="0,0,5,5" />
+                    <Setter TargetName="Shdw" Property="Color" Value="#71000000" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
         <Style x:Key="ButtonlessComboBoxStyle" TargetType="{x:Type ComboBox}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource ComboBoxFocusVisual}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="Padding" Value="4,3"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ComboBoxFocusVisual}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Padding" Value="4,3" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBox}">
                         <Grid x:Name="MainGrid" SnapsToDevicePixels="true">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
                             </Grid.ColumnDefinitions>
-                            <Popup x:Name="PART_Popup" Margin="1" AllowsTransparency="true" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Grid.ColumnSpan="2">
-                                <t:SystemDropShadowChrome x:Name="Shdw" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=MainGrid}" Color="Transparent">
-                                    <Border x:Name="DropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                            <Popup x:Name="PART_Popup"
+                                   Grid.ColumnSpan="2"
+                                   Margin="1"
+                                   AllowsTransparency="true"
+                                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Placement="Bottom"
+                                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                                <t:SystemDropShadowChrome x:Name="Shdw"
+                                                          MinWidth="{Binding ActualWidth, ElementName=MainGrid}"
+                                                          MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                                          Color="Transparent">
+                                    <Border x:Name="DropDownBorder"
+                                            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                                            BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                            BorderThickness="1">
                                         <ScrollViewer CanContentScroll="true">
-                                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                         </ScrollViewer>
                                     </Border>
                                 </t:SystemDropShadowChrome>
                             </Popup>
-                            <ToggleButton Style="{StaticResource ComboBoxReadonlyToggleButton}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" IsHitTestVisible="false" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                            <ToggleButton Grid.ColumnSpan="2"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource ComboBoxReadonlyToggleButton}" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              IsHitTestVisible="false"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                                <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5"/>
-                                <Setter Property="Color" TargetName="Shdw" Value="#71000000"/>
+                            <Trigger SourceName="PART_Popup" Property="HasDropShadow" Value="true">
+                                <Setter TargetName="Shdw" Property="Margin" Value="0,0,5,5" />
+                                <Setter TargetName="Shdw" Property="Color" Value="#71000000" />
                             </Trigger>
                             <Trigger Property="HasItems" Value="false">
-                                <Setter Property="Height" TargetName="DropDownBorder" Value="95"/>
+                                <Setter TargetName="DropDownBorder" Property="Height" Value="95" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                                <Setter Property="Background" Value="#FFF4F4F4"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                <Setter Property="Background" Value="#FFF4F4F4" />
                             </Trigger>
                             <Trigger Property="IsGrouping" Value="true">
-                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -661,11 +726,11 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsEditable" Value="true">
-                    <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
-                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-                    <Setter Property="IsTabStop" Value="false"/>
-                    <Setter Property="Padding" Value="3"/>
-                    <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+                    <Setter Property="IsTabStop" Value="false" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
