@@ -20,9 +20,46 @@ namespace Modelbuilder;
 /// </summary>
 public partial class ReportingTime : Page
 {
-    public ReportingTime()
+    private HelperGeneral _helperGeneral;
+    public ReportingTime ()
     {
-        InitializeComponent();
+        var ProjectList = new List<HelperGeneral.Project> ();
+
+        InitializeComponent ();
+        InitializeHelper ();
         DataContext = new TimeViewModel();
+
+        cboxProject.ItemsSource = _helperGeneral.GetProjectList ( ProjectList );
+
     }
+
+    #region InitializeHelper (connect to database)
+    private void InitializeHelper ()
+    {
+        if (_helperGeneral == null)
+        {
+            _helperGeneral = new HelperGeneral ( Connection_Query.server, int.Parse ( Connection_Query.port ), Connection_Query.database, Connection_Query.uid, Connection_Query.password );
+        }
+    }
+    #endregion
+
+    #region CommonCommandBinding_CanExecute
+    private void CommonCommandBinding_CanExecute ( object sender, CanExecuteRoutedEventArgs e )
+    {
+        e.CanExecute = true;
+    }
+    #endregion CommonCommandBinding_CanExecute
+
+
+    #region Selection Changed: Project combobox
+    private void cboxProject_SelectionChanged ( object sender, SelectionChangedEventArgs e )
+    {
+        foreach (HelperGeneral.Project project in e.AddedItems)
+        {
+            cboxProject.SelectedItem = project;
+            //valueProjectId.Text = project.ProjectId.ToString ();
+            //dispSelectedProject.Text = project.ProjectName.ToString ();
+        }
+    }
+    #endregion Selection Changed: Project combobox
 }

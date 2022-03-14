@@ -1,34 +1,53 @@
-﻿<Page x:Class="Modelbuilder.ReportingTime"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Modelbuilder"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1000"
-      Title="ReportingTime">
-
+﻿<Page
+    x:Class="Modelbuilder.ReportingTime"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Modelbuilder"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ReportingTime"
+    d:DesignHeight="800"
+    d:DesignWidth="1000"
+    mc:Ignorable="d">
+    <!--#region Page resources-->
     <Page.Resources>
+        <DataTemplate x:Key="ProjectComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ProjectName}" />
+                <TextBlock Text="{Binding Path=ProjectId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
         <local:GroupsToTotalConverter x:Key="groupsConverter" />
     </Page.Resources>
+    <!--#endregion Page resources-->
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Grid>
-                <TextBlock Text="Select Project:"/>
-            </Grid>
-        </StackPanel>
         <StackPanel>
+            <StackPanel Height="30" Orientation="Horizontal">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="Select Project: " />
+                <ComboBox
+                    x:Name="cboxProject"
+                    Width="350"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    ItemTemplate="{StaticResource ProjectComboTemplate}"
+                    SelectionChanged="cboxProject_SelectionChanged"
+                    Style="{DynamicResource DefaultComboBox}"
+                    TextSearch.TextPath="ProjectName" />
+            </StackPanel>
             <DataGrid Height="600" ItemsSource="{Binding TimeView}">
                 <DataGrid.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
                                 <DockPanel Background="LightBlue">
-                                    <TextBlock Width="100"
-                                               Margin="30,0,0,0"
-                                               Foreground="Blue"
-                                               Text="{Binding Path=Name, Converter={StaticResource completeConverter}}" />
+                                    <TextBlock
+                                        Width="100"
+                                        Margin="30,0,0,0"
+                                        Foreground="Blue"
+                                        Text="{Binding Path=Name, Converter={StaticResource completeConverter}}" />
                                 </DockPanel>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
@@ -39,22 +58,29 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander Background="Tan" BorderBrush="#FF002255"
-                                                      BorderThickness="0,0,0,1" IsExpanded="True">
+                                            <Expander
+                                                Background="Tan"
+                                                BorderBrush="#FF002255"
+                                                BorderThickness="0,0,0,1"
+                                                IsExpanded="True">
                                                 <Expander.Header>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Width="200"
-                                                                   VerticalAlignment="Center"
-                                                                   FontWeight="Bold"
-                                                                   Text="{Binding Path=Name}" />
+                                                        <TextBlock
+                                                            Width="200"
+                                                            VerticalAlignment="Center"
+                                                            FontWeight="Bold"
+                                                            Text="{Binding Path=Name}" />
                                                         <TextBlock VerticalAlignment="Center" Text="Aantal dagdelen: " />
                                                         <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
-                                                        <TextBlock Width="200"
-                                                                   VerticalAlignment="Center"
-                                                                   Text="Totaal gewerkte uren: " TextAlignment="Right" />
-                                                        <TextBlock VerticalAlignment="Center"
-                                                                   FontWeight="Bold"
-                                                                   Text="{Binding Path=Items, Converter={StaticResource groupsConverter}}" />
+                                                        <TextBlock
+                                                            Width="200"
+                                                            VerticalAlignment="Center"
+                                                            Text="Totaal gewerkte uren: "
+                                                            TextAlignment="Right" />
+                                                        <TextBlock
+                                                            VerticalAlignment="Center"
+                                                            FontWeight="Bold"
+                                                            Text="{Binding Path=Items, Converter={StaticResource groupsConverter}}" />
                                                     </StackPanel>
                                                 </Expander.Header>
                                                 <Expander.Content>
@@ -70,46 +96,81 @@
                 </DataGrid.GroupStyle>
             </DataGrid>
 
-            <StackPanel Height="30" Orientation="Horizontal" Margin="5">
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding removeGroupCommand}">
+            <StackPanel
+                Height="30"
+                Margin="5"
+                Orientation="Horizontal">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding removeGroupCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Totaallijst
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Totaallijst
                 </Button>
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding groupByProjectCommand}">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByProjectCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Op Project
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Op Project
                 </Button>
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding groupByWorktypeCommand}">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByWorktypeCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Op Werksoort
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Op Werksoort
                 </Button>
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding groupByYearCommand}">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByYearCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Per jaar
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Per jaar
                 </Button>
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding groupByMonthCommand}">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByMonthCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Per Maand
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Per Maand
                 </Button>
-                <Button Width="120" Margin="0,0,5,0" Command="{Binding groupByYearMonthCommand}">
+                <Button
+                    Width="120"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByYearMonthCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Per jaar per maand
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Per jaar per maand
                 </Button>
-                <Button Width="80" Margin="0,0,5,0" Command="{Binding groupByDayCommand}">
+                <Button
+                    Width="80"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByDayCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Per dag
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Per dag
                 </Button>
-                <Button Width="120" Margin="0,0,5,0" Command="{Binding groupByYearDayCommand}">
+                <Button
+                    Width="120"
+                    Margin="0,0,5,0"
+                    Command="{Binding groupByYearDayCommand}">
                     <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect> Per jaar per dag
+                        <DropShadowEffect />
+                    </Button.Effect>
+                    Per jaar per dag
                 </Button>
             </StackPanel>
         </StackPanel>
