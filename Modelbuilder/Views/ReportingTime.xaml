@@ -37,7 +37,7 @@
                     Style="{DynamicResource DefaultComboBox}"
                     TextSearch.TextPath="ProjectName" />
             </StackPanel>
-            <DataGrid Height="600" ItemsSource="{Binding TimeView}">
+            <DataGrid Height="585" ItemsSource="{Binding TimeView}">
                 <DataGrid.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
@@ -59,7 +59,7 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
                                             <Expander
-                                                Background="Tan"
+                                                Background="#FFA0C5F9"
                                                 BorderBrush="#FF002255"
                                                 BorderThickness="0,0,0,1"
                                                 IsExpanded="True">
@@ -80,7 +80,7 @@
                                                         <TextBlock
                                                             VerticalAlignment="Center"
                                                             FontWeight="Bold"
-                                                            Text="{Binding Path=Items, Converter={StaticResource groupsConverter}}" />
+                                                            Text="{Binding Path=Items, Converter={StaticResource groupsConverter}}"  />
                                                     </StackPanel>
                                                 </Expander.Header>
                                                 <Expander.Content>
@@ -100,16 +100,16 @@
                 Height="30"
                 Margin="5"
                 Orientation="Horizontal">
-                <Button
-                    Width="80"
+                <Button Name="btnNoGroup"
+                    Width="120"
                     Margin="0,0,5,0"
                     Command="{Binding removeGroupCommand}">
                     <Button.Effect>
                         <DropShadowEffect />
                     </Button.Effect>
-                    Totaallijst
+                    Ongegroepeerd
                 </Button>
-                <Button
+                <Button Name="btnGroupProject"
                     Width="80"
                     Margin="0,0,5,0"
                     Command="{Binding groupByProjectCommand}">

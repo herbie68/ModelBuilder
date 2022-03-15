@@ -13,9 +13,10 @@ namespace Modelbuilder;
 public class TimeViewModel
 {
     public ICollectionView TimeView { get; set; }
-    public TimeViewModel()
+    public string ProjectName { get; set; }
+    public TimeViewModel(string ProjectName)
     {
-        IList<TimeEntry> entries = new TimeEntries();
+        IList<TimeEntry> entries = new TimeEntries(ProjectName);
         TimeView = CollectionViewSource.GetDefaultView(entries);
         TimeView.GroupDescriptions.Add(new PropertyGroupDescription("noGroup"));
 
@@ -171,7 +172,8 @@ public class GroupsToTotalConverter : IValueConverter
             {
                 total += element.WorkedMinutes;
             }
-            return total.ToString();
+
+            return (decimal.ToInt32(total) / 60).ToString() + ":" + ("00" + decimal.ToInt32(total) % 60).Substring(("00" + decimal.ToInt32(total) % 60).Length - 2, 2); 
         }
         return "";
     }

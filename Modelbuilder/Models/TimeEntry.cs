@@ -31,10 +31,15 @@ public class TimeEntry
 
 public class TimeEntries : ObservableCollection<TimeEntry>
 {
-    public TimeEntries()
+    public TimeEntries(string ProjectName)
     {
         //var sqlText = "SELECT * FROM " + HelperGeneral.DbTimeReportView + " WHERE ProjectName='Silhouet (Groningen 1893)'";
         var sqlText = "SELECT * FROM " + HelperGeneral.DbTimeReportView;
+        
+        if (ProjectName != "" && ProjectName != "Geen")
+        {
+            sqlText += " WHERE ProjectName='" + ProjectName + "'"; 
+        }
         MySqlConnection con = new MySqlConnection(ConnectionNamespace.Connection_Query.connectionString);
         con.Open();
         MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
@@ -60,4 +65,3 @@ public class TimeEntries : ObservableCollection<TimeEntry>
         }
     }
 }
-
