@@ -53,7 +53,7 @@ public class TimeEntries : ObservableCollection<TimeEntry>
             {
                 ProjectName = (string)_records["ProjectName"],
                 WorktypeName = (string)_records["WorktypeName"],
-                EntryDate = (string)_records["WorkDate"],
+                EntryDate = ((string)_records["WorkDate"]).Substring(8 ,2) + "-" + ((string)_records["WorkDate"]).Substring(5, 2) + "-" + ((string)_records["WorkDate"]).Substring(0 , 4),
                 Year = (string)_records["Year"],
                 YearMonth = (string)_records["YearMonth"],
                 Month = (string)_records["Month"],
