@@ -195,6 +195,8 @@ internal class HelperGeneral
     public static readonly string DbTimeViewFieldTypeElapsedTime = "string";
     public static readonly string DbTimeViewFieldNameComment = "Comment";
     public static readonly string DbTimeViewFieldTypeComment = "string";
+
+    public static readonly string DbTimeReportView = "view_timereport";
     #endregion Time
 
     #region ProductUsage
@@ -287,10 +289,9 @@ internal class HelperGeneral
     public static readonly string DbWorktypeTableFieldTypeName = "string";
     public static readonly string DbWorktypeTableFieldNameFullpath = "FullPath";
     public static readonly string DbWorktypeTableFieldTypeFullpath = "string";
-
-
     #endregion Worktype Table
 
+    #region MySql Commands
     private static readonly string SqlSelect = "SELECT ";
     private static readonly string SqlSelectAll = "SELECT *";
     private static readonly string SqlFrom = " FROM ";
@@ -305,7 +306,7 @@ internal class HelperGeneral
     private static readonly string SqlInsert = "INSERT INTO ";
     private static readonly string SqlSet = " SET ";
     private static readonly string SqlDelete = "DELETE ";
-
+    #endregion MySql Commands
     private HelperClass az;
 
 
@@ -436,6 +437,24 @@ internal class HelperGeneral
         return dt;
     }
     #endregion Get Data from TableView or Table
+
+    #region Get all date from View or Table
+    public string GetAllData(string Table)
+    {
+        var sqlText = SqlSelectAll + SqlFrom + Table;
+        string resultString;
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+
+        resultString = (string)cmd.ExecuteScalar();
+
+        return resultString;
+    }
+    #endregion Get all date from View or Table
 
     #region Get Field(s) from table
     public string GetValueFromTable(string Table, string[,] WhereFields, string[,] Fields)

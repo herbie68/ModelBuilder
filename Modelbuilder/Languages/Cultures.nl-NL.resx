@@ -862,4 +862,61 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ImportTimeEntry.Messagebox.Error.Message" xml:space="preserve">
     <value>Fouten gevonden tijdens importeren</value>
   </data>
+  <data name="TimeReport.Button.GroupDay" xml:space="preserve">
+    <value>Per dag</value>
+  </data>
+  <data name="TimeReport.Button.GroupProject" xml:space="preserve">
+    <value>Op Project</value>
+  </data>
+  <data name="TimeReport.Button.GroupWorktype" xml:space="preserve">
+    <value>Op Werksoort</value>
+  </data>
+  <data name="TimeReport.Button.GroupYear" xml:space="preserve">
+    <value>Per jaar</value>
+  </data>
+  <data name="TimeReport.Button.GroupYearDay" xml:space="preserve">
+    <value>Per Jaar per Dag</value>
+  </data>
+  <data name="TimeReport.Button.GroupYearMonth" xml:space="preserve">
+    <value>Per Jaar per Maand</value>
+  </data>
+  <data name="TimeReport.Button.NoGroup" xml:space="preserve">
+    <value>Ongegroepeerd</value>
+  </data>
+  <data name="TimeReport.Header.Day" xml:space="preserve">
+    <value>Dag</value>
+  </data>
+  <data name="TimeReport.Header.Month" xml:space="preserve">
+    <value>Maand</value>
+  </data>
+  <data name="TimeReport.Header.ProjectName" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="TimeReport.Header.WorkDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="TimeReport.Header.WorkedMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="TimeReport.Header.WorkTime" xml:space="preserve">
+    <value>Werktijd</value>
+  </data>
+  <data name="TimeReport.Header.WorktypeName" xml:space="preserve">
+    <value>Werksoort</value>
+  </data>
+  <data name="TimeReport.Header.Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="TimeReport.Header.YearDay" xml:space="preserve">
+    <value>Jaar/Dag</value>
+  </data>
+  <data name="TimeReport.Header.YearMonth" xml:space="preserve">
+    <value>Jaar/Maand</value>
+  </data>
+  <data name="TimeReport.SelectProject" xml:space="preserve">
+    <value>Selecteer project</value>
+  </data>
+  <data name="TimeReport.Button.GroupMonth" xml:space="preserve">
+    <value>Per Maand</value>
+  </data>
 </root>

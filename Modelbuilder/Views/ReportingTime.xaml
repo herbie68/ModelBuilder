@@ -1,14 +1,210 @@
 ﻿<Page x:Class="Modelbuilder.ReportingTime"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Modelbuilder"
-      mc:Ignorable="d" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      Title="ReportingTime"
       d:DesignHeight="800" d:DesignWidth="1000"
-      Title="ReportingTime">
+      mc:Ignorable="d">
+    <!--#region Page resources-->
+    <Page.Resources>
+        <DataTemplate x:Key="ProjectComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ProjectName}" />
+                <TextBlock Text="{Binding Path=ProjectId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
+        <local:GroupsToTotalConverter x:Key="groupsConverter" />
+    </Page.Resources>
+    <!--#endregion Page resources-->
 
     <Grid>
-        
+        <StackPanel>
+            <StackPanel Height="30" Orientation="Horizontal">
+                <TextBlock Margin="5" VerticalAlignment="Center"
+                           Text="{x:Static p:Cultures.TimeReport_SelectProject}" />
+                <ComboBox x:Name="cboxProject"
+                          Width="350"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          ItemTemplate="{StaticResource ProjectComboTemplate}"
+                          SelectionChanged="cboxProject_SelectionChanged"
+                          Style="{DynamicResource DefaultComboBox}"
+                          TextSearch.TextPath="ProjectName" />
+            </StackPanel>
+            <DataGrid Height="575"
+                      Padding="4"
+                      d:ItemsSource="{d:SampleData}"
+                      AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding TimeView}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding Year}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_Year}"
+                                        IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding YearDay}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_YearDay}"
+                                        IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding YearMonth}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_YearMonth}"
+                                        IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding WorkedMinutes}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_WorkedMinutes}"
+                                        IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Width="300"
+                                        Binding="{Binding ProjectName}"
+                                        Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectName}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Width="250"
+                                        Binding="{Binding WorktypeName}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_WorktypeName}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Width="90"
+                                        Binding="{Binding EntryDate}"
+                                        CanUserSort="False"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_WorkDate}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding Month}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_Month}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding Day}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_Day}"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding Worktime}"
+                                        Header="{x:Static p:Cultures.TimeReport_Header_WorkTime}"
+                                        IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <DockPanel Background="LightBlue">
+                                    <TextBlock Width="100"
+                                               Margin="30,0,0,0"
+                                               Foreground="Blue"
+                                               Text="{Binding Name, Converter={StaticResource completeConverter}}" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander Background="#FFA0C5F9" BorderBrush="#FF002255"
+                                                      BorderThickness="0,0,0,1" IsExpanded="False">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Width="200"
+                                                                   VerticalAlignment="Center"
+                                                                   FontWeight="Bold"
+                                                                   Text="{Binding Name}" />
+                                                        <TextBlock VerticalAlignment="Center" Text="Aantal dagdelen: " />
+                                                        <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
+                                                        <TextBlock Width="200"
+                                                                   VerticalAlignment="Center"
+                                                                   Text="Totaal gewerkte uren: " TextAlignment="Right" />
+                                                        <TextBlock VerticalAlignment="Center"
+                                                                   FontWeight="Bold"
+                                                                   Text="{Binding Items, Converter={StaticResource groupsConverter}}" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+            </DataGrid>
+
+            <StackPanel Height="30"
+                        Margin="5"
+                        Orientation="Horizontal">
+                <Button Name="btnNoGroup"
+                        Width="120"
+                        Margin="0,0,5,0"
+                        Command="{Binding removeGroupCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_NoGroup}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Name="btnGroupProject"
+                        Width="80"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByProjectCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupProject}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="80"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByWorktypeCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupWorktype}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="80"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByYearCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupYear}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="80"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByMonthCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupMonth}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="120"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByYearMonthCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupYearMonth}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="80"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByDayCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupDay}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+                <Button Width="120"
+                        Margin="0,0,5,0"
+                        Command="{Binding groupByYearDayCommand}"
+                        Content="{x:Static p:Cultures.TimeReport_Button_GroupYearDay}">
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

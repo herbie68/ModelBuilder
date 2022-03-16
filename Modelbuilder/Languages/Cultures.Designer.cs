@@ -2159,6 +2159,177 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Per Dag.
+        /// </summary>
+        public static string TimeReport_Button_GroupDay {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Maand.
+        /// </summary>
+        public static string TimeReport_Button_GroupMonth {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Op Project.
+        /// </summary>
+        public static string TimeReport_Button_GroupProject {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Op Werksoort.
+        /// </summary>
+        public static string TimeReport_Button_GroupWorktype {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupWorktype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Jaar.
+        /// </summary>
+        public static string TimeReport_Button_GroupYear {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Jaar per Dag.
+        /// </summary>
+        public static string TimeReport_Button_GroupYearDay {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupYearDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Jaar per Maand.
+        /// </summary>
+        public static string TimeReport_Button_GroupYearMonth {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.GroupYearMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongegroepeerd.
+        /// </summary>
+        public static string TimeReport_Button_NoGroup {
+            get {
+                return ResourceManager.GetString("TimeReport.Button.NoGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dag.
+        /// </summary>
+        public static string TimeReport_Header_Day {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maand.
+        /// </summary>
+        public static string TimeReport_Header_Month {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string TimeReport_Header_ProjectName {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.ProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        public static string TimeReport_Header_WorkDate {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.WorkDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minuten.
+        /// </summary>
+        public static string TimeReport_Header_WorkedMinutes {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.WorkedMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werktijd.
+        /// </summary>
+        public static string TimeReport_Header_WorkTime {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.WorkTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort.
+        /// </summary>
+        public static string TimeReport_Header_WorktypeName {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.WorktypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jaar.
+        /// </summary>
+        public static string TimeReport_Header_Year {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jaar/Dag.
+        /// </summary>
+        public static string TimeReport_Header_YearDay {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.YearDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jaar/Maand.
+        /// </summary>
+        public static string TimeReport_Header_YearMonth {
+            get {
+                return ResourceManager.GetString("TimeReport.Header.YearMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer project.
+        /// </summary>
+        public static string TimeReport_SelectProject {
+            get {
+                return ResourceManager.GetString("TimeReport.SelectProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geselecteerde regel verwijderen.
         /// </summary>
         public static string toolbarButton_Action_Delete {
