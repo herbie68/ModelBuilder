@@ -46,7 +46,7 @@ public partial class metadataProduct : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helperGeneral.GetData(HelperGeneral.DbProductTable);
+        _dt = _helperGeneral.GetData(HelperGeneral.DbProductView);
 
         // Populate data in datagrid from datatable
         ProductCode_DataGrid.DataContext = _dt;
@@ -230,7 +230,7 @@ public partial class metadataProduct : Page
         //Select the saved Storage location in the combobox by default
         var _tempStorage = _helperGeneral.GetValueFromTable(HelperGeneral.DbStorageTable, new string[1, 3]
         {
-            { HelperGeneral.DbStorageTableFieldNameStorageId, HelperGeneral.DbStorageTableFieldTypeStorageId, valueBrandId.Text }
+            { HelperGeneral.DbStorageTableFieldNameStorageId, HelperGeneral.DbStorageTableFieldTypeStorageId, valueStorageId.Text }
         }, new string[1, 3]
         {
             { HelperGeneral.DbStorageTableFieldNameStorageName, HelperGeneral.DbStorageTableFieldTypeStorageName, "" }
@@ -249,6 +249,8 @@ public partial class metadataProduct : Page
 
         // Populate data in datagrid from datatable
         ProductSupplierCode_DataGrid.DataContext = _dtPS;
+
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Selection changed ProductCode
 
@@ -393,6 +395,8 @@ public partial class metadataProduct : Page
         // Make sure the eddited row in the datagrid is selected
         ProductCode_DataGrid.SelectedIndex = rowIndex;
         ProductCode_DataGrid.Focus();
+
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Click Save Data button (on toolbar)
 
@@ -454,6 +458,7 @@ public partial class metadataProduct : Page
         {
             return;
         }
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Click New data row button (on toolbar)
 
@@ -561,6 +566,14 @@ public partial class metadataProduct : Page
         ProductSupplierCode_DataGrid.Focus();
     }
     #endregion Delete Data button (on SupplierToolbar)
+
+    #region Toolbar Reset button pressed 
+    private void BtnResetProduct(object sender, RoutedEventArgs e)
+    {
+        ClearAllFields();
+        InitializeComponent();
+    }
+    #endregion Toolbar Reset button pressed
 
     #region Update row Product Table
     private void UpdateRowProduct()
@@ -811,6 +824,7 @@ public partial class metadataProduct : Page
         cboxProductUnit.SelectedItem = null;
         cboxProductSupplier.SelectedItem = null;
         imgProductImage.Source = null;
+        TBResetButtonEnable.Text = "Collapsed";
     }
     #endregion
 }

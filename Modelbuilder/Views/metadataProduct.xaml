@@ -1,241 +1,309 @@
 ﻿<Page x:Class="Modelbuilder.metadataProduct"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Modelbuilder"
-      mc:Ignorable="d" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      Title="metadataProduct"
       d:DesignHeight="800" d:DesignWidth="1600"
-      Title="metadataProduct">
+      mc:Ignorable="d">
 
-    <!--#region Page resources -->
+    <!--#region Page resources-->
     <Page.Resources>
-        <DataTemplate  x:Key="CategoryComboTemplate">
+        <DataTemplate x:Key="CategoryComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=CategoryName}" />
-                <TextBlock Text="{Binding Path=CategoryId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CategoryId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate  x:Key="StorageComboTemplate">
+        <DataTemplate x:Key="StorageComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=StorageName}" />
-                <TextBlock Text="{Binding Path=StorageId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=StorageId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate  x:Key="SupplierComboTemplate">
+        <DataTemplate x:Key="SupplierComboTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=SupplierName}" Width="Auto"/>
-                <TextBlock Text="{Binding Path=SupplierId}" Visibility="Hidden"/>
-                <TextBlock Text="{Binding Path=SupplierCurrencySymbol}" Visibility="Hidden"/>
-                <TextBlock Text="{Binding Path=SupplierCurrencyId}" Visibility="Hidden"/>
+                <TextBlock Width="Auto" Text="{Binding Path=SupplierName}" />
+                <TextBlock Text="{Binding Path=SupplierId}" Visibility="Hidden" />
+                <TextBlock Text="{Binding Path=SupplierCurrencySymbol}" Visibility="Hidden" />
+                <TextBlock Text="{Binding Path=SupplierCurrencyId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate  x:Key="CountryComboTemplate">
+        <DataTemplate x:Key="CountryComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=CountryName}" />
-                <TextBlock Text="{Binding Path=CountryId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=CountryId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate  x:Key="BrandComboTemplate" >
-            <StackPanel Orientation="Horizontal" >
+        <DataTemplate x:Key="BrandComboTemplate">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=BrandName}" />
-                <TextBlock Text="{Binding Path=BrandId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=BrandId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate  x:Key="UnitComboTemplate" >
-            <StackPanel Orientation="Horizontal" >
+        <DataTemplate x:Key="UnitComboTemplate">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=UnitName}" />
-                <TextBlock Text="{Binding Path=UnitId}" Visibility="Hidden"/>
+                <TextBlock Text="{Binding Path=UnitId}" Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
-        
-        <!-- Styling for DataGridColumns -->
+
+        <!--  Styling for DataGridColumns  -->
         <Style x:Key="CellRightAlign">
-            <Setter Property="Control.HorizontalAlignment"
-            Value="Right" />
+            <Setter Property="Control.HorizontalAlignment" Value="Right" />
         </Style>
     </Page.Resources>
     <!--#endregion-->
 
-    <Border Style="{DynamicResource MainBorder}" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+    <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Style="{DynamicResource MainBorder}">
         <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <!--region Title of the page  -->
+            <!--  region Title of the page  -->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="Artikelen"/>
+                <TextBlock Grid.Column="0"
+                           Style="{DynamicResource Title}"
+                           Text="Artikelen" />
 
                 <!--#region Hiddenfields-->
-                <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductId" TextChanged="ProductAllowNewSaveDeleteValidation" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueCategoryId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueStorageId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueBrandId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueUnitId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierId" TextChanged="ProductAllowNewSaveDeleteValidation"  />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierSupplierId"  TextChanged="ProductAllowNewSaveDeleteValidation" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProductSupplierCurrencyId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueImageRotationAngle" Text="0"/>
+                <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="valueProductId"
+                             Style="{DynamicResource HiddenTextBox}"
+                             TextChanged="ProductAllowNewSaveDeleteValidation" />
+                    <TextBox x:Name="valueCategoryId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueStorageId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueBrandId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueUnitId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueProductSupplierId"
+                             Style="{DynamicResource HiddenTextBox}"
+                             TextChanged="ProductAllowNewSaveDeleteValidation" />
+                    <TextBox x:Name="valueProductSupplierSupplierId"
+                             Style="{DynamicResource HiddenTextBox}"
+                             TextChanged="ProductAllowNewSaveDeleteValidation" />
+                    <TextBox x:Name="valueProductSupplierCurrencyId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueImageRotationAngle"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="0" />
+                    <CheckBox x:Name="cboxCleaningFields"
+                              IsChecked="False"
+                              Style="{DynamicResource HiddenCheckBox}" />
+                    <TextBox x:Name="TBResetButtonEnable"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="Collapsed" />
                 </StackPanel>
-                <!-- End of "Do not remove" part-->
+                <!--  End of "Do not remove" part  -->
                 <!--#endregion-->
             </Grid>
-            <Path Style="{DynamicResource TitleLine}"/>
+            <Path Style="{DynamicResource TitleLine}" />
             <!--#endregion-->
-            
+
             <!--#region Definition of the tabpages-->
             <TabControl Height="360" Style="{DynamicResource Default TabControl}">
-                <!--#region Tabpage for general information -->
+                <!--#region Tabpage for general information-->
                 <TabItem Header="Basisgegevens" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="5">
                             <!--#region Product metadata block-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
-                                    <StackPanel Orientation="Horizontal" Background="Transparent" >
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\metadataProducts.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Productgegevens"/>
+                                    <StackPanel Background="Transparent" Orientation="Horizontal">
+                                        <Image Source="\Resources\metadataProducts.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Productgegevens" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width=".3*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width=".3*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="0" Text="Zoeknaam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductCode"
-                                                Grid.Row="1" Grid.Column="0" Width="230" CharacterCasing="Upper" TextChanged="ProductAllowNewSaveDeleteValidation"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Zoeknaam" />
+                                    <TextBox x:Name="inpProductCode"
+                                             Grid.Row="1" Grid.Column="0"
+                                             Width="230"
+                                             CharacterCasing="Upper"
+                                             Style="{DynamicResource DefaultTextBox}"
+                                             TextChanged="ProductAllowNewSaveDeleteValidation" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Merk"/>
-                                    <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductBrand" 
-                                                ItemTemplate="{StaticResource BrandComboTemplate}" 
-                                                TextSearch.TextPath="BrandName" SelectionChanged="cboxBrand_SelectionChanged"
-                                                Grid.Row="1" Grid.Column="1" Width="350">
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Merk" />
+                                    <ComboBox x:Name="cboxProductBrand"
+                                              Grid.Row="1" Grid.Column="1"
+                                              Width="350"
+                                              ItemTemplate="{StaticResource BrandComboTemplate}"
+                                              SelectionChanged="cboxBrand_SelectionChanged"
+                                              Style="{DynamicResource DefaultComboBox}"
+                                              TextSearch.TextPath="BrandName">
                                         <ComboBox.ItemContainerStyleSelector>
-                                            <StyleSelector/>
+                                            <StyleSelector />
                                         </ComboBox.ItemContainerStyleSelector>
                                     </ComboBox>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Productnaam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductName" 
-                                                Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Width="700"  TextChanged="ProductAllowNewSaveDeleteValidation" />
+                                    <TextBlock Grid.Row="2" Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Productnaam" />
+                                    <TextBox x:Name="inpProductName"
+                                             Grid.Row="3" Grid.Column="0"
+                                             Grid.ColumnSpan="2"
+                                             Width="700"
+                                             Style="{DynamicResource DefaultTextBox}"
+                                             TextChanged="ProductAllowNewSaveDeleteValidation" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Categorie" 
-                                               Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
-                                    <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource CategoryComboTemplate}"
-                                                x:Name="cboxProductCategory" TextSearch.TextPath="CategoryName" SelectionChanged="cboxCategory_SelectionChanged"
-                                                Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="700" SelectedIndex="0"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Categorie" />
+                                    <ComboBox x:Name="cboxProductCategory"
+                                              Grid.Row="5" Grid.Column="0"
+                                              Grid.ColumnSpan="2"
+                                              Width="700"
+                                              ItemTemplate="{StaticResource CategoryComboTemplate}"
+                                              SelectedIndex="0" SelectionChanged="cboxCategory_SelectionChanged"
+                                              Style="{DynamicResource DefaultComboBox}"
+                                              TextSearch.TextPath="CategoryName" />
                                 </Grid>
                             </GroupBox>
                             <!--#endregion-->
-                            
+
                             <!--#region Product Storage information block-->
                             <GroupBox>
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\storageManagement.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Voorraadgegevens"/>
+                                        <Image Source="\Resources\storageManagement.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Voorraadgegevens" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width=".5*"/>
-                                        <ColumnDefinition Width="1.3*"/>
+                                        <ColumnDefinition Width=".5*" />
+                                        <ColumnDefinition Width=".5*" />
+                                        <ColumnDefinition Width=".5*" />
+                                        <ColumnDefinition Width=".5*" />
+                                        <ColumnDefinition Width="1.3*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="0" Text="Minimale voorraad"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductMinimalStock" 
-                                             HorizontalContentAlignment="Right" Grid.Row="1" Grid.Column="0" Width="100"/>
-                                    
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="1" Text="Bestelhoeveelheid"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductStandardOrderQuantity" 
-                                             HorizontalContentAlignment="Right" Grid.Row="1" Grid.Column="1" Width="100"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Minimale voorraad" />
+                                    <TextBox x:Name="inpProductMinimalStock"
+                                             Grid.Row="1" Grid.Column="0"
+                                             Width="100"
+                                             HorizontalContentAlignment="Right"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="2" Text="Verpakkingseenheid"/>
-                                    <ComboBox Style="{DynamicResource DefaultComboBox}" ItemTemplate="{StaticResource UnitComboTemplate}" 
-                                              x:Name="cboxProductUnit" TextSearch.TextPath="UnitName" SelectionChanged="cboxUnit_SelectionChanged"
-                                              Grid.Column="2" Grid.Row="1" Width="120" SelectedIndex="0" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Bestelhoeveelheid" />
+                                    <TextBox x:Name="inpProductStandardOrderQuantity"
+                                             Grid.Row="1" Grid.Column="1"
+                                             Width="100"
+                                             HorizontalContentAlignment="Right"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Grid.Column="3" Text="Afmetingen"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductDimensions" 
-                                             HorizontalContentAlignment="Right" Grid.Row="1" Grid.Column="3" Width="170"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Verpakkingseenheid" />
+                                    <ComboBox x:Name="cboxProductUnit"
+                                              Grid.Row="1" Grid.Column="2"
+                                              Width="120"
+                                              ItemTemplate="{StaticResource UnitComboTemplate}"
+                                              SelectedIndex="0" SelectionChanged="cboxUnit_SelectionChanged"
+                                              Style="{DynamicResource DefaultComboBox}"
+                                              TextSearch.TextPath="UnitName" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="Voorraadlocatie"/>
-                                    <ComboBox Style="{DynamicResource DefaultComboBox}"  ItemTemplate="{StaticResource StorageComboTemplate}" 
-                                              x:Name="cboxProductStorage" TextSearch.TextPath="StorageName" SelectionChanged="cboxStorage_SelectionChanged"
-                                              Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Width="700" SelectedIndex="0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="3"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Afmetingen" />
+                                    <TextBox x:Name="inpProductDimensions"
+                                             Grid.Row="1" Grid.Column="3"
+                                             Width="170"
+                                             HorizontalContentAlignment="Right"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                </Grid>                                
+                                    <TextBlock Grid.Row="4" Grid.Column="0"
+                                               Grid.ColumnSpan="3"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Voorraadlocatie" />
+                                    <ComboBox x:Name="cboxProductStorage"
+                                              Grid.Row="5" Grid.Column="0"
+                                              Grid.ColumnSpan="4"
+                                              Width="700"
+                                              ItemTemplate="{StaticResource StorageComboTemplate}"
+                                              SelectedIndex="0" SelectionChanged="cboxStorage_SelectionChanged"
+                                              Style="{DynamicResource DefaultComboBox}"
+                                              TextSearch.TextPath="StorageName" />
+
+                                </Grid>
                             </GroupBox>
                             <!--#endregion-->
-                            
+
                             <!--#region Product Project information block-->
                             <GroupBox>
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\projectManagement.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Projectgegevens"/>
+                                        <Image Source="\Resources\projectManagement.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Projectgegevens" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               Grid.Row="0" Grid.Column="0" Text="Kostprijs"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Kostprijs" />
 
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProductPrice" HorizontalContentAlignment="Right"
-                                             Grid.Row="1" Width="150"/>
+                                    <TextBox x:Name="inpProductPrice"
+                                             Grid.Row="1"
+                                             Width="150"
+                                             HorizontalContentAlignment="Right"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" 
-                                               ToolTip="Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)"
-                                               Grid.Row="0" Grid.Column="1" Text="Projectkosten"/>
-                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkProjectProjectCosts" 
-                                              Grid.Row="1" Grid.Column="1"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" />
+                                    <CheckBox x:Name="chkProjectProjectCosts"
+                                              Grid.Row="1" Grid.Column="1"
+                                              Style="{DynamicResource DefaultCheckBox}" />
                                 </Grid>
                             </GroupBox>
                             <!--#endregion-->
@@ -243,20 +311,27 @@
 
                         <!--#region Product Image block-->
                         <StackPanel Grid.Column="1" Margin="5">
-                            <Border Style="{DynamicResource ImageBorder}" Height="234" Width="234" Margin="2">
-                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProductImage" Source="/Resources/noImage.png"/>
+                            <Border Width="234" Height="234"
+                                    Margin="2"
+                                    Style="{DynamicResource ImageBorder}">
+                                <Image x:Name="imgProductImage"
+                                       Source="/Resources/noImage.png"
+                                       Style="{DynamicResource ProductImage}" />
                             </Border>
                             <ToolBarTray Style="{DynamicResource ImageToolBarTray}">
                                 <ToolBar Style="{DynamicResource ImageToolBar}">
-                                    <Button Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarAddIcon}"/>
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen">
+                                        <Image Style="{DynamicResource ToolBarAddIcon}" />
                                     </Button>
-                                    <Button Click="ImageDelete" ToolTip="Afbeelding verwijderen" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarDeleteIcon}"/>
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageDelete" ToolTip="Afbeelding verwijderen">
+                                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                                     </Button>
-                                    <Separator Style="{DynamicResource ImageToolBarSeperator}"/>
-                                    <Button Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarRotateIcon}"/>
+                                    <Separator Style="{DynamicResource ImageToolBarSeperator}" />
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien">
+                                        <Image Style="{DynamicResource ToolBarRotateIcon}" />
                                     </Button>
 
                                 </ToolBar>
@@ -271,9 +346,10 @@
                 <TabItem Header="Uitgebreide omschrijving" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
-                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
+                        <ToolBarTray Margin="5,5,5,0" Style="{DynamicResource RtfToolBarTray}">
                             <ToolBar Style="{DynamicResource RtfToolBar}">
-                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
+                                <Button VerticalAlignment="Top"
+                                        Command="ApplicationCommands.Cut" ToolTip="Knippen">
                                     <Image Style="{DynamicResource RtfToolBarCutIcon}" />
                                 </Button>
                                 <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
@@ -288,18 +364,21 @@
                                 <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
                                     <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
-                                <Button x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                <Button x:Name="ToolStripButtonBold"
+                                        Command="EditingCommands.ToggleBold" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
                                 </Button>
-                                <Button x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                <Button x:Name="ToolStripButtonItalic"
+                                        Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
                                     <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
                                 </Button>
-                                <Button x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                <Button x:Name="ToolStripButtonUnderline"
+                                        Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
                                 <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
                                     <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
@@ -307,7 +386,7 @@
                                 <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
                                     <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
                                 <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
                                     <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
@@ -318,14 +397,16 @@
                             </ToolBar>
                         </ToolBarTray>
                         <!--#endregion-->
-                        
+
                         <!--#region Memo field-->
-                        <RichTextBox x:Name="inpProductMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" 
-                                     HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" 
-                                     Margin="5,35,5,0" Height="255" Width="Auto">
+                        <RichTextBox x:Name="inpProductMemo"
+                                     Width="Auto" Height="255"
+                                     Margin="5,35,5,0" HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <FlowDocument x:Name="inpProductMemoFD">
                                 <Paragraph>
-                                    <Run Text=""/>
+                                    <Run Text="" />
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
@@ -334,13 +415,15 @@
 
                 </TabItem>
                 <!--#endregion-->
-                
+
                 <!--#region Tabpage for product per supplier information-->
-                <TabItem Header="Leveranciers" x:Name="SupplierTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <TabItem x:Name="SupplierTab"
+                         Header="Leveranciers" IsEnabled="False"
+                         Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.5*" />
                         </Grid.ColumnDefinitions>
 
                         <!--#region Supplier information fields-->
@@ -348,82 +431,135 @@
                             <GroupBox>
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\metadataSupplier.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Artikel informatie per leverancier"/>
+                                        <Image Source="\Resources\metadataSupplier.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Artikel informatie per leverancier" />
                                     </StackPanel>
                                 </GroupBox.Header>
 
                                 <Grid Margin="3,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="0" Text="Leverancier"/>
-                                    <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxProductSupplier"  IsTabStop="False"
-                                              ItemTemplate="{StaticResource SupplierComboTemplate}" TextSearch.TextPath="supplierName" 
-                                              SelectionChanged="cboxSupplier_SelectionChanged" 
-                                              Grid.Row="1" Width="360" SelectedIndex="0" IsEnabled="True">
+                                    <TextBlock Grid.Row="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Leverancier" />
+                                    <ComboBox x:Name="cboxProductSupplier"
+                                              Grid.Row="1"
+                                              Width="360"
+                                              IsEnabled="True" IsTabStop="False"
+                                              ItemTemplate="{StaticResource SupplierComboTemplate}"
+                                              SelectedIndex="0" SelectionChanged="cboxSupplier_SelectionChanged"
+                                              Style="{DynamicResource DefaultComboBox}"
+                                              TextSearch.TextPath="supplierName">
                                         <ComboBox.ItemContainerStyleSelector>
-                                            <StyleSelector/>
+                                            <StyleSelector />
                                         </ComboBox.ItemContainerStyleSelector>
                                     </ComboBox>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Grid.Row="2" Text="Artikelnummer bij leverancier"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductNumber" 
-                                             Grid.Row="3" Width="360" IsEnabled="True"/>
+                                    <TextBlock Grid.Row="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Artikelnummer bij leverancier" />
+                                    <TextBox x:Name="inpSupplierProductNumber"
+                                             Grid.Row="3"
+                                             Width="360"
+                                             IsEnabled="True"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Omschrijving" Grid.Row="4"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductName" 
-                                             Grid.Row="5" Width="360" IsEnabled="True"/>
+                                    <TextBlock Grid.Row="4"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Omschrijving" />
+                                    <TextBox x:Name="inpSupplierProductName"
+                                             Grid.Row="5"
+                                             Width="360"
+                                             IsEnabled="True"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Prijs" Grid.Row="6"/>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="7">
-                                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="dispProductSupplierCurrencySymbol" 
-                                             BorderBrush="{x:Null}" Background="#FFE5E5E5" TextWrapping="Wrap" IsReadOnly="True" 
-                                             VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Width="15" IsTabStop="False"/>
-                                        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpSupplierProductPrice" 
-                                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="70" IsEnabled="True"/>
+                                    <TextBlock Grid.Row="6"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Prijs" />
+                                    <StackPanel Grid.Row="7" Orientation="Horizontal">
+                                        <TextBox x:Name="dispProductSupplierCurrencySymbol"
+                                                 Width="15"
+                                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                                                 Background="#FFE5E5E5"
+                                                 BorderBrush="{x:Null}"
+                                                 IsReadOnly="True" IsTabStop="False"
+                                                 Style="{DynamicResource DefaultTextBox}"
+                                                 TextWrapping="Wrap" />
+                                        <TextBox x:Name="inpSupplierProductPrice"
+                                                 Width="70"
+                                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                                 IsEnabled="True"
+                                                 Style="{DynamicResource DefaultTextBox}" />
                                     </StackPanel>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Standaard leverancier" Grid.Row="8"/>
-                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" x:Name="chkSupplierDefault" Grid.Row="9"  IsEnabled="True"/>
+                                    <TextBlock Grid.Row="8"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Standaard leverancier" />
+                                    <CheckBox x:Name="chkSupplierDefault"
+                                              Grid.Row="9"
+                                              IsEnabled="True"
+                                              Style="{DynamicResource DefaultCheckBox}" />
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
                         <!--#endregion-->
-                        
+
                         <!--#region Suppliers per product datagrid section-->
                         <StackPanel Grid.Column="1" Margin="5">
                             <!--#region Datagrid definition-->
-                            <DataGrid x:Name="ProductSupplierCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" 
-                                      SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged" 
-                                      Padding="3" Height="265" Margin="5,0" IsReadOnly="True">
+                            <DataGrid x:Name="ProductSupplierCode_DataGrid"
+                                      Height="265"
+                                      Margin="5,0" Padding="3"
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding}"
+                                      SelectionChanged="ProductSupplierCode_DataGrid_SelectionChanged"
+                                      Style="{DynamicResource DefaultDataGrid}">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding ProductId}" />
-                                    <DataGridTextColumn Header="Supplier_Id" Visibility="Hidden" Width="70" Binding="{Binding SupplierId}" />
-                                    <DataGridTextColumn Header="Currency_Id" Visibility="Hidden" Width="70" Binding="{Binding CurrencyId}" />
-                                    <DataGridTextColumn Header="Std" Width="30" Binding="{Binding DefaultSupplier}">
+                                    <DataGridTextColumn Width="70"
+                                                        Binding="{Binding ProductId}"
+                                                        Header="ID" Visibility="Hidden" />
+                                    <DataGridTextColumn Width="70"
+                                                        Binding="{Binding SupplierId}"
+                                                        Header="Supplier_Id" Visibility="Hidden" />
+                                    <DataGridTextColumn Width="70"
+                                                        Binding="{Binding CurrencyId}"
+                                                        Header="Currency_Id" Visibility="Hidden" />
+                                    <DataGridTextColumn Width="30"
+                                                        Binding="{Binding DefaultSupplier}"
+                                                        Header="Std">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
-                                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Leverancier" Width="170" Binding="{Binding SupplierName}" />
-                                    <DataGridTextColumn Header="Artikelnummer" Width="100" Binding="{Binding ProductNumber}" />
-                                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
-                                    <DataGridTextColumn Header="Valuta" Width="50" Binding="{Binding CurrencySymbol}" />
-                                    <DataGridTextColumn Header="Prijs" Width="80" Binding="{Binding Price, StringFormat={}{0:n2}}">
+                                    <DataGridTextColumn Width="170"
+                                                        Binding="{Binding SupplierName}"
+                                                        Header="Leverancier" />
+                                    <DataGridTextColumn Width="100"
+                                                        Binding="{Binding ProductNumber}"
+                                                        Header="Artikelnummer" />
+                                    <DataGridTextColumn Width="*"
+                                                        Binding="{Binding Name}"
+                                                        Header="Omschrijving" />
+                                    <DataGridTextColumn Width="50"
+                                                        Binding="{Binding CurrencySymbol}"
+                                                        Header="Valuta" />
+                                    <DataGridTextColumn Width="80"
+                                                        Binding="{Binding Price, StringFormat={}{0:n2}}"
+                                                        Header="Prijs">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -433,34 +569,40 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <!--#endregion-->
-                            
+
                             <!--#region Toolbar for datagrid-->
-                            <StackPanel Orientation="Horizontal" Margin="5">
+                            <StackPanel Margin="5" Orientation="Horizontal">
                                 <ToolBarTray Style="{DynamicResource DefaultToolBarTray}">
-                                    <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="supplierToolbar">
-                                        <Button ToolTip="Leverancier voor product toevoegen" Click="supplierToolbarButtonNew" x:Name="btnNewProductSupplier">
-                                            <Image Style="{DynamicResource ToolBarAddIcon}" IsEnabled="False"/>
+                                    <ToolBar x:Name="supplierToolbar" Style="{DynamicResource DefaultToolBar}">
+                                        <Button x:Name="btnNewProductSupplier"
+                                                Click="supplierToolbarButtonNew" ToolTip="Leverancier voor product toevoegen">
+                                            <Image IsEnabled="False" Style="{DynamicResource ToolBarAddIcon}" />
                                         </Button>
-                                        <Button ToolTip="Wijzigingen opslaan" Click="SupplierToolbarButtonSave" x:Name="btnSaveProductSupplier">
-                                            <Image Style="{DynamicResource ToolBarSaveIcon}" IsEnabled="False" />
+                                        <Button x:Name="btnSaveProductSupplier"
+                                                Click="SupplierToolbarButtonSave" ToolTip="Wijzigingen opslaan">
+                                            <Image IsEnabled="False" Style="{DynamicResource ToolBarSaveIcon}" />
                                         </Button>
-                                        <Button ToolTip="Leverancier verwijderen uit de tabel" Click="SupplierToolbarButtonDelete" x:Name="btnDeleteProductSupplier">
-                                            <Image Style="{DynamicResource ToolBarDeleteIcon}" IsEnabled="False" />
+                                        <Button x:Name="btnDeleteProductSupplier"
+                                                Click="SupplierToolbarButtonDelete" ToolTip="Leverancier verwijderen uit de tabel">
+                                            <Image IsEnabled="False" Style="{DynamicResource ToolBarDeleteIcon}" />
                                         </Button>
                                     </ToolBar>
                                 </ToolBarTray>
                             </StackPanel>
                             <!--#endregion-->
-                        </StackPanel>                        
+                        </StackPanel>
                         <!--#endregion-->
                     </Grid>
                 </TabItem>
                 <!--#endregion-->
-                
+
                 <!--#region Tabpage for storage history [not yet implemented]-->
                 <TabItem Header="Voorraadhistorie" Style="{DynamicResource Default TabItem}">
                     <Grid>
-                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
+                        <TextBlock Margin="10,10,0,0"
+                                   Foreground="Red"
+                                   Style="{DynamicResource DefaultTextBlock}"
+                                   Text="Nog niet geïmplementeerd" />
                     </Grid>
                 </TabItem>
                 <!--#endregion-->
@@ -468,49 +610,85 @@
             <!--#endregion-->
 
             <!--#region Toolbar for datagrid-->
-            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
-                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
-                    <Button ToolTip="Product toevoegen" Click="ToolbarButtonNew" x:Name="btnNewProduct">
-                        <Image Style="{DynamicResource ToolBarAddIcon}" IsEnabled="False"/>
+            <ToolBarTray Margin="5" Style="{DynamicResource DefaultToolBarTray}">
+                <ToolBar x:Name="generalToolbar" Style="{DynamicResource DefaultToolBar}">
+                    <Button x:Name="btnNewProduct"
+                            Click="ToolbarButtonNew"
+                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_New}">
+                        <Image IsEnabled="False" Style="{DynamicResource ToolBarAddIcon}" />
                     </Button>
-                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave" x:Name="btnSaveProduct">
-                        <Image Style="{DynamicResource ToolBarSaveIcon}" IsEnabled="False"/>
+                    <Button x:Name="btnSaveProduct"
+                            Click="ToolbarButtonSave"
+                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Save}">
+                        <Image IsEnabled="False" Style="{DynamicResource ToolBarSaveIcon}" />
                     </Button>
-                    <Button ToolTip="Artikel verwijderen uit de tabel" Click="ToolbarButtonDelete" x:Name="btnDeleteProduct">
-                        <Image Style="{DynamicResource ToolBarDeleteIcon}" IsEnabled="False"/>
+                    <Button x:Name="btnDeleteProduct"
+                            Click="ToolbarButtonDelete"
+                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Delete}">
+                        <Image IsEnabled="False" Style="{DynamicResource ToolBarDeleteIcon}" />
+                    </Button>
+                    <Button x:Name="ToolbarButtonReset"
+                            Padding="0"
+                            Click="BtnResetProduct"
+                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Reset}">
+                        <Image Style="{DynamicResource ToolBarResetIcon}" Visibility="{Binding ElementName=TBResetButtonEnable, Path=Text}" />
                     </Button>
                 </ToolBar>
             </ToolBarTray>
             <!--#endregion-->
 
             <!--#region Datagrid definition-->
-            <!-- d:ItemSource="{d:SampleData" will show Sample Data during design, is ignored on build-->
-            <DataGrid x:Name="ProductCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData}"
-                    Padding="3" SelectionChanged="ProductCode_DataGrid_SelectionChanged" Height="285" Margin="5,0"
-                      IsReadOnly="True">
+            <!--  d:ItemSource="{d:SampleData" will show Sample Data during design, is ignored on build  -->
+            <DataGrid x:Name="ProductCode_DataGrid"
+                      Height="140" VerticalScrollBarVisibility="Auto"
+                      Margin="5,0" Padding="3"
+                      d:ItemsSource="{d:SampleData}"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding}"
+                      SelectionChanged="ProductCode_DataGrid_SelectionChanged"
+                      Style="{DynamicResource DefaultDataGrid}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="140" Binding="{Binding Code}" />
-                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Category" Width="200" Binding="{Binding CategoryName}" />
-                    <DataGridTextColumn Header="Locatie" Width="220" Binding="{Binding StorageName}" />
-                    <DataGridTextColumn Header="Prijs" HeaderStyle="{StaticResource CellRightAlign}" Width="100" Binding="{Binding Price, StringFormat={}{0:n2}}" ElementStyle="{StaticResource CellRightAlign}"/>
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding Id}"
+                                        Header="ID" Visibility="Hidden" />
+                    <DataGridTextColumn Width="140"
+                                        Binding="{Binding Code}"
+                                        Header="Zoeknaam" />
+                    <DataGridTextColumn Width="*"
+                                        Binding="{Binding Name}"
+                                        Header="Omschrijving" />
+                    <DataGridTextColumn Width="200"
+                                        Binding="{Binding CategoryName}"
+                                        Header="Category" />
+                    <DataGridTextColumn Width="220"
+                                        Binding="{Binding StorageName}"
+                                        Header="Locatie" />
+                    <DataGridTextColumn Width="100"
+                                        Binding="{Binding Price, StringFormat={}{0:n2}}"
+                                        ElementStyle="{StaticResource CellRightAlign}"
+                                        Header="Prijs"
+                                        HeaderStyle="{StaticResource CellRightAlign}" />
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->
 
             <!--#region Status row-->
-            <DockPanel Background="LightGray" VerticalAlignment="Center" Margin="5">
+            <DockPanel Margin="5" VerticalAlignment="Center"
+                       Background="LightGray">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition Width="35"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45" />
+                        <ColumnDefinition Width="35" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Aantal:"/>
-                    <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
-                    <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
+                    <TextBlock Grid.Column="0" Text="Aantal:" />
+                    <TextBox x:Name="RecordsCount"
+                             Grid.Column="1"
+                             IsReadOnly="True" />
+                    <TextBox x:Name="textBoxStatus"
+                             Grid.Column="3"
+                             Background="LightGray" IsReadOnly="True" />
                 </Grid>
             </DockPanel>
             <!--#endregion-->
