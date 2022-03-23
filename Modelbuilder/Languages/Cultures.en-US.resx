@@ -919,4 +919,7 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="TimeReport.Button.GroupMonth" xml:space="preserve">
     <value>By Month</value>
   </data>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Goto the product page in the webbrowser</value>
+  </data>
 </root>

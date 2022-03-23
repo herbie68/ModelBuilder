@@ -919,4 +919,7 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="TimeReport.Button.GroupMonth" xml:space="preserve">
     <value>Auf Monat</value>
   </data>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Starte die Product site im internet browser</value>
+  </data>
 </root>

@@ -448,6 +448,8 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Grid.Row="0"
@@ -502,12 +504,25 @@
                                                  IsEnabled="True"
                                                  Style="{DynamicResource DefaultTextBox}" />
                                     </StackPanel>
-
                                     <TextBlock Grid.Row="8"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Url naar productpagina" />
+                                    <StackPanel Grid.Row="9" Orientation="Horizontal">
+                                        <TextBox x:Name="inpSupplierProductUrl"
+                                                 Width="530" TextWrapping="NoWrap"
+                                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                                 IsEnabled="True"
+                                                 Style="{DynamicResource DefaultTextBox}" />
+                                        <TextBlock Text="   "/>
+                                        <Button x:Name="btnGotoWeb" Click="ButtonWeb" ToolTip="{x:Static p:Cultures.ProductEntry_Button_Web}" VerticalAlignment="Center">
+                                            <Image IsEnabled="False" Style="{DynamicResource GotoWebIcon}" Width="21"/>
+                                        </Button> 
+                                    </StackPanel>
+                                    <TextBlock Grid.Row="10"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="Standaard leverancier" />
                                     <CheckBox x:Name="chkSupplierDefault"
-                                              Grid.Row="9"
+                                              Grid.Row="11"
                                               IsEnabled="True"
                                               Style="{DynamicResource DefaultCheckBox}" />
                                 </Grid>
@@ -640,13 +655,14 @@
             <!--#region Datagrid definition-->
             <!--  d:ItemSource="{d:SampleData" will show Sample Data during design, is ignored on build  -->
             <DataGrid x:Name="ProductCode_DataGrid"
-                      Height="140" VerticalScrollBarVisibility="Auto"
+                      Height="140"
                       Margin="5,0" Padding="3"
                       d:ItemsSource="{d:SampleData}"
                       IsReadOnly="True"
                       ItemsSource="{Binding}"
                       SelectionChanged="ProductCode_DataGrid_SelectionChanged"
-                      Style="{DynamicResource DefaultDataGrid}">
+                      Style="{DynamicResource DefaultDataGrid}"
+                      VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding Id}"

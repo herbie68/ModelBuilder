@@ -919,4 +919,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeReport.Button.GroupMonth" xml:space="preserve">
     <value>Per Maand</value>
   </data>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Ga naar de product pagina in de webbrowser</value>
+  </data>
 </root>
