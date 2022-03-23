@@ -188,8 +188,8 @@
             if (Row_Selected["OrderCosts"].ToString() != "") { _OrderCosts = double.Parse(Row_Selected["OrderCosts"].ToString()); }
 
             valueSupplierId.Text = Row_Selected["Id"].ToString();
-            valueCountryId.Text = Row_Selected["CountryId"].ToString();
-            valueCurrencyId.Text = Row_Selected["CurrencyId"].ToString();
+            valueCountryId.Text = Row_Selected["Country_Id"].ToString();
+            valueCurrencyId.Text = Row_Selected["Currency_Id"].ToString();
             inpSupplierCode.Text = Row_Selected["Code"].ToString();
             inpSupplierName.Text = Row_Selected["Name"].ToString();
             inpSupplierAddress1.Text = Row_Selected["Address1"].ToString();
@@ -210,7 +210,7 @@
             //Select the saved Country in the combobox by default
             foreach (HelperGeneral.Country country in cboxSupplierCountry.Items)
             {
-                if (country.CountryName == Row_Selected["CountryName"].ToString())
+                if (country.CountryName == Row_Selected["Country"].ToString())
                 {
                     cboxSupplierCountry.SelectedItem = country;
                     break;
@@ -220,7 +220,7 @@
             //Select the saved Currency in the combobox by default
             foreach (HelperGeneral.Currency currency in cboxSupplierCurrency.Items)
             {
-                if (currency.CurrencySymbol == Row_Selected["CurrencySymbol"].ToString())
+                if (currency.CurrencySymbol == Row_Selected["Currency"].ToString())
                 {
                     cboxSupplierCurrency.SelectedItem = currency;
                     break;
@@ -255,15 +255,15 @@
             int _currentDataGridSCTIndex = dgSCT.SelectedIndex;
 
             valueSupplierContactId.Text = Row_Selected["Id"].ToString();
-            inpSupplierContactName.Text = Row_Selected["Name"].ToString();
-            inpSupplierContactPhone.Text = Row_Selected["Phone"].ToString();
-            inpSupplierContactMail.Text = Row_Selected["Mail"].ToString();
+            inpSupplierContactName.Text = Row_Selected["ContactName"].ToString();
+            inpSupplierContactPhone.Text = Row_Selected["phone"].ToString();
+            inpSupplierContactMail.Text = Row_Selected["mail"].ToString();
 
 
             //Select the saved Contacttype in the combobox by default
             foreach (HelperGeneral.ContactType contacttype in cboxSupplierContactType.Items)
             {
-                if (contacttype.ContactTypeName == Row_Selected["TypeName"].ToString())
+                if (contacttype.ContactTypeName == Row_Selected["ContactType"].ToString())
                 {
                     cboxSupplierContactType.SelectedItem = contacttype;
                     valueContactTypeId.Text = contacttype.ContactTypeId.ToString();
@@ -787,6 +787,15 @@
         }
 
         private string ShowColumn; // aktuelle Spalte der Cursorposition
+
+        private void ButtonWeb(object sender, RoutedEventArgs e)
+        {
+            var browserwindow = new System.Diagnostics.ProcessStartInfo();
+            browserwindow.UseShellExecute = true;
+            browserwindow.FileName = inpSupplierUrl.Text;
+            System.Diagnostics.Process.Start(browserwindow);
+        }
+
         private int _CurrentColumn = 1;
 
         /// <summary>
