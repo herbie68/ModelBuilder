@@ -191,12 +191,12 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Width" Value="Auto" />
-            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="Text" Value="" />
         </Style>
 
         <Style x:Key="HiddenCheckBox" TargetType="CheckBox">
-            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Visibility" Value="Hidden" />
         </Style>
 
         <Style x:Key="DefaultComboBox" TargetType="ComboBox">
@@ -291,6 +291,13 @@
             <Setter Property="Height" Value="21" />
             <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
+
+        <Style x:Key="GotoWebIcon" TargetType="Image">
+            <Setter Property="Source" Value=".\Resources\btnWeb.png" />
+            <Setter Property="Height" Value="21" />
+            <Setter Property="Width" Value="21" />
+        </Style>
+
         <!--#endregion  Button Icon resources-->
 
         <!--#region Toolbar Icon resources-->

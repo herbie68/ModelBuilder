@@ -86,6 +86,8 @@ internal class HelperGeneral
     public static readonly string DbProductSupplierTableFieldTypeProductName = "string";
     public static readonly string DbProductSupplierTableFieldNamePrice = "Price";
     public static readonly string DbProductSupplierTableFieldTypePrice = "double";
+    public static readonly string DbProductSupplierTableFieldNameUrl = "Url";
+    public static readonly string DbProductSupplierTableFieldTypeUrl = "string";
     public static readonly string DbProductSupplierTableFieldNameDefaultSupplier = "DefaultSupplier";
     public static readonly string DbProductSupplierTableFieldTypeDefaultSupplier = "string";
     #endregion ProductSupplier table

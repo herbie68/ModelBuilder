@@ -1245,5 +1245,7 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="toolbarButton.Paragraph.Outdent" xml:space="preserve">
     <value>Outdent</value>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Goto the product page in the webbrowser</value>
   </data>
 </root>

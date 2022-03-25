@@ -1,4 +1,6 @@
-﻿using K4os.Compression.LZ4.Internal;
+﻿using System;
+
+using K4os.Compression.LZ4.Internal;
 
 namespace Modelbuilder;
 public partial class metadataProduct : Page
@@ -46,7 +48,7 @@ public partial class metadataProduct : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helperGeneral.GetData(HelperGeneral.DbProductTable);
+        _dt = _helperGeneral.GetData(HelperGeneral.DbProductView);
 
         // Populate data in datagrid from datatable
         ProductCode_DataGrid.DataContext = _dt;
@@ -65,6 +67,19 @@ public partial class metadataProduct : Page
         UpdateStatus(msg);
     }
     #endregion Get the data
+
+    #region Get the ProductSupplier data
+    private void GetProductSupplierData()
+    {
+        InitializeHelper();
+
+        // Get data from database
+        _dtPS = _helperGeneral.GetData(HelperGeneral.DbProductSupplierView, "Product_Id", Id: int.Parse(valueProductId.Text));
+
+        // Populate data in datagrid from datatable
+        ProductSupplierCode_DataGrid.DataContext = _dtPS;
+    }
+    #endregion Get the ProductSupplier data
 
     #region Get content of Memofield
     private void GetMemo(int index)
@@ -249,6 +264,8 @@ public partial class metadataProduct : Page
 
         // Populate data in datagrid from datatable
         ProductSupplierCode_DataGrid.DataContext = _dtPS;
+
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Selection changed ProductCode
 
@@ -271,6 +288,7 @@ public partial class metadataProduct : Page
         inpSupplierProductNumber.Text = Row_Selected["ProductNumber"].ToString();
         inpSupplierProductName.Text = Row_Selected["Name"].ToString();
         inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
+        inpSupplierProductUrl.Text = Row_Selected["Url"].ToString();
         if (Row_Selected["DefaultSupplier"].ToString() == "*")
         {
             chkSupplierDefault.IsChecked = true;
@@ -393,6 +411,8 @@ public partial class metadataProduct : Page
         // Make sure the eddited row in the datagrid is selected
         ProductCode_DataGrid.SelectedIndex = rowIndex;
         ProductCode_DataGrid.Focus();
+
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Click Save Data button (on toolbar)
 
@@ -454,6 +474,7 @@ public partial class metadataProduct : Page
         {
             return;
         }
+        TBResetButtonEnable.Text = "Visible";
     }
     #endregion Click New data row button (on toolbar)
 
@@ -497,7 +518,7 @@ public partial class metadataProduct : Page
 
         if (valueProductSupplierId.Text != "") { UpdateRowProductSupplier(); }
 
-        GetData();
+        GetProductSupplierData();
 
         // Make sure the eddited row in the datagrid is selected
         ProductSupplierCode_DataGrid.SelectedIndex = rowIndex;
@@ -562,6 +583,23 @@ public partial class metadataProduct : Page
     }
     #endregion Delete Data button (on SupplierToolbar)
 
+    #region Toolbar Reset button pressed 
+    private void BtnResetProduct(object sender, RoutedEventArgs e)
+    {
+        ClearAllFields();
+        InitializeComponent();
+    }
+    #endregion Toolbar Reset button pressed
+
+    #region Goto Web browser
+    private void ButtonWeb(object sender, RoutedEventArgs e)
+    {
+        var browserwindow = new System.Diagnostics.ProcessStartInfo();
+        browserwindow.UseShellExecute = true;
+        browserwindow.FileName = inpSupplierProductUrl.Text;
+        System.Diagnostics.Process.Start(browserwindow);
+    }
+    #endregion Goto Web browser
     #region Update row Product Table
     private void UpdateRowProduct()
     {
@@ -625,13 +663,14 @@ public partial class metadataProduct : Page
 
         string result = string.Empty;
         _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductSupplierTable, new string[1, 3]
-        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[7, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[8, 3]
         {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductNumber, HelperGeneral.DbProductSupplierTableFieldTypeProductNumber, inpSupplierProductNumber.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
             { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
+            { HelperGeneral.DbProductSupplierTableFieldNameUrl, HelperGeneral.DbProductSupplierTableFieldTypeUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, productSupplierDefault} } );
 
         UpdateStatus (result);
@@ -811,6 +850,7 @@ public partial class metadataProduct : Page
         cboxProductUnit.SelectedItem = null;
         cboxProductSupplier.SelectedItem = null;
         imgProductImage.Source = null;
+        TBResetButtonEnable.Text = "Collapsed";
     }
     #endregion
 }

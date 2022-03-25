@@ -17,7 +17,9 @@
         public string DbProjectTable = "project";
         public string DbStorageTable = "storage";
         public string DbSupplierTable = "supplier";
+        public string DbSupplierView = "view_supplier";
         public string DbSupplierContactTable = "suppliercontact";
+        public string DbSupplierContactView = "view_suppliercontact";
         public string DbUnitTable = "unit";
         public string DbWorktypeTable = "worktype";
         public string DbContactTypeTable = "contacttype";
@@ -245,11 +247,11 @@
 
             if (supplierId > 0)
             {
-                sqlText = "SELECT * from " + DbSupplierTable + " where Id = @supplierId";
+                sqlText = "SELECT * from " + DbSupplierView + " where Id = @supplierId";
             }
             else
             {
-                sqlText = "SELECT * from " + DbSupplierTable;
+                sqlText = "SELECT * from " + DbSupplierView;
             }
 
             using (MySqlConnection con = new MySqlConnection(ConnectionStr))
@@ -278,11 +280,11 @@
 
             if (SupplierId > 0)
             {
-                sqlText = "SELECT * from " + DbSupplierContactTable + " where Id = @SupplierId";
+                sqlText = "SELECT * from " + DbSupplierContactView + " where Id = @SupplierId";
             }
             else
             {
-                sqlText = "SELECT * from " + DbSupplierContactTable;
+                sqlText = "SELECT * from " + DbSupplierContactView;
             }
 
             using (MySqlConnection con = new MySqlConnection(ConnectionStr))

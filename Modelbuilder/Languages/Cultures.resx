@@ -1245,5 +1245,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="toolbarButton.Paragraph.Outdent" xml:space="preserve">
     <value>Terugspringen</value>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Ga naar de product pagina in de webbrowser</value>
   </data>
 </root>
