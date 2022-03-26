@@ -20,6 +20,7 @@
     <None Remove="Resources\appSave.png" />
     <None Remove="Resources\appSettings.png" />
     <None Remove="Resources\appUndo.png" />
+    <None Remove="Resources\btnWeb.png" />
     <None Remove="Resources\calculator.png" />
     <None Remove="Resources\delivery.png" />
     <None Remove="Resources\Logo.gif" />
@@ -134,6 +135,9 @@
 
   <ItemGroup>
     <Resource Include="Resources\acceptreceipt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\btnWeb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\calculator.png">

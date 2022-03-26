@@ -787,6 +787,14 @@
         }
 
         private string ShowColumn; // aktuelle Spalte der Cursorposition
+
+        private void ButtonWeb(object sender, RoutedEventArgs e)
+        {
+            var browserwindow = new System.Diagnostics.ProcessStartInfo();
+            browserwindow.UseShellExecute = true;
+            browserwindow.FileName = inpSupplierUrl.Text;
+            System.Diagnostics.Process.Start(browserwindow);
+        }
         private int _CurrentColumn = 1;
 
         /// <summary>

@@ -1294,11 +1294,29 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kostprijs.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Project_Field_CostPrice {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.CostPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projectkosten.
         /// </summary>
-        public static string metadataProduct_Tab_General_TabItem_Project_Field_ {
+        public static string metadataProduct_Tab_General_TabItem_Project_Field_ProjectCosts {
             get {
-                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.", resourceCulture);
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris).
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Project_Field_ProjectCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts.Tooltip", resourceCulture);
             }
         }
         
@@ -1515,6 +1533,24 @@ namespace Modelbuilder.Languages {
         public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierPrice {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website product.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website product bij leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip", resourceCulture);
             }
         }
         
