@@ -1511,30 +1511,49 @@ internal class HelperGeneral
     #region Fill Storage dropdown
     public List<Storage> GetStorageList(List<Storage> storageList)
     {
-
         string DatabaseTable = DbStorageTable;
         Database dbConnection = new()
         {
             TableName = DatabaseTable
         };
 
-        dbConnection.SqlSelectionString = "Name, Id";
-        dbConnection.SqlOrderByString = "Id";
-        dbConnection.TableName = DbStorageTable;
+        dbConnection.SqlSelectionString = "Name, Id, ParentId, FullPath";
+        dbConnection.SqlOrderByString = "Fullpath";
+        dbConnection.TableName = DatabaseTable;
 
         DataTable dtSelection = dbConnection.LoadSpecificMySqlData();
 
         for (int i = 0; i < dtSelection.Rows.Count; i++)
         {
-            storageList.Add(new Storage
+            if (dtSelection.Rows[i][2] == DBNull.Value)
             {
-                StorageName = dtSelection.Rows[i][0].ToString(),
-                StorageId = int.Parse(dtSelection.Rows[i][1].ToString())
+                storageList.Add(new Storage
+                {
+                    StorageName = dtSelection.Rows[i][0].ToString(),
+                    StorageId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
+                    StorageParentId = 0
                 });
+            }
+            else
+            {
+                // In the Fullpath the dept of the item is visible by the number of \ in the fullpath
+                var freq = dtSelection.Rows[i][3].ToString().Count(f => (f == '\\'));
+                string _spacer = new string(' ', freq * 3);
+
+                storageList.Add(new Storage
+                {
+                    StorageSpacer = _spacer,
+                    StorageName = dtSelection.Rows[i][0].ToString(),
+                    StorageId = int.Parse(dtSelection.Rows[i][1].ToString(), Culture),
+                    StorageParentId = int.Parse(dtSelection.Rows[i][2].ToString(), Culture)
+                });
+            }
+
         }
         return storageList;
     }
-    #endregion Fill Storage dropdown
+    #endregion
+
 
     #region Fill Supplier dropdown
     public List<Supplier> GetSupplierList(List<Supplier> supplierList)
@@ -1700,7 +1719,10 @@ internal class HelperGeneral
     public class Storage
     {
         public string StorageName { get; set; }
+        public string StorageSpacer { get; set; }
+        public string StorageFullpath { get; set; }
         public int StorageId { get; set; }
+        public int StorageParentId { get; set; }
     }
     #endregion Create object for all storage locations in table for dropdown
 
