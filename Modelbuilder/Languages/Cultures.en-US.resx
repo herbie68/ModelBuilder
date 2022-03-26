@@ -922,4 +922,7 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ProductEntry.Button.Web" xml:space="preserve">
     <value>Goto the product page in the webbrowser</value>
   </data>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>gOTO sUPPLIER WEBSITE</value>
+  </data>
 </root>

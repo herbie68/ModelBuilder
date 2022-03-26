@@ -922,4 +922,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ProductEntry.Button.Web" xml:space="preserve">
     <value>Ga naar de product pagina in de webbrowser</value>
   </data>
+  <data name="ProductEntry.Button.Web" xml:space="preserve">
+    <value>Ga naar de leverancierswebsite</value>
+  </data>
 </root>
