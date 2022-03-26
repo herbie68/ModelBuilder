@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -157,7 +157,7 @@
     <value>Bestellung</value>
   </data>
   <data name="Order.Page.SubTitle" xml:space="preserve">
-    <value>Geben Sie die Bestellung pro Lieferant ein, pro Zeile können Sie angeben, ob ein Artikel in den Projektkosten enthalten ist</value>
+    <value>Geben Sie die Bestellung pro Lieferant ein, pro Zeile k�nnen Sie angeben, ob ein Artikel in den Projektkosten enthalten ist</value>
   </data>
   <data name="Order.TabItemHeader.Memo" xml:space="preserve">
     <value>Zusätzliche Informationen</value>
@@ -409,7 +409,7 @@
     <value>Lassen Sie die offene Bestellzeile auslaufen, wird nicht mehr geliefert.</value>
   </data>
   <data name="Receipt.ConfirmCancel.Message" xml:space="preserve">
-    <value>Möchten Sie den ausstehenden Teil der ausgewählten Bestellung stornieren? Alle bereits gebuchten Belege werden gespeichert</value>
+    <value>Möchten Sie den ausstehenden Teil der ausgew�hlten Bestellung stornieren? Alle bereits gebuchten Belege werden gespeichert</value>
   </data>
   <data name="storageStock.Datagrid.Header.Id" xml:space="preserve">
     <value>Id</value>
@@ -568,7 +568,7 @@
     <value>Projektmanagement</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Project.ProjectReport.Header" xml:space="preserve">
-    <value>Projektübersicht</value>
+    <value>Projekt Übersicht</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Project.ProjectExport.Header" xml:space="preserve">
     <value>Projekte exportieren</value>
@@ -601,7 +601,7 @@
     <value>Artikel</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Report.Header" xml:space="preserve">
-    <value>Übersichtsartikel</value>
+    <value>Übersicht Produkte</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Import.Header" xml:space="preserve">
     <value>Artikel importieren</value>
@@ -628,7 +628,7 @@
     <value>Länder importieren</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Country.Export.Header" xml:space="preserve">
-    <value>Exportländer</value>
+    <value>Export Länder</value>
   </data>
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Report.Header" xml:space="preserve">
     <value>Übersicht Lieferanten</value>
@@ -803,13 +803,13 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Imprtiere Zeiterfassung</value>
   </data>
   <data name="ImportTimeEntry.SubTitle" xml:space="preserve">
-    <value>Wählen Sie die zu importierende CSV-Datei für die Zeitregistrierung aus</value>
+    <value>Wählen Sie die zu importierende CSV-Datei f�r die Zeitregistrierung aus</value>
   </data>
   <data name="ImportTimeEntry.Import.Button.Label" xml:space="preserve">
     <value>Datei auswählen</value>
   </data>
   <data name="ImportTimeEntry.Import.Button.Tooltip" xml:space="preserve">
-    <value>Wählen Sie die zu importierende CSV-Datei für die Zeiterfassung aus</value>
+    <value>Wählen Sie die zu importierende CSV-Datei f�r die Zeiterfassung aus</value>
   </data>
   <data name="ImportTimeEntry.Import.Button.Filename" xml:space="preserve">
     <value>Keine Datei gewählt</value>
@@ -1019,55 +1019,55 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Prijs</value>
   </data>
   <data name="metadataProduct.Product.Toolbar.Button.New.Tooltip" xml:space="preserve">
-    <value>Product toevoegen</value>
+    <value>Produkt hinzufügen</value>
   </data>
   <data name="metadataProduct.Product.Toolbar.Button.Save.Tooltip" xml:space="preserve">
-    <value>Wijzigingen opslaan</value>
+    <value>Änderungen speichern</value>
   </data>
   <data name="metadataProduct.Product.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
-    <value>Verwijder geselekteerde product</value>
+    <value>Ausgewählten Produkt entfernen</value>
   </data>
   <data name="metadataProduct.Product.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
-    <value>Maak alle ingevulde velden leeg</value>
+    <value>Löschen Sie alle ausgefüllten Felder</value>
   </data>
   <data name="metadataProduct.Tab.General.Title" xml:space="preserve">
-    <value>Basisgegevens</value>
+    <value>Grundinformationen</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Product.Title" xml:space="preserve">
-    <value>Productgegevens</value>
+    <value>Produktdaten</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Product.Field.Code" xml:space="preserve">
-    <value>Zoeknaam</value>
+    <value>Suchname</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Product.Field.Name" xml:space="preserve">
-    <value>Product naam</value>
+    <value>Produktname</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Product.Field.Brand" xml:space="preserve">
-    <value>Merk</value>
+    <value>Marke</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Product.Field.Category" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Kategorie</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Title" xml:space="preserve">
-    <value>Voorraadgegevens</value>
+    <value>Inventardetails</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage" xml:space="preserve">
-    <value>Minimale voorraad</value>
+    <value>Mindestbestand</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity" xml:space="preserve">
-    <value>Bestel hoeveelheid</value>
+    <value>Bestellmenge</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Unit" xml:space="preserve">
-    <value>Verpakkingseenheid</value>
+    <value>Verpackungseinheit</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions" xml:space="preserve">
-    <value>Afmetingen</value>
+    <value>Maße</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation" xml:space="preserve">
-    <value>Voorraadlocatie</value>
+    <value>Lagerort</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Project.Title" xml:space="preserve">
-    <value>Projectgegevens</value>
+    <value>Projekt Details</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts" xml:space="preserve">
     <value>Projectkosten</value>
@@ -1082,28 +1082,28 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Afbeelding kwartslag draaien</value>
   </data>
   <data name="metadataProduct.Tab.Memo.Title" xml:space="preserve">
-    <value>Uitgebreide omschrijving</value>
+    <value>Detaillierte Beschreibung</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Title" xml:space="preserve">
-    <value>Leverancier</value>
+    <value>Anbieter</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Title" xml:space="preserve">
-    <value>Artikelinformatie per leverancier</value>
+    <value>Artikelinformationen pro Lieferant</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier" xml:space="preserve">
-    <value>Leverancier</value>
+    <value>Anbieter</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode" xml:space="preserve">
-    <value>Artikelnummer bij leverancier</value>
+    <value>Artikelnummer beim Lieferanten</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription" xml:space="preserve">
-    <value>Omschrijving</value>
+    <value>Beschreibung</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice" xml:space="preserve">
-    <value>Prijs</value>
+    <value>Preis</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier" xml:space="preserve">
-    <value>Standaard leverancier</value>
+    <value>Standardlieferant</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.ProductId" xml:space="preserve">
     <value>ID</value>
@@ -1118,31 +1118,31 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Std</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Supplier" xml:space="preserve">
-    <value>Leverancier</value>
+    <value>Lieferanten</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.ProductNumber" xml:space="preserve">
-    <value>Artikelnummer</value>
+    <value>Bestellnummer</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Description" xml:space="preserve">
-    <value>Omschrijving</value>
+    <value>Beschreibung</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Currency" xml:space="preserve">
-    <value>Valuta</value>
+    <value>Währung</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Price" xml:space="preserve">
-    <value>Prijs</value>
+    <value>Preis</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Toolbar.Button.New.Tooltip" xml:space="preserve">
-    <value>Product Leverancier toevoegen</value>
+    <value>Product Lieferanten hinzufügen</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Toolbar.Button.Save.Tooltip" xml:space="preserve">
-    <value>Wijzigingen opslaan</value>
+    <value>Änderungen speichern</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
-    <value>Verwijder geselekteerde product bij leverancier</value>
+    <value>Ausgewählten Product bei Lieferant entfernen</value>
   </data>
   <data name="metadataProduct.Tab.StorageHistory.Title" xml:space="preserve">
-    <value>Voorraadhistorie</value>
+    <value>Lagerhistorie</value>
   </data>
   <data name="metadataSupplier.Supplier.Datagrid.Header.SupplierId" xml:space="preserve">
     <value>ID</value>
@@ -1229,7 +1229,7 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>E-Mail-Adresse</value>
   </data>
   <data name="metadataSupplier.Tab.Contact.Toolbar.Button.New.Tooltip" xml:space="preserve">
-    <value>Kontakt (Person) beim Lieferanten hinzufügen</value>
+    <value>Kontakt (Person) beim Lieferanten hinzuf�gen</value>
   </data>
   <data name="metadataSupplier.Tab.Contact.Toolbar.Button.Save.Tooltip" xml:space="preserve">
     <value>Änderungen speichern</value>
@@ -1257,5 +1257,6 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
     <value>Website produkt</value>
+
   </data>
 </root>

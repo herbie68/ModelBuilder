@@ -1,4 +1,6 @@
-﻿using K4os.Compression.LZ4.Internal;
+﻿using System;
+
+using K4os.Compression.LZ4.Internal;
 
 namespace Modelbuilder;
 public partial class metadataProduct : Page
@@ -65,6 +67,19 @@ public partial class metadataProduct : Page
         UpdateStatus(msg);
     }
     #endregion Get the data
+
+    #region Get the ProductSupplier data
+    private void GetProductSupplierData()
+    {
+        InitializeHelper();
+
+        // Get data from database
+        _dtPS = _helperGeneral.GetData(HelperGeneral.DbProductSupplierView, "Product_Id", Id: int.Parse(valueProductId.Text));
+
+        // Populate data in datagrid from datatable
+        ProductSupplierCode_DataGrid.DataContext = _dtPS;
+    }
+    #endregion Get the ProductSupplier data
 
     #region Get content of Memofield
     private void GetMemo(int index)
@@ -274,6 +289,7 @@ public partial class metadataProduct : Page
         inpSupplierProductName.Text = Row_Selected["Name"].ToString();
         inpSupplierProductUrl.Text = Row_Selected["Url"].ToString();
         inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
+        inpSupplierProductUrl.Text = Row_Selected["Url"].ToString();
         if (Row_Selected["DefaultSupplier"].ToString() == "*")
         {
             chkSupplierDefault.IsChecked = true;
@@ -504,7 +520,7 @@ public partial class metadataProduct : Page
 
         if (valueProductSupplierId.Text != "") { UpdateRowProductSupplier(); }
 
-        GetData();
+        GetProductSupplierData();
 
         // Make sure the eddited row in the datagrid is selected
         ProductSupplierCode_DataGrid.SelectedIndex = rowIndex;
@@ -577,6 +593,16 @@ public partial class metadataProduct : Page
     }
     #endregion Toolbar Reset button pressed
 
+    #region Goto Web browser
+    private void Button2Web(object sender, RoutedEventArgs e)
+    {
+        var browserwindow = new System.Diagnostics.ProcessStartInfo();
+        browserwindow.UseShellExecute = true;
+        browserwindow.FileName = inpSupplierProductUrl.Text;
+        System.Diagnostics.Process.Start(browserwindow);
+    }
+    #endregion Goto Web browser
+
     #region Update row Product Table
     private void UpdateRowProduct()
     {
@@ -648,6 +674,7 @@ public partial class metadataProduct : Page
             { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
+            { HelperGeneral.DbProductSupplierTableFieldNameUrl, HelperGeneral.DbProductSupplierTableFieldTypeUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, productSupplierDefault} } );
 
         UpdateStatus (result);
