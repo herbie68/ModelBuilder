@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -919,10 +919,334 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="TimeReport.Button.GroupMonth" xml:space="preserve">
     <value>Per Maand</value>
   </data>
-  <data name="ProductEntry.Button.Web" xml:space="preserve">
-    <value>Ga naar de product pagina in de webbrowser</value>
+  <data name="metadataSupplier.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="metadataSupplier.Statusline.Status.Text" xml:space="preserve">
+    <value>Aantal:</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.Title" xml:space="preserve">
+    <value>Basisgegevens</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Title" xml:space="preserve">
+    <value>Leverancier gegevens</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Code" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Zip" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Currency" xml:space="preserve">
+    <value>Standaard valuta</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Url" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.SendCosts" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.MaxValue" xml:space="preserve">
+    <value>Tot bedrag</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.Memo.Title" xml:space="preserve">
+    <value>Aanvullende informatie</value>
+  </data>
+  <data name="metadataSupplier.Tab.OrderHistory.Title" xml:space="preserve">
+    <value>Order historie</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="metadataProduct.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.ProductId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.Code" xml:space="preserve">
+    <value>Suchname</value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.Name" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.Location" xml:space="preserve">
+    <value>Ort</value>
+  </data>
+  <data name="metadataProduct.Product.Datagrid.Header.Price" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="metadataProduct.Product.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Product toevoegen</value>
+  </data>
+  <data name="metadataProduct.Product.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataProduct.Product.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Verwijder geselekteerde product</value>
+  </data>
+  <data name="metadataProduct.Product.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
+    <value>Maak alle ingevulde velden leeg</value>
+  </data>
+  <data name="metadataProduct.Tab.General.Title" xml:space="preserve">
+    <value>Basisgegevens</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Title" xml:space="preserve">
+    <value>Productgegevens</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Code" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Name" xml:space="preserve">
+    <value>Product naam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Brand" xml:space="preserve">
+    <value>Merk</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Title" xml:space="preserve">
+    <value>Voorraadgegevens</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage" xml:space="preserve">
+    <value>Minimale voorraad</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity" xml:space="preserve">
+    <value>Bestel hoeveelheid</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Unit" xml:space="preserve">
+    <value>Verpakkingseenheid</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions" xml:space="preserve">
+    <value>Afmetingen</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation" xml:space="preserve">
+    <value>Voorraadlocatie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Title" xml:space="preserve">
+    <value>Projectgegevens</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field." xml:space="preserve">
+    <value>Projectkosten</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Image.Button.New.Tooltip" xml:space="preserve">
+    <value>Bild hinzufügen</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Image.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Lösche Bild</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Image.Button.Rotate.Tooltip" xml:space="preserve">
+    <value>Bild um eine Vierteldrehung drehen</value>
+  </data>
+  <data name="metadataProduct.Tab.Memo.Title" xml:space="preserve">
+    <value>Uitgebreide omschrijving</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Title" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Title" xml:space="preserve">
+    <value>Artikelinformatie per leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode" xml:space="preserve">
+    <value>Artikelnummer bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier" xml:space="preserve">
+    <value>Standaard leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.ProductId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.SupplierId" xml:space="preserve">
+    <value>Supplier_Id</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.CurrencyId" xml:space="preserve">
+    <value>Currency_Id</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Default" xml:space="preserve">
+    <value>Std</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Supplier" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.ProductNumber" xml:space="preserve">
+    <value>Artikelnummer</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Description" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Datagrid.Header.Price" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Product Leverancier toevoegen</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Verwijder geselekteerde product bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.StorageHistory.Title" xml:space="preserve">
+    <value>Voorraadhistorie</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.City" xml:space="preserve">
+    <value>Plaats</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Code" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.CountryId" xml:space="preserve">
+    <value>Land ID</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.CurrencyId" xml:space="preserve">
+    <value>Valuta ID</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.SupplierId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Datagrid.Header.Zip" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Verwijder geselekteerde leverancier</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Leverancier toevoegen</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
+    <value>Maak alle ingevulde velden leeg</value>
+  </data>
+  <data name="metadataSupplier.Supplier.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.Mail" xml:space="preserve">
+    <value>E-mail adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.Phone" xml:space="preserve">
+    <value>Telefoonnummer</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.Type" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Datagrid.Header.TypeId" xml:space="preserve">
+    <value>Functie Id</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Mail" xml:space="preserve">
+    <value>E-mail adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Name" xml:space="preserve">
+    <value>Volledige naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Phone" xml:space="preserve">
+    <value>Telefoonnummer</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Type" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Title" xml:space="preserve">
+    <value>Communicatiekanalen per leverancier</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Title" xml:space="preserve">
+    <value>Contactpersonen</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Verwijder geselekteerde contactpersoon</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Contact(persoon) bij leverancier toevoegen</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
+    <value>Maak alle ingevulde velden leeg</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.City" xml:space="preserve">
+    <value>Plaats</value>
+  </data>
+  <data name="toolbarButton.Paragraph.Indent" xml:space="preserve">
+    <value>Inspringen</value>
+  </data>
+  <data name="toolbarButton.Paragraph.Outdent" xml:space="preserve">
+    <value>Terugspringen</value>
   </data>
   <data name="ProductEntry.Button.Web" xml:space="preserve">
-    <value>Ga naar de leverancierswebsite</value>
+    <value>Website</value>
   </data>
 </root>
