@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:Modelbuilder"
       xmlns:p="clr-namespace:Modelbuilder.Languages"
       mc:Ignorable="d" 
-      Title="metadataProduct"
       d:DesignHeight="800" d:DesignWidth="1600"
-      mc:Ignorable="d">
-
+      Title="metadataProduct">
+    
     <!--#region Page resources-->
     <Page.Resources>
         <DataTemplate x:Key="CategoryComboTemplate">
@@ -74,7 +73,7 @@
                 <TextBlock Grid.Column="0"
                            Style="{DynamicResource Title}"
                            Text="{x:Static p:Cultures.metadataProduct_Page_Title}" />
-                           Text="Artikelen" />
+
 
                 <!--#region Hiddenfields-->
                 <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->

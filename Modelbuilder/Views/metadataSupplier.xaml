@@ -101,10 +101,12 @@
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataSupplier_Tab_General_TabItem_General_Field_Code}" />
                                     <TextBox x:Name="inpSupplierCode"
-                                             Grid.Row="2" Grid.Column="0"
-                                             Width="230" Grid.ColumnSpan="2"
+                                             Grid.Row="2" Grid.RowSpan="2"
+                                             Grid.Column="0" Grid.ColumnSpan="2"
+                                             Width="230"
+                                             Margin="0,4,0,0"
                                              CharacterCasing="Upper"
-                                             Style="{DynamicResource DefaultTextBox}" Grid.RowSpan="2" Margin="0,4,0,0" />
+                                             Style="{DynamicResource DefaultTextBox}" />
 
                                     <TextBlock Grid.Row="2" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
@@ -168,17 +170,25 @@
                                     <TextBlock Grid.Row="11" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataSupplier_Tab_General_TabItem_General_Field_Url}" />
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="12" Grid.ColumnSpan="2" >
+                                    <StackPanel Grid.Row="12" Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
                                         <TextBox x:Name="inpSupplierUrl"
-                                             Width="735"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource DefaultTextBox}" />
-                                        <TextBlock Width="4"/>
-                                        <Button x:Name="btnGotoWeb" Click="ButtonWeb" ToolTip="Ga naar de leverancierswebsite" Width="AUTO" HorizontalContentAlignment="Center">
-                                            <Image IsEnabled="False" Style="{DynamicResource GotoWebIcon}" Width="21" HorizontalAlignment="Center"/>
+                                                 Width="735"
+                                                 VerticalAlignment="Center"
+                                                 Style="{DynamicResource DefaultTextBox}" />
+                                        <TextBlock Width="4" />
+                                        <Button x:Name="btnGotoWeb"
+                                                Width="AUTO"
+                                                HorizontalContentAlignment="Center"
+                                                Click="ButtonWeb" ToolTip="Ga naar de leverancierswebsite">
+                                            <Image Width="21"
+                                                   HorizontalAlignment="Center"
+                                                   IsEnabled="False"
+                                                   Style="{DynamicResource GotoWebIcon}" />
                                         </Button>
                                     </StackPanel>
-                                    
+
                                     <TextBlock Grid.Row="13" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataSupplier_Tab_General_TabItem_General_Field_SendCosts}" />

@@ -666,7 +666,7 @@ public partial class metadataProduct : Page
 
         string result = string.Empty;
         _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductSupplierTable, new string[1, 3]
-        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[8, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[9, 3]
         {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
@@ -674,7 +674,7 @@ public partial class metadataProduct : Page
             { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
-            { HelperGeneral.DbProductSupplierTableFieldNameUrl, HelperGeneral.DbProductSupplierTableFieldTypeUrl, inpSupplierProductUrl.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, productSupplierDefault} } );
 
         UpdateStatus (result);

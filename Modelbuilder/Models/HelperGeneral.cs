@@ -153,11 +153,59 @@ internal class HelperGeneral
     public static readonly string DbStorageTableFieldTypeStorageFullpath = "string";
     #endregion Storage table
 
+    #region Supplier tables
+    #region Supplier table
     public static readonly string DbSupplierTable = "supplier";
     public static readonly string DbSupplierView = "view_supplier";
+    public static readonly string DbSupplierFieldNameId = "Id";
+    public static readonly string DbSupplierFieldTypeId = "int";
+    public static readonly string DbSupplierFieldNameCode = "Code";
+    public static readonly string DbSupplierFieldTypeCode = "string";
+    public static readonly string DbSupplierFieldNameName = "Name";
+    public static readonly string DbSupplierFieldTypeName = "string";
+    public static readonly string DbSupplierFieldNameAddress1 = "Address1";
+    public static readonly string DbSupplierFieldTypeAddress1 = "string";
+    public static readonly string DbSupplierFieldNameAddress2 = "Address2";
+    public static readonly string DbSupplierFieldTypeAddress2 = "string";
+    public static readonly string DbSupplierFieldNameZip = "Zip";
+    public static readonly string DbSupplierFieldTypeZip = "string";
+    public static readonly string DbSupplierFieldNameCity = "City";
+    public static readonly string DbSupplierFieldTypeCity = "string";
+    public static readonly string DbSupplierFieldNameUrl = "Url";
+    public static readonly string DbSupplierFieldTypeUrl = "string";
+    public static readonly string DbSupplierFieldNameMemo = "Memo";
+    public static readonly string DbSupplierFieldTypeMemo = "longtext";
+    public static readonly string DbSupplierFieldNameCountryId = "CountryId";
+    public static readonly string DbSupplierFieldTypeCountryId = "int";
+    public static readonly string DbSupplierFieldNameCurrencyId = "CurrencyId";
+    public static readonly string DbSupplierFieldTypeCurrencyId = "int";
+    public static readonly string DbSupplierFieldNameShippingCosts = "ShippingCosts";
+    public static readonly string DbSupplierFieldTypeShippingCosts = "double";
+    public static readonly string DbSupplierFieldNameMinShippingCosts = "MinShippingCosts";
+    public static readonly string DbSupplierFieldTypeMinShippingCosts = "double";
+    public static readonly string DbSupplierFieldNameOrderCosts = "OrderCosts";
+    public static readonly string DbSupplierFieldTypeOrderCosts = "double";
+    #endregion Supplier table
 
+    #region SupplierContact Table
     public static readonly string DbSupplierContactTable = "suppliercontact";
     public static readonly string DbSupplierContactView = "view_suppliercontact";
+    public static readonly string DbSupplierContactFieldNameId = "Id";
+    public static readonly string DbSupplierContactFieldTypeId = "int";
+    public static readonly string DbSupplierContactFieldNameSupplierId = "supplier_id";
+    public static readonly string DbSupplierContactFieldTypeSupplierId = "int";
+    public static readonly string DbSupplierContactFieldNameName = "ContactName";
+    public static readonly string DbSupplierContactFieldTypeName = "string";
+    public static readonly string DbSupplierContactFieldNameTypeId = "contacttype_id";
+    public static readonly string DbSupplierContactFieldTypeTypeId = "int";
+    public static readonly string DbSupplierContactFieldNameTypeName = "ContactType";
+    public static readonly string DbSupplierContactFieldTypeTypeName = "string";
+    public static readonly string DbSupplierContactFieldNamePhone = "phone";
+    public static readonly string DbSupplierContactFieldTypePhone = "string";
+    public static readonly string DbSupplierContactFieldNameMail = "mail";
+    public static readonly string DbSupplierContactFieldTypeMail = "string";
+    #endregion SupplierContact Table
+    #endregion Supplier Tables
 
     #region Time
     public static readonly string DbTimeTable = "time";

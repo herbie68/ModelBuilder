@@ -1,12 +1,16 @@
-﻿namespace Modelbuilder
+﻿using K4os.Compression.LZ4.Internal;
+using Modelbuilder;
+
+using MySqlX.XDevAPI.Common;
+
+namespace Modelbuilder
 {
     /// <summary>
     /// Interaction logic for metadataSupplier.xaml
     /// </summary>
     public partial class metadataSupplier : Page
     {
-        private HelperGeneral _helpergeneral;
-        private HelperSupplier _helper;
+        private HelperGeneral _helperGeneral;
         private DataTable _dt, _dtSC;
         private int _dbRowCount;
         private int _currentDataGridIndex;
@@ -23,9 +27,9 @@
             InitializeComponent();
 
             InitializeHelper();
-            cboxSupplierCurrency.ItemsSource = _helpergeneral.GetCurrencyList(CurrencyList);
-            cboxSupplierCountry.ItemsSource = _helpergeneral.GetCountryList(CountryList);
-            cboxSupplierContactType.ItemsSource = _helpergeneral.GetContactTypeList(ContactTypeList);
+            cboxSupplierCurrency.ItemsSource = _helperGeneral.GetCurrencyList(CurrencyList);
+            cboxSupplierCountry.ItemsSource = _helperGeneral.GetCountryList(CountryList);
+            cboxSupplierContactType.ItemsSource = _helperGeneral.GetContactTypeList(ContactTypeList);
 
             GetData();
         }
@@ -83,7 +87,9 @@
             InitializeHelper();
 
             // Get data from database
-            _dt = _helper.GetDataTblSupplier();
+            //_dt = _helper.GetDataTblSupplier();
+            _dt = _helperGeneral.GetData(HelperGeneral.DbSupplierView);
+
             //_dtSC = _helperGeneral.GetDataTblSupplierContact();
 
             // Populate data in datagrid from datatable
@@ -112,15 +118,10 @@
         /// </summary>
         private void InitializeHelper()
         {
-            if (_helpergeneral == null)
+            if (_helperGeneral == null)
             {
-                _helpergeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-                //_helpergeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
-            }
-            if (_helper == null)
-            {
-                //_helper = new HelperSupplier("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
-                _helper = new HelperSupplier(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+                _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+                //_helperGeneral = new HelperGeneral("db4free.net", int.Parse(Connection_Query.port), Connection_Query.database, "herbie68", "9b9749c1");
             }
         }
         #endregion
@@ -230,7 +231,9 @@
             tabSupplierContact.IsEnabled = true;
 
             // Retrieve list of contacts for this supplier from database
-            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            _dtSC = _helperGeneral.GetData(HelperGeneral.DbSupplierContactView, new string[1, 3]
+            { {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierContactId.Text } });
 
             // Populate data in datagrid from datatable after clearing the current gatagrid
             DataGrid.DataContext = _dtSC;
@@ -331,7 +334,21 @@
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCurrencyId, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            //result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCurrencyId, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[13, 3]
+            {   {HelperGeneral.DbSupplierFieldNameCode, HelperGeneral.DbSupplierFieldTypeCode, supplierCode},
+                {HelperGeneral.DbSupplierFieldNameName, HelperGeneral.DbSupplierFieldTypeName, supplierName},
+                {HelperGeneral.DbSupplierFieldNameAddress1, HelperGeneral.DbSupplierFieldTypeAddress1, supplierAddress1},
+                {HelperGeneral.DbSupplierFieldNameAddress2, HelperGeneral.DbSupplierFieldTypeAddress2, supplierAddress2},
+                {HelperGeneral.DbSupplierFieldNameZip, HelperGeneral.DbSupplierFieldTypeZip, supplierZip},
+                {HelperGeneral.DbSupplierFieldNameCity, HelperGeneral.DbSupplierFieldTypeCity, supplierCity},
+                {HelperGeneral.DbSupplierFieldNameUrl, HelperGeneral.DbSupplierFieldTypeUrl, supplierUrl},
+                {HelperGeneral.DbSupplierFieldNameMemo, HelperGeneral.DbSupplierFieldTypeMemo, memo},
+                {HelperGeneral.DbSupplierFieldNameCountryId, HelperGeneral.DbSupplierFieldTypeCountryId, supplierCountryId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameCurrencyId, HelperGeneral.DbSupplierFieldTypeCurrencyId, supplierCurrencyId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameShippingCosts, HelperGeneral.DbSupplierFieldTypeShippingCosts, supplierShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameMinShippingCosts, HelperGeneral.DbSupplierFieldTypeMinShippingCosts, supplierMinShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameOrderCosts, HelperGeneral.DbSupplierFieldTypeOrderCosts, supplierOrderCosts.ToString()} });
             UpdateStatus(result);
         }
         #endregion
@@ -349,7 +366,9 @@
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.DeleteTblSupplier(supplierId);
+            //result = _helper.DeleteTblSupplier(supplierId);
+            result = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbSupplierTable, new string[1, 3]
+            {   { HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, supplierId.ToString()} });
             UpdateStatus(result);
         }
         #endregion
@@ -367,7 +386,9 @@
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.DeleteTblSupplierContact(SupplierContactId);
+            //result = _helper.DeleteTblSupplierContact(SupplierContactId);
+            result = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbSupplierContactTable, new string[1, 3]
+            {   {HelperGeneral.DbSupplierContactFieldNameId, HelperGeneral.DbSupplierContactFieldTypeId, SupplierContactId.ToString() } });
             UpdateStatus(result);
         }
         #endregion
@@ -387,11 +408,21 @@
 
             InitializeHelper();
 
-            var result = _helper.InsertTblSupplierContact(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+//var result = _helper.InsertTblSupplierContact(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            var result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[6, 3]
+            {   { HelperGeneral.DbSupplierContactFieldNameSupplierId, HelperGeneral.DbSupplierContactFieldTypeSupplierId, supplierId.ToString()},
+                { HelperGeneral.DbSupplierContactFieldNameName, HelperGeneral.DbSupplierContactFieldTypeName, supplierContactContactName},
+                { HelperGeneral.DbSupplierContactFieldNameTypeId, HelperGeneral.DbSupplierContactFieldTypeTypeId, supplierContactContactTypeId.ToString()},
+                { HelperGeneral.DbSupplierContactFieldNameTypeName, HelperGeneral.DbSupplierContactFieldTypeTypeName, supplierContactContactTypeName},
+                { HelperGeneral.DbSupplierContactFieldNamePhone, HelperGeneral.DbSupplierContactFieldTypePhone, supplierContactContactPhone},
+                { HelperGeneral.DbSupplierContactFieldNameMail, HelperGeneral.DbSupplierContactFieldTypeMail, supplierContactContactMail} });   
             UpdateStatus(result);
 
             // Get data from database
-            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            _dtSC = _helperGeneral.GetData(HelperGeneral.DbSupplierContactView, new string[1, 3]
+            { {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierContactId.Text } });
+
 
             // Populate data in datagrid from datatable
             DataGrid.DataContext = _dtSC;
@@ -411,7 +442,9 @@
             }
 
             //GetData();
-            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            _dtSC = _helperGeneral.GetData(HelperGeneral.DbSupplierContactView, new string[1, 3]
+            { {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierContactId.Text } });
 
             // Make sure the eddited row in the datagrid is selected
             DataGrid.DataContext = _dtSC;
@@ -438,7 +471,9 @@
                 DataGrid.SelectedIndex = rowIndex - 1;
             }
 
-            _dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
+            _dtSC = _helperGeneral.GetData(HelperGeneral.DbSupplierContactView, new string[1, 3]
+            { {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierContactId.Text } });
 
             // Make sure the eddited row in the datagrid is selected
             DataGrid.DataContext = _dtSC;
@@ -512,11 +547,26 @@
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCurrencyId, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            //result = _helper.InsertTblSupplier(supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, memo, supplierCountryId, supplierCurrencyId, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[13, 3]
+            {   {HelperGeneral.DbSupplierFieldNameCode, HelperGeneral.DbSupplierFieldTypeCode, supplierCode},
+                {HelperGeneral.DbSupplierFieldNameName, HelperGeneral.DbSupplierFieldTypeName, supplierName},
+                {HelperGeneral.DbSupplierFieldNameAddress1, HelperGeneral.DbSupplierFieldTypeAddress1, supplierAddress1},
+                {HelperGeneral.DbSupplierFieldNameAddress2, HelperGeneral.DbSupplierFieldTypeAddress2, supplierAddress2},
+                {HelperGeneral.DbSupplierFieldNameZip, HelperGeneral.DbSupplierFieldTypeZip, supplierZip},
+                {HelperGeneral.DbSupplierFieldNameCity, HelperGeneral.DbSupplierFieldTypeCity, supplierCity},
+                {HelperGeneral.DbSupplierFieldNameUrl, HelperGeneral.DbSupplierFieldTypeUrl, supplierUrl},
+                {HelperGeneral.DbSupplierFieldNameMemo, HelperGeneral.DbSupplierFieldTypeMemo, memo},
+                {HelperGeneral.DbSupplierFieldNameCountryId, HelperGeneral.DbSupplierFieldTypeCountryId, supplierCountryId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameCurrencyId, HelperGeneral.DbSupplierFieldTypeCurrencyId, supplierCurrencyId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameShippingCosts, HelperGeneral.DbSupplierFieldTypeShippingCosts, supplierShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameMinShippingCosts, HelperGeneral.DbSupplierFieldTypeMinShippingCosts, supplierMinShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameOrderCosts, HelperGeneral.DbSupplierFieldTypeOrderCosts, supplierOrderCosts.ToString()} });
             UpdateStatus(result);
 
             // Get data from database
-            _dt = _helper.GetDataTblSupplier();
+            //_dt = _helper.GetDataTblSupplier();
+            _dt = _helperGeneral.GetData(HelperGeneral.DbSupplierView);
 
             // Populate data in datagrid from datatable
             SupplierCode_DataGrid.DataContext = _dt;
@@ -634,7 +684,23 @@
             InitializeHelper();
 
             string result = string.Empty;
-            result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCurrencyId, memo, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            //result = _helper.UpdateTblSupplier(supplierId, supplierCode, supplierName, supplierAddress1, supplierAddress2, supplierZip, supplierCity, supplierUrl, supplierCountryId, supplierCurrencyId, memo, supplierShippingCosts, supplierMinShippingCosts, supplierOrderCosts);
+            result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[14, 3]
+            {   {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, supplierId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameCode, HelperGeneral.DbSupplierFieldTypeCode, supplierCode},
+                {HelperGeneral.DbSupplierFieldNameName, HelperGeneral.DbSupplierFieldTypeName, supplierName},
+                {HelperGeneral.DbSupplierFieldNameAddress1, HelperGeneral.DbSupplierFieldTypeAddress1, supplierAddress1},
+                {HelperGeneral.DbSupplierFieldNameAddress2, HelperGeneral.DbSupplierFieldTypeAddress2, supplierAddress2},
+                {HelperGeneral.DbSupplierFieldNameZip, HelperGeneral.DbSupplierFieldTypeZip, supplierZip},
+                {HelperGeneral.DbSupplierFieldNameCity, HelperGeneral.DbSupplierFieldTypeCity, supplierCity},
+                {HelperGeneral.DbSupplierFieldNameUrl, HelperGeneral.DbSupplierFieldTypeUrl, supplierUrl},
+                {HelperGeneral.DbSupplierFieldNameMemo, HelperGeneral.DbSupplierFieldTypeMemo, memo},
+                {HelperGeneral.DbSupplierFieldNameCountryId, HelperGeneral.DbSupplierFieldTypeCountryId, supplierCountryId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameCurrencyId, HelperGeneral.DbSupplierFieldTypeCurrencyId, supplierCurrencyId.ToString()},
+                {HelperGeneral.DbSupplierFieldNameShippingCosts, HelperGeneral.DbSupplierFieldTypeShippingCosts, supplierShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameMinShippingCosts, HelperGeneral.DbSupplierFieldTypeMinShippingCosts, supplierMinShippingCosts.ToString()},
+                {HelperGeneral.DbSupplierFieldNameOrderCosts, HelperGeneral.DbSupplierFieldTypeOrderCosts, supplierOrderCosts.ToString()} });
+
             UpdateStatus(result);
         }
         #endregion
@@ -673,61 +739,18 @@
 
             InitializeHelper();
             string result = string.Empty;
-            result = _helper.UpdateTblSupplierContact(supplierContactContactId, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            //result = _helper.UpdateTblSupplierContact(supplierContactContactId, supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
+            result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[6, 3]
+            {   { HelperGeneral.DbSupplierContactFieldNameSupplierId, HelperGeneral.DbSupplierContactFieldTypeSupplierId, supplierId.ToString()},
+                { HelperGeneral.DbSupplierContactFieldNameName, HelperGeneral.DbSupplierContactFieldTypeName, supplierContactContactName},
+                { HelperGeneral.DbSupplierContactFieldNameTypeId, HelperGeneral.DbSupplierContactFieldTypeTypeId, supplierContactContactTypeId.ToString()},
+                { HelperGeneral.DbSupplierContactFieldNameTypeName, HelperGeneral.DbSupplierContactFieldTypeTypeName, supplierContactContactTypeName},
+                { HelperGeneral.DbSupplierContactFieldNamePhone, HelperGeneral.DbSupplierContactFieldTypePhone, supplierContactContactPhone},
+                { HelperGeneral.DbSupplierContactFieldNameMail, HelperGeneral.DbSupplierContactFieldTypeMail, supplierContactContactMail} });
+
             UpdateStatus(result);
         }
 
-        #endregion
-
-        #region Fill Country dropdown
-        static List<Country> CountryList()
-        {
-            Database dbCountryConnection = new()
-            {
-                TableName = DatabaseCountryTable
-            };
-
-            dbCountryConnection.SqlSelectionString = "Name, Id";
-            dbCountryConnection.SqlOrderByString = "Id";
-            dbCountryConnection.TableName = DatabaseCountryTable;
-
-            DataTable dtCountrySelection = dbCountryConnection.LoadSpecificMySqlData();
-
-            List<Country> CountryList = new();
-
-            for (int i = 0; i < dtCountrySelection.Rows.Count; i++)
-            {
-                CountryList.Add(new Country(dtCountrySelection.Rows[i][0].ToString(),
-                    dtCountrySelection.Rows[i][1].ToString()));
-            };
-            return CountryList;
-        }
-        #endregion
-
-        #region Fill Currency dropdown
-        static List<Currency> CurrencyList()
-        {
-
-            Database dbCurrencyConnection = new()
-            {
-                TableName = DatabaseCurrencyTable
-            };
-
-            dbCurrencyConnection.SqlSelectionString = "Symbol, Id";
-            dbCurrencyConnection.SqlOrderByString = "Id";
-            dbCurrencyConnection.TableName = DatabaseCurrencyTable;
-
-            DataTable dtCurrencySelection = dbCurrencyConnection.LoadSpecificMySqlData();
-
-            List<Currency> CurrencyList = new();
-
-            for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
-            {
-                CurrencyList.Add(new Currency(dtCurrencySelection.Rows[i][0].ToString(),
-                    dtCurrencySelection.Rows[i][1].ToString()));
-            };
-            return CurrencyList;
-        }
         #endregion
 
         #region Update status

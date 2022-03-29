@@ -2545,15 +2545,6 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ga naar de product pagina in de webbrowser.
-        /// </summary>
-        public static string ProductEntry_Button_Web {
-            get {
-                return ResourceManager.GetString("ProductEntry.Button.Web", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Verwijder geselecteerde regel.
         /// </summary>
         public static string ProductEntry_Toolbar_Button_Delete {
