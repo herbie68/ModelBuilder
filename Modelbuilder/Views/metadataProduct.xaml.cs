@@ -287,6 +287,7 @@ public partial class metadataProduct : Page
         valueProductSupplierCurrencyId.Text = Row_Selected["Currency_Id"].ToString();
         inpSupplierProductNumber.Text = Row_Selected["ProductNumber"].ToString();
         inpSupplierProductName.Text = Row_Selected["Name"].ToString();
+        inpSupplierProductUrl.Text = Row_Selected["Url"].ToString();
         inpSupplierProductPrice.Text = _ProductPrice.ToString("#,##0.00;- #,##0.00");
         inpSupplierProductUrl.Text = Row_Selected["Url"].ToString();
         if (Row_Selected["DefaultSupplier"].ToString() == "*")
@@ -493,12 +494,13 @@ public partial class metadataProduct : Page
 
         InitializeHelper();
 
-        _helperGeneral.InsertInTable ( HelperGeneral.DbProductSupplierTable, new string[7, 3]
+        _helperGeneral.InsertInTable ( HelperGeneral.DbProductSupplierTable, new string[8, 3]
             {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
                 { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
                 { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
                 { HelperGeneral.DbProductSupplierTableFieldNameProductNumber, HelperGeneral.DbProductSupplierTableFieldTypeProductNumber, inpSupplierProductNumber.Text},
                 { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
+                { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
                 { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
                 { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, Default} } );
 
@@ -584,7 +586,7 @@ public partial class metadataProduct : Page
     #endregion Delete Data button (on SupplierToolbar)
 
     #region Toolbar Reset button pressed 
-    private void BtnResetProduct(object sender, RoutedEventArgs e)
+    private void ToolbarButtonReset(object sender, RoutedEventArgs e)
     {
         ClearAllFields();
         InitializeComponent();
@@ -592,7 +594,7 @@ public partial class metadataProduct : Page
     #endregion Toolbar Reset button pressed
 
     #region Goto Web browser
-    private void ButtonWeb(object sender, RoutedEventArgs e)
+    private void Button2Web(object sender, RoutedEventArgs e)
     {
         var browserwindow = new System.Diagnostics.ProcessStartInfo();
         browserwindow.UseShellExecute = true;
@@ -600,6 +602,7 @@ public partial class metadataProduct : Page
         System.Diagnostics.Process.Start(browserwindow);
     }
     #endregion Goto Web browser
+
     #region Update row Product Table
     private void UpdateRowProduct()
     {
@@ -663,14 +666,15 @@ public partial class metadataProduct : Page
 
         string result = string.Empty;
         _helperGeneral.UpdateFieldInTable ( HelperGeneral.DbProductSupplierTable, new string[1, 3]
-        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[8, 3]
+        {   { HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductSupplierId.Text} }, new string[9, 3]
         {   { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueProductSupplierSupplierId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameCurrencyId, HelperGeneral.DbProductSupplierTableFieldTypeCurrencyId, valueProductSupplierCurrencyId.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductNumber, HelperGeneral.DbProductSupplierTableFieldTypeProductNumber, inpSupplierProductNumber.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameProductName, HelperGeneral.DbProductSupplierTableFieldTypeProductName, inpSupplierProductName.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, inpSupplierProductPrice.Text.Replace ( "€", "" ).Replace ( " ", "" )},
-            { HelperGeneral.DbProductSupplierTableFieldNameUrl, HelperGeneral.DbProductSupplierTableFieldTypeUrl, inpSupplierProductUrl.Text},
+            { HelperGeneral.DbProductSupplierTableFieldNameProductUrl, HelperGeneral.DbProductSupplierTableFieldTypeProductUrl, inpSupplierProductUrl.Text},
             { HelperGeneral.DbProductSupplierTableFieldNameDefaultSupplier, HelperGeneral.DbProductSupplierTableFieldTypeDefaultSupplier, productSupplierDefault} } );
 
         UpdateStatus (result);
@@ -728,6 +732,14 @@ public partial class metadataProduct : Page
 
     }
     #endregion
+
+    private void ButtonWeb(object sender, RoutedEventArgs e)
+    {
+        var browserwindow = new System.Diagnostics.ProcessStartInfo();
+        browserwindow.UseShellExecute = true;
+        browserwindow.FileName = inpSupplierProductUrl.Text;
+        System.Diagnostics.Process.Start(browserwindow);
+    }
 
     #region Update status
     private void UpdateStatus(string msg)

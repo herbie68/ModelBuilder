@@ -1069,8 +1069,8 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataProduct.Tab.General.TabItem.Project.Title" xml:space="preserve">
     <value>Projectgegevens</value>
   </data>
-  <data name="metadataProduct.Tab.General.TabItem.Project.Field." xml:space="preserve">
-    <value>Projectkosten</value>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts" xml:space="preserve">
+    <value>Projektkosten</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Image.Button.New.Tooltip" xml:space="preserve">
     <value>Bild hinzufügen</value>
@@ -1246,7 +1246,16 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="toolbarButton.Paragraph.Outdent" xml:space="preserve">
     <value>Terugspringen</value>
   </data>
-  <data name="ProductEntry.Button.Web" xml:space="preserve">
-    <value>Website</value>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.CostPrice" xml:space="preserve">
+    <value>Kostprijs</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts.Tooltip" xml:space="preserve">
+    <value>Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip" xml:space="preserve">
+    <value>Website product bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
+    <value>Website product</value>
   </data>
 </root>

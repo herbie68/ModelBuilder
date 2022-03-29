@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:Modelbuilder"
       xmlns:p="clr-namespace:Modelbuilder.Languages"
       mc:Ignorable="d" 
-      Title="metadataProduct"
       d:DesignHeight="800" d:DesignWidth="1600"
-      mc:Ignorable="d">
-
+      Title="metadataProduct">
+    
     <!--#region Page resources-->
     <Page.Resources>
         <DataTemplate x:Key="CategoryComboTemplate">
@@ -73,7 +72,8 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
                            Style="{DynamicResource Title}"
-                           Text="Artikelen" />
+                           Text="{x:Static p:Cultures.metadataProduct_Page_Title}" />
+
 
                 <!--#region Hiddenfields-->
                 <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
@@ -111,7 +111,7 @@
             <!--#region Definition of the tabpages-->
             <TabControl Height="360" Style="{DynamicResource Default TabControl}">
                 <!--#region Tabpage for general information-->
-                <TabItem Header="Basisgegevens" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Title}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*" />
@@ -124,7 +124,7 @@
                                 <GroupBox.Header>
                                     <StackPanel Background="Transparent" Orientation="Horizontal">
                                         <Image Source="\Resources\metadataProducts.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Productgegevens" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Title}" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
@@ -144,7 +144,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Zoeknaam" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Field_Code}" />
                                     <TextBox x:Name="inpProductCode"
                                              Grid.Row="1" Grid.Column="0"
                                              Width="230"
@@ -154,7 +154,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Merk" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Field_Brand}" />
                                     <ComboBox x:Name="cboxProductBrand"
                                               Grid.Row="1" Grid.Column="1"
                                               Width="350"
@@ -170,7 +170,7 @@
                                     <TextBlock Grid.Row="2" Grid.Column="0"
                                                Grid.ColumnSpan="2"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Productnaam" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Field_Name}" />
                                     <TextBox x:Name="inpProductName"
                                              Grid.Row="3" Grid.Column="0"
                                              Grid.ColumnSpan="2"
@@ -181,7 +181,7 @@
                                     <TextBlock Grid.Row="4" Grid.Column="0"
                                                Grid.ColumnSpan="2"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Categorie" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Product_Field_Category}" />
                                     <ComboBox x:Name="cboxProductCategory"
                                               Grid.Row="5" Grid.Column="0"
                                               Grid.ColumnSpan="2"
@@ -199,7 +199,7 @@
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="\Resources\storageManagement.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Voorraadgegevens" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Title}" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
@@ -221,7 +221,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Minimale voorraad" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Field_MinimalStorage}" />
                                     <TextBox x:Name="inpProductMinimalStock"
                                              Grid.Row="1" Grid.Column="0"
                                              Width="100"
@@ -230,7 +230,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Bestelhoeveelheid" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Field_OrderQuantity}" />
                                     <TextBox x:Name="inpProductStandardOrderQuantity"
                                              Grid.Row="1" Grid.Column="1"
                                              Width="100"
@@ -239,7 +239,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="2"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Verpakkingseenheid" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Field_Unit}" />
                                     <ComboBox x:Name="cboxProductUnit"
                                               Grid.Row="1" Grid.Column="2"
                                               Width="120"
@@ -250,7 +250,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="3"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Afmetingen" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Field_Dimensions}" />
                                     <TextBox x:Name="inpProductDimensions"
                                              Grid.Row="1" Grid.Column="3"
                                              Width="170"
@@ -260,7 +260,7 @@
                                     <TextBlock Grid.Row="4" Grid.Column="0"
                                                Grid.ColumnSpan="3"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Voorraadlocatie" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Storage_Field_StorageLocation}" />
                                     <ComboBox x:Name="cboxProductStorage"
                                               Grid.Row="5" Grid.Column="0"
                                               Grid.ColumnSpan="4"
@@ -279,7 +279,7 @@
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="\Resources\projectManagement.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Projectgegevens" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Project_Title}" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
@@ -294,7 +294,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Kostprijs" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Project_Field_CostPrice}" />
 
                                     <TextBox x:Name="inpProductPrice"
                                              Grid.Row="1"
@@ -304,7 +304,8 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Projectkosten" ToolTip="Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Project_Field_ProjectCosts}"
+                                               ToolTip="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Project_Field_ProjectCosts_Tooltip}" />
                                     <CheckBox x:Name="chkProjectProjectCosts"
                                               Grid.Row="1" Grid.Column="1"
                                               Style="{DynamicResource DefaultCheckBox}" />
@@ -325,16 +326,19 @@
                             <ToolBarTray Style="{DynamicResource ImageToolBarTray}">
                                 <ToolBar Style="{DynamicResource ImageToolBar}">
                                     <Button VerticalAlignment="Top"
-                                            Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen">
+                                            Click="ImageAdd"
+                                            ToolTip="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Image_Button_New_Tooltip}">
                                         <Image Style="{DynamicResource ToolBarAddIcon}" />
                                     </Button>
                                     <Button VerticalAlignment="Top"
-                                            Click="ImageDelete" ToolTip="Afbeelding verwijderen">
+                                            Click="ImageDelete"
+                                            ToolTip="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Image_Button_Delete_Tooltip}">
                                         <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                                     </Button>
                                     <Separator Style="{DynamicResource ImageToolBarSeperator}" />
                                     <Button VerticalAlignment="Top"
-                                            Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien">
+                                            Click="ImageRotate"
+                                            ToolTip="{x:Static p:Cultures.metadataProduct_Tab_General_TabItem_Image_Button_Rotate_Tooltip}">
                                         <Image Style="{DynamicResource ToolBarRotateIcon}" />
                                     </Button>
 
@@ -347,55 +351,59 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="Uitgebreide omschrijving" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProduct_Tab_Memo_Title}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
                         <ToolBarTray Margin="5,5,5,0" Style="{DynamicResource RtfToolBarTray}">
                             <ToolBar Style="{DynamicResource RtfToolBar}">
                                 <Button VerticalAlignment="Top"
-                                        Command="ApplicationCommands.Cut" ToolTip="Knippen">
+                                        Command="ApplicationCommands.Cut"
+                                        ToolTip="{x:Static p:Cultures.toolbarButton_Text_Cut}">
                                     <Image Style="{DynamicResource RtfToolBarCutIcon}" />
                                 </Button>
-                                <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
+                                <Button Command="ApplicationCommands.Copy" ToolTip="{x:Static p:Cultures.toolbarButton_Text_Copy}">
                                     <Image Style="{DynamicResource RtfToolBarCopyIcon}" />
                                 </Button>
-                                <Button Command="ApplicationCommands.Paste" ToolTip="Plak">
+                                <Button Command="ApplicationCommands.Paste" ToolTip="{x:Static p:Cultures.toolbarButton_Text_Paste}">
                                     <Image Style="{DynamicResource RtfToolBarPasteIcon}" />
                                 </Button>
-                                <Button Command="ApplicationCommands.Undo" ToolTip="Ongedaan maken">
+                                <Button Command="ApplicationCommands.Undo" ToolTip="{x:Static p:Cultures.toolbarButton_Text_Undo}">
                                     <Image Style="{DynamicResource RtfToolBarUndoIcon}" />
                                 </Button>
-                                <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
+                                <Button Command="ApplicationCommands.Redo" ToolTip="{x:Static p:Cultures.toolbarButton_Text_Redo}">
                                     <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
                                 </Button>
                                 <Separator />
 
                                 <Button x:Name="ToolStripButtonBold"
-                                        Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                        Command="EditingCommands.ToggleBold"
+                                        ToolTip="{x:Static p:Cultures.toolbarButton_Font_Bold}">
                                     <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
                                 </Button>
                                 <Button x:Name="ToolStripButtonItalic"
-                                        Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                        Command="EditingCommands.ToggleItalic"
+                                        ToolTip="{x:Static p:Cultures.toolbarButton_Font_Italic}">
                                     <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
                                 </Button>
                                 <Button x:Name="ToolStripButtonUnderline"
-                                        Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                        Command="EditingCommands.ToggleUnderline"
+                                        ToolTip="{x:Static p:Cultures.toolbarButton_Font_Underline}">
                                     <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
                                 </Button>
                                 <Separator />
 
-                                <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
+                                <Button Command="EditingCommands.ToggleBullets" ToolTip="{x:Static p:Cultures.toolbarButton_List_Bullet}">
                                     <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
                                 </Button>
-                                <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
+                                <Button Command="EditingCommands.ToggleNumbering" ToolTip="{x:Static p:Cultures.toolbarButton_List_Number}">
                                     <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
                                 </Button>
                                 <Separator />
 
-                                <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
+                                <Button Command="EditingCommands.IncreaseIndentation" ToolTip="{x:Static p:Cultures.toolbarButton_Paragraph_Indent}">
                                     <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
                                 </Button>
-                                <Button Command="EditingCommands.DecreaseIndentation" ToolTip="Terugspringen">
+                                <Button Command="EditingCommands.DecreaseIndentation" ToolTip="{x:Static p:Cultures.toolbarButton_Paragraph_Outdent}">
                                     <Image Style="{DynamicResource RtfToolBarIndentRemoveIcon}" />
                                 </Button>
                             </ToolBar>
@@ -422,7 +430,8 @@
 
                 <!--#region Tabpage for product per supplier information-->
                 <TabItem x:Name="SupplierTab"
-                         Header="Leveranciers" IsEnabled="False"
+                         Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Title}"
+                         IsEnabled="False"
                          Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -436,7 +445,7 @@
                                 <GroupBox.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="\Resources\metadataSupplier.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Artikel informatie per leverancier" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Title}" />
                                     </StackPanel>
                                 </GroupBox.Header>
 
@@ -458,7 +467,7 @@
 
                                     <TextBlock Grid.Row="0"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Leverancier" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_Supplier}" />
                                     <ComboBox x:Name="cboxProductSupplier"
                                               Grid.Row="1"
                                               Width="360"
@@ -474,7 +483,7 @@
 
                                     <TextBlock Grid.Row="2"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Artikelnummer bij leverancier" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierCode}" />
                                     <TextBox x:Name="inpSupplierProductNumber"
                                              Grid.Row="3"
                                              Width="360"
@@ -483,7 +492,7 @@
 
                                     <TextBlock Grid.Row="4"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Omschrijving" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierDescription}" />
                                     <TextBox x:Name="inpSupplierProductName"
                                              Grid.Row="5"
                                              Width="360"
@@ -492,7 +501,7 @@
 
                                     <TextBlock Grid.Row="6"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Prijs" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierPrice}" />
                                     <StackPanel Grid.Row="7" Orientation="Horizontal">
                                         <TextBox x:Name="dispProductSupplierCurrencySymbol"
                                                  Width="15"
@@ -508,23 +517,27 @@
                                                  IsEnabled="True"
                                                  Style="{DynamicResource DefaultTextBox}" />
                                     </StackPanel>
+
                                     <TextBlock Grid.Row="8"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Url naar productpagina" />
-                                    <StackPanel Grid.Row="9" Orientation="Horizontal">
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_Url}" />
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="9" Grid.ColumnSpan="2" >
                                         <TextBox x:Name="inpSupplierProductUrl"
-                                                 Width="530" TextWrapping="NoWrap"
-                                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center"
-                                                 IsEnabled="True"
-                                                 Style="{DynamicResource DefaultTextBox}" />
-                                        <TextBlock Text="   "/>
-                                        <Button x:Name="btnGotoWeb" Click="ButtonWeb" ToolTip="{x:Static p:Cultures.ProductEntry_Button_Web}" VerticalAlignment="Center">
-                                            <Image IsEnabled="False" Style="{DynamicResource GotoWebIcon}" Width="21"/>
-                                        </Button> 
+                                             Grid.Row="9"
+                                             Width="360"
+                                             IsEnabled="True"
+                                             ToolTip="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tooltip}"
+                                             Style="{DynamicResource DefaultTextBox}" />
+
+                                        <TextBlock Width="4"/>
+                                        <Button x:Name="btnGotoWeb" Click="ButtonWeb" ToolTip="Ga naar de leverancierswebsite" Width="AUTO" HorizontalContentAlignment="Center">
+                                            <Image IsEnabled="False" Style="{DynamicResource GotoWebIcon}" Width="21" HorizontalAlignment="Center"/>
+                                        </Button>
                                     </StackPanel>
+
                                     <TextBlock Grid.Row="10"
                                                Style="{DynamicResource DefaultTextBlock}"
-                                               Text="Standaard leverancier" />
+                                               Text="{x:Static p:Cultures.metadataProduct_Tab_Supplier_TabItem_General_Field_DefaultSupplier}" />
                                     <CheckBox x:Name="chkSupplierDefault"
                                               Grid.Row="11"
                                               IsEnabled="True"
@@ -547,16 +560,19 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="70"
                                                         Binding="{Binding ProductId}"
-                                                        Header="ID" Visibility="Hidden" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_ProductId}"
+                                                        Visibility="Hidden" />
                                     <DataGridTextColumn Width="70"
                                                         Binding="{Binding SupplierId}"
-                                                        Header="Supplier_Id" Visibility="Hidden" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_SupplierId}"
+                                                        Visibility="Hidden" />
                                     <DataGridTextColumn Width="70"
                                                         Binding="{Binding CurrencyId}"
-                                                        Header="Currency_Id" Visibility="Hidden" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_CurrencyId}"
+                                                        Visibility="Hidden" />
                                     <DataGridTextColumn Width="30"
                                                         Binding="{Binding DefaultSupplier}"
-                                                        Header="Std">
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_Default}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -566,19 +582,19 @@
                                     </DataGridTextColumn>
                                     <DataGridTextColumn Width="170"
                                                         Binding="{Binding SupplierName}"
-                                                        Header="Leverancier" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_Supplier}" />
                                     <DataGridTextColumn Width="100"
                                                         Binding="{Binding ProductNumber}"
-                                                        Header="Artikelnummer" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_ProductNumber}" />
                                     <DataGridTextColumn Width="*"
                                                         Binding="{Binding Name}"
-                                                        Header="Omschrijving" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_Description}" />
                                     <DataGridTextColumn Width="50"
                                                         Binding="{Binding CurrencySymbol}"
-                                                        Header="Valuta" />
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_Currency}" />
                                     <DataGridTextColumn Width="80"
                                                         Binding="{Binding Price, StringFormat={}{0:n2}}"
-                                                        Header="Prijs">
+                                                        Header="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Datagrid_Header_Price}">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -594,15 +610,18 @@
                                 <ToolBarTray Style="{DynamicResource DefaultToolBarTray}">
                                     <ToolBar x:Name="supplierToolbar" Style="{DynamicResource DefaultToolBar}">
                                         <Button x:Name="btnNewProductSupplier"
-                                                Click="supplierToolbarButtonNew" ToolTip="Leverancier voor product toevoegen">
+                                                Click="supplierToolbarButtonNew"
+                                                ToolTip="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Toolbar_Button_New_Tooltip}">
                                             <Image IsEnabled="False" Style="{DynamicResource ToolBarAddIcon}" />
                                         </Button>
                                         <Button x:Name="btnSaveProductSupplier"
-                                                Click="SupplierToolbarButtonSave" ToolTip="Wijzigingen opslaan">
+                                                Click="SupplierToolbarButtonSave"
+                                                ToolTip="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Toolbar_Button_Save_Tooltip}">
                                             <Image IsEnabled="False" Style="{DynamicResource ToolBarSaveIcon}" />
                                         </Button>
                                         <Button x:Name="btnDeleteProductSupplier"
-                                                Click="SupplierToolbarButtonDelete" ToolTip="Leverancier verwijderen uit de tabel">
+                                                Click="SupplierToolbarButtonDelete"
+                                                ToolTip="{x:Static p:Cultures.metadataProduct_Tab_Supplier_Toolbar_Button_Delete_Tooltip}">
                                             <Image IsEnabled="False" Style="{DynamicResource ToolBarDeleteIcon}" />
                                         </Button>
                                     </ToolBar>
@@ -616,7 +635,7 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for storage history [not yet implemented]-->
-                <TabItem Header="Voorraadhistorie" Style="{DynamicResource Default TabItem}">
+                <TabItem Header="{x:Static p:Cultures.metadataProduct_Tab_StorageHistory_Title}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <TextBlock Margin="10,10,0,0"
                                    Foreground="Red"
@@ -633,23 +652,22 @@
                 <ToolBar x:Name="generalToolbar" Style="{DynamicResource DefaultToolBar}">
                     <Button x:Name="btnNewProduct"
                             Click="ToolbarButtonNew"
-                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_New}">
+                            ToolTip="{x:Static p:Cultures.metadataProduct_Product_Toolbar_Button_New_Tooltip}">
                         <Image IsEnabled="False" Style="{DynamicResource ToolBarAddIcon}" />
                     </Button>
                     <Button x:Name="btnSaveProduct"
                             Click="ToolbarButtonSave"
-                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Save}">
+                            ToolTip="{x:Static p:Cultures.metadataProduct_Product_Toolbar_Button_Save_Tooltip}">
                         <Image IsEnabled="False" Style="{DynamicResource ToolBarSaveIcon}" />
                     </Button>
                     <Button x:Name="btnDeleteProduct"
                             Click="ToolbarButtonDelete"
-                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Delete}">
+                            ToolTip="{x:Static p:Cultures.metadataProduct_Product_Toolbar_Button_Delete_Tooltip}">
                         <Image IsEnabled="False" Style="{DynamicResource ToolBarDeleteIcon}" />
                     </Button>
-                    <Button x:Name="ToolbarButtonReset"
-                            Padding="0"
-                            Click="BtnResetProduct"
-                            ToolTip="{x:Static p:Cultures.ProductEntry_Toolbar_Button_Reset}">
+                    <Button x:Name="btnResetProduct"
+                            Click="ToolbarButtonReset"
+                            ToolTip="{x:Static p:Cultures.metadataProduct_Product_Toolbar_Button_Reset_Tooltip}">
                         <Image Style="{DynamicResource ToolBarResetIcon}" Visibility="{Binding ElementName=TBResetButtonEnable, Path=Text}" />
                     </Button>
                 </ToolBar>
@@ -659,14 +677,13 @@
             <!--#region Datagrid definition-->
             <!--  d:ItemSource="{d:SampleData" will show Sample Data during design, is ignored on build  -->
             <DataGrid x:Name="ProductCode_DataGrid"
-                      Height="140"
+                      Height="285"
                       Margin="5,0" Padding="3"
                       d:ItemsSource="{d:SampleData}"
                       IsReadOnly="True"
                       ItemsSource="{Binding}"
                       SelectionChanged="ProductCode_DataGrid_SelectionChanged"
-                      Style="{DynamicResource DefaultDataGrid}"
-                      VerticalScrollBarVisibility="Auto">
+                      Style="{DynamicResource DefaultDataGrid}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding Id}"

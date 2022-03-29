@@ -295,7 +295,8 @@
         <Style x:Key="GotoWebIcon" TargetType="Image">
             <Setter Property="Source" Value=".\Resources\btnWeb.png" />
             <Setter Property="Height" Value="21" />
-            <Setter Property="Width" Value="21" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
 
         <!--#endregion  Button Icon resources-->

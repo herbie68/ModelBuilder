@@ -1069,8 +1069,8 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataProduct.Tab.General.TabItem.Project.Title" xml:space="preserve">
     <value>Projekt Details</value>
   </data>
-  <data name="metadataProduct.Tab.General.TabItem.Project.Field." xml:space="preserve">
-    <value>Projektkosten</value>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts" xml:space="preserve">
+    <value>Projectkosten</value>
   </data>
   <data name="metadataProduct.Tab.General.TabItem.Image.Button.New.Tooltip" xml:space="preserve">
     <value>Afbeelding toevoegen</value>
@@ -1246,7 +1246,17 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="toolbarButton.Paragraph.Outdent" xml:space="preserve">
     <value>Einzug verringern</value>
   </data>
-  <data name="ProductEntry.Button.Web" xml:space="preserve">
-    <value>Website</value>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.CostPrice" xml:space="preserve">
+    <value>Anschaffungskosten</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.ProjectCosts.Tooltip" xml:space="preserve">
+    <value>Müssen die Kosten dieses Artikels in die Projektkosten eingerechnet werden (nein wenn z.B. Werkzeuge oder Inventar)</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip" xml:space="preserve">
+    <value>Website für das produkt beim lieferanten</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
+    <value>Website produkt</value>
+
   </data>
 </root>
