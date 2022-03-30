@@ -1,13 +1,10 @@
 ﻿<Page x:Class="Modelbuilder.metadataCurrency"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:p="clr-namespace:Modelbuilder.Languages"
-      xmlns:local="clr-namespace:Modelbuilder"
-      mc:Ignorable="d"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      Title="metadataCurrency"
       d:DesignHeight="800" d:DesignWidth="1000"
-      Title="metadataCurrency">
+      mc:Ignorable="d">
 
     <Grid Margin="0,2,0,-2">
         <!--  Title of the page  -->
@@ -19,40 +16,80 @@
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyName}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,146,0,0" Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRate}" />
+        <Label Margin="20,68,0,0"
+               Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label Margin="20,94,0,0"
+               Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyName}"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label Margin="20,120,0,0"
+               Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label Margin="20,146,0,0"
+               Content="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRate}"
+               Style="{DynamicResource DefaultLabel}" />
 
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyCode"      Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencyName"      Width="450" Margin="170,97,0,0" />
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCurrencySymbol"    Width="50"  Margin="170,123,0,0" />
-        <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpCurrencyRate"  Width="50"  Margin="170,149,0,0" PreviewTextInput="NumberValidationTextBox" />
+        <TextBox x:Name="inpCurrencyCode"
+                 Width="50"
+                 Margin="170,71,0,0"
+                 CharacterCasing="Upper"
+                 Style="{DynamicResource DefaultTextBox}" />
+        <TextBox x:Name="inpCurrencyName"
+                 Width="450"
+                 Margin="170,97,0,0"
+                 Style="{DynamicResource DefaultTextBox}" />
+        <TextBox x:Name="inpCurrencySymbol"
+                 Width="50"
+                 Margin="170,123,0,0"
+                 Style="{DynamicResource DefaultTextBox}" />
+        <TextBox x:Name="inpCurrencyRate"
+                 Width="50"
+                 Margin="170,149,0,0"
+                 PreviewTextInput="NumberValidationTextBox"
+                 Style="{DynamicResource NumericTextBox}" />
 
-        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCurrencyId"    Margin="270,71,0,0" />
+        <TextBox x:Name="inpCurrencyId"
+                 Margin="270,71,0,0"
+                 Style="{DynamicResource HiddenTextBox}" />
 
-        <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,185,10,0">
-            <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Add}" Click="ToolbarButtonNew">
+        <ToolBarTray Margin="20,185,10,0" Style="{DynamicResource DefaultToolBarTray}">
+            <ToolBar x:Name="generalToolbar"
+                     Margin="10,5,10,5"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     Style="{DynamicResource DefaultToolBar}">
+                <Button Click="ToolbarButtonNew" ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Add}">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button ToolTip="L{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Delete}" Click="ToolbarButtonDelete">
+                <Button Click="ToolbarButtonDelete" ToolTip="L{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Delete}">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Save}" Click="ToolbarButtonSave">
+                <Button Click="ToolbarButtonSave" ToolTip="{x:Static p:Cultures.metadataCurrency_Toolbar_Button_Tooltip_Save}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
         </ToolBarTray>
 
-        <DataGrid x:Name="CurrencyCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                  Margin="10,226,10,0" SelectionChanged="CurrencyCode_DataGrid_SelectionChanged">
+        <DataGrid x:Name="CurrencyCode_DataGrid"
+                  Margin="10,226,10,0"
+                  ItemsSource="{Binding}"
+                  SelectionChanged="CurrencyCode_DataGrid_SelectionChanged"
+                  Style="{DynamicResource DefaultDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" Width="80" Binding="{Binding Code}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" Width="100" Binding="{Binding Symbol}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRateShort}" Width="90" Binding="{Binding ConversionRate}" />
-                <DataGridTextColumn Header="{x:Static p:Cultures.metadataCurrency_Field_Currency}" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="70"
+                                    Binding="{Binding Id}"
+                                    Header="ID" Visibility="Hidden" />
+                <DataGridTextColumn Width="80"
+                                    Binding="{Binding Code}"
+                                    Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyCode}" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Symbol}"
+                                    Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencySymbol}" />
+                <DataGridTextColumn Width="90"
+                                    Binding="{Binding ConversionRate}"
+                                    Header="{x:Static p:Cultures.metadataCurrency_Field_CurrencyRateShort}" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Name}"
+                                    Header="{x:Static p:Cultures.metadataCurrency_Field_Currency}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
