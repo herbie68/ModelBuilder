@@ -14,11 +14,7 @@ namespace Modelbuilder
         private DataTable _dt, _dtSC;
         private int _dbRowCount;
         private int _currentDataGridIndex;
-        private static readonly string DatabaseCountryTable = "country", DatabaseCurrencyTable = "currency";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="metadataSupplier"/> class.
-        /// </summary>
         public metadataSupplier()
         {
             var ContactTypeList = new List<HelperGeneral.ContactType>();

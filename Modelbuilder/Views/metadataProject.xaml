@@ -1,280 +1,393 @@
 ﻿<Page x:Class="Modelbuilder.Views.metadataProject"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:p="clr-namespace:Modelbuilder.Languages"
-      xmlns:local="clr-namespace:Modelbuilder.Views"
-      mc:Ignorable="d" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      Title="metadataProject"
       d:DesignHeight="800" d:DesignWidth="1000"
-      Title="metadataProject">
+      mc:Ignorable="d">
 
-    <Border Style="{DynamicResource MainBorder}" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+    <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Style="{DynamicResource MainBorder}">
         <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <!--region Title of the page  -->
+            <!--  region Title of the page  -->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Style="{DynamicResource Title}" Text="{x:Static p:Cultures.metadataProject_Page_Title}"/>
+                <TextBlock Grid.Column="0"
+                           Style="{DynamicResource Title}"
+                           Text="{x:Static p:Cultures.metadataProject_Page_Title}" />
 
                 <!--#region Hiddenfields-->
-                <!-- Don't remove next lines, are necesarry to store selected values for context menu actions -->
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueProjectId" />
-                    <TextBox Style="{DynamicResource HiddenTextBox}" x:Name="valueImageRotationAngle" Text="0"/>
+                <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="valueProjectId" Style="{DynamicResource HiddenTextBox}" />
+                    <TextBox x:Name="valueImageRotationAngle"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="0" />
                 </StackPanel>
-                <!-- End of "Do not remove" part-->
+                <!--  End of "Do not remove" part  -->
                 <!--#endregion-->
             </Grid>
-            <Path Style="{DynamicResource TitleLine}"/>
+            <Path Style="{DynamicResource TitleLine}" />
             <TabControl Height="450" Style="{DynamicResource Default TabControl}">
                 <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_General}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel HorizontalAlignment="Left"  Width="720">
+                        <StackPanel Width="720" HorizontalAlignment="Left">
                             <!--#region Genereal projectinformation-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
-                                    <StackPanel Orientation="Horizontal" Background="Transparent" >
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\projectManagement.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Algemene projectgegevens"/>
+                                    <StackPanel Background="Transparent" Orientation="Horizontal">
+                                        <Image Source="\Resources\projectManagement.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Algemene projectgegevens" />
                                     </StackPanel>
                                 </GroupBox.Header>
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="1.5*" />
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="7*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="0" Grid.Column="0" Text="Zoeknaam"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProjectCode" 
-                                             Grid.Row="1" Grid.Column="0" Width="200" CharacterCasing="Upper"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Zoeknaam" />
+                                    <TextBox x:Name="inpProjectCode"
+                                             Grid.Row="1" Grid.Column="0"
+                                             Width="200"
+                                             CharacterCasing="Upper"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="2" Grid.Column="0" Text="Omschrijving"/>
-                                    <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpProjectName" 
-                                             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Width="500"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Omschrijving" />
+                                    <TextBox x:Name="inpProjectName"
+                                             Grid.Row="3" Grid.Column="0"
+                                             Grid.ColumnSpan="3"
+                                             Width="500"
+                                             Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="4" Grid.Column="0" Text="Startdatum"/>
-                                    <DatePicker Style="{DynamicResource DefaultDataPicker}" x:Name="inpProjectStartdate" 
-                                             Grid.Row="5" Grid.Column="0" Width="150"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Startdatum" />
+                                    <DatePicker x:Name="inpProjectStartdate"
+                                                Grid.Row="5" Grid.Column="0"
+                                                Width="150"
+                                                Style="{DynamicResource DefaultDataPicker}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="4" Grid.Column="2" Visibility="Hidden" x:Name="lblProjectEndDate" Text="Einddatum"/>
-                                    <DatePicker Style="{DynamicResource DefaultDataPicker}" x:Name="inpProjectEnddate" 
-                                             Grid.Row="5" Grid.Column="2" Width="150" Visibility="Hidden"/>
+                                    <TextBlock x:Name="lblProjectEndDate"
+                                               Grid.Row="4" Grid.Column="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Einddatum" Visibility="Hidden" />
+                                    <DatePicker x:Name="inpProjectEnddate"
+                                                Grid.Row="5" Grid.Column="2"
+                                                Width="150"
+                                                Style="{DynamicResource DefaultDataPicker}"
+                                                Visibility="Hidden" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}" x:Name="lblExpEndDate"
-                                               Grid.Row="4" Grid.Column="2" Visibility="Visible" Text="Verwachte einddatum"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectExpEnddate" 
-                                                Grid.Row="5" Grid.Column="2" Width="150" Visibility="Visible"/>
+                                    <TextBlock x:Name="lblExpEndDate"
+                                               Grid.Row="4" Grid.Column="2"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Verwachte einddatum" Visibility="Visible" />
+                                    <TextBox x:Name="dispProjectExpEnddate"
+                                             Grid.Row="5" Grid.Column="2"
+                                             Width="150"
+                                             Style="{DynamicResource NonEditableTextBox}"
+                                             Visibility="Visible" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="6" Grid.Column="0" Text="Project voltooid"/>
-                                    <CheckBox Style="{DynamicResource DefaultCheckBox}" Checked="ProjectIsCompleted" Unchecked="ProjectIsCompleted"
-                                          Grid.Row="7" Grid.Column="0" x:Name="inpProjectClosed"/>
+                                    <TextBlock Grid.Row="6" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Project voltooid" />
+                                    <CheckBox x:Name="inpProjectClosed"
+                                              Grid.Row="7" Grid.Column="0"
+                                              Checked="ProjectIsCompleted"
+                                              Style="{DynamicResource DefaultCheckBox}"
+                                              Unchecked="ProjectIsCompleted" />
                                 </Grid>
 
                             </GroupBox>
                             <!--#endregion-->
-                            
+
                             <!--#region Time-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
-                                    <StackPanel Orientation="Horizontal" Background="Transparent" >
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\projectTime.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Totale bouwtijd"/>
+                                    <StackPanel Background="Transparent" Orientation="Horizontal">
+                                        <Image Source="\Resources\projectTime.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Totale bouwtijd" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width=".15*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width=".075*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width=".15*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width=".15*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width=".075*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width=".15*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Style="{DynamicResource TextBlockBold}"
-                                           Grid.Row="0" Grid.Column="0" Text="Voortgang"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               Style="{DynamicResource TextBlockBold}"
+                                               Text="Voortgang" />
 
-                                    <TextBlock Style="{DynamicResource TextBlockBold}"
-                                           Grid.Row="0" Grid.Column="5" Text="Verwachting"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="5"
+                                               Style="{DynamicResource TextBlockBold}"
+                                               Text="Verwachting" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="1" Grid.Column="0" Text="Bouwtijd:"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectBuildTime" 
-                                         Grid.Row="1" Grid.Column="1" Width="50"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectBuildTimeLong" 
-                                         Grid.Row="1" Grid.Column="3" Width="100"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Bouwtijd:" />
+                                    <TextBox x:Name="dispProjectBuildTime"
+                                             Grid.Row="1" Grid.Column="1"
+                                             Width="50"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                    <TextBox x:Name="dispProjectBuildTimeLong"
+                                             Grid.Row="1" Grid.Column="3"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="2" Grid.Column="0" Text="Werkdagen:"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectBuildDays" 
-                                         Grid.Row="2" Grid.Column="1" Width="50"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Werkdagen:" />
+                                    <TextBox x:Name="dispProjectBuildDays"
+                                             Grid.Row="2" Grid.Column="1"
+                                             Width="50"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="3" Grid.Column="0" Text="Kortste dag:"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectShortestDay" 
-                                         Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Right"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectShortestDayLong" 
-                                         Grid.Row="3" Grid.Column="3" Width="100"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Kortste dag:" />
+                                    <TextBox x:Name="dispProjectShortestDay"
+                                             Grid.Row="3" Grid.Column="1"
+                                             Width="100"
+                                             HorizontalAlignment="Right"
+                                             Style="{DynamicResource NonEditableTextBox}" />
+                                    <TextBox x:Name="dispProjectShortestDayLong"
+                                             Grid.Row="3" Grid.Column="3"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="4" Grid.Column="0" Text="Langste dag:"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectLongestDay" 
-                                         Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Right"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectLongestDayLong" 
-                                         Grid.Row="4" Grid.Column="3" Width="100"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Langste dag:" />
+                                    <TextBox x:Name="dispProjectLongestDay"
+                                             Grid.Row="4" Grid.Column="1"
+                                             Width="100"
+                                             HorizontalAlignment="Right"
+                                             Style="{DynamicResource NonEditableTextBox}" />
+                                    <TextBox x:Name="dispProjectLongestDayLong"
+                                             Grid.Row="4" Grid.Column="3"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="5" Grid.Column="0" Text="Uren per dag:"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectDaylyHours" 
-                                         Grid.Row="5" Grid.Column="1" Width="100" HorizontalAlignment="Right"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectDaylyHoursLong" 
-                                         Grid.Row="5" Grid.Column="3" Width="100"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="0"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Uren per dag:" />
+                                    <TextBox x:Name="dispProjectDaylyHours"
+                                             Grid.Row="5" Grid.Column="1"
+                                             Width="100"
+                                             HorizontalAlignment="Right"
+                                             Style="{DynamicResource NonEditableTextBox}" />
+                                    <TextBox x:Name="dispProjectDaylyHoursLong"
+                                             Grid.Row="5" Grid.Column="3"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="1" Grid.Column="5" Text="Verwachte bouwtijd:"/>
-                                    <TextBox Style="{DynamicResource NumericTextBox}" x:Name="inpProjectExpTime" 
-                                             Grid.Row="1" Grid.Column="6" Width="50" HorizontalAlignment="Right"/>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                               Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Text="(uren)" Width="37"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="5"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Verwachte bouwtijd:" />
+                                    <TextBox x:Name="inpProjectExpTime"
+                                             Grid.Row="1" Grid.Column="6"
+                                             Width="50"
+                                             HorizontalAlignment="Right"
+                                             Style="{DynamicResource NumericTextBox}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="7"
+                                               Grid.ColumnSpan="2"
+                                               Width="37"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="(uren)" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="2" Grid.Column="5" Text="Werkdagen:"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectExpBuildDays" 
-                                         Grid.Row="2" Grid.Column="6" Width="50"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectExpBuildDaysLong" 
-                                         Grid.Row="2" Grid.Column="8" Width="100"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="5"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Werkdagen:" />
+                                    <TextBox x:Name="dispProjectExpBuildDays"
+                                             Grid.Row="2" Grid.Column="6"
+                                             Width="50"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                    <TextBox x:Name="dispProjectExpBuildDaysLong"
+                                             Grid.Row="2" Grid.Column="8"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource TextBlockBold}"
-                                           Grid.Row="3" Grid.Column="5" Text="Nog te gaan:"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="5"
+                                               Style="{DynamicResource TextBlockBold}"
+                                               Text="Nog te gaan:" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="4" Grid.Column="5" Text="Uren:"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectToDoBuildTime" 
-                                         Grid.Row="4" Grid.Column="6" Width="50"/>
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}" x:Name="dispProjectToDoBuildTimeLong" 
-                                         Grid.Row="4" Grid.Column="8" Width="100"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="5"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Uren:" />
+                                    <TextBox x:Name="dispProjectToDoBuildTime"
+                                             Grid.Row="4" Grid.Column="6"
+                                             Width="50"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                    <TextBox x:Name="dispProjectToDoBuildTimeLong"
+                                             Grid.Row="4" Grid.Column="8"
+                                             Width="100"
+                                             Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="5" Grid.Column="5" Text="Dagen:"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectToDoBuildDays" 
-                                         Grid.Row="5" Grid.Column="6" Width="50"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="5"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Dagen:" />
+                                    <TextBox x:Name="dispProjectToDoBuildDays"
+                                             Grid.Row="5" Grid.Column="6"
+                                             Width="50"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
                                 </Grid>
                             </GroupBox>
                             <!--#endregion Time-->
-                            
+
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
-                                    <StackPanel Orientation="Horizontal" Background="Transparent" >
-                                        <Image Style="{DynamicResource ImageHeaderGroup}" Source="\Resources\projectExpenses.png"/>
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Totale kosten"/>
+                                    <StackPanel Background="Transparent" Orientation="Horizontal">
+                                        <Image Source="\Resources\projectExpenses.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="Totale kosten" />
                                     </StackPanel>
                                 </GroupBox.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width=".15*"/>
-                                        <ColumnDefinition Width=".65*"/>
-                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width=".15*" />
+                                        <ColumnDefinition Width=".65*" />
+                                        <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height=".15*"/>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height=".15*" />
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Materiaal kosten:"/>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="€"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectMaterialCosts" 
-                                         Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Width="100"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Materiaal kosten:" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="€" />
+                                    <TextBox x:Name="dispProjectMaterialCosts"
+                                             Grid.Row="0" Grid.Column="2"
+                                             Width="100"
+                                             VerticalAlignment="Center"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Uren:"/>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="€"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectHourCosts" 
-                                         Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="100"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Uren:" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="€" />
+                                    <TextBox x:Name="dispProjectHourCosts"
+                                             Grid.Row="1" Grid.Column="2"
+                                             Width="100"
+                                             VerticalAlignment="Center"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Totale kosten:"/>
-                                    <TextBlock Style="{DynamicResource DefaultTextBlock}"
-                                           Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="€"/>
-                                    <TextBox Style="{DynamicResource NonEditableNumericTextBox}" x:Name="dispProjectTotalCosts" 
-                                         Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="100"/>
-                                    <Rectangle Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}" 
-                                           Height=".25" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                           Stroke="Black" StrokeThickness="0.25"  />
-                                    <Rectangle Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}" 
-                                           Height=".25" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                           Stroke="Black" StrokeThickness="0.25"  />
+                                    <TextBlock Grid.Row="2" Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="Totale kosten:" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1"
+                                               HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Style="{DynamicResource DefaultTextBlock}"
+                                               Text="€" />
+                                    <TextBox x:Name="dispProjectTotalCosts"
+                                             Grid.Row="2" Grid.Column="2"
+                                             Width="100"
+                                             VerticalAlignment="Center"
+                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                    <Rectangle Grid.Row="2" Grid.Column="2"
+                                               Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
+                                               Height=".25"
+                                               HorizontalAlignment="Right" VerticalAlignment="Top"
+                                               Stroke="Black" StrokeThickness="0.25" />
+                                    <Rectangle Grid.Row="2" Grid.Column="2"
+                                               Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
+                                               Height=".25"
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               Stroke="Black" StrokeThickness="0.25" />
 
-                                    <TextBox Style="{DynamicResource NonEditableTextBox}"
-                                           Grid.Row="3" Grid.Column="2" Height="1" Width="100" Text="" x:Name="Spacer" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                                    <Rectangle Width="{Binding ActualWidth, ElementName=Spacer}" 
-                                           Height=".25" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                           Stroke="Black" StrokeThickness="0.25"  />
+                                    <TextBox x:Name="Spacer"
+                                             Grid.Row="3" Grid.Column="2"
+                                             Width="100" Height="1"
+                                             HorizontalAlignment="Right" VerticalAlignment="Center"
+                                             Style="{DynamicResource NonEditableTextBox}"
+                                             Text="" />
+                                    <Rectangle Grid.Row="3" Grid.Column="2"
+                                               Width="{Binding ActualWidth, ElementName=Spacer}"
+                                               Height=".25"
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               Stroke="Black" StrokeThickness="0.25" />
 
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
-                        
+
                         <!--#region Product Image block-->
                         <StackPanel Grid.Column="1" Margin="5">
-                            <Border Style="{DynamicResource ImageBorder}" Height="230" Width="230" Margin="2">
-                                <Image Style="{DynamicResource ProductImage}" x:Name="imgProjectImage" Source="/Resources/noImage.png"/>
+                            <Border Width="230" Height="230"
+                                    Margin="2"
+                                    Style="{DynamicResource ImageBorder}">
+                                <Image x:Name="imgProjectImage"
+                                       Source="/Resources/noImage.png"
+                                       Style="{DynamicResource ProductImage}" />
                             </Border>
                             <ToolBarTray Style="{DynamicResource ImageToolBarTray}">
                                 <ToolBar Style="{DynamicResource ImageToolBar}">
-                                    <Button Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarAddIcon}"/>
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageAdd" ToolTip="Afbeelding toevoegen/wijzigen">
+                                        <Image Style="{DynamicResource ToolBarAddIcon}" />
                                     </Button>
-                                    <Button Click="ImageDelete" ToolTip="Afbeelding verwijderen" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarDeleteIcon}"/>
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageDelete" ToolTip="Afbeelding verwijderen">
+                                        <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                                     </Button>
-                                    <Separator Style="{DynamicResource ImageToolBarSeperator}"/>
-                                    <Button Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien" VerticalAlignment="Top">
-                                        <Image Style="{DynamicResource ToolBarRotateIcon}"/>
+                                    <Separator Style="{DynamicResource ImageToolBarSeperator}" />
+                                    <Button VerticalAlignment="Top"
+                                            Click="ImageRotate" ToolTip="Afbeelding kwartslag draaien">
+                                        <Image Style="{DynamicResource ToolBarRotateIcon}" />
                                     </Button>
                                 </ToolBar>
                             </ToolBarTray>
@@ -292,12 +405,16 @@
                 <!--#endregion-->
 
                 <!--#region Tabpage for memo field-->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}" x:Name="MemoTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <TabItem x:Name="MemoTab"
+                         Header="{x:Static p:Cultures.metadataProject_TabItemHeader_Memo}"
+                         IsEnabled="False"
+                         Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <!--#region Toolbar memo field-->
-                        <ToolBarTray Style="{DynamicResource RtfToolBarTray}" Margin="5,5,5,0">
+                        <ToolBarTray Margin="5,5,5,0" Style="{DynamicResource RtfToolBarTray}">
                             <ToolBar Style="{DynamicResource RtfToolBar}">
-                                <Button Command="ApplicationCommands.Cut" ToolTip="Knippen" VerticalAlignment="Top">
+                                <Button VerticalAlignment="Top"
+                                        Command="ApplicationCommands.Cut" ToolTip="Knippen">
                                     <Image Style="{DynamicResource RtfToolBarCutIcon}" />
                                 </Button>
                                 <Button Command="ApplicationCommands.Copy" ToolTip="Kopieer">
@@ -312,18 +429,21 @@
                                 <Button Command="ApplicationCommands.Redo" ToolTip="Opnieuw">
                                     <Image Style="{DynamicResource RtfToolBarRedoIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
-                                <Button x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Vet">
+                                <Button x:Name="ToolStripButtonBold"
+                                        Command="EditingCommands.ToggleBold" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarBoldIcon}" />
                                 </Button>
-                                <Button x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
+                                <Button x:Name="ToolStripButtonItalic"
+                                        Command="EditingCommands.ToggleItalic" ToolTip="Cursief">
                                     <Image Style="{DynamicResource RtfToolBarItalicIcon}" />
                                 </Button>
-                                <Button x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
+                                <Button x:Name="ToolStripButtonUnderline"
+                                        Command="EditingCommands.ToggleUnderline" ToolTip="Vet">
                                     <Image Style="{DynamicResource RtfToolBarUnderlineIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
                                 <Button Command="EditingCommands.ToggleBullets" ToolTip="Lijst">
                                     <Image Style="{DynamicResource RtfToolBarBulletListIcon}" />
@@ -331,7 +451,7 @@
                                 <Button Command="EditingCommands.ToggleNumbering" ToolTip="Genummerde lijst">
                                     <Image Style="{DynamicResource RtfToolBarNumbersListIcon}" />
                                 </Button>
-                                <Separator/>
+                                <Separator />
 
                                 <Button Command="EditingCommands.IncreaseIndentation" ToolTip="Inspringen">
                                     <Image Style="{DynamicResource RtfToolBarIndentIcon}" />
@@ -341,15 +461,17 @@
                                 </Button>
                             </ToolBar>
                         </ToolBarTray>
-                        <!--#end region Toolbar memo field-->
-                        
+                        <!--  #end region Toolbar memo field  -->
+
                         <!--#region Memo field-->
-                        <RichTextBox x:Name="inpProjectMemo" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" 
-                                     HorizontalScrollBarVisibility="Auto" VerticalAlignment="Top" 
-                                     Margin="5,35,5,0" Height="365" Width="Auto">
+                        <RichTextBox x:Name="inpProjectMemo"
+                                     Width="Auto" Height="365"
+                                     Margin="5,35,5,0" HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <FlowDocument x:Name="inpProjectMemoFD">
                                 <Paragraph>
-                                    <Run Text=""/>
+                                    <Run Text="" />
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
@@ -357,17 +479,29 @@
                     </Grid>
                 </TabItem>
                 <!--#endregion Tabpage for memo field-->
-                
-                <!--#region Tabpage for time information -->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}" x:Name="TimeTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+
+                <!--#region Tabpage for time information-->
+                <TabItem x:Name="TimeTab"
+                         Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}"
+                         IsEnabled="False"
+                         Style="{DynamicResource Default TabItem}">
                     <Grid>
-                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
+                        <TextBlock Margin="10,10,0,0"
+                                   Foreground="Red"
+                                   Style="{DynamicResource DefaultTextBlock}"
+                                   Text="Nog niet geïmplementeerd" />
                     </Grid>
                 </TabItem>
-                <!--#region Tabpage for project costs information -->
-                <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}" x:Name="CostsTab" IsEnabled="False" Style="{DynamicResource Default TabItem}">
+                <!--#region Tabpage for project costs information-->
+                <TabItem x:Name="CostsTab"
+                         Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}"
+                         IsEnabled="False"
+                         Style="{DynamicResource Default TabItem}">
                     <Grid>
-                        <TextBlock Style="{DynamicResource DefaultTextBlock}" Text="Nog niet geïmplementeerd" Margin="10,10,0,0" Foreground="Red"/>
+                        <TextBlock Margin="10,10,0,0"
+                                   Foreground="Red"
+                                   Style="{DynamicResource DefaultTextBlock}"
+                                   Text="Nog niet geïmplementeerd" />
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -376,47 +510,66 @@
             <!--#region Definition of the tabpages-->
 
             <!--#region Toolbar for datagrid-->
-            <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="5">
-                <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar">
-                    <Button ToolTip="Project toevoegen" Click="ToolbarButtonNew">
+            <ToolBarTray Margin="5" Style="{DynamicResource DefaultToolBarTray}">
+                <ToolBar x:Name="generalToolbar" Style="{DynamicResource DefaultToolBar}">
+                    <Button Click="ToolbarButtonNew" ToolTip="Project toevoegen">
                         <Image Style="{DynamicResource ToolBarAddIcon}" />
                     </Button>
-                    <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                    <Button Click="ToolbarButtonSave" ToolTip="Wijzigingen opslaan">
                         <Image Style="{DynamicResource ToolBarSaveIcon}" />
                     </Button>
-                    <Button ToolTip="Project verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                    <Button Click="ToolbarButtonDelete" ToolTip="Project verwijderen uit de tabel">
                         <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                     </Button>
                 </ToolBar>
             </ToolBarTray>
             <!--#endregion Toolbar for datagrid-->
             <!--#region Datagrid definition-->
-            <DataGrid x:Name="ProjectCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                                      Padding="3" SelectionChanged="ProjectCode_DataGrid_SelectionChanged" Height="215" Margin="5,0"
-                                      IsReadOnly="True">
+            <DataGrid x:Name="ProjectCode_DataGrid"
+                      Height="215"
+                      Margin="5,0" Padding="3"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding}"
+                      SelectionChanged="ProjectCode_DataGrid_SelectionChanged"
+                      Style="{DynamicResource DefaultDataGrid}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Zoeknaam" Width="80" Binding="{Binding Code}" />
-                    <DataGridTextColumn Header="Omschrijving" Width="*" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Startdatum" Width="80" Binding="{Binding StartDate, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}" />
-                    <DataGridTextColumn Header="Einddatum" Width="80" Binding="{Binding EndDate, StringFormat={}\{0:dd/MM/yyyy\}}" />
-                    <DataGridCheckBoxColumn Header="Voltooid" Binding="{Binding Closed}"/>
+                    <DataGridTextColumn Width="70"
+                                        Binding="{Binding Id}"
+                                        Header="ID" Visibility="Hidden" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding Code}"
+                                        Header="Zoeknaam" />
+                    <DataGridTextColumn Width="*"
+                                        Binding="{Binding Name}"
+                                        Header="Omschrijving" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding StartDate, TargetNullValue=None, StringFormat={}\{0:dd/MM/yyyy\}}"
+                                        Header="Startdatum" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding EndDate, StringFormat={}\{0:dd/MM/yyyy\}}"
+                                        Header="Einddatum" />
+                    <DataGridCheckBoxColumn Binding="{Binding Closed}" Header="Voltooid" />
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->
 
             <!--#region Status row-->
-            <DockPanel Background="LightGray" VerticalAlignment="Center" Margin="5">
+            <DockPanel Margin="5" VerticalAlignment="Center"
+                       Background="LightGray">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition Width="35"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45" />
+                        <ColumnDefinition Width="35" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Aantal:"/>
-                    <TextBox Grid.Column="1" x:Name="RecordsCount" IsReadOnly="True"/>
-                    <TextBox Grid.Column="3" x:Name="textBoxStatus" IsReadOnly="True" Background="LightGray"/>
+                    <TextBlock Grid.Column="0" Text="Aantal:" />
+                    <TextBox x:Name="RecordsCount"
+                             Grid.Column="1"
+                             IsReadOnly="True" />
+                    <TextBox x:Name="textBoxStatus"
+                             Grid.Column="3"
+                             Background="LightGray" IsReadOnly="True" />
                 </Grid>
             </DockPanel>
             <!--#endregion-->

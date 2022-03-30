@@ -100,6 +100,18 @@ internal class HelperGeneral
     public static readonly string DbProjectTableFieldTypeName = "string";
     public static readonly string DbProjectTableFieldNameCode = "Code";
     public static readonly string DbProjectTableFieldTypeCode = "string";
+    public static readonly string DbProjectTableFieldNameStartDate = "StartDate";
+    public static readonly string DbProjectTableFieldTypeStartDate = "date";
+    public static readonly string DbProjectTableFieldNameEndDate = "EndDate";
+    public static readonly string DbProjectTableFieldTypeEndDate = "date";
+    public static readonly string DbProjectTableFieldNameClosed = "Closed";
+    public static readonly string DbProjectTableFieldTypeClosed = "int";
+    public static readonly string DbProjectTableFieldNameMemo = "Memo";
+    public static readonly string DbProjectTableFieldTypeMemo = "longtext";
+    public static readonly string DbProjectTableFieldNameImageRotationAngle = "ImageRotationAngle";
+    public static readonly string DbProjectTableFieldTypeImageRotationAngle = "string";
+    public static readonly string DbProjectTableFieldNameImage = "Image";
+    public static readonly string DbProjectTableFieldTypeImage = "blob";
     #endregion Project table
 
     #region Stock table
@@ -346,11 +358,8 @@ internal class HelperGeneral
     private static readonly string SqlSelectAll = "SELECT *";
     private static readonly string SqlFrom = " FROM ";
     private static readonly string SqlWhere = " WHERE ";
-    private static readonly string SqlOrderBy = " ORDER BY ";
     private static readonly string SqlAnd = " AND ";
-    private static readonly string SqlOr = " OR ";
     private static readonly string SqlMax = " MAX(";
-    private static readonly string SqlMin = " MIN(";
     private static readonly string SqlCount = " COUNT(";
     private static readonly string SqlUpdate = "UPDATE ";
     private static readonly string SqlInsert = "INSERT INTO ";
@@ -383,15 +392,11 @@ internal class HelperGeneral
     #region Execute Non Query
     public void ExecuteNonQuery(string sqlText)
     {
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-        {
-            con.Open();
+        using MySqlConnection con = new(ConnectionStr);
+        con.Open();
 
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-            {
-                cmd.ExecuteNonQuery();
-            }
-        }
+        using MySqlCommand cmd = new(sqlText, con);
+        cmd.ExecuteNonQuery();
     }
     #endregion Execute NonQuery
 
@@ -407,12 +412,12 @@ internal class HelperGeneral
             sqlText.Append ( SqlWhere + WhereString + "=@Id" );
         }
 
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
+        using (MySqlConnection con = new(ConnectionStr))
         {
             //open
             con.Open();
 
-            using MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+            using MySqlCommand cmd = new(sqlText.ToString(), con);
             
             if (Id > 0) { cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = Id; }
 
@@ -439,13 +444,13 @@ internal class HelperGeneral
             }
         }
 
-        MySqlConnection con = new MySqlConnection ( ConnectionStr );
+        MySqlConnection con = new( ConnectionStr );
 
         con.Open ();
 
-        MySqlCommand cmd = new MySqlCommand ( sqlText.ToString(), con );
+        MySqlCommand cmd = new( sqlText.ToString(), con );
 
-        for (int i = 0; i < WhereFields.GetLength ( 0 ); i++)
+        for (int i = 0; i < WhereFields.GetLength(0); i++)
         {
             switch (WhereFields[i, 1].ToLower ())
             {
@@ -494,11 +499,11 @@ internal class HelperGeneral
         var sqlText = SqlSelectAll + SqlFrom + Table;
         string resultString;
 
-        MySqlConnection con = new MySqlConnection(ConnectionStr);
+        MySqlConnection con = new(ConnectionStr);
 
         con.Open();
 
-        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+        MySqlCommand cmd = new(sqlText.ToString(), con);
 
         resultString = (string)cmd.ExecuteScalar();
 
@@ -534,7 +539,7 @@ internal class HelperGeneral
             }
         }
 
-        MySqlConnection con = new MySqlConnection(ConnectionStr);
+        MySqlConnection con = new(ConnectionStr);
 
         con.Open();
 
@@ -675,7 +680,7 @@ internal class HelperGeneral
         // There is an Id or String available for each condition, so one of them has a value the other one is 0 or ""
         string sqlText = "SELECT MAX(Id) FROM " + Table.ToLower();
 
-        MySqlConnection con = new MySqlConnection(ConnectionStr);
+        MySqlConnection con = new(ConnectionStr);
 
         con.Open();
 

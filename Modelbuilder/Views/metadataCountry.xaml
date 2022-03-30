@@ -1,14 +1,10 @@
-﻿<Page
-    x:Class="Modelbuilder.metadataCountry"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:modelbuilder="clr-namespace:Modelbuilder"
-    xmlns:p="clr-namespace:Modelbuilder.Languages"
-    Title="metadataCountry"
-    d:DesignHeight="800"
-    d:DesignWidth="1000"
-    mc:Ignorable="d">
+﻿<Page x:Class="Modelbuilder.metadataCountry"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:modelbuilder="clr-namespace:Modelbuilder" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      Title="metadataCountry"
+      d:DesignHeight="800" d:DesignWidth="1000"
+      mc:Ignorable="d">
 
     <Grid>
         <!--  Title of the page  -->
@@ -20,39 +16,74 @@
         </StackPanel>
 
         <!--  Vertical distance between Labels: 26  -->
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,68,0,0" Content="Landcode" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,94,0,0" Content="Land" />
-        <Label Style="{DynamicResource DefaultLabel}" Margin="20,120,0,0" Content="Standaard Valuta" />
+        <Label Margin="20,68,0,0"
+               Content="Landcode"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label Margin="20,94,0,0"
+               Content="Land"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label Margin="20,120,0,0"
+               Content="Standaard Valuta"
+               Style="{DynamicResource DefaultLabel}" />
 
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryCode"   Width="50"  Margin="170,71,0,0" CharacterCasing="Upper" />
-        <TextBox Style="{DynamicResource DefaultTextBox}" x:Name="inpCountryName"   Width="450" Margin="170,97,0,0" />
+        <TextBox x:Name="inpCountryCode"
+                 Width="50"
+                 Margin="170,71,0,0"
+                 CharacterCasing="Upper"
+                 Style="{DynamicResource DefaultTextBox}" />
+        <TextBox x:Name="inpCountryName"
+                 Width="450"
+                 Margin="170,97,0,0"
+                 Style="{DynamicResource DefaultTextBox}" />
 
-        <ComboBox Style="{DynamicResource DefaultComboBox}" x:Name="cboxCountryCurrency" Margin="170,123,0,0" ItemsSource="{Binding CurrencyCollection}" />
-        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryId"         Margin="270,71,0,0" />
-        <TextBox Style="{DynamicResource HiddenTextBox}"  x:Name="inpCountryCurrencyId" Margin="270,123,0,0" />
+        <ComboBox x:Name="cboxCountryCurrency"
+                  Margin="170,123,0,0"
+                  ItemsSource="{Binding CurrencyCollection}"
+                  Style="{DynamicResource DefaultComboBox}" />
+        <TextBox x:Name="inpCountryId"
+                 Margin="270,71,0,0"
+                 Style="{DynamicResource HiddenTextBox}" />
+        <TextBox x:Name="inpCountryCurrencyId"
+                 Margin="270,123,0,0"
+                 Style="{DynamicResource HiddenTextBox}" />
 
-        <ToolBarTray Style="{DynamicResource DefaultToolBarTray}" Margin="20,160,10,0">
-            <ToolBar Style="{DynamicResource DefaultToolBar}" x:Name="generalToolbar" Margin="10,5,10,5">
-                <Button ToolTip="Land toevoegen aan de tabel" Click="ToolbarButtonNew">
+        <ToolBarTray Margin="20,160,10,0" Style="{DynamicResource DefaultToolBarTray}">
+            <ToolBar x:Name="generalToolbar"
+                     Margin="10,5,10,5"
+                     Style="{DynamicResource DefaultToolBar}">
+                <Button Click="ToolbarButtonNew" ToolTip="Land toevoegen aan de tabel">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button ToolTip="Land verwijderen uit de tabel" Click="ToolbarButtonDelete">
+                <Button Click="ToolbarButtonDelete" ToolTip="Land verwijderen uit de tabel">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button ToolTip="Wijzigingen opslaan" Click="ToolbarButtonSave">
+                <Button Click="ToolbarButtonSave" ToolTip="Wijzigingen opslaan">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
         </ToolBarTray>
 
-        <DataGrid x:Name="CountryCode_DataGrid" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding}"
-                  Margin="10,206,10,0" SelectionChanged="CountryCode_DataGrid_SelectionChanged">
+        <DataGrid x:Name="CountryCode_DataGrid"
+                  Margin="10,206,10,0"
+                  ItemsSource="{Binding}"
+                  SelectionChanged="CountryCode_DataGrid_SelectionChanged"
+                  Style="{DynamicResource DefaultDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Visibility="Hidden" Width="70" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="Land code" Width="80" Binding="{Binding Code}" />
-                <DataGridTextColumn Header="Valuta ID" Visibility="Hidden" Width="70" Binding="{Binding DefaultId}" />
-                <DataGridTextColumn Header="Valuta" Width="70" Binding="{Binding DefaultSymbol}" />
-                <DataGridTextColumn Header="Land" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="70"
+                                    Binding="{Binding Id}"
+                                    Header="ID" Visibility="Hidden" />
+                <DataGridTextColumn Width="80"
+                                    Binding="{Binding Code}"
+                                    Header="Land code" />
+                <DataGridTextColumn Width="70"
+                                    Binding="{Binding DefaultId}"
+                                    Header="Valuta ID" Visibility="Hidden" />
+                <DataGridTextColumn Width="70"
+                                    Binding="{Binding DefaultSymbol}"
+                                    Header="Valuta" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Name}"
+                                    Header="Land" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

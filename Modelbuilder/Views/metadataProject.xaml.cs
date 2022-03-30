@@ -1,4 +1,6 @@
-﻿namespace Modelbuilder.Views
+﻿using K4os.Compression.LZ4.Internal;
+
+namespace Modelbuilder.Views
 {
     /// <summary>
     /// Interaction logic for metadataProject.xaml
@@ -6,6 +8,7 @@
     public partial class metadataProject : Page
     {
         private HelperProject _helper;
+        private HelperGeneral _helperGeneral;
         private DataTable _dt;
         private int _dbRowCount;
         private int _currentDataGridIndex;
@@ -29,7 +32,7 @@
             InitializeHelper();
 
             // Get data from database
-            _dt = _helper.GetDataTblProject();
+            _dt = _helperGeneral.GetData(HelperGeneral.DbProjectTable);
 
             // Populate data in datagrid from datatable
             ProjectCode_DataGrid.DataContext = _dt;
@@ -88,9 +91,9 @@
         #region InitializeHelper (connect to database)
         private void InitializeHelper()
         {
-            if (_helper == null)
+            if (_helperGeneral == null)
             {
-                _helper = new HelperProject(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
+                _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
             }
         }
         #endregion
@@ -219,12 +222,19 @@
 
             InitializeHelper();
 
-            string result = string.Empty;
-            result = _helper.InsertTblProject(projectCode, projectName, projectStartDate, projectEndDate, projectClosed, memo, projectImageRotationAngle, projectImage);
+            var result = _helperGeneral.InsertInTable(HelperGeneral.DbProjectTable, new string[7, 3]
+            {   {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeName, projectName},
+                {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeCode, projectCode},
+                {HelperGeneral.DbProjectTableFieldNameStartDate, HelperGeneral.DbProjectTableFieldTypeStartDate, projectStartDate},
+                {HelperGeneral.DbProjectTableFieldNameEndDate, HelperGeneral.DbProjectTableFieldTypeEndDate, projectEndDate},
+                {HelperGeneral.DbProjectTableFieldNameClosed, HelperGeneral.DbProjectTableFieldTypeClosed, projectClosed.ToString()},
+                {HelperGeneral.DbProjectTableFieldNameMemo, HelperGeneral.DbProjectTableFieldTypeMemo, memo},
+                {HelperGeneral.DbProjectTableFieldNameImageRotationAngle, HelperGeneral.DbProjectTableFieldTypeImageRotationAngle, projectImageRotationAngle} }, projectImage, HelperGeneral.DbProjectTableFieldNameImage);            
+            
             UpdateStatus(result);
 
             // Get data from database
-            _dt = _helper.GetDataTblProject();
+            _dt = _helperGeneral.GetData(HelperGeneral.DbProjectTable);
 
             // Populate data in datagrid from datatable
             ProjectCode_DataGrid.DataContext = _dt;
@@ -378,8 +388,19 @@
 
             InitializeHelper();
 
-            string result = string.Empty;
-            result = _helper.UpdateTblProject(projectId, projectCode, projectName, projectStartDate, projectEndDate, projectClosed, memo, projectImageRotationAngle, projectImage);
+            var result = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbProjectTable, new string[1, 3] 
+            {   {HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId, projectId.ToString()} },new string[7, 3]
+            {   {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeName, projectName},
+                {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeCode, projectCode},
+                {HelperGeneral.DbProjectTableFieldNameStartDate, HelperGeneral.DbProjectTableFieldTypeStartDate, projectStartDate},
+                {HelperGeneral.DbProjectTableFieldNameEndDate, HelperGeneral.DbProjectTableFieldTypeEndDate, projectEndDate},
+                {HelperGeneral.DbProjectTableFieldNameClosed, HelperGeneral.DbProjectTableFieldTypeClosed, projectClosed.ToString()},
+                {HelperGeneral.DbProjectTableFieldNameMemo, HelperGeneral.DbProjectTableFieldTypeMemo, memo},
+                {HelperGeneral.DbProjectTableFieldNameImageRotationAngle, HelperGeneral.DbProjectTableFieldTypeImageRotationAngle, projectImageRotationAngle} });
+            
+            _ = _helperGeneral.UpdateImageFieldInTable(HelperGeneral.DbProjectTable, new string[1, 3]
+            {   {HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId, projectId.ToString()} }, projectImage, HelperGeneral.DbProjectTableFieldNameImage);
+
             UpdateStatus(result);
         }
         #endregion
@@ -419,8 +440,15 @@
 
             InitializeHelper();
 
-            string result = string.Empty;
-            result = _helper.InsertTblProject(projectCode, projectName, projectStartDate, projectEndDate, projectClosed, memo, projectImageRotationAngle, projectImage);
+            var result = _helperGeneral.InsertInTable(HelperGeneral.DbProjectTable, new string[7, 3]
+            {   {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeName, projectName},
+                {HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldTypeCode, projectCode},
+                {HelperGeneral.DbProjectTableFieldNameStartDate, HelperGeneral.DbProjectTableFieldTypeStartDate, projectStartDate},
+                {HelperGeneral.DbProjectTableFieldNameEndDate, HelperGeneral.DbProjectTableFieldTypeEndDate, projectEndDate},
+                {HelperGeneral.DbProjectTableFieldNameClosed, HelperGeneral.DbProjectTableFieldTypeClosed, projectClosed.ToString()},
+                {HelperGeneral.DbProjectTableFieldNameMemo, HelperGeneral.DbProjectTableFieldTypeMemo, memo},
+                {HelperGeneral.DbProjectTableFieldNameImageRotationAngle, HelperGeneral.DbProjectTableFieldTypeImageRotationAngle, projectImageRotationAngle} }, projectImage, HelperGeneral.DbProjectTableFieldNameImage);
+
             UpdateStatus(result);
         }
         #endregion
@@ -434,8 +462,8 @@
 
                 InitializeHelper();
 
-                string result = string.Empty;
-                result = _helper.DeleteTblProject(projectId);
+                var result = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
+                {   {HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId, projectId.ToString() } });
                 UpdateStatus(result);
             }
         }
