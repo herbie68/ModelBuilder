@@ -104,7 +104,6 @@ namespace Modelbuilder
             if (_dt.Rows.Count != 1) { tmpStr = "s"; };
             string msg = "Status: " + _dt.Rows.Count + " leverancier" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
-
         }
         #endregion
 
@@ -131,7 +130,6 @@ namespace Modelbuilder
             {
                 //set value
                 DataRow row = _dt.Rows[index];
-
 
                 if (row["Memo"] != null && row["Memo"] != DBNull.Value)
                 {
@@ -233,7 +231,6 @@ namespace Modelbuilder
 
             // Populate data in datagrid from datatable after clearing the current gatagrid
             DataGrid.DataContext = _dtSC;
-
         }
         #endregion
 
@@ -257,7 +254,6 @@ namespace Modelbuilder
             inpSupplierContactName.Text = Row_Selected["ContactName"].ToString();
             inpSupplierContactPhone.Text = Row_Selected["phone"].ToString();
             inpSupplierContactMail.Text = Row_Selected["mail"].ToString();
-
 
             //Select the saved Contacttype in the combobox by default
             foreach (HelperGeneral.ContactType contacttype in cboxSupplierContactType.Items)
@@ -531,7 +527,6 @@ namespace Modelbuilder
 
                 if (inpSupplierOrderCosts.Text != "")
                 { supplierOrderCosts = double.Parse(inpSupplierOrderCosts.Text.Replace(",", ".").Replace("€", "").Replace(" ", "")); }
-
             }
 
             //convert RTF to string

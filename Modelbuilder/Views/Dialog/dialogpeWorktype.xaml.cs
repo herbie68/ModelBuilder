@@ -1,8 +1,5 @@
 ﻿namespace Modelbuilder
 {
-    /// <summary>
-    /// Interaction logic for dialogWorktype.xaml
-    /// </summary>
     public partial class dialogWorktype : Window
     {
         public static string diaLogWorktypeValue = String.Empty;
@@ -19,7 +16,5 @@
         {
             this.Close();
         }
-
-
     }
 }

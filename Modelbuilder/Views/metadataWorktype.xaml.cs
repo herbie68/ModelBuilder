@@ -96,7 +96,6 @@
             valueOriginalName.Text = SelectedItem.Header.ToString();
             inpWorktypeName.Text = SelectedItem.Header.ToString();
 
-
             // Perhaps the switch can be used for a different menu on root item and sub item, but not sure if necesarry
             switch (SelectedItem.Tag.ToString())
             {
@@ -366,13 +365,11 @@
         #region Virtualizing Stackpanel
         public class MyVirtualizingStackPanel : VirtualizingStackPanel
         {
-
             public void BringIntoView(int index)
             {
                 BringIndexIntoView(index);
             }
         }
         #endregion
-
     }
 }

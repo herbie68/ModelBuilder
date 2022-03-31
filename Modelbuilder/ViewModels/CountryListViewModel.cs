@@ -37,15 +37,8 @@
                 countryId = Id;
             }
 
-            /// <summary>
-            /// Gets or Sets the country name.
-            /// </summary>
             public string countryName { get; set; }
-            /// <summary>
-            /// Gets or Sets the country id.
-            /// </summary>
             public int countryId { get; set; }
         }
-
     }
 }
