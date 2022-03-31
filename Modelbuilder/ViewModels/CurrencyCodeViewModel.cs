@@ -28,7 +28,7 @@
             for (int i = 0; i < dtCurrencySelection.Rows.Count; i++)
             {
                 CurrencyCollection.Add(dtCurrencySelection.Rows[i][0].ToString());
-            };
+            }
         }
     }
 }
