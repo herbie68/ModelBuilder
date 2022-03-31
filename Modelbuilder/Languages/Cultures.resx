@@ -1258,4 +1258,154 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
     <value>Website product</value>
   </data>
+  <data name="metadataProject.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.ProjectId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Code" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Name" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.StartDate" xml:space="preserve">
+    <value>Start datum</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.EndDate" xml:space="preserve">
+    <value>Eind datum</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Completed" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Project toevoegen</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Verwijder geselekteerde Project</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
+    <value>Maak alle ingevulde velden leeg</value>
+  </data>
+  <data name="metadataProject.Tab.BuildTime.Title" xml:space="preserve">
+    <value>Bouwtijden</value>
+  </data>
+  <data name="metadataProject.Tab.Costs.Title" xml:space="preserve">
+    <value>Kosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.Title" xml:space="preserve">
+    <value>Projectgegevens</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Title" xml:space="preserve">
+    <value>Bouw tijd</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Title" xml:space="preserve">
+    <value>Verwachting</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours" xml:space="preserve">
+    <value>(uren)</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime" xml:space="preserve">
+    <value>Verwachte bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Title" xml:space="preserve">
+    <value>Voortgang</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time" xml:space="preserve">
+    <value>Bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay" xml:space="preserve">
+    <value>Korste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay" xml:space="preserve">
+    <value>Langste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours" xml:space="preserve">
+    <value>Uren per dag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Title" xml:space="preserve">
+    <value>Nog te gaan</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days" xml:space="preserve">
+    <value>Dagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours" xml:space="preserve">
+    <value>Uren:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Title" xml:space="preserve">
+    <value>Bouw kosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts" xml:space="preserve">
+    <value>Materiaalkosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts" xml:space="preserve">
+    <value>Uren</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts" xml:space="preserve">
+    <value>Totale kosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Title" xml:space="preserve">
+    <value>Algemene projectgegevens</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Code" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Name" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.StartDate" xml:space="preserve">
+    <value>Start datum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.EndDate" xml:space="preserve">
+    <value>Eind datum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate" xml:space="preserve">
+    <value>Verwachte einddatum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Closed" xml:space="preserve">
+    <value>Project voltooid</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Afbeelding toevoegen/wijzigen</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Afbeelding verwijderen</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Rotate.Tooltip" xml:space="preserve">
+    <value>Afbeelding kwartslag draaien</value>
+  </data>
+  <data name="metadataProject.Tab.Memo.Title" xml:space="preserve">
+    <value>Aanvullende informatie</value>
+  </data>
 </root>
