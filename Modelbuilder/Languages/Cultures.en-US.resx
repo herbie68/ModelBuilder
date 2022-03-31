@@ -1258,4 +1258,154 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
     <value>Product url</value>
   </data>
+  <data name="metadataProject.Statusline.Status.Completed" xml:space="preserve">
+    <value>lines completed</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>lines skipped because of error</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>lines read correctly</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Description" xml:space="preserve">
+    <value>No lines read</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Added: </value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Error in line</value>
+  </data>
+  <data name="metadataProject.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.ProjectId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Code" xml:space="preserve">
+    <value>Search name</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Name" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.StartDate" xml:space="preserve">
+    <value>Startdate</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.EndDate" xml:space="preserve">
+    <value>Enddate</value>
+  </data>
+  <data name="metadataProject.Project.Datagrid.Header.Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Add Project</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Saving Changes</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Remove selected Project</value>
+  </data>
+  <data name="metadataProject.Project.Toolbar.Button.Reset.Tooltip" xml:space="preserve">
+    <value>Clear all completed fields</value>
+  </data>
+  <data name="metadataProject.Tab.BuildTime.Title" xml:space="preserve">
+    <value>Construction times</value>
+  </data>
+  <data name="metadataProject.Tab.Costs.Title" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="metadataProject.Tab.General.Title" xml:space="preserve">
+    <value>Project details</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Title" xml:space="preserve">
+    <value>Build time</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Title" xml:space="preserve">
+    <value>Expectation</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours" xml:space="preserve">
+    <value>(hours)</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime" xml:space="preserve">
+    <value>Expected construction time:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays" xml:space="preserve">
+    <value>Business days:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Title" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time" xml:space="preserve">
+    <value>Construction time:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days" xml:space="preserve">
+    <value>Business days:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay" xml:space="preserve">
+    <value>Shortest working day:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay" xml:space="preserve">
+    <value>Longest working day:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours" xml:space="preserve">
+    <value>Hours per day:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Title" xml:space="preserve">
+    <value>To go</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days" xml:space="preserve">
+    <value>To dawn:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours" xml:space="preserve">
+    <value>Hours:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Title" xml:space="preserve">
+    <value>Construction costs</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts" xml:space="preserve">
+    <value>Material costs</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts" xml:space="preserve">
+    <value>Total costs</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Title" xml:space="preserve">
+    <value>General project data</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Code" xml:space="preserve">
+    <value>Search name</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Name" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate" xml:space="preserve">
+    <value>Expected end date</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Closed" xml:space="preserve">
+    <value>Project completed</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Add/change image</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Delete image</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Rotate.Tooltip" xml:space="preserve">
+    <value>Rotate image quarter turn</value>
+  </data>
+  <data name="metadataProject.Tab.Memo.Title" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
 </root>

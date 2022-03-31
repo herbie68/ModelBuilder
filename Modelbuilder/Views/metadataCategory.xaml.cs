@@ -368,7 +368,6 @@
         #region Virtualizing Stackpanel
         public class MyVirtualizingStackPanel : VirtualizingStackPanel
         {
-
             public void BringIntoView(int index)
             {
                 BringIndexIntoView(index);

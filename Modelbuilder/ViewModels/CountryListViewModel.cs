@@ -26,7 +26,7 @@
             {
                 CountryList.Add(new Country(dtSelection.Rows[i][0].ToString(),
                     int.Parse(dtSelection.Rows[i][1].ToString())));
-            };
+            }
         }
 
         private class Country

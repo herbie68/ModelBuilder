@@ -1609,6 +1609,456 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_Code {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voltooid.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_Completed {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eind datum.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_EndDate {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_Name {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_ProjectId {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.ProjectId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start datum.
+        /// </summary>
+        public static string metadataProject_Project_Datagrid_Header_StartDate {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Datagrid.Header.StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijder geselekteerde Project.
+        /// </summary>
+        public static string metadataProject_Project_Toolbar_Button_Delete_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Toolbar.Button.Delete.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project toevoegen.
+        /// </summary>
+        public static string metadataProject_Project_Toolbar_Button_New_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Toolbar.Button.New.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maak alle ingevulde velden leeg.
+        /// </summary>
+        public static string metadataProject_Project_Toolbar_Button_Reset_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Toolbar.Button.Reset.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wijzigingen opslaan.
+        /// </summary>
+        public static string metadataProject_Project_Toolbar_Button_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Project.Toolbar.Button.Save.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels verwerkt.
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Completed {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels overgeslagen vanwege fouten.
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Completed_Error {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Completed.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels correct ingelezen.
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Completed_Ok {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Completed.Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen regels ingelezen.
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Description {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toegevoegd: .
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Prefix_Added {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Prefix.Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout in regel.
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Prefix_Error {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Prefix.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status: .
+        /// </summary>
+        public static string metadataProject_Statusline_Status_Text {
+            get {
+                return ResourceManager.GetString("metadataProject.Statusline.Status.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouwtijden.
+        /// </summary>
+        public static string metadataProject_Tab_BuildTime_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.BuildTime.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kosten.
+        /// </summary>
+        public static string metadataProject_Tab_Costs_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.Costs.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwachte bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_BuildTime {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (uren).
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwachting.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren per dag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Dailyhours {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Langste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_LongestDay {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voortgang.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouw tijd.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Days {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nog te gaan.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to €.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materiaalkosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TimeCosts {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale kosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouw kosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project voltooid.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Closed {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Code {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eind datum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_EndDate {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwachte einddatum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Name {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start datum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_StartDate {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algemene projectgegevens.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afbeelding verwijderen.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Image_Toolbar_Button_Delete_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Delete.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afbeelding toevoegen/wijzigen.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Image_Toolbar_Button_New_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Image.Toolbar.Button.New.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afbeelding kwartslag draaien.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Image_Toolbar_Button_Rotate_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Image.Toolbar.Button.Rotate.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projectgegevens.
+        /// </summary>
+        public static string metadataProject_Tab_General_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aanvullende informatie.
+        /// </summary>
+        public static string metadataProject_Tab_Memo_Title {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.Memo.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projectgegevens.
         /// </summary>
         public static string metadataProject_TabItemHeader_General {

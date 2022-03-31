@@ -101,7 +101,7 @@ namespace Modelbuilder
 
             string tmpStr = "";
             //update status
-            if (_dt.Rows.Count != 1) { tmpStr = "s"; };
+            if (_dt.Rows.Count != 1) { tmpStr = "s"; }
             string msg = "Status: " + _dt.Rows.Count + " leverancier" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
         }
@@ -395,12 +395,8 @@ namespace Modelbuilder
             var supplierContactContactPhone = "";
             var supplierContactContactMail = "";
 
-            // if (_dt.Rows.Count != 0)
-            // { DataRow row = _dt.Rows[_dt.Rows.Count - 1]; }
-
             InitializeHelper();
 
-//var result = _helper.InsertTblSupplierContact(supplierId, supplierContactContactName, supplierContactContactTypeId, supplierContactContactTypeName, supplierContactContactPhone, supplierContactContactMail);
             var result = _helperGeneral.InsertInTable(HelperGeneral.DbSupplierTable, new string[6, 3]
             {   { HelperGeneral.DbSupplierContactFieldNameSupplierId, HelperGeneral.DbSupplierContactFieldTypeSupplierId, supplierId.ToString()},
                 { HelperGeneral.DbSupplierContactFieldNameName, HelperGeneral.DbSupplierContactFieldTypeName, supplierContactContactName},
@@ -411,10 +407,8 @@ namespace Modelbuilder
             UpdateStatus(result);
 
             // Get data from database
-            //_dtSC = _helper.GetDataTblSupplierContact(int.Parse(valueSupplierId.Text));
             _dtSC = _helperGeneral.GetData(HelperGeneral.DbSupplierContactView, new string[1, 3]
             { {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierContactId.Text } });
-
 
             // Populate data in datagrid from datatable
             DataGrid.DataContext = _dtSC;

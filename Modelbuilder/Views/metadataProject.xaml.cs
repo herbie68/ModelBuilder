@@ -7,7 +7,6 @@ namespace Modelbuilder.Views
     /// </summary>
     public partial class metadataProject : Page
     {
-        private HelperProject _helper;
         private HelperGeneral _helperGeneral;
         private DataTable _dt;
         private int _dbRowCount;
@@ -46,7 +45,7 @@ namespace Modelbuilder.Views
 
             string tmpStr = "";
             //update status
-            if (_dt.Rows.Count != 1) { tmpStr = "s"; };
+            if (_dt.Rows.Count != 1) { tmpStr = "s"; }
             string msg = "Status: " + _dt.Rows.Count + " projecten" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
         }
@@ -61,7 +60,6 @@ namespace Modelbuilder.Views
             {
                 //set value
                 DataRow row = _dt.Rows[index];
-
 
                 if (row["Memo"] != null && row["Memo"] != DBNull.Value)
                 {
@@ -153,7 +151,6 @@ namespace Modelbuilder.Views
             MemoTab.IsEnabled = true;
             TimeTab.IsEnabled = true;
             CostsTab.IsEnabled = true;
-
         }
         #endregion
 
@@ -288,7 +285,6 @@ namespace Modelbuilder.Views
             }
 
             ProjectCode_DataGrid.Focus();
-
         }
         #endregion
 
@@ -323,7 +319,6 @@ namespace Modelbuilder.Views
             }
             valueImageRotationAngle.Text = _tempValue.ToString();
             imgProjectImage.LayoutTransform = new RotateTransform(int.Parse(valueImageRotationAngle.Text));
-
         }
         #endregion
 
