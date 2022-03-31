@@ -96,7 +96,6 @@ public partial class MainWindow : Window
     #endregion Call Country Page
 
     #region Call Currency Page
-
     private void ShowCurrencyPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataCurrency();

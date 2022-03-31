@@ -101,7 +101,7 @@ namespace Modelbuilder
 
             string tmpStr = "";
             //update status
-            if (_dt.Rows.Count != 1) { tmpStr = "s"; };
+            if (_dt.Rows.Count != 1) { tmpStr = "s"; }
             string msg = "Status: " + _dt.Rows.Count + " leverancier" + tmpStr + " ingelezen.";
             UpdateStatus(msg);
 
