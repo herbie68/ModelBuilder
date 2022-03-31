@@ -7,7 +7,6 @@ namespace Modelbuilder.Views
     /// </summary>
     public partial class metadataProject : Page
     {
-        private HelperProject _helper;
         private HelperGeneral _helperGeneral;
         private DataTable _dt;
         private int _dbRowCount;
