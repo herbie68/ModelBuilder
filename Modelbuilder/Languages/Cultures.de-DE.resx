@@ -1481,4 +1481,37 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Löschen Sie diesen UND ALLE zugrunde liegenden Standorte</value>
   </data>
+  <data name="metadataCountry.Entry.Field.Code" xml:space="preserve">
+    <value>Landesvorwahl</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Currency" xml:space="preserve">
+    <value>Standardwährung</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Land zur Tabelle hinzufügen</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Land aus der Tabelle entfernen</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Id" xml:space="preserve">
+    <value>ICH WÜRDE</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Code" xml:space="preserve">
+    <value>Landesvorwahl</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.CurrencyId" xml:space="preserve">
+    <value>Währungs-ID</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Currency" xml:space="preserve">
+    <value>Währungen</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
 </root>

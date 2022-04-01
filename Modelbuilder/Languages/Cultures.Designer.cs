@@ -1033,11 +1033,110 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Land code.
+        /// </summary>
+        public static string metadataCountry_Datagrid_Header_Code {
+            get {
+                return ResourceManager.GetString("metadataCountry.Datagrid.Header.Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string metadataCountry_Datagrid_Header_Currency {
+            get {
+                return ResourceManager.GetString("metadataCountry.Datagrid.Header.Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valute ID.
+        /// </summary>
+        public static string metadataCountry_Datagrid_Header_CurrencyId {
+            get {
+                return ResourceManager.GetString("metadataCountry.Datagrid.Header.CurrencyId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string metadataCountry_Datagrid_Header_Id {
+            get {
+                return ResourceManager.GetString("metadataCountry.Datagrid.Header.Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string metadataCountry_Datagrid_Header_Name {
+            get {
+                return ResourceManager.GetString("metadataCountry.Datagrid.Header.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landcode.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Code {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standaard valuta.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Currency {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Name {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Landen.
         /// </summary>
         public static string metadataCountry_Page_Title {
             get {
                 return ResourceManager.GetString("metadataCountry.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land verwijderen uit de tabel.
+        /// </summary>
+        public static string metadataCountry_Toolbar_Button_Delete_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Toolbar.Button.Delete.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land toevoegen aan de tabel.
+        /// </summary>
+        public static string metadataCountry_Toolbar_Button_New_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Toolbar.Button.New.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wijzigingen opslaan.
+        /// </summary>
+        public static string metadataCountry_Toolbar_Button_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Toolbar.Button.Save.Tooltip", resourceCulture);
             }
         }
         
