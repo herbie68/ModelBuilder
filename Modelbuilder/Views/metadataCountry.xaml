@@ -9,7 +9,7 @@
     <Grid>
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Landen" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataCountry_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
@@ -17,13 +17,13 @@
 
         <!--  Vertical distance between Labels: 26  -->
         <Label Margin="20,68,0,0"
-               Content="Landcode"
+               Content="{x:Static p:Cultures.metadataCountry_Entry_Field_Code}"
                Style="{DynamicResource DefaultLabel}" />
         <Label Margin="20,94,0,0"
-               Content="Land"
+               Content="{x:Static p:Cultures.metadataCountry_Entry_Field_Name}"
                Style="{DynamicResource DefaultLabel}" />
         <Label Margin="20,120,0,0"
-               Content="Standaard Valuta"
+               Content="{x:Static p:Cultures.metadataCountry_Entry_Field_Currency}"
                Style="{DynamicResource DefaultLabel}" />
 
         <TextBox x:Name="inpCountryCode"
@@ -51,13 +51,13 @@
             <ToolBar x:Name="generalToolbar"
                      Margin="10,5,10,5"
                      Style="{DynamicResource DefaultToolBar}">
-                <Button Click="ToolbarButtonNew" ToolTip="Land toevoegen aan de tabel">
+                <Button Click="ToolbarButtonNew" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_New_Tooltip}">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button Click="ToolbarButtonDelete" ToolTip="Land verwijderen uit de tabel">
+                <Button Click="ToolbarButtonDelete" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Delete_Tooltip}">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button Click="ToolbarButtonSave" ToolTip="Wijzigingen opslaan">
+                <Button Click="ToolbarButtonSave" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Save_Tooltip}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -71,19 +71,19 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding Id}"
-                                    Header="ID" Visibility="Hidden" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Id}" Visibility="Hidden" />
                 <DataGridTextColumn Width="80"
                                     Binding="{Binding Code}"
-                                    Header="Land code" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Code}" />
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding DefaultId}"
-                                    Header="Valuta ID" Visibility="Hidden" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_CurrencyId}" Visibility="Hidden" />
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding DefaultSymbol}"
-                                    Header="Valuta" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Currency}" />
                 <DataGridTextColumn Width="*"
                                     Binding="{Binding Name}"
-                                    Header="Land" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -1480,4 +1480,37 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Delete this AND ALL underlying locations</value>
   </data>
+  <data name="metadataCountry.Entry.Field.Code" xml:space="preserve">
+    <value>Country code</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Name" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Currency" xml:space="preserve">
+    <value>Default currency</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Add country to the table</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Remove country from the table</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Saving Changes</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Code" xml:space="preserve">
+    <value>Country code</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.CurrencyId" xml:space="preserve">
+    <value>Currency ID</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Currency" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
+    <value>Country</value>
+  </data>
 </root>

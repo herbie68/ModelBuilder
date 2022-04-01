@@ -1480,4 +1480,37 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Verwijder deze EN ALLE onderligende locaties</value>
   </data>
+  <data name="metadataCountry.Entry.Field.Code" xml:space="preserve">
+    <value>Landcode</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Currency" xml:space="preserve">
+    <value>Standaard valuta</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.New.Tooltip" xml:space="preserve">
+    <value>Land toevoegen aan de tabel</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Delete.Tooltip" xml:space="preserve">
+    <value>Land verwijderen uit de tabel</value>
+  </data>
+  <data name="metadataCountry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Code" xml:space="preserve">
+    <value>Land code</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.CurrencyId" xml:space="preserve">
+    <value>Valute ID</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
 </root>
