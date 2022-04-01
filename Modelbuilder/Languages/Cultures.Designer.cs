@@ -952,11 +952,83 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string metadataCategory_Entry_Field_Category {
+            get {
+                return ResourceManager.GetString("metadataCategory.Entry.Field.Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewijzigde categorienaam opslaan.
+        /// </summary>
+        public static string metadataCategory_Entry_Toolbar_Button_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCategory.Entry.Toolbar.Button.Save.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop.
+        /// </summary>
+        public static string metadataCategory_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("metadataCategory.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categoriën.
         /// </summary>
         public static string metadataCategory_Page_Title {
             get {
                 return ResourceManager.GetString("metadataCategory.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-categorie toevoegen.
+        /// </summary>
+        public static string metadataCategory_Treeview_FolderContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataCategory.Treeview.FolderContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-categorie toevoegen.
+        /// </summary>
+        public static string metadataCategory_Treeview_FolderContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataCategory.Treeview.FolderContext.MenuItem.Add.Sub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijder deze EN ALLE onderligende categoriën.
+        /// </summary>
+        public static string metadataCategory_Treeview_FolderContext_MenuItem_Delete {
+            get {
+                return ResourceManager.GetString("metadataCategory.Treeview.FolderContext.MenuItem.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-categorie toevoegen.
+        /// </summary>
+        public static string metadataCategory_Treeview_SolutionContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataCategory.Treeview.SolutionContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-categorie toevoegen.
+        /// </summary>
+        public static string metadataCategory_Treeview_SolutionContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataCategory.Treeview.SolutionContext.MenuItem.Add.Sub", resourceCulture);
             }
         }
         

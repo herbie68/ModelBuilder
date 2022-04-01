@@ -1432,4 +1432,28 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Verwijder deze EN ALLE onderligende werksoorten</value>
   </data>
+  <data name="metadataCategory.Page.SubTitle" xml:space="preserve">
+    <value>Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop</value>
+  </data>
+  <data name="metadataCategory.Entry.Field.Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="metadataCategory.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Gewijzigde categorienaam opslaan</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-categorie toevoegen</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-categorie toevoegen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-categorie toevoegen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-categorie toevoegen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Verwijder deze EN ALLE onderligende categoriën</value>
+  </data>
 </root>

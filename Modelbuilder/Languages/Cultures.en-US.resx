@@ -1432,4 +1432,28 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Remove this AND ALL underlying work types</value>
   </data>
+  <data name="metadataCategory.Page.SubTitle" xml:space="preserve">
+    <value>Manage the categories, select a category and use the right mouse button</value>
+  </data>
+  <data name="metadataCategory.Entry.Field.Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="metadataCategory.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Save changed category name</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main category</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub-category</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main category</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub-category</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Delete this AND ALL of the underlying categories</value>
+  </data>
 </root>

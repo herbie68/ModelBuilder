@@ -1433,4 +1433,28 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Entfernen Sie diese UND ALLE zugrunde liegenden Arbeitstypen</value>
   </data>
+  <data name="metadataCategory.Page.SubTitle" xml:space="preserve">
+    <value>Verwalten Sie die Kategorien, wählen Sie eine Kategorie aus und verwenden Sie die rechte Maustaste</value>
+  </data>
+  <data name="metadataCategory.Entry.Field.Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="metadataCategory.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Geänderten Kategorienamen speichern</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptkategorie hinzufügen</value>
+  </data>
+  <data name="metadataCategory.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterkategorie hinzufügen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptkategorie hinzufügen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterkategorie hinzufügen</value>
+  </data>
+  <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Löschen Sie diese UND ALLE zugrunde liegenden Kategorien</value>
+  </data>
 </root>
