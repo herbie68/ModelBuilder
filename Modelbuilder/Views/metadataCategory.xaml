@@ -1,6 +1,9 @@
 ﻿<Page x:Class="Modelbuilder.metadataCategory"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       xmlns:modelbuilder="clr-namespace:Modelbuilder"
       Title="metadataCategory"
       d:DesignHeight="800" d:DesignWidth="1000"
@@ -23,11 +26,11 @@
 
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Categoriën" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataCategory_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
-            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="Beheer de categoriën, selecteer hiervoor een categorie en gebruik de rechtermuisknop" />
+            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="{x:Static p:Cultures.metadataCategory_Page_SubTitle}" />
         </StackPanel>
 
         <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
@@ -51,8 +54,8 @@
                  Style="{DynamicResource HiddenTextBox}" />
         <!--  End of "Do not remove" part  -->
 
-        <Label Margin="20,95,0,0"
-               Content="Categorie"
+        <Label Margin="20,97,0,0"
+               Content="{x:Static p:Cultures.metadataCategory_Entry_Field_Category}"
                Style="{DynamicResource DefaultLabel}" />
         <TextBox x:Name="inpCategoryName"
                  Width="250"
@@ -63,7 +66,7 @@
             <ToolBar x:Name="generalToolbar"
                      Margin="10,5,10,5"
                      Style="{DynamicResource DefaultToolBar}">
-                <Button Click="ToolbarButtonSave" ToolTip="Gewijzigde categorienaam opslaan">
+                <Button Click="ToolbarButtonSave" ToolTip="{x:Static p:Cultures.metadataCategory_Entry_Toolbar_Button_Save_Tooltip}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -76,14 +79,14 @@
                   ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItemChanged="treeViewSelectedItemChanged">
             <TreeView.Resources>
                 <ContextMenu x:Key="SolutionContext" StaysOpen="true">
-                    <MenuItem Click="ButtonAddMainCategory" Header="Hoofd-category toevoegen" />
-                    <MenuItem Click="ButtonAddSubCategory" Header="Sub-category toevoegen" />
+                    <MenuItem Click="ButtonAddMainCategory" Header="{x:Static p:Cultures.metadataCategory_Treeview_SolutionContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonAddSubCategory" Header="{x:Static p:Cultures.metadataCategory_Treeview_SolutionContext_MenuItem_Add_Sub}" />
                     <MenuItem Header="Rename" />
                 </ContextMenu>
                 <ContextMenu x:Key="FolderContext" StaysOpen="true">
-                    <MenuItem Click="ButtonAddMainCategory" Header="Hoofd-category toevoegen" />
-                    <MenuItem Click="ButtonAddSubCategory" Header="Sub-category toevoegen" />
-                    <MenuItem Click="ButtonDeleteCategory" Header="Verwijder deze EN ALLE onderligende subcategorieën" />
+                    <MenuItem Click="ButtonAddMainCategory" Header="{x:Static p:Cultures.metadataCategory_Treeview_FolderContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonAddSubCategory" Header="{x:Static p:Cultures.metadataCategory_Treeview_FolderContext_MenuItem_Add_Sub}" />
+                    <MenuItem Click="ButtonDeleteCategory" Header="{x:Static p:Cultures.metadataCategory_Treeview_FolderContext_MenuItem_Delete}" />
                 </ContextMenu>
             </TreeView.Resources>
 
