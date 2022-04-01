@@ -151,7 +151,7 @@
     <value>Suppliers</value>
   </data>
   <data name="metadataWorktype.Page.Title" xml:space="preserve">
-    <value>Work types</value>
+    <value>Type of work</value>
   </data>
   <data name="Order.Page.Title" xml:space="preserve">
     <value>Order</value>
@@ -235,7 +235,7 @@
     <value>Deliverydate</value>
   </data>
   <data name="Order.Orderline.Field.Number" xml:space="preserve">
-    <value>Amount</value>
+    <value>Number</value>
   </data>
   <data name="Order.Orderline.Field.Price" xml:space="preserve">
     <value>Price</value>
@@ -1407,5 +1407,29 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="metadataProject.Tab.Memo.Title" xml:space="preserve">
     <value>Additional information</value>
+  </data>
+  <data name="metadataWorktype.Page.SubTitle" xml:space="preserve">
+    <value>Manage the work, select a work type and use the right mouse button</value>
+  </data>
+  <data name="metadataWorktype.Entry.Field.Worktype" xml:space="preserve">
+    <value>Work type</value>
+  </data>
+  <data name="metadataWorktype.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Save changed category name</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main work type</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub-work type</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main work type</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub-work type</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Remove this AND ALL underlying work types</value>
   </data>
 </root>

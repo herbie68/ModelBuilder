@@ -151,7 +151,7 @@
     <value>Leveranciers</value>
   </data>
   <data name="metadataWorktype.Page.Title" xml:space="preserve">
-    <value>Werksoorten</value>
+    <value>Soort werkzaamheden</value>
   </data>
   <data name="Order.Page.Title" xml:space="preserve">
     <value>Bestelling</value>
@@ -322,7 +322,7 @@
     <value>Nieuwe bestelregel toevoegen</value>
   </data>
   <data name="Order.Orderlist.Toolbar.Button.Delete" xml:space="preserve">
-    <value>Verwijder geselecteerde bestelregel</value>
+    <value>Verwijder geselkteerde bestelregel</value>
   </data>
   <data name="Order.Orderlist.Toolbar.Button.Save" xml:space="preserve">
     <value>Wijzigingen opslaan</value>
@@ -1407,5 +1407,29 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="metadataProject.Tab.Memo.Title" xml:space="preserve">
     <value>Aanvullende informatie</value>
+  </data>
+  <data name="metadataWorktype.Page.SubTitle" xml:space="preserve">
+    <value>Beheer de werkzaamheden, selecteer hiervoor een werksoort en gebruik de rechtermuisknop</value>
+  </data>
+  <data name="metadataWorktype.Entry.Field.Worktype" xml:space="preserve">
+    <value>Werksoort</value>
+  </data>
+  <data name="metadataWorktype.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Gewijzigde categorienaam opslaan</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-werksoort toevoegen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-werksoort toevoegen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-werksoort toevoegen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-werksoort toevoegen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Verwijder deze EN ALLE onderligende werksoorten</value>
   </data>
 </root>
