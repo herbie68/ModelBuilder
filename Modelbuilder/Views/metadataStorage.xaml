@@ -1,7 +1,10 @@
 ﻿<Page x:Class="Modelbuilder.metadataStorage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Modelbuilder"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="metadataStorage"
       d:DesignHeight="800" d:DesignWidth="1000"
       mc:Ignorable="d">
@@ -23,11 +26,11 @@
 
         <!--  Title of the page  -->
         <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="Opslag locaties" />
+            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataStorage_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
-            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="Beheer de locaties, selecteer hiervoor een locatie en gebruik de rechtermuisknop" />
+            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="{x:Static p:Cultures.metadataStorage_Page_SubTitle}" />
         </StackPanel>
 
         <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
@@ -48,8 +51,8 @@
                  Style="{DynamicResource HiddenTextBox}" />
         <!--  End of "Do not remove" part  -->
 
-        <Label Margin="20,95,0,0"
-               Content="Locatie"
+        <Label Margin="20,98,0,0"
+               Content="{x:Static p:Cultures.metadataStorage_Entry_Field_Storage}"
                Style="{DynamicResource DefaultLabel}" />
         <TextBox x:Name="inpStorageLocationName"
                  Width="250"
@@ -60,7 +63,7 @@
             <ToolBar x:Name="generalToolbar"
                      Margin="10,5,10,5"
                      Style="{DynamicResource DefaultToolBar}">
-                <Button ToolTip="Gewijzigde categorienaam opslaan">
+                <Button ToolTip="{x:Static p:Cultures.metadataStorage_Entry_Toolbar_Button_Save_Tooltip}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -73,9 +76,9 @@
                   ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItemChanged="treeViewSelectedItemChanged">
             <TreeView.Resources>
                 <ContextMenu x:Key="FolderContext" StaysOpen="true">
-                    <MenuItem Click="ButtonAddMainLocation" Header="Hoofd-locatie toevoegen" />
-                    <MenuItem Click="ButtonAddSubLocation" Header="Sub-locatie toevoegen" />
-                    <MenuItem Click="ButtonDeleteLocation" Header="Verwijder deze EN ALLE onderligende opslag locaties" />
+                    <MenuItem Click="ButtonAddMainLocation" Header="{x:Static p:Cultures.metadataStorage_Treeview_FolderContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonAddSubLocation" Header="{x:Static p:Cultures.metadataStorage_Treeview_FolderContext_MenuItem_Add_Sub}" />
+                    <MenuItem Click="ButtonDeleteLocation" Header="{x:Static p:Cultures.metadataStorage_Treeview_FolderContext_MenuItem_Delete}" />
                 </ContextMenu>
             </TreeView.Resources>
 

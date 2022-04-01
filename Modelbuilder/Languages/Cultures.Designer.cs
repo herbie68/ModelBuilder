@@ -2167,11 +2167,83 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opslaglocaties.
+        ///   Looks up a localized string similar to Locatie.
+        /// </summary>
+        public static string metadataStorage_Entry_Field_Storage {
+            get {
+                return ResourceManager.GetString("metadataStorage.Entry.Field.Storage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewijzigde locatie opslaan.
+        /// </summary>
+        public static string metadataStorage_Entry_Toolbar_Button_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataStorage.Entry.Toolbar.Button.Save.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beheer de locaties, selecteer hiervoor een locatie en gebruik de rechtermuisknop.
+        /// </summary>
+        public static string metadataStorage_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("metadataStorage.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslag locaties.
         /// </summary>
         public static string metadataStorage_Page_Title {
             get {
                 return ResourceManager.GetString("metadataStorage.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-locatie toevoegen.
+        /// </summary>
+        public static string metadataStorage_Treeview_FolderContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataStorage.Treeview.FolderContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-locatie toevoegen.
+        /// </summary>
+        public static string metadataStorage_Treeview_FolderContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataStorage.Treeview.FolderContext.MenuItem.Add.Sub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijder deze EN ALLE onderligende locaties.
+        /// </summary>
+        public static string metadataStorage_Treeview_FolderContext_MenuItem_Delete {
+            get {
+                return ResourceManager.GetString("metadataStorage.Treeview.FolderContext.MenuItem.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-locatie toevoegen.
+        /// </summary>
+        public static string metadataStorage_Treeview_SolutionContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataStorage.Treeview.SolutionContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-locatie toevoegen.
+        /// </summary>
+        public static string metadataStorage_Treeview_SolutionContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataStorage.Treeview.SolutionContext.MenuItem.Add.Sub", resourceCulture);
             }
         }
         

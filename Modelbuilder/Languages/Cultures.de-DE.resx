@@ -145,7 +145,7 @@
     <value>Bauwzeiten</value>
   </data>
   <data name="metadataStorage.Page.Title" xml:space="preserve">
-    <value>Speicherplats</value>
+    <value>Speicherorte</value>
   </data>
   <data name="metadataSupplier.Page.Title" xml:space="preserve">
     <value>Lieferanten</value>
@@ -1456,5 +1456,29 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   </data>
   <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Löschen Sie diese UND ALLE zugrunde liegenden Kategorien</value>
+  </data>
+  <data name="metadataStorage.Page.SubTitle" xml:space="preserve">
+    <value>Verwalten Sie die Standorte, wählen Sie einen Standort aus und verwenden Sie die rechte Maustaste</value>
+  </data>
+  <data name="metadataStorage.Entry.Field.Storage" xml:space="preserve">
+    <value>Standort</value>
+  </data>
+  <data name="metadataStorage.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Geänderten Standort speichern</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptstandort hinzufügen</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterstandort hinzufügen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptstandort hinzufügen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterstandort hinzufügen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Löschen Sie diesen UND ALLE zugrunde liegenden Standorte</value>
   </data>
 </root>
