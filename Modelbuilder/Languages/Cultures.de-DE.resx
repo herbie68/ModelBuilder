@@ -151,13 +151,13 @@
     <value>Lieferanten</value>
   </data>
   <data name="metadataWorktype.Page.Title" xml:space="preserve">
-    <value>Arbeitstypen</value>
+    <value>Art von Arbeit</value>
   </data>
   <data name="Order.Page.Title" xml:space="preserve">
     <value>Bestellung</value>
   </data>
   <data name="Order.Page.SubTitle" xml:space="preserve">
-    <value>Geben Sie die Bestellung pro Lieferant ein, pro Zeile k�nnen Sie angeben, ob ein Artikel in den Projektkosten enthalten ist</value>
+    <value>Geben Sie die Bestellung pro Lieferant ein, pro Zeile können Sie angeben, ob ein Artikel in den Projektkosten enthalten ist</value>
   </data>
   <data name="Order.TabItemHeader.Memo" xml:space="preserve">
     <value>Zusätzliche Informationen</value>
@@ -1408,5 +1408,29 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   </data>
   <data name="metadataProject.Tab.Memo.Title" xml:space="preserve">
     <value>Zusätzliche Information</value>
+  </data>
+  <data name="metadataWorktype.Page.SubTitle" xml:space="preserve">
+    <value>Verwalten Sie die Arbeit, wählen Sie einen Arbeitstyp aus und verwenden Sie die rechte Maustaste</value>
+  </data>
+  <data name="metadataWorktype.Entry.Field.Worktype" xml:space="preserve">
+    <value>Arbeitstyp</value>
+  </data>
+  <data name="metadataWorktype.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Geänderten Kategorienamen speichern</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptarbeitstyp hinzufügen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterarbeitstyp hinzufügen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hauptarbeitstyp hinzufügen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Unterarbeitstyp hinzufügen</value>
+  </data>
+  <data name="metadataWorktype.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Entfernen Sie diese UND ALLE zugrunde liegenden Arbeitstypen</value>
   </data>
 </root>

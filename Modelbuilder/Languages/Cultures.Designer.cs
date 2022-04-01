@@ -2581,11 +2581,83 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Werksoorten.
+        ///   Looks up a localized string similar to Werksoort.
+        /// </summary>
+        public static string metadataWorktype_Entry_Field_Worktype {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Entry.Field.Worktype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewijzigde categorienaam opslaan.
+        /// </summary>
+        public static string metadataWorktype_Entry_Toolbar_Button_Save_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Entry.Toolbar.Button.Save.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beheer de werkzaamheden, selecteer hiervoor een werksoort en gebruik de rechtermuisknop.
+        /// </summary>
+        public static string metadataWorktype_Page_SubTitle {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Page.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soort werkzaamheden.
         /// </summary>
         public static string metadataWorktype_Page_Title {
             get {
                 return ResourceManager.GetString("metadataWorktype.Page.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-werksoort toevoegen.
+        /// </summary>
+        public static string metadataWorktype_Treeview_FolderContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Treeview.FolderContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-werksoort toevoegen.
+        /// </summary>
+        public static string metadataWorktype_Treeview_FolderContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Treeview.FolderContext.MenuItem.Add.Sub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwijder deze EN ALLE onderligende werksoorten.
+        /// </summary>
+        public static string metadataWorktype_Treeview_FolderContext_MenuItem_Delete {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Treeview.FolderContext.MenuItem.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoofd-werksoort toevoegen.
+        /// </summary>
+        public static string metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Main {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-werksoort toevoegen.
+        /// </summary>
+        public static string metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Sub {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Treeview.SolutionContext.MenuItem.Add.Sub", resourceCulture);
             }
         }
         
@@ -2896,7 +2968,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verwijder geselecteerde bestelregel.
+        ///   Looks up a localized string similar to Verwijder geselkteerde bestelregel.
         /// </summary>
         public static string Order_Orderlist_Toolbar_Button_Delete {
             get {
