@@ -145,7 +145,7 @@
     <value>Bouwtijden</value>
   </data>
   <data name="metadataStorage.Page.Title" xml:space="preserve">
-    <value>Opslaglocaties</value>
+    <value>Opslag locaties</value>
   </data>
   <data name="metadataSupplier.Page.Title" xml:space="preserve">
     <value>Leveranciers</value>
@@ -1455,5 +1455,29 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Verwijder deze EN ALLE onderligende categoriën</value>
+  </data>
+  <data name="metadataStorage.Page.SubTitle" xml:space="preserve">
+    <value>Beheer de locaties, selecteer hiervoor een locatie en gebruik de rechtermuisknop</value>
+  </data>
+  <data name="metadataStorage.Entry.Field.Storage" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="metadataStorage.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Gewijzigde locatie opslaan</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-locatie toevoegen</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-locatie toevoegen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Hoofd-locatie toevoegen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Sub-locatie toevoegen</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Verwijder deze EN ALLE onderligende locaties</value>
   </data>
 </root>

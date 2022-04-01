@@ -145,7 +145,7 @@
     <value>Building time</value>
   </data>
   <data name="metadataStorage.Page.Title" xml:space="preserve">
-    <value>Storage Locations</value>
+    <value>Storage locations</value>
   </data>
   <data name="metadataSupplier.Page.Title" xml:space="preserve">
     <value>Suppliers</value>
@@ -1455,5 +1455,29 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="metadataCategory.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
     <value>Delete this AND ALL of the underlying categories</value>
+  </data>
+  <data name="metadataStorage.Page.SubTitle" xml:space="preserve">
+    <value>Manage the locations, select a location and use the right mouse button</value>
+  </data>
+  <data name="metadataStorage.Entry.Field.Storage" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="metadataStorage.Entry.Toolbar.Button.Save.Tooltip" xml:space="preserve">
+    <value>Save changed location</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main location</value>
+  </data>
+  <data name="metadataStorage.Treeview.SolutionContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub location</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Main" xml:space="preserve">
+    <value>Add main location</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Add.Sub" xml:space="preserve">
+    <value>Add sub location</value>
+  </data>
+  <data name="metadataStorage.Treeview.FolderContext.MenuItem.Delete" xml:space="preserve">
+    <value>Delete this AND ALL underlying locations</value>
   </data>
 </root>
