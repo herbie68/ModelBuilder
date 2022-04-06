@@ -43,13 +43,6 @@ public partial class ReportingTime : Page
     }
     #endregion
 
-    #region CommonCommandBinding_CanExecute
-    private void CommonCommandBinding_CanExecute ( object sender, CanExecuteRoutedEventArgs e )
-    {
-        e.CanExecute = true;
-    }
-    #endregion CommonCommandBinding_CanExecute
-
     #region Selection Changed: Project combobox
     private void cboxProject_SelectionChanged ( object sender, SelectionChangedEventArgs e )
     {

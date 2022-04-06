@@ -1,7 +1,10 @@
 ﻿<Page x:Class="Modelbuilder.ReportingTime"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Modelbuilder"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="ReportingTime"
       d:DesignHeight="800" d:DesignWidth="1000"
       mc:Ignorable="d">
@@ -95,7 +98,7 @@
                                     <TextBlock Width="100"
                                                Margin="30,0,0,0"
                                                Foreground="Blue"
-                                               Text="{Binding Name, Converter={StaticResource completeConverter}}" />
+                                               Text="{Binding Name, Converter={StaticResource groupsConverter}}" />
                                 </DockPanel>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
