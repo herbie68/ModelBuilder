@@ -1,4 +1,8 @@
-﻿namespace Modelbuilder;
+﻿using ScottPlot.Drawing.Colorsets;
+using static Modelbuilder.HelperGeneral;
+using static Modelbuilder.HelperMySql;
+
+namespace Modelbuilder;
 public partial class storageOrder : Page
 {
     private HelperGeneral _helperGeneral;
@@ -30,10 +34,6 @@ public partial class storageOrder : Page
     #region InitializeHelper (connect to database)
     private void InitializeHelper()
     {
-        if (_helper == null)
-        {
-            _helper = new HelperOrder(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
-        }
         if (_helperGeneral == null)
         {
             _helperGeneral = new HelperGeneral(Connection_Query.server, int.Parse(Connection_Query.port), Connection_Query.database, Connection_Query.uid, Connection_Query.password);
@@ -47,7 +47,7 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helper.GetDataTblOrder();
+        _dt = _helperGeneral.GetData(HelperGeneral.DbOrderView);
 
         // Populate data in datagrid from datatable
         OrderCode_DataGrid.DataContext = _dt;
@@ -74,7 +74,8 @@ public partial class storageOrder : Page
         InitializeHelper();
 
         // Get data from database
-        _dtSC = _helper.GetDataTblOrderline();
+        _dtSC = _helperGeneral.GetData(HelperGeneral.DbOrderLineView);
+
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
@@ -131,7 +132,8 @@ public partial class storageOrder : Page
         if (_TempOrderClosed == 1) { dispOrderClosed.IsChecked = true; } else { dispOrderClosed.IsChecked = false; }
 
         // Retrieve list of OrderRows for this Order from database
-        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
+        _dtSC = _helperGeneral.GetData(HelperGeneral.DbOrderLineView, new string[1, 3] 
+        {   { HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldTypeId, valueOrderId.Text } });
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
@@ -219,10 +221,27 @@ public partial class storageOrder : Page
             inpCurrencySymbol.Text = item.SupplierCurrencySymbol.ToString();
         }
 
-        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_helper.GetSingleData(int.Parse(valueCurrencyId.Text), "currency", "ConversionRate", "double")));
-        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "ShippingCosts", "double")));
-        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(inpOrderCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "OrderCosts", "double")));
-        valueMinShippingCosts.Text = _helper.GetSingleData(int.Parse(valueSupplierId.Text), "supplier", "MinShippingCosts", "double");
+        var _rate = _helperGeneral.GetValueFromTable(HelperGeneral.DbCurrencyTable, new string[1, 3]
+        {   {HelperGeneral.DbCurrencyTableFieldNameId, HelperGeneral.DbCurrencyTableFieldTypeId, valueCurrencyId.Text } }, new string[1, 3]
+        {   {HelperGeneral.DbCurrencyTableFieldNameRate, HelperGeneral.DbCurrencyTableFieldTypeRate, "" } });
+
+        var _shipping = _helperGeneral.GetValueFromTable(HelperGeneral.DbSupplierTable, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierId.Text } }, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameShippingCosts, HelperGeneral.DbSupplierFieldTypeShippingCosts, "" } });
+
+        var _minshipping = _helperGeneral.GetValueFromTable(HelperGeneral.DbSupplierTable, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierId.Text } }, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameMinShippingCosts, HelperGeneral.DbSupplierFieldTypeMinShippingCosts, "" } });
+
+
+        var _order = _helperGeneral.GetValueFromTable(HelperGeneral.DbSupplierTable, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameId, HelperGeneral.DbSupplierFieldTypeId, valueSupplierId.Text } }, new string[1, 3]
+        {   {HelperGeneral.DbSupplierFieldNameOrderCosts, HelperGeneral.DbSupplierFieldTypeOrderCosts, "" } });
+
+        inpCurrencyRate.Text = string.Format("{0:#,####0.0000}", double.Parse(_rate));
+        inpShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_shipping));
+        inpOrderCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_order));
+        valueMinShippingCosts.Text = string.Format("{0:#,##0.00}", double.Parse(_minshipping));
     }
     #endregion Selection changed: Combobox Supplier
 
@@ -237,21 +256,37 @@ public partial class storageOrder : Page
             valueProductName.Text = item.ProductName.ToString();
         }
 
-        var SupplierHasProduct = _helper.CheckProductForSupplier(int.Parse(valueSupplierId.Text), int.Parse(valueProductId.Text));
+        var SupplierHasProduct = _helperGeneral.CheckForRecords(HelperGeneral.DbProductSupplierTable, new string[2, 3]
+        {
+            { HelperGeneral.DbProductSupplierTableFieldNameProductId, HelperGeneral.DbProductSupplierTableFieldTypeProductId, valueProductId.Text },
+            { HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueSupplierId.Text }
+        });
 
         // If there is no price entered, retrieve the default price from the database
         if (inpPrice.Text == string.Empty || inpPrice.Text == "0,00")
         {
             // Check if product is in table for this supplier, if not return value will be -1
-            string _tmpPrice = _helper.GetSingleDataMultiSelect(DbProductSupplierTable, "Price", "Double", "Supplier_Id", int.Parse(valueSupplierId.Text), "AND", "Product_Id", int.Parse(valueProductId.Text));
+            var _tmpPrice = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductSupplierTable, new string[2, 3]
+                {   {HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueSupplierId.Text },
+                    {HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductId.Text }    }, new string[1, 3]
+                {   {HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, "" } });
 
             if (SupplierHasProduct == 0)
             {
-                inpPrice.Text = _helper.GetSingleDataMultiSelect(DbProductSupplierTable, "Price", "Double", "Supplier_Id", int.Parse(valueSupplierId.Text), "AND", "Product_Id", int.Parse(valueProductId.Text));
+                var _price = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductSupplierTable, new string[2, 3]
+                    {   {HelperGeneral.DbProductSupplierTableFieldNameSupplierId, HelperGeneral.DbProductSupplierTableFieldTypeSupplierId, valueSupplierId.Text },
+                                    {HelperGeneral.DbProductSupplierTableFieldNameId, HelperGeneral.DbProductSupplierTableFieldTypeId, valueProductId.Text }    }, new string[1, 3]
+                    {   {HelperGeneral.DbProductSupplierTableFieldNamePrice, HelperGeneral.DbProductSupplierTableFieldTypePrice, "" } });
+
+                inpPrice.Text = _price;
             }
             else
             {
-                inpPrice.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "product", "Price", "Double");
+                var _price = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+                                {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, new string[1, 3]
+                                {   {HelperGeneral.DbProductTableFieldNamePrice, HelperGeneral.DbProductTableFieldTypePrice, "" } });
+
+                inpPrice.Text = _price;
             }
 
             inpPrice.Text = string.Format("{0:#,##0.00}", double.Parse(inpPrice.Text));
@@ -260,13 +295,25 @@ public partial class storageOrder : Page
         // If there is no quantity entered, retrieve the default order quantity of the item
         if (inpNumber.Text == string.Empty || inpNumber.Text == "0,00")
         {
-            inpNumber.Text = string.Format("{0:#,##0.00}", int.Parse(_helper.GetSingleData(int.Parse(valueProductId.Text), "product", "StandardOrderQuantity", "double")));
+            var _number = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+                {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, new string[1, 3]
+                {   {HelperGeneral.DbProductTableFieldNameStandardOrderQuantity, HelperGeneral.DbProductTableFieldTypeStandardOrderQuantity, "" } });
+
+            inpNumber.Text = string.Format("{0:#,##0.00}", _number);
         }
 
         if (valueProductId.Text != string.Empty)
         {
-            valueCategoryId.Text = _helper.GetSingleData(int.Parse(valueProductId.Text), "product", "Category_Id", "int");
-            valueCategoryName.Text = _helper.GetSingleData(int.Parse(valueCategoryId.Text), "category", "Name", "string");
+            var _categoryId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProductTable, new string[1, 3]
+                {   {HelperGeneral.DbProductTableFieldNameId, HelperGeneral.DbProductTableFieldTypeId, valueProductId.Text } }, new string[1, 3]
+                {   {HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId, "" } });
+
+            var _categoryName = _helperGeneral.GetValueFromTable(HelperGeneral.DbCategoryTable, new string[1, 3]
+                {   {HelperGeneral.DbCategoryTableFieldNameCategoryId, HelperGeneral.DbCategoryTableFieldTypeCategoryId, valueCategoryId.Text } }, new string[1, 3]
+                {   {HelperGeneral.DbCategoryTableFieldNameCategoryName, HelperGeneral.DbCategoryTableFieldTypeCategoryName, "" } });
+
+            valueCategoryId.Text = _categoryId;
+            valueCategoryName.Text = _categoryName;
             if (valueCategoryName.Text != string.Empty)
             {
                 cboxCategory.Text = valueCategoryName.Text;
@@ -323,11 +370,22 @@ public partial class storageOrder : Page
         var OrderlinePrice = double.Parse(inpPrice.Text);
 
         InitializeHelper();
-        var result = _helper.InsertTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice);
+        var result = _helperGeneral.InsertInTable(HelperGeneral.DbOrderLineTable, new string[7, 3]
+            {
+                {HelperGeneral.DbOrderLineFieldNameOrderId,    HelperGeneral.DbOrderLineFieldTypeOrderId,     OrderlineOrderId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameSupplierId, HelperGeneral.DbOrderLineFieldTypeSupplierId,  OrderlineSupplierId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameProductId,  HelperGeneral.DbOrderLineFieldTypeProductId,   OrderlineProductId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameProjectId,  HelperGeneral.DbOrderLineFieldTypeProjectId,   OrderlineProjectId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameCategoryId, HelperGeneral.DbOrderLineFieldTypeCategoryId,  OrderlineCategoryId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameAmount,     HelperGeneral.DbOrderLineFieldTypeAmount,      OrderlineNumber.ToString()},
+                {HelperGeneral.DbOrderLineFieldNamePrice,      HelperGeneral.DbOrderLineFieldTypePrice,       OrderlinePrice.ToString()}
+            });
+
         UpdateStatus("row", result);
 
         // Get data from database
-        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
+        _dtSC = _helperGeneral.GetData(HelperGeneral.DbOrderLineView, new string[1, 3]
+        {   { HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldTypeId, valueOrderId.Text } });
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
@@ -397,12 +455,25 @@ public partial class storageOrder : Page
         if (inpPrice.Text == String.Empty) { OrderlinePrice = 0; } else { OrderlinePrice = double.Parse(inpPrice.Text); }
 
         InitializeHelper();
-        string result = string.Empty;
-        result = _helper.UpdateTblOrderline(OrderlineOrderId, OrderlineSupplierId, OrderlineProductId, OrderlineProjectId, OrderlineCategoryId, OrderlineNumber, OrderlinePrice, OrderlineId);
+
+        var result = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
+        {
+            { HelperGeneral.DbOrderLineFieldNameId, HelperGeneral.DbOrderLineFieldNameId, OrderlineId.ToString()}
+        }, new string[7, 3]
+        {
+                {HelperGeneral.DbOrderLineFieldNameOrderId,    HelperGeneral.DbOrderLineFieldTypeOrderId,     OrderlineOrderId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameSupplierId, HelperGeneral.DbOrderLineFieldTypeSupplierId,  OrderlineSupplierId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameProductId,  HelperGeneral.DbOrderLineFieldTypeProductId,   OrderlineProductId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameProjectId,  HelperGeneral.DbOrderLineFieldTypeProjectId,   OrderlineProjectId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameCategoryId, HelperGeneral.DbOrderLineFieldTypeCategoryId,  OrderlineCategoryId.ToString()},
+                {HelperGeneral.DbOrderLineFieldNameAmount,     HelperGeneral.DbOrderLineFieldTypeAmount,      OrderlineNumber.ToString()},
+                {HelperGeneral.DbOrderLineFieldNamePrice,      HelperGeneral.DbOrderLineFieldTypePrice,       OrderlinePrice.ToString()}        });
+
         UpdateStatus("row", result);
 
         // Retrieve list of OrderRows for this Order from database
-        _dtSC = _helper.GetDataTblOrderline(int.Parse(valueOrderId.Text));
+        _dtSC = _helperGeneral.GetData(HelperGeneral.DbOrderLineView, new string[1, 3]
+        {   { HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldTypeId, valueOrderId.Text } });
 
         // Populate data in datagrid from datatable
         OrderDetail_DataGrid.DataContext = _dtSC;
@@ -432,8 +503,9 @@ public partial class storageOrder : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.DeleteTblSupplyOrderline(int.Parse(valueOrderlineId.Text), "row");
+        var result = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
+            {   {HelperGeneral.DbOrderLineFieldNameId, HelperGeneral.DbOrderLineFieldTypeId, valueOrderlineId.Text}   });
+
         UpdateStatus("Row", result);
 
 
@@ -485,12 +557,22 @@ public partial class storageOrder : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.InsertTblOrder(SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, OrderMemo);
+        var result = _helperGeneral.InsertInTable(HelperGeneral.DbOrderTable, new string[9, 3]
+        {
+            {HelperGeneral.DbOrderTableFieldNameSupplierId,     HelperGeneral.DbOrderTableFieldTypeSupplierId,      SupplierId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameCurrencyId,     HelperGeneral.DbOrderTableFieldTypeCurrencyId,      CurrencyId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderNumber,    HelperGeneral.DbOrderTableFieldTypeOrderNumber,     OrderNumber},
+            {HelperGeneral.DbOrderTableFieldNameOrderDate,      HelperGeneral.DbOrderTableFieldTypeOrderDate,       OrderDate},
+            {HelperGeneral.DbOrderTableFieldNameCurrencySymbol, HelperGeneral.DbOrderTableFieldTypeCurrencySymbol,  CurrencySymbol},
+            {HelperGeneral.DbOrderTableFieldNameConversionRate, HelperGeneral.DbOrderTableFieldTypeConversionRate,  CurrencyRate.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameShippingCosts,  HelperGeneral.DbOrderTableFieldTypeShippingCosts,   ShippingCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderCosts,     HelperGeneral.DbOrderTableFieldTypeOrderCosts,      OrderCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderMemo,      HelperGeneral.DbOrderTableFieldTypeOrderMemo,       OrderMemo}
+        });
         UpdateStatus("order", result);
 
         // Get data from database
-        _dt = _helper.GetDataTblOrder();
+        _dt = _helperGeneral.GetData(HelperGeneral.DbOrderView);
 
         // Populate data in datagrid from datatable
         OrderCode_DataGrid.DataContext = _dt;
@@ -541,9 +623,28 @@ public partial class storageOrder : Page
         {
             InitializeHelper();
 
-            string result = string.Empty;
-            result = _helper.UpdateTblOrder(OrderId, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
-            string _tempresult = _helper.UpdateSupplierTblOrderline(OrderId, SupplierId);
+            var result = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderTable, new string[1,3]
+            {
+                { HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldNameId, OrderId.ToString()}
+            },new string[9, 3]
+            {
+            {HelperGeneral.DbOrderTableFieldNameSupplierId,     HelperGeneral.DbOrderTableFieldTypeSupplierId,      SupplierId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameCurrencyId,     HelperGeneral.DbOrderTableFieldTypeCurrencyId,      CurrencyId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderNumber,    HelperGeneral.DbOrderTableFieldTypeOrderNumber,     OrderNumber},
+            {HelperGeneral.DbOrderTableFieldNameOrderDate,      HelperGeneral.DbOrderTableFieldTypeOrderDate,       OrderDate},
+            {HelperGeneral.DbOrderTableFieldNameCurrencySymbol, HelperGeneral.DbOrderTableFieldTypeCurrencySymbol,  CurrencySymbol},
+            {HelperGeneral.DbOrderTableFieldNameConversionRate, HelperGeneral.DbOrderTableFieldTypeConversionRate,  CurrencyRate.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameShippingCosts,  HelperGeneral.DbOrderTableFieldTypeShippingCosts,   ShippingCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderCosts,     HelperGeneral.DbOrderTableFieldTypeOrderCosts,      OrderCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderMemo,      HelperGeneral.DbOrderTableFieldTypeOrderMemo,       memo}
+            });
+            var _tempresult = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
+            {
+                { HelperGeneral.DbOrderLineFieldNameId, HelperGeneral.DbOrderLineFieldNameId, OrderId.ToString()}
+            }, new string[1, 3]
+            {
+                {HelperGeneral.DbOrderLineFieldNameSupplierId, HelperGeneral.DbOrderLineFieldTypeSupplierId,  SupplierId.ToString()}
+            });
             UpdateStatus("order", result);
         }
 
@@ -562,18 +663,22 @@ public partial class storageOrder : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.DeleteTblSupplyOrder(int.Parse(valueOrderId.Text));
+        var result = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbOrderTable, new string[1, 3]
+        {   {HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldTypeId, valueOrderId.Text}   });
         UpdateStatus("Order", result);
 
         //TODO: After deleting the order we have to check if there are orderrows on this orderId and if Yes delete all those lines
 
-        var _tempOrders = _helper.CheckOrderRowsForOrder(int.Parse(valueOrderId.Text));
+        var _tempOrders = _helperGeneral.CheckForRecords(HelperGeneral.DbOrderLineTable, new string[1, 3]
+        {
+            {HelperGeneral.DbOrderLineFieldNameOrderId, HelperGeneral.DbOrderLineFieldTypeOrderId, valueOrderId.Text}
+        });
 
         if (_tempOrders != 0)
         {
-            result = _helper.DeleteTblSupplyOrderline(int.Parse(valueOrderId.Text), "order");
-            UpdateStatus("Order", result);
+            var result2 = _helperGeneral.DeleteRecordFromTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
+                {   {HelperGeneral.DbOrderLineFieldNameOrderId, HelperGeneral.DbOrderLineFieldTypeOrderId, valueOrderId.Text}   });
+            UpdateStatus("Order", result2);
         }
 
         GetData();
@@ -679,12 +784,20 @@ public partial class storageOrder : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.InsertTblOrder(SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        var result = _helperGeneral.InsertInTable(HelperGeneral.DbOrderTable, new string[9, 3]
+        {
+            {HelperGeneral.DbOrderTableFieldNameSupplierId,     HelperGeneral.DbOrderTableFieldTypeSupplierId,      SupplierId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameCurrencyId,     HelperGeneral.DbOrderTableFieldTypeCurrencyId,      CurrencyId.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderNumber,    HelperGeneral.DbOrderTableFieldTypeOrderNumber,     OrderNumber},
+            {HelperGeneral.DbOrderTableFieldNameOrderDate,      HelperGeneral.DbOrderTableFieldTypeOrderDate,       OrderDate},
+            {HelperGeneral.DbOrderTableFieldNameCurrencySymbol, HelperGeneral.DbOrderTableFieldTypeCurrencySymbol,  CurrencySymbol},
+            {HelperGeneral.DbOrderTableFieldNameConversionRate, HelperGeneral.DbOrderTableFieldTypeConversionRate,  CurrencyRate.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameShippingCosts,  HelperGeneral.DbOrderTableFieldTypeShippingCosts,   ShippingCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderCosts,     HelperGeneral.DbOrderTableFieldTypeOrderCosts,      OrderCosts.ToString()},
+            {HelperGeneral.DbOrderTableFieldNameOrderMemo,      HelperGeneral.DbOrderTableFieldTypeOrderMemo,       memo}
+        });
         UpdateStatus("order", result);
     }
-
-
     #endregion
 
     #region Update Order row
@@ -695,8 +808,22 @@ public partial class storageOrder : Page
 
         InitializeHelper();
 
-        string result = string.Empty;
-        result = _helper.UpdateTblOrder(OrderId, SupplierId, CurrencyId, OrderNumber, OrderDate, CurrencySymbol, CurrencyRate, ShippingCosts, OrderCosts, memo);
+        var result = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderTable, new string[1, 3]
+            {
+                { HelperGeneral.DbOrderTableFieldNameId, HelperGeneral.DbOrderTableFieldNameId, OrderId.ToString()}
+            }, new string[9, 3]
+            {
+                {HelperGeneral.DbOrderTableFieldNameSupplierId,     HelperGeneral.DbOrderTableFieldTypeSupplierId,      SupplierId.ToString()},
+                {HelperGeneral.DbOrderTableFieldNameCurrencyId,     HelperGeneral.DbOrderTableFieldTypeCurrencyId,      CurrencyId.ToString()},
+                {HelperGeneral.DbOrderTableFieldNameOrderNumber,    HelperGeneral.DbOrderTableFieldTypeOrderNumber,     OrderNumber},
+                {HelperGeneral.DbOrderTableFieldNameOrderDate,      HelperGeneral.DbOrderTableFieldTypeOrderDate,       OrderDate},
+                {HelperGeneral.DbOrderTableFieldNameCurrencySymbol, HelperGeneral.DbOrderTableFieldTypeCurrencySymbol,  CurrencySymbol},
+                {HelperGeneral.DbOrderTableFieldNameConversionRate, HelperGeneral.DbOrderTableFieldTypeConversionRate,  CurrencyRate.ToString()},
+                {HelperGeneral.DbOrderTableFieldNameShippingCosts,  HelperGeneral.DbOrderTableFieldTypeShippingCosts,   ShippingCosts.ToString()},
+                {HelperGeneral.DbOrderTableFieldNameOrderCosts,     HelperGeneral.DbOrderTableFieldTypeOrderCosts,      OrderCosts.ToString()},
+                {HelperGeneral.DbOrderTableFieldNameOrderMemo,      HelperGeneral.DbOrderTableFieldTypeOrderMemo,       memo}
+            });
+
         UpdateStatus("row", result);
     }
     #endregion Update Order Row

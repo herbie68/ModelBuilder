@@ -30,7 +30,19 @@ internal class HelperGeneral
 
     public static readonly string DbContactTypeTable = "contacttype";
 
+    #region Currency table
     public static readonly string DbCurrencyTable = "currency";
+    public static readonly string DbCurrencyTableFieldNameId = "Id";
+    public static readonly string DbCurrencyTableFieldTypeId = "int";
+    public static readonly string DbCurrencyTableFieldNameCode = "Code";
+    public static readonly string DbCurrencyTableFieldTypeCode = "string";
+    public static readonly string DbCurrencyTableFieldNameSymbol = "Symbol";
+    public static readonly string DbCurrencyTableFieldTypeSymbol = "string";
+    public static readonly string DbCurrencyTableFieldNameName = "Name";
+    public static readonly string DbCurrencyTableFieldTypeName = "string";
+    public static readonly string DbCurrencyTableFieldNameRate = "ConversionRate";
+    public static readonly string DbCurrencyTableFieldTypeRate = "double";
+    #endregion Currency table
 
     public static readonly string DbCountryTable = "country";
 
@@ -303,6 +315,7 @@ internal class HelperGeneral
     public static readonly string DbProductUsageViewFieldTypeUsageDate = "date";
     #endregion ProductUsage
 
+    #region Order table and view
     public static readonly string DbOrderTable = "supplyorder";
     public static readonly string DbOrderView = "view_supplyorder";
     public static readonly string DbOpenOrderView = "view_supplyopenorder";
@@ -312,18 +325,51 @@ internal class HelperGeneral
     public static readonly string DbOrderTableFieldTypeClosed = "int";
     public static readonly string DbOrderTableFieldNameClosedDate = "ClosedDate";
     public static readonly string DbOrderTableFieldTypeClosedDate = "date";
+    public static readonly string DbOrderTableFieldNameSupplierId = "Supplier_Id";
+    public static readonly string DbOrderTableFieldTypeSupplierId = "int";		
+    public static readonly string DbOrderTableFieldNameCurrencyId = "Currency_If";
+    public static readonly string DbOrderTableFieldTypeCurrencyId = "int"; 		
+    public static readonly string DbOrderTableFieldNameOrderNumber = "OrderNumber";
+    public static readonly string DbOrderTableFieldTypeOrderNumber = "string";
+    public static readonly string DbOrderTableFieldNameOrderDate = "OrderDate";
+    public static readonly string DbOrderTableFieldTypeOrderDate = "date";
+    public static readonly string DbOrderTableFieldNameCurrencySymbol = "CurrencySymbol";
+    public static readonly string DbOrderTableFieldTypeCurrencySymbol = "string";
+    public static readonly string DbOrderTableFieldNameConversionRate = "CurrencyConversionRate";
+    public static readonly string DbOrderTableFieldTypeConversionRate = "double";
+    public static readonly string DbOrderTableFieldNameShippingCosts = "ShippingCosts";
+    public static readonly string DbOrderTableFieldTypeShippingCosts = "double";
+    public static readonly string DbOrderTableFieldNameOrderCosts = "OrderCosts";
+    public static readonly string DbOrderTableFieldTypeOrderCosts = "double";
+    public static readonly string DbOrderTableFieldNameOrderMemo = "Memo";
+    public static readonly string DbOrderTableFieldTypeOrderMemo = "longtext";
+
 
     public static readonly string DbOrderLineTable = "supplyorderline";
     public static readonly string DbOrderLineView = "view_supplyorderline";
     public static readonly string DbOpenOrderLineView = "view_supplyopenorderline";
     public static readonly string DbOrderLineFieldNameId = "Id";
     public static readonly string DbOrderLineFieldTypeId = "int";
+    public static readonly string DbOrderLineFieldNameSupplierId = "Supplier_Id";
+    public static readonly string DbOrderLineFieldTypeSupplierId = "int";
+    public static readonly string DbOrderLineFieldNameProductId = "Product_Id";
+    public static readonly string DbOrderLineFieldTypeProductId = "int";
+    public static readonly string DbOrderLineFieldNameProjectId = "Project_Id";
+    public static readonly string DbOrderLineFieldTypeProjectId = "int";
+    public static readonly string DbOrderLineFieldNameCategoryId = "Category_Id";
+    public static readonly string DbOrderLineFieldTypeCategoryId = "int";
+    public static readonly string DbOrderLineFieldNameSupplierProductName = "SupplierProductName";
+    public static readonly string DbOrderLineFieldTypeSupplierProductName = "string";
     public static readonly string DbOrderLineFieldNameOrderId = "supplyorder_Id";
     public static readonly string DbOrderLineFieldTypeOrderId = "int";
     public static readonly string DbOrderLineFieldNameAmount = "Amount";
     public static readonly string DbOrderLineFieldTypeAmount = "double";
     public static readonly string DbOrderLineFieldNameOpenAmount = "OpenAmount";
     public static readonly string DbOrderLineFieldTypeOpenAmount = "double";
+    public static readonly string DbOrderLineFieldNamePrice = "Price";
+    public static readonly string DbOrderLineFieldTypePrice = "double";
+    public static readonly string DbOrderLineFieldNameRealRowTotal = "RealRowTotal";
+    public static readonly string DbOrderLineFieldTypeRealRowTotal = "double";
     public static readonly string DbOrderLineFieldNameClosed = "Closed";
     public static readonly string DbOrderLineFieldTypeClosed = "int";
     public static readonly string DbOrderLineFieldNameClosedDate = "ClosedDate";
@@ -332,6 +378,7 @@ internal class HelperGeneral
 
     public static readonly string DbOpenOrderLineFieldNameSupplyOrderId = "Supplyorder_Id";
     public static readonly string DbOpenOrderLineFieldTypeSupplyOrderId = "int";
+    #endregion Ordertables and views
 
     #region Unit Table
     public static readonly string DbUnitTable = "unit";

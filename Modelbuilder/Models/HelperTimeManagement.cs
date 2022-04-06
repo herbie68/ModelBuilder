@@ -8,34 +8,22 @@ internal class HelperTimeManagement
     #endregion public Variables
 	
     #region Connector to database
-    public HelperTimeManagement(string serverName, string databaseName, string username, string userPwd)
-    {
-        ConnectionStr = string.Format("Server={0};Database={1};Uid={2};Pwd={3};", serverName, databaseName, username, userPwd);
-    }
-
     public HelperTimeManagement(string serverName, int portNumber, string databaseName, string username, string userPwd)
     {
         ConnectionStr = string.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4};", serverName, portNumber, databaseName, username, userPwd);
     }
     #endregion Connector to database
 
-    #region Execute Non Query
-    public void ExecuteNonQuery(string sqlText)
-    {
-        using (MySqlConnection con = new MySqlConnection(ConnectionStr))
-        {
-            con.Open();
-
-            using (MySqlCommand cmd = new MySqlCommand(sqlText, con))
-            {
-                cmd.ExecuteNonQuery();
-            }
-        }
-    }
-    #endregion Execute NonQuery
-
     #region Get Data from TableView or Table
-    //public DataTable GetData ( string Table, string SelectString, string[,] WhereFields, string OrderBy ="")
+    /// <summary>
+    /// This is a speific helper to retrieve a lit only used in TimeManagement
+    /// </summary>
+    /// <param name="workinghoursList"></param>
+    /// <param name="Table"></param>
+    /// <param name="SelectString"></param>
+    /// <param name="WhereFields"></param>
+    /// <param name="OrderBy"></param>
+    /// <returns></returns>
     public List<WorkingHours> GetWorkingHoursList(List<WorkingHours> workinghoursList, string Table, string SelectString, string[,] WhereFields, string OrderBy = "")
     {
         DataTable dt = new ();
