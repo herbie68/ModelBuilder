@@ -6,7 +6,6 @@ namespace Modelbuilder;
 public partial class storageOrder : Page
 {
     private HelperGeneral _helperGeneral;
-    private HelperOrder _helper;
     private DataTable _dt, _dtSC;
     private int _dbRowCount, _dbRowCountSC;
     private int _currentDataGridIndex;
