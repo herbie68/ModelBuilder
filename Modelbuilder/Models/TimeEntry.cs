@@ -22,7 +22,7 @@ public class TimeEntry
     public string Worktime          { get; set; }
     public int WorkedMinutes        { get; set; }
     
-    public string NoGroup
+    public static string NoGroup
     {
         get { return "Totaal"; }
     }

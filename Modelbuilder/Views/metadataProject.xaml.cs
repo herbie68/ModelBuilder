@@ -15,7 +15,6 @@ namespace Modelbuilder.Views
         public metadataProject()
         {
             InitializeComponent();
-
             GetData();
         }
 
@@ -153,6 +152,12 @@ namespace Modelbuilder.Views
             TimeTab.IsEnabled = true;
             CostsTab.IsEnabled = true;
             DataContext = new TimeViewModel(inpProjectName.Text);
+
+            DataContext = new ProjectViewModel()
+            {
+                TimeVM = new(inpProjectName.Text),
+                ProjectCostsVM = new(inpProjectName.Text)
+            };
 
         }
         #endregion

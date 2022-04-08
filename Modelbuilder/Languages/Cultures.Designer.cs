@@ -3346,6 +3346,132 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aantal producten: .
+        /// </summary>
+        public static string ProjectCosts_DataGrid_GroupTotals_Number {
+            get {
+                return ResourceManager.GetString("ProjectCosts.DataGrid.GroupTotals.Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale kosten: .
+        /// </summary>
+        public static string ProjectCosts_DataGrid_GroupTotals_Totals {
+            get {
+                return ResourceManager.GetString("ProjectCosts.DataGrid.GroupTotals.Totals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Besteld.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_AmountOrdered {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.AmountOrdered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gebruikt.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_AmountUsed {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.AmountUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_Category {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_Price {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_ProductName {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_Project {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totaal.
+        /// </summary>
+        public static string ProjectCosts_Dategrid_Header_Total {
+            get {
+                return ResourceManager.GetString("ProjectCosts.Dategrid.Header.Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Op categorie.
+        /// </summary>
+        public static string ProjectCostsReport_Button_GroupCategory {
+            get {
+                return ResourceManager.GetString("ProjectCostsReport.Button.GroupCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Op project.
+        /// </summary>
+        public static string ProjectCostsReport_Button_GroupProject {
+            get {
+                return ResourceManager.GetString("ProjectCostsReport.Button.GroupProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongegroepeerd.
+        /// </summary>
+        public static string ProjectCostsReport_Button_NoGroup {
+            get {
+                return ResourceManager.GetString("ProjectCostsReport.Button.NoGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal dagdelen: .
+        /// </summary>
+        public static string ProjectTimeEntries_DataGrid_GroupTotals_Number {
+            get {
+                return ResourceManager.GetString("ProjectTimeEntries.DataGrid.GroupTotals.Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totaal gewerkte uren: .
+        /// </summary>
+        public static string ProjectTimeEntries_DataGrid_GroupTotals_Totals {
+            get {
+                return ResourceManager.GetString("ProjectTimeEntries.DataGrid.GroupTotals.Totals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verwerken.
         /// </summary>
         public static string Receipt_Button_Apply {

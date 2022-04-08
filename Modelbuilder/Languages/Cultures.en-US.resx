@@ -1513,4 +1513,46 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountOrdered" xml:space="preserve">
+    <value>Ordered</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.ProductName" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ProjectCostsReport.Button.NoGroup" xml:space="preserve">
+    <value>No group</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupCategory" xml:space="preserve">
+    <value>By category</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupProject" xml:space="preserve">
+    <value>By project</value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Number of products: </value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Total costs: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Number of half-days: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Total hours worked: </value>
+  </data>
 </root>

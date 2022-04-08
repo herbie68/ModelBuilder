@@ -1513,4 +1513,46 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="ProjectCosts.Dategrid.Header.Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.ProductName" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountUsed" xml:space="preserve">
+    <value>Gebruikt</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountOrdered" xml:space="preserve">
+    <value>Besteld</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Price" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="ProjectCostsReport.Button.NoGroup" xml:space="preserve">
+    <value>Ongegroepeerd</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupProject" xml:space="preserve">
+    <value>Op project</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupCategory" xml:space="preserve">
+    <value>Op categorie</value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Aantal producten: </value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Totale kosten: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Aantal dagdelen: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Totaal gewerkte uren: </value>
+  </data>
 </root>
