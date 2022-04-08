@@ -1,14 +1,15 @@
 ﻿<Page x:Class="Modelbuilder.Views.metadataProject"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+      xmlns:local="clr-namespace:Modelbuilder" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="metadataProject"
-      d:DataContext="{d:DesignInstance Type=local:TimeViewModel}"
-      d:DesignHeight="800" d:DesignWidth="1000"
+      d:DesignHeight="800" d:DesignWidth="1600"
       mc:Ignorable="d">
 
     <Page.Resources>
         <local:GroupsToTotalConverter x:Key="groupsConverter" />
+        <local:ProjectGroupsToTotalConverter x:Key="costgroupsConverter" />
     </Page.Resources>
     <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" Style="{DynamicResource MainBorder}">
         <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
@@ -34,14 +35,16 @@
                 <!--#endregion-->
             </Grid>
             <Path Style="{DynamicResource TitleLine}" />
-            <TabControl Height="450" Style="{DynamicResource Default TabControl}">
+            <TabControl Height="320" Style="{DynamicResource Default TabControl}">
                 <TabItem Header="{x:Static p:Cultures.metadataProject_TabItemHeader_General}" Style="{DynamicResource Default TabItem}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="935" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel Width="720" HorizontalAlignment="Left">
+                        <StackPanel Grid.ColumnSpan="2"
+                                    Width="925"
+                                    HorizontalAlignment="Left">
                             <!--#region Genereal projectinformation-->
                             <GroupBox Opacity="1">
                                 <GroupBox.Header>
@@ -53,10 +56,9 @@
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="210" />
+                                        <ColumnDefinition Width="210" />
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="1.5*" />
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
@@ -79,50 +81,51 @@
                                              CharacterCasing="Upper"
                                              Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Grid.Row="2" Grid.Column="0"
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_Name}" />
                                     <TextBox x:Name="inpProjectName"
-                                             Grid.Row="3" Grid.Column="0"
-                                             Grid.ColumnSpan="3"
-                                             Width="500"
+                                             Grid.Row="1" Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             Width="490"
                                              Style="{DynamicResource DefaultTextBox}" />
 
-                                    <TextBlock Grid.Row="4" Grid.Column="0"
+                                    <TextBlock Grid.Row="2" Grid.Column="0"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_StartDate}" />
                                     <DatePicker x:Name="inpProjectStartdate"
-                                                Grid.Row="5" Grid.Column="0"
+                                                Grid.Row="3" Grid.Column="0"
                                                 Width="150"
                                                 Style="{DynamicResource DefaultDataPicker}" />
 
                                     <TextBlock x:Name="lblProjectEndDate"
-                                               Grid.Row="4" Grid.Column="2"
+                                               Grid.Row="2" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_EndDate}"
                                                Visibility="Hidden" />
                                     <DatePicker x:Name="inpProjectEnddate"
-                                                Grid.Row="5" Grid.Column="2"
+                                                Grid.Row="3" Grid.Column="1"
                                                 Width="150"
                                                 Style="{DynamicResource DefaultDataPicker}"
                                                 Visibility="Hidden" />
 
                                     <TextBlock x:Name="lblExpEndDate"
-                                               Grid.Row="4" Grid.Column="2"
+                                               Grid.Row="2" Grid.Column="1"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate}"
                                                Visibility="Visible" />
                                     <TextBox x:Name="dispProjectExpEnddate"
-                                             Grid.Row="5" Grid.Column="2"
+                                             Grid.Row="3" Grid.Column="1"
                                              Width="150"
                                              Style="{DynamicResource NonEditableTextBox}"
                                              Visibility="Visible" />
 
-                                    <TextBlock Grid.Row="6" Grid.Column="0"
+                                    <TextBlock Grid.Row="2" Grid.Column="2"
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_Closed}" />
                                     <CheckBox x:Name="inpProjectClosed"
-                                              Grid.Row="7" Grid.Column="0"
+                                              Grid.Row="3" Grid.Column="2"
+                                              VerticalAlignment="Center"
                                               Checked="ProjectIsCompleted"
                                               Style="{DynamicResource DefaultCheckBox}"
                                               Unchecked="ProjectIsCompleted" />
@@ -132,277 +135,285 @@
                             <!--#endregion-->
 
                             <!--#region Time-->
-                            <GroupBox Opacity="1">
-                                <GroupBox.Header>
-                                    <StackPanel Background="Transparent" Orientation="Horizontal">
-                                        <Image Source="\Resources\projectTime.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Title}" />
-                                    </StackPanel>
-                                </GroupBox.Header>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80*" />
-                                        <ColumnDefinition Width="31*" />
-                                        <ColumnDefinition Width="111*" />
-                                        <ColumnDefinition Width="17*" />
-                                        <ColumnDefinition Width="111*" />
-                                        <ColumnDefinition Width="8*" />
-                                        <ColumnDefinition Width="111*" />
-                                        <ColumnDefinition Width="111*" />
-                                        <ColumnDefinition Width="17*" />
-                                        <ColumnDefinition Width="111*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <GroupBox Opacity="1">
+                                    <GroupBox.Header>
+                                        <StackPanel Background="Transparent" Orientation="Horizontal">
+                                            <Image Source="\Resources\projectTime.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                            <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Title}" />
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="110" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="110" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="110" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Style="{DynamicResource TextBlockBold}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Title}" />
+                                        <TextBlock Grid.Column="0"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource TextBlockBold}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Title}" />
 
-                                    <TextBlock Grid.Column="5" Grid.ColumnSpan="2"
-                                               Margin="8,0,0,0" VerticalAlignment="Center"
-                                               Style="{DynamicResource TextBlockBold}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Title}" />
+                                        <TextBlock Grid.Column="5" Grid.ColumnSpan="2"
+                                                   Margin="8,0,0,0" VerticalAlignment="Center"
+                                                   Style="{DynamicResource TextBlockBold}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Title}" />
 
-                                    <TextBlock Grid.Row="1" Grid.Column="0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time}" />
-                                    <TextBox x:Name="dispProjectBuildTime"
-                                             Grid.Row="1" Grid.Column="2"
-                                             Width="50"
-                                             Margin="61,0,0,0" HorizontalAlignment="Left"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
-                                    <TextBox x:Name="dispProjectBuildTimeLong"
-                                             Grid.Row="1" Grid.Column="4"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time}" />
+                                        <TextBox x:Name="dispProjectBuildTime"
+                                                 Grid.Row="1" Grid.Column="2"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBox x:Name="dispProjectBuildTimeLong"
+                                                 Grid.Row="1" Grid.Column="4"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="2" Grid.Column="0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days}" />
-                                    <TextBox x:Name="dispProjectBuildDays"
-                                             Grid.Row="2" Grid.Column="2"
-                                             Width="50"
-                                             Margin="61,0,0,0" HorizontalAlignment="Left"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days}" />
+                                        <TextBox x:Name="dispProjectBuildDays"
+                                                 Grid.Row="2" Grid.Column="2"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Grid.Row="3" Grid.Column="0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay}" />
-                                    <TextBox x:Name="dispProjectShortestDay"
-                                             Grid.Row="3" Grid.Column="2"
-                                             Width="100"
-                                             Margin="11,0,0,0" VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
-                                    <TextBox x:Name="dispProjectShortestDayLong"
-                                             Grid.Row="3" Grid.Column="4"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay}" />
+                                        <TextBox x:Name="dispProjectShortestDay"
+                                                 Grid.Row="3" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBox x:Name="dispProjectShortestDayLong"
+                                                 Grid.Row="3" Grid.Column="4"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="4" Grid.Column="0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_LongestDay}" />
-                                    <TextBox x:Name="dispProjectLongestDay"
-                                             Grid.Row="4" Grid.Column="2"
-                                             Width="100"
-                                             Margin="11,0,0,0" VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
-                                    <TextBox x:Name="dispProjectLongestDayLong"
-                                             Grid.Row="4" Grid.Column="4"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_LongestDay}" />
+                                        <TextBox x:Name="dispProjectLongestDay"
+                                                 Grid.Row="4" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBox x:Name="dispProjectLongestDayLong"
+                                                 Grid.Row="4" Grid.Column="4"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="5" Grid.Column="0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Dailyhours}" />
-                                    <TextBox x:Name="dispProjectDaylyHours"
-                                             Grid.Row="5" Grid.Column="2"
-                                             Width="100"
-                                             Margin="11,0,0,0" VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
-                                    <TextBox x:Name="dispProjectDaylyHoursLong"
-                                             Grid.Row="5" Grid.Column="4"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="5" Grid.Column="0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Dailyhours}" />
+                                        <TextBox x:Name="dispProjectDaylyHours"
+                                                 Grid.Row="5" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBox x:Name="dispProjectDaylyHoursLong"
+                                                 Grid.Row="5" Grid.Column="4"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="1" Grid.Column="5"
-                                               Grid.ColumnSpan="2"
-                                               Margin="8,0,0,0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_BuildTime}" />
-                                    <TextBox x:Name="inpProjectExpTime"
-                                             Grid.Row="1" Grid.Column="7"
-                                             Width="50"
-                                             Margin="61,0,0,0" VerticalAlignment="Center"
-                                             Style="{DynamicResource NumericTextBox}" />
-                                    <TextBlock Grid.Row="1" Grid.Column="7"
-                                               Grid.ColumnSpan="3"
-                                               Width="37"
-                                               Margin="111,0,0,0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="5"
+                                                   Grid.ColumnSpan="2"
+                                                   Margin="8,0,0,0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_BuildTime}" />
+                                        <TextBox x:Name="inpProjectExpTime"
+                                                 Grid.Row="1" Grid.Column="7"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NumericTextBox}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="9"
+                                                   Grid.ColumnSpan="2"
+                                                   Width="37"
+                                                   HorizontalAlignment="Left"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours}" />
 
-                                    <TextBlock Grid.Row="2" Grid.Column="5"
-                                               Grid.ColumnSpan="2"
-                                               Margin="8,0,0,0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays}" />
-                                    <TextBox x:Name="dispProjectExpBuildDays"
-                                             Grid.Row="2" Grid.Column="7"
-                                             Width="50"
-                                             Margin="61,0,0,0" HorizontalAlignment="Left"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
-                                    <TextBox x:Name="dispProjectExpBuildDaysLong"
-                                             Grid.Row="2" Grid.Column="9"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="2" Grid.Column="5"
+                                                   Grid.ColumnSpan="2"
+                                                   Margin="8,0,0,0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays}" />
+                                        <TextBox x:Name="dispProjectExpBuildDays"
+                                                 Grid.Row="2" Grid.Column="7"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBox x:Name="dispProjectExpBuildDaysLong"
+                                                 Grid.Row="2" Grid.Column="9"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="3" Grid.Column="6"
-                                               Margin="0,0,0,6" VerticalAlignment="Stretch"
-                                               Style="{DynamicResource TextBlockBold}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Title}" />
+                                        <TextBlock Grid.Row="3" Grid.Column="6"
+                                                   Margin="0,0,0,6" VerticalAlignment="Stretch"
+                                                   Style="{DynamicResource TextBlockBold}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Title}" />
 
-                                    <TextBlock Grid.Row="4" Grid.Column="5"
-                                               Grid.ColumnSpan="2"
-                                               Margin="8,0,0,0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours}" />
-                                    <TextBox x:Name="dispProjectToDoBuildTime"
-                                             Grid.Row="4" Grid.Column="7"
-                                             Width="50"
-                                             Margin="61,0,0,0" HorizontalAlignment="Left"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
-                                    <TextBox x:Name="dispProjectToDoBuildTimeLong"
-                                             Grid.Row="4" Grid.Column="9"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}" />
+                                        <TextBlock Grid.Row="4" Grid.Column="5"
+                                                   Grid.ColumnSpan="2"
+                                                   Margin="8,0,0,0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours}" />
+                                        <TextBox x:Name="dispProjectToDoBuildTime"
+                                                 Grid.Row="4" Grid.Column="7"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBox x:Name="dispProjectToDoBuildTimeLong"
+                                                 Grid.Row="4" Grid.Column="9"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}" />
 
-                                    <TextBlock Grid.Row="5" Grid.Column="5"
-                                               Grid.ColumnSpan="2"
-                                               Margin="8,0,0,0"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Days}" />
-                                    <TextBox x:Name="dispProjectToDoBuildDays"
-                                             Grid.Row="5" Grid.Column="7"
-                                             Width="50"
-                                             Margin="61,0,0,0" HorizontalAlignment="Left"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
-                                </Grid>
-                            </GroupBox>
-                            <!--#endregion Time-->
+                                        <TextBlock Grid.Row="5" Grid.Column="5"
+                                                   Grid.ColumnSpan="2"
+                                                   Margin="8,0,0,0"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Days}" />
+                                        <TextBox x:Name="dispProjectToDoBuildDays"
+                                                 Grid.Row="5" Grid.Column="7"
+                                                 Width="50"
+                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
+                                    </Grid>
+                                </GroupBox>
+                                <!--#endregion Time-->
 
-                            <GroupBox Opacity="1">
-                                <GroupBox.Header>
-                                    <StackPanel Background="Transparent" Orientation="Horizontal">
-                                        <Image Source="\Resources\projectExpenses.png" Style="{DynamicResource ImageHeaderGroup}" />
-                                        <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Title}" />
-                                    </StackPanel>
-                                </GroupBox.Header>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width=".15*" />
-                                        <ColumnDefinition Width=".65*" />
-                                        <ColumnDefinition Width="3*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="25" />
-                                        <RowDefinition Height="25" />
-                                        <RowDefinition Height="25" />
-                                        <RowDefinition Height=".15*" />
-                                    </Grid.RowDefinitions>
+                                <GroupBox Opacity="1">
+                                    <GroupBox.Header>
+                                        <StackPanel Background="Transparent" Orientation="Horizontal">
+                                            <Image Source="\Resources\projectExpenses.png" Style="{DynamicResource ImageHeaderGroup}" />
+                                            <TextBlock Style="{DynamicResource TextBlockBold}" Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Title}" />
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="15" />
+                                            <ColumnDefinition Width="104" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="2" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Row="0" Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts}" />
-                                    <TextBlock Grid.Row="0" Grid.Column="1"
-                                               HorizontalAlignment="Right" VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
-                                    <TextBox x:Name="dispProjectMaterialCosts"
-                                             Grid.Row="0" Grid.Column="2"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
+                                        <TextBox x:Name="dispProjectMaterialCosts"
+                                                 Grid.Row="0" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Grid.Row="1" Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_TimeCosts}" />
-                                    <TextBlock Grid.Row="1" Grid.Column="1"
-                                               HorizontalAlignment="Right" VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
-                                    <TextBox x:Name="dispProjectHourCosts"
-                                             Grid.Row="1" Grid.Column="2"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_TimeCosts}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
+                                        <TextBox x:Name="dispProjectHourCosts"
+                                                 Grid.Row="1" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
 
-                                    <TextBlock Grid.Row="2" Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts}" />
-                                    <TextBlock Grid.Row="2" Grid.Column="1"
-                                               HorizontalAlignment="Right" VerticalAlignment="Center"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
-                                    <TextBox x:Name="dispProjectTotalCosts"
-                                             Grid.Row="2" Grid.Column="2"
-                                             Width="100"
-                                             VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableNumericTextBox}" />
-                                    <Rectangle Grid.Row="2" Grid.Column="2"
-                                               Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
-                                               Height=".25"
-                                               HorizontalAlignment="Right" VerticalAlignment="Top"
-                                               Stroke="Black" StrokeThickness="0.25" />
-                                    <Rectangle Grid.Row="2" Grid.Column="2"
-                                               Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
-                                               Height=".25"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               Stroke="Black" StrokeThickness="0.25" />
+                                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts}" />
+                                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Style="{DynamicResource DefaultTextBlock}"
+                                                   Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol}" />
+                                        <TextBox x:Name="dispProjectTotalCosts"
+                                                 Grid.Row="2" Grid.Column="2"
+                                                 Width="100"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Right"
+                                                 Style="{DynamicResource NonEditableNumericTextBox}" />
+                                        <Rectangle Grid.Row="2" Grid.Column="2"
+                                                   Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
+                                                   Height=".25"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                   Stroke="Black" StrokeThickness="0.25" />
+                                        <Rectangle Grid.Row="2" Grid.Column="2"
+                                                   Width="{Binding ActualWidth, ElementName=dispProjectTotalCosts}"
+                                                   Height=".25"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                                   Stroke="Black" StrokeThickness="0.25" />
 
-                                    <TextBox x:Name="Spacer"
-                                             Grid.Row="3" Grid.Column="2"
-                                             Width="100" Height="1"
-                                             HorizontalAlignment="Right" VerticalAlignment="Center"
-                                             Style="{DynamicResource NonEditableTextBox}"
-                                             Text="" />
-                                    <Rectangle Grid.Row="3" Grid.Column="2"
-                                               Width="{Binding ActualWidth, ElementName=Spacer}"
-                                               Height=".25"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               Stroke="Black" StrokeThickness="0.25" />
+                                        <TextBox x:Name="Spacer"
+                                                 Grid.Row="3" Grid.Column="2"
+                                                 Width="100" Height="1"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 Style="{DynamicResource NonEditableTextBox}"
+                                                 Text="" />
+                                        <Rectangle Grid.Row="3" Grid.Column="2"
+                                                   Width="{Binding ActualWidth, ElementName=Spacer}"
+                                                   Height=".25"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                                   Stroke="Black" StrokeThickness="0.25" />
 
-                                </Grid>
-                            </GroupBox>
+                                    </Grid>
+                                </GroupBox>
+                            </StackPanel>
                         </StackPanel>
 
                         <!--#region Product Image block-->
-                        <StackPanel Grid.Column="1" Margin="5">
-                            <Border Width="230" Height="230"
+                        <StackPanel Grid.Column="2"
+                                    Margin="6,5" HorizontalAlignment="Left">
+                            <Border Width="240" Height="240"
                                     Margin="2"
                                     Style="{DynamicResource ImageBorder}">
                                 <Image x:Name="imgProjectImage"
@@ -507,7 +518,7 @@
 
                         <!--#region Memo field-->
                         <RichTextBox x:Name="inpProjectMemo"
-                                     Width="Auto" Height="365"
+                                     Width="Auto" Height="250"
                                      Margin="5,35,5,0" HorizontalAlignment="Center"
                                      VerticalAlignment="Top"
                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -527,10 +538,11 @@
                          Header="{x:Static p:Cultures.metadataProject_TabItemHeader_TimeManagement}"
                          IsEnabled="False"
                          Style="{DynamicResource Default TabItem}">
-                    <Grid>
+                    <Grid DataContext="{Binding TimeVM}">
                         <StackPanel>
-                            <DataGrid Height="370"
-                                      Padding="4" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            <DataGrid Height="240"
+                                      Padding="4" HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
                                       d:ItemsSource="{d:SampleData}"
                                       AutoGenerateColumns="False" CanUserAddRows="False"
                                       ItemsSource="{Binding TimeView}">
@@ -556,6 +568,10 @@
                                                         Header="{x:Static p:Cultures.TimeReport_Header_WorktypeName}"
                                                         IsReadOnly="True" />
                                     <DataGridTextColumn Width="90" MinWidth="90"
+                                                        Binding="{Binding Day}"
+                                                        Header="{x:Static p:Cultures.TimeReport_Header_Day}"
+                                                        IsReadOnly="True" />
+                                    <DataGridTextColumn Width="90" MinWidth="90"
                                                         Binding="{Binding EntryDate}"
                                                         CanUserSort="False"
                                                         Header="{x:Static p:Cultures.TimeReport_Header_WorkDate}"
@@ -563,11 +579,7 @@
                                     <DataGridTextColumn Width="90" MinWidth="90"
                                                         Binding="{Binding Month}"
                                                         Header="{x:Static p:Cultures.TimeReport_Header_Month}"
-                                                        IsReadOnly="True" />
-                                    <DataGridTextColumn Width="90" MinWidth="90"
-                                                        Binding="{Binding Day}"
-                                                        Header="{x:Static p:Cultures.TimeReport_Header_Day}"
-                                                        IsReadOnly="True" />
+                                                        IsReadOnly="True" Visibility="Hidden" />
                                     <DataGridTextColumn Width="70" MinWidth="70"
                                                         Binding="{Binding Worktime}"
                                                         Header="{x:Static p:Cultures.TimeReport_Header_WorkTime}"
@@ -607,11 +619,13 @@
                                                                                    VerticalAlignment="Center"
                                                                                    FontWeight="Bold"
                                                                                    Text="{Binding Name}" />
-                                                                        <TextBlock VerticalAlignment="Center" Text="Aantal dagdelen: " />
+                                                                        <TextBlock VerticalAlignment="Center" 
+                                                                                   Text="{x:Static p:Cultures.ProjectTimeEntries_DataGrid_GroupTotals_Number}"/>
                                                                         <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
                                                                         <TextBlock Width="200"
                                                                                    VerticalAlignment="Center"
-                                                                                   Text="Totaal gewerkte uren: " TextAlignment="Right" />
+                                                                                   Text="{x:Static p:Cultures.ProjectTimeEntries_DataGrid_GroupTotals_Totals}"
+                                                                                   TextAlignment="Right" />
                                                                         <TextBlock VerticalAlignment="Center"
                                                                                    FontWeight="Bold"
                                                                                    Text="{Binding Items, Converter={StaticResource groupsConverter}}" />
@@ -634,7 +648,7 @@
                                 <Button Name="btnNoGroup"
                                         Width="120"
                                         Margin="0,0,7,0"
-                                        Command="{Binding removeGroupCommand}"
+                                        Command="{Binding RemoveGroupCommand}"
                                         Content="{x:Static p:Cultures.TimeReport_Button_NoGroup}">
                                     <Button.Effect>
                                         <DropShadowEffect />
@@ -642,20 +656,6 @@
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="5" />
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
-                                <Button Name="btnGroupProject"
-                                        Width="80"
-                                        Margin="0,0,7,0"
-                                        Command="{Binding groupByProjectCommand}"
-                                        Content="{x:Static p:Cultures.TimeReport_Button_GroupProject}">
-                                    <Button.Effect>
-                                        <DropShadowEffect />
-                                    </Button.Effect>
-                                    <Button.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -668,7 +668,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -681,7 +681,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -694,7 +694,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -707,7 +707,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -720,7 +720,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -733,7 +733,7 @@
                                     </Button.Effect>
                                     <Button.Resources>
                                         <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
+                                            <Setter Property="CornerRadius" Value="5" />
                                         </Style>
                                     </Button.Resources>
                                 </Button>
@@ -741,16 +741,146 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
+
                 <!--#region Tabpage for project costs information-->
                 <TabItem x:Name="CostsTab"
                          Header="{x:Static p:Cultures.metadataProject_TabItemHeader_ProjectCosts}"
                          IsEnabled="False"
                          Style="{DynamicResource Default TabItem}">
-                    <Grid>
-                        <TextBlock Margin="10,10,0,0"
-                                   Foreground="Red"
-                                   Style="{DynamicResource DefaultTextBlock}"
-                                   Text="Nog niet geïmplementeerd" />
+                    <Grid DataContext="{Binding ProjectCostsVM}">
+                        <StackPanel>
+                            <DataGrid Height="240"
+                                      Padding="4" HorizontalAlignment="Stretch"
+                                      d:ItemsSource="{d:SampleData}"
+                                      AutoGenerateColumns="False" CanUserAddRows="False"
+                                      ItemsSource="{Binding ProjectCostsView}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="70"
+                                                        Binding="{Binding ProjectId}"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_Project}"
+                                                        IsReadOnly="True" Visibility="Hidden" />
+                                    <DataGridTextColumn Width="270" MinWidth="270"
+                                                        Binding="{Binding CategoryName}"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_Category}"
+                                                        IsReadOnly="True" />
+                                    <DataGridTextColumn Width="270" MinWidth="270"
+                                                        Binding="{Binding ProductName}"
+                                                        CanUserSort="False"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_ProductName}"
+                                                        IsReadOnly="True" />
+                                    <DataGridTextColumn Width="70" MinWidth="70"
+                                                        Binding="{Binding AmountUsed}"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_AmountUsed}"
+                                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTextColumn Width="70" MinWidth="70"
+                                                        Binding="{Binding Price}"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_Price}"
+                                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Width="70" MinWidth="70"
+                                                        Binding="{Binding Total}"
+                                                        Header="{x:Static p:Cultures.ProjectCosts_Dategrid_Header_Total}"
+                                                        IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Right" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+
+                                <DataGrid.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <DockPanel Background="LightBlue">
+                                                    <TextBlock Width="100"
+                                                               Margin="30,0,0,0"
+                                                               Foreground="Blue"
+                                                               Text="{Binding Name, Converter={StaticResource costgroupsConverter}}" />
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+
+                                        <GroupStyle.ContainerStyle>
+                                            <Style TargetType="{x:Type GroupItem}">
+                                                <Setter Property="Margin" Value="0,0,0,5" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                            <Expander Background="#FFA0C5F9" BorderBrush="#FF002255"
+                                                                      BorderThickness="0,0,0,1" IsExpanded="False">
+                                                                <Expander.Header>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Width="200"
+                                                                                   VerticalAlignment="Center"
+                                                                                   FontWeight="Bold"
+                                                                                   Text="{Binding Name}" />
+                                                                        <TextBlock VerticalAlignment="Center" Text="{x:Static p:Cultures.ProjectCosts_DataGrid_GroupTotals_Number}" />
+                                                                        <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
+                                                                        <TextBlock Width="200"
+                                                                                   VerticalAlignment="Center"
+                                                                                   Text="{x:Static p:Cultures.ProjectCosts_DataGrid_GroupTotals_Totals}"
+                                                                                   TextAlignment="Right" />
+                                                                        <TextBlock VerticalAlignment="Center"
+                                                                                   FontWeight="Bold"
+                                                                                   Text="{Binding Items, Converter={StaticResource costgroupsConverter}}" />
+                                                                    </StackPanel>
+                                                                </Expander.Header>
+                                                                <ItemsPresenter />
+                                                            </Expander>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </GroupStyle.ContainerStyle>
+                                    </GroupStyle>
+                                </DataGrid.GroupStyle>
+                            </DataGrid>
+                            <StackPanel Height="30"
+                                        Margin="5,8"
+                                        Orientation="Horizontal">
+                                <Button Name="btnNoProjectCostsGroup"
+                                        Width="120"
+                                        Margin="0,0,7,0"
+                                        Command="{Binding RemoveGroupCommand}"
+                                        Content="{x:Static p:Cultures.ProjectCostsReport_Button_NoGroup}">
+                                    <Button.Effect>
+                                        <DropShadowEffect />
+                                    </Button.Effect>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Width="80"
+                                        Margin="0,0,7,0"
+                                        Command="{Binding groupByProjectCostsCategoryCommand}"
+                                        Content="{x:Static p:Cultures.ProjectCostsReport_Button_GroupCategory}">
+                                    <Button.Effect>
+                                        <DropShadowEffect />
+                                    </Button.Effect>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -775,7 +905,7 @@
             <!--#endregion Toolbar for datagrid-->
             <!--#region Datagrid definition-->
             <DataGrid x:Name="ProjectCode_DataGrid"
-                      Height="205"
+                      Height="185"
                       Margin="5,0" Padding="3"
                       IsReadOnly="True"
                       ItemsSource="{Binding}"

@@ -16,8 +16,8 @@ public class TimeViewModel
     public string ProjectName { get; set; }
     public TimeViewModel(string ProjectName)
     {
-        IList<TimeEntry> entries = new TimeEntries(ProjectName);
-        TimeView = CollectionViewSource.GetDefaultView(entries);
+        IList<TimeEntry> TimeViewentries = new TimeEntries(ProjectName);
+        TimeView = CollectionViewSource.GetDefaultView(TimeViewentries);
         TimeView.GroupDescriptions.Add(new PropertyGroupDescription("noGroup"));
 
         groupByProjectCommand = new GroupByProjectCommand(this);
@@ -27,7 +27,7 @@ public class TimeViewModel
         groupByYearMonthCommand = new GroupByYearMonthCommand(this);
         groupByDayCommand = new GroupByDayCommand(this);
         groupByYearDayCommand = new GroupByYearDayCommand(this);
-        removeGroupCommand = new RemoveGroupCommand(this);
+        RemoveGroupCommand = new RemoveGroupCommand(this);
     }
 
     #region Remove Group
@@ -151,7 +151,7 @@ public class TimeViewModel
     #endregion ICommand Group by YearDay Command
 
     #region ICommand Remove Group Command
-    public ICommand removeGroupCommand
+    public ICommand RemoveGroupCommand
     {
         get;
         private set;

@@ -57,12 +57,10 @@
                     <TextBox x:Name="valueOrderlineId" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueSupplierId" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueProductId" Style="{DynamicResource HiddenTextBox}" />
-                    <TextBox x:Name="valueProjectId" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueCategoryId" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueCurrencyId" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueSupplierName" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueProductName" Style="{DynamicResource HiddenTextBox}" />
-                    <TextBox x:Name="valueProjectName" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueCategoryName" Style="{DynamicResource HiddenTextBox}" />
                     <TextBox x:Name="valueMinShippingCosts" Style="{DynamicResource HiddenTextBox}" />
                     <CheckBox x:Name="cboxOrderRowEditable"
@@ -316,25 +314,13 @@
                                                Style="{DynamicResource DefaultTextBlock}"
                                                Text="{x:Static p:Cultures.Order_Orderline_Field_Product}" />
                                     <ComboBox x:Name="cboxProduct"
-                                              Grid.Row="1" Grid.Column="0"
-                                              Width="360"
+                                              Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                              Width="560"
                                               IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
                                               ItemTemplate="{StaticResource ProductComboTemplate}"
                                               SelectionChanged="cboxProduct_SelectionChanged"
                                               Style="{DynamicResource DefaultComboBox}"
                                               TextSearch.TextPath="productName" />
-
-                                    <TextBlock Grid.Row="0" Grid.Column="1"
-                                               Style="{DynamicResource DefaultTextBlock}"
-                                               Text="{x:Static p:Cultures.Order_Orderline_Field_Project}" />
-                                    <ComboBox x:Name="cboxProject"
-                                              Grid.Row="1" Grid.Column="1"
-                                              Width="200"
-                                              IsEnabled="{Binding ElementName=cboxOrderRowEditable, Path=IsChecked}"
-                                              ItemTemplate="{StaticResource ProjectComboTemplate}"
-                                              SelectionChanged="cboxProject_SelectionChanged"
-                                              Style="{DynamicResource DefaultComboBox}"
-                                              TextSearch.TextPath="projectName" />
 
                                     <TextBlock Grid.Row="0" Grid.Column="2"
                                                Style="{DynamicResource DefaultTextBlock}"
@@ -440,15 +426,9 @@
                                             <DataGridTextColumn Width="80"
                                                                 Binding="{Binding CategoryId}"
                                                                 Header="CategorieID" Visibility="Hidden" />
-                                            <DataGridTextColumn Width="80"
-                                                                Binding="{Binding ProjectId}"
-                                                                Header="ProjectID" Visibility="Hidden" />
                                             <DataGridTextColumn Width="*"
                                                                 Binding="{Binding ProductName}"
                                                                 Header="Product" />
-                                            <DataGridTextColumn Width="160"
-                                                                Binding="{Binding ProjectName}"
-                                                                Header="Project" />
                                             <DataGridTextColumn Width="80"
                                                                 Binding="{Binding CategoryName}"
                                                                 Header="Categorie" />

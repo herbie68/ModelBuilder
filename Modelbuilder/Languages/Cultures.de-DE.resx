@@ -1514,4 +1514,46 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataCountry.Datagrid.Header.Name" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountOrdered" xml:space="preserve">
+    <value>Besteld</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.AmountUsed" xml:space="preserve">
+    <value>Gebraucht</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Price" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.ProductName" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="ProjectCosts.Dategrid.Header.Total" xml:space="preserve">
+    <value>Gesambt</value>
+  </data>
+  <data name="ProjectCostsReport.Button.NoGroup" xml:space="preserve">
+    <value>Keine Gruppe</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupCategory" xml:space="preserve">
+    <value>Auf Kategorie</value>
+  </data>
+  <data name="ProjectCostsReport.Button.GroupProject" xml:space="preserve">
+    <value>Auf Projekt</value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Produktzahl: </value>
+  </data>
+  <data name="ProjectCosts.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Gesamtkosten: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Number" xml:space="preserve">
+    <value>Anzahl der Tage: </value>
+  </data>
+  <data name="ProjectTimeEntries.DataGrid.GroupTotals.Totals" xml:space="preserve">
+    <value>Gesamtarbeitszeit: </value>
+  </data>
 </root>

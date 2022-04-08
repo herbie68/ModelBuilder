@@ -124,6 +124,8 @@ internal class HelperGeneral
     public static readonly string DbProjectTableFieldTypeImageRotationAngle = "string";
     public static readonly string DbProjectTableFieldNameImage = "Image";
     public static readonly string DbProjectTableFieldTypeImage = "blob";
+
+    public static readonly string DbProjectCostsView = "view_projectcosts";
     #endregion Project table
 
     #region Stock table

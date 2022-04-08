@@ -23,7 +23,6 @@ public partial class storageOrder : Page
 
         // Fill the dropdowns
         cboxSupplier.ItemsSource = _helperGeneral.GetSupplierList(SupplierList);
-        cboxProject.ItemsSource = _helperGeneral.GetProjectList(ProjectList);
         cboxProduct.ItemsSource = _helperGeneral.GetProductList(ProductList);
         cboxCategory.ItemsSource = _helperGeneral.GetCategoryList(CategoryList);
 
@@ -175,20 +174,6 @@ public partial class storageOrder : Page
         }
         #endregion Select the saved Product in the Product combobox by default
 
-        #region Select the saved Project in the Project combobox by default
-        string _tempProject = Row_Selected["ProjectName"].ToString();
-        if (_tempProject == "") { cboxProject.Text = " "; } else { cboxProject.Text = _tempProject; }
-
-        foreach (HelperGeneral.Project project in cboxProject.Items)
-        {
-            if (project.ProjectName == _tempProject)
-            {
-                cboxProject.SelectedItem = project;
-                break;
-            }
-        }
-        #endregion Select the saved Project in the Project combobox by default
-
         #region Select the saved Category in the Category combobox by default
         string _tempCategory = Row_Selected["CategoryName"].ToString();
         cboxCategory.Text = _tempCategory;
@@ -330,17 +315,6 @@ public partial class storageOrder : Page
     }
     #endregion
 
-    #region Selection changed: Combobox Project
-    private void cboxProject_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        foreach (HelperGeneral.Project item in e.AddedItems)
-        {
-            valueProjectId.Text = item.ProjectId.ToString();
-            valueProjectName.Text = item.ProjectName.ToString();
-        }
-    }
-    #endregion Selection changed: Combobox Project
-
     #region Selection changed: Combobox Categroy
     private void cboxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -363,18 +337,16 @@ public partial class storageOrder : Page
         var OrderlineOrderId = int.Parse(valueOrderId.Text);
         var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
         var OrderlineProductId = int.Parse(valueProductId.Text);
-        var OrderlineProjectId = int.Parse(valueProjectId.Text);
         var OrderlineCategoryId = int.Parse(valueCategoryId.Text);
         var OrderlineNumber = double.Parse(inpNumber.Text);
         var OrderlinePrice = double.Parse(inpPrice.Text);
 
         InitializeHelper();
-        var result = _helperGeneral.InsertInTable(HelperGeneral.DbOrderLineTable, new string[7, 3]
+        var result = _helperGeneral.InsertInTable(HelperGeneral.DbOrderLineTable, new string[6, 3]
             {
                 {HelperGeneral.DbOrderLineFieldNameOrderId,    HelperGeneral.DbOrderLineFieldTypeOrderId,     OrderlineOrderId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameSupplierId, HelperGeneral.DbOrderLineFieldTypeSupplierId,  OrderlineSupplierId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameProductId,  HelperGeneral.DbOrderLineFieldTypeProductId,   OrderlineProductId.ToString()},
-                {HelperGeneral.DbOrderLineFieldNameProjectId,  HelperGeneral.DbOrderLineFieldTypeProjectId,   OrderlineProjectId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameCategoryId, HelperGeneral.DbOrderLineFieldTypeCategoryId,  OrderlineCategoryId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameAmount,     HelperGeneral.DbOrderLineFieldTypeAmount,      OrderlineNumber.ToString()},
                 {HelperGeneral.DbOrderLineFieldNamePrice,      HelperGeneral.DbOrderLineFieldTypePrice,       OrderlinePrice.ToString()}
@@ -393,8 +365,6 @@ public partial class storageOrder : Page
 
         valueProductId.Text = string.Empty;
         valueProductName.Text = string.Empty;
-        valueProjectId.Text = string.Empty;
-        valueProjectName.Text = string.Empty;
         valueCategoryId.Text = string.Empty;
         valueCategoryName.Text = string.Empty;
         inpPrice.Text = "0,00";
@@ -406,9 +376,6 @@ public partial class storageOrder : Page
         cboxProduct.SelectedItem = null;
         cboxProduct.SelectedIndex = -1;
         cboxProduct.Text= string.Empty;
-        cboxProject.SelectedItem = null;      
-        cboxProject.SelectedIndex = -1;
-        cboxProject.Text= string.Empty;
     }
     #endregion Toolbar button for Orderlines: New
 
@@ -437,17 +404,13 @@ public partial class storageOrder : Page
         var OrderlineOrderId = int.Parse(valueOrderId.Text);
         var OrderlineSupplierId = int.Parse(valueSupplierId.Text);
         var OrderlineProductId = int.Parse(valueProductId.Text);
-        var OrderlineProjectId = 0;
         var OrderlineCategoryId = 0;
         var OrderlineNumber = 0.00;
         var OrderlinePrice = 0.00;
         var OrderlineProductName = "";
-        var OrderlineProjectName = "";
         var OrderlineCategoryName = "";
 
-        if (valueProjectId.Text != string.Empty) { OrderlineProjectId = int.Parse(valueProjectId.Text); }
         if (valueCategoryId.Text != string.Empty) { OrderlineCategoryId = int.Parse(valueCategoryId.Text); }
-        if (valueProjectName.Text != string.Empty) { OrderlineProjectName = valueProjectName.Text; }
         if (valueProductName.Text != string.Empty) { OrderlineProductName = valueProductName.Text; }
         if (valueCategoryName.Text != string.Empty) { OrderlineCategoryName = valueCategoryName.Text; }
         if (inpNumber.Text == String.Empty) { OrderlineNumber = 0; } else { OrderlineNumber = double.Parse(inpNumber.Text); }
@@ -458,12 +421,11 @@ public partial class storageOrder : Page
         var result = _helperGeneral.UpdateFieldInTable(HelperGeneral.DbOrderLineTable, new string[1, 3]
         {
             { HelperGeneral.DbOrderLineFieldNameId, HelperGeneral.DbOrderLineFieldNameId, OrderlineId.ToString()}
-        }, new string[7, 3]
+        }, new string[6, 3]
         {
                 {HelperGeneral.DbOrderLineFieldNameOrderId,    HelperGeneral.DbOrderLineFieldTypeOrderId,     OrderlineOrderId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameSupplierId, HelperGeneral.DbOrderLineFieldTypeSupplierId,  OrderlineSupplierId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameProductId,  HelperGeneral.DbOrderLineFieldTypeProductId,   OrderlineProductId.ToString()},
-                {HelperGeneral.DbOrderLineFieldNameProjectId,  HelperGeneral.DbOrderLineFieldTypeProjectId,   OrderlineProjectId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameCategoryId, HelperGeneral.DbOrderLineFieldTypeCategoryId,  OrderlineCategoryId.ToString()},
                 {HelperGeneral.DbOrderLineFieldNameAmount,     HelperGeneral.DbOrderLineFieldTypeAmount,      OrderlineNumber.ToString()},
                 {HelperGeneral.DbOrderLineFieldNamePrice,      HelperGeneral.DbOrderLineFieldTypePrice,       OrderlinePrice.ToString()}        });
