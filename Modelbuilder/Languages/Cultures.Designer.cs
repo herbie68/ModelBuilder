@@ -70,6 +70,510 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dag.
+        /// </summary>
+        public static string general_datetime_Day {
+            get {
+                return ResourceManager.GetString("general.datetime.Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string general_datetime_Day_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maandag.
+        /// </summary>
+        public static string general_datetime_Day0 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ma.
+        /// </summary>
+        public static string general_datetime_Day0_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day0.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dinsdag.
+        /// </summary>
+        public static string general_datetime_Day1 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Di.
+        /// </summary>
+        public static string general_datetime_Day1_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day1.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woensdag.
+        /// </summary>
+        public static string general_datetime_Day2 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wo.
+        /// </summary>
+        public static string general_datetime_Day2_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day2.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donderdag.
+        /// </summary>
+        public static string general_datetime_Day3 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do.
+        /// </summary>
+        public static string general_datetime_Day3_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day3.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vrijdag.
+        /// </summary>
+        public static string general_datetime_Day4 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vr.
+        /// </summary>
+        public static string general_datetime_Day4_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day4.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zaterdag.
+        /// </summary>
+        public static string general_datetime_Day5 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Za.
+        /// </summary>
+        public static string general_datetime_Day5_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day5.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zondag.
+        /// </summary>
+        public static string general_datetime_Day6 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zo.
+        /// </summary>
+        public static string general_datetime_Day6_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day6.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dagen.
+        /// </summary>
+        public static string general_datetime_Days {
+            get {
+                return ResourceManager.GetString("general.datetime.Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uur.
+        /// </summary>
+        public static string general_datetime_Hour {
+            get {
+                return ResourceManager.GetString("general.datetime.Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to u.
+        /// </summary>
+        public static string general_datetime_Hour_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Hour.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uren.
+        /// </summary>
+        public static string general_datetime_Hours {
+            get {
+                return ResourceManager.GetString("general.datetime.Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minuut.
+        /// </summary>
+        public static string general_datetime_Minute {
+            get {
+                return ResourceManager.GetString("general.datetime.Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string general_datetime_Minute_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Minute.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minuten.
+        /// </summary>
+        public static string general_datetime_Minutes {
+            get {
+                return ResourceManager.GetString("general.datetime.Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maand.
+        /// </summary>
+        public static string general_datetime_Month {
+            get {
+                return ResourceManager.GetString("general.datetime.Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string general_datetime_Month_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Month.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Januari.
+        /// </summary>
+        public static string general_DateTime_Month1 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jan.
+        /// </summary>
+        public static string general_DateTime_Month1_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month1.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oktober.
+        /// </summary>
+        public static string general_DateTime_Month10 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Okt.
+        /// </summary>
+        public static string general_DateTime_Month10_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month10.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to November.
+        /// </summary>
+        public static string general_DateTime_Month11 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nov.
+        /// </summary>
+        public static string general_DateTime_Month11_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month11.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to December.
+        /// </summary>
+        public static string general_DateTime_Month12 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dec.
+        /// </summary>
+        public static string general_DateTime_Month12_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month12.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Februari.
+        /// </summary>
+        public static string general_DateTime_Month2 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feb.
+        /// </summary>
+        public static string general_DateTime_Month2_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month2.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maart.
+        /// </summary>
+        public static string general_DateTime_Month3 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mrt.
+        /// </summary>
+        public static string general_DateTime_Month3_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month3.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to April.
+        /// </summary>
+        public static string general_DateTime_Month4 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apr.
+        /// </summary>
+        public static string general_DateTime_Month4_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month4.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mei.
+        /// </summary>
+        public static string general_DateTime_Month5 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mei.
+        /// </summary>
+        public static string general_DateTime_Month5_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month5.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juni.
+        /// </summary>
+        public static string general_DateTime_Month6 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jun.
+        /// </summary>
+        public static string general_DateTime_Month6_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month6.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juli.
+        /// </summary>
+        public static string general_DateTime_Month7 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jul.
+        /// </summary>
+        public static string general_DateTime_Month7_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month7.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Augustus.
+        /// </summary>
+        public static string general_DateTime_Month8 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aug.
+        /// </summary>
+        public static string general_DateTime_Month8_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month8.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to September.
+        /// </summary>
+        public static string general_DateTime_Month9 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sep.
+        /// </summary>
+        public static string general_DateTime_Month9_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month9.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maanden.
+        /// </summary>
+        public static string general_datetime_Months {
+            get {
+                return ResourceManager.GetString("general.datetime.Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to week.
+        /// </summary>
+        public static string general_datetime_Week {
+            get {
+                return ResourceManager.GetString("general.datetime.Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to w.
+        /// </summary>
+        public static string general_datetime_Week_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Week.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weken.
+        /// </summary>
+        public static string general_datetime_Weeks {
+            get {
+                return ResourceManager.GetString("general.datetime.Weeks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jaar.
+        /// </summary>
+        public static string general_datetime_Year {
+            get {
+                return ResourceManager.GetString("general.datetime.Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to j.
+        /// </summary>
+        public static string general_datetime_Year_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Year.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jaren.
+        /// </summary>
+        public static string general_datetime_Years {
+            get {
+                return ResourceManager.GetString("general.datetime.Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to product gebruik regel.
         /// </summary>
         public static string general_ProductUsageEntrie {

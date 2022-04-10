@@ -105,6 +105,5 @@ internal class HelperTimeManagement
         public int EndTime { get; set; }
     }
     #endregion Create object for all workinghours in table for specific date
-
 }
 

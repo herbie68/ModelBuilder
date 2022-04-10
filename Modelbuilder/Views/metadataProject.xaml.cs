@@ -8,6 +8,7 @@ namespace Modelbuilder.Views
     public partial class metadataProject : Page
     {
         private HelperGeneral _helperGeneral;
+        private HelperClass hc;
         private DataTable _dt;
         private int _dbRowCount;
         private int _currentDataGridIndex;
@@ -148,6 +149,46 @@ namespace Modelbuilder.Views
                 imgProjectImage.Source = new BitmapImage(new Uri("..\\Resources\\noImage.png", UriKind.Relative));
             }
 
+            // Fill the total fields
+            hc = new HelperClass();
+
+            // Check if there are time entries available before filling the fields
+            var _TimeEntries = _helperGeneral.CheckForRecords(HelperGeneral.DbTimeReportView, new string[1, 3]
+            {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  });
+            
+            if (_TimeEntries > 0) 
+            {
+                var WorkedMinutes = _helperGeneral.GetWorkedTimeForProject(HelperGeneral.DbTimeReportView, new string[1, 3]
+                {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkedMinutes);
+
+                dispProjectBuildTime.Text = hc.HourMinute(WorkedMinutes).ToString();
+                dispProjectBuildTimeLong.Text = hc.TimeDuration(WorkedMinutes).ToString();
+                dispProjectBuildDays.Text = _helperGeneral.CountUniqueRows(HelperGeneral.DbTimeReportView, new string[1, 3]
+                {    {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkDate).ToString();
+            }
+            else
+            {
+                // Empty the related fields (otherwise data from previous selected prokject will be shown
+                dispProjectBuildTime.Text = "";
+                dispProjectBuildTimeLong.Text = "";
+                dispProjectBuildDays.Text = "";
+            }
+
+            // Check if there are cost entries available before filling the fields
+            var _CostEntries = _helperGeneral.CheckForRecords(HelperGeneral.DbProjectCostsView, new string[1, 3]
+            {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  });
+
+
+            if (_CostEntries > 0)
+            {
+                // Fill the fields
+            }
+            else
+            {
+                // Empty the related fields (otherwise data from previous selected prokject will be shown
+            }
+
+            // Enable tabs that can be used after a project is selected
             MemoTab.IsEnabled = true;
             TimeTab.IsEnabled = true;
             CostsTab.IsEnabled = true;

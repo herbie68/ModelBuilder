@@ -1556,4 +1556,172 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ProjectTimeEntries.DataGrid.GroupTotals.Totals" xml:space="preserve">
     <value>Gesamtarbeitszeit: </value>
   </data>
+  <data name="general.DateTime.Month4.Short" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="general.DateTime.Month4" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="general.DateTime.Month8.Short" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="general.DateTime.Month8" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="general.datetime.Day.Short" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="general.datetime.Day" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="general.datetime.Days" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="general.DateTime.Month12.Short" xml:space="preserve">
+    <value>Dez</value>
+  </data>
+  <data name="general.DateTime.Month12" xml:space="preserve">
+    <value>Dezember</value>
+  </data>
+  <data name="general.datetime.Day1.Short" xml:space="preserve">
+    <value>Di</value>
+  </data>
+  <data name="general.datetime.Day1" xml:space="preserve">
+    <value>Dienstag</value>
+  </data>
+  <data name="general.datetime.Day3.Short" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="general.datetime.Day3" xml:space="preserve">
+    <value>Donnerstag</value>
+  </data>
+  <data name="general.DateTime.Month2.Short" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="general.DateTime.Month2" xml:space="preserve">
+    <value>Februar</value>
+  </data>
+  <data name="general.datetime.Year.Short" xml:space="preserve">
+    <value>J</value>
+  </data>
+  <data name="general.datetime.Year" xml:space="preserve">
+    <value>Jahr</value>
+  </data>
+  <data name="general.DateTime.Month1.Short" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="general.DateTime.Month1" xml:space="preserve">
+    <value>Januar</value>
+  </data>
+  <data name="general.datetime.Years" xml:space="preserve">
+    <value>Jahre</value>
+  </data>
+  <data name="general.DateTime.Month7.Short" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="general.DateTime.Month7" xml:space="preserve">
+    <value>Juli</value>
+  </data>
+  <data name="general.DateTime.Month6.Short" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="general.DateTime.Month6" xml:space="preserve">
+    <value>Juni</value>
+  </data>
+  <data name="general.datetime.Minute.Short" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="general.datetime.Month.Short" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="general.datetime.Day0.Short" xml:space="preserve">
+    <value>Mo</value>
+  </data>
+  <data name="general.datetime.Month" xml:space="preserve">
+    <value>Monat</value>
+  </data>
+  <data name="general.datetime.Day0" xml:space="preserve">
+    <value>Montag</value>
+  </data>
+  <data name="general.datetime.Months" xml:space="preserve">
+    <value>Monate</value>
+  </data>
+  <data name="general.DateTime.Month3" xml:space="preserve">
+    <value>März</value>
+  </data>
+  <data name="general.DateTime.Month5" xml:space="preserve">
+    <value>Mai</value>
+  </data>
+  <data name="general.DateTime.Month5.Short" xml:space="preserve">
+    <value>Mai</value>
+  </data>
+  <data name="general.datetime.Minutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="general.datetime.Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="general.DateTime.Month3.Short" xml:space="preserve">
+    <value>Mär</value>
+  </data>
+  <data name="general.DateTime.Month11.Short" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="general.DateTime.Month11" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="general.DateTime.Month10.Short" xml:space="preserve">
+    <value>Okt</value>
+  </data>
+  <data name="general.DateTime.Month10" xml:space="preserve">
+    <value>Oktober</value>
+  </data>
+  <data name="general.DateTime.Month9.Short" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="general.DateTime.Month9" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="general.datetime.Hour.Short" xml:space="preserve">
+    <value>Std</value>
+  </data>
+  <data name="general.datetime.Hours" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="general.datetime.Hour" xml:space="preserve">
+    <value>Uhr</value>
+  </data>
+  <data name="general.datetime.Day4.Short" xml:space="preserve">
+    <value>Fr</value>
+  </data>
+  <data name="general.datetime.Day4" xml:space="preserve">
+    <value>Freitag</value>
+  </data>
+  <data name="general.datetime.Week.Short" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="general.datetime.Week" xml:space="preserve">
+    <value>Woche</value>
+  </data>
+  <data name="general.datetime.Weeks" xml:space="preserve">
+    <value>Wochen</value>
+  </data>
+  <data name="general.datetime.Day2.Short" xml:space="preserve">
+    <value>Mi</value>
+  </data>
+  <data name="general.datetime.Day2" xml:space="preserve">
+    <value>Mittwoch</value>
+  </data>
+  <data name="general.datetime.Day5.Short" xml:space="preserve">
+    <value>Sa</value>
+  </data>
+  <data name="general.datetime.Day5" xml:space="preserve">
+    <value>Samstag</value>
+  </data>
+  <data name="general.datetime.Day6.Short" xml:space="preserve">
+    <value>So</value>
+  </data>
+  <data name="general.datetime.Day6" xml:space="preserve">
+    <value>Sonntag</value>
+  </data>
 </root>

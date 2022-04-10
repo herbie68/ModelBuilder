@@ -66,6 +66,17 @@
             <Setter Property="Padding" Value="5" />
         </Style>
 
+        <Style x:Key="TextBlockBorder" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#FFABADB3" />
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="#FFABADB3" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
+        </Style>
+
         <!--#region Default Borders-->
         <Style x:Key="ImageBorder" TargetType="Border">
             <Setter Property="BorderBrush" Value="Gray" />

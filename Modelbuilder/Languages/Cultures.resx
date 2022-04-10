@@ -1555,4 +1555,172 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ProjectTimeEntries.DataGrid.GroupTotals.Totals" xml:space="preserve">
     <value>Totaal gewerkte uren: </value>
   </data>
+  <data name="general.DateTime.Month4.Short" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="general.DateTime.Month4" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="general.DateTime.Month8.Short" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="general.DateTime.Month8" xml:space="preserve">
+    <value>Augustus</value>
+  </data>
+  <data name="general.datetime.Day.Short" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="general.datetime.Day" xml:space="preserve">
+    <value>dag</value>
+  </data>
+  <data name="general.datetime.Days" xml:space="preserve">
+    <value>dagen</value>
+  </data>
+  <data name="general.DateTime.Month12.Short" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="general.DateTime.Month12" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="general.datetime.Day1.Short" xml:space="preserve">
+    <value>Di</value>
+  </data>
+  <data name="general.datetime.Day1" xml:space="preserve">
+    <value>Dinsdag</value>
+  </data>
+  <data name="general.datetime.Day3.Short" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="general.datetime.Day3" xml:space="preserve">
+    <value>Donderdag</value>
+  </data>
+  <data name="general.DateTime.Month2.Short" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="general.DateTime.Month2" xml:space="preserve">
+    <value>Februari</value>
+  </data>
+  <data name="general.datetime.Year.Short" xml:space="preserve">
+    <value>j</value>
+  </data>
+  <data name="general.datetime.Year" xml:space="preserve">
+    <value>jaar</value>
+  </data>
+  <data name="general.DateTime.Month1.Short" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="general.DateTime.Month1" xml:space="preserve">
+    <value>Januari</value>
+  </data>
+  <data name="general.datetime.Years" xml:space="preserve">
+    <value>jaren</value>
+  </data>
+  <data name="general.DateTime.Month7.Short" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="general.DateTime.Month7" xml:space="preserve">
+    <value>Juli</value>
+  </data>
+  <data name="general.DateTime.Month6.Short" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="general.DateTime.Month6" xml:space="preserve">
+    <value>Juni</value>
+  </data>
+  <data name="general.datetime.Minute.Short" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="general.datetime.Month.Short" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="general.datetime.Day0.Short" xml:space="preserve">
+    <value>Ma</value>
+  </data>
+  <data name="general.datetime.Month" xml:space="preserve">
+    <value>maand</value>
+  </data>
+  <data name="general.datetime.Day0" xml:space="preserve">
+    <value>Maandag</value>
+  </data>
+  <data name="general.datetime.Months" xml:space="preserve">
+    <value>maanden</value>
+  </data>
+  <data name="general.DateTime.Month3" xml:space="preserve">
+    <value>Maart</value>
+  </data>
+  <data name="general.DateTime.Month5" xml:space="preserve">
+    <value>Mei</value>
+  </data>
+  <data name="general.DateTime.Month5.Short" xml:space="preserve">
+    <value>Mei</value>
+  </data>
+  <data name="general.datetime.Minutes" xml:space="preserve">
+    <value>minuten</value>
+  </data>
+  <data name="general.datetime.Minute" xml:space="preserve">
+    <value>minuut</value>
+  </data>
+  <data name="general.DateTime.Month3.Short" xml:space="preserve">
+    <value>Mrt</value>
+  </data>
+  <data name="general.DateTime.Month11.Short" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="general.DateTime.Month11" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="general.DateTime.Month10.Short" xml:space="preserve">
+    <value>Okt</value>
+  </data>
+  <data name="general.DateTime.Month10" xml:space="preserve">
+    <value>Oktober</value>
+  </data>
+  <data name="general.DateTime.Month9.Short" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="general.DateTime.Month9" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="general.datetime.Hour.Short" xml:space="preserve">
+    <value>u</value>
+  </data>
+  <data name="general.datetime.Hours" xml:space="preserve">
+    <value>uren</value>
+  </data>
+  <data name="general.datetime.Hour" xml:space="preserve">
+    <value>uur</value>
+  </data>
+  <data name="general.datetime.Day4.Short" xml:space="preserve">
+    <value>Vr</value>
+  </data>
+  <data name="general.datetime.Day4" xml:space="preserve">
+    <value>Vrijdag</value>
+  </data>
+  <data name="general.datetime.Week.Short" xml:space="preserve">
+    <value>w</value>
+  </data>
+  <data name="general.datetime.Week" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="general.datetime.Weeks" xml:space="preserve">
+    <value>weken</value>
+  </data>
+  <data name="general.datetime.Day2.Short" xml:space="preserve">
+    <value>Wo</value>
+  </data>
+  <data name="general.datetime.Day2" xml:space="preserve">
+    <value>Woensdag</value>
+  </data>
+  <data name="general.datetime.Day5.Short" xml:space="preserve">
+    <value>Za</value>
+  </data>
+  <data name="general.datetime.Day5" xml:space="preserve">
+    <value>Zaterdag</value>
+  </data>
+  <data name="general.datetime.Day6.Short" xml:space="preserve">
+    <value>Zo</value>
+  </data>
+  <data name="general.datetime.Day6" xml:space="preserve">
+    <value>Zondag</value>
+  </data>
 </root>

@@ -18,7 +18,6 @@ global using System.Windows.Documents;
 global using System.Windows.Input;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
-
 using Modelbuilder.Views;
 
 

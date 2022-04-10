@@ -1,5 +1,4 @@
 ﻿
-using System.Linq;
 using System.Windows.Controls.Primitives;
 
 namespace Modelbuilder;
@@ -273,6 +272,8 @@ internal class HelperGeneral
     public static readonly string DbTimeViewFieldTypeComment = "string";
 
     public static readonly string DbTimeReportView = "view_timereport";
+    public static readonly string DbTimeViewFieldNameWorkedMinutes = "WorkedMinutes";
+    public static readonly string DbTimeViewFieldTypeWorkedMinutes = "int";
     #endregion Time
 
     #region ProductUsage
@@ -410,13 +411,15 @@ internal class HelperGeneral
     private static readonly string SqlAnd = " AND ";
     private static readonly string SqlMax = " MAX(";
     private static readonly string SqlCount = " COUNT(";
+    private static readonly string SqlCountUnique = " COUNT(DISTINCT ";
     private static readonly string SqlUpdate = "UPDATE ";
     private static readonly string SqlInsert = "INSERT INTO ";
     private static readonly string SqlSet = " SET ";
+    private static readonly string SqlSum = " SUM(";
     private static readonly string SqlDelete = "DELETE ";
     #endregion MySql Commands
-    private HelperClass az;
 
+    private HelperClass az;
 
     public CultureInfo Culture = new("nl-NL");
 
@@ -703,7 +706,7 @@ internal class HelperGeneral
                     // Add leading zero's to date and month
                     az = new HelperClass ();
                     var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
-                    cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
         }
@@ -1656,7 +1659,6 @@ internal class HelperGeneral
     }
     #endregion
 
-
     #region Fill Supplier dropdown
     public List<Supplier> GetSupplierList(List<Supplier> supplierList)
     {
@@ -1859,6 +1861,69 @@ internal class HelperGeneral
     #endregion Helper classes to for creating objects to populate dropdowns
     #endregion Create lists to populate dropdowns for order Page
 
+    #region Count No of distinct (Unique) records in table or view
+    public int CountUniqueRows(string Table, string[,] WhereFields, string CountColumn)
+    {
+        StringBuilder sqlText = new();
+        sqlText.Append(SqlSelect);
+        sqlText.Append(SqlCountUnique + CountColumn + ") ");
+        sqlText.Append(SqlFrom + Table.ToLower() + " ");
+
+        var prefix = "";
+        if (WhereFields.GetLength(0) > 0)
+        {
+            sqlText.Append(SqlWhere);
+
+            for (int i = 0; i < WhereFields.GetLength(0); i++)
+            {
+                if (i != 0) { prefix = SqlAnd; }
+                sqlText.Append(prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0]);
+            }
+        }
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+
+        for (int i = 0; i < WhereFields.GetLength(0); i++)
+        {
+            switch (WhereFields[i, 1].ToLower())
+            {
+                case "string":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = WhereFields[i, 2];
+                    break;
+                case "int":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Int32).Value = int.Parse(WhereFields[i, 2]);
+                    break;
+                case "double":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Double).Value = double.Parse(WhereFields[i, 2]);
+                    break;
+                case "float":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                    break;
+                case "longtext":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.LongText).Value = DBNull.Value;
+                    break;
+                case "longblob":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Blob).Value = DBNull.Value;
+                    break;
+                case "date":
+                    String[] _tempDates = WhereFields[i, 2].Split("-");
+
+                    // Add leading zero's to date and month
+                    az = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + az.AddZeros(_tempDates[1], 2) + "-" + az.AddZeros(_tempDates[0], 2);
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
+                    break;
+            }
+        }
+        //var result = (int)(long)cmd.ExecuteScalar();
+        return (int)(long)cmd.ExecuteScalar();
+    }
+    #endregion Count No of distinct (Unique) records in table or view
+
     #region Get value from datagrid cell
     public DataGridCell GetCell(DataGrid datagrid, int row, int column)
     {
@@ -1918,5 +1983,70 @@ internal class HelperGeneral
         return child;
     }
     #endregion Get value from datagrid cell
+
+    #region Get Total Worked hours for project
+    public int GetWorkedTimeForProject(string Table, string[,] WhereFields, string TotalFieldName)
+    {
+        StringBuilder sqlText = new();
+        sqlText.Append(SqlSelect);
+        sqlText.Append(SqlSum + TotalFieldName + ") ");
+        sqlText.Append(SqlFrom + Table.ToLower() + " ");
+        var prefix = "";
+
+        if (WhereFields.GetLength(0) > 0)
+        {
+            sqlText.Append(SqlWhere);
+
+            for (int i = 0; i < WhereFields.GetLength(0); i++)
+            {
+                if (i != 0) { prefix = SqlAnd; }
+                sqlText.Append(prefix + WhereFields[i, 0] + " = @" + WhereFields[i, 0]);
+            }
+        }
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+
+        for (int i = 0; i < WhereFields.GetLength(0); i++)
+        {
+            switch (WhereFields[i, 1].ToLower())
+            {
+                case "string":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = WhereFields[i, 2];
+                    break;
+                case "int":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Int32).Value = int.Parse(WhereFields[i, 2]);
+                    break;
+                case "double":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Double).Value = double.Parse(WhereFields[i, 2]);
+                    break;
+                case "float":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Float).Value = float.Parse(WhereFields[i, 2]);
+                    break;
+                case "longtext":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.LongText).Value = DBNull.Value;
+                    break;
+                case "longblob":
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.Blob).Value = DBNull.Value;
+                    break;
+                case "date":
+                    String[] _tempDates = WhereFields[i, 2].Split("-");
+
+                    // Add leading zero's to date and month
+                    az = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + az.AddZeros(_tempDates[1], 2) + "-" + az.AddZeros(_tempDates[0], 2);
+                    cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
+                    break;
+            }
+        }
+
+        var totalminutes = Convert.ToInt32((double)cmd.ExecuteScalar());
+ 
+        return totalminutes;
+    }
+    #endregion Get Total Worked hours for project
 }
 
