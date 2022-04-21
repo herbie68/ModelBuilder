@@ -1,4 +1,6 @@
 ﻿
+using Google.Protobuf.WellKnownTypes;
+
 using System.Windows.Controls.Primitives;
 
 namespace Modelbuilder;
@@ -6,8 +8,18 @@ internal class HelperGeneral
 {
     #region public Variables
     public string ConnectionStr { get; set; }
+    
+    #region Settings table
+    public static readonly string DbSettingsTable = "settings";
+    public static readonly string DbSettingsTableFieldNameCulture = "Culture";
+    public static readonly string DbSettingsTableFieldTypeCulture = "string";
+    public static readonly string DbSettingsTableFieldNameLanguage = "Language";
+    public static readonly string DbSettingsTableFieldTypeLanguage = "string";
+    public static readonly string DbSettingsTableFieldNameHourRate = "HourRate";
+    public static readonly string DbSettingsTableFieldTypeHourRate = "double";
+    #endregion
 
-    # region Brand table
+    #region Brand table
     public static readonly string DbBrandTable = "brand";
     public static readonly string DbBrandTableFieldNameBrandId = "Id";
     public static readonly string DbBrandTableFieldTypeBrandId = "int";
@@ -125,6 +137,19 @@ internal class HelperGeneral
     public static readonly string DbProjectTableFieldTypeImage = "blob";
 
     public static readonly string DbProjectCostsView = "view_projectcosts";
+    public static readonly string DbProjectCostsViewFieldNameProjectName = "ProjectName";
+    public static readonly string DbProjectCostsViewFieldTypeProjectName = "string";
+    public static readonly string DbProjectCostsViewFieldNameCategoryName = "Category";
+    public static readonly string DbProjectCostsViewFieldTypeCategoryName = "string";
+    public static readonly string DbProjectCostsViewFieldNameProductName = "ProductName";
+    public static readonly string DbProjectCostsViewFieldTypeProductName = "string";
+    public static readonly string DbProjectCostsViewFieldNameAmountUsed = "AmountUsed";
+    public static readonly string DbProjectCostsViewFieldTypeAmountUsed = "int";
+    public static readonly string DbProjectCostsViewFieldNamePrice = "Price";
+    public static readonly string DbProjectCostsViewFieldTypePrice = "double";
+    public static readonly string DbProjectCostsViewFieldNameTotal = "Total";
+    public static readonly string DbProjectCostsViewFieldTypeTotal = "double";
+
     #endregion Project table
 
     #region Stock table
@@ -262,6 +287,8 @@ internal class HelperGeneral
     public static readonly string DbTimeViewFieldTypeWorktypeName = "string";
     public static readonly string DbTimeViewFieldNameWorkDate = "WorkDate";
     public static readonly string DbTimeViewFieldTypeWorkDate = "date";
+    public static readonly string DbTimeViewFieldNameWorkTime = "WorkTime";
+    public static readonly string DbTimeViewFieldTypeWorkTime = "string";
     public static readonly string DbTimeViewFieldNameStartTime = "StartTime";
     public static readonly string DbTimeViewFieldTypeStartTime = "string";
     public static readonly string DbTimeViewFieldNameEndTime = "EndTime";
@@ -404,22 +431,26 @@ internal class HelperGeneral
     #endregion Worktype Table
 
     #region MySql Commands
-    private static readonly string SqlSelect = "SELECT ";
-    private static readonly string SqlSelectAll = "SELECT *";
-    private static readonly string SqlFrom = " FROM ";
-    private static readonly string SqlWhere = " WHERE ";
     private static readonly string SqlAnd = " AND ";
-    private static readonly string SqlMax = " MAX(";
+    private static readonly string SqlAsc = " ASC ";
     private static readonly string SqlCount = " COUNT(";
     private static readonly string SqlCountUnique = " COUNT(DISTINCT ";
-    private static readonly string SqlUpdate = "UPDATE ";
+    private static readonly string SqlDelete = "DELETE ";
+    private static readonly string SqlFrom = " FROM ";
     private static readonly string SqlInsert = "INSERT INTO ";
+    private static readonly string SqlLimit1 = " LIMIT 1 ";
+    private static readonly string SqlMax = " MAX(";
+    private static readonly string SqlMin = " MIN(";
+    private static readonly string SqlOrderBy = " ORDER BY ";
+    private static readonly string SqlSelect = "SELECT ";
+    private static readonly string SqlSelectAll = "SELECT *";
     private static readonly string SqlSet = " SET ";
     private static readonly string SqlSum = " SUM(";
-    private static readonly string SqlDelete = "DELETE ";
+    private static readonly string SqlUpdate = "UPDATE ";
+    private static readonly string SqlWhere = " WHERE ";
     #endregion MySql Commands
 
-    private HelperClass az;
+    private HelperClass helper;
 
     public CultureInfo Culture = new("nl-NL");
 
@@ -531,8 +562,8 @@ internal class HelperGeneral
                     String[] _tempDates = WhereFields[i, 2].Split ( "-" );
 
                     // Add leading zero's to date and month
-                    az = new HelperClass ();
-                    var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                    helper = new HelperClass ();
+                    var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                     cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
                     break;
             }
@@ -564,6 +595,40 @@ internal class HelperGeneral
     #endregion Get all date from View or Table
 
     #region Get Field(s) from table
+    public string GetValueFromTable(string Table, string[,] Fields)
+    {
+        StringBuilder sqlText = new();
+        sqlText.Append(SqlSelect);
+        
+        string prefix = "";
+
+        for (int i = 0; i < Fields.GetLength(0); i++)
+        {
+            if (i != 0) { prefix = ", "; }
+            sqlText.Append(prefix + Fields[i, 0]);
+        }
+
+        sqlText.Append(SqlFrom + Table.ToLower() + " ");
+
+        MySqlConnection con = new(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+
+        string resultString = "";
+        int resultInt;
+        double resultDouble;
+        float resultFloat;
+
+        if (Fields[0, 1].ToLower() == "string" || Fields[0, 1].ToLower() == "date" || Fields[0, 1].ToLower() == "time") { resultString = (string)cmd.ExecuteScalar(); }
+        if (Fields[0, 1].ToLower() == "int") { resultInt = (int)cmd.ExecuteScalar(); resultString = resultInt.ToString(); }
+        if (Fields[0, 1].ToLower() == "double") { resultDouble = (double)cmd.ExecuteScalar(); resultString = resultDouble.ToString(); }
+        if (Fields[0, 1].ToLower() == "float") { resultFloat = (float)cmd.ExecuteScalar(); resultString = resultFloat.ToString(); }
+
+        return resultString;
+    }
+
     public string GetValueFromTable(string Table, string[,] WhereFields, string[,] Fields)
     {
         // There is an Id or String available for each condition, so one of them has a value the other one is 0 or ""
@@ -623,8 +688,8 @@ internal class HelperGeneral
                     String[] _tempDates = WhereFields[i, 2].Split("-");
 
                     // Add leading zero's to date and month
-                    az = new HelperClass();
-                    var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2) + "-" + az.AddZeros ( _tempDates[0], 2);
+                    helper = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2) + "-" + helper.AddZeros ( _tempDates[0], 2);
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
@@ -704,8 +769,8 @@ internal class HelperGeneral
                     String[] _tempDates = WhereFields[i, 2].Split("-");
 
                     // Add leading zero's to date and month
-                    az = new HelperClass ();
-                    var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                    helper = new HelperClass ();
+                    var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
@@ -791,8 +856,8 @@ internal class HelperGeneral
                             String[] _tempDates = WhereFields[i, 2].Split("-");
 
                             // Add leading zero's to date and month
-                            az = new HelperClass ();
-                            var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                            helper = new HelperClass ();
+                            var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                             cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                             break;
                     }
@@ -1123,8 +1188,8 @@ internal class HelperGeneral
                         String[] _tempDates = Fields[i, 2].Split("-");
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                     case "time":
@@ -1171,8 +1236,8 @@ internal class HelperGeneral
                         String[] _tempDates = Fields[i, 2].Split ( "-" );
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add ( "@" + Fields[i, 0], MySqlDbType.String ).Value = _tempDate;
                         break;
                     case "time":
@@ -1221,8 +1286,8 @@ internal class HelperGeneral
                         String[] _tempDates = WhereFields[i, 2].Split("-");
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                     case "time":
@@ -1254,8 +1319,8 @@ internal class HelperGeneral
                         String[] _tempDates = Fields[i, 2].Split("-");
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add("@" + Fields[i, 0], MySqlDbType.String).Value = _tempDate;
                         break;
                     case "time":
@@ -1302,8 +1367,8 @@ internal class HelperGeneral
                         String[] _tempDates = WhereFields[i, 2].Split ( "-" );
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
                         break;
                     case "time":
@@ -1350,8 +1415,8 @@ internal class HelperGeneral
                         String[] _tempDates = WhereFields[i, 2].Split ( "-" );
 
                         // Add leading zero's to date and month
-                        az = new HelperClass ();
-                        var _tempDate = _tempDates[2] + "-" + az.AddZeros ( _tempDates[1], 2 ) + "-" + az.AddZeros ( _tempDates[0], 2 );
+                        helper = new HelperClass ();
+                        var _tempDate = _tempDates[2] + "-" + helper.AddZeros ( _tempDates[1], 2 ) + "-" + helper.AddZeros ( _tempDates[0], 2 );
                         cmd.Parameters.Add ( "@" + WhereFields[i, 0], MySqlDbType.String ).Value = _tempDate;
                         break;
                     case "time":
@@ -1913,8 +1978,8 @@ internal class HelperGeneral
                     String[] _tempDates = WhereFields[i, 2].Split("-");
 
                     // Add leading zero's to date and month
-                    az = new HelperClass();
-                    var _tempDate = _tempDates[2] + "-" + az.AddZeros(_tempDates[1], 2) + "-" + az.AddZeros(_tempDates[0], 2);
+                    helper = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + helper.AddZeros(_tempDates[1], 2) + "-" + helper.AddZeros(_tempDates[0], 2);
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
@@ -1984,8 +2049,8 @@ internal class HelperGeneral
     }
     #endregion Get value from datagrid cell
 
-    #region Get Total Worked hours for project
-    public int GetWorkedTimeForProject(string Table, string[,] WhereFields, string TotalFieldName)
+    #region Get Total Worked hours or costs for project
+    public string GetProjectTotals(string Table, string[,] WhereFields, string TotalFieldName, string TotalFieldType)
     {
         StringBuilder sqlText = new();
         sqlText.Append(SqlSelect);
@@ -2036,17 +2101,103 @@ internal class HelperGeneral
                     String[] _tempDates = WhereFields[i, 2].Split("-");
 
                     // Add leading zero's to date and month
-                    az = new HelperClass();
-                    var _tempDate = _tempDates[2] + "-" + az.AddZeros(_tempDates[1], 2) + "-" + az.AddZeros(_tempDates[0], 2);
+                    helper = new HelperClass();
+                    var _tempDate = _tempDates[2] + "-" + helper.AddZeros(_tempDates[1], 2) + "-" + helper.AddZeros(_tempDates[0], 2);
                     cmd.Parameters.Add("@" + WhereFields[i, 0], MySqlDbType.String).Value = _tempDate;
                     break;
             }
         }
 
-        var totalminutes = Convert.ToInt32((double)cmd.ExecuteScalar());
- 
-        return totalminutes;
+        var total = "";
+        if (TotalFieldType == "int")
+        {
+            total = Convert.ToInt32((double)cmd.ExecuteScalar()).ToString();
+        }
+        else if (TotalFieldType == "double")
+        {
+            total = ((double)cmd.ExecuteScalar()).ToString();
+        }
+        
+        return total;
     }
     #endregion Get Total Worked hours for project
+
+    #region Get Longest or shortes workday for a project
+    public string GetMinMaxTimeForProject(string Table, string ProjectName, string ProjectNameFieldName, string WorkedMinutesFieldName, string WorkDateFieldName, string RetrieveFieldName, string RetrieveFieldType, string MinOrMax)
+    {
+        // SELECT * FROM view_timereport WHERE WorkedMinutes = (SELECT MAX(WorkedMinutes) FROM view_timereport WHERE ProjectName='HMS Pandora') ORDER BY WorkDate ASC LIMIT 1
+        var SqlMinOrMax = "";
+        if(MinOrMax.ToUpper() == "MIN") { SqlMinOrMax = SqlMin; } else { SqlMinOrMax = SqlMax; }
+        StringBuilder sqlText = new();
+        sqlText.Append(SqlSelect + RetrieveFieldName);
+        sqlText.Append(SqlFrom + Table.ToLower() + " ");
+        sqlText.Append(SqlWhere + WorkedMinutesFieldName + "=(");
+        sqlText.Append(SqlSelect + SqlMinOrMax + WorkedMinutesFieldName + ")");
+        sqlText.Append(SqlFrom + Table.ToLower());
+        sqlText.Append(SqlWhere + ProjectNameFieldName + "='" + ProjectName + "')");
+        sqlText.Append(SqlOrderBy + WorkDateFieldName);
+        sqlText.Append(SqlAsc);
+        sqlText.Append(SqlLimit1);
+
+        MySqlConnection con = new MySqlConnection(ConnectionStr);
+
+        con.Open();
+
+        MySqlCommand cmd = new MySqlCommand(sqlText.ToString(), con);
+
+        var _result = (string)cmd.ExecuteScalar();
+        switch (RetrieveFieldType.ToLower())
+        {
+            case "string":
+                // Tf the timestring starts with : there are only minites available
+                if (_result.StartsWith(":")){ _result = "0"  + _result; }
+                if (_result.StartsWith("0:"))
+                {
+                    if (int.Parse(_result.Substring(2, 2)) == 1)
+                    {
+                        _result = int.Parse(_result.Substring(2, 2)).ToString() + " " + Languages.Cultures.general_datetime_Minute;
+                    }
+                    else
+                    {
+                        _result = int.Parse(_result.Substring(2, 2)).ToString() + " " + Languages.Cultures.general_datetime_Minutes;
+                    }
+                    break;
+                }
+
+                string prefix = "";
+                String[] _tempTime = _result.Split(":");
+                if (_tempTime[0] == "") { _tempTime[0] = "0"; }
+                if (int.Parse(_tempTime[0]) == 1)
+                {
+                    _result = int.Parse(_tempTime[0]).ToString() + " " + Languages.Cultures.general_datetime_Hour;
+                    prefix = " ";
+                }
+                else if (int.Parse(_tempTime[0]) > 1)
+                {
+                    _result = int.Parse(_tempTime[0]).ToString() + " " + Languages.Cultures.general_datetime_Hours;
+                    prefix = " ";
+                }
+                if (int.Parse(_tempTime[1]) == 1)
+                {
+                    _result += prefix + int.Parse(_tempTime[1]).ToString() + " " + Languages.Cultures.general_datetime_Minute;
+                }
+                else if (int.Parse(_tempTime[1]) > 1)
+                {
+                    _result += prefix +int.Parse(_tempTime[1]).ToString() + " " + Languages.Cultures.general_datetime_Minutes;
+                }
+                break;
+            case "date":
+                // Transform the retrieve date (yyyy-dd-mm) into the expected format (dd-mm-yyyy) 
+                String[] _tempDates = _result.Split("-");
+
+                // Get the long date format for the given date
+                helper = new HelperClass();
+                _result = helper.ConvertToLongDate(int.Parse(_tempDates[2]), int.Parse(_tempDates[1]), int.Parse(_tempDates[0]), "long", "long");
+                break;
+        }
+        return _result;
+    }
+    #endregion
+
 }
 

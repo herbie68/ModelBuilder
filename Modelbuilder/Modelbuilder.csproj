@@ -22,6 +22,7 @@
     <None Remove="Resources\appUndo.png" />
     <None Remove="Resources\btnWeb.png" />
     <None Remove="Resources\calculator.png" />
+    <None Remove="Resources\calendar.png" />
     <None Remove="Resources\delivery.png" />
     <None Remove="Resources\Logo.gif" />
     <None Remove="Resources\logo.ico" />
@@ -121,6 +122,12 @@
     <None Remove="Resources\toolbarStart.png" />
     <None Remove="Resources\trashbin.png" />
     <None Remove="Resources\warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\calendar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

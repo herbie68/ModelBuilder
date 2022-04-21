@@ -298,7 +298,7 @@
     <value>Project</value>
   </data>
   <data name="Order.Orderline.Field.Price.Tooltip" xml:space="preserve">
-    <value>Stukprijs in de valuta van de leverancier</value>
+    <value>Stukprijs</value>
   </data>
   <data name="Order.Orderline.Field.Total" xml:space="preserve">
     <value>Totaal</value>
@@ -1253,7 +1253,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Moeten de kosten van dit artikel mee worden gerekend in de projectkosten (nee indien bijvoorbeeld gereedschap of inventaris)</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip" xml:space="preserve">
-    <value>Website product bij leverancier</value>
+    <value>Website product</value>
   </data>
   <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url" xml:space="preserve">
     <value>Website product</value>
@@ -1582,16 +1582,16 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.DateTime.Month12" xml:space="preserve">
     <value>December</value>
   </data>
-  <data name="general.datetime.Day1.Short" xml:space="preserve">
+  <data name="general.datetime.Day2.Short" xml:space="preserve">
     <value>Di</value>
   </data>
-  <data name="general.datetime.Day1" xml:space="preserve">
+  <data name="general.datetime.Day2" xml:space="preserve">
     <value>Dinsdag</value>
   </data>
-  <data name="general.datetime.Day3.Short" xml:space="preserve">
+  <data name="general.datetime.Day4.Short" xml:space="preserve">
     <value>Do</value>
   </data>
-  <data name="general.datetime.Day3" xml:space="preserve">
+  <data name="general.datetime.Day4" xml:space="preserve">
     <value>Donderdag</value>
   </data>
   <data name="general.DateTime.Month2.Short" xml:space="preserve">
@@ -1633,13 +1633,13 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.datetime.Month.Short" xml:space="preserve">
     <value>m</value>
   </data>
-  <data name="general.datetime.Day0.Short" xml:space="preserve">
+  <data name="general.datetime.Day1.Short" xml:space="preserve">
     <value>Ma</value>
   </data>
   <data name="general.datetime.Month" xml:space="preserve">
     <value>maand</value>
   </data>
-  <data name="general.datetime.Day0" xml:space="preserve">
+  <data name="general.datetime.Day1" xml:space="preserve">
     <value>Maandag</value>
   </data>
   <data name="general.datetime.Months" xml:space="preserve">
@@ -1690,10 +1690,10 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.datetime.Hour" xml:space="preserve">
     <value>uur</value>
   </data>
-  <data name="general.datetime.Day4.Short" xml:space="preserve">
+  <data name="general.datetime.Day5.Short" xml:space="preserve">
     <value>Vr</value>
   </data>
-  <data name="general.datetime.Day4" xml:space="preserve">
+  <data name="general.datetime.Day5" xml:space="preserve">
     <value>Vrijdag</value>
   </data>
   <data name="general.datetime.Week.Short" xml:space="preserve">
@@ -1705,22 +1705,544 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.datetime.Weeks" xml:space="preserve">
     <value>weken</value>
   </data>
-  <data name="general.datetime.Day2.Short" xml:space="preserve">
+  <data name="general.datetime.Day3.Short" xml:space="preserve">
     <value>Wo</value>
   </data>
-  <data name="general.datetime.Day2" xml:space="preserve">
+  <data name="general.datetime.Day3" xml:space="preserve">
     <value>Woensdag</value>
   </data>
-  <data name="general.datetime.Day5.Short" xml:space="preserve">
+  <data name="general.datetime.Day6.Short" xml:space="preserve">
     <value>Za</value>
   </data>
-  <data name="general.datetime.Day5" xml:space="preserve">
+  <data name="general.datetime.Day6" xml:space="preserve">
     <value>Zaterdag</value>
   </data>
-  <data name="general.datetime.Day6.Short" xml:space="preserve">
+  <data name="general.datetime.Day0.Short" xml:space="preserve">
     <value>Zo</value>
   </data>
-  <data name="general.datetime.Day6" xml:space="preserve">
+  <data name="general.datetime.Day0" xml:space="preserve">
     <value>Zondag</value>
+  </data>
+  <data name="metadataCategory.Entry.Field.Category.Tag" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="metadataCategory.Entry.Field.Category.Tooltip" xml:space="preserve">
+    <value>Geef de categorie aan waarin het product valt</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Code.Tag" xml:space="preserve">
+    <value>Landcode</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Code.Tooltip" xml:space="preserve">
+    <value>Een code waaraan het land eenvoudig te herkennen is</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Currency.Tag" xml:space="preserve">
+    <value>Standaard valuta</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Currency.Tooltip" xml:space="preserve">
+    <value>De standaard valuta voor dit land</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Name.Tag" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataCountry.Entry.Field.Name.Tooltip" xml:space="preserve">
+    <value>Geef de naam van het land</value>
+  </data>
+  <data name="metadataCurrency.Field.Currency.Tag" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataCurrency.Field.Currency.Tooltip" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyCode.Tag" xml:space="preserve">
+    <value>Valuta code</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyCode.Tooltip" xml:space="preserve">
+    <value>Verkorte valuta naam</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyName.Tag" xml:space="preserve">
+    <value>Valuta naam</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyName.Tooltip" xml:space="preserve">
+    <value>Volledige naam van de valuta</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRate.Tag" xml:space="preserve">
+    <value>Omrekenkoers</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRate.Tooltip" xml:space="preserve">
+    <value>De omrekenkoers voor de valuta naar €</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRateShort.Tag" xml:space="preserve">
+    <value>Koers</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencyRateShort.Tooltip" xml:space="preserve">
+    <value>Koers</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencySymbol.Tag" xml:space="preserve">
+    <value>Valuta symbool</value>
+  </data>
+  <data name="metadataCurrency.Field.CurrencySymbol.Tooltip" xml:space="preserve">
+    <value>Valuta symbool</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Brand.Tag" xml:space="preserve">
+    <value>Merk</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Brand.Tooltip" xml:space="preserve">
+    <value>Merk</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Category.Tag" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Category.Tooltip" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Code.Tag" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Code.Tooltip" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Name.Tag" xml:space="preserve">
+    <value>Product naam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Product.Field.Name.Tooltip" xml:space="preserve">
+    <value>Product naam</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.CostPrice.Tag" xml:space="preserve">
+    <value>Kostprijs</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Project.Field.CostPrice.Tooltip" xml:space="preserve">
+    <value>Kostprijs</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions.Tag" xml:space="preserve">
+    <value>Afmetingen</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions.Tooltip" xml:space="preserve">
+    <value>Afmetingen</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage.Tag" xml:space="preserve">
+    <value>Minimale voorraad</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage.Tooltip" xml:space="preserve">
+    <value>Minimale voorraad</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity.Tag" xml:space="preserve">
+    <value>Bestel hoeveelheid</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity.Tooltip" xml:space="preserve">
+    <value>Bestel hoeveelheid</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation.Tag" xml:space="preserve">
+    <value>Voorraadlocatie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation.Tooltip" xml:space="preserve">
+    <value>Voorraadlocatie</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Unit.Tag" xml:space="preserve">
+    <value>Verpakkingseenheid</value>
+  </data>
+  <data name="metadataProduct.Tab.General.TabItem.Storage.Field.Unit.Tooltip" xml:space="preserve">
+    <value>Verpakkingseenheid</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier.Tag" xml:space="preserve">
+    <value>Standaard leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier.Tooltip" xml:space="preserve">
+    <value>Standaard leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier.Tag" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier.Tooltip" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode.Tag" xml:space="preserve">
+    <value>Artikelnummer bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode.Tooltip" xml:space="preserve">
+    <value>Artikelnummer bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription.Tag" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription.Tooltip" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice.Tag" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice.Tooltip" xml:space="preserve">
+    <value>Prijs</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tag" xml:space="preserve">
+    <value>Website product</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip.Tag" xml:space="preserve">
+    <value>Website product bij leverancier</value>
+  </data>
+  <data name="metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip.Tooltip" xml:space="preserve">
+    <value>Website product bij leverancier</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime.Tag" xml:space="preserve">
+    <value>Verwachte bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime.Tooltip" xml:space="preserve">
+    <value>Verwachte bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tag" xml:space="preserve">
+    <value>Uren...</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tooltip" xml:space="preserve">
+    <value>Hoeveel uren verwacht je aan het project te werken</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays.Tag" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays.Tooltip" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours.Tag" xml:space="preserve">
+    <value>Uren per dag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours.Tooltip" xml:space="preserve">
+    <value>Uren per dag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days.Tag" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days.Tooltip" xml:space="preserve">
+    <value>Werkdagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay.Tag" xml:space="preserve">
+    <value>Langste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay.Tooltip" xml:space="preserve">
+    <value>Langste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay.Tag" xml:space="preserve">
+    <value>Korste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay.Tooltip" xml:space="preserve">
+    <value>Korste werkdag:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time.Tag" xml:space="preserve">
+    <value>Bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time.Tooltip" xml:space="preserve">
+    <value>Bouwtijd:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days.Tag" xml:space="preserve">
+    <value>Dagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days.Tooltip" xml:space="preserve">
+    <value>Dagen:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours.Tag" xml:space="preserve">
+    <value>Uren:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours.Tooltip" xml:space="preserve">
+    <value>Uren:</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol.Tag" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol.Tooltip" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts.Tag" xml:space="preserve">
+    <value>Materiaalkosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts.Tooltip" xml:space="preserve">
+    <value>Materiaalkosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts.Tag" xml:space="preserve">
+    <value>Uren</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts.Tooltip" xml:space="preserve">
+    <value>Uren</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts.Tag" xml:space="preserve">
+    <value>Totale kosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts.Tooltip" xml:space="preserve">
+    <value>Totale kosten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Closed.Tooltip" xml:space="preserve">
+    <value>Project voltooid</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Code.Tag" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Code.Tooltip" xml:space="preserve">
+    <value>Zoeknaam om het project eenvoudig te vinden, zoeknaam mag geen spaties bevatten</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.EndDate.Tag" xml:space="preserve">
+    <value>Eind datum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.EndDate.Tooltip" xml:space="preserve">
+    <value>Wanneer is het project voltooid</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate.Tag" xml:space="preserve">
+    <value>Verwachte einddatum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate.Tooltip" xml:space="preserve">
+    <value>Wat is de verwachte einddatum voor het project</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Name.Tag" xml:space="preserve">
+    <value>Projectnaam</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.Name.Tooltip" xml:space="preserve">
+    <value>Wat is de volledige naam van het project</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.StartDate.Tag" xml:space="preserve">
+    <value>Start datum</value>
+  </data>
+  <data name="metadataProject.Tab.General.TabItem.General.Field.StartDate.Tooltip" xml:space="preserve">
+    <value>Start datum</value>
+  </data>
+  <data name="metadataStorage.Entry.Field.Storage.Tag" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="metadataStorage.Entry.Field.Storage.Tooltip" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Mail.Tag" xml:space="preserve">
+    <value>E-mail adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Mail.Tooltip" xml:space="preserve">
+    <value>E-mail adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Name.Tag" xml:space="preserve">
+    <value>Volledige naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Name.Tooltip" xml:space="preserve">
+    <value>Volledige naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Phone.Tag" xml:space="preserve">
+    <value>Telefoonnummer</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Phone.Tooltip" xml:space="preserve">
+    <value>Telefoonnummer</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Type.Tag" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="metadataSupplier.Tab.Contact.TabItem.General.Field.Type.Tooltip" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Address.Tag" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Address.Tooltip" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.City.Tag" xml:space="preserve">
+    <value>Plaats</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.City.Tooltip" xml:space="preserve">
+    <value>Plaats</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Code.Tag" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Code.Tooltip" xml:space="preserve">
+    <value>Zoeknaam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Country.Tag" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Country.Tooltip" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Currency.Tag" xml:space="preserve">
+    <value>Standaard valuta</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Currency.Tooltip" xml:space="preserve">
+    <value>Standaard valuta</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.MaxValue.Tag" xml:space="preserve">
+    <value>Tot bedrag</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.MaxValue.Tooltip" xml:space="preserve">
+    <value>Tot bedrag</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Name.Tag" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Name.Tooltip" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts.Tag" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts.Tooltip" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.SendCosts.Tag" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.SendCosts.Tooltip" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Url.Tag" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Url.Tooltip" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Zip.Tag" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="metadataSupplier.Tab.General.TabItem.General.Field.Zip.Tooltip" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="metadataWorktype.Entry.Field.Worktype.Tag" xml:space="preserve">
+    <value>Werksoort</value>
+  </data>
+  <data name="metadataWorktype.Entry.Field.Worktype.Tooltip" xml:space="preserve">
+    <value>Werksoort</value>
+  </data>
+  <data name="Order.Order.Field.Closed.Tag" xml:space="preserve">
+    <value>Geleverd</value>
+  </data>
+  <data name="Order.Order.Field.Closed.Tooltip" xml:space="preserve">
+    <value>Geleverd</value>
+  </data>
+  <data name="Order.Order.Field.ClosedDate.Tag" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Order.Field.ClosedDate.Tooltip" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Order.Field.CurrencyRate.Tag" xml:space="preserve">
+    <value>Wisselkoers</value>
+  </data>
+  <data name="Order.Order.Field.CurrencyRate.Tooltip" xml:space="preserve">
+    <value>Wisselkoers</value>
+  </data>
+  <data name="Order.Order.Field.CurrencySymbol.Tag" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="Order.Order.Field.CurrencySymbol.Tooltip" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="Order.Order.Field.OrderCosts.Tag" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="Order.Order.Field.OrderCosts.Tooltip" xml:space="preserve">
+    <value>Order kosten</value>
+  </data>
+  <data name="Order.Order.Field.OrderDate.Tag" xml:space="preserve">
+    <value>Order datum</value>
+  </data>
+  <data name="Order.Order.Field.OrderDate.Tooltip" xml:space="preserve">
+    <value>Order datum</value>
+  </data>
+  <data name="Order.Order.Field.OrderNumber.Tag" xml:space="preserve">
+    <value>Ordernummer</value>
+  </data>
+  <data name="Order.Order.Field.OrderNumber.Tooltip" xml:space="preserve">
+    <value>Ordernummer</value>
+  </data>
+  <data name="Order.Order.Field.ShippingCosts.Tag" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="Order.Order.Field.ShippingCosts.Tooltip" xml:space="preserve">
+    <value>Verzendkosten</value>
+  </data>
+  <data name="Order.Order.Field.Supplier.Tag" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="Order.Order.Field.Supplier.Tooltip" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="Order.Orderline.Field.Category.Tag" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Order.Orderline.Field.Category.Tooltip" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Order.Orderline.Field.Closed.Tag" xml:space="preserve">
+    <value>Afgeleverd</value>
+  </data>
+  <data name="Order.Orderline.Field.Closed.Tooltip" xml:space="preserve">
+    <value>Afgeleverd</value>
+  </data>
+  <data name="Order.Orderline.Field.ClosedDate.Tag" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Orderline.Field.ClosedDate.Tooltip" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Order.Orderline.Field.Number.Tag" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="Order.Orderline.Field.Number.Tooltip" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tag" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tooltip.Tag" xml:space="preserve">
+    <value>Stukprijs in de valuta van de leverancier</value>
+  </data>
+  <data name="Order.Orderline.Field.Price.Tooltip.Tooltip" xml:space="preserve">
+    <value>Stukprijs in de valuta van de leverancier</value>
+  </data>
+  <data name="Order.Orderline.Field.Product.Tag" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderline.Field.Product.Tooltip" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderline.Field.Project.Tag" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Order.Orderline.Field.Project.Tooltip" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Order.Orderline.Field.Total.Tag" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="Order.Orderline.Field.Total.Tooltip" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="Order.Orderlist.Field.Price.Tag" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="Order.Orderlist.Field.Price.Tooltip" xml:space="preserve">
+    <value>Stukprijs</value>
+  </data>
+  <data name="Order.Orderlist.Field.Product.Tag" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Order.Orderlist.Field.Product.Tooltip" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Amount.Tag" xml:space="preserve">
+    <value>Ontvangen</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Amount.Tooltip" xml:space="preserve">
+    <value>Ontvangen</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Date.Tag" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Date.Tooltip" xml:space="preserve">
+    <value>Leverdatum</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Location.Tag" xml:space="preserve">
+    <value>Voorraadlocatie</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Location.Tooltip" xml:space="preserve">
+    <value>Voorraadlocatie</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Product.Tag" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Receipt.Group.Receiptline.Field.Product.Tooltip" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="general.DatePicker.Text" xml:space="preserve">
+    <value>Selecteer datum...</value>
   </data>
 </root>

@@ -100,6 +100,17 @@ namespace Modelbuilder.Views
         #region Selection changed ProjectCode
         private void ProjectCode_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Empty the related fields (otherwise data from previous selected prokject will be shown
+            dispProjectBuildTime.Text = "";
+            dispProjectBuildTimeLong.Text = "";
+            dispProjectBuildDays.Text = "";
+            dispProjectShortestDay.Text = "";
+            dispProjectShortestDayLong.Text = "";
+            dispProjectLongestDay.Text = "";
+            dispProjectLongestDayLong.Text = "";
+            dispProjectDaylyHours.Text = "";
+            dispProjectDaylyHoursLong.Text = "";
+
             DataGrid dg = (DataGrid)sender;
 
             if (dg.SelectedItem is not DataRowView Row_Selected) { return; }
@@ -118,19 +129,13 @@ namespace Modelbuilder.Views
 
             if (Row_Selected["Closed"].ToString() == "1")
             {
+                valueShow.IsChecked = false;
                 inpProjectClosed.IsChecked = true;
-                dispProjectExpEnddate.Visibility = Visibility.Hidden;
-                lblExpEndDate.Visibility = Visibility.Hidden;
-                inpProjectEnddate.Visibility = Visibility.Visible;
-                lblProjectEndDate.Visibility = Visibility.Visible;
             }
             else
             {
+                valueShow.IsChecked = true;
                 inpProjectClosed.IsChecked = false;
-                inpProjectEnddate.Visibility = Visibility.Hidden;
-                lblProjectEndDate.Visibility = Visibility.Hidden;
-                dispProjectExpEnddate.Visibility = Visibility.Visible;
-                lblExpEndDate.Visibility = Visibility.Visible;
             }
 
             // Retrieve Product Image            
@@ -158,13 +163,21 @@ namespace Modelbuilder.Views
             
             if (_TimeEntries > 0) 
             {
-                var WorkedMinutes = _helperGeneral.GetWorkedTimeForProject(HelperGeneral.DbTimeReportView, new string[1, 3]
-                {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkedMinutes);
+                var WorkedMinutes = int.Parse(_helperGeneral.GetProjectTotals(HelperGeneral.DbTimeReportView, new string[1, 3]
+                {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldTypeWorkedMinutes));
 
                 dispProjectBuildTime.Text = hc.HourMinute(WorkedMinutes).ToString();
                 dispProjectBuildTimeLong.Text = hc.TimeDuration(WorkedMinutes).ToString();
                 dispProjectBuildDays.Text = _helperGeneral.CountUniqueRows(HelperGeneral.DbTimeReportView, new string[1, 3]
                 {    {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkDate).ToString();
+                dispProjectShortestDay.Text = _helperGeneral.GetMinMaxTimeForProject(HelperGeneral.DbTimeReportView, inpProjectName.Text, HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldNameWorkTime, HelperGeneral.DbTimeViewFieldTypeWorkTime, "Min");
+                dispProjectShortestDayLong.Text = _helperGeneral.GetMinMaxTimeForProject(HelperGeneral.DbTimeReportView, inpProjectName.Text, HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldTypeWorkDate, "Min");
+                dispProjectLongestDay.Text = _helperGeneral.GetMinMaxTimeForProject(HelperGeneral.DbTimeReportView, inpProjectName.Text, HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldNameWorkTime, HelperGeneral.DbTimeViewFieldTypeWorkTime, "Max");
+                dispProjectLongestDayLong.Text = _helperGeneral.GetMinMaxTimeForProject(HelperGeneral.DbTimeReportView, inpProjectName.Text, HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldNameWorkDate, HelperGeneral.DbTimeViewFieldTypeWorkDate, "Max");
+                var _DaylyTime = WorkedMinutes / int.Parse(dispProjectBuildDays.Text);
+                dispProjectDaylyHours.Text = String.Format("{0:0.00}", ((WorkedMinutes / 60) / double.Parse(dispProjectBuildDays.Text)));
+                dispProjectDaylyHoursLong.Text = hc.TimeDuration(WorkedMinutes / int.Parse(dispProjectBuildDays.Text));
+                InitializeComponent();
             }
             else
             {
@@ -172,6 +185,10 @@ namespace Modelbuilder.Views
                 dispProjectBuildTime.Text = "";
                 dispProjectBuildTimeLong.Text = "";
                 dispProjectBuildDays.Text = "";
+                dispProjectShortestDay.Text = "";
+                dispProjectShortestDayLong.Text = "";
+                dispProjectLongestDay.Text = "";
+                dispProjectLongestDayLong.Text = "";
             }
 
             // Check if there are cost entries available before filling the fields
@@ -181,11 +198,24 @@ namespace Modelbuilder.Views
 
             if (_CostEntries > 0)
             {
-                // Fill the fields
+                var TotalCosts = _helperGeneral.GetProjectTotals(HelperGeneral.DbProjectCostsView, new string[1, 3]
+                {   {HelperGeneral.DbProjectCostsViewFieldNameProjectName, HelperGeneral.DbProjectCostsViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbProjectCostsViewFieldNameTotal, HelperGeneral.DbProjectCostsViewFieldTypeTotal);
+                var HourRate = double.Parse(_helperGeneral.GetValueFromTable(HelperGeneral.DbSettingsTable, new string[1, 3]
+                {
+                    {HelperGeneral.DbSettingsTableFieldNameHourRate, HelperGeneral.DbSettingsTableFieldTypeHourRate, "" }
+                }));
+                var WorkedHours = double.Parse(_helperGeneral.GetProjectTotals(HelperGeneral.DbTimeReportView, new string[1, 3]
+                {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  }, HelperGeneral.DbTimeViewFieldNameWorkedMinutes, HelperGeneral.DbTimeViewFieldTypeWorkedMinutes)) / 60;
+
+                dispProjectMaterialCosts.Text = String.Format("{0, 0:N2}", double.Parse(TotalCosts));
+                dispProjectHourCosts.Text = String.Format("{0, 0:N2}", (WorkedHours * HourRate));
+                dispProjectTotalCosts.Text = String.Format("{0, 0:N2}", (double.Parse(TotalCosts) + (WorkedHours * HourRate)));
             }
             else
             {
-                // Empty the related fields (otherwise data from previous selected prokject will be shown
+                dispProjectMaterialCosts.Text = "0,00";
+                dispProjectHourCosts.Text = "0.00";
+                dispProjectTotalCosts.Text = "0.00";
             }
 
             // Enable tabs that can be used after a project is selected
@@ -518,17 +548,11 @@ namespace Modelbuilder.Views
         {
             if (inpProjectClosed.IsChecked == true)
             {
-                dispProjectExpEnddate.Visibility = Visibility.Hidden;
-                lblExpEndDate.Visibility = Visibility.Hidden;
-                inpProjectEnddate.Visibility = Visibility.Visible;
-                lblProjectEndDate.Visibility = Visibility.Visible;
+                valueShow.IsChecked = false;
             }
             else
             {
-                inpProjectEnddate.Visibility = Visibility.Hidden;
-                lblProjectEndDate.Visibility = Visibility.Hidden;
-                dispProjectExpEnddate.Visibility = Visibility.Visible;
-                lblExpEndDate.Visibility = Visibility.Visible;
+                valueShow.IsChecked = true;
             }
         }
         #endregion
