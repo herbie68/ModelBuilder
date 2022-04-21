@@ -70,6 +70,519 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer datum....
+        /// </summary>
+        public static string general_DatePicker_Text {
+            get {
+                return ResourceManager.GetString("general.DatePicker.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dag.
+        /// </summary>
+        public static string general_datetime_Day {
+            get {
+                return ResourceManager.GetString("general.datetime.Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string general_datetime_Day_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zondag.
+        /// </summary>
+        public static string general_datetime_Day0 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zo.
+        /// </summary>
+        public static string general_datetime_Day0_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day0.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maandag.
+        /// </summary>
+        public static string general_datetime_Day1 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ma.
+        /// </summary>
+        public static string general_datetime_Day1_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day1.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dinsdag.
+        /// </summary>
+        public static string general_datetime_Day2 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Di.
+        /// </summary>
+        public static string general_datetime_Day2_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day2.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woensdag.
+        /// </summary>
+        public static string general_datetime_Day3 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wo.
+        /// </summary>
+        public static string general_datetime_Day3_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day3.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donderdag.
+        /// </summary>
+        public static string general_datetime_Day4 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do.
+        /// </summary>
+        public static string general_datetime_Day4_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day4.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vrijdag.
+        /// </summary>
+        public static string general_datetime_Day5 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vr.
+        /// </summary>
+        public static string general_datetime_Day5_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day5.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zaterdag.
+        /// </summary>
+        public static string general_datetime_Day6 {
+            get {
+                return ResourceManager.GetString("general.datetime.Day6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Za.
+        /// </summary>
+        public static string general_datetime_Day6_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Day6.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dagen.
+        /// </summary>
+        public static string general_datetime_Days {
+            get {
+                return ResourceManager.GetString("general.datetime.Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uur.
+        /// </summary>
+        public static string general_datetime_Hour {
+            get {
+                return ResourceManager.GetString("general.datetime.Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to u.
+        /// </summary>
+        public static string general_datetime_Hour_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Hour.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uren.
+        /// </summary>
+        public static string general_datetime_Hours {
+            get {
+                return ResourceManager.GetString("general.datetime.Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minuut.
+        /// </summary>
+        public static string general_datetime_Minute {
+            get {
+                return ResourceManager.GetString("general.datetime.Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string general_datetime_Minute_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Minute.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minuten.
+        /// </summary>
+        public static string general_datetime_Minutes {
+            get {
+                return ResourceManager.GetString("general.datetime.Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maand.
+        /// </summary>
+        public static string general_datetime_Month {
+            get {
+                return ResourceManager.GetString("general.datetime.Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string general_datetime_Month_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Month.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Januari.
+        /// </summary>
+        public static string general_DateTime_Month1 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jan.
+        /// </summary>
+        public static string general_DateTime_Month1_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month1.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oktober.
+        /// </summary>
+        public static string general_DateTime_Month10 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Okt.
+        /// </summary>
+        public static string general_DateTime_Month10_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month10.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to November.
+        /// </summary>
+        public static string general_DateTime_Month11 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nov.
+        /// </summary>
+        public static string general_DateTime_Month11_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month11.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to December.
+        /// </summary>
+        public static string general_DateTime_Month12 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dec.
+        /// </summary>
+        public static string general_DateTime_Month12_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month12.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Februari.
+        /// </summary>
+        public static string general_DateTime_Month2 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feb.
+        /// </summary>
+        public static string general_DateTime_Month2_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month2.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maart.
+        /// </summary>
+        public static string general_DateTime_Month3 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mrt.
+        /// </summary>
+        public static string general_DateTime_Month3_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month3.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to April.
+        /// </summary>
+        public static string general_DateTime_Month4 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apr.
+        /// </summary>
+        public static string general_DateTime_Month4_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month4.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mei.
+        /// </summary>
+        public static string general_DateTime_Month5 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mei.
+        /// </summary>
+        public static string general_DateTime_Month5_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month5.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juni.
+        /// </summary>
+        public static string general_DateTime_Month6 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jun.
+        /// </summary>
+        public static string general_DateTime_Month6_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month6.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juli.
+        /// </summary>
+        public static string general_DateTime_Month7 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jul.
+        /// </summary>
+        public static string general_DateTime_Month7_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month7.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Augustus.
+        /// </summary>
+        public static string general_DateTime_Month8 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aug.
+        /// </summary>
+        public static string general_DateTime_Month8_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month8.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to September.
+        /// </summary>
+        public static string general_DateTime_Month9 {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sep.
+        /// </summary>
+        public static string general_DateTime_Month9_Short {
+            get {
+                return ResourceManager.GetString("general.DateTime.Month9.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to maanden.
+        /// </summary>
+        public static string general_datetime_Months {
+            get {
+                return ResourceManager.GetString("general.datetime.Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to week.
+        /// </summary>
+        public static string general_datetime_Week {
+            get {
+                return ResourceManager.GetString("general.datetime.Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to w.
+        /// </summary>
+        public static string general_datetime_Week_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Week.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weken.
+        /// </summary>
+        public static string general_datetime_Weeks {
+            get {
+                return ResourceManager.GetString("general.datetime.Weeks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jaar.
+        /// </summary>
+        public static string general_datetime_Year {
+            get {
+                return ResourceManager.GetString("general.datetime.Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to j.
+        /// </summary>
+        public static string general_datetime_Year_Short {
+            get {
+                return ResourceManager.GetString("general.datetime.Year.Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jaren.
+        /// </summary>
+        public static string general_datetime_Years {
+            get {
+                return ResourceManager.GetString("general.datetime.Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to product gebruik regel.
         /// </summary>
         public static string general_ProductUsageEntrie {
@@ -961,6 +1474,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string metadataCategory_Entry_Field_Category_Tag {
+            get {
+                return ResourceManager.GetString("metadataCategory.Entry.Field.Category.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geef de categorie aan waarin het product valt.
+        /// </summary>
+        public static string metadataCategory_Entry_Field_Category_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCategory.Entry.Field.Category.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gewijzigde categorienaam opslaan.
         /// </summary>
         public static string metadataCategory_Entry_Toolbar_Button_Save_Tooltip {
@@ -1087,6 +1618,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Landcode.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Code_Tag {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Code.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Een code waaraan het land eenvoudig te herkennen is.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Code_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Code.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Standaard valuta.
         /// </summary>
         public static string metadataCountry_Entry_Field_Currency {
@@ -1096,11 +1645,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standaard valuta.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Currency_Tag {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Currency.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De standaard valuta voor dit land.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Currency_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Currency.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Land.
         /// </summary>
         public static string metadataCountry_Entry_Field_Name {
             get {
                 return ResourceManager.GetString("metadataCountry.Entry.Field.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Name_Tag {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Name.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geef de naam van het land.
+        /// </summary>
+        public static string metadataCountry_Entry_Field_Name_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCountry.Entry.Field.Name.Tooltip", resourceCulture);
             }
         }
         
@@ -1150,11 +1735,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string metadataCurrency_Field_Currency_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.Currency.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string metadataCurrency_Field_Currency_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.Currency.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valuta code.
         /// </summary>
         public static string metadataCurrency_Field_CurrencyCode {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta code.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyCode_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyCode.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verkorte valuta naam.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyCode_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyCode.Tooltip", resourceCulture);
             }
         }
         
@@ -1168,11 +1789,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valuta naam.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyName_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyName.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volledige naam van de valuta.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyName_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyName.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Omrekenkoers.
         /// </summary>
         public static string metadataCurrency_Field_CurrencyRate {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omrekenkoers.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyRate_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyRate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De omrekenkoers voor de valuta naar €.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyRate_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyRate.Tooltip", resourceCulture);
             }
         }
         
@@ -1186,11 +1843,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Koers.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyRateShort_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyRateShort.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Koers.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencyRateShort_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencyRateShort.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valuta symbool.
         /// </summary>
         public static string metadataCurrency_Field_CurrencySymbol {
             get {
                 return ResourceManager.GetString("metadataCurrency.Field.CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta symbool.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencySymbol_Tag {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencySymbol.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta symbool.
+        /// </summary>
+        public static string metadataCurrency_Field_CurrencySymbol_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataCurrency.Field.CurrencySymbol.Tooltip", resourceCulture);
             }
         }
         
@@ -1429,11 +2122,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merk.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Brand_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Brand.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merk.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Brand_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Brand.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categorie.
         /// </summary>
         public static string metadataProduct_Tab_General_TabItem_Product_Field_Category {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Category_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Category.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Category_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Category.Tooltip", resourceCulture);
             }
         }
         
@@ -1447,11 +2176,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Code_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Code.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Code_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Code.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product naam.
         /// </summary>
         public static string metadataProduct_Tab_General_TabItem_Product_Field_Name {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product naam.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Name_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Name.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product naam.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Product_Field_Name_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Product.Field.Name.Tooltip", resourceCulture);
             }
         }
         
@@ -1470,6 +2235,24 @@ namespace Modelbuilder.Languages {
         public static string metadataProduct_Tab_General_TabItem_Project_Field_CostPrice {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.CostPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kostprijs.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Project_Field_CostPrice_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.CostPrice.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kostprijs.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Project_Field_CostPrice_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Project.Field.CostPrice.Tooltip", resourceCulture);
             }
         }
         
@@ -1510,11 +2293,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Afmetingen.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_Dimensions_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afmetingen.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_Dimensions_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.Dimensions.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimale voorraad.
         /// </summary>
         public static string metadataProduct_Tab_General_TabItem_Storage_Field_MinimalStorage {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimale voorraad.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_MinimalStorage_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimale voorraad.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_MinimalStorage_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.MinimalStorage.Tooltip", resourceCulture);
             }
         }
         
@@ -1528,6 +2347,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bestel hoeveelheid.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_OrderQuantity_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestel hoeveelheid.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_OrderQuantity_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.OrderQuantity.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Voorraadlocatie.
         /// </summary>
         public static string metadataProduct_Tab_General_TabItem_Storage_Field_StorageLocation {
@@ -1537,11 +2374,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_StorageLocation_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_StorageLocation_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.StorageLocation.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verpakkingseenheid.
         /// </summary>
         public static string metadataProduct_Tab_General_TabItem_Storage_Field_Unit {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verpakkingseenheid.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_Unit_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.Unit.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verpakkingseenheid.
+        /// </summary>
+        public static string metadataProduct_Tab_General_TabItem_Storage_Field_Unit_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.General.TabItem.Storage.Field.Unit.Tooltip", resourceCulture);
             }
         }
         
@@ -1672,11 +2545,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standaard leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_DefaultSupplier_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standaard leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_DefaultSupplier_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.DefaultSupplier.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leverancier.
         /// </summary>
         public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Supplier {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Supplier_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Supplier_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Supplier.Tooltip", resourceCulture);
             }
         }
         
@@ -1690,11 +2599,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artikelnummer bij leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierCode_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelnummer bij leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierCode_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierCode.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Omschrijving.
         /// </summary>
         public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierDescription {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierDescription_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierDescription_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierDescription.Tooltip", resourceCulture);
             }
         }
         
@@ -1708,6 +2653,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prijs.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierPrice_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prijs.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_SupplierPrice_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.SupplierPrice.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Website product.
         /// </summary>
         public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url {
@@ -1717,11 +2680,38 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Website product bij leverancier.
+        ///   Looks up a localized string similar to Website product.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website product.
         /// </summary>
         public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tooltip {
             get {
                 return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website product bij leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tooltip_Tag {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website product bij leverancier.
+        /// </summary>
+        public static string metadataProduct_Tab_Supplier_TabItem_General_Field_Url_Tooltip_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProduct.Tab.Supplier.TabItem.General.Field.Url.Tooltip.Tooltip", resourceCulture);
             }
         }
         
@@ -1960,6 +2950,25 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verwachte bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_BuildTime_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwachte bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_BuildTime_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.BuildTime.Tooltip" +
+                        "", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (uren).
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours {
@@ -1969,11 +2978,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uren....
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoeveel uren verwacht je aan het project te werken.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Hours_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Werkdagen:.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Expectation_Field_Workdays_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Workdays.Tooltip", resourceCulture);
             }
         }
         
@@ -1996,11 +3041,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uren per dag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Dailyhours_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren per dag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Dailyhours_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Dailyhours.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Werkdagen:.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werkdagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Days_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Days.Tooltip", resourceCulture);
             }
         }
         
@@ -2014,6 +3095,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Langste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_LongestDay_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Langste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_LongestDay_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.LongestDay.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korste werkdag:.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay {
@@ -2023,11 +3122,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Korste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korste werkdag:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_ShortestDay_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.ShortestDay.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bouwtijd:.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bouwtijd:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Progress_Field_Time_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Progress.Field.Time.Tooltip", resourceCulture);
             }
         }
         
@@ -2059,11 +3194,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Days_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dagen:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Days_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Days.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uren:.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren:.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_BuildTime_Todo_Field_Hours_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.BuildTime.Todo.Field.Hours.Tooltip", resourceCulture);
             }
         }
         
@@ -2086,11 +3257,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to €.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to €.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_CurrencySymbol_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.CurrencySymbol.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Materiaalkosten.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materiaalkosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materiaalkosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_ProductCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.ProductCosts.Tooltip", resourceCulture);
             }
         }
         
@@ -2104,11 +3311,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uren.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TimeCosts_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uren.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TimeCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TimeCosts.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Totale kosten.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale kosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale kosten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_Costs_Field_TotalCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.Costs.Field.TotalCosts.Tooltip", resourceCulture);
             }
         }
         
@@ -2131,11 +3374,38 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project voltooid.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Closed_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Closed.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zoeknaam.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_General_Field_Code {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Code_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Code.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam om het project eenvoudig te vinden, zoeknaam mag geen spaties bevatten.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Code_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Code.Tooltip", resourceCulture);
             }
         }
         
@@ -2149,11 +3419,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eind datum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_EndDate_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.EndDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wanneer is het project voltooid.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_EndDate_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.EndDate.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verwachte einddatum.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verwachte einddatum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wat is de verwachte einddatum voor het project.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.ExpectedEndDate.Tooltip", resourceCulture);
             }
         }
         
@@ -2167,11 +3473,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Projectnaam.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Name_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Name.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wat is de volledige naam van het project.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_Name_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.Name.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start datum.
         /// </summary>
         public static string metadataProject_Tab_General_TabItem_General_Field_StartDate {
             get {
                 return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start datum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_StartDate_Tag {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.StartDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start datum.
+        /// </summary>
+        public static string metadataProject_Tab_General_TabItem_General_Field_StartDate_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataProject.Tab.General.TabItem.General.Field.StartDate.Tooltip", resourceCulture);
             }
         }
         
@@ -2271,6 +3613,24 @@ namespace Modelbuilder.Languages {
         public static string metadataStorage_Entry_Field_Storage {
             get {
                 return ResourceManager.GetString("metadataStorage.Entry.Field.Storage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locatie.
+        /// </summary>
+        public static string metadataStorage_Entry_Field_Storage_Tag {
+            get {
+                return ResourceManager.GetString("metadataStorage.Entry.Field.Storage.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locatie.
+        /// </summary>
+        public static string metadataStorage_Entry_Field_Storage_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataStorage.Entry.Field.Storage.Tooltip", resourceCulture);
             }
         }
         
@@ -2608,11 +3968,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail adres.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Mail_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Mail.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail adres.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Mail_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Mail.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Volledige naam.
         /// </summary>
         public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Name {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volledige naam.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Name_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Name.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volledige naam.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Name_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Name.Tooltip", resourceCulture);
             }
         }
         
@@ -2626,11 +4022,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Telefoonnummer.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Phone_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Phone.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefoonnummer.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Phone_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Phone.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Functie.
         /// </summary>
         public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Type {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Type_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Type.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie.
+        /// </summary>
+        public static string metadataSupplier_Tab_Contact_TabItem_General_Field_Type_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.Contact.TabItem.General.Field.Type.Tooltip", resourceCulture);
             }
         }
         
@@ -2698,11 +4130,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adres.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Address_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Address.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adres.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Address_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Address.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plaats.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_City {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plaats.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_City_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.City.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plaats.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_City_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.City.Tooltip", resourceCulture);
             }
         }
         
@@ -2716,11 +4184,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Code_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Code.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoeknaam.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Code_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Code.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Land.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_Country {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Country_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Country.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Country_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Country.Tooltip", resourceCulture);
             }
         }
         
@@ -2734,11 +4238,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standaard valuta.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Currency_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Currency.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standaard valuta.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Currency_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Currency.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tot bedrag.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_MaxValue {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.MaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tot bedrag.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_MaxValue_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.MaxValue.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tot bedrag.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_MaxValue_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.MaxValue.Tooltip", resourceCulture);
             }
         }
         
@@ -2752,11 +4292,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Naam.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Name_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Name.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naam.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Name_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Name.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order kosten.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_OrderCosts {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order kosten.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_OrderCosts_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order kosten.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_OrderCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.OrderCosts.Tooltip", resourceCulture);
             }
         }
         
@@ -2770,6 +4346,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verzendkosten.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_SendCosts_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.SendCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verzendkosten.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_SendCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.SendCosts.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Website.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_Url {
@@ -2779,11 +4373,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Url_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Url.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Url_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Url.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postcode.
         /// </summary>
         public static string metadataSupplier_Tab_General_TabItem_General_Field_Zip {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Zip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postcode.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Zip_Tag {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Zip.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postcode.
+        /// </summary>
+        public static string metadataSupplier_Tab_General_TabItem_General_Field_Zip_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataSupplier.Tab.General.TabItem.General.Field.Zip.Tooltip", resourceCulture);
             }
         }
         
@@ -2829,6 +4459,24 @@ namespace Modelbuilder.Languages {
         public static string metadataWorktype_Entry_Field_Worktype {
             get {
                 return ResourceManager.GetString("metadataWorktype.Entry.Field.Worktype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort.
+        /// </summary>
+        public static string metadataWorktype_Entry_Field_Worktype_Tag {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Entry.Field.Worktype.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort.
+        /// </summary>
+        public static string metadataWorktype_Entry_Field_Worktype_Tooltip {
+            get {
+                return ResourceManager.GetString("metadataWorktype.Entry.Field.Worktype.Tooltip", resourceCulture);
             }
         }
         
@@ -2968,11 +4616,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geleverd.
+        /// </summary>
+        public static string Order_Order_Field_Closed_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Closed.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geleverd.
+        /// </summary>
+        public static string Order_Order_Field_Closed_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Closed.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leverdatum.
         /// </summary>
         public static string Order_Order_Field_ClosedDate {
             get {
                 return ResourceManager.GetString("Order.Order.Field.ClosedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Order_Field_ClosedDate_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ClosedDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Order_Field_ClosedDate_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ClosedDate.Tooltip", resourceCulture);
             }
         }
         
@@ -2986,11 +4670,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wisselkoers.
+        /// </summary>
+        public static string Order_Order_Field_CurrencyRate_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencyRate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wisselkoers.
+        /// </summary>
+        public static string Order_Order_Field_CurrencyRate_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencyRate.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valuta.
         /// </summary>
         public static string Order_Order_Field_CurrencySymbol {
             get {
                 return ResourceManager.GetString("Order.Order.Field.CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string Order_Order_Field_CurrencySymbol_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencySymbol.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string Order_Order_Field_CurrencySymbol_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.CurrencySymbol.Tooltip", resourceCulture);
             }
         }
         
@@ -3004,11 +4724,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order kosten.
+        /// </summary>
+        public static string Order_Order_Field_OrderCosts_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order kosten.
+        /// </summary>
+        public static string Order_Order_Field_OrderCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderCosts.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order datum.
         /// </summary>
         public static string Order_Order_Field_OrderDate {
             get {
                 return ResourceManager.GetString("Order.Order.Field.OrderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order datum.
+        /// </summary>
+        public static string Order_Order_Field_OrderDate_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order datum.
+        /// </summary>
+        public static string Order_Order_Field_OrderDate_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderDate.Tooltip", resourceCulture);
             }
         }
         
@@ -3022,6 +4778,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ordernummer.
+        /// </summary>
+        public static string Order_Order_Field_OrderNumber_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderNumber.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordernummer.
+        /// </summary>
+        public static string Order_Order_Field_OrderNumber_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.OrderNumber.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verzendkosten.
         /// </summary>
         public static string Order_Order_Field_ShippingCosts {
@@ -3031,11 +4805,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verzendkosten.
+        /// </summary>
+        public static string Order_Order_Field_ShippingCosts_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ShippingCosts.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verzendkosten.
+        /// </summary>
+        public static string Order_Order_Field_ShippingCosts_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.ShippingCosts.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leverancier.
         /// </summary>
         public static string Order_Order_Field_Supplier {
             get {
                 return ResourceManager.GetString("Order.Order.Field.Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string Order_Order_Field_Supplier_Tag {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Supplier.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string Order_Order_Field_Supplier_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Order.Field.Supplier.Tooltip", resourceCulture);
             }
         }
         
@@ -3076,11 +4886,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string Order_Orderline_Field_Category_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Category.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string Order_Orderline_Field_Category_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Category.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Afgeleverd.
         /// </summary>
         public static string Order_Orderline_Field_Closed {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afgeleverd.
+        /// </summary>
+        public static string Order_Orderline_Field_Closed_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Closed.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afgeleverd.
+        /// </summary>
+        public static string Order_Orderline_Field_Closed_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Closed.Tooltip", resourceCulture);
             }
         }
         
@@ -3094,11 +4940,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Orderline_Field_ClosedDate_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.ClosedDate.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Order_Orderline_Field_ClosedDate_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.ClosedDate.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aantal.
         /// </summary>
         public static string Order_Orderline_Field_Number {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal.
+        /// </summary>
+        public static string Order_Orderline_Field_Number_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Number.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal.
+        /// </summary>
+        public static string Order_Orderline_Field_Number_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Number.Tooltip", resourceCulture);
             }
         }
         
@@ -3112,11 +4994,38 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stukprijs in de valuta van de leverancier.
+        ///   Looks up a localized string similar to Stukprijs.
+        /// </summary>
+        public static string Order_Orderline_Field_Price_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Price.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs.
         /// </summary>
         public static string Order_Orderline_Field_Price_Tooltip {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Price.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs in de valuta van de leverancier.
+        /// </summary>
+        public static string Order_Orderline_Field_Price_Tooltip_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Price.Tooltip.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs in de valuta van de leverancier.
+        /// </summary>
+        public static string Order_Orderline_Field_Price_Tooltip_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Price.Tooltip.Tooltip", resourceCulture);
             }
         }
         
@@ -3130,6 +5039,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Order_Orderline_Field_Product_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Product.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Order_Orderline_Field_Product_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Product.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
         public static string Order_Orderline_Field_Project {
@@ -3139,11 +5066,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string Order_Orderline_Field_Project_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Project.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string Order_Orderline_Field_Project_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Project.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Totaal.
         /// </summary>
         public static string Order_Orderline_Field_Total {
             get {
                 return ResourceManager.GetString("Order.Orderline.Field.Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totaal.
+        /// </summary>
+        public static string Order_Orderline_Field_Total_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Total.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totaal.
+        /// </summary>
+        public static string Order_Orderline_Field_Total_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderline.Field.Total.Tooltip", resourceCulture);
             }
         }
         
@@ -3202,11 +5165,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stukprijs.
+        /// </summary>
+        public static string Order_Orderlist_Field_Price_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderlist.Field.Price.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stukprijs.
+        /// </summary>
+        public static string Order_Orderlist_Field_Price_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderlist.Field.Price.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Produkt.
         /// </summary>
         public static string Order_Orderlist_Field_Product {
             get {
                 return ResourceManager.GetString("Order.Orderlist.Field.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Order_Orderlist_Field_Product_Tag {
+            get {
+                return ResourceManager.GetString("Order.Orderlist.Field.Product.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Order_Orderlist_Field_Product_Tooltip {
+            get {
+                return ResourceManager.GetString("Order.Orderlist.Field.Product.Tooltip", resourceCulture);
             }
         }
         
@@ -3544,11 +5543,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ontvangen.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Amount_Tag {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Amount.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ontvangen.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Amount_Tooltip {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Amount.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leverdatum.
         /// </summary>
         public static string Receipt_Group_Receiptline_Field_Date {
             get {
                 return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Date_Tag {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Date.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverdatum.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Date_Tooltip {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Date.Tooltip", resourceCulture);
             }
         }
         
@@ -3562,11 +5597,47 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Location_Tag {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Location.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voorraadlocatie.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Location_Tooltip {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Location.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Produkt.
         /// </summary>
         public static string Receipt_Group_Receiptline_Field_Product {
             get {
                 return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Product_Tag {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Product.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produkt.
+        /// </summary>
+        public static string Receipt_Group_Receiptline_Field_Product_Tooltip {
+            get {
+                return ResourceManager.GetString("Receipt.Group.Receiptline.Field.Product.Tooltip", resourceCulture);
             }
         }
         

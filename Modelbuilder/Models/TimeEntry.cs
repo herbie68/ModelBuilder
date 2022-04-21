@@ -33,7 +33,6 @@ public class TimeEntries : ObservableCollection<TimeEntry>
 {
     public TimeEntries(string ProjectName)
     {
-        //var sqlText = "SELECT * FROM " + HelperGeneral.DbTimeReportView + " WHERE ProjectName='Silhouet (Groningen 1893)'";
         var sqlText = "SELECT * FROM " + HelperGeneral.DbTimeReportView;
         
         if (ProjectName != "" && ProjectName != "Geen")
