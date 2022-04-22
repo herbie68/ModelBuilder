@@ -147,6 +147,13 @@ public partial class MainWindow : Window
         Main.Content = new metadataProject();
     }
     #endregion Call Product Page
+
+    #region Call Unit Page
+    private void ShowUnitPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new metadataUnit();
+    }
+    #endregion
     #endregion
 
     #region Exit Application

@@ -1,16 +1,18 @@
 ﻿<Page x:Class="Modelbuilder.metadataWorktype"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:modelbuilder="clr-namespace:Modelbuilder"
       xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="metadataWorktype"
-      d:DesignHeight="800" d:DesignWidth="1000"
+      d:DesignHeight="800"
+      d:DesignWidth="1000"
       mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Margin="20,20,20,20" DockPanel.Dock="Top">
+        <StackPanel Margin="20,20,20,20"
+                    DockPanel.Dock="Top">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Margin" Value="0,0,0,5" />
@@ -25,12 +27,15 @@
         </StackPanel>
 
         <!--  Title of the page  -->
-        <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataWorktype_Page_Title}" />
+        <StackPanel Margin="10,0,10,0"
+                    Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <TextBlock Style="{DynamicResource DefaultTitle}"
+                       Text="{x:Static p:Cultures.metadataWorktype_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
-            <TextBlock Style="{DynamicResource DefaultSubTitle}" Text="{x:Static p:Cultures.metadataWorktype_Page_SubTitle}" />
+            <TextBlock Style="{DynamicResource DefaultSubTitle}"
+                       Text="{x:Static p:Cultures.metadataWorktype_Page_SubTitle}" />
         </StackPanel>
 
         <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
@@ -62,11 +67,13 @@
                  Margin="100,100,0,0"
                  Style="{DynamicResource DefaultTextBox}" />
 
-        <ToolBarTray Margin="20,140,10,0" Style="{DynamicResource DefaultToolBarTray}">
+        <ToolBarTray Margin="20,140,10,0"
+                     Style="{DynamicResource DefaultToolBarTray}">
             <ToolBar x:Name="generalToolbar"
                      Margin="10,5,10,5"
                      Style="{DynamicResource DefaultToolBar}">
-                <Button Click="ToolbarButtonSave" ToolTip="{x:Static p:Cultures.metadataWorktype_Entry_Toolbar_Button_Save_Tooltip}">
+                <Button Click="ToolbarButtonSave"
+                        ToolTip="{x:Static p:Cultures.metadataWorktype_Entry_Toolbar_Button_Save_Tooltip}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -74,19 +81,29 @@
 
         <TreeView x:Name="treeViewWorktype"
                   Width="960"
-                  Margin="20,190,0,32" HorizontalAlignment="Left"
-                  RenderTransformOrigin="0.5,0.5" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItemChanged="treeViewSelectedItemChanged">
+                  Margin="20,190,0,32"
+                  HorizontalAlignment="Left"
+                  RenderTransformOrigin="0.5,0.5"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  SelectedItemChanged="treeViewSelectedItemChanged">
             <TreeView.Resources>
-                <ContextMenu x:Key="SolutionContext" StaysOpen="true">
-                    <MenuItem Click="ButtonAddMainWorktype" Header="{x:Static p:Cultures.metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Main}" />
-                    <MenuItem Click="ButtonAddSubWorktype" Header="{x:Static p:Cultures.metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Sub}" />
+                <ContextMenu x:Key="SolutionContext"
+                             StaysOpen="true">
+                    <MenuItem Click="ButtonAddMainWorktype"
+                              Header="{x:Static p:Cultures.metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonAddSubWorktype"
+                              Header="{x:Static p:Cultures.metadataWorktype_Treeview_SolutionContext_MenuItem_Add_Sub}" />
                     <MenuItem Header="Rename" />
                 </ContextMenu>
-                <ContextMenu x:Key="FolderContext" StaysOpen="true">
-                    <MenuItem Click="ButtonAddMainWorktype" Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Add_Main}" />
-                    <MenuItem Click="ButtonAddSubWorktype" Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Add_Main}" />
-                    <MenuItem Click="ButtonDeleteWorktype" Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Delete}" />
+                <ContextMenu x:Key="FolderContext"
+                             StaysOpen="true">
+                    <MenuItem Click="ButtonAddMainWorktype"
+                              Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonAddSubWorktype"
+                              Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Add_Main}" />
+                    <MenuItem Click="ButtonDeleteWorktype"
+                              Header="{x:Static p:Cultures.metadataWorktype_Treeview_FolderContext_MenuItem_Delete}" />
                 </ContextMenu>
             </TreeView.Resources>
 

@@ -1,15 +1,21 @@
 ﻿<Page x:Class="Modelbuilder.metadataCountry"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:modelbuilder="clr-namespace:Modelbuilder" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:modelbuilder="clr-namespace:Modelbuilder"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="metadataCountry"
-      d:DesignHeight="800" d:DesignWidth="1000"
+      d:DesignHeight="800"
+      d:DesignWidth="1000"
       mc:Ignorable="d">
 
     <Grid>
         <!--  Title of the page  -->
-        <StackPanel Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
-            <TextBlock Style="{DynamicResource DefaultTitle}" Text="{x:Static p:Cultures.metadataCountry_Page_Title}" />
+        <StackPanel Margin="10,0,10,0"
+                    Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <TextBlock Style="{DynamicResource DefaultTitle}"
+                       Text="{x:Static p:Cultures.metadataCountry_Page_Title}" />
             <Canvas>
                 <Path Style="{DynamicResource DefaultTitleLine}" />
             </Canvas>
@@ -47,17 +53,21 @@
                  Margin="270,123,0,0"
                  Style="{DynamicResource HiddenTextBox}" />
 
-        <ToolBarTray Margin="20,160,10,0" Style="{DynamicResource DefaultToolBarTray}">
+        <ToolBarTray Margin="20,160,10,0"
+                     Style="{DynamicResource DefaultToolBarTray}">
             <ToolBar x:Name="generalToolbar"
                      Margin="10,5,10,5"
                      Style="{DynamicResource DefaultToolBar}">
-                <Button Click="ToolbarButtonNew" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_New_Tooltip}">
+                <Button Click="ToolbarButtonNew"
+                        ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_New_Tooltip}">
                     <Image Style="{DynamicResource ToolBarAddIcon}" />
                 </Button>
-                <Button Click="ToolbarButtonDelete" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Delete_Tooltip}">
+                <Button Click="ToolbarButtonDelete"
+                        ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Delete_Tooltip}">
                     <Image Style="{DynamicResource ToolBarDeleteIcon}" />
                 </Button>
-                <Button Click="ToolbarButtonSave" ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Save_Tooltip}">
+                <Button Click="ToolbarButtonSave"
+                        ToolTip="{x:Static p:Cultures.metadataCountry_Toolbar_Button_Save_Tooltip}">
                     <Image Style="{DynamicResource ToolBarSaveIcon}" />
                 </Button>
             </ToolBar>
@@ -71,13 +81,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding Id}"
-                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Id}" Visibility="Hidden" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Id}"
+                                    Visibility="Hidden" />
                 <DataGridTextColumn Width="80"
                                     Binding="{Binding Code}"
                                     Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Code}" />
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding DefaultId}"
-                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_CurrencyId}" Visibility="Hidden" />
+                                    Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_CurrencyId}"
+                                    Visibility="Hidden" />
                 <DataGridTextColumn Width="70"
                                     Binding="{Binding DefaultSymbol}"
                                     Header="{x:Static p:Cultures.metadataCountry_Datagrid_Header_Currency}" />
