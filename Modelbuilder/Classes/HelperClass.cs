@@ -14,6 +14,11 @@ internal class HelperClass
     {
         // No action needed here (yet)
     }
+    public class Units
+    {
+        public int UnitId { get; set; }
+        public string UnitName { get; set; }
+    }
 
     public string AddZeros(string TempString, int TotalLength)
     {

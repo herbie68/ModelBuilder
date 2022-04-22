@@ -2245,4 +2245,28 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="general.DatePicker.Text" xml:space="preserve">
     <value>Selecteer datum...</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Edit.Label" xml:space="preserve">
+    <value>Eenheden</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Export.Header" xml:space="preserve">
+    <value>Exporteer eenheden</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Import.Header" xml:space="preserve">
+    <value>Importeer eenheden</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Report.Header" xml:space="preserve">
+    <value>Overzicht eenheden</value>
+  </data>
+  <data name="metadataUnit.Page.Title" xml:space="preserve">
+    <value>Eenheden</value>
+  </data>
+  <data name="metadataUnit.Page.Subtitle" xml:space="preserve">
+    <value>Eenheden worden gebruikt om bijvoorbeeld standaard verpakkingseenheden weer te genen (voorbeelden: Stuk, Per 10)</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
 </root>

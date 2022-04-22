@@ -17,7 +17,7 @@
     </Page.Resources>
     <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"
             Style="{DynamicResource MainBorder}">
-        <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" >
+        <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
             <!--  region Title of the page  -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                           Style="{DynamicResource Title}"
+                           Style="{DynamicResource DefaultTitle}"
                            Text="{x:Static p:Cultures.metadataProject_Page_Title}" />
 
                 <!--#region Hiddenfields-->
@@ -37,7 +37,9 @@
                     <TextBox x:Name="valueImageRotationAngle"
                              Style="{DynamicResource HiddenTextBox}"
                              Text="0" />
-                    <CheckBox x:Name="valueShow" Style="{DynamicResource HiddenCheckBox}" IsChecked="True"/>
+                    <CheckBox x:Name="valueShow"
+                              IsChecked="True"
+                              Style="{DynamicResource HiddenCheckBox}" />
                 </StackPanel>
                 <!--  End of "Do not remove" part  -->
                 <!--#endregion-->
@@ -122,26 +124,27 @@
                                                Grid.Row="2"
                                                Grid.Column="1"
                                                Style="{DynamicResource HideOnShowTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_EndDate}"/>
+                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_EndDate}" />
                                     <DatePicker x:Name="inpProjectEnddate"
                                                 Grid.Row="3"
                                                 Grid.Column="1"
-                                                Width="150" HorizontalAlignment="Left"
-                                                Style="{DynamicResource HideOnShowDataPicker}"/>
+                                                Width="150"
+                                                HorizontalAlignment="Left"
+                                                Style="{DynamicResource HideOnShowDataPicker}" />
 
                                     <TextBlock x:Name="lblExpEndDate"
                                                Grid.Row="2"
                                                Grid.Column="1"
                                                Style="{DynamicResource HideOnNotShowTextBlock}"
-                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate}"/>
+                                               Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate}" />
                                     <TextBox x:Name="dispProjectExpEnddate"
                                              Grid.Row="3"
                                              Grid.Column="1"
                                              Width="150"
+                                             HorizontalAlignment="Left"
                                              Style="{DynamicResource HideOnNotShowTextBox}"
                                              Tag="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate_Tag}"
-                                             ToolTip="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate_Tooltip}"
-                                             HorizontalAlignment="Left"/>
+                                             ToolTip="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_General_Field_ExpectedEndDate_Tooltip}" />
 
                                     <TextBlock Grid.Row="2"
                                                Grid.Column="2"
@@ -200,12 +203,11 @@
                                         <TextBlock Grid.Column="0"
                                                    Grid.ColumnSpan="2"
                                                    Style="{DynamicResource TextBlockBold}"
-                                                   
                                                    Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Progress_Title}" />
 
                                         <TextBlock Grid.Column="7"
-                                                   Style="{DynamicResource HideOnNotShowTextBlock}"
                                                    FontWeight="Bold"
+                                                   Style="{DynamicResource HideOnNotShowTextBlock}"
                                                    Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Expectation_Title}" />
 
                                         <TextBlock Grid.Row="1"
@@ -316,7 +318,7 @@
                                         <Border Grid.Row="5"
                                                 Grid.Column="3"
                                                 Width="50"
-                                               HorizontalAlignment="Right"
+                                                HorizontalAlignment="Right"
                                                 Style="{StaticResource TextBlockBorder}">
                                             <TextBlock x:Name="dispProjectDaylyHours"
                                                        Margin="3"
@@ -371,9 +373,9 @@
                                                 Style="{StaticResource HideOnNotShowTextBlockBorder}">
                                             <TextBlock x:Name="dispProjectExpBuildDays"
                                                        Margin="3"
-                                                       Text=""
+                                                       HorizontalAlignment="Right"
                                                        Style="{DynamicResource HideOnNotShowTextBlock}"
-                                                       HorizontalAlignment="Right"/>
+                                                       Text="" />
                                         </Border>
                                         <Border Grid.Row="2"
                                                 Grid.Column="10"
@@ -383,15 +385,15 @@
                                             <TextBlock x:Name="dispProjectExpBuildDaysLong"
                                                        Margin="3"
                                                        FontStyle="Italic"
-                                                       Text=""
                                                        Style="{DynamicResource HideOnNotShowTextBlock}"
+                                                       Text=""
                                                        TextAlignment="Left" />
                                         </Border>
 
                                         <TextBlock Grid.Row="3"
                                                    Grid.Column="7"
-                                                   Style="{DynamicResource HideOnNotShowTextBlock}"
                                                    FontWeight="Bold"
+                                                   Style="{DynamicResource HideOnNotShowTextBlock}"
                                                    Text="{x:Static p:Cultures.metadataProject_Tab_General_TabItem_BuildTime_Todo_Title}" />
 
                                         <TextBlock Grid.Row="4"
@@ -406,10 +408,9 @@
                                                 Style="{StaticResource HideOnNotShowTextBlockBorder}">
                                             <TextBlock x:Name="dispProjectToDoBuildTime"
                                                        Margin="3"
-                                                       Text=""
-                                                       Style="{DynamicResource HideOnNotShowTextBlock}"
                                                        HorizontalAlignment="Right"
-/>
+                                                       Style="{DynamicResource HideOnNotShowTextBlock}"
+                                                       Text="" />
                                         </Border>
 
                                         <TextBlock Grid.Row="5"
@@ -424,9 +425,9 @@
                                                 Style="{StaticResource HideOnNotShowTextBlockBorder}">
                                             <TextBlock x:Name="dispProjectToDoBuildDays"
                                                        Margin="3"
-                                                       Text=""
+                                                       HorizontalAlignment="Right"
                                                        Style="{DynamicResource HideOnNotShowTextBlock}"
-                                                       HorizontalAlignment="Right" />
+                                                       Text="" />
                                         </Border>
 
                                         <Border Grid.Row="5"
@@ -437,8 +438,8 @@
                                             <TextBlock x:Name="dispProjectToDoBuildTimeLong"
                                                        Margin="3"
                                                        FontStyle="Italic"
-                                                       Text=""
-                                                       Style="{DynamicResource HideOnNotShowTextBlock}"/>
+                                                       Style="{DynamicResource HideOnNotShowTextBlock}"
+                                                       Text="" />
                                         </Border>
 
 

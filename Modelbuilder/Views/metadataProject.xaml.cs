@@ -195,7 +195,6 @@ namespace Modelbuilder.Views
             var _CostEntries = _helperGeneral.CheckForRecords(HelperGeneral.DbProjectCostsView, new string[1, 3]
             {   {HelperGeneral.DbTimeViewFieldNameProjectName, HelperGeneral.DbTimeViewFieldTypeProjectName, inpProjectName.Text }  });
 
-
             if (_CostEntries > 0)
             {
                 var TotalCosts = _helperGeneral.GetProjectTotals(HelperGeneral.DbProjectCostsView, new string[1, 3]

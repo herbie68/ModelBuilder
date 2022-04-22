@@ -2245,4 +2245,28 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tooltip" xml:space="preserve">
     <value>How many hours do you expect to work on the project</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Edit.Label" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Export.Header" xml:space="preserve">
+    <value>Export Units</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Import.Header" xml:space="preserve">
+    <value>Import Units</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Report.Header" xml:space="preserve">
+    <value>Units report</value>
+  </data>
+  <data name="metadataUnit.Page.Title" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="metadataUnit.Page.Subtitle" xml:space="preserve">
+    <value>Units are used, for example, to generate standard packaging units again (examples: Piece, Per 10)</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
+    <value>Description</value>
+  </data>
 </root>

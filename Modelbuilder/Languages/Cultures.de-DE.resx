@@ -2246,4 +2246,28 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataProject.Tab.General.TabItem.BuildTime.Expectation.Field.Hours.Tooltip" xml:space="preserve">
     <value>Wie viele Stunden werden Sie voraussichtlich an dem Projekt arbeiten</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Edit.Label" xml:space="preserve">
+    <value>Einheiten</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Export.Header" xml:space="preserve">
+    <value>Einheiten exportieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Import.Header" xml:space="preserve">
+    <value>Einheiten importieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Report.Header" xml:space="preserve">
+    <value>Übersicht Einheiten</value>
+  </data>
+  <data name="metadataUnit.Page.Title" xml:space="preserve">
+    <value>Einheiten</value>
+  </data>
+  <data name="metadataUnit.Page.Subtitle" xml:space="preserve">
+    <value>Einheiten werden verwendet, um beispielsweise Standard-Verpackungseinheiten nachzubilden (Beispiele: Stück, Pro 10)</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
+    <value>Bescheibung</value>
+  </data>
 </root>

@@ -1204,6 +1204,42 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eenheden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer eenheden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer eenheden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht eenheden.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Unit.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Werksoorten.
         /// </summary>
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label {
@@ -4450,6 +4486,42 @@ namespace Modelbuilder.Languages {
         public static string metadataSupplier_Tab_OrderHistory_Title {
             get {
                 return ResourceManager.GetString("metadataSupplier.Tab.OrderHistory.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string metadataUnit_Datagrid_Header_Id {
+            get {
+                return ResourceManager.GetString("metadataUnit.Datagrid.Header.Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omschrijving.
+        /// </summary>
+        public static string metadataUnit_Datagrid_Header_Name {
+            get {
+                return ResourceManager.GetString("metadataUnit.Datagrid.Header.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheden worden gebruikt om bijvoorbeeld standaard verpakkingseenheden weer te genen (voorbeelden: Stuk, Per 10).
+        /// </summary>
+        public static string metadataUnit_Page_Subtitle {
+            get {
+                return ResourceManager.GetString("metadataUnit.Page.Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheden.
+        /// </summary>
+        public static string metadataUnit_Page_Title {
+            get {
+                return ResourceManager.GetString("metadataUnit.Page.Title", resourceCulture);
             }
         }
         
