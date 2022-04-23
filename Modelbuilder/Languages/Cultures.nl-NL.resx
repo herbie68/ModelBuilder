@@ -2269,4 +2269,112 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
     <value>Omschrijving</value>
   </data>
+  <data name="ImportUnits.FileDialog.Filtertext" xml:space="preserve">
+    <value>Te importeren betanden</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Filename" xml:space="preserve">
+    <value>Geen bestand geselecteerd</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Label" xml:space="preserve">
+    <value>Selecteer bestand</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met eenheden</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in regel</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fouten gevonden tijdens importeren</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportUnits.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand, deze bevat Projectnaam, werkdatum, starttijd, eindtijd en werksoort. Project naam en werksoort dienen overeen te komen met bestaand project en werksoort</value>
+  </data>
+  <data name="ImportUnits.Title" xml:space="preserve">
+    <value>Importeer tijdregistratie</value>
+  </data>
+  <data name="Import.FileDialog.Filtertext" xml:space="preserve">
+    <value>Te importeren betanden</value>
+  </data>
+  <data name="Import.Import.Button.Filename" xml:space="preserve">
+    <value>Geen bestand geselecteerd</value>
+  </data>
+  <data name="Import.Import.Button.Label" xml:space="preserve">
+    <value>Selecteer bestand</value>
+  </data>
+  <data name="Import.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand</value>
+  </data>
+  <data name="Import.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in regel</value>
+  </data>
+  <data name="Import.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fouten gevonden tijdens importeren</value>
+  </data>
+  <data name="Import.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct ingelezen</value>
+  </data>
+  <data name="Import.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels ingelezen</value>
+  </data>
+  <data name="Import.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="Import.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="Import.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportTimeEntry.Unit.Label" xml:space="preserve">
+    <value>Eenheid</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Bestaat al</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Single" xml:space="preserve">
+    <value>regel verwerkt</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Ok.Single" xml:space="preserve">
+    <value>regel correct ingelezen</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Error.Single" xml:space="preserve">
+    <value>regel overgeslagen vanwege fouten</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Ingelezen eenheid bestaat al in de tabel</value>
+  </data>
 </root>

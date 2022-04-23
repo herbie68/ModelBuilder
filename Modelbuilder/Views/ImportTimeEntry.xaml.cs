@@ -30,7 +30,7 @@ public partial class ImportTimeEntry : Page
     private void ClickedSelectFileButton(object sender, RoutedEventArgs e)
     {
         // Create OpenFileDialog
-        Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+        OpenFileDialog openFileDlg = new();
         openFileDlg.DefaultExt = ".csv";
         openFileDlg.Filter = Languages.Cultures.ImportTimeEntry_FileDialog_Filtertext + " (.csv)|*.csv";
         openFileDlg.InitialDirectory = @Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -83,7 +83,7 @@ public partial class ImportTimeEntry : Page
             {
                 error = 1;
                 errorCount++;
-                errorList.Add((l, 1, "Project: " + lineField[0].ToString() + ", " + lineString));
+                errorList.Add((l, 1, Languages.Cultures.ImportTimeEntry_Project_Label + ": " + lineField[0].ToString() + ", " + lineString));
             }
 
             // Check if there is a record with the WorkTypeName
@@ -134,10 +134,19 @@ public partial class ImportTimeEntry : Page
         }
         dispLineCount.Text = dispTotalLinesCount.Text;
 
-        dispStatusLine.Text = dispTotalLinesCount.Text + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed + ", " + errorCount.ToString() + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Error + ".";
+        string Completed;
+        if (int.Parse(dispTotalLinesCount.Text) == 1) { Completed = Languages.Cultures.Import_Statusline_Status_Completed_Single; } else { Completed = Languages.Cultures.Import_Statusline_Status_Completed; }
+        
+        string CompletedError;
+        if (errorCount == 1) { CompletedError = Languages.Cultures.Import_Statusline_Status_Completed_Error_Single; } else { CompletedError = Languages.Cultures.Import_Statusline_Status_Completed_Error; }
+        
+        string CompletedOk;
+        if (int.Parse(dispTotalLinesCount.Text) - errorCount == 1) { CompletedOk = Languages.Cultures.Import_Statusline_Status_Completed_Ok_Single; } else { CompletedOk = Languages.Cultures.Import_Statusline_Status_Completed_Ok; }
+
+        dispStatusLine.Text = dispTotalLinesCount.Text + " " + Completed + ", " + errorCount.ToString() + " " + CompletedError + ".";
         if(errorCount > 0)
         {
-            var errorMessage = (int.Parse(dispTotalLinesCount.Text) - errorCount).ToString() + " " + Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Ok + "." + System.Environment.NewLine + errorCount.ToString() + " "+ Languages.Cultures.ImportTimeEntry_Statusline_Status_Completed_Error + "." + System.Environment.NewLine + System.Environment.NewLine;
+            var errorMessage = (int.Parse(dispTotalLinesCount.Text) - errorCount).ToString() + " " + CompletedOk + "." + System.Environment.NewLine + errorCount.ToString() + " "+ CompletedError + "." + System.Environment.NewLine + System.Environment.NewLine;
 
             for (int i = 0; i < errorList.Count(); i++)
             {
@@ -156,9 +165,9 @@ public partial class ImportTimeEntry : Page
                         errorMessage += Languages.Cultures.ImportTimeEntry_Messagebox_Error_Unknown;
                         break;
                 }
-                errorMessage += " " + Languages.Cultures.ImportTimeEntry_Messagebox_Error_Inline + " " + errorList[i].Item1 + System.Environment.NewLine + "  >> " + errorList[i].Item3 + System.Environment.NewLine;
+                errorMessage += " " + Languages.Cultures.Import_Messagebox_Error_Inline + " " + errorList[i].Item1 + System.Environment.NewLine + "  >> " + errorList[i].Item3 + System.Environment.NewLine;
             }
-            MessageBox.Show(errorMessage, Languages.Cultures.ImportTimeEntry_Messagebox_Error_Message, MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(errorMessage, Languages.Cultures.Import_Messagebox_Error_Message, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
