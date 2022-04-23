@@ -52,7 +52,6 @@ public partial class MainWindow : Window
         Main.Content = new ImportTimeEntry();
     }
     #endregion Import Time Entries
-
     #endregion TimeManegement
 
     #region Maintain orders and deliveries
@@ -148,11 +147,20 @@ public partial class MainWindow : Window
     }
     #endregion Call Product Page
 
+    #region Units
     #region Call Unit Page
     private void ShowUnitPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataUnit();
     }
+    #endregion
+
+    #region Import Units
+    private void ShowUnitsImportPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportUnits();
+    }
+    #endregion
     #endregion
     #endregion
 

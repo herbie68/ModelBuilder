@@ -2270,4 +2270,112 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
     <value>Bescheibung</value>
   </data>
+  <data name="ImportUnits.FileDialog.Filtertext" xml:space="preserve">
+    <value>Zu importieren dateïen</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Filename" xml:space="preserve">
+    <value>Keine Datei gewählt</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Label" xml:space="preserve">
+    <value>Datei auswählen</value>
+  </data>
+  <data name="ImportUnits.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei mit Einheiten</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in Zeihle</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fehler beim Import gefunden</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed" xml:space="preserve">
+    <value>Zeihlen verarbeitet</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>Zeilen nicht zugefügt weil falsh</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>Zeihlen korrekt eingelesen</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Description" xml:space="preserve">
+    <value>Keine zeihlen eingelesen</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Hinzugefügt: </value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fehler in der Zeile</value>
+  </data>
+  <data name="ImportUnits.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportUnits.SubTitle" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei f�r die Zeitregistrierung aus</value>
+  </data>
+  <data name="ImportUnits.Title" xml:space="preserve">
+    <value>Imprtiere Zeiterfassung</value>
+  </data>
+  <data name="Import.FileDialog.Filtertext" xml:space="preserve">
+    <value>Zu importieren dateïen</value>
+  </data>
+  <data name="Import.Import.Button.Filename" xml:space="preserve">
+    <value>Keine Datei gewählt</value>
+  </data>
+  <data name="Import.Import.Button.Label" xml:space="preserve">
+    <value>Datei auswählen</value>
+  </data>
+  <data name="Import.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei</value>
+  </data>
+  <data name="Import.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in Zeihle</value>
+  </data>
+  <data name="Import.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fehler beim Import gefunden</value>
+  </data>
+  <data name="Import.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed" xml:space="preserve">
+    <value>Zeihlen verarbeitet</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>Zeihlen nicht zugefügt weil falsh</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>Zeihlen korrekt eingelesen</value>
+  </data>
+  <data name="Import.Statusline.Status.Description" xml:space="preserve">
+    <value>Keine zeihlen eingelesen</value>
+  </data>
+  <data name="Import.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Hinzugefügt: </value>
+  </data>
+  <data name="Import.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fehler in der Zeile</value>
+  </data>
+  <data name="Import.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ImportTimeEntry.Unit.Label" xml:space="preserve">
+    <value>Einheit</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Ist bereits in die Tabelle</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Single" xml:space="preserve">
+    <value>Zeihle verarbeitet</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Ok.Single" xml:space="preserve">
+    <value>Zeihle korrekt eingelesen</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.Error.Single" xml:space="preserve">
+    <value>Zeihle nicht zugefügt weil falsh</value>
+  </data>
+  <data name="ImportUnits.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Einlesegerät ist bereits in der Tabelle vorhanden</value>
+  </data>
 </root>

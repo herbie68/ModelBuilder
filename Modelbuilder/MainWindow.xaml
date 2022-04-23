@@ -213,10 +213,14 @@
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header}"
                                         ImageSource=".\Resources\metadataWorktypeExport.png" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Click="ShowUnitPage"
-                                       Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label}"
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataUnit.png">
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Import_Header}"
+                        <RibbonMenuItem Click="ShowUnitPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label}"
+                                        ImageSource=".\Resources\metadataUnit.png" />
+                        <RibbonSeparator />
+                        <RibbonMenuItem Click="ShowUnitsImportPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Import_Header}"
                                         ImageSource=".\Resources\metadataUnitImport.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header}"
                                         ImageSource=".\Resources\metadataUnitExport.png" />
