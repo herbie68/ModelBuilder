@@ -2378,4 +2378,82 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ImportUnits.Messagebox.Error.ExistingUnit" xml:space="preserve">
     <value>Einlesegerät ist bereits in der Tabelle vorhanden</value>
   </data>
+  <data name="ExportUnits.FolderDialog.Filtertext" xml:space="preserve">
+    <value>Ordner für die Exportdatei</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Foldername" xml:space="preserve">
+    <value>Kein Ordner ausgewählt</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Label" xml:space="preserve">
+    <value>Ordner auswählen</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie den Ordner aus, in den die zu exportierende Unit-CSV-Datei geschrieben werden soll</value>
+  </data>
+  <data name="ExportUnits.SubTitle" xml:space="preserve">
+    <value>Exportieren Sie Daten in eine CSV-Datei, sie enthält nur die Beschreibung der Einheit</value>
+  </data>
+  <data name="ExportUnits.Title" xml:space="preserve">
+    <value>Einheiten exportieren</value>
+  </data>
+  <data name="ExportUnits.FileName" xml:space="preserve">
+    <value>Einheiten</value>
+  </data>
+  <data name="Export.FolderDialog.Filtertext" xml:space="preserve">
+    <value>In Ordner exportieren</value>
+  </data>
+  <data name="Export.Export.Button.Foldername" xml:space="preserve">
+    <value>Kein Ordner ausgewählt</value>
+  </data>
+  <data name="Export.Export.Button.Label" xml:space="preserve">
+    <value>Ordner auswählen</value>
+  </data>
+  <data name="Export.Export.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie den Ordner für die zu exportierende CSV-Datei aus</value>
+  </data>
+  <data name="Export.Messagebox.Error.Inline" xml:space="preserve">
+    <value>im Einklang</value>
+  </data>
+  <data name="Export.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fehler beim Export gefunden</value>
+  </data>
+  <data name="Export.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed" xml:space="preserve">
+    <value>Regeln verarbeitet</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>Zeilen aufgrund von Fehlern übersprungen</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error.Single" xml:space="preserve">
+    <value>Zeile aufgrund von Fehlern übersprungen</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>Zeilen richtig geschrieben</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok.Single" xml:space="preserve">
+    <value>Zeilen richtig geschrieben</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Single" xml:space="preserve">
+    <value>Zeile verarbeitet</value>
+  </data>
+  <data name="Export.Statusline.Status.Description" xml:space="preserve">
+    <value>Keine Zeilen weggeschrieben</value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Hinzugefügt: </value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fehler in der Zeile</value>
+  </data>
+  <data name="Export.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ExportUnits.Statusline.Status.Description" xml:space="preserve">
+    <value>Keine Zeilen weggeschrieben</value>
+  </data>
+  <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fehler beim Export gefunden</value>
+  </data>
 </root>

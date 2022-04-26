@@ -222,7 +222,8 @@
                         <RibbonMenuItem Click="ShowUnitsImportPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Import_Header}"
                                         ImageSource=".\Resources\metadataUnitImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header}"
+                        <RibbonMenuItem Click="ShowUnitsExportPage"
+                            Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header}"
                                         ImageSource=".\Resources\metadataUnitExport.png" />
                     </RibbonSplitButton>
                 </RibbonGroup>

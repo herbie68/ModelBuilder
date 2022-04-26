@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
 	<Copyright>Herbert Nijkamp $(Year)</Copyright>
 	<NeutralLanguage>nl-NL</NeutralLanguage>
   </PropertyGroup>
@@ -11,7 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>False</Optimize>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <None Remove="Icon1.ico" />
     <None Remove="Resources\acceptreceipt.png" />

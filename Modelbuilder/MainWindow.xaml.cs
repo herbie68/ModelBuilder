@@ -161,6 +161,13 @@ public partial class MainWindow : Window
         Main.Content = new ImportUnits();
     }
     #endregion
+
+    #region Export Units
+    private void ShowUnitsExportPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportUnits();
+    }
+    #endregion
     #endregion
     #endregion
 

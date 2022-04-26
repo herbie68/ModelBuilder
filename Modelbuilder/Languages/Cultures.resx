@@ -2377,4 +2377,82 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ImportUnits.Messagebox.Error.ExistingUnit" xml:space="preserve">
     <value>Ingelezen eenheid bestaat al in de tabel</value>
   </data>
+  <data name="ExportUnits.FolderDialog.Filtertext" xml:space="preserve">
+    <value>Map voor het exportbestand</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Foldername" xml:space="preserve">
+    <value>Geen map geselecteerd</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Label" xml:space="preserve">
+    <value>Selecteer map</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer de map waar het te exporteren CSV bestand met eenheden moet worden weggeschreven</value>
+  </data>
+  <data name="ExportUnits.SubTitle" xml:space="preserve">
+    <value>Exporteer data naar een CSV bestand, deze bevat alleen de omschrijving van de eenheid</value>
+  </data>
+  <data name="ExportUnits.Title" xml:space="preserve">
+    <value>Exporteer eenheden</value>
+  </data>
+  <data name="ExportUnits.FileName" xml:space="preserve">
+    <value>Eenheden</value>
+  </data>
+  <data name="Export.FolderDialog.Filtertext" xml:space="preserve">
+    <value>Exporteren naar map</value>
+  </data>
+  <data name="Export.Export.Button.Foldername" xml:space="preserve">
+    <value>Geen map geselecteerd</value>
+  </data>
+  <data name="Export.Export.Button.Label" xml:space="preserve">
+    <value>Selecteer map</value>
+  </data>
+  <data name="Export.Export.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer de map voor het te exporteren CSV bestand</value>
+  </data>
+  <data name="Export.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in regel</value>
+  </data>
+  <data name="Export.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fouten gevonden tijdens exporteren</value>
+  </data>
+  <data name="Export.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed" xml:space="preserve">
+    <value>regels verwerkt</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>regels overgeslagen vanwege fouten</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error.Single" xml:space="preserve">
+    <value>regel overgeslagen vanwege fouten</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>regels correct weggeschreven</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok.Single" xml:space="preserve">
+    <value>regels correct weggeschreven</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Single" xml:space="preserve">
+    <value>regel verwerkt</value>
+  </data>
+  <data name="Export.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels weggeschreven</value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Toegevoegd: </value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Fout in regel</value>
+  </data>
+  <data name="Export.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ExportUnits.Statusline.Status.Description" xml:space="preserve">
+    <value>Geen regels weggeschreven</value>
+  </data>
+  <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
+    <value>Fouten gevonden tijdens exporteren</value>
+  </data>
 </root>

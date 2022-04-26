@@ -167,8 +167,8 @@
             <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
         </Style>
 
-        <!--#region Textlock that is vissible if valueShow is checked -->
-        <!-- If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked-->
+        <!--#region Textlock that is vissible if valueShow is checked-->
+        <!--  If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked  -->
         <Style x:Key="HideOnNotShowTextBlockBorder"
                TargetType="Border">
             <Setter Property="BorderThickness" Value="1" />
@@ -194,8 +194,8 @@
         </Style>
         <!--#endregion-->
 
-        <!--#region Textlock that is vissible if valueShow is unchecked -->
-        <!-- If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked-->
+        <!--#region Textlock that is vissible if valueShow is unchecked-->
+        <!--  If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked  -->
         <Style x:Key="HideOnShowTextBlockBlock"
                TargetType="Border">
             <Setter Property="BorderThickness" Value="1" />
@@ -277,16 +277,16 @@
 
         <!--#region Default content Entry Panel resources on Pages-->
         <!--#region Label settings-->
-        <!--#region Default Label -->
+        <!--#region Default Label-->
         <Style x:Key="DefaultLabel"
                TargetType="Label">
             <Setter Property="Width" Value="120" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
-        <!--#endregion Default Label -->
+        <!--#endregion Default Label-->
 
-        <!--#region Label that is vissible if valueShow is checked -->
+        <!--#region Label that is vissible if valueShow is checked-->
         <Style x:Key="HideOnNotShowLabel"
                TargetType="Label">
             <Setter Property="Width" Value="120" />
@@ -305,9 +305,9 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!--#endregion Label that is vissible if valueShow is checked -->
+        <!--#endregion Label that is vissible if valueShow is checked-->
 
-        <!--#region Label that is vissible if valueShow is unchecked -->
+        <!--#region Label that is vissible if valueShow is unchecked-->
         <Style x:Key="HideOnShowLabel"
                TargetType="Label">
             <Setter Property="Width" Value="120" />
@@ -326,11 +326,11 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!--#endregion Label that is vissible if valueShow is unchecked -->
+        <!--#endregion Label that is vissible if valueShow is unchecked-->
         <!--#endregion Label settings-->
 
         <!--#region TextBlock settings-->
-        <!--#region Default TextBlock -->
+        <!--#region Default TextBlock-->
         <Style x:Key="DefaultTextBlock"
                TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -338,8 +338,8 @@
         </Style>
         <!--#endregion-->
 
-        <!--#region Textlock that is vissible if valueShow is checked -->
-        <!-- If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked-->
+        <!--#region Textlock that is vissible if valueShow is checked-->
+        <!--  If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked  -->
         <Style x:Key="HideOnNotShowTextBlock"
                TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -358,8 +358,8 @@
         </Style>
         <!--#endregion-->
 
-        <!--#region Textlock that is vissible if valueShow is unchecked -->
-        <!-- If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked-->
+        <!--#region Textlock that is vissible if valueShow is unchecked-->
+        <!--  If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked  -->
         <Style x:Key="HideOnShowTextBlock"
                TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -379,7 +379,7 @@
         </Style>
         <!--#endregion-->
         <!--#endregion TextBlock settings-->
-        
+
         <Style x:Key="TextBlockBold"
                TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -417,7 +417,7 @@
             </Setter>
         </Style>
         <!--#endregion-->
-        
+
         <!--#region  Defaul checkbox-->
         <Style x:Key="DefaultCheckBox"
                TargetType="CheckBox">
@@ -518,7 +518,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}" />
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -622,7 +622,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}" />
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -798,7 +798,7 @@
         <!--#endregion-->
 
         <!--#region Default Textbox, with rounded corners and Tag enabled that listens to hidden valueShow checkbox-->
-        <!-- If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked-->
+        <!--  If the ValueShow checkbox is unchecked the style will HIDE the element with the style, and make visible if checkbox is checked  -->
         <Style x:Key="HideOnNotShowTextBox"
                TargetType="TextBox">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
@@ -885,7 +885,7 @@
         <!--#endregion-->
 
         <!--#region Default Textbox, with rounded corners and Tag enabled that listens to hidden valueShow checkbox-->
-        <!-- If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked-->
+        <!--  If the ValueShow checkbox is checked the style will HIDE the element with the style, and make visible if checkbox is unchecked  -->
         <Style x:Key="HideOnShowTextBox"
                TargetType="TextBox">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
@@ -971,7 +971,7 @@
         </Style>
         <!--#endregion-->
         <!--#endregion Textbox settings-->
-        
+
         <!--#region Non Editable TextBox settings-->
         <!--#region NonEditableTextBox-->
         <Style x:Key="NonEditableTextBox"
@@ -1050,7 +1050,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource SecondaryGrayColor}" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="IsEnabled" Value="False" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -1105,7 +1105,7 @@
             </Style.Triggers>
         </Style>
         <!--#endregion-->
-        
+
         <!--#region Hide on Show NonEditableTextBox-->
         <Style x:Key="HideOnShowNonEditableTextBox"
                TargetType="TextBox">
@@ -1122,7 +1122,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource SecondaryGrayColor}" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="IsEnabled" Value="False" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -1289,7 +1289,7 @@
             </Setter>
         </Style>
         <!--#endregion-->
-        
+
         <!--#region Style for DataPicker-->
         <Style x:Key="DefaultDataPicker"
                TargetType="DatePicker">
@@ -1456,7 +1456,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Background" Value="White" />
             <Setter Property="Padding" Value="2" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint=".5,1" EndPoint=".5,0">
@@ -1622,7 +1622,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Background" Value="White" />
             <Setter Property="Padding" Value="2" />
-            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Visibility" Value="Visible" />
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint=".5,1" EndPoint=".5,0">
