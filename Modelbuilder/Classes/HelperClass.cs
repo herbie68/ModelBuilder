@@ -319,4 +319,72 @@ internal class HelperClass
         return _result;
     }
 
+    public void ExportToCsv(DataTable _dt, string FileName, string[] Columns, string Header)
+    {
+        int _column = 0;
+        StreamWriter sw = new(FileName, false);
+
+        // Check if a Header is wanted in the CSV File
+        if (Header.ToLower() != "noheader")
+        {
+            for (int i = 0; i < _dt.Columns.Count; i++)
+            {
+                // Check if the Column name is Selected for export
+                if (Columns.Contains(_dt.Columns[i].ToString()))
+                {
+                    _column++;
+                    sw.Write(_dt.Columns[i]);
+                    // Check if the Column is the last column that has to be written, if not we need a ;
+                    if (_column < Columns.Length)
+                    {
+                        if (i < _dt.Columns.Count - 1)
+                        {
+                            sw.Write(";");
+                        }
+                    }
+                }
+            }
+            sw.Write(sw.NewLine);
+        }
+
+        _column = 0;
+        int _rowCount = 0;
+        foreach (DataRow dr in _dt.Rows)
+        {
+            _rowCount++;
+            for (int i = 0; i < _dt.Columns.Count; i++)
+            {
+                _column++;
+                if (!Convert.IsDBNull(dr[i]))
+                {
+                    string value = dr[i].ToString();
+                    // Check if the vaule belongs to a selected Column
+                    if (Columns.Contains(_dt.Columns[i].ToString()))
+                    {
+                        // Check if the string contains a ; what is also the value separator
+                        if (value.Contains(';'))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                }
+                // Check if the Column is the last column that has to be written, if not we need a ;
+                if (_column < Columns.Length)
+                {
+                    if (i < _dt.Columns.Count - 1)
+                    {
+                        sw.Write(";");
+                    }
+                }
+            }
+            _column = 0;
+            sw.Write(sw.NewLine);
+        }
+        sw.Close();
+    }
 }

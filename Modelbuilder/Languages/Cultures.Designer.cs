@@ -61,6 +61,240 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geen map geselecteerd.
+        /// </summary>
+        public static string Export_Export_Button_Foldername {
+            get {
+                return ResourceManager.GetString("Export.Export.Button.Foldername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer map.
+        /// </summary>
+        public static string Export_Export_Button_Label {
+            get {
+                return ResourceManager.GetString("Export.Export.Button.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer de map voor het te exporteren CSV bestand.
+        /// </summary>
+        public static string Export_Export_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("Export.Export.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteren naar map.
+        /// </summary>
+        public static string Export_FolderDialog_Filtertext {
+            get {
+                return ResourceManager.GetString("Export.FolderDialog.Filtertext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in regel.
+        /// </summary>
+        public static string Export_Messagebox_Error_Inline {
+            get {
+                return ResourceManager.GetString("Export.Messagebox.Error.Inline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fouten gevonden tijdens exporteren.
+        /// </summary>
+        public static string Export_Messagebox_Error_Message {
+            get {
+                return ResourceManager.GetString("Export.Messagebox.Error.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onbekende fout.
+        /// </summary>
+        public static string Export_Messagebox_Error_Unknown {
+            get {
+                return ResourceManager.GetString("Export.Messagebox.Error.Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels verwerkt.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels overgeslagen vanwege fouten.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed_Error {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regel overgeslagen vanwege fouten.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed_Error_Single {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed.Error.Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels correct weggeschreven.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed_Ok {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed.Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regels correct weggeschreven.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed_Ok_Single {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed.Ok.Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to regel verwerkt.
+        /// </summary>
+        public static string Export_Statusline_Status_Completed_Single {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Completed.Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen regels weggeschreven.
+        /// </summary>
+        public static string Export_Statusline_Status_Description {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toegevoegd: .
+        /// </summary>
+        public static string Export_Statusline_Status_Prefix_Added {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Prefix.Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fout in regel.
+        /// </summary>
+        public static string Export_Statusline_Status_Prefix_Error {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Prefix.Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status: .
+        /// </summary>
+        public static string Export_Statusline_Status_Text {
+            get {
+                return ResourceManager.GetString("Export.Statusline.Status.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen map geselecteerd.
+        /// </summary>
+        public static string ExportUnits_Export_Button_Foldername {
+            get {
+                return ResourceManager.GetString("ExportUnits.Export.Button.Foldername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer map.
+        /// </summary>
+        public static string ExportUnits_Export_Button_Label {
+            get {
+                return ResourceManager.GetString("ExportUnits.Export.Button.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer de map waar het te exporteren CSV bestand met eenheden moet worden weggeschreven.
+        /// </summary>
+        public static string ExportUnits_Export_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ExportUnits.Export.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheden.
+        /// </summary>
+        public static string ExportUnits_FileName {
+            get {
+                return ResourceManager.GetString("ExportUnits.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map voor het exportbestand.
+        /// </summary>
+        public static string ExportUnits_FolderDialog_Filtertext {
+            get {
+                return ResourceManager.GetString("ExportUnits.FolderDialog.Filtertext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fouten gevonden tijdens exporteren.
+        /// </summary>
+        public static string ExportUnits_Messagebox_Error_Message {
+            get {
+                return ResourceManager.GetString("ExportUnits.Messagebox.Error.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geen regels weggeschreven.
+        /// </summary>
+        public static string ExportUnits_Statusline_Status_Description {
+            get {
+                return ResourceManager.GetString("ExportUnits.Statusline.Status.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer data naar een CSV bestand, deze bevat alleen de omschrijving van de eenheid.
+        /// </summary>
+        public static string ExportUnits_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportUnits.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer eenheden.
+        /// </summary>
+        public static string ExportUnits_Title {
+            get {
+                return ResourceManager.GetString("ExportUnits.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aantal.
         /// </summary>
         public static string general_Amount {

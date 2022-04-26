@@ -2377,4 +2377,82 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ImportUnits.Messagebox.Error.ExistingUnit" xml:space="preserve">
     <value>Read unit already exists in the table</value>
   </data>
+  <data name="ExportUnits.FolderDialog.Filtertext" xml:space="preserve">
+    <value>Folder for the export file</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Foldername" xml:space="preserve">
+    <value>No folder selected</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Label" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
+  <data name="ExportUnits.Export.Button.Tooltip" xml:space="preserve">
+    <value>Select the folder where the unit CSV file to be exported should be written</value>
+  </data>
+  <data name="ExportUnits.SubTitle" xml:space="preserve">
+    <value>Export data to a CSV file, it only contains the description of the unit</value>
+  </data>
+  <data name="ExportUnits.Title" xml:space="preserve">
+    <value>Export units</value>
+  </data>
+  <data name="ExportUnits.FileName" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="Export.FolderDialog.Filtertext" xml:space="preserve">
+    <value>Export to folder</value>
+  </data>
+  <data name="Export.Export.Button.Foldername" xml:space="preserve">
+    <value>No folder selected</value>
+  </data>
+  <data name="Export.Export.Button.Label" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
+  <data name="Export.Export.Button.Tooltip" xml:space="preserve">
+    <value>Select the folder for the CSV file to be exported</value>
+  </data>
+  <data name="Export.Messagebox.Error.Inline" xml:space="preserve">
+    <value>in line</value>
+  </data>
+  <data name="Export.Messagebox.Error.Message" xml:space="preserve">
+    <value>Errors found during export</value>
+  </data>
+  <data name="Export.Messagebox.Error.Unknown" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed" xml:space="preserve">
+    <value>rules processed</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error" xml:space="preserve">
+    <value>lines skipped due to errors</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Error.Single" xml:space="preserve">
+    <value>line skipped due to errors</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok" xml:space="preserve">
+    <value>lines written correctly</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Ok.Single" xml:space="preserve">
+    <value>lines written correctly</value>
+  </data>
+  <data name="Export.Statusline.Status.Completed.Single" xml:space="preserve">
+    <value>line processed</value>
+  </data>
+  <data name="Export.Statusline.Status.Description" xml:space="preserve">
+    <value>No lines written away</value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Added" xml:space="preserve">
+    <value>Added: </value>
+  </data>
+  <data name="Export.Statusline.Status.Prefix.Error" xml:space="preserve">
+    <value>Error in line</value>
+  </data>
+  <data name="Export.Statusline.Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ExportUnits.Statusline.Status.Description" xml:space="preserve">
+    <value>No lines written away</value>
+  </data>
+  <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
+    <value>Errors found during export</value>
+  </data>
 </root>
