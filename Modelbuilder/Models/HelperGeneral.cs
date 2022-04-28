@@ -129,6 +129,8 @@ internal class HelperGeneral
     public static readonly string DbProjectTableFieldTypeEndDate = "date";
     public static readonly string DbProjectTableFieldNameClosed = "Closed";
     public static readonly string DbProjectTableFieldTypeClosed = "int";
+    public static readonly string DbProjectTableFieldNameExpectedTime = "ExpectedTime";
+    public static readonly string DbProjectTableFieldTypeExpectedTime = "int"; 
     public static readonly string DbProjectTableFieldNameMemo = "Memo";
     public static readonly string DbProjectTableFieldTypeMemo = "longtext";
     public static readonly string DbProjectTableFieldNameImageRotationAngle = "ImageRotationAngle";
@@ -150,6 +152,7 @@ internal class HelperGeneral
     public static readonly string DbProjectCostsViewFieldNameTotal = "Total";
     public static readonly string DbProjectCostsViewFieldTypeTotal = "double";
 
+    public static readonly string DbProjectExportView = "view_projectexport";
     #endregion Project table
 
     #region Stock table
