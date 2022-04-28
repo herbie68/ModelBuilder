@@ -176,12 +176,14 @@
                         <RibbonMenuItem Click="ShowExportCategoriesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Export_Header}"
                                         ImageSource=".\Resources\metadataCategoryImport.png" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Click="ShowCountryPage"
-                                       Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataCountry.png">
+                        <RibbonMenuItem Click="ShowCountryPage"
+                                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
+                                       ImageSource=".\Resources\metadataCountry.png"/>
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Import_Header}"
                                         ImageSource=".\Resources\metadataCountryImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Import_Header}"
+                        <RibbonMenuItem Click="ShowExportCountriesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Export_Header}"
                                         ImageSource=".\Resources\metadataCountryExport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Click="ShowSupplierPage"

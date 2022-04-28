@@ -53,10 +53,21 @@ internal class HelperGeneral
     public static readonly string DbCurrencyTableFieldTypeName = "string";
     public static readonly string DbCurrencyTableFieldNameRate = "ConversionRate";
     public static readonly string DbCurrencyTableFieldTypeRate = "double";
-    #endregion Currency table
+    #endregion
 
+    #region Country table
     public static readonly string DbCountryTable = "country";
-
+    public static readonly string DbCountryTableFieldNameId = "Id";
+    public static readonly string DbCountryTableFieldTypeId = "int";
+    public static readonly string DbCountryTableFieldNameCode = "Code";
+    public static readonly string DbCountryTableFieldTypeCode = "string";
+    public static readonly string DbCountryTableFieldNameDefCurrencySymbol = "Defaultcurrency_Symbol";
+    public static readonly string DbCountryTableFieldTypeDefCurrencySymbol = "string";
+    public static readonly string DbCountryTableFieldNameName = "Name";
+    public static readonly string DbCountryTableFieldTypeName = "string";
+    public static readonly string DbCountryTableFieldNameDefCurrencyId = "Defaultcurrency_Id";
+    public static readonly string DbCountryTableFieldTypeDefCurrencyId = "int";
+    #endregion
     #region Product table
     public static readonly string DbProductTable = "product";
     public static readonly string DbProductView = "view_product";
