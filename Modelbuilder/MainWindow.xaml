@@ -97,7 +97,7 @@
                         <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectImport_Header}"
                                         ImageSource=".\Resources\projectImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectExport_Header}"
+                        <RibbonMenuItem Click="ShowExportProjectPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectExport_Header}"
                                         ImageSource=".\Resources\projectExport.png" />
                     </RibbonSplitButton>
                     <RibbonMenuItem Click="ShowProjectPage"

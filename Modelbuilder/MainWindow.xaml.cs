@@ -61,6 +61,23 @@ public partial class MainWindow : Window
     #endregion
     #endregion TimeManegement
 
+    #region ProjectManagement
+    #region Call Project Page
+    private void ShowProjectPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new metadataProject();
+    }
+    #endregion Call Product Page
+
+    #region Call Export Projects
+    private void ShowExportProjectPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportProjects();
+    }
+    #endregion Call Product Page
+
+    #endregion
+
     #region Maintain orders and deliveries
     #region Call Order Page
     private void ShowOrderPage(object sender, RoutedEventArgs e)
@@ -144,13 +161,6 @@ public partial class MainWindow : Window
     private void ShowProductPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataProduct();
-    }
-    #endregion Call Product Page
-
-    #region Call Project Page
-    private void ShowProjectPage(object sender, RoutedEventArgs e)
-    {
-        Main.Content = new metadataProject();
     }
     #endregion Call Product Page
 

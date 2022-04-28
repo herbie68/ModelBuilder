@@ -2465,7 +2465,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Tijdregistraties</value>
   </data>
   <data name="ExportProjects.SubTitle" xml:space="preserve">
-    <value>Exporteer projectgegevens naar een CSV bestand</value>
+    <value>Exporteer projectgegevens naar een CSV bestand, afbeelding en memoveld wordt niet geëxporteerd</value>
   </data>
   <data name="ExportProjects.Title" xml:space="preserve">
     <value>Exporteer projectgegevens</value>

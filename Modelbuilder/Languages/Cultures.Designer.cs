@@ -331,7 +331,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exporteer projectgegevens naar een CSV bestand.
+        ///   Looks up a localized string similar to Exporteer projectgegevens naar een CSV bestand, afbeelding en memoveld wordt niet geëxporteerd.
         /// </summary>
         public static string ExportProjects_SubTitle {
             get {

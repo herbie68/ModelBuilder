@@ -1,15 +1,11 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
-using System.Data;
-
-namespace Modelbuilder;
-public partial class ExportTimeEntries : Page
+﻿namespace Modelbuilder;
+public partial class ExportProjects : Page
 {
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
     private HelperClass helper;
 
-    public ExportTimeEntries()
+    public ExportProjects()
     {
         InitializeComponent();
         InitializeHelper();
@@ -22,7 +18,7 @@ public partial class ExportTimeEntries : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helperGeneral.GetData(HelperGeneral.DbTimeExportView);
+        _dt = _helperGeneral.GetData(HelperGeneral.DbProjectExportView);
             }
     #endregion
 
@@ -60,9 +56,9 @@ public partial class ExportTimeEntries : Page
             _tempHour.Substring(_tempHour.Length - 2, 2) + 
             _tempMinute.Substring(_tempMinute.Length - 2, 2) + 
             _tempSecond.Substring(_tempSecond.Length - 2, 2) +
-            " - " + Languages.Cultures.ExportTimeEntries_FileName + ".csv";
+            " - " + Languages.Cultures.ExportProjects_FileName + ".csv";
 
-        string[] Columns = new string[] { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldNameComment
+        string[] Columns = new string[] { HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldNameName, HelperGeneral.DbProjectTableFieldNameStartDate, HelperGeneral.DbProjectTableFieldNameEndDate, HelperGeneral.DbProjectTableFieldNameExpectedTime, HelperGeneral.DbProjectTableFieldNameClosed
  };
      
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
