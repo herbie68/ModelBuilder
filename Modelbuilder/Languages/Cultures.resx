@@ -2455,4 +2455,85 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
     <value>Fouten gevonden tijdens exporteren</value>
   </data>
+  <data name="ExportTimeEntries.SubTitle" xml:space="preserve">
+    <value>Exporteer tijdregistratie naar een CSV bestand</value>
+  </data>
+  <data name="ExportTimeEntries.Title" xml:space="preserve">
+    <value>Exporteer tijdregistraties</value>
+  </data>
+  <data name="ExportTimeEntries.FileName" xml:space="preserve">
+    <value>Tijdregistraties</value>
+  </data>
+  <data name="ExportProjects.SubTitle" xml:space="preserve">
+    <value>Exporteer projectgegevens naar een CSV bestand</value>
+  </data>
+  <data name="ExportProjects.Title" xml:space="preserve">
+    <value>Exporteer projectgegevens</value>
+  </data>
+  <data name="ExportProjects.FileName" xml:space="preserve">
+    <value>Projecten</value>
+  </data>
+  <data name="ExportProducts.SubTitle" xml:space="preserve">
+    <value>Exporteer artikel naar een CSV bestand</value>
+  </data>
+  <data name="ExportProducts.Title" xml:space="preserve">
+    <value>Exporteer artikelen</value>
+  </data>
+  <data name="ExportProducts.FileName" xml:space="preserve">
+    <value>Artikelen</value>
+  </data>
+  <data name="ExportStorage.SubTitle" xml:space="preserve">
+    <value>Exporteer opslaglocaties naar een CSV bestand</value>
+  </data>
+  <data name="ExportStorage.Title" xml:space="preserve">
+    <value>Exporteer opslaglocaties</value>
+  </data>
+  <data name="ExportStorage.FileName" xml:space="preserve">
+    <value>Opslaglocaties</value>
+  </data>
+  <data name="ExportCategories.SubTitle" xml:space="preserve">
+    <value>Exporteer categorie naar een CSV bestand</value>
+  </data>
+  <data name="ExportCategories.Title" xml:space="preserve">
+    <value>Exporteer categorieën</value>
+  </data>
+  <data name="ExportCategories.FileName" xml:space="preserve">
+    <value>Categoerien</value>
+  </data>
+  <data name="ExportCountries.SubTitle" xml:space="preserve">
+    <value>Exporteer landen naar een CSV bestand</value>
+  </data>
+  <data name="ExportCountries.Title" xml:space="preserve">
+    <value>Exporteer landen</value>
+  </data>
+  <data name="ExportCountries.FileName" xml:space="preserve">
+    <value>Landen</value>
+  </data>
+  <data name="ExportSuppliers.SubTitle" xml:space="preserve">
+    <value>Exporteer leveranciers naar een CSV bestand</value>
+  </data>
+  <data name="ExportSuppliers.Title" xml:space="preserve">
+    <value>Exporteer leveranciers</value>
+  </data>
+  <data name="ExportSuppliers.FileName" xml:space="preserve">
+    <value>Leveranciers</value>
+  </data>
+  <data name="ExportCurrencies.SubTitle" xml:space="preserve">
+    <value>Exporteer valuta naar een CSV bestand</value>
+  </data>
+  <data name="ExportCurrencies.Title" xml:space="preserve">
+    <value>Exporteer valuta</value>
+  </data>
+  <data name="ExportCurrencies.FileName" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="ExportWorktypes.SubTitle" xml:space="preserve">
+    <value>Exporteer werksoorten naar een CSV bestand</value>
+  </data>
+  <data name="ExportWorktypes.Title" xml:space="preserve">
+    <value>Exporteer werksoorten</value>
+  </data>
+  <data name="ExportWorktypes.FileName" xml:space="preserve">
+    <value>Werksoorten</value>
+  </data>
 </root>

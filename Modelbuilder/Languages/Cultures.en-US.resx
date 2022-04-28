@@ -2455,4 +2455,85 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
     <value>Errors found during export</value>
   </data>
+  <data name="ExportTimeEntries.SubTitle" xml:space="preserve">
+    <value>Export time registration to a CSV file</value>
+  </data>
+  <data name="ExportTimeEntries.Title" xml:space="preserve">
+    <value>Export time records</value>
+  </data>
+  <data name="ExportTimeEntries.FileName" xml:space="preserve">
+    <value>Time registrations</value>
+  </data>
+  <data name="ExportProjects.SubTitle" xml:space="preserve">
+    <value>Export project data to a CSV file</value>
+  </data>
+  <data name="ExportProjects.Title" xml:space="preserve">
+    <value>Export project data</value>
+  </data>
+  <data name="ExportProjects.FileName" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="ExportProducts.SubTitle" xml:space="preserve">
+    <value>Export article to a CSV file</value>
+  </data>
+  <data name="ExportProducts.Title" xml:space="preserve">
+    <value>Export articles</value>
+  </data>
+  <data name="ExportProducts.FileName" xml:space="preserve">
+    <value>articles</value>
+  </data>
+  <data name="ExportStorage.SubTitle" xml:space="preserve">
+    <value>Export save locations to a CSV file</value>
+  </data>
+  <data name="ExportStorage.Title" xml:space="preserve">
+    <value>Export save locations</value>
+  </data>
+  <data name="ExportStorage.FileName" xml:space="preserve">
+    <value>Storage locations</value>
+  </data>
+  <data name="ExportCategories.SubTitle" xml:space="preserve">
+    <value>Export category to a CSV file</value>
+  </data>
+  <data name="ExportCategories.Title" xml:space="preserve">
+    <value>Export categories</value>
+  </data>
+  <data name="ExportCategories.FileName" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ExportCountries.SubTitle" xml:space="preserve">
+    <value>Export countries to a CSV file</value>
+  </data>
+  <data name="ExportCountries.Title" xml:space="preserve">
+    <value>Export countries</value>
+  </data>
+  <data name="ExportCountries.FileName" xml:space="preserve">
+    <value>Nations</value>
+  </data>
+  <data name="ExportSuppliers.SubTitle" xml:space="preserve">
+    <value>Export suppliers to a CSV file</value>
+  </data>
+  <data name="ExportSuppliers.Title" xml:space="preserve">
+    <value>Export suppliers</value>
+  </data>
+  <data name="ExportSuppliers.FileName" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="ExportCurrencies.SubTitle" xml:space="preserve">
+    <value>Export currency to a CSV file</value>
+  </data>
+  <data name="ExportCurrencies.Title" xml:space="preserve">
+    <value>Export currency</value>
+  </data>
+  <data name="ExportCurrencies.FileName" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="ExportWorktypes.SubTitle" xml:space="preserve">
+    <value>Export work types to a CSV file</value>
+  </data>
+  <data name="ExportWorktypes.Title" xml:space="preserve">
+    <value>Export work types</value>
+  </data>
+  <data name="ExportWorktypes.FileName" xml:space="preserve">
+    <value>Work types</value>
+  </data>
 </root>

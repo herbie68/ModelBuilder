@@ -214,6 +214,222 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoerien.
+        /// </summary>
+        public static string ExportCategories_FileName {
+            get {
+                return ResourceManager.GetString("ExportCategories.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer categorie naar een CSV bestand.
+        /// </summary>
+        public static string ExportCategories_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportCategories.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer categorieën.
+        /// </summary>
+        public static string ExportCategories_Title {
+            get {
+                return ResourceManager.GetString("ExportCategories.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landen.
+        /// </summary>
+        public static string ExportCountries_FileName {
+            get {
+                return ResourceManager.GetString("ExportCountries.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer landen naar een CSV bestand.
+        /// </summary>
+        public static string ExportCountries_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportCountries.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer landen.
+        /// </summary>
+        public static string ExportCountries_Title {
+            get {
+                return ResourceManager.GetString("ExportCountries.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string ExportCurrencies_FileName {
+            get {
+                return ResourceManager.GetString("ExportCurrencies.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer valuta naar een CSV bestand.
+        /// </summary>
+        public static string ExportCurrencies_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportCurrencies.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer valuta.
+        /// </summary>
+        public static string ExportCurrencies_Title {
+            get {
+                return ResourceManager.GetString("ExportCurrencies.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelen.
+        /// </summary>
+        public static string ExportProducts_FileName {
+            get {
+                return ResourceManager.GetString("ExportProducts.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikel naar een CSV bestand.
+        /// </summary>
+        public static string ExportProducts_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportProducts.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikelen.
+        /// </summary>
+        public static string ExportProducts_Title {
+            get {
+                return ResourceManager.GetString("ExportProducts.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projecten.
+        /// </summary>
+        public static string ExportProjects_FileName {
+            get {
+                return ResourceManager.GetString("ExportProjects.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer projectgegevens naar een CSV bestand.
+        /// </summary>
+        public static string ExportProjects_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportProjects.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer projectgegevens.
+        /// </summary>
+        public static string ExportProjects_Title {
+            get {
+                return ResourceManager.GetString("ExportProjects.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslaglocaties.
+        /// </summary>
+        public static string ExportStorage_FileName {
+            get {
+                return ResourceManager.GetString("ExportStorage.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer opslaglocaties naar een CSV bestand.
+        /// </summary>
+        public static string ExportStorage_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportStorage.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer opslaglocaties.
+        /// </summary>
+        public static string ExportStorage_Title {
+            get {
+                return ResourceManager.GetString("ExportStorage.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leveranciers.
+        /// </summary>
+        public static string ExportSuppliers_FileName {
+            get {
+                return ResourceManager.GetString("ExportSuppliers.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer leveranciers naar een CSV bestand.
+        /// </summary>
+        public static string ExportSuppliers_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportSuppliers.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer leveranciers.
+        /// </summary>
+        public static string ExportSuppliers_Title {
+            get {
+                return ResourceManager.GetString("ExportSuppliers.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tijdregistraties.
+        /// </summary>
+        public static string ExportTimeEntries_FileName {
+            get {
+                return ResourceManager.GetString("ExportTimeEntries.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer tijdregistratie naar een CSV bestand.
+        /// </summary>
+        public static string ExportTimeEntries_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportTimeEntries.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer tijdregistraties.
+        /// </summary>
+        public static string ExportTimeEntries_Title {
+            get {
+                return ResourceManager.GetString("ExportTimeEntries.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geen map geselecteerd.
         /// </summary>
         public static string ExportUnits_Export_Button_Foldername {
@@ -291,6 +507,33 @@ namespace Modelbuilder.Languages {
         public static string ExportUnits_Title {
             get {
                 return ResourceManager.GetString("ExportUnits.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoorten.
+        /// </summary>
+        public static string ExportWorktypes_FileName {
+            get {
+                return ResourceManager.GetString("ExportWorktypes.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer werksoorten naar een CSV bestand.
+        /// </summary>
+        public static string ExportWorktypes_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportWorktypes.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer werksoorten.
+        /// </summary>
+        public static string ExportWorktypes_Title {
+            get {
+                return ResourceManager.GetString("ExportWorktypes.Title", resourceCulture);
             }
         }
         

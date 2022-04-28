@@ -2456,4 +2456,85 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ExportUnits.Messagebox.Error.Message" xml:space="preserve">
     <value>Fehler beim Export gefunden</value>
   </data>
+  <data name="ExportTimeEntries.SubTitle" xml:space="preserve">
+    <value>Zeiterfassung in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportTimeEntries.Title" xml:space="preserve">
+    <value>Zeiterfassungen exportieren</value>
+  </data>
+  <data name="ExportTimeEntries.FileName" xml:space="preserve">
+    <value>Zeiterfassungen</value>
+  </data>
+  <data name="ExportProjects.SubTitle" xml:space="preserve">
+    <value>Projektdaten in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportProjects.Title" xml:space="preserve">
+    <value>Projektdaten exportieren</value>
+  </data>
+  <data name="ExportProjects.FileName" xml:space="preserve">
+    <value>Projekte</value>
+  </data>
+  <data name="ExportProducts.SubTitle" xml:space="preserve">
+    <value>Artikel in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportProducts.Title" xml:space="preserve">
+    <value>Artikel exportieren</value>
+  </data>
+  <data name="ExportProducts.FileName" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="ExportStorage.SubTitle" xml:space="preserve">
+    <value>Speicherorte in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportStorage.Title" xml:space="preserve">
+    <value>Speicherorte exportieren</value>
+  </data>
+  <data name="ExportStorage.FileName" xml:space="preserve">
+    <value>Speicherorte</value>
+  </data>
+  <data name="ExportCategories.SubTitle" xml:space="preserve">
+    <value>Kategorie in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportCategories.Title" xml:space="preserve">
+    <value>Kategorien exportieren</value>
+  </data>
+  <data name="ExportCategories.FileName" xml:space="preserve">
+    <value>Kategorien</value>
+  </data>
+  <data name="ExportCountries.SubTitle" xml:space="preserve">
+    <value>Länder in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportCountries.Title" xml:space="preserve">
+    <value>Exportländer</value>
+  </data>
+  <data name="ExportCountries.FileName" xml:space="preserve">
+    <value>Nationen</value>
+  </data>
+  <data name="ExportSuppliers.SubTitle" xml:space="preserve">
+    <value>Lieferanten in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportSuppliers.Title" xml:space="preserve">
+    <value>Lieferanten exportieren</value>
+  </data>
+  <data name="ExportSuppliers.FileName" xml:space="preserve">
+    <value>Lieferanten</value>
+  </data>
+  <data name="ExportCurrencies.SubTitle" xml:space="preserve">
+    <value>Währung in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportCurrencies.Title" xml:space="preserve">
+    <value>Währung exportieren</value>
+  </data>
+  <data name="ExportCurrencies.FileName" xml:space="preserve">
+    <value>Währungen</value>
+  </data>
+  <data name="ExportWorktypes.SubTitle" xml:space="preserve">
+    <value>Arbeitstypen in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportWorktypes.Title" xml:space="preserve">
+    <value>Arbeitstypen exportieren</value>
+  </data>
+  <data name="ExportWorktypes.FileName" xml:space="preserve">
+    <value>Arbeitsarten</value>
+  </data>
 </root>
