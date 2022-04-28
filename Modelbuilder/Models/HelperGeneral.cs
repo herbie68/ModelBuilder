@@ -301,6 +301,8 @@ internal class HelperGeneral
     public static readonly string DbTimeReportView = "view_timereport";
     public static readonly string DbTimeViewFieldNameWorkedMinutes = "WorkedMinutes";
     public static readonly string DbTimeViewFieldTypeWorkedMinutes = "int";
+
+    public static readonly string DbTimeExportView = "view_timeexport";
     #endregion Time
 
     #region ProductUsage

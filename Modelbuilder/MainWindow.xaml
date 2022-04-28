@@ -63,14 +63,15 @@
                         <RibbonMenuItem Click="ShowTimeManagementPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}"
                                         ImageSource=".\Resources\timeEdit.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}"
+                        <RibbonMenuItem Click="ShowTimeReportPage" 
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}"
                                         ImageSource=".\Resources\timeReport.png" />
                         <RibbonSeparator />
                         <RibbonMenuItem Click="ShowTimeEntryImportPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeImport_Header}"
                                         ImageSource=".\Resources\timeImport.png"
                                         KeyTip="T" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeExport_Header}"
+                        <RibbonMenuItem Click="ShowTimeEntryExportPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeExport_Header}"
                                         ImageSource=".\Resources\timeExport.png"
                                         KeyTip="S" />
                     </RibbonSplitButton>
@@ -140,7 +141,7 @@
 
                 <RibbonGroup x:Name="Config"
                              Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Group_Header}">
-                    <RibbonMenuButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label}"
+                    <RibbonMenuButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_MetadataButton_Label}"
                                       LargeImageSource=".\Resources\metadata.png">
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Report_Header}"
                                         ImageSource=".\Resources\metadataProductsReport.png" />

@@ -51,7 +51,14 @@ public partial class MainWindow : Window
     {
         Main.Content = new ImportTimeEntry();
     }
-    #endregion Import Time Entries
+    #endregion
+
+    #region Export Time Entries
+    private void ShowTimeEntryExportPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportTimeEntries();
+    }
+    #endregion
     #endregion TimeManegement
 
     #region Maintain orders and deliveries
