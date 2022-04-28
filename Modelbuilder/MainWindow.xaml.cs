@@ -67,14 +67,14 @@ public partial class MainWindow : Window
     {
         Main.Content = new metadataProject();
     }
-    #endregion Call Product Page
+    #endregion
 
     #region Call Export Projects
     private void ShowExportProjectPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new ExportProjects();
     }
-    #endregion Call Product Page
+    #endregion
 
     #endregion
 
@@ -143,11 +143,21 @@ public partial class MainWindow : Window
 
     #endregion Call Storage Page
 
+    #region Worktypes
     #region Call Worktype Page
     private void ShowWorktypePage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataWorktype();
     }
+    #endregion
+
+    #region Call Export Worktypes
+    private void ShowExportWorktypesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportWorkTypes();
+    }
+    #endregion
+
     #endregion
 
     #region Call Supplier Page

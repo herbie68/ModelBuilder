@@ -206,12 +206,14 @@
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Export_Header}"
                                         ImageSource=".\Resources\metadataCurencyExport.png" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Click="ShowWorktypePage"
-                                       Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataWorktype.png">
+                        <RibbonMenuItem Click="ShowWorktypePage"
+                                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
+                                       ImageSource=".\Resources\metadataWorktype.png"/>
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Import_Header}"
                                         ImageSource=".\Resources\metadataWorktypeImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportWorktypesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header}"
                                         ImageSource=".\Resources\metadataWorktypeExport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label}"
