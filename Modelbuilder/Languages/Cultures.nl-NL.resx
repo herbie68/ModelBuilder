@@ -2498,7 +2498,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Exporteer categorieën</value>
   </data>
   <data name="ExportCategories.FileName" xml:space="preserve">
-    <value>Categoerien</value>
+    <value>Categorien</value>
   </data>
   <data name="ExportCountries.SubTitle" xml:space="preserve">
     <value>Exporteer landen naar een CSV bestand</value>

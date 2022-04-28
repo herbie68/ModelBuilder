@@ -21,22 +21,22 @@ internal class HelperGeneral
 
     #region Brand table
     public static readonly string DbBrandTable = "brand";
-    public static readonly string DbBrandTableFieldNameBrandId = "Id";
-    public static readonly string DbBrandTableFieldTypeBrandId = "int";
-    public static readonly string DbBrandTableFieldNameBrandName = "Name";
-    public static readonly string DbBrandTableFieldTypeBrandName = "string";
+    public static readonly string DbBrandTableFieldNameId = "Id";
+    public static readonly string DbBrandTableFieldTypeId = "int";
+    public static readonly string DbBrandTableFieldNameName = "Name";
+    public static readonly string DbBrandTableFieldTypeName = "string";
     #endregion Brand table
 
     #region Category table
     public static readonly string DbCategoryTable = "category";
-    public static readonly string DbCategoryTableFieldNameCategoryId = "Id";
-    public static readonly string DbCategoryTableFieldTypeCategoryId = "int";
-    public static readonly string DbCategoryTableFieldNameCategoryParentId = "ParentId";
-    public static readonly string DbCategoryTableFieldTypeCategoryParentId = "int";
-    public static readonly string DbCategoryTableFieldNameCategoryName = "Name";
-    public static readonly string DbCategoryTableFieldTypeCategoryName = "string";
-    public static readonly string DbCategoryTableFieldNameCategoryFullpath = "Fullpath";
-    public static readonly string DbCategoryTableFieldTypeCategoryFullpath = "string";
+    public static readonly string DbCategoryTableFieldNameId = "Id";
+    public static readonly string DbCategoryTableFieldTypeId = "int";
+    public static readonly string DbCategoryTableFieldNameParentId = "ParentId";
+    public static readonly string DbCategoryTableFieldTypeParentId = "int";
+    public static readonly string DbCategoryTableFieldNameName = "Name";
+    public static readonly string DbCategoryTableFieldTypeName = "string";
+    public static readonly string DbCategoryTableFieldNameFullpath = "Fullpath";
+    public static readonly string DbCategoryTableFieldTypeFullpath = "string";
     #endregion Category table
 
     public static readonly string DbContactTypeTable = "contacttype";
