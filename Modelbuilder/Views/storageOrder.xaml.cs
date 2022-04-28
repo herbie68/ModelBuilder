@@ -293,8 +293,8 @@ public partial class storageOrder : Page
                 {   {HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId, "" } });
 
             var _categoryName = _helperGeneral.GetValueFromTable(HelperGeneral.DbCategoryTable, new string[1, 3]
-                {   {HelperGeneral.DbCategoryTableFieldNameCategoryId, HelperGeneral.DbCategoryTableFieldTypeCategoryId, valueCategoryId.Text } }, new string[1, 3]
-                {   {HelperGeneral.DbCategoryTableFieldNameCategoryName, HelperGeneral.DbCategoryTableFieldTypeCategoryName, "" } });
+                {   {HelperGeneral.DbCategoryTableFieldNameId, HelperGeneral.DbCategoryTableFieldTypeId, valueCategoryId.Text } }, new string[1, 3]
+                {   {HelperGeneral.DbCategoryTableFieldNameName, HelperGeneral.DbCategoryTableFieldTypeName, "" } });
 
             valueCategoryId.Text = _categoryId;
             valueCategoryName.Text = _categoryName;

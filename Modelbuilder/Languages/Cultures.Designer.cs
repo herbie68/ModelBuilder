@@ -214,7 +214,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categoerien.
+        ///   Looks up a localized string similar to Categorien.
         /// </summary>
         public static string ExportCategories_FileName {
             get {

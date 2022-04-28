@@ -125,14 +125,21 @@ public partial class MainWindow : Window
 
     #endregion Call Currency Page
 
+    #region Categories
     #region Call Category Page
-
     private void ShowCategoryPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataCategory();
     }
+    #endregion
 
-    #endregion Call Category Page
+    #region Call Export Categories
+    private void ShowExportCategoriesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportCategories();
+    }
+    #endregion
+    #endregion
 
     #region Call Storage Page
 
@@ -157,7 +164,6 @@ public partial class MainWindow : Window
         Main.Content = new ExportWorkTypes();
     }
     #endregion
-
     #endregion
 
     #region Call Supplier Page

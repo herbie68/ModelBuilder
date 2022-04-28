@@ -192,10 +192,10 @@ public partial class metadataProduct : Page
         //Select the saved Category in the combobox by default
         var _tempCategory = _helperGeneral.GetValueFromTable(HelperGeneral.DbCategoryTable, new string[1, 3]
         {
-            { HelperGeneral.DbCategoryTableFieldNameCategoryId, HelperGeneral.DbCategoryTableFieldTypeCategoryId, valueCategoryId.Text }
+            { HelperGeneral.DbCategoryTableFieldNameId, HelperGeneral.DbCategoryTableFieldTypeId, valueCategoryId.Text }
         }, new string[1, 3] 
         {
-            { HelperGeneral.DbCategoryTableFieldNameCategoryName, HelperGeneral.DbCategoryTableFieldTypeCategoryName, "" }
+            { HelperGeneral.DbCategoryTableFieldNameName, HelperGeneral.DbCategoryTableFieldTypeName, "" }
         });
         cboxProductCategory.Text = _tempCategory;
 
@@ -211,10 +211,10 @@ public partial class metadataProduct : Page
         //Select the saved Brand in the combobox by default
         var _tempBrand = _helperGeneral.GetValueFromTable(HelperGeneral.DbBrandTable, new string[1, 3]
         {
-            { HelperGeneral.DbBrandTableFieldNameBrandId, HelperGeneral.DbBrandTableFieldTypeBrandId, valueBrandId.Text }
+            { HelperGeneral.DbBrandTableFieldNameId, HelperGeneral.DbBrandTableFieldTypeId, valueBrandId.Text }
         }, new string[1, 3]
         {
-            { HelperGeneral.DbBrandTableFieldNameBrandName, HelperGeneral.DbBrandTableFieldTypeBrandName, "" }
+            { HelperGeneral.DbBrandTableFieldNameName, HelperGeneral.DbBrandTableFieldTypeName, "" }
         });
 
         foreach (HelperGeneral.Brand brand in cboxProductBrand.Items)
