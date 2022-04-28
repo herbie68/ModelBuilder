@@ -100,22 +100,31 @@ public partial class MainWindow : Window
         Main.Content = new storageStockChanges();
     }
     #endregion Call Stock Changes Page
-    #endregion Maintain orders and deliveries
-
-    #region Metadata pages
-    #region Call Country Page
-
 
     private void storageOrderPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new storageOrder();
     }
+
+    #endregion Maintain orders and deliveries
+
+    #region Metadata pages
+    #region Country
+    #region Call Country Page
     private void ShowCountryPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataCountry();
     }
+    #endregion
 
-    #endregion Call Country Page
+    #region Call Export Countries
+    private void ShowExportCountriesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportCountries();
+    }
+    #endregion
+    #endregion
+
 
     #region Call Currency Page
     private void ShowCurrencyPage(object sender, RoutedEventArgs e)
