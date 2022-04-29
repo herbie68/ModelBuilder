@@ -20,8 +20,6 @@ global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 using Modelbuilder.Views;
 
-
-
 namespace Modelbuilder;
 
 public partial class MainWindow : Window
@@ -247,7 +245,7 @@ public partial class MainWindow : Window
     #region Call Export Products per Supplier
     private void ShowExportProductsSupplierPage(object sender, RoutedEventArgs e)
     {
-        //Main.Content = new ExportProductsSupplier();
+        Main.Content = new ExportProductsSupplier();
     }
     #endregion
     #endregion
@@ -284,5 +282,4 @@ public partial class MainWindow : Window
     }
 
     #endregion Exit Application
-
 }
