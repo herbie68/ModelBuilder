@@ -2569,4 +2569,25 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ExportSupplierContacts.SubTitle" xml:space="preserve">
     <value>Exporteer contactpersonen naar een CSV bestand</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Edit.Label" xml:space="preserve">
+    <value>Contact functies</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Export.Header" xml:space="preserve">
+    <value>Exporteer contact functies</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Import.Header" xml:space="preserve">
+    <value>Importeer contact functies</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Report.Header" xml:space="preserve">
+    <value>Overzicht contact functies</value>
+  </data>
+  <data name="ExportContactTypes.FileName" xml:space="preserve">
+    <value>Contact functies</value>
+  </data>
+  <data name="ExportContactTypes.SubTitle" xml:space="preserve">
+    <value>Exporteer contact funkties naar een CSV bestand</value>
+  </data>
+  <data name="ExportContactTypes.Title" xml:space="preserve">
+    <value>Exporteer contact functies</value>
+  </data>
 </root>

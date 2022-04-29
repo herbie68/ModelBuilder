@@ -39,7 +39,13 @@ internal class HelperGeneral
     public static readonly string DbCategoryTableFieldTypeFullpath = "string";
     #endregion Category table
 
+    #region Contacttype table
     public static readonly string DbContactTypeTable = "contacttype";
+    public static readonly string DbContactTypeTableFieldNameId = "Id";
+    public static readonly string DbContactTypeTableFieldTypeId = "Int";
+    public static readonly string DbContactTypeTableFieldNameName = "Name";
+    public static readonly string DbContactTypeTableFieldTypeName = "string";
+    #endregion
 
     #region Currency table
     public static readonly string DbCurrencyTable = "currency";

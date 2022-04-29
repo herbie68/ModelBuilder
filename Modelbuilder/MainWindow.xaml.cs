@@ -151,7 +151,6 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
-
     #region Categories
     #region Call Category Page
     private void ShowCategoryPage(object sender, RoutedEventArgs e)
@@ -214,6 +213,14 @@ public partial class MainWindow : Window
         Main.Content = new ExportSupplierContacts();
     }
     #endregion
+
+    #region Call Export Contacttypes
+    private void ShowExportContactTypesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportContacttypes();
+    }
+    #endregion
+
     #endregion
 
     #region Call Product Page
