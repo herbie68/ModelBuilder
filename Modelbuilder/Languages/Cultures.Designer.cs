@@ -376,6 +376,33 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ArtikelenPerLeverancier.
+        /// </summary>
+        public static string ExportProductsSupplier_FileName {
+            get {
+                return ResourceManager.GetString("ExportProductsSupplier.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikelen per leverancier naar een CSV bestand.
+        /// </summary>
+        public static string ExportProductsSupplier_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportProductsSupplier.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikelen per leverancier.
+        /// </summary>
+        public static string ExportProductsSupplier_Title {
+            get {
+                return ResourceManager.GetString("ExportProductsSupplier.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projecten.
         /// </summary>
         public static string ExportProjects_FileName {
@@ -2082,6 +2109,15 @@ namespace Modelbuilder.Languages {
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Report_Header {
             get {
                 return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Product.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelen per leverancier.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ProductsSupplier_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ProductsSupplier.Edit.Label", resourceCulture);
             }
         }
         

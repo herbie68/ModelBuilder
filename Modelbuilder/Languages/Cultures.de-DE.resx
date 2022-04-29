@@ -2600,4 +2600,16 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Report.Header" xml:space="preserve">
     <value>Übersicht Artikel pro Lieferanten</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductsSupplier.Edit.Label" xml:space="preserve">
+    <value>Produkte nach Anbieter</value>
+  </data>
+  <data name="ExportProductsSupplier.FileName" xml:space="preserve">
+    <value>ProdukteproLieferant</value>
+  </data>
+  <data name="ExportProductsSupplier.SubTitle" xml:space="preserve">
+    <value>Exportieren Sie Artikel pro Lieferant in eine CSV-Datei</value>
+  </data>
+  <data name="ExportProductsSupplier.Title" xml:space="preserve">
+    <value>Exportieren Artikel nach Lieferanten</value>
+  </data>
 </root>

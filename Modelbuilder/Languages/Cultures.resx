@@ -2599,4 +2599,16 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Report.Header" xml:space="preserve">
     <value>Overzicht artikelen per leverancier</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductsSupplier.Edit.Label" xml:space="preserve">
+    <value>Artikelen per leverancier</value>
+  </data>
+  <data name="ExportProductsSupplier.FileName" xml:space="preserve">
+    <value>ArtikelenPerLeverancier</value>
+  </data>
+  <data name="ExportProductsSupplier.SubTitle" xml:space="preserve">
+    <value>Exporteer artikelen per leverancier naar een CSV bestand</value>
+  </data>
+  <data name="ExportProductsSupplier.Title" xml:space="preserve">
+    <value>Exporteer artikelen per leverancier</value>
+  </data>
 </root>
