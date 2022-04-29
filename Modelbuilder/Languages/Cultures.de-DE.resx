@@ -2570,4 +2570,25 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ExportSupplierContacts.SubTitle" xml:space="preserve">
     <value>Kontaktpesonen in eine CSV-Datei exportieren</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Edit.Label" xml:space="preserve">
+    <value>Functionen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Export.Header" xml:space="preserve">
+    <value>Contact Funktionen Exportieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Import.Header" xml:space="preserve">
+    <value>Contact Funktionen importieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Report.Header" xml:space="preserve">
+    <value>Übersicht Contact Funktionen</value>
+  </data>
+  <data name="ExportContactTypes.FileName" xml:space="preserve">
+    <value>Kontakt Funktionen</value>
+  </data>
+  <data name="ExportContactTypes.SubTitle" xml:space="preserve">
+    <value>Kontakt Funktionen in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportContactTypes.Title" xml:space="preserve">
+    <value>Kontakt Funktionen exportieren</value>
+  </data>
 </root>

@@ -268,6 +268,33 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact functies.
+        /// </summary>
+        public static string ExportContactTypes_FileName {
+            get {
+                return ResourceManager.GetString("ExportContactTypes.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer contact funkties naar een CSV bestand.
+        /// </summary>
+        public static string ExportContactTypes_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportContactTypes.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer contact functies.
+        /// </summary>
+        public static string ExportContactTypes_Title {
+            get {
+                return ResourceManager.GetString("ExportContactTypes.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Landen.
         /// </summary>
         public static string ExportCountries_FileName {
@@ -1911,6 +1938,42 @@ namespace Modelbuilder.Languages {
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Report_Header {
             get {
                 return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Category.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact functies.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer contact functies.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer contact functies.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht contact functies.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Report.Header", resourceCulture);
             }
         }
         

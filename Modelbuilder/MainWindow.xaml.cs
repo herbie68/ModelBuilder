@@ -151,7 +151,6 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
-
     #region Categories
     #region Call Category Page
     private void ShowCategoryPage(object sender, RoutedEventArgs e)
@@ -168,14 +167,21 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
+    #region Storage
     #region Call Storage Page
-
     private void ShowStoragePage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataStorage();
     }
+    #endregion
 
-    #endregion Call Storage Page
+    #region Call Export Storages
+    private void ShowExportStoragePage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportStorage();
+    }
+    #endregion
+    #endregion
 
     #region Worktypes
     #region Call Worktype Page
@@ -214,6 +220,14 @@ public partial class MainWindow : Window
         Main.Content = new ExportSupplierContacts();
     }
     #endregion
+
+    #region Call Export Contacttypes
+    private void ShowExportContactTypesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportContacttypes();
+    }
+    #endregion
+
     #endregion
 
     #region Call Product Page

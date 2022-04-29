@@ -39,7 +39,13 @@ internal class HelperGeneral
     public static readonly string DbCategoryTableFieldTypeFullpath = "string";
     #endregion Category table
 
+    #region Contacttype table
     public static readonly string DbContactTypeTable = "contacttype";
+    public static readonly string DbContactTypeTableFieldNameId = "Id";
+    public static readonly string DbContactTypeTableFieldTypeId = "Int";
+    public static readonly string DbContactTypeTableFieldNameName = "Name";
+    public static readonly string DbContactTypeTableFieldTypeName = "string";
+    #endregion
 
     #region Currency table
     public static readonly string DbCurrencyTable = "currency";
@@ -208,14 +214,14 @@ internal class HelperGeneral
 
     #region Storage table
     public static readonly string DbStorageTable = "storage";
-    public static readonly string DbStorageTableFieldNameStorageId = "Id";
-    public static readonly string DbStorageTableFieldTypeStorageId = "int";
-    public static readonly string DbStorageTableFieldNameStorageParentId = "ParentId";
-    public static readonly string DbStorageTableFieldTypeStorageParentId = "int";
-    public static readonly string DbStorageTableFieldNameStorageName = "Name";
-    public static readonly string DbStorageTableFieldTypeStorageName = "string";
-    public static readonly string DbStorageTableFieldNameStorageFullpath = "Fullpath";
-    public static readonly string DbStorageTableFieldTypeStorageFullpath = "string";
+    public static readonly string DbStorageTableFieldNameId = "Id";
+    public static readonly string DbStorageTableFieldTypeId = "int";
+    public static readonly string DbStorageTableFieldNameParentId = "ParentId";
+    public static readonly string DbStorageTableFieldTypeParentId = "int";
+    public static readonly string DbStorageTableFieldNameName = "Name";
+    public static readonly string DbStorageTableFieldTypeName = "string";
+    public static readonly string DbStorageTableFieldNameFullpath = "Fullpath";
+    public static readonly string DbStorageTableFieldTypeFullpath = "string";
     #endregion Storage table
 
     #region Supplier tables

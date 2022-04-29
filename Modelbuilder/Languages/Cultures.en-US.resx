@@ -2569,4 +2569,25 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ExportSupplierContacts.SubTitle" xml:space="preserve">
     <value>Export contacts to a CSV file</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Edit.Label" xml:space="preserve">
+    <value>Contact types</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Export.Header" xml:space="preserve">
+    <value>Export ContactTypes</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Import.Header" xml:space="preserve">
+    <value>Import Contact types</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ContactType.Report.Header" xml:space="preserve">
+    <value>Contact types Report</value>
+  </data>
+  <data name="ExportContactTypes.FileName" xml:space="preserve">
+    <value>Contacttypes</value>
+  </data>
+  <data name="ExportContactTypes.SubTitle" xml:space="preserve">
+    <value>Export contacttype to a CSV file</value>
+  </data>
+  <data name="ExportContactTypes.Title" xml:space="preserve">
+    <value>Export contacttypes</value>
+  </data>
 </root>

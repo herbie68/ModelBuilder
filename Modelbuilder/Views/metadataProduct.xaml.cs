@@ -245,10 +245,10 @@ public partial class metadataProduct : Page
         //Select the saved Storage location in the combobox by default
         var _tempStorage = _helperGeneral.GetValueFromTable(HelperGeneral.DbStorageTable, new string[1, 3]
         {
-            { HelperGeneral.DbStorageTableFieldNameStorageId, HelperGeneral.DbStorageTableFieldTypeStorageId, valueStorageId.Text }
+            { HelperGeneral.DbStorageTableFieldNameId, HelperGeneral.DbStorageTableFieldTypeId, valueStorageId.Text }
         }, new string[1, 3]
         {
-            { HelperGeneral.DbStorageTableFieldNameStorageName, HelperGeneral.DbStorageTableFieldTypeStorageName, "" }
+            { HelperGeneral.DbStorageTableFieldNameName, HelperGeneral.DbStorageTableFieldTypeName, "" }
         });
         foreach (HelperGeneral.Storage storage in cboxProductStorage.Items)
         {
