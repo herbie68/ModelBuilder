@@ -403,6 +403,33 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ContactpersonenLeverancier.
+        /// </summary>
+        public static string ExportSupplierContacts_FileName {
+            get {
+                return ResourceManager.GetString("ExportSupplierContacts.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer contactpersonen naar een CSV bestand.
+        /// </summary>
+        public static string ExportSupplierContacts_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportSupplierContacts.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contactpersonen leveranciers.
+        /// </summary>
+        public static string ExportSupplierContacts_Title {
+            get {
+                return ResourceManager.GetString("ExportSupplierContacts.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leveranciers.
         /// </summary>
         public static string ExportSuppliers_FileName {

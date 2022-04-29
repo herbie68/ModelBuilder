@@ -2561,4 +2561,13 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header" xml:space="preserve">
     <value>Kontakte von Lieferanten exportieren</value>
   </data>
+  <data name="ExportSupplierContacts.FileName" xml:space="preserve">
+    <value>LieferantenKontaktpersonen</value>
+  </data>
+  <data name="ExportSupplierContacts.Title" xml:space="preserve">
+    <value>Kontakte Lieferanten</value>
+  </data>
+  <data name="ExportSupplierContacts.SubTitle" xml:space="preserve">
+    <value>Kontaktpesonen in eine CSV-Datei exportieren</value>
+  </data>
 </root>
