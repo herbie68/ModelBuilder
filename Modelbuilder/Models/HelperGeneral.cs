@@ -68,6 +68,7 @@ internal class HelperGeneral
     public static readonly string DbCountryTableFieldNameDefCurrencyId = "Defaultcurrency_Id";
     public static readonly string DbCountryTableFieldTypeDefCurrencyId = "int";
     #endregion
+
     #region Product table
     public static readonly string DbProductTable = "product";
     public static readonly string DbProductView = "view_product";

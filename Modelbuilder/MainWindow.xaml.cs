@@ -135,13 +135,22 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
+    #region Currency
     #region Call Currency Page
     private void ShowCurrencyPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataCurrency();
     }
+    #endregion
 
-    #endregion Call Currency Page
+    #region Call Export Currencies
+    private void ShowExportCurrenciesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportCurrencies();
+    }
+    #endregion
+    #endregion
+
 
     #region Categories
     #region Call Category Page
@@ -202,11 +211,10 @@ public partial class MainWindow : Window
     #region Call Export SuppliersContacts
     private void ShowExportSupplierContactsPage(object sender, RoutedEventArgs e)
     {
-        //Main.Content = new ExportSupplierContact();
+        Main.Content = new ExportSupplierContacts();
     }
     #endregion
     #endregion
-
 
     #region Call Product Page
     private void ShowProductPage(object sender, RoutedEventArgs e)
