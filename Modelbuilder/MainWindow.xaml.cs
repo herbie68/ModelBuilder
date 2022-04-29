@@ -167,14 +167,21 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
+    #region Storage
     #region Call Storage Page
-
     private void ShowStoragePage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataStorage();
     }
+    #endregion
 
-    #endregion Call Storage Page
+    #region Call Export Storages
+    private void ShowExportStoragePage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportStorage();
+    }
+    #endregion
+    #endregion
 
     #region Worktypes
     #region Call Worktype Page
