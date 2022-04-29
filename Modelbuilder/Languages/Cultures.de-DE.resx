@@ -2591,4 +2591,13 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ExportContactTypes.Title" xml:space="preserve">
     <value>Kontakt Funktionen exportieren</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Export.Header" xml:space="preserve">
+    <value>Artikel pro Lieferanten exportieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Import.Header" xml:space="preserve">
+    <value>Artikel pro Lieferanten importieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Report.Header" xml:space="preserve">
+    <value>Übersicht Artikel pro Lieferanten</value>
+  </data>
 </root>
