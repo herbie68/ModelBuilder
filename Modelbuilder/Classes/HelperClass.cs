@@ -325,7 +325,7 @@ internal class HelperClass
         StreamWriter sw = new(FileName, false);
 
         // Check if a Header is wanted in the CSV File
-        if (Header.ToLower() != "noheader")
+        if (Header.ToLower() != "Header")
         {
             for (int i = 0; i < _dt.Columns.Count; i++)
             {

@@ -1,11 +1,11 @@
 ﻿namespace Modelbuilder;
-public partial class ExportWorkTypes : Page
+public partial class ExportCurrencies : Page
 {
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
     private HelperClass helper;
 
-    public ExportWorkTypes()
+    public ExportCurrencies()
     {
         InitializeComponent();
         InitializeHelper();
@@ -18,8 +18,9 @@ public partial class ExportWorkTypes : Page
         InitializeHelper();
 
         // Get data from database
-        _dt = _helperGeneral.GetData(HelperGeneral.DbWorktypeTable);
-            }
+        _dt = _helperGeneral.GetData(HelperGeneral.DbCurrencyTable);
+        _dt.Columns.Remove("Id");
+    }
     #endregion
 
     #region InitializeHelper (connect to database)
@@ -56,9 +57,9 @@ public partial class ExportWorkTypes : Page
             _tempHour.Substring(_tempHour.Length - 2, 2) + 
             _tempMinute.Substring(_tempMinute.Length - 2, 2) + 
             _tempSecond.Substring(_tempSecond.Length - 2, 2) +
-            " - " + Languages.Cultures.ExportWorktypes_FileName + ".csv";
+            " - " + Languages.Cultures.ExportCurrencies_FileName + ".csv";
 
-        string[] Columns = new string[] { HelperGeneral.DbWorktypeTableFieldNameId, HelperGeneral.DbWorktypeTableFieldNameParentId, HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldNameFullpath};
+        string[] Columns = new string[] { HelperGeneral.DbCurrencyTableFieldNameCode, HelperGeneral.DbCurrencyTableFieldNameName, HelperGeneral.DbCurrencyTableFieldNameSymbol, HelperGeneral.DbCurrencyTableFieldNameRate};
      
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
         helper = new HelperClass();

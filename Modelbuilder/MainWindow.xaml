@@ -212,12 +212,15 @@
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Export_Header}"
                                         ImageSource=".\Resources\metadataStorageLocationExport.png" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Click="ShowCurrencyPage"
-                                       Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label}"
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataCurency.png">
+                        <RibbonMenuItem Click="ShowCurrencyPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label}"
+                                        ImageSource=".\Resources\metadataCurency.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Import_Header}"
                                         ImageSource=".\Resources\metadataCurencyImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportCurrenciesPage"
+                            Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Export_Header}"
                                         ImageSource=".\Resources\metadataCurencyExport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"

@@ -67,7 +67,7 @@ public partial class ExportTimeEntries : Page
      
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
         helper = new HelperClass();
-        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "NoHeader");
+        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 
         dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;
