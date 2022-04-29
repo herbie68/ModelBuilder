@@ -2590,4 +2590,13 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ExportContactTypes.Title" xml:space="preserve">
     <value>Exporteer contact functies</value>
   </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Export.Header" xml:space="preserve">
+    <value>Exporteer artikelen per leverancier</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Import.Header" xml:space="preserve">
+    <value>Importeer artikelen per leverancier</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Report.Header" xml:space="preserve">
+    <value>Overzicht artikelen per leverancier</value>
+  </data>
 </root>

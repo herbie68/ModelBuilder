@@ -2086,6 +2086,33 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporteer artikelen per leverancier.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer artikelen per leverancier.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht artikelen per leverancier.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.ProductSupplier.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locaties.
         /// </summary>
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Edit_Label {

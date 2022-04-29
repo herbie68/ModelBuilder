@@ -156,8 +156,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-    <PackageReference Include="MySql.Data" Version="8.0.28" />
-    <PackageReference Include="ScottPlot.WPF" Version="4.1.35" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.41" />
   </ItemGroup>
 
   <ItemGroup>

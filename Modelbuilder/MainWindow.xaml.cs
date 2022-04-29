@@ -227,15 +227,30 @@ public partial class MainWindow : Window
         Main.Content = new ExportContacttypes();
     }
     #endregion
-
     #endregion
 
+    #region Products
     #region Call Product Page
     private void ShowProductPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataProduct();
     }
-    #endregion Call Product Page
+    #endregion
+
+    #region Call Export Products
+    private void ShowExportProductsPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportProducts();
+    }
+    #endregion
+
+    #region Call Export Products per Supplier
+    private void ShowExportProductsSupplierPage(object sender, RoutedEventArgs e)
+    {
+        //Main.Content = new ExportProductsSupplier();
+    }
+    #endregion
+    #endregion
 
     #region Units
     #region Call Unit Page
