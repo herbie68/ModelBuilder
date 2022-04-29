@@ -214,6 +214,33 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merken.
+        /// </summary>
+        public static string ExportBrands_FileName {
+            get {
+                return ResourceManager.GetString("ExportBrands.FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer merken naar een CSV bestand.
+        /// </summary>
+        public static string ExportBrands_SubTitle {
+            get {
+                return ResourceManager.GetString("ExportBrands.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer merken.
+        /// </summary>
+        public static string ExportBrands_Title {
+            get {
+                return ResourceManager.GetString("ExportBrands.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categorien.
         /// </summary>
         public static string ExportCategories_FileName {
@@ -223,7 +250,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exporteer categorie naar een CSV bestand.
+        ///   Looks up a localized string similar to Exporteer categorieën naar een CSV bestand.
         /// </summary>
         public static string ExportCategories_SubTitle {
             get {
@@ -1789,6 +1816,42 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merken.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Edit_Label {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Edit.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer merken.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer merken.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Import.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht merken.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Report_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categorieën.
         /// </summary>
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label {
@@ -2001,6 +2064,15 @@ namespace Modelbuilder.Languages {
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Report_Header {
             get {
                 return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.Supplier.Report.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporteer contactpersonen leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header", resourceCulture);
             }
         }
         

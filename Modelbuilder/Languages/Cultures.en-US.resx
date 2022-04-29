@@ -2492,7 +2492,7 @@ To be able to enter a new time registration Select a date and project first</val
     <value>Storage locations</value>
   </data>
   <data name="ExportCategories.SubTitle" xml:space="preserve">
-    <value>Export category to a CSV file</value>
+    <value>Export categories to a CSV file</value>
   </data>
   <data name="ExportCategories.Title" xml:space="preserve">
     <value>Export categories</value>
@@ -2535,5 +2535,29 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="ExportWorktypes.FileName" xml:space="preserve">
     <value>Work types</value>
+  </data>
+  <data name="ExportBrands.FileName" xml:space="preserve">
+    <value>Brands</value>
+  </data>
+  <data name="ExportBrands.SubTitle" xml:space="preserve">
+    <value>Export brands to a CSV file</value>
+  </data>
+  <data name="ExportBrands.Title" xml:space="preserve">
+    <value>Export Brands</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Edit.Label" xml:space="preserve">
+    <value>Brands</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Export.Header" xml:space="preserve">
+    <value>Export brands</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Import.Header" xml:space="preserve">
+    <value>Import brands</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Report.Header" xml:space="preserve">
+    <value>Brand Report</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header" xml:space="preserve">
+    <value>Export supplier contacts</value>
   </data>
 </root>
