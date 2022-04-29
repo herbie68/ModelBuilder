@@ -63,7 +63,7 @@
                         <RibbonMenuItem Click="ShowTimeManagementPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}"
                                         ImageSource=".\Resources\timeEdit.png" />
-                        <RibbonMenuItem Click="ShowTimeReportPage" 
+                        <RibbonMenuItem Click="ShowTimeReportPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}"
                                         ImageSource=".\Resources\timeReport.png" />
                         <RibbonSeparator />
@@ -71,7 +71,8 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeImport_Header}"
                                         ImageSource=".\Resources\timeImport.png"
                                         KeyTip="T" />
-                        <RibbonMenuItem Click="ShowTimeEntryExportPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeExport_Header}"
+                        <RibbonMenuItem Click="ShowTimeEntryExportPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeExport_Header}"
                                         ImageSource=".\Resources\timeExport.png"
                                         KeyTip="S" />
                     </RibbonSplitButton>
@@ -97,7 +98,8 @@
                         <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectImport_Header}"
                                         ImageSource=".\Resources\projectImport.png" />
-                        <RibbonMenuItem Click="ShowExportProjectPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectExport_Header}"
+                        <RibbonMenuItem Click="ShowExportProjectPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Project_ProjectExport_Header}"
                                         ImageSource=".\Resources\projectExport.png" />
                     </RibbonSplitButton>
                     <RibbonMenuItem Click="ShowProjectPage"
@@ -169,29 +171,37 @@
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataCategory.png">
                         <RibbonMenuItem Click="ShowCategoryPage"
-                                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label}"
-                                       ImageSource=".\Resources\metadataCategory.png"/>
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label}"
+                                        ImageSource=".\Resources\metadataCategory.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Import_Header}"
                                         ImageSource=".\Resources\metadataCategoryImport.png" />
-                        <RibbonMenuItem Click="ShowExportCategoriesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportCategoriesPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Export_Header}"
                                         ImageSource=".\Resources\metadataCategoryImport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataCountry.png">
                         <RibbonMenuItem Click="ShowCountryPage"
-                                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
-                                       ImageSource=".\Resources\metadataCountry.png"/>
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
+                                        ImageSource=".\Resources\metadataCountry.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Import_Header}"
                                         ImageSource=".\Resources\metadataCountryImport.png" />
-                        <RibbonMenuItem Click="ShowExportCountriesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportCountriesPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Export_Header}"
                                         ImageSource=".\Resources\metadataCountryExport.png" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton Click="ShowSupplierPage"
-                                       Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Edit_Label}"
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataSupplier.png">
+                        <RibbonMenuItem Click="ShowSupplierPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Edit_Label}"
+                                        ImageSource=".\Resources\metadataSupplier.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Import_Header}"
                                         ImageSource=".\Resources\metadataSupplierImport.png" />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportSupplierPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header}"
+                                        ImageSource=".\Resources\metadataSupplierExport.png" />
+                        <RibbonMenuItem Click="ShowExportSupplierContactsPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Click="ShowStoragePage"
@@ -213,11 +223,12 @@
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
                                        SmallImageSource=".\Resources\metadataWorktype.png">
                         <RibbonMenuItem Click="ShowWorktypePage"
-                                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
-                                       ImageSource=".\Resources\metadataWorktype.png"/>
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
+                                        ImageSource=".\Resources\metadataWorktype.png" />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Import_Header}"
                                         ImageSource=".\Resources\metadataWorktypeImport.png" />
-                        <RibbonMenuItem Click="ShowExportWorktypesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header}"
+                        <RibbonMenuItem Click="ShowExportWorktypesPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Export_Header}"
                                         ImageSource=".\Resources\metadataWorktypeExport.png" />
                     </RibbonSplitButton>
                     <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Edit_Label}"
@@ -230,8 +241,19 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Import_Header}"
                                         ImageSource=".\Resources\metadataUnitImport.png" />
                         <RibbonMenuItem Click="ShowUnitsExportPage"
-                            Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header}"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Unit_Export_Header}"
                                         ImageSource=".\Resources\metadataUnitExport.png" />
+                    </RibbonSplitButton>
+                    <RibbonSplitButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Edit_Label}"
+                                       SmallImageSource=".\Resources\brandEdit.png">
+                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Edit_Label}"
+                                        ImageSource=".\Resources\brandEdit.png" />
+                        <RibbonSeparator />
+                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header}"
+                                        ImageSource=".\Resources\brandImport.png" />
+                        <RibbonMenuItem Click="ShowExportBrandsPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Export_Header}"
+                                        ImageSource=".\Resources\brandExport.png" />
                     </RibbonSplitButton>
                 </RibbonGroup>
             </RibbonTab>

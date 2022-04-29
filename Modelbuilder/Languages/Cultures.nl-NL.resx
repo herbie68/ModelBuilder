@@ -2492,7 +2492,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Opslaglocaties</value>
   </data>
   <data name="ExportCategories.SubTitle" xml:space="preserve">
-    <value>Exporteer categorie naar een CSV bestand</value>
+    <value>Exporteer categorieën naar een CSV bestand</value>
   </data>
   <data name="ExportCategories.Title" xml:space="preserve">
     <value>Exporteer categorieën</value>
@@ -2535,5 +2535,29 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="ExportWorktypes.FileName" xml:space="preserve">
     <value>Werksoorten</value>
+  </data>
+  <data name="ExportBrands.FileName" xml:space="preserve">
+    <value>Merken</value>
+  </data>
+  <data name="ExportBrands.SubTitle" xml:space="preserve">
+    <value>Exporteer merken naar een CSV bestand</value>
+  </data>
+  <data name="ExportBrands.Title" xml:space="preserve">
+    <value>Exporteer merken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Edit.Label" xml:space="preserve">
+    <value>Merken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Export.Header" xml:space="preserve">
+    <value>Exporteer merken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Import.Header" xml:space="preserve">
+    <value>Importeer merken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Report.Header" xml:space="preserve">
+    <value>Overzicht merken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header" xml:space="preserve">
+    <value>Exporteer contactpersonen leveranciers</value>
   </data>
 </root>

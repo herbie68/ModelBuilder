@@ -2493,7 +2493,7 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
     <value>Speicherorte</value>
   </data>
   <data name="ExportCategories.SubTitle" xml:space="preserve">
-    <value>Kategorie in eine CSV-Datei exportieren</value>
+    <value>Kategorien in eine CSV-Datei exportieren</value>
   </data>
   <data name="ExportCategories.Title" xml:space="preserve">
     <value>Kategorien exportieren</value>
@@ -2536,5 +2536,29 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   </data>
   <data name="ExportWorktypes.FileName" xml:space="preserve">
     <value>Arbeitsarten</value>
+  </data>
+  <data name="ExportBrands.FileName" xml:space="preserve">
+    <value>Marken</value>
+  </data>
+  <data name="ExportBrands.SubTitle" xml:space="preserve">
+    <value>Marken in eine CSV-Datei exportieren</value>
+  </data>
+  <data name="ExportBrands.Title" xml:space="preserve">
+    <value>Marken exportieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Edit.Label" xml:space="preserve">
+    <value>Marken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Export.Header" xml:space="preserve">
+    <value>Marken exportieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Import.Header" xml:space="preserve">
+    <value>Marken importieren</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.Brand.Report.Header" xml:space="preserve">
+    <value>Übersicht Marken</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header" xml:space="preserve">
+    <value>Kontakte von Lieferanten exportieren</value>
   </data>
 </root>

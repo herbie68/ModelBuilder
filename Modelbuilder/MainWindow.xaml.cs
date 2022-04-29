@@ -109,6 +109,16 @@ public partial class MainWindow : Window
     #endregion Maintain orders and deliveries
 
     #region Metadata pages
+    #region Brands
+
+    #region Call Export Brands
+    private void ShowExportBrandsPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportBrands();
+    }
+    #endregion
+    #endregion
+
     #region Country
     #region Call Country Page
     private void ShowCountryPage(object sender, RoutedEventArgs e)
@@ -124,7 +134,6 @@ public partial class MainWindow : Window
     }
     #endregion
     #endregion
-
 
     #region Call Currency Page
     private void ShowCurrencyPage(object sender, RoutedEventArgs e)
@@ -175,12 +184,29 @@ public partial class MainWindow : Window
     #endregion
     #endregion
 
+    #region Supplier
     #region Call Supplier Page
     private void ShowSupplierPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new metadataSupplier();
     }
-    #endregion Call Supplier Page
+    #endregion
+
+    #region Call Export Suppliers
+    private void ShowExportSupplierPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportSupplier();
+    }
+    #endregion
+
+    #region Call Export SuppliersContacts
+    private void ShowExportSupplierContactsPage(object sender, RoutedEventArgs e)
+    {
+        //Main.Content = new ExportSupplierContact();
+    }
+    #endregion
+    #endregion
+
 
     #region Call Product Page
     private void ShowProductPage(object sender, RoutedEventArgs e)

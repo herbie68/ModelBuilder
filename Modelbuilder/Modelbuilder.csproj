@@ -25,6 +25,9 @@
     <None Remove="Resources\appSave.png" />
     <None Remove="Resources\appSettings.png" />
     <None Remove="Resources\appUndo.png" />
+    <None Remove="Resources\brandEdit.png" />
+    <None Remove="Resources\brandExport.png" />
+    <None Remove="Resources\brandImport.png" />
     <None Remove="Resources\btnWeb.png" />
     <None Remove="Resources\calculator.png" />
     <None Remove="Resources\calendar.png" />
@@ -133,6 +136,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\brandEdit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\brandExport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\brandImport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\calendar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
