@@ -6,6 +6,7 @@
 public partial class ImportUnits : Page
 {
     private HelperGeneral _helperGeneral;
+    private HelperClass _helper;
 
     public ImportUnits()
     {
@@ -63,24 +64,34 @@ public partial class ImportUnits : Page
 
         foreach (string line in lines)
         {
-            dispLineCount.Text = l++.ToString();
+            // Check if the first line is a header, if yes, skip writing the line to the database
+            _helper = new HelperClass();
+            string[] Columns = _helper.GetUnitHeaders();
 
-            // Check if there is a record with the Unit discription
-            var ExistingUnits = _helperGeneral.CheckForRecords(HelperGeneral.DbUnitTable, new string[1, 3]
-            {   { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, line }    });
-
-            if (ExistingUnits == 0)
+            if (line.Contains(Columns[0]))
             {
-                _helperGeneral.InsertInTable(HelperGeneral.DbUnitTable, new string[1, 3]
-                {   { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, line }    });
+                // Read line is header
             }
             else
             {
-                error = 1;
-                errorCount++;
-                errorList.Add((l, 1, Languages.Cultures.ImportUnits_Label + ": " + line.ToString() + " - " + Languages.Cultures.ImportUnits_Messagebox_Error_AlreadyExists));
-            }
+                dispLineCount.Text = l++.ToString();
 
+                // Check if there is a record with the Unit discription
+                var ExistingUnits = _helperGeneral.CheckForRecords(HelperGeneral.DbUnitTable, new string[1, 3]
+                {   { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, line }    });
+
+                if (ExistingUnits == 0)
+                {
+                    _helperGeneral.InsertInTable(HelperGeneral.DbUnitTable, new string[1, 3]
+                    {   { HelperGeneral.DbUnitTableFieldNameUnitName, HelperGeneral.DbUnitTableFieldTypeUnitName, line }    });
+                }
+                else
+                {
+                    error = 1;
+                    errorCount++;
+                    errorList.Add((l, 1, Languages.Cultures.ImportUnits_Label + ": " + line.ToString() + " - " + Languages.Cultures.ImportUnits_Messagebox_Error_AlreadyExists));
+                }
+            }
             dispLineCount.Text = dispTotalLinesCount.Text;
 
             string Completed;

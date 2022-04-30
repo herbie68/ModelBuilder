@@ -2611,4 +2611,25 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header" xml:space="preserve">
     <value>Importeer contactpersonen leveranciers</value>
   </data>
+  <data name="ImportProducts.Title" xml:space="preserve">
+    <value>Importeer artikelen</value>
+  </data>
+  <data name="ImportProducts.SubTitle" xml:space="preserve">
+    <value>Importeer artikeldata data vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportProducts.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Ingelezen artikel bestaat al in de tabel</value>
+  </data>
+  <data name="ImportProducts.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Artikel bestaat al</value>
+  </data>
+  <data name="ImportProducts.Label" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="ImportProducts.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met artikelen</value>
+  </data>
+  <data name="Import.Messagebox.Error.HeaderError" xml:space="preserve">
+    <value>Onjuist aantal velden in CSV bestand</value>
+  </data>
 </root>

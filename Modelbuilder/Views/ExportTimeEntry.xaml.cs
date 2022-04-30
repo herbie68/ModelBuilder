@@ -7,7 +7,7 @@ public partial class ExportTimeEntries : Page
 {
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
-    private HelperClass helper;
+    private HelperClass _helper;
 
     public ExportTimeEntries()
     {
@@ -62,12 +62,12 @@ public partial class ExportTimeEntries : Page
             _tempSecond.Substring(_tempSecond.Length - 2, 2) +
             " - " + Languages.Cultures.ExportTimeEntries_FileName + ".csv";
 
-        string[] Columns = new string[] { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldNameComment
- };
+
+        string[] Columns = _helper.GetTimeEntryHeaders();
      
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
-        helper = new HelperClass();
-        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
+        _helper = new HelperClass();
+        _helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 
         dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;

@@ -3,7 +3,7 @@ public partial class ExportProducts : Page
 {
 	private HelperGeneral _helperGeneral;
 	private DataTable _dt;
-	private HelperClass helper;
+	private HelperClass _helper;
 
 	public ExportProducts()
 	{
@@ -62,23 +62,11 @@ public partial class ExportProducts : Page
 			_tempSecond.Substring(_tempSecond.Length - 2, 2) +
 			" - " + Languages.Cultures.ExportProducts_FileName + ".csv";
 
-		string[] Columns = new string[] 
-										{   HelperGeneral.DbProductTableFieldNameCode, 
-											HelperGeneral.DbProductTableFieldNameName, 
-											HelperGeneral.DbProductTableFieldNameDimensions, 
-											HelperGeneral.DbProductTableFieldNamePrice,
-											HelperGeneral.DbProductTableFieldNameMinimalStock,
-											HelperGeneral.DbProductTableFieldNameStandardOrderQuantity,
-											HelperGeneral.DbProductTableFieldNameProjectCosts,
-											HelperGeneral.DbProductTableFieldNameUnitId,
-											HelperGeneral.DbProductTableFieldNameBrandId,
-											HelperGeneral.DbProductTableFieldNameCategoryId,
-											HelperGeneral.DbProductTableFieldNameStorageId
-										};
+		string[] Columns = _helper.GetProductHeaders();
 	 
 		dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
-		helper = new HelperClass();
-		helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
+		_helper = new HelperClass();
+		_helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
 		btnBrowseFolder.IsEnabled = false;
 
 		dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;
