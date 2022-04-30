@@ -37,7 +37,7 @@ public partial class ImportUnits : Page
         Microsoft.Win32.OpenFileDialog openFileDlg = new()
         {
             DefaultExt = ".csv",
-            Filter = Languages.Cultures.ImportTimeEntry_FileDialog_Filtertext + " (.csv)|*.csv",
+            Filter = Languages.Cultures.Import_FileDialog_Filtertext + " (.csv)|*.csv",
             InitialDirectory = @Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
         };
 
@@ -78,7 +78,7 @@ public partial class ImportUnits : Page
             {
                 error = 1;
                 errorCount++;
-                errorList.Add((l, 1, Languages.Cultures.ImportTimeEntry_Unit_Label + ": " + line.ToString() + " - " + Languages.Cultures.ImportUnits_Messagebox_Error_AlreadyExists));
+                errorList.Add((l, 1, Languages.Cultures.ImportUnits_Label + ": " + line.ToString() + " - " + Languages.Cultures.ImportUnits_Messagebox_Error_AlreadyExists));
             }
 
             dispLineCount.Text = dispTotalLinesCount.Text;

@@ -1,11 +1,11 @@
-﻿<Page x:Class="Modelbuilder.ImportUnits"
+﻿<Page x:Class="Modelbuilder.ImportBrands"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Modelbuilder"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:p="clr-namespace:Modelbuilder.Languages"
-      Title="ImportUnits"
+      Title="ImportBrands"
       d:DesignHeight="800"
       d:DesignWidth="1000"
       mc:Ignorable="d">
@@ -23,13 +23,13 @@
 
                     <TextBlock Grid.Column="0"
                                Style="{DynamicResource Title}"
-                               Text="{x:Static p:Cultures.ImportUnits_Title}" />
+                               Text="{x:Static p:Cultures.ImportBrands_Title}" />
                 </Grid>
 
                 <Path Style="{DynamicResource TitleLine}" />
                 <TextBlock Grid.Column="0"
                            Style="{DynamicResource SubTitle}"
-                           Text="{x:Static p:Cultures.ImportUnits_SubTitle}" />
+                           Text="{x:Static p:Cultures.ImportBrands_SubTitle}" />
                 <!--  endregion Title of the page  -->
 
                 <Grid Margin="0,25">
@@ -52,7 +52,7 @@
                             VerticalAlignment="Top"
                             Click="ClickedSelectFileButton"
                             Content="{x:Static p:Cultures.Import_Import_Button_Label}"
-                            ToolTip="{x:Static p:Cultures.ImportUnits_Import_Button_Tooltip}" />
+                            ToolTip="{x:Static p:Cultures.ImportBrands_Import_Button_Tooltip}" />
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
                                VerticalAlignment="Center"

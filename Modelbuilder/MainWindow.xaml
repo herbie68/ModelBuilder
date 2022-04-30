@@ -165,11 +165,13 @@
                         <RibbonMenuItem Click="ShowProductPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Edit_Label}"
                                         ImageSource=".\Resources\metadataProducts.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Import_Header}"
                                         ImageSource=".\Resources\metadataProductsImport.png" />
                         <RibbonMenuItem Click="ShowExportProductsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Export_Header}"
                                         ImageSource=".\Resources\metadataProductsExport.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Click="ShowExportProductsSupplierPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Export_Header}"
                                         ImageSource=".\Resources\metadataProductsExport.png" />
@@ -179,6 +181,7 @@
                         <RibbonMenuItem Click="ShowCategoryPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Edit_Label}"
                                         ImageSource=".\Resources\metadataCategory.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Category_Import_Header}"
                                         ImageSource=".\Resources\metadataCategoryImport.png" />
                         <RibbonMenuItem Click="ShowExportCategoriesPage"
@@ -190,6 +193,7 @@
                         <RibbonMenuItem Click="ShowCountryPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Edit_Label}"
                                         ImageSource=".\Resources\metadataCountry.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Country_Import_Header}"
                                         ImageSource=".\Resources\metadataCountryImport.png" />
                         <RibbonMenuItem Click="ShowExportCountriesPage"
@@ -201,11 +205,13 @@
                         <RibbonMenuItem Click="ShowSupplierPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Edit_Label}"
                                         ImageSource=".\Resources\metadataSupplier.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Import_Header}"
                                         ImageSource=".\Resources\metadataSupplierImport.png" />
                         <RibbonMenuItem Click="ShowExportSupplierPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Click="ShowExportSupplierContactsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
@@ -218,6 +224,7 @@
                         <RibbonMenuItem Click="ShowStoragePage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Edit_Label}"
                                         ImageSource=".\Resources\metadataStorageLocation.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_StorageLocation_Import_Header}"
                                         ImageSource=".\Resources\metadataStorageLocationImport.png" />
                         <RibbonMenuItem Click="ShowExportStoragePage"
@@ -229,6 +236,7 @@
                         <RibbonMenuItem Click="ShowCurrencyPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label}"
                                         ImageSource=".\Resources\metadataCurency.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Import_Header}"
                                         ImageSource=".\Resources\metadataCurencyImport.png" />
                         <RibbonMenuItem Click="ShowExportCurrenciesPage"
@@ -240,6 +248,7 @@
                         <RibbonMenuItem Click="ShowWorktypePage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Edit_Label}"
                                         ImageSource=".\Resources\metadataWorktype.png" />
+                        <RibbonSeparator />
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Worktype_Import_Header}"
                                         ImageSource=".\Resources\metadataWorktypeImport.png" />
                         <RibbonMenuItem Click="ShowExportWorktypesPage"
@@ -264,7 +273,7 @@
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Edit_Label}"
                                         ImageSource=".\Resources\brandEdit.png" />
                         <RibbonSeparator />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header}"
+                        <RibbonMenuItem Click="ShowImportBrandsPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header}"
                                         ImageSource=".\Resources\brandImport.png" />
                         <RibbonMenuItem Click="ShowExportBrandsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Export_Header}"

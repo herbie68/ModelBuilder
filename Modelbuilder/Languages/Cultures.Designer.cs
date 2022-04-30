@@ -1375,6 +1375,60 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met merken.
+        /// </summary>
+        public static string ImportBrands_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportBrands.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merk.
+        /// </summary>
+        public static string ImportBrands_Label {
+            get {
+                return ResourceManager.GetString("ImportBrands.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merk Bestaat al.
+        /// </summary>
+        public static string ImportBrands_Messagebox_Error_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ImportBrands.Messagebox.Error.AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen merk bestaat al in de tabel.
+        /// </summary>
+        public static string ImportBrands_Messagebox_Error_ExistingUnit {
+            get {
+                return ResourceManager.GetString("ImportBrands.Messagebox.Error.ExistingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand, deze bevat alleen de omschrijving van de merken.
+        /// </summary>
+        public static string ImportBrands_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportBrands.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer merken.
+        /// </summary>
+        public static string ImportBrands_Title {
+            get {
+                return ResourceManager.GetString("ImportBrands.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Te importeren bestanden.
         /// </summary>
         public static string ImportTimeEntry_FileDialog_Filtertext {
@@ -1564,47 +1618,20 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eenheid.
-        /// </summary>
-        public static string ImportTimeEntry_Unit_Label {
-            get {
-                return ResourceManager.GetString("ImportTimeEntry.Unit.Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Te importeren bestanden.
-        /// </summary>
-        public static string ImportUnits_FileDialog_Filtertext {
-            get {
-                return ResourceManager.GetString("ImportUnits.FileDialog.Filtertext", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geen bestand geselecteerd.
-        /// </summary>
-        public static string ImportUnits_Import_Button_Filename {
-            get {
-                return ResourceManager.GetString("ImportUnits.Import.Button.Filename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Selecteer bestand.
-        /// </summary>
-        public static string ImportUnits_Import_Button_Label {
-            get {
-                return ResourceManager.GetString("ImportUnits.Import.Button.Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met eenheden.
         /// </summary>
         public static string ImportUnits_Import_Button_Tooltip {
             get {
                 return ResourceManager.GetString("ImportUnits.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheid.
+        /// </summary>
+        public static string ImportUnits_Label {
+            get {
+                return ResourceManager.GetString("ImportUnits.Label", resourceCulture);
             }
         }
         
@@ -1623,96 +1650,6 @@ namespace Modelbuilder.Languages {
         public static string ImportUnits_Messagebox_Error_ExistingUnit {
             get {
                 return ResourceManager.GetString("ImportUnits.Messagebox.Error.ExistingUnit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to in regel.
-        /// </summary>
-        public static string ImportUnits_Messagebox_Error_Inline {
-            get {
-                return ResourceManager.GetString("ImportUnits.Messagebox.Error.Inline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fouten gevonden tijdens importeren.
-        /// </summary>
-        public static string ImportUnits_Messagebox_Error_Message {
-            get {
-                return ResourceManager.GetString("ImportUnits.Messagebox.Error.Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Onbekende fout.
-        /// </summary>
-        public static string ImportUnits_Messagebox_Error_Unknown {
-            get {
-                return ResourceManager.GetString("ImportUnits.Messagebox.Error.Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to regels verwerkt.
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Completed {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Completed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to regels overgeslagen vanwege fouten.
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Completed_Error {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Completed.Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to regels correct ingelezen.
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Completed_Ok {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Completed.Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geen regels ingelezen.
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Description {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Toegevoegd: .
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Prefix_Added {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Prefix.Added", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fout in regel.
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Prefix_Error {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Prefix.Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status: .
-        /// </summary>
-        public static string ImportUnits_Statusline_Status_Text {
-            get {
-                return ResourceManager.GetString("ImportUnits.Statusline.Status.Text", resourceCulture);
             }
         }
         

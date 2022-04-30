@@ -108,6 +108,12 @@ public partial class MainWindow : Window
 
     #region Metadata pages
     #region Brands
+    #region Call Import Brands
+    private void ShowImportBrandsPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportBrands();
+    }
+    #endregion
 
     #region Call Export Brands
     private void ShowExportBrandsPage(object sender, RoutedEventArgs e)
