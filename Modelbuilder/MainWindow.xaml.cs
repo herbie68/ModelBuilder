@@ -232,13 +232,12 @@ public partial class MainWindow : Window
     }
     #endregion
 
-    #region Call Contactts
+    #region Call Import Contacts
     private void ShowImportContactTypesPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new ImportContactTypes();
     }
     #endregion
-
     #endregion
 
     #region Products
@@ -248,6 +247,14 @@ public partial class MainWindow : Window
         Main.Content = new metadataProduct();
     }
     #endregion
+
+    #region Call Import Products
+    private void ShowImportProductsPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportProducts();
+    }
+    #endregion
+
 
     #region Call Export Products
     private void ShowExportProductsPage(object sender, RoutedEventArgs e)

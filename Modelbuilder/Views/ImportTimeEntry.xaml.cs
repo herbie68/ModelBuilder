@@ -3,7 +3,7 @@
 public partial class ImportTimeEntry : Page
 {
     private HelperGeneral _helperGeneral;
-
+    private HelperClass _helper;
     public ImportTimeEntry()
     {
         InitializeComponent();
@@ -61,76 +61,87 @@ public partial class ImportTimeEntry : Page
 
         foreach (string line in lines)
         {
-            dispLineCount.Text = l++.ToString();
-            string[] lineField = line.Split(";");
+            // Check if the first line is a header, if yes, skip writing the line to the database
+            _helper = new HelperClass();
+            string[] Columns = _helper.GetTimeEntryHeaders();
 
-            var lineString = lineField[1].ToString () + "  " + lineField[4].ToString () + " : " + lineField[2].ToString().Substring(0,5) + "-" + lineField[3].ToString ().Substring ( 0, 5 ); 
-
-            // Check if there is a record with the ProjectCode
-            var projectCodeCheck = _helperGeneral.CheckForRecords ( HelperGeneral.DbProjectTable, new string[1, 3]
-            {   { HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0].ToString() } } );
-            
-            if(projectCodeCheck > 0)
+            if (line.Contains(Columns[0]))
             {
-                // Existing Projectcode, get the ProjectId
-                ProjectId = _helperGeneral.GetValueFromTable ( HelperGeneral.DbProjectTable, new string[1, 3]
-                {   { HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0].ToString() } }, new string[1, 3]
-                {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } } );
-
-                dispProjectName.Text = lineField[0];
+                // Read line is header
             }
             else
             {
-                error = 1;
-                errorCount++;
-                errorList.Add((l, 1, Languages.Cultures.ImportTimeEntry_Project_Label + ": " + lineField[0].ToString() + ", " + lineString));
-            }
+                dispLineCount.Text = l++.ToString();
+                string[] lineField = line.Split(";");
 
-            // Check if there is a record with the WorkTypeName
-            var worktypeNameCheck = _helperGeneral.CheckForRecords ( HelperGeneral.DbWorktypeTable, new string[1, 3]
-            {   { HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldTypeName, lineField[4].ToString() } } );
+                var lineString = lineField[1].ToString() + "  " + lineField[4].ToString() + " : " + lineField[2].ToString().Substring(0, 5) + "-" + lineField[3].ToString().Substring(0, 5);
 
-            if (worktypeNameCheck > 0)
-            {
-                // Excisting WorktypeName get WorktypeId
-                WorkTypeId = _helperGeneral.GetValueFromTable ( HelperGeneral.DbWorktypeTable, new string[1, 3]
-                {   {HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldTypeName, lineField[4] } }, new string[1, 3]
-                {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } } );
-            }
-            else
-            {
-                error = 1;
-                errorCount++;
-                errorList.Add ( (l, 2, lineString) );
-            }
+                // Check if there is a record with the ProjectCode
+                var projectCodeCheck = _helperGeneral.CheckForRecords(HelperGeneral.DbProjectTable, new string[1, 3]
+                {   { HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0].ToString() } });
 
-            var StartTime = (int.Parse(lineField[2].ToString().Substring(0,2)) * 60) + int.Parse(lineField[2].ToString ().Substring ( 3, 2 ));
-            var EndTime = (int.Parse ( lineField[3].ToString ().Substring ( 0, 2 ) ) * 60) + int.Parse(lineField[3].ToString ().Substring ( 3, 2 ));
+                if (projectCodeCheck > 0)
+                {
+                    // Existing Projectcode, get the ProjectId
+                    ProjectId = _helperGeneral.GetValueFromTable(HelperGeneral.DbProjectTable, new string[1, 3]
+                    {   { HelperGeneral.DbProjectTableFieldNameCode, HelperGeneral.DbProjectTableFieldTypeCode, lineField[0].ToString() } }, new string[1, 3]
+                    {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } });
 
-            // Check if Starttime s before Endtime
-            if (StartTime >= EndTime)
-            {
-                error = 1;
-                errorCount++;
-                errorList.Add ( (l, 3, lineString) );
-            }
+                    dispProjectName.Text = lineField[0];
+                }
+                else
+                {
+                    error = 1;
+                    errorCount++;
+                    errorList.Add((l, 1, Languages.Cultures.ImportTimeEntry_Project_Label + ": " + lineField[0].ToString() + ", " + lineString));
+                }
 
-            if (error == 0)
-            {
-                dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Added + lineString;
+                // Check if there is a record with the WorkTypeName
+                var worktypeNameCheck = _helperGeneral.CheckForRecords(HelperGeneral.DbWorktypeTable, new string[1, 3]
+                {   { HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldTypeName, lineField[4].ToString() } });
 
-                _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[5, 3]
-                {   { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, lineField[1].ToString() },
+                if (worktypeNameCheck > 0)
+                {
+                    // Excisting WorktypeName get WorktypeId
+                    WorkTypeId = _helperGeneral.GetValueFromTable(HelperGeneral.DbWorktypeTable, new string[1, 3]
+                    {   {HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldTypeName, lineField[4] } }, new string[1, 3]
+                    {   { HelperGeneral.DbProjectTableFieldNameId, HelperGeneral.DbProjectTableFieldTypeId,"" } });
+                }
+                else
+                {
+                    error = 1;
+                    errorCount++;
+                    errorList.Add((l, 2, lineString));
+                }
+
+                var StartTime = (int.Parse(lineField[2].ToString().Substring(0, 2)) * 60) + int.Parse(lineField[2].ToString().Substring(3, 2));
+                var EndTime = (int.Parse(lineField[3].ToString().Substring(0, 2)) * 60) + int.Parse(lineField[3].ToString().Substring(3, 2));
+
+                // Check if Starttime s before Endtime
+                if (StartTime >= EndTime)
+                {
+                    error = 1;
+                    errorCount++;
+                    errorList.Add((l, 3, lineString));
+                }
+
+                if (error == 0)
+                {
+                    dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Added + lineString;
+
+                    _helperGeneral.InsertInTable(HelperGeneral.DbTimeTable, new string[5, 3]
+                    {   { HelperGeneral.DbTimeTableFieldNameWorkDate, HelperGeneral.DbTimeTableFieldTypeWorkDate, lineField[1].ToString() },
                     { HelperGeneral.DbTimeTableFieldNameProjectId, HelperGeneral.DbTimeTableFieldTypeProjectId,ProjectId},
                     { HelperGeneral.DbTimeTableFieldNameStartTime, HelperGeneral.DbTimeTableFieldTypeStartTime, lineField[2].ToString() },
                     { HelperGeneral.DbTimeTableFieldNameEndTime, HelperGeneral.DbTimeTableFieldTypeEndTime, lineField[3].ToString() },
                     { HelperGeneral.DbTimeTableFieldNameWorktypeId, HelperGeneral.DbTimeTableFieldTypeWorktypeId, WorkTypeId } });
-            }
-            else
-            { dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Error + " " + l + " : " + lineString; }
+                }
+                else
+                { dispStatusLine.Text = Languages.Cultures.ImportTimeEntry_Statusline_Status_Prefix_Error + " " + l + " : " + lineString; }
 
-            lineString = "";
-            error = 0;
+                lineString = "";
+                error = 0;
+            }
         }
         dispLineCount.Text = dispTotalLinesCount.Text;
 

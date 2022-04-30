@@ -2612,4 +2612,25 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header" xml:space="preserve">
     <value>Kontakte von Lieferanten importieren</value>
   </data>
+  <data name="ImportProducts.Title" xml:space="preserve">
+    <value>Artikel importieren</value>
+  </data>
+  <data name="ImportProducts.SubTitle" xml:space="preserve">
+    <value>Importieren Sie Artikeldaten aus einer CSV-Datei</value>
+  </data>
+  <data name="ImportProducts.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Gelesener Artikel existiert bereits in der Tabelle</value>
+  </data>
+  <data name="ImportProducts.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Artikel existiert bereits</value>
+  </data>
+  <data name="ImportProducts.Label" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="ImportProducts.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei mit den zu importierenden Artikeln aus</value>
+  </data>
+  <data name="Import.Messagebox.Error.HeaderError" xml:space="preserve">
+    <value>Falsche Anzahl von Feldern in der CSV-Datei</value>
+  </data>
 </root>

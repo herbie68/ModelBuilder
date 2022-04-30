@@ -404,5 +404,51 @@ internal class HelperClass
         return Header;
     }
     #endregion
+
+    #region Product Headers
+    public string[] GetProductHeaders()
+    {
+        string[] Header = new string[] 
+        { 
+            HelperGeneral.DbProductTableFieldNameCode,
+            HelperGeneral.DbProductTableFieldNameName,
+            HelperGeneral.DbProductTableFieldNameDimensions,
+            HelperGeneral.DbProductTableFieldNamePrice,
+            HelperGeneral.DbProductTableFieldNameMinimalStock,
+            HelperGeneral.DbProductTableFieldNameStandardOrderQuantity,
+            HelperGeneral.DbProductTableFieldNameProjectCosts,
+            HelperGeneral.DbProductTableFieldNameUnitId,
+            HelperGeneral.DbProductTableFieldNameBrandId,
+            HelperGeneral.DbProductTableFieldNameCategoryId,
+            HelperGeneral.DbProductTableFieldNameStorageId 
+        };
+        return Header;
+    }
+    #endregion
+
+    #region TimeEntry Headers
+    public string[] GetTimeEntryHeaders()
+    {
+        string[] Header = new string[] 
+        { 
+            HelperGeneral.DbTimeTableFieldNameProjectId, 
+            HelperGeneral.DbTimeTableFieldNameWorktypeId, 
+            HelperGeneral.DbTimeTableFieldNameWorkDate, 
+            HelperGeneral.DbTimeTableFieldNameStartTime, 
+            HelperGeneral.DbTimeTableFieldNameEndTime, 
+            HelperGeneral.DbTimeTableFieldNameComment 
+        };
+        return Header;
+    }
+    #endregion
+
+    #region Unit Headers
+    public string[] GetUnitHeaders()
+    {
+        string[] Header = new string[] { HelperGeneral.DbUnitTableFieldNameUnitName };
+        return Header;
+    }
+    #endregion
+
     #endregion
 }

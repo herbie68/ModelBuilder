@@ -1258,6 +1258,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Onjuist aantal velden in CSV bestand.
+        /// </summary>
+        public static string Import_Messagebox_Error_HeaderError {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.HeaderError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to in regel.
         /// </summary>
         public static string Import_Messagebox_Error_Inline {
@@ -1479,6 +1488,60 @@ namespace Modelbuilder.Languages {
         public static string ImportContactTypes_Title {
             get {
                 return ResourceManager.GetString("ImportContactTypes.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met artikelen.
+        /// </summary>
+        public static string ImportProducts_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportProducts.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikel.
+        /// </summary>
+        public static string ImportProducts_Label {
+            get {
+                return ResourceManager.GetString("ImportProducts.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikel bestaat al.
+        /// </summary>
+        public static string ImportProducts_Messagebox_Error_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ImportProducts.Messagebox.Error.AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen artikel bestaat al in de tabel.
+        /// </summary>
+        public static string ImportProducts_Messagebox_Error_ExistingUnit {
+            get {
+                return ResourceManager.GetString("ImportProducts.Messagebox.Error.ExistingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer artikeldata data vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportProducts_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportProducts.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer artikelen.
+        /// </summary>
+        public static string ImportProducts_Title {
+            get {
+                return ResourceManager.GetString("ImportProducts.Title", resourceCulture);
             }
         }
         
