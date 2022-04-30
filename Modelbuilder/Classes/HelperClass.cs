@@ -387,4 +387,14 @@ internal class HelperClass
         }
         sw.Close();
     }
+
+    #region Headers for Import/Export
+    #region Brand Headers
+    public string[] GetBrandHeaders()
+    {
+        string[] Header = new string[] { HelperGeneral.DbBrandTableFieldNameName };
+        return Header;
+    }
+    #endregion
+    #endregion
 }

@@ -2269,47 +2269,8 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
     <value>Omschrijving</value>
   </data>
-  <data name="ImportUnits.FileDialog.Filtertext" xml:space="preserve">
-    <value>Te importeren bestanden</value>
-  </data>
-  <data name="ImportUnits.Import.Button.Filename" xml:space="preserve">
-    <value>Geen bestand geselecteerd</value>
-  </data>
-  <data name="ImportUnits.Import.Button.Label" xml:space="preserve">
-    <value>Selecteer bestand</value>
-  </data>
   <data name="ImportUnits.Import.Button.Tooltip" xml:space="preserve">
     <value>Selecteer het te importeren CSV bestand met eenheden</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Inline" xml:space="preserve">
-    <value>in regel</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Message" xml:space="preserve">
-    <value>Fouten gevonden tijdens importeren</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Unknown" xml:space="preserve">
-    <value>Onbekende fout</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed" xml:space="preserve">
-    <value>regels verwerkt</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed.Error" xml:space="preserve">
-    <value>regels overgeslagen vanwege fouten</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed.Ok" xml:space="preserve">
-    <value>regels correct ingelezen</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Description" xml:space="preserve">
-    <value>Geen regels ingelezen</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Prefix.Added" xml:space="preserve">
-    <value>Toegevoegd: </value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Prefix.Error" xml:space="preserve">
-    <value>Fout in regel</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Text" xml:space="preserve">
-    <value>Status: </value>
   </data>
   <data name="ImportUnits.SubTitle" xml:space="preserve">
     <value>Importeer data vanuit een CSV bestand, deze bevat alleen de omschrijving van de eenheid</value>
@@ -2359,7 +2320,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="Import.Statusline.Status.Text" xml:space="preserve">
     <value>Status: </value>
   </data>
-  <data name="ImportTimeEntry.Unit.Label" xml:space="preserve">
+  <data name="ImportUnits.Label" xml:space="preserve">
     <value>Eenheid</value>
   </data>
   <data name="ImportUnits.Messagebox.Error.AlreadyExists" xml:space="preserve">
@@ -2610,5 +2571,23 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="ExportProductsSupplier.Title" xml:space="preserve">
     <value>Exporteer artikelen per leverancier</value>
+  </data>
+  <data name="ImportBrands.Title" xml:space="preserve">
+    <value>Importeer merken</value>
+  </data>
+  <data name="ImportBrands.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand, deze bevat alleen de omschrijving van de merken</value>
+  </data>
+  <data name="ImportBrands.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Ingelezen merk bestaat al in de tabel</value>
+  </data>
+  <data name="ImportBrands.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Merk Bestaat al</value>
+  </data>
+  <data name="ImportBrands.Label" xml:space="preserve">
+    <value>Merk</value>
+  </data>
+  <data name="ImportBrands.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met merken</value>
   </data>
 </root>

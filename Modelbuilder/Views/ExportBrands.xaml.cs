@@ -57,10 +57,11 @@ public partial class ExportBrands : Page
             DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() +
             " - " + Languages.Cultures.ExportBrands_FileName + ".csv";
 
-        string[] Columns = new string[] { HelperGeneral.DbBrandTableFieldNameName };
-     
-        dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
         helper = new HelperClass();
+        string[] Columns = helper.GetBrandHeaders();
+        // string[] Columns = new string[] { HelperGeneral.DbBrandTableFieldNameName };
+
+        dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
         helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 

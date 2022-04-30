@@ -2269,47 +2269,8 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="metadataUnit.Datagrid.Header.Name" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="ImportUnits.FileDialog.Filtertext" xml:space="preserve">
-    <value>Files to import</value>
-  </data>
-  <data name="ImportUnits.Import.Button.Filename" xml:space="preserve">
-    <value>No file selected</value>
-  </data>
-  <data name="ImportUnits.Import.Button.Label" xml:space="preserve">
-    <value>Select File</value>
-  </data>
   <data name="ImportUnits.Import.Button.Tooltip" xml:space="preserve">
     <value>Select the Units CSV file to be imported</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Inline" xml:space="preserve">
-    <value>in line</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Message" xml:space="preserve">
-    <value>Errors found during import</value>
-  </data>
-  <data name="ImportUnits.Messagebox.Error.Unknown" xml:space="preserve">
-    <value>Unknown error</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed" xml:space="preserve">
-    <value>lines completed</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed.Error" xml:space="preserve">
-    <value>lines skipped because of error</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Completed.Ok" xml:space="preserve">
-    <value>lines read correctly</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Description" xml:space="preserve">
-    <value>No lines read</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Prefix.Added" xml:space="preserve">
-    <value>Added: </value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Prefix.Error" xml:space="preserve">
-    <value>Error in line</value>
-  </data>
-  <data name="ImportUnits.Statusline.Status.Text" xml:space="preserve">
-    <value>Status: </value>
   </data>
   <data name="ImportUnits.SubTitle" xml:space="preserve">
     <value>Select the time registration CSV file to import</value>
@@ -2359,7 +2320,7 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="Import.Statusline.Status.Text" xml:space="preserve">
     <value>Status: </value>
   </data>
-  <data name="ImportTimeEntry.Unit.Label" xml:space="preserve">
+  <data name="ImportUnits.Label" xml:space="preserve">
     <value>Unit</value>
   </data>
   <data name="ImportUnits.Messagebox.Error.AlreadyExists" xml:space="preserve">
@@ -2610,5 +2571,23 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="ExportProductsSupplier.Title" xml:space="preserve">
     <value>Export items by supplier</value>
+  </data>
+  <data name="ImportBrands.Title" xml:space="preserve">
+    <value>Import brands</value>
+  </data>
+  <data name="ImportBrands.SubTitle" xml:space="preserve">
+    <value>Import data from a CSV file, which only contains the description of the brands</value>
+  </data>
+  <data name="ImportBrands.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Read-in brand already exists in the table</value>
+  </data>
+  <data name="ImportBrands.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Brand Already Exists</value>
+  </data>
+  <data name="ImportBrands.Label" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="ImportBrands.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file to import with brands</value>
   </data>
 </root>
