@@ -212,9 +212,15 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
                         <RibbonSeparator />
+                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Import_Header}"
+                                        ImageSource=".\Resources\metadataSupplierImport.png" />
                         <RibbonMenuItem Click="ShowExportSupplierContactsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
+                        <RibbonSeparator />
+                        <RibbonMenuItem Click="ShowImportContactTypesPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Import_Header}"
+                                        ImageSource=".\Resources\metadataSupplierImport.png" />
                         <RibbonMenuItem Click="ShowExportContactTypesPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_ContactType_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
@@ -273,7 +279,8 @@
                         <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Edit_Label}"
                                         ImageSource=".\Resources\brandEdit.png" />
                         <RibbonSeparator />
-                        <RibbonMenuItem Click="ShowImportBrandsPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header}"
+                        <RibbonMenuItem Click="ShowImportBrandsPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Import_Header}"
                                         ImageSource=".\Resources\brandImport.png" />
                         <RibbonMenuItem Click="ShowExportBrandsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Brand_Export_Header}"

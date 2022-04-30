@@ -8,7 +8,7 @@ public partial class ExportContacttypes : Page
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
     private int _dbRowCount;
-    private HelperClass helper;
+    private HelperClass _helper;
 
     public ExportContacttypes()
     {
@@ -58,11 +58,11 @@ public partial class ExportContacttypes : Page
             DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() +
             " - " + Languages.Cultures.ExportContactTypes_FileName + ".csv";
 
-        string[] Columns = new string[] { HelperGeneral.DbContactTypeTableFieldNameName };
-     
+        _helper = new HelperClass();
+        string[] Columns = _helper.GetContactTypeHeaders();
+
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
-        helper = new HelperClass();
-        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
+        _helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 
         dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;

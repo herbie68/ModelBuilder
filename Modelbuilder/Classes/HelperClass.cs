@@ -396,5 +396,13 @@ internal class HelperClass
         return Header;
     }
     #endregion
+
+    #region Contacttype Headers
+    public string[] GetContactTypeHeaders()
+    {
+        string[] Header = new string[] { HelperGeneral.DbContactTypeTableFieldNameName };
+        return Header;
+    }
+    #endregion
     #endregion
 }

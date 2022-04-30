@@ -2591,4 +2591,25 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ImportBrands.Import.Button.Tooltip" xml:space="preserve">
     <value>Wählen Sie die CSV-Datei aus, die mit Marken importiert werden soll</value>
   </data>
+  <data name="ImportContactTypes.Title" xml:space="preserve">
+    <value>Kontaktarten importieren</value>
+  </data>
+  <data name="ImportContactTypes.SubTitle" xml:space="preserve">
+    <value>Importieren Sie Daten aus einer CSV-Datei, die nur die Beschreibung der Kontakttypen enthält</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Eingelesener Kontakttyp ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Kontakttyp ist bereits vorhanden</value>
+  </data>
+  <data name="ImportContactTypes.Label" xml:space="preserve">
+    <value>Kontaktart</value>
+  </data>
+  <data name="ImportContactTypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei aus, die mit Contacttypes importiert werden soll</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header" xml:space="preserve">
+    <value>Kontakte von Lieferanten importieren</value>
+  </data>
 </root>

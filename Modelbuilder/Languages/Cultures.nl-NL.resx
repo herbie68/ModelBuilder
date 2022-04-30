@@ -2590,4 +2590,25 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ImportBrands.Import.Button.Tooltip" xml:space="preserve">
     <value>Selecteer het te importeren CSV bestand met merken</value>
   </data>
+  <data name="ImportContactTypes.Title" xml:space="preserve">
+    <value>Importeer functies</value>
+  </data>
+  <data name="ImportContactTypes.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand, deze bevat alleen de omschrijving van de functies voor contactpersonen</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Ingelezen functie bestaat al in de tabel</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Functie Bestaat al</value>
+  </data>
+  <data name="ImportContactTypes.Label" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="ImportContactTypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met functies voor contactpersonen</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header" xml:space="preserve">
+    <value>Importeer contactpersonen leveranciers</value>
+  </data>
 </root>
