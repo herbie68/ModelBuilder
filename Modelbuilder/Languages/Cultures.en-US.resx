@@ -2590,4 +2590,25 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ImportBrands.Import.Button.Tooltip" xml:space="preserve">
     <value>Select the CSV file to import with brands</value>
   </data>
+  <data name="ImportContactTypes.Title" xml:space="preserve">
+    <value>Import Contacttypes</value>
+  </data>
+  <data name="ImportContactTypes.SubTitle" xml:space="preserve">
+    <value>Import data from a CSV file, which only contains the description of the Contacttypes</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.ExistingUnit" xml:space="preserve">
+    <value>Read-in Contacttype already exists in the table</value>
+  </data>
+  <data name="ImportContactTypes.Messagebox.Error.AlreadyExists" xml:space="preserve">
+    <value>Contacttype Already Exists</value>
+  </data>
+  <data name="ImportContactTypes.Label" xml:space="preserve">
+    <value>Contacttype</value>
+  </data>
+  <data name="ImportContactTypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file to import with Contacttypes</value>
+  </data>
+  <data name="main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header" xml:space="preserve">
+    <value>Import supplier contacts</value>
+  </data>
 </root>

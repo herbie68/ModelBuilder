@@ -1429,6 +1429,60 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met functies voor contactpersonen.
+        /// </summary>
+        public static string ImportContactTypes_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie.
+        /// </summary>
+        public static string ImportContactTypes_Label {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie Bestaat al.
+        /// </summary>
+        public static string ImportContactTypes_Messagebox_Error_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.Messagebox.Error.AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen functie bestaat al in de tabel.
+        /// </summary>
+        public static string ImportContactTypes_Messagebox_Error_ExistingUnit {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.Messagebox.Error.ExistingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand, deze bevat alleen de omschrijving van de functies voor contactpersonen.
+        /// </summary>
+        public static string ImportContactTypes_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer functies.
+        /// </summary>
+        public static string ImportContactTypes_Title {
+            get {
+                return ResourceManager.GetString("ImportContactTypes.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Te importeren bestanden.
         /// </summary>
         public static string ImportTimeEntry_FileDialog_Filtertext {
@@ -2163,6 +2217,15 @@ namespace Modelbuilder.Languages {
         public static string main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header {
             get {
                 return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Export.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer contactpersonen leveranciers.
+        /// </summary>
+        public static string main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Import_Header {
+            get {
+                return ResourceManager.GetString("main.Ribbon.Tab.Manage.Metadata.Metadata.SupplierContacts.Import.Header", resourceCulture);
             }
         }
         

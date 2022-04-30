@@ -231,6 +231,14 @@ public partial class MainWindow : Window
         Main.Content = new ExportContacttypes();
     }
     #endregion
+
+    #region Call Contactts
+    private void ShowImportContactTypesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportContactTypes();
+    }
+    #endregion
+
     #endregion
 
     #region Products
