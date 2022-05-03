@@ -2632,4 +2632,130 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="Import.Messagebox.Error.HeaderError" xml:space="preserve">
     <value>Incorrect number of fields in CSV file</value>
   </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists" xml:space="preserve">
+    <value>Article already exists</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists.Long" xml:space="preserve">
+    <value>Read article already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists" xml:space="preserve">
+    <value>Worktype already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists.Long" xml:space="preserve">
+    <value>Read worktype already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists" xml:space="preserve">
+    <value>Brand already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in brand already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists" xml:space="preserve">
+    <value>Unit already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in unit already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists" xml:space="preserve">
+    <value>Category already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in category already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists" xml:space="preserve">
+    <value>Storage already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in storage already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists" xml:space="preserve">
+    <value>Project already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists.Long" xml:space="preserve">
+    <value>Not existing Product Code</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists" xml:space="preserve">
+    <value>Contacttype Already Exists</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in Contacttype already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists" xml:space="preserve">
+    <value>Not existing  Product code</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists.Long" xml:space="preserve">
+    <value>Product code does not exist in the product table</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists" xml:space="preserve">
+    <value>Wrong Worktype name</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists.Long" xml:space="preserve">
+    <value>Not existing  Worktype Name</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists" xml:space="preserve">
+    <value>Not existing Brand</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists.Long" xml:space="preserve">
+    <value>Brand code does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists" xml:space="preserve">
+    <value>Not existing Unit Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists.Long" xml:space="preserve">
+    <value>Unit code does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists" xml:space="preserve">
+    <value>Not existing Category Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists.Long" xml:space="preserve">
+    <value>Category code does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists" xml:space="preserve">
+    <value>Not existing Storage Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists.Long" xml:space="preserve">
+    <value>Storage Id does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists" xml:space="preserve">
+    <value>Wrong project code</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists.Long" xml:space="preserve">
+    <value>Project code does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists" xml:space="preserve">
+    <value>Wrong contacttype Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists.Long" xml:space="preserve">
+    <value>Contacttype Id does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError" xml:space="preserve">
+    <value>End time earlier or equal than the start time</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Long" xml:space="preserve">
+    <value>An unknown error occured</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError.Long" xml:space="preserve">
+    <value>End time earlier or equal than the start time</value>
+  </data>
+  <data name="Import.Messagebox.Error.HeaderError.Long" xml:space="preserve">
+    <value>Incorrect number of fields in CSV file</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Label" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="ImportWorktypes.Label" xml:space="preserve">
+    <value>Worktype</value>
+  </data>
+  <data name="ImportCategories.Label" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ImportStorages.Label" xml:space="preserve">
+    <value>Storage</value>
+  </data>
+  <data name="ImportProjects.Label" xml:space="preserve">
+    <value>Project</value>
+  </data>
 </root>

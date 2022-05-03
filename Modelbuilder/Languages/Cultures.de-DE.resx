@@ -2633,4 +2633,130 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="Import.Messagebox.Error.HeaderError" xml:space="preserve">
     <value>Falsche Anzahl von Feldern in der CSV-Datei</value>
   </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists" xml:space="preserve">
+    <value>Artikel existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesener Artikel existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists" xml:space="preserve">
+    <value>Arbeitsart existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesener Arbeitsart existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists" xml:space="preserve">
+    <value>Marke existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists.Long" xml:space="preserve">
+    <value>Einlesende Marke ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists" xml:space="preserve">
+    <value>Einheit existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists.Long" xml:space="preserve">
+    <value>Einlesende Einheit ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists" xml:space="preserve">
+    <value>Kategorie existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists.Long" xml:space="preserve">
+    <value>Einlesende Kategorie ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists" xml:space="preserve">
+    <value>Lagerort existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists.Long" xml:space="preserve">
+    <value>Einlesener Lagerort ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists" xml:space="preserve">
+    <value>Projekt existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesener Projekt existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists" xml:space="preserve">
+    <value>Kontakttyp ist bereits vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists.Long" xml:space="preserve">
+    <value>Eingelesener Kontakttyp ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists" xml:space="preserve">
+    <value>Falscher Artikelcode</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists.Long" xml:space="preserve">
+    <value>Artikelcode existiert nich in die tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists" xml:space="preserve">
+    <value>Falscher Arbeitstypname</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists.Long" xml:space="preserve">
+    <value>Nicht vorhandener Arbeitstypname</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists" xml:space="preserve">
+    <value>Nicht vorhandene Marke</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists.Long" xml:space="preserve">
+    <value>Markencode ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists" xml:space="preserve">
+    <value>Einheits-ID nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists.Long" xml:space="preserve">
+    <value>Einheitencode existiert nicht in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists" xml:space="preserve">
+    <value>Kategorie-ID nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists.Long" xml:space="preserve">
+    <value>Kategoriecode existiert nicht in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists" xml:space="preserve">
+    <value>Nicht vorhandene Speicher-ID</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists.Long" xml:space="preserve">
+    <value>Die Speicher-ID existiert nicht in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists" xml:space="preserve">
+    <value>Falscher Projektcode</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists.Long" xml:space="preserve">
+    <value>Projektcode ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists" xml:space="preserve">
+    <value>Falsche Kontakttyp-ID</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists.Long" xml:space="preserve">
+    <value>Die Kontakttyp-ID ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError" xml:space="preserve">
+    <value>Endzeit früher oder gleich der Startzeit</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default" xml:space="preserve">
+    <value>Unbekanter fehler</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Long" xml:space="preserve">
+    <value>Ein unbekanten Fehler is aufgetreten</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError.Long" xml:space="preserve">
+    <value>Endzeit früher oder gleich der Startzeit</value>
+  </data>
+  <data name="Import.Messagebox.Error.HeaderError.Long" xml:space="preserve">
+    <value>Falsche Anzahl von Feldern in der CSV-Datei</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Label" xml:space="preserve">
+    <value>Unbekant</value>
+  </data>
+  <data name="ImportWorktypes.Label" xml:space="preserve">
+    <value>Arbeitsart</value>
+  </data>
+  <data name="ImportCategories.Label" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="ImportStorages.Label" xml:space="preserve">
+    <value>Lager</value>
+  </data>
+  <data name="ImportProjects.Label" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
 </root>

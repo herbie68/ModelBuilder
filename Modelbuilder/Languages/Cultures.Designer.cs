@@ -1258,11 +1258,155 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merk Bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_BrandAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.BrandAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen merk bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_BrandAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.BrandAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merk bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_BrandNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.BrandNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merk komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_BrandNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.BrandNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen categorie bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie Bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_ContacttypeAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ContacttypeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen functie bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ContacttypeAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ContacttypeAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_ContacttypeNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ContacttypeNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functie Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ContacttypeNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ContacttypeNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onbekende fout.
+        /// </summary>
+        public static string Import_Messagebox_Error_Default {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onbekend.
+        /// </summary>
+        public static string Import_Messagebox_Error_Default_Label {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.Default.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Er is een onbekende fout opgetreden.
+        /// </summary>
+        public static string Import_Messagebox_Error_Default_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.Default.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Onjuist aantal velden in CSV bestand.
         /// </summary>
         public static string Import_Messagebox_Error_HeaderError {
             get {
                 return ResourceManager.GetString("Import.Messagebox.Error.HeaderError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onjuist aantal velden in CSV bestand.
+        /// </summary>
+        public static string Import_Messagebox_Error_HeaderError_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.HeaderError.Long", resourceCulture);
             }
         }
         
@@ -1285,11 +1429,209 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artikel bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProductAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProductAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen artikel bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProductAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProductAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikel bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProductNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProductNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelcode komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProductNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProductNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProjectAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProjectAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen project bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProjectAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProjectAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foutieve project code.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProjectNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProjectNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project code komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_ProjectNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.ProjectNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eindtijd eerder of gelijk dan de starttijd.
+        /// </summary>
+        public static string Import_Messagebox_Error_StartEndTimeError {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StartEndTimeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eindtijd eerder of gelijk dan de starttijd.
+        /// </summary>
+        public static string Import_Messagebox_Error_StartEndTimeError_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StartEndTimeError.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslag bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_StorageAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StorageAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen opslag bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_StorageAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StorageAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslag bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_StorageNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StorageNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslag komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_StorageNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.StorageNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eeneid bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_UnitAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.UnitAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen eenheid bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_UnitAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.UnitAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheid bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_UnitNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.UnitNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eenheid komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_UnitNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.UnitNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Onbekende fout.
         /// </summary>
         public static string Import_Messagebox_Error_Unknown {
             get {
                 return ResourceManager.GetString("Import.Messagebox.Error.Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen werksoort bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foutieve Werksoort naam.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoortnaam komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeNotExists.Long", resourceCulture);
             }
         }
         
@@ -1438,6 +1780,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string ImportCategories_Label {
+            get {
+                return ResourceManager.GetString("ImportCategories.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met functies voor contactpersonen.
         /// </summary>
         public static string ImportContactTypes_Import_Button_Tooltip {
@@ -1542,6 +1893,24 @@ namespace Modelbuilder.Languages {
         public static string ImportProducts_Title {
             get {
                 return ResourceManager.GetString("ImportProducts.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ImportProjects_Label {
+            get {
+                return ResourceManager.GetString("ImportProjects.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opslag.
+        /// </summary>
+        public static string ImportStorages_Label {
+            get {
+                return ResourceManager.GetString("ImportStorages.Label", resourceCulture);
             }
         }
         
@@ -1785,6 +2154,15 @@ namespace Modelbuilder.Languages {
         public static string ImportUnits_Title {
             get {
                 return ResourceManager.GetString("ImportUnits.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort.
+        /// </summary>
+        public static string ImportWorktypes_Label {
+            get {
+                return ResourceManager.GetString("ImportWorktypes.Label", resourceCulture);
             }
         }
         
