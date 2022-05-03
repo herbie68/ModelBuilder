@@ -166,7 +166,8 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Edit_Label}"
                                         ImageSource=".\Resources\metadataProducts.png" />
                         <RibbonSeparator />
-                        <RibbonMenuItem Click="ShowImportProductsPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Import_Header}"
+                        <RibbonMenuItem Click="ShowImportProductsPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Import_Header}"
                                         ImageSource=".\Resources\metadataProductsImport.png" />
                         <RibbonMenuItem Click="ShowExportProductsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Export_Header}"
@@ -212,7 +213,8 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Supplier_Export_Header}"
                                         ImageSource=".\Resources\metadataSupplierExport.png" />
                         <RibbonSeparator />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Import_Header}"
+                        <RibbonMenuItem Click="ShowImportSuppliersPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Import_Header}"
                                         ImageSource=".\Resources\metadataSupplierImport.png" />
                         <RibbonMenuItem Click="ShowExportSupplierContactsPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_SupplierContacts_Export_Header}"

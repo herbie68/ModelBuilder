@@ -1366,6 +1366,78 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Land bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_CountryAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CountryAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen land bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CountryAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CountryAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrent Land Id.
+        /// </summary>
+        public static string Import_Messagebox_Error_CountryNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CountryNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CountryNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CountryNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_CurrencyAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CurrencyAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen valuta bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CurrencyAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CurrencyAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect Valuta Id.
+        /// </summary>
+        public static string Import_Messagebox_Error_CurrencyNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CurrencyNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CurrencyNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CurrencyNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Onbekende fout.
         /// </summary>
         public static string Import_Messagebox_Error_Default {
@@ -1551,6 +1623,42 @@ namespace Modelbuilder.Languages {
         public static string Import_Messagebox_Error_StorageNotExists_Long {
             get {
                 return ResourceManager.GetString("Import.Messagebox.Error.StorageNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_SupplierAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.SupplierAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen leverancier bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_SupplierAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.SupplierAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect Leverancier Id.
+        /// </summary>
+        public static string Import_Messagebox_Error_SupplierNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.SupplierNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_SupplierNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.SupplierNotExists.Long", resourceCulture);
             }
         }
         
@@ -1843,6 +1951,78 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met landen.
+        /// </summary>
+        public static string ImportCountries_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportCountries.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landen.
+        /// </summary>
+        public static string ImportCountries_Label {
+            get {
+                return ResourceManager.GetString("ImportCountries.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer landendata data vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportCountries_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportCountries.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer landen.
+        /// </summary>
+        public static string ImportCountries_Title {
+            get {
+                return ResourceManager.GetString("ImportCountries.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met valuta.
+        /// </summary>
+        public static string ImportCurrencies_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportCurrencies.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valuta.
+        /// </summary>
+        public static string ImportCurrencies_Label {
+            get {
+                return ResourceManager.GetString("ImportCurrencies.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer valutadata data vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportCurrencies_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportCurrencies.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer valuta.
+        /// </summary>
+        public static string ImportCurrencies_Title {
+            get {
+                return ResourceManager.GetString("ImportCurrencies.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met artikelen.
         /// </summary>
         public static string ImportProducts_Import_Button_Tooltip {
@@ -1911,6 +2091,42 @@ namespace Modelbuilder.Languages {
         public static string ImportStorages_Label {
             get {
                 return ResourceManager.GetString("ImportStorages.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met leveranciers.
+        /// </summary>
+        public static string ImportSuppliers_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportSuppliers.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leverancier.
+        /// </summary>
+        public static string ImportSuppliers_Label {
+            get {
+                return ResourceManager.GetString("ImportSuppliers.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer leveranciers vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportSuppliers_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportSuppliers.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer leveranciers.
+        /// </summary>
+        public static string ImportSuppliers_Title {
+            get {
+                return ResourceManager.GetString("ImportSuppliers.Title", resourceCulture);
             }
         }
         

@@ -2615,7 +2615,7 @@ To be able to enter a new time registration Select a date and project first</val
     <value>Import articles</value>
   </data>
   <data name="ImportProducts.SubTitle" xml:space="preserve">
-    <value>Import article data data from a CSV file</value>
+    <value>Import article data from a CSV file</value>
   </data>
   <data name="ImportProducts.Messagebox.Error.ExistingUnit" xml:space="preserve">
     <value>Read article already exists in the table</value>
@@ -2757,5 +2757,77 @@ To be able to enter a new time registration Select a date and project first</val
   </data>
   <data name="ImportProjects.Label" xml:space="preserve">
     <value>Project</value>
+  </data>
+  <data name="ImportSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file with suppliers to import</value>
+  </data>
+  <data name="ImportSuppliers.Label" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="ImportSuppliers.SubTitle" xml:space="preserve">
+    <value>Import suppliers from a CSV file</value>
+  </data>
+  <data name="ImportSuppliers.Title" xml:space="preserve">
+    <value>Import suppliers</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists" xml:space="preserve">
+    <value>Supplier already exists</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists.Long" xml:space="preserve">
+    <value>Read supplier already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists" xml:space="preserve">
+    <value>Currency already exists</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists.Long" xml:space="preserve">
+    <value>Read currency already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists" xml:space="preserve">
+    <value>Country already exists</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists.Long" xml:space="preserve">
+    <value>Read country already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists" xml:space="preserve">
+    <value>Incorrect Currency Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists.Long" xml:space="preserve">
+    <value>Currency Id does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists" xml:space="preserve">
+    <value>Non existing Country Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists.Long" xml:space="preserve">
+    <value>Country Id does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists" xml:space="preserve">
+    <value>Supplier Id does not excist</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists.Long" xml:space="preserve">
+    <value>Supplier Id does not exist in the table</value>
+  </data>
+  <data name="ImportCurrencies.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file to import with currency</value>
+  </data>
+  <data name="ImportCurrencies.Label" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="ImportCurrencies.SubTitle" xml:space="preserve">
+    <value>Import value data from a CSV file</value>
+  </data>
+  <data name="ImportCurrencies.Title" xml:space="preserve">
+    <value>Import currency</value>
+  </data>
+  <data name="ImportCountries.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file with countries to import</value>
+  </data>
+  <data name="ImportCountries.Label" xml:space="preserve">
+    <value>Nations</value>
+  </data>
+  <data name="ImportCountries.SubTitle" xml:space="preserve">
+    <value>Import country data from a CSV file</value>
+  </data>
+  <data name="ImportCountries.Title" xml:space="preserve">
+    <value>Import countries</value>
   </data>
 </root>

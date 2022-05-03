@@ -2759,4 +2759,76 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ImportProjects.Label" xml:space="preserve">
     <value>Projekt</value>
   </data>
+  <data name="ImportSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei mit den zu importierenden Lieferanten aus</value>
+  </data>
+  <data name="ImportSuppliers.Label" xml:space="preserve">
+    <value>Lieferant</value>
+  </data>
+  <data name="ImportSuppliers.SubTitle" xml:space="preserve">
+    <value>Importieren Sie Lieferantendaten aus einer CSV-Datei</value>
+  </data>
+  <data name="ImportSuppliers.Title" xml:space="preserve">
+    <value>Importieren Lieferanten</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists" xml:space="preserve">
+    <value>Lieferant existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesener Lieferant existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists" xml:space="preserve">
+    <value>Währung existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesener Währung existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists" xml:space="preserve">
+    <value>Land existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists.Long" xml:space="preserve">
+    <value>Gelesenes Land existiert bereits in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists" xml:space="preserve">
+    <value>Falscher Währungs Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists.Long" xml:space="preserve">
+    <value>Währungs Id ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists" xml:space="preserve">
+    <value>Falsches Land Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists.Long" xml:space="preserve">
+    <value>Land Id ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists" xml:space="preserve">
+    <value>Falscher LieferantenId</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists.Long" xml:space="preserve">
+    <value>LieferantenId ist in der Tabelle nicht vorhanden</value>
+  </data>
+  <data name="ImportCurrencies.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei aus, die mit Währung importiert werden soll</value>
+  </data>
+  <data name="ImportCurrencies.Label" xml:space="preserve">
+    <value>Währungen</value>
+  </data>
+  <data name="ImportCurrencies.SubTitle" xml:space="preserve">
+    <value>Wertdaten aus einer CSV-Datei importieren</value>
+  </data>
+  <data name="ImportCurrencies.Title" xml:space="preserve">
+    <value>Währung importieren</value>
+  </data>
+  <data name="ImportCountries.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei mit den zu importierenden Ländern aus</value>
+  </data>
+  <data name="ImportCountries.Label" xml:space="preserve">
+    <value>Nationen</value>
+  </data>
+  <data name="ImportCountries.SubTitle" xml:space="preserve">
+    <value>Länderdaten aus einer CSV-Datei importieren</value>
+  </data>
+  <data name="ImportCountries.Title" xml:space="preserve">
+    <value>Länder importieren</value>
+  </data>
 </root>

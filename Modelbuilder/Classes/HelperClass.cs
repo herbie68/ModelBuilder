@@ -426,6 +426,29 @@ internal class HelperClass
     }
     #endregion
 
+    #region Supplier Headers
+    public string[] GetSupplierHeaders()
+    {
+        // 0 = Code, 1 = Name, 2 = Address1, 3 = Address2, 4 = Zip, 5 = City, 6 = URL, 7 = Shipping Costs, 8 = Min Shipping Costs, 9= Order Costs, 10 = CurrencyId, 11 = CountryId 
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbSupplierFieldNameCode,
+            HelperGeneral.DbSupplierFieldNameName,
+            HelperGeneral.DbSupplierFieldNameAddress1,
+            HelperGeneral.DbSupplierFieldNameAddress2,
+            HelperGeneral.DbSupplierFieldNameZip,
+            HelperGeneral.DbSupplierFieldNameCity,
+            HelperGeneral.DbSupplierFieldNameUrl,
+            HelperGeneral.DbSupplierFieldNameShippingCosts,
+            HelperGeneral.DbSupplierFieldNameMinShippingCosts,
+            HelperGeneral.DbSupplierFieldNameOrderCosts,
+            HelperGeneral.DbSupplierFieldNameCurrencyId,
+            HelperGeneral.DbSupplierFieldNameCountryId
+        };
+        return Header;
+    }
+    #endregion
+
     #region TimeEntry Headers
     public string[] GetTimeEntryHeaders()
     {
