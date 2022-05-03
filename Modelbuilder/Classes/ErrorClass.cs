@@ -12,14 +12,17 @@ namespace Modelbuilder;
 
 /// <summary>
 /// Used Error codes
-/// 1 => Product already exists
-/// 2 => Worktype already exists
-/// 3 => Brand already excists
-/// 4 => Unit Already Excists
-/// 5 => Category already excists
-/// 6 => Storage already exists
-/// 7 => Project already exists
-/// 8 => Contacttype already excists
+///  1 => Product already exists
+///  2 => Worktype already exists
+///  3 => Brand already excists
+///  4 => Unit Already Excists
+///  5 => Category already excists
+///  6 => Storage already exists
+///  7 => Project already exists
+///  8 => Contacttype already excists
+///  9 => Supplier already excists
+/// 10 => Currency already excists
+/// 11 => Country already excists
 /// 21 => Not existing ProductCode
 /// 22 => Not existing WorktypeName
 /// 23 => Not existing BrandId
@@ -28,6 +31,9 @@ namespace Modelbuilder;
 /// 26 => Not existing StorageId
 /// 27 => Not existing ProjectId
 /// 28 => Not existing Contacttype
+/// 29 => Not existing Supplier
+/// 30 => Not existing CurrencyId
+/// 31 => Not existing CountryId
 /// 40 => Endtime bigger or equal then Starttime
 /// 41 => Incorrect number of fields in CSV file
 /// </summary>
@@ -112,6 +118,24 @@ internal class ErrorClass
                 ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_ContacttypeAlreadyExists;
                 ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_ContacttypeAlreadyExists_Long;
                 break;
+            case 9:
+                // Supplier already excists
+                Label = Languages.Cultures.ImportSuppliers_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_SupplierAlreadyExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_SupplierAlreadyExists_Long;
+                break;
+            case 10:
+                // Currency already excists
+                Label = Languages.Cultures.ImportCurrencies_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CurrencyAlreadyExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CurrencyAlreadyExists_Long;
+                break;
+            case 11:
+                // Country already excists
+                Label = Languages.Cultures.ImportCountries_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CountryAlreadyExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CountryAlreadyExists_Long;
+                break;
             case 21:
                 // Not existing ProductCode
                 Label = Languages.Cultures.ImportProducts_Label;
@@ -159,6 +183,24 @@ internal class ErrorClass
                 Label = Languages.Cultures.ImportContactTypes_Label;
                 ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_ContacttypeNotExists;
                 ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_ContacttypeNotExists_Long;
+                break;
+            case 29:
+                // Not existing Supplier
+                Label = Languages.Cultures.ImportSuppliers_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_SupplierNotExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_SupplierNotExists_Long;
+                break;
+            case 30:
+                // Not existing Currency
+                Label = Languages.Cultures.ImportCurrencies_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CurrencyNotExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CurrencyNotExists_Long;
+                break;
+            case 31:
+                // Not existing Country
+                Label = Languages.Cultures.ImportCountries_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CountryNotExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CountryNotExists_Long;
                 break;
         }
         return (Label, ErrorMessageShort, ErrorMessageLong);

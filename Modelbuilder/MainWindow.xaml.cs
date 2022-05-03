@@ -232,6 +232,14 @@ public partial class MainWindow : Window
     }
     #endregion
 
+    #region Call Import Suppliers
+    private void ShowImportSuppliersPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportSuppliers();
+    }
+    #endregion
+
+
     #region Call Import Contacts
     private void ShowImportContactTypesPage(object sender, RoutedEventArgs e)
     {

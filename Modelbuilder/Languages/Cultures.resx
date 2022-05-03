@@ -2758,4 +2758,76 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="ImportProjects.Label" xml:space="preserve">
     <value>Project</value>
   </data>
+  <data name="ImportSuppliers.SubTitle" xml:space="preserve">
+    <value>Importeer leveranciers vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportSuppliers.Title" xml:space="preserve">
+    <value>Importeer leveranciers</value>
+  </data>
+  <data name="ImportSuppliers.Label" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="ImportSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met leveranciers</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists" xml:space="preserve">
+    <value>Leverancier bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen leverancier bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists" xml:space="preserve">
+    <value>Valuta bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen valuta bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists" xml:space="preserve">
+    <value>Land bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen land bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists" xml:space="preserve">
+    <value>Incorrect Valuta Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CurrencyNotExists.Long" xml:space="preserve">
+    <value>Valuta Id komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists" xml:space="preserve">
+    <value>Incorrent Land Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CountryNotExists.Long" xml:space="preserve">
+    <value>Land Id komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists" xml:space="preserve">
+    <value>Incorrect Leverancier Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.SupplierNotExists.Long" xml:space="preserve">
+    <value>Leverancier Id komt niet voor in de tabel</value>
+  </data>
+  <data name="ImportCurrencies.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met valuta</value>
+  </data>
+  <data name="ImportCurrencies.Label" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="ImportCurrencies.SubTitle" xml:space="preserve">
+    <value>Importeer valutadata data vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportCurrencies.Title" xml:space="preserve">
+    <value>Importeer valuta</value>
+  </data>
+  <data name="ImportCountries.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met landen</value>
+  </data>
+  <data name="ImportCountries.Label" xml:space="preserve">
+    <value>Landen</value>
+  </data>
+  <data name="ImportCountries.SubTitle" xml:space="preserve">
+    <value>Importeer landendata data vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportCountries.Title" xml:space="preserve">
+    <value>Importeer landen</value>
+  </data>
 </root>
