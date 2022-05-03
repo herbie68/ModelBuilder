@@ -2632,4 +2632,130 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="Import.Messagebox.Error.HeaderError" xml:space="preserve">
     <value>Onjuist aantal velden in CSV bestand</value>
   </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists" xml:space="preserve">
+    <value>Artikel bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen artikel bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists" xml:space="preserve">
+    <value>Werksoort bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen werksoort bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists" xml:space="preserve">
+    <value>Merk Bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen merk bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists" xml:space="preserve">
+    <value>Eeneid bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen eenheid bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists" xml:space="preserve">
+    <value>Categorie bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen categorie bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists" xml:space="preserve">
+    <value>Opslag bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen opslag bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists" xml:space="preserve">
+    <value>Project bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen project bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists" xml:space="preserve">
+    <value>Functie Bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen functie bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists" xml:space="preserve">
+    <value>Artikel bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProductNotExists.Long" xml:space="preserve">
+    <value>Artikelcode komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists" xml:space="preserve">
+    <value>Foutieve Werksoort naam</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeNotExists.Long" xml:space="preserve">
+    <value>Werksoortnaam komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists" xml:space="preserve">
+    <value>Merk bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.BrandNotExists.Long" xml:space="preserve">
+    <value>Merk komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists" xml:space="preserve">
+    <value>Eenheid bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.UnitNotExists.Long" xml:space="preserve">
+    <value>Eenheid komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists" xml:space="preserve">
+    <value>Categorie bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryNotExists.Long" xml:space="preserve">
+    <value>Categorie komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists" xml:space="preserve">
+    <value>Opslag bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.StorageNotExists.Long" xml:space="preserve">
+    <value>Opslag komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists" xml:space="preserve">
+    <value>Foutieve project code</value>
+  </data>
+  <data name="Import.Messagebox.Error.ProjectNotExists.Long" xml:space="preserve">
+    <value>Project code komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists" xml:space="preserve">
+    <value>Functie bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.ContacttypeNotExists.Long" xml:space="preserve">
+    <value>Functie Id komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError" xml:space="preserve">
+    <value>Eindtijd eerder of gelijk dan de starttijd</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Long" xml:space="preserve">
+    <value>Er is een onbekende fout opgetreden</value>
+  </data>
+  <data name="Import.Messagebox.Error.StartEndTimeError.Long" xml:space="preserve">
+    <value>Eindtijd eerder of gelijk dan de starttijd</value>
+  </data>
+  <data name="Import.Messagebox.Error.HeaderError.Long" xml:space="preserve">
+    <value>Onjuist aantal velden in CSV bestand</value>
+  </data>
+  <data name="Import.Messagebox.Error.Default.Label" xml:space="preserve">
+    <value>Onbekend</value>
+  </data>
+  <data name="ImportWorktypes.Label" xml:space="preserve">
+    <value>Werksoort</value>
+  </data>
+  <data name="ImportCategories.Label" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="ImportStorages.Label" xml:space="preserve">
+    <value>Opslag</value>
+  </data>
+  <data name="ImportProjects.Label" xml:space="preserve">
+    <value>Project</value>
+  </data>
 </root>

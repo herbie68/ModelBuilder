@@ -7,6 +7,8 @@ public partial class ImportProducts : Page
 {
     private HelperGeneral _helperGeneral;
     private HelperClass _helper;
+    private ErrorClass _error;
+
     public ImportProducts()
     {
         InitializeComponent();
@@ -62,14 +64,14 @@ public partial class ImportProducts : Page
         var error = 0;
         var errorCount = 0;
         var ImportFailed = 0;
+        var ErrorCause = "";
 
         List<(int, int, string)> errorList = new(); // First element => Line number, Second element => Error code, Third element Line string
 
         _helper = new HelperClass();
-        string[] Columns = _helper.GetProductHeaders();
+        _error = new ErrorClass();
 
-        /// Error codes
-        /// 1 => Item already exists
+        string[] Columns = _helper.GetProductHeaders();
 
         foreach (string line in lines)
         {
@@ -104,10 +106,56 @@ public partial class ImportProducts : Page
                     string[] lineField = line.Split(";");
 
                     // Check if there is a record with the discription
-                    var ExistingProducts = _helperGeneral.CheckForRecords(HelperGeneral.DbProductTable, new string[1, 3]
-                    {   { HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, line }    });
+                    //var ExistingProducts = _helperGeneral.CheckForRecords(HelperGeneral.DbProductTable, new string[1, 3]
+                    //{   { HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, line }    });
 
-                    if (ExistingProducts == 0)
+                    #region Check input on errors
+                    /// Error codes
+                    /// 1 => Product already exists
+                    /// 2 => Worktype already exists
+                    /// 3 => Brand already excists
+                    /// 4 => Unit Already Excists
+                    /// 5 => Category already excists
+                    /// 6 => Storage already exists
+                    /// 7 => Project already exists
+                    /// 8 => Contacttype already excists
+                    /// 21 => Not existing ProductCode
+                    /// 22 => Not existing WorktypeName
+                    /// 23 => Not existing BrandId
+                    /// 24 => Not existing UnitId
+                    /// 25 => Not existing Category
+                    /// 26 => Not existing StorageId
+                    /// 27 => Not existing ProjectId
+                    /// 28 => Not existing Contacttype
+                    /// 40 => Endtime bigger or equal then Starttime
+                    /// 41 => Incorrect number of fields in CSV file
+                    /// 
+
+                    // Product must be not existing Check on ProductCode and ProductName
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbProductTable, new string[1, 3]
+                    {   { HelperGeneral.DbProductTableFieldNameCode, HelperGeneral.DbProductTableFieldTypeCode, lineField[Col[0]].ToString() }    }) != 0) { error = 1; ErrorCause = lineField[Col[0]].ToString(); }
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbProductTable, new string[1, 3]
+                    {   { HelperGeneral.DbProductTableFieldNameName, HelperGeneral.DbProductTableFieldTypeName, lineField[Col[1]].ToString() }    }) != 0) { error = 1; ErrorCause = lineField[Col[1]].ToString(); }
+
+                    // BrandId must be existing
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbBrandTable, new string[1, 3]
+                    {   { HelperGeneral.DbBrandTableFieldNameId, HelperGeneral.DbBrandTableFieldTypeId, lineField[Col[8]].ToString() }    }) == 0) { error = 23; ErrorCause = lineField[Col[8]].ToString(); }
+
+                    // UnitId must be existing
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbUnitTable, new string[1, 3]
+                    {   { HelperGeneral.DbUnitTableFieldNameUnitId, HelperGeneral.DbUnitTableFieldTypeUnitId, lineField[Col[7]].ToString() }    }) == 0) { error = 24; ErrorCause = lineField[Col[7]].ToString(); }
+
+                    // CategoryId must be existing
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbCategoryTable, new string[1, 3]
+                    {   { HelperGeneral.DbCategoryTableFieldNameId, HelperGeneral.DbCategoryTableFieldTypeId, lineField[Col[9]].ToString() }    }) == 0) { error = 25; ErrorCause = lineField[Col[9]].ToString(); }
+
+                    // StorageId must be existing
+                    if (_helperGeneral.CheckForRecords(HelperGeneral.DbStorageTable, new string[1, 3]
+                    {   { HelperGeneral.DbStorageTableFieldNameId, HelperGeneral.DbStorageTableFieldTypeId, lineField[Col[10]].ToString() }    }) == 0) { error = 26; ErrorCause = lineField[Col[10]].ToString(); }
+
+                    #endregion
+                    // 
+                    if (error == 0)
                     {
                         _helperGeneral.InsertInTable(HelperGeneral.DbProductTable, new string[11, 3]
                         {
@@ -126,9 +174,10 @@ public partial class ImportProducts : Page
                     }
                     else
                     {
-                        error = 1;
+                        //error = 1;
                         errorCount++;
-                        errorList.Add((l, 1, Languages.Cultures.ImportProducts_Label + ": " + line.ToString() + " - " + Languages.Cultures.ImportProducts_Messagebox_Error_AlreadyExists));
+                        var Error = _error.GetErrorMessages(error);
+                        errorList.Add((l, error, Error.Label + ": " + ErrorCause + " - " + Error.ErrorMessageShort));
                     }
                 }
             }
@@ -153,17 +202,13 @@ public partial class ImportProducts : Page
 
                 for (int i = 0; i < errorList.Count(); i++)
                 {
-                    switch (errorList[i].Item2)
-                    {
-                        case 1:
-                            errorMessage += Languages.Cultures.ImportProducts_Messagebox_Error_ExistingUnit;
-                            break;
-                        default:
-                            errorMessage += Languages.Cultures.Import_Messagebox_Error_Unknown;
-                            break;
-                    }
+                    var Error = _error.GetErrorMessages(errorList[i].Item2);
+
+                    errorMessage += Error.ErrorMessageShort;
+
                     errorMessage += " " + Languages.Cultures.Import_Messagebox_Error_Inline + " " + errorList[i].Item1 + System.Environment.NewLine + "  >> " + errorList[i].Item3 + System.Environment.NewLine;
                 }
+
                 MessageBox.Show(errorMessage, Languages.Cultures.Import_Messagebox_Error_Message, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
