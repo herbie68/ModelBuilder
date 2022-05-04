@@ -1231,6 +1231,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV bestand voorbereiden.
+        /// </summary>
+        public static string Import_GenerateCSV_Button_Label {
+            get {
+                return ResourceManager.GetString("Import.GenerateCSV.Button.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creëer een (leeg) CSV bestand met alleen de noodzakelijke header voor import.
+        /// </summary>
+        public static string Import_GenerateCSV_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("Import.GenerateCSV.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geen bestand geselecteerd.
         /// </summary>
         public static string Import_Import_Button_Filename {
@@ -2059,7 +2077,7 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importeer artikeldata data vanuit een CSV bestand.
+        ///   Looks up a localized string similar to Importeer artikeldata vanuit een CSV bestand.
         /// </summary>
         public static string ImportProducts_SubTitle {
             get {
@@ -2073,6 +2091,42 @@ namespace Modelbuilder.Languages {
         public static string ImportProducts_Title {
             get {
                 return ResourceManager.GetString("ImportProducts.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met Artikelen per leveranciers.
+        /// </summary>
+        public static string ImportProductSuppliers_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportProductSuppliers.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikel per leverancier.
+        /// </summary>
+        public static string ImportProductSuppliers_Label {
+            get {
+                return ResourceManager.GetString("ImportProductSuppliers.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer Producten per leverancier vanuit een CSV bestand. Het CSV bestand bevat de kolom Code (verkorte naam artikel) in plaats van Artikel Id om het artikel te kunnen vinden.
+        /// </summary>
+        public static string ImportProductSuppliers_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportProductSuppliers.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artikelen bij leveranciers.
+        /// </summary>
+        public static string ImportProductSuppliers_Title {
+            get {
+                return ResourceManager.GetString("ImportProductSuppliers.Title", resourceCulture);
             }
         }
         

@@ -2615,7 +2615,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
     <value>Importeer artikelen</value>
   </data>
   <data name="ImportProducts.SubTitle" xml:space="preserve">
-    <value>Importeer artikeldata data vanuit een CSV bestand</value>
+    <value>Importeer artikeldata vanuit een CSV bestand</value>
   </data>
   <data name="ImportProducts.Messagebox.Error.ExistingUnit" xml:space="preserve">
     <value>Ingelezen artikel bestaat al in de tabel</value>
@@ -2829,5 +2829,23 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   </data>
   <data name="ImportCountries.Title" xml:space="preserve">
     <value>Importeer landen</value>
+  </data>
+  <data name="ImportProductSuppliers.Label" xml:space="preserve">
+    <value>Artikel per leverancier</value>
+  </data>
+  <data name="ImportProductSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met Artikelen per leveranciers</value>
+  </data>
+  <data name="ImportProductSuppliers.SubTitle" xml:space="preserve">
+    <value>Importeer Producten per leverancier vanuit een CSV bestand. Het CSV bestand bevat de kolom Code (verkorte naam artikel) in plaats van Artikel Id om het artikel te kunnen vinden</value>
+  </data>
+  <data name="ImportProductSuppliers.Title" xml:space="preserve">
+    <value>Artikelen bij leveranciers</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Label" xml:space="preserve">
+    <value>CSV bestand voorbereiden</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Tooltip" xml:space="preserve">
+    <value>Creëer een (leeg) CSV bestand met alleen de noodzakelijke header voor import</value>
   </data>
 </root>

@@ -173,6 +173,9 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Product_Export_Header}"
                                         ImageSource=".\Resources\metadataProductsExport.png" />
                         <RibbonSeparator />
+                        <RibbonMenuItem Click="ShowImportProductsSupplierPage"
+                                        Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Import_Header}"
+                                        ImageSource=".\Resources\metadataProductsImport.png" />
                         <RibbonMenuItem Click="ShowExportProductsSupplierPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_ProductSupplier_Export_Header}"
                                         ImageSource=".\Resources\metadataProductsExport.png" />
@@ -292,7 +295,7 @@
             </RibbonTab>
 
             <RibbonTab x:Name="ConfigTab"
-                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Config_Header}">
+                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Config_Header}" Margin="0,-8,0,8">
                 <RibbonButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Config_Button_Label}"
                               LargeImageSource=".\Resources\options.png" />
             </RibbonTab>

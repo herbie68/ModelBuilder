@@ -117,6 +117,8 @@ internal class HelperGeneral
     public static readonly string DbProductSupplierTableFieldTypeId = "int";
     public static readonly string DbProductSupplierTableFieldNameProductId = "Product_Id";
     public static readonly string DbProductSupplierTableFieldTypeProductId = "int";
+    public static readonly string DbProductSupplierTableFieldNameProductCode = "Code";          // Not in table only needed for searching the Product table on import
+    public static readonly string DbProductSupplierTableFieldTypeProductCode = "string";        // Not in table only needed for searching the Product table on import
     public static readonly string DbProductSupplierTableFieldNameSupplierId = "Supplier_Id";
     public static readonly string DbProductSupplierTableFieldTypeSupplierId = "int";
     public static readonly string DbProductSupplierTableFieldNameCurrencyId = "Currency_Id";
@@ -397,7 +399,6 @@ internal class HelperGeneral
     public static readonly string DbOrderTableFieldNameOrderMemo = "Memo";
     public static readonly string DbOrderTableFieldTypeOrderMemo = "longtext";
 
-
     public static readonly string DbOrderLineTable = "supplyorderline";
     public static readonly string DbOrderLineView = "view_supplyorderline";
     public static readonly string DbOpenOrderLineView = "view_supplyopenorderline";
@@ -427,7 +428,6 @@ internal class HelperGeneral
     public static readonly string DbOrderLineFieldTypeClosed = "int";
     public static readonly string DbOrderLineFieldNameClosedDate = "ClosedDate";
     public static readonly string DbOrderLineFieldTypeClosedDate = "date";
-
 
     public static readonly string DbOpenOrderLineFieldNameSupplyOrderId = "Supplyorder_Id";
     public static readonly string DbOpenOrderLineFieldTypeSupplyOrderId = "int";
@@ -1470,7 +1470,6 @@ internal class HelperGeneral
         String[] _tempDate = WorkingDate.Split("-");
         var _tempWorkingDate = _tempDate[2] + "-" + ("0" + _tempDate[1]).Substring(("0" + _tempDate[1]).Length - 2, 2) + "-" + ("0" + _tempDate[0]).Substring(("0" + _tempDate[0]).Length - 2, 2);
 
-
         dbConnection.SqlSelectionString = "HOUR(StartTime) * 60 + MINUTE(StartTime) AS StartTime, HOUR(EndTime) * 60 + MINUTE(EndTime) AS EndTime";
         dbConnection.SqlOrderByString = "StartTime";
         dbConnection.SqlWhereString = "WorkDate=\"" + _tempWorkingDate + "\"";
@@ -2045,7 +2044,6 @@ internal class HelperGeneral
         }
         return row;
     }
-
 
     public static T GetVisualChild<T>(Visual parent) where T : Visual
     {

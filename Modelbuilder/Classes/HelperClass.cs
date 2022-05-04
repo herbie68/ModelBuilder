@@ -14,12 +14,16 @@ internal class HelperClass
     {
         // No action needed here (yet)
     }
+
+    #region Units class
     public class Units
     {
         public int UnitId { get; set; }
         public string UnitName { get; set; }
     }
+#endregion
 
+    #region Add zeros to a timestring
     public string AddZeros(string TempString, int TotalLength)
     {
         var _temp = new string('0', TotalLength);
@@ -27,7 +31,9 @@ internal class HelperClass
 
         return NewString;
     }
+#endregion
 
+    #region Return given minutes in hh:mm format 
     public string HourMinute(int CalcMinutes)
     {
         StringBuilder DurationString = new("");
@@ -68,7 +74,9 @@ internal class HelperClass
         return DurationString.ToString().Trim();
 
     }
+#endregion
 
+    #region Calculate time duration in years, mont, weeks, days, hours, minutes on given time in minutes
     public string TimeDuration(int CalcMinutes)
     {
         StringBuilder DurationString = new("");
@@ -161,7 +169,9 @@ internal class HelperClass
 
         return DurationString.ToString().Trim();
     }
-
+#endregion
+    
+    #region Convert date to long date format
     public string ConvertToLongDate(int Day, int Month, int Year, string DisplayWeekday = "long", string DisplayMonth = "long")
     {
         var _result = "";
@@ -318,14 +328,16 @@ internal class HelperClass
 
         return _result;
     }
+#endregion
 
+    #region Export data to CSV file
     public void ExportToCsv(DataTable _dt, string FileName, string[] Columns, string Header)
     {
         int _column = 0;
         StreamWriter sw = new(FileName, false);
 
         // Check if a Header is wanted in the CSV File
-        if (Header.ToLower() != "Header")
+        if (Header.ToLower() != "header")
         {
             for (int i = 0; i < _dt.Columns.Count; i++)
             {
@@ -387,6 +399,32 @@ internal class HelperClass
         }
         sw.Close();
     }
+    #endregion
+
+    #region Write header to empty CSV file
+    public void PrepareCsv(string FileName)
+    {
+        var Columns = GetProductSupplierHeaders();
+        int _column = 0;
+        StreamWriter sw = new(FileName, false);
+
+        for (int i = 0; i < Columns.Length; i++)
+        {
+            _column++;
+            sw.Write(Columns[i]);
+            // Check if the Column is the last column that has to be written, if not we need a ;
+            if (_column < Columns.Length)
+            {
+                if (i < Columns.Length - 1)
+                {
+                    sw.Write(";");
+                }
+            }
+            sw.Write(sw.NewLine);
+        }
+        sw.Close();
+    }
+    #endregion
 
     #region Headers for Import/Export
     #region Brand Headers
@@ -421,6 +459,23 @@ internal class HelperClass
             HelperGeneral.DbProductTableFieldNameBrandId,
             HelperGeneral.DbProductTableFieldNameCategoryId,
             HelperGeneral.DbProductTableFieldNameStorageId 
+        };
+        return Header;
+    }
+    #endregion
+
+    #region ProductSupplier Headers
+    public string[] GetProductSupplierHeaders()
+    {
+        string[] Header = new string[] 
+        {
+            HelperGeneral.DbProductSupplierTableFieldNameProductCode,
+            HelperGeneral.DbProductSupplierTableFieldNameSupplierId,
+            HelperGeneral.DbProductSupplierTableFieldNameCurrencyId,
+            HelperGeneral.DbProductSupplierTableFieldNameProductNumber,
+            HelperGeneral.DbProductSupplierTableFieldNameProductName,
+            HelperGeneral.DbProductSupplierTableFieldNamePrice,
+            HelperGeneral.DbProductSupplierTableFieldNameProductUrl
         };
         return Header;
     }
@@ -472,6 +527,5 @@ internal class HelperClass
         return Header;
     }
     #endregion
-
     #endregion
 }
