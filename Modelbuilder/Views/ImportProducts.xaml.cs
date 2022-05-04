@@ -171,6 +171,16 @@ public partial class ImportProducts : Page
                         { HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId,lineField[Col[9]].ToString()},
                         { HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, lineField[Col[10]].ToString()}
                         });
+
+                        // Get the created Product Id
+                        var ProductId = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
+
+                        // Add the new Product allso to the stock table
+                        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
+                        {   
+                            { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, ProductId },
+                            { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "0" } 
+                        });
                     }
                     else
                     {
