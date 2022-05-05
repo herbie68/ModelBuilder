@@ -1,47 +1,14 @@
-﻿<Page x:Class="Modelbuilder.ImportProductSuppliers"
+﻿<Page x:Class="Modelbuilder.ImportCurrencies"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Modelbuilder"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:p="clr-namespace:Modelbuilder.Languages"
-      Title="ImportProductSuppliers"
+      Title="ImportCurrencies"
       d:DesignHeight="800"
       d:DesignWidth="1000"
       mc:Ignorable="d">
-    <Page.Resources>
-        <Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2"
-                                   SnapsToDevicePixels="true"
-                                   Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                                   StrokeDashArray="1 2"
-                                   StrokeThickness="1" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <SolidColorBrush x:Key="Button.Static.Background"
-                         Color="#FFDDDDDD" />
-        <SolidColorBrush x:Key="Button.Static.Border"
-                         Color="#FF707070" />
-        <SolidColorBrush x:Key="Button.MouseOver.Background"
-                         Color="#FFBEE6FD" />
-        <SolidColorBrush x:Key="Button.MouseOver.Border"
-                         Color="#FF3C7FB1" />
-        <SolidColorBrush x:Key="Button.Pressed.Background"
-                         Color="#FFC4E5F6" />
-        <SolidColorBrush x:Key="Button.Pressed.Border"
-                         Color="#FF2C628B" />
-        <SolidColorBrush x:Key="Button.Disabled.Background"
-                         Color="#FFF4F4F4" />
-        <SolidColorBrush x:Key="Button.Disabled.Border"
-                         Color="#FFADB2B5" />
-        <SolidColorBrush x:Key="Button.Disabled.Foreground"
-                         Color="#FF838383" />
-    </Page.Resources>
 
     <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"
             Style="{DynamicResource MainBorder}">
@@ -55,10 +22,8 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               Grid.ColumnSpan="2"
-                               VerticalAlignment="Top"
                                Style="{DynamicResource Title}"
-                               Text="{x:Static p:Cultures.ImportProductSuppliers_Title}" />
+                               Text="{x:Static p:Cultures.ImportCurrencies_Title}" />
                     <Button Grid.Column="1"
                             HorizontalAlignment="Right"
                             Click="PrepareEmptyCSV"
@@ -70,8 +35,7 @@
                 <Path Style="{DynamicResource TitleLine}" />
                 <TextBlock Grid.Column="0"
                            Style="{DynamicResource SubTitle}"
-                           Text="{x:Static p:Cultures.ImportProductSuppliers_SubTitle}"
-                           TextWrapping="Wrap" />
+                           Text="{x:Static p:Cultures.ImportCurrencies_SubTitle}" />
                 <!--  endregion Title of the page  -->
 
                 <Grid Margin="0,25">
@@ -94,7 +58,7 @@
                             VerticalAlignment="Top"
                             Click="ClickedSelectFileButton"
                             Content="{x:Static p:Cultures.Import_Import_Button_Label}"
-                            ToolTip="{x:Static p:Cultures.ImportProductSuppliers_Import_Button_Tooltip}" />
+                            ToolTip="{x:Static p:Cultures.ImportCurrencies_Import_Button_Tooltip}" />
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
                                VerticalAlignment="Center"

@@ -153,6 +153,13 @@ public partial class MainWindow : Window
         Main.Content = new ExportCurrencies();
     }
     #endregion
+
+    #region Call Import Currencies
+    private void ShowImportCurrenciesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportCurrencies();
+    }
+    #endregion
     #endregion
 
     #region Categories

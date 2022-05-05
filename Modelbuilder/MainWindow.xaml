@@ -248,7 +248,7 @@
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Edit_Label}"
                                         ImageSource=".\Resources\metadataCurency.png" />
                         <RibbonSeparator />
-                        <RibbonMenuItem Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Import_Header}"
+                        <RibbonMenuItem Click="ShowImportCurrenciesPage" Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Import_Header}"
                                         ImageSource=".\Resources\metadataCurencyImport.png" />
                         <RibbonMenuItem Click="ShowExportCurrenciesPage"
                                         Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Metadata_Metadata_Currency_Export_Header}"
