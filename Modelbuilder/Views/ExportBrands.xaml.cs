@@ -8,19 +8,19 @@ public partial class ExportBrands : Page
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
     private int _dbRowCount;
-    private HelperClass helper;
+    private HelperClass _helper;
 
     public ExportBrands()
     {
         InitializeComponent();
-        InitializeHelper();
+        Initializehelper();
         GetData();
     }
 
     #region Get the Data
     private void GetData()
     {
-        InitializeHelper();
+        Initializehelper();
 
         // Get data from database
         _dt = _helperGeneral.GetData(HelperGeneral.DbBrandTable);
@@ -30,8 +30,8 @@ public partial class ExportBrands : Page
     }
     #endregion
 
-    #region InitializeHelper (connect to database)
-    private void InitializeHelper()
+    #region Initializehelper (connect to database)
+    private void Initializehelper()
     {
         if (_helperGeneral == null)
         {
@@ -53,16 +53,12 @@ public partial class ExportBrands : Page
         var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
         System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
 
-        var FileName = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() +
-            DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() +
-            " - " + Languages.Cultures.ExportBrands_FileName + ".csv";
-
-        helper = new HelperClass();
-        string[] Columns = helper.GetBrandHeaders();
-        // string[] Columns = new string[] { HelperGeneral.DbBrandTableFieldNameName };
+        _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportProductsSupplier_FileName + ".csv";
+        string[] Columns = _helper.GetBrandHeaders();
 
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
-        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
+        _helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 
         dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;

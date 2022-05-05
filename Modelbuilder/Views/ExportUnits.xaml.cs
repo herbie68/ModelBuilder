@@ -55,11 +55,8 @@ public partial class ExportUnits : Page
         var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
         System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
 
-        var FileName = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() +
-            DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() +
-            " - " + Languages.Cultures.ExportUnits_FileName + ".csv";
-
         _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportUnits_FileName + ".csv";
         string[] Columns = _helper.GetUnitHeaders();
      
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;

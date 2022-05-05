@@ -2848,4 +2848,7 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="Import.GenerateCSV.Button.Tooltip" xml:space="preserve">
     <value>Create an (empty) CSV file with only the necessary header for import</value>
   </data>
+  <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
+    <value>CSV File prepared in:</value>
+  </data>
 </root>

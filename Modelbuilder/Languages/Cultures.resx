@@ -2848,4 +2848,7 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="Import.GenerateCSV.Button.Tooltip" xml:space="preserve">
     <value>Creëer een (leeg) CSV bestand met alleen de noodzakelijke header voor import</value>
   </data>
+  <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
+    <value>CSV Bestand voorbereid in:</value>
+  </data>
 </root>

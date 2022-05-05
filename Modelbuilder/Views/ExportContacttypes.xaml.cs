@@ -54,11 +54,8 @@ public partial class ExportContacttypes : Page
         var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
         System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
 
-        var FileName = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() +
-            DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() +
-            " - " + Languages.Cultures.ExportContactTypes_FileName + ".csv";
-
         _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportContactTypes_FileName + ".csv";
         string[] Columns = _helper.GetContactTypeHeaders();
 
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;

@@ -1,7 +1,7 @@
 ﻿namespace Modelbuilder
 {
     /// <summary>
-    /// The helper category.
+    /// The _helper category.
     /// </summary>
     internal class HelperCategory
     {

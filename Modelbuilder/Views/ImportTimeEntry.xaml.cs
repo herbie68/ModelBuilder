@@ -181,4 +181,18 @@ public partial class ImportTimeEntry : Page
             MessageBox.Show(errorMessage, Languages.Cultures.Import_Messagebox_Error_Message, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+    private void PrepareEmptyCSV(object sender, RoutedEventArgs e)
+    {
+        var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+        System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
+
+        _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportTimeEntries_FileName + ".csv";
+        string[] Columns = _helper.GetTimeEntryHeaders();
+
+        _helper.PrepareCsv(folderDialog.SelectedPath + @"\" + FileName, Columns);
+
+        dispStatusLine.Text = Languages.Cultures.Import_Statusline_Status_Completed_PreparedCSV + " " + folderDialog.SelectedPath + @"\" + FileName;
+    }
 }

@@ -401,10 +401,30 @@ internal class HelperClass
     }
     #endregion
 
-    #region Write header to empty CSV file
-    public void PrepareCsv(string FileName)
+    #region Get Timestamp as Filename prefix
+    public string GetFilePrefix()
     {
-        var Columns = GetProductSupplierHeaders();
+        var _tempMonth = "0" + DateTime.Now.Month.ToString();
+        var _tempDay = "0" + DateTime.Now.Day.ToString();
+        var _tempHour = "0" + DateTime.Now.Hour.ToString();
+        var _tempMinute = "0" + DateTime.Now.Minute.ToString();
+        var _tempSecond = "0" + DateTime.Now.Second.ToString();
+
+        var Prefix = DateTime.Now.Year.ToString() +
+            _tempMonth.Substring(_tempMonth.Length - 2, 2) +
+            _tempDay.Substring(_tempDay.Length - 2, 2) +
+            _tempHour.Substring(_tempHour.Length - 2, 2) +
+            _tempMinute.Substring(_tempMinute.Length - 2, 2) +
+            _tempSecond.Substring(_tempSecond.Length - 2, 2) +
+            " - ";
+
+        return Prefix;
+    }
+    #endregion
+
+    #region Write header to empty CSV file
+    public void PrepareCsv(string FileName, string[] Columns)
+    {
         int _column = 0;
         StreamWriter sw = new(FileName, false);
 
@@ -420,8 +440,8 @@ internal class HelperClass
                     sw.Write(";");
                 }
             }
-            sw.Write(sw.NewLine);
         }
+        sw.Write(sw.NewLine);
         sw.Close();
     }
     #endregion
@@ -435,10 +455,52 @@ internal class HelperClass
     }
     #endregion
 
+    #region Category Headers
+    public string[] GetCategoryHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbCategoryTableFieldNameId, 
+            HelperGeneral.DbCategoryTableFieldNameParentId, 
+            HelperGeneral.DbCategoryTableFieldNameName, 
+            HelperGeneral.DbCategoryTableFieldNameFullpath
+        };
+        return Header;
+    }
+    #endregion
+
     #region Contacttype Headers
     public string[] GetContactTypeHeaders()
     {
         string[] Header = new string[] { HelperGeneral.DbContactTypeTableFieldNameName };
+        return Header;
+    }
+    #endregion
+
+    #region Country Headers
+    public string[] GetCountryHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbCountryTableFieldNameCode, 
+            HelperGeneral.DbCountryTableFieldNameName, 
+            HelperGeneral.DbCountryTableFieldNameDefCurrencySymbol, 
+            HelperGeneral.DbCountryTableFieldNameDefCurrencyId
+        };
+        return Header;
+    }
+    #endregion
+
+    #region Currency Headers
+    public string[] GetCurrencyHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbCurrencyTableFieldNameCode, 
+            HelperGeneral.DbCurrencyTableFieldNameName, 
+            HelperGeneral.DbCurrencyTableFieldNameSymbol, 
+            HelperGeneral.DbCurrencyTableFieldNameRate
+        };
         return Header;
     }
     #endregion
@@ -481,10 +543,39 @@ internal class HelperClass
     }
     #endregion
 
+    #region Project Headers
+    public string[] GetProjectHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbProjectTableFieldNameCode, 
+            HelperGeneral.DbProjectTableFieldNameName, 
+            HelperGeneral.DbProjectTableFieldNameStartDate, 
+            HelperGeneral.DbProjectTableFieldNameEndDate, 
+            HelperGeneral.DbProjectTableFieldNameExpectedTime, 
+            HelperGeneral.DbProjectTableFieldNameClosed
+        };
+        return Header;
+    }
+    #endregion
+
+    #region Storage Headers
+    public string[] GetStorageHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbStorageTableFieldNameId, 
+            HelperGeneral.DbStorageTableFieldNameParentId, 
+            HelperGeneral.DbStorageTableFieldNameName, 
+            HelperGeneral.DbStorageTableFieldNameFullpath
+        };
+        return Header;
+    }
+    #endregion
+
     #region Supplier Headers
     public string[] GetSupplierHeaders()
     {
-        // 0 = Code, 1 = Name, 2 = Address1, 3 = Address2, 4 = Zip, 5 = City, 6 = URL, 7 = Shipping Costs, 8 = Min Shipping Costs, 9= Order Costs, 10 = CurrencyId, 11 = CountryId 
         string[] Header = new string[]
         {
             HelperGeneral.DbSupplierFieldNameCode,
@@ -499,6 +590,21 @@ internal class HelperClass
             HelperGeneral.DbSupplierFieldNameOrderCosts,
             HelperGeneral.DbSupplierFieldNameCurrencyId,
             HelperGeneral.DbSupplierFieldNameCountryId
+        };
+        return Header;
+    }
+    #endregion
+
+    #region SupplierContact Headers
+    public string[] GetSupplierContactHeaders()
+    {
+        string[] Header = new string[]
+        {
+            HelperGeneral.DbSupplierContactFieldNameSupplierId, 
+            HelperGeneral.DbSupplierContactFieldNameTypeId, 
+            HelperGeneral.DbSupplierContactFieldNameName, 
+            HelperGeneral.DbSupplierContactFieldNameMail, 
+            HelperGeneral.DbSupplierContactFieldNamePhone
         };
         return Header;
     }
@@ -524,6 +630,20 @@ internal class HelperClass
     public string[] GetUnitHeaders()
     {
         string[] Header = new string[] { HelperGeneral.DbUnitTableFieldNameUnitName };
+        return Header;
+    }
+    #endregion
+
+    #region Worktype Headers
+    public string[] GetWorktypeHeaders()
+    {
+        string[] Header = new string[] 
+        { 
+            HelperGeneral.DbWorktypeTableFieldNameId, 
+            HelperGeneral.DbWorktypeTableFieldNameParentId, 
+            HelperGeneral.DbWorktypeTableFieldNameName, 
+            HelperGeneral.DbWorktypeTableFieldNameFullpath 
+        };
         return Header;
     }
     #endregion

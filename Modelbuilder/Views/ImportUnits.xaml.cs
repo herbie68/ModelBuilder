@@ -125,4 +125,18 @@ public partial class ImportUnits : Page
         }
         #endregion
     }
+
+    private void PrepareEmptyCSV(object sender, RoutedEventArgs e)
+    {
+        var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+        System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
+
+        _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportUnits_FileName + ".csv";
+        string[] Columns = _helper.GetUnitHeaders();
+
+        _helper.PrepareCsv(folderDialog.SelectedPath + @"\" + FileName, Columns);
+
+        dispStatusLine.Text = Languages.Cultures.Import_Statusline_Status_Completed_PreparedCSV + " " + folderDialog.SelectedPath + @"\" + FileName;
+    }
 }

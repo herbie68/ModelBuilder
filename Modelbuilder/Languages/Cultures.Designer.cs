@@ -1807,6 +1807,15 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV Bestand voorbereid in:.
+        /// </summary>
+        public static string Import_Statusline_Status_Completed_PreparedCSV {
+            get {
+                return ResourceManager.GetString("Import.Statusline.Status.Completed.PreparedCSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to regel verwerkt.
         /// </summary>
         public static string Import_Statusline_Status_Completed_Single {

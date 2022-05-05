@@ -41,9 +41,9 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0"
+                    <TextBlock Grid.Column="0"
                                Style="{DynamicResource Title}"
-                               Text="{x:Static p:Cultures.ImportProductSuppliers_Title}" />
+                               Text="{x:Static p:Cultures.ImportProductSuppliers_Title}" Grid.ColumnSpan="2" VerticalAlignment="Top" />
                     <Button Click="PrepareEmptyCSV" Style="{DynamicResource ButtonRoundedWhite}" Grid.Column="1" Content="{x:Static p:Cultures.Import_GenerateCSV_Button_Label}" ToolTip="{x:Static p:Cultures.Import_GenerateCSV_Button_Tooltip}" HorizontalAlignment="Right"/>
                 </Grid>
 

@@ -16,7 +16,7 @@ internal class HelperTimeManagement
 
     #region Get Data from TableView or Table
     /// <summary>
-    /// This is a speific helper to retrieve a lit only used in TimeManagement
+    /// This is a speific _helper to retrieve a lit only used in TimeManagement
     /// </summary>
     /// <param name="workinghoursList"></param>
     /// <param name="Table"></param>
