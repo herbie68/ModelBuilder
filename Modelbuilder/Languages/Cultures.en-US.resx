@@ -2884,4 +2884,13 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
     <value>Not existing  Worktype Parent Id</value>
   </data>
+  <data name="ImportWorktypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the Worktype CSV file to be imported</value>
+  </data>
+  <data name="ImportWorktypes.SubTitle" xml:space="preserve">
+    <value>Select the Worktype CSV file to import</value>
+  </data>
+  <data name="ImportWorktypes.Title" xml:space="preserve">
+    <value>Import Worktypes</value>
+  </data>
 </root>

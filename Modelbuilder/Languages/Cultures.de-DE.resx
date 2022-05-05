@@ -2885,4 +2885,13 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
     <value>Übergeordnete ID des Arbeitstyps nicht vorhanden</value>
   </data>
+  <data name="ImportWorktypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei mit Arebeitsarten</value>
+  </data>
+  <data name="ImportWorktypes.SubTitle" xml:space="preserve">
+    <value>Wählen Sie die zu importierende CSV-Datei für die arbeitsarten aus</value>
+  </data>
+  <data name="ImportWorktypes.Title" xml:space="preserve">
+    <value>Imprtiere Arbeitsarten</value>
+  </data>
 </root>
