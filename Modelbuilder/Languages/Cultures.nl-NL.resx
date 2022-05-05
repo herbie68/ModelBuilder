@@ -2884,4 +2884,13 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
     <value>Werksoort hoofd Id komt niet voor in de tabel</value>
   </data>
+  <data name="ImportWorktypes.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand met werksoorten</value>
+  </data>
+  <data name="ImportWorktypes.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportWorktypes.Title" xml:space="preserve">
+    <value>Importeer werksoorten</value>
+  </data>
 </root>

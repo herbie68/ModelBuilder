@@ -2536,11 +2536,38 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand met werksoorten.
+        /// </summary>
+        public static string ImportWorktypes_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportWorktypes.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Werksoort.
         /// </summary>
         public static string ImportWorktypes_Label {
             get {
                 return ResourceManager.GetString("ImportWorktypes.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportWorktypes_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportWorktypes.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer werksoorten.
+        /// </summary>
+        public static string ImportWorktypes_Title {
+            get {
+                return ResourceManager.GetString("ImportWorktypes.Title", resourceCulture);
             }
         }
         
