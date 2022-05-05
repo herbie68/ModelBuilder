@@ -1348,6 +1348,42 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorie hoofd Id bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryParentIdAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryParentIdAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen hoofd Id van de categorie bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryParentIdAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryParentIdAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie hoofd Id bestaat niet.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryParentIdNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryParentIdNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie Hoofd Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_CategoryParentIdNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.CategoryParentIdNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Functie Bestaat al.
         /// </summary>
         public static string Import_Messagebox_Error_ContacttypeAlreadyExists {
@@ -1762,6 +1798,42 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Werksoort hoofd Id bestaat al.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeParentIdAlreadyExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeParentIdAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingelezen werksoort Id bestaat al in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeParentIdAlreadyExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeParentIdAlreadyExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foutief Werksoort hoofd Id.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeParentIdNotExists {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeParentIdNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Werksoort hoofd Id komt niet voor in de tabel.
+        /// </summary>
+        public static string Import_Messagebox_Error_WorktypeParentIdNotExists_Long {
+            get {
+                return ResourceManager.GetString("Import.Messagebox.Error.WorktypeParentIdNotExists.Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to regels verwerkt.
         /// </summary>
         public static string Import_Statusline_Status_Completed {
@@ -1915,11 +1987,38 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selecteer het te importeren CSV bestand.
+        /// </summary>
+        public static string ImportCategories_Import_Button_Tooltip {
+            get {
+                return ResourceManager.GetString("ImportCategories.Import.Button.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categorie.
         /// </summary>
         public static string ImportCategories_Label {
             get {
                 return ResourceManager.GetString("ImportCategories.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer data vanuit een CSV bestand.
+        /// </summary>
+        public static string ImportCategories_SubTitle {
+            get {
+                return ResourceManager.GetString("ImportCategories.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importeer categorieën.
+        /// </summary>
+        public static string ImportCategories_Title {
+            get {
+                return ResourceManager.GetString("ImportCategories.Title", resourceCulture);
             }
         }
         
