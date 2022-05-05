@@ -2851,4 +2851,37 @@ Om een nieuwe tijdsregistratie toe te kunnen voegen moet eerst een Datum en proj
   <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
     <value>CSV Bestand voorbereid in:</value>
   </data>
+  <data name="ImportCategories.Title" xml:space="preserve">
+    <value>Importeer categorieën</value>
+  </data>
+  <data name="ImportCategories.SubTitle" xml:space="preserve">
+    <value>Importeer data vanuit een CSV bestand</value>
+  </data>
+  <data name="ImportCategories.Import.Button.Tooltip" xml:space="preserve">
+    <value>Selecteer het te importeren CSV bestand</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists" xml:space="preserve">
+    <value>Categorie hoofd Id bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen hoofd Id van de categorie bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists" xml:space="preserve">
+    <value>Categorie hoofd Id bestaat niet</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists.Long" xml:space="preserve">
+    <value>Categorie Hoofd Id komt niet voor in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists" xml:space="preserve">
+    <value>Werksoort hoofd Id bestaat al</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Ingelezen werksoort Id bestaat al in de tabel</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists" xml:space="preserve">
+    <value>Foutief Werksoort hoofd Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
+    <value>Werksoort hoofd Id komt niet voor in de tabel</value>
+  </data>
 </root>

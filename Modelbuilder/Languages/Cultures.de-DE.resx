@@ -2852,4 +2852,37 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
     <value>CSV Datei vorbereited in:</value>
   </data>
+  <data name="ImportCategories.Title" xml:space="preserve">
+    <value>Importiere Kategorien</value>
+  </data>
+  <data name="ImportCategories.SubTitle" xml:space="preserve">
+    <value>Importieren Sie Daten aus einer CSV-Datei</value>
+  </data>
+  <data name="ImportCategories.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists" xml:space="preserve">
+    <value>Übergeordnete Kategorie-ID existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Die übergeordnete ID der eingelesenen Kategorie ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists" xml:space="preserve">
+    <value>Nicht vorhandene übergeordnete Kategorie-ID</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists.Long" xml:space="preserve">
+    <value>Die ID der übergeordneten Kategorie existiert nicht in der Tabelle</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists" xml:space="preserve">
+    <value>Die übergeordnete ID des Arbeitstyps existiert bereits</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Die übergeordnete ID des gelesenen Arbeitstyps ist bereits in der Tabelle vorhanden</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists" xml:space="preserve">
+    <value>Falsche Arbeitstyp-Eltern-ID</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
+    <value>Übergeordnete ID des Arbeitstyps nicht vorhanden</value>
+  </data>
 </root>

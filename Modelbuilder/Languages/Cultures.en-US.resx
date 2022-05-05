@@ -2851,4 +2851,37 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
     <value>CSV File prepared in:</value>
   </data>
+  <data name="ImportCategories.Title" xml:space="preserve">
+    <value>Import Categories</value>
+  </data>
+  <data name="ImportCategories.SubTitle" xml:space="preserve">
+    <value>Import data from a CSV file</value>
+  </data>
+  <data name="ImportCategories.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file to import</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists" xml:space="preserve">
+    <value>Category Parent Id already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Read-in category parent Id already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists" xml:space="preserve">
+    <value>Not existing Category Parent Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.CategoryParentIdNotExists.Long" xml:space="preserve">
+    <value>Category parent Id does not exist in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists" xml:space="preserve">
+    <value>Worktype parent Id already excists</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdAlreadyExists.Long" xml:space="preserve">
+    <value>Read worktype parent Id already exists in the table</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists" xml:space="preserve">
+    <value>Wrong Worktype Parent Id</value>
+  </data>
+  <data name="Import.Messagebox.Error.WorktypeParentIdNotExists.Long" xml:space="preserve">
+    <value>Not existing  Worktype Parent Id</value>
+  </data>
 </root>

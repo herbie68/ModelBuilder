@@ -23,6 +23,8 @@ namespace Modelbuilder;
 ///  9 => Supplier already excists
 /// 10 => Currency already excists
 /// 11 => Country already excists
+/// 12 => Category Parent Id already excists
+/// 13 => Worktype Parent Id already excists
 /// 21 => Not existing ProductCode
 /// 22 => Not existing WorktypeName
 /// 23 => Not existing BrandId
@@ -34,6 +36,8 @@ namespace Modelbuilder;
 /// 29 => Not existing Supplier
 /// 30 => Not existing CurrencyId
 /// 31 => Not existing CountryId
+/// 32 => Not existing Category ParentId
+/// 33 => Not existing Worktype ParentId
 /// 40 => Endtime bigger or equal then Starttime
 /// 41 => Incorrect number of fields in CSV file
 /// </summary>
@@ -136,6 +140,18 @@ internal class ErrorClass
                 ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CountryAlreadyExists;
                 ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CountryAlreadyExists_Long;
                 break;
+            case 12:
+                // Category Parent Id already excists
+                Label = Languages.Cultures.ImportCategories_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CategoryParentIdAlreadyExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CategoryParentIdAlreadyExists_Long;
+                break;
+            case 13:
+                // Worktype Parent Id already excists
+                Label = Languages.Cultures.ImportWorktypes_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_WorktypeParentIdAlreadyExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_WorktypeParentIdAlreadyExists_Long;
+                break;
             case 21:
                 // Not existing ProductCode
                 Label = Languages.Cultures.ImportProducts_Label;
@@ -201,6 +217,18 @@ internal class ErrorClass
                 Label = Languages.Cultures.ImportCountries_Label;
                 ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CountryNotExists;
                 ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CountryNotExists_Long;
+                break;
+            case 32:
+                // Not existing Category Oarent Id
+                Label = Languages.Cultures.ImportCategories_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_CategoryParentIdNotExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_CategoryParentIdNotExists_Long;
+                break;
+            case 33:
+                // Not existing Worktype Parent Id
+                Label = Languages.Cultures.ImportWorktypes_Label;
+                ErrorMessageShort = Languages.Cultures.Import_Messagebox_Error_WorktypeParentIdNotExists;
+                ErrorMessageLong = Languages.Cultures.Import_Messagebox_Error_WorktypeParentIdNotExists_Long;
                 break;
         }
         return (Label, ErrorMessageShort, ErrorMessageLong);
