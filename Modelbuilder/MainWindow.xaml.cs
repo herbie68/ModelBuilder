@@ -208,6 +208,13 @@ public partial class MainWindow : Window
         Main.Content = new ExportWorkTypes();
     }
     #endregion
+
+    #region Call Import Worktypes
+    private void ShowImportWorktypesPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ExportWorkTypes();
+    }
+    #endregion
     #endregion
 
     #region Supplier
