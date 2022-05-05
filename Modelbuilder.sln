@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{623F8CC9-EC71-40B6-AAE7-6ADD225658E1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		Resources.Designer.t4 = Resources.Designer.t4
 	EndProjectSection
 EndProject
 Global

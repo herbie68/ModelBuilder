@@ -2831,4 +2831,25 @@ Selektiere den Datum un Projekt bevor enei Zeitsregistrations zeile hingugefugt 
   <data name="ImportCountries.Title" xml:space="preserve">
     <value>Länder importieren</value>
   </data>
+  <data name="ImportProductSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Wählen Sie die CSV-Datei mit den zu importierenden Produkte pro Lieferanten aus</value>
+  </data>
+  <data name="ImportProductSuppliers.Label" xml:space="preserve">
+    <value>Produkte pro Lieferanten</value>
+  </data>
+  <data name="ImportProductSuppliers.SubTitle" xml:space="preserve">
+    <value>Importieren Sie Artikeldaten pr Lieferanten aus einer CSV-Datei</value>
+  </data>
+  <data name="ImportProductSuppliers.Title" xml:space="preserve">
+    <value>Artikel beim Lieferanten</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Label" xml:space="preserve">
+    <value>CSV datei vorbereiten</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Tooltip" xml:space="preserve">
+    <value>Erstelle eine (leere) CSV-Datei mit nur dem erforderlichen Header für den Import</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
+    <value>CSV Datei vorbereited in:</value>
+  </data>
 </root>

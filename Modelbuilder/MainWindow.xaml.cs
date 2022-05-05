@@ -239,7 +239,6 @@ public partial class MainWindow : Window
     }
     #endregion
 
-
     #region Call Import Contacts
     private void ShowImportContactTypesPage(object sender, RoutedEventArgs e)
     {
@@ -263,11 +262,17 @@ public partial class MainWindow : Window
     }
     #endregion
 
-
     #region Call Export Products
     private void ShowExportProductsPage(object sender, RoutedEventArgs e)
     {
         Main.Content = new ExportProducts();
+    }
+    #endregion
+
+    #region Call Import Products per Supplier
+    private void ShowImportProductsSupplierPage(object sender, RoutedEventArgs e)
+    {
+        Main.Content = new ImportProductSuppliers();
     }
     #endregion
 

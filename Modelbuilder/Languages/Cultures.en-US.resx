@@ -2830,4 +2830,25 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ImportCountries.Title" xml:space="preserve">
     <value>Import countries</value>
   </data>
+  <data name="ImportProductSuppliers.Import.Button.Tooltip" xml:space="preserve">
+    <value>Select the CSV file with products per suppliers to import</value>
+  </data>
+  <data name="ImportProductSuppliers.Label" xml:space="preserve">
+    <value>Products per supplier</value>
+  </data>
+  <data name="ImportProductSuppliers.SubTitle" xml:space="preserve">
+    <value>Import products per supplier from a CSV file</value>
+  </data>
+  <data name="ImportProductSuppliers.Title" xml:space="preserve">
+    <value>Products at suppliers</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Label" xml:space="preserve">
+    <value>Prepare CSV File</value>
+  </data>
+  <data name="Import.GenerateCSV.Button.Tooltip" xml:space="preserve">
+    <value>Create an (empty) CSV file with only the necessary header for import</value>
+  </data>
+  <data name="Import.Statusline.Status.Completed.PreparedCSV" xml:space="preserve">
+    <value>CSV File prepared in:</value>
+  </data>
 </root>

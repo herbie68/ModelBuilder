@@ -109,7 +109,7 @@ namespace Modelbuilder
 
         #region InitializeHelper (connect to database)
         /// <summary>
-        /// Initializes the helper.
+        /// Initializes the _helper.
         /// </summary>
         private void InitializeHelper()
         {

@@ -3,7 +3,7 @@ public partial class ExportWorkTypes : Page
 {
     private HelperGeneral _helperGeneral;
     private DataTable _dt;
-    private HelperClass helper;
+    private HelperClass _helper;
 
     public ExportWorkTypes()
     {
@@ -44,25 +44,14 @@ public partial class ExportWorkTypes : Page
     {
         var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
         System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
-        string _tempMonth = "0" + DateTime.Now.Month.ToString();
-        string _tempDay = "0" + DateTime.Now.Day.ToString();
-        string _tempHour = "0" + DateTime.Now.Hour.ToString();
-        string _tempMinute = "0" + DateTime.Now.Minute.ToString();
-        string _tempSecond = "0" + DateTime.Now.Second.ToString();
 
-        var FileName = DateTime.Now.Year.ToString() + 
-            _tempMonth.Substring(_tempMonth.Length - 2, 2) + 
-            _tempDay.Substring(_tempDay.Length - 2, 2) +
-            _tempHour.Substring(_tempHour.Length - 2, 2) + 
-            _tempMinute.Substring(_tempMinute.Length - 2, 2) + 
-            _tempSecond.Substring(_tempSecond.Length - 2, 2) +
-            " - " + Languages.Cultures.ExportWorktypes_FileName + ".csv";
-
-        string[] Columns = new string[] { HelperGeneral.DbWorktypeTableFieldNameId, HelperGeneral.DbWorktypeTableFieldNameParentId, HelperGeneral.DbWorktypeTableFieldNameName, HelperGeneral.DbWorktypeTableFieldNameFullpath};
-     
+        _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportWorktypes_FileName + ".csv";
+        string[] Columns = _helper.GetWorktypeHeaders();
+    
         dispFolderName.Text = folderDialog.SelectedPath + @"\" + FileName;
-        helper = new HelperClass();
-        helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
+
+        _helper.ExportToCsv(_dt, folderDialog.SelectedPath + @"\" + FileName, Columns, "Header");
         btnBrowseFolder.IsEnabled = false;
 
         dispStatusLine.Text = _dt.Rows.Count + " " + Languages.Cultures.Export_Statusline_Status_Completed;

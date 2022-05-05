@@ -171,6 +171,16 @@ public partial class ImportProducts : Page
                         { HelperGeneral.DbProductTableFieldNameCategoryId, HelperGeneral.DbProductTableFieldTypeCategoryId,lineField[Col[9]].ToString()},
                         { HelperGeneral.DbProductTableFieldNameStorageId, HelperGeneral.DbProductTableFieldTypeStorageId, lineField[Col[10]].ToString()}
                         });
+
+                        // Get the created Product Id
+                        var ProductId = _helperGeneral.GetLatestIdFromTable(HelperGeneral.DbProductTable);
+
+                        // Add the new Product allso to the stock table
+                        _helperGeneral.InsertInTable(HelperGeneral.DbStockTable, new string[2, 3]
+                        {   
+                            { HelperGeneral.DbStockTableFieldNameProductId, HelperGeneral.DbStockTableFieldTypeProductId, ProductId },
+                            { HelperGeneral.DbStockTableFieldNameAmount, HelperGeneral.DbStockTableFieldTypeAmount, "0" } 
+                        });
                     }
                     else
                     {
@@ -217,5 +227,19 @@ public partial class ImportProducts : Page
             MessageBox.Show(Languages.Cultures.Import_Messagebox_Error_HeaderError, Languages.Cultures.Import_Messagebox_Error_HeaderError, MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
+    }
+
+    private void PrepareEmptyCSV(object sender, RoutedEventArgs e)
+    {
+        var folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+        System.Windows.Forms.DialogResult result = folderDialog.ShowDialog();
+
+        _helper = new HelperClass();
+        var FileName = _helper.GetFilePrefix() + Languages.Cultures.ExportProducts_FileName + ".csv";
+        string[] Columns = _helper.GetProductHeaders();
+
+        _helper.PrepareCsv(folderDialog.SelectedPath + @"\" + FileName, Columns);
+
+        dispStatusLine.Text = Languages.Cultures.Import_Statusline_Status_Completed_PreparedCSV + " " + folderDialog.SelectedPath + @"\" + FileName;
     }
 }

@@ -24,6 +24,13 @@
                     <TextBlock Grid.Column="0"
                                Style="{DynamicResource Title}"
                                Text="{x:Static p:Cultures.ImportUnits_Title}" />
+                    <Button Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Click="PrepareEmptyCSV"
+                            Content="{x:Static p:Cultures.Import_GenerateCSV_Button_Label}"
+                            Style="{DynamicResource ButtonRoundedWhite}"
+                            ToolTip="{x:Static p:Cultures.Import_GenerateCSV_Button_Tooltip}" />
+
                 </Grid>
 
                 <Path Style="{DynamicResource TitleLine}" />
