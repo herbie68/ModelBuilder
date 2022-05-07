@@ -81,7 +81,7 @@
                                     Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeEdit_Header}"
                                     ImageSource=".\Resources\timeEdit.png" />
                     <RibbonMenuItem x:Name="TimeReport"
-                                    Click="ShowTimeReportPage"
+                                    Click="ShowNewTimeReportPage"
                                     Header="{x:Static p:Cultures.main_Ribbon_Tab_Manage_Time_TimeReport_Header}"
                                     ImageSource=".\Resources\timeReport.png" />
                 </RibbonGroup>
@@ -295,7 +295,7 @@
             </RibbonTab>
 
             <RibbonTab x:Name="ConfigTab"
-                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Config_Header}" Margin="0,-8,0,8">
+                       Header="{x:Static p:Cultures.main_Ribbon_Tab_Config_Header}">
                 <RibbonButton Label="{x:Static p:Cultures.main_Ribbon_Tab_Config_Button_Label}"
                               LargeImageSource=".\Resources\options.png" />
             </RibbonTab>

@@ -1,0 +1,49 @@
+﻿<Page x:Class="Modelbuilder.ReportTime"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Modelbuilder"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="ReportTime">
+    <!--#region Page resources-->
+    <Page.Resources>
+        <DataTemplate x:Key="ProjectComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ProjectName}" />
+                <TextBlock Text="{Binding Path=ProjectId}" Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <!--#endregion Page resources-->
+
+    <Grid>
+        <Button x:Name="Test"/>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="cboxProject" SelectedItem="0" Width="350"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          ItemTemplate="{StaticResource ProjectComboTemplate}"
+                          Style="{DynamicResource DefaultComboBox}"
+                          TextSearch.TextPath="ProjectName"/>
+                <ComboBox x:Name="cboxGroupBy" SelectedItem="0"/>
+                <ComboBox x:Name="cboxGroupBy2" SelectedItem="0"/>
+            </StackPanel>
+            <ListView x:Name="TimeReportList" ItemsSource="{Binding TimeReport}">
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Project"/>
+                        <GridViewColumn Header="Year"/>
+                        <GridViewColumn Header="Month"/>
+                        <GridViewColumn Header="Worktype"/>
+                        <GridViewColumn Header="Time"/>
+                        
+                    </GridView.Columns>
+                </GridView>
+            </ListView>
+        </StackPanel>
+        
+    </Grid>
+</Page>

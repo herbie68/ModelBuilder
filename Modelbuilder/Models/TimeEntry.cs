@@ -28,7 +28,6 @@ public class TimeEntry
     }
 }
 
-
 public class TimeEntries : ObservableCollection<TimeEntry>
 {
     public TimeEntries(string ProjectName)

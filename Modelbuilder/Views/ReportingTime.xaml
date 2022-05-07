@@ -1,16 +1,21 @@
 ﻿<Page x:Class="Modelbuilder.ReportingTime"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Modelbuilder"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="clr-namespace:Modelbuilder.Languages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Modelbuilder"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="ReportingTime"
-      d:DesignHeight="800" d:DesignWidth="1000"
+      d:DesignHeight="800"
+      d:DesignWidth="1000"
       mc:Ignorable="d">
     <!--#region Page resources-->
     <Page.Resources>
         <DataTemplate x:Key="ProjectComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=ProjectName}" />
-                <TextBlock Text="{Binding Path=ProjectId}" Visibility="Hidden" />
+                <TextBlock Text="{Binding Path=ProjectId}"
+                           Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
 
@@ -20,12 +25,15 @@
 
     <Grid>
         <StackPanel>
-            <StackPanel Height="30" Orientation="Horizontal">
-                <TextBlock Margin="5" VerticalAlignment="Center"
+            <StackPanel Height="30"
+                        Orientation="Horizontal">
+                <TextBlock Margin="5"
+                           VerticalAlignment="Center"
                            Text="{x:Static p:Cultures.TimeReport_SelectProject}" />
                 <ComboBox x:Name="cboxProject"
                           Width="350"
-                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
                           VerticalContentAlignment="Center"
                           ItemTemplate="{StaticResource ProjectComboTemplate}"
                           SelectionChanged="cboxProject_SelectionChanged"
@@ -35,25 +43,30 @@
             <DataGrid Height="575"
                       Padding="4"
                       d:ItemsSource="{d:SampleData}"
-                      AutoGenerateColumns="False" CanUserAddRows="False"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
                       ItemsSource="{Binding TimeView}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding Year}"
                                         Header="{x:Static p:Cultures.TimeReport_Header_Year}"
-                                        IsReadOnly="True" Visibility="Hidden" />
+                                        IsReadOnly="True"
+                                        Visibility="Hidden" />
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding YearDay}"
                                         Header="{x:Static p:Cultures.TimeReport_Header_YearDay}"
-                                        IsReadOnly="True" Visibility="Hidden" />
+                                        IsReadOnly="True"
+                                        Visibility="Hidden" />
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding YearMonth}"
                                         Header="{x:Static p:Cultures.TimeReport_Header_YearMonth}"
-                                        IsReadOnly="True" Visibility="Hidden" />
+                                        IsReadOnly="True"
+                                        Visibility="Hidden" />
                     <DataGridTextColumn Width="70"
                                         Binding="{Binding WorkedMinutes}"
                                         Header="{x:Static p:Cultures.TimeReport_Header_WorkedMinutes}"
-                                        IsReadOnly="True" Visibility="Hidden" />
+                                        IsReadOnly="True"
+                                        Visibility="Hidden" />
                     <DataGridTextColumn Width="300"
                                         Binding="{Binding ProjectName}"
                                         Header="{x:Static p:Cultures.Timemanagement_Datagrid_Header_ProjectName}"
@@ -106,19 +119,24 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander Background="#FFA0C5F9" BorderBrush="#FF002255"
-                                                      BorderThickness="0,0,0,1" IsExpanded="False">
+                                            <Expander Background="#FFA0C5F9"
+                                                      BorderBrush="#FF002255"
+                                                      BorderThickness="0,0,0,1"
+                                                      IsExpanded="False">
                                                 <Expander.Header>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Width="200"
                                                                    VerticalAlignment="Center"
                                                                    FontWeight="Bold"
                                                                    Text="{Binding Name}" />
-                                                        <TextBlock VerticalAlignment="Center" Text="Aantal dagdelen: " />
-                                                        <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
+                                                        <TextBlock VerticalAlignment="Center"
+                                                                   Text="Aantal dagdelen: " />
+                                                        <TextBlock FontWeight="Bold"
+                                                                   Text="{Binding ItemCount}" />
                                                         <TextBlock Width="200"
                                                                    VerticalAlignment="Center"
-                                                                   Text="Totaal gewerkte uren: " TextAlignment="Right" />
+                                                                   Text="Totaal gewerkte uren: "
+                                                                   TextAlignment="Right" />
                                                         <TextBlock VerticalAlignment="Center"
                                                                    FontWeight="Bold"
                                                                    Text="{Binding Items, Converter={StaticResource groupsConverter}}" />
