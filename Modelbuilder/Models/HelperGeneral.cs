@@ -1945,6 +1945,15 @@ internal class HelperGeneral
         public int WorktypeParentId { get; set; }
     }
     #endregion
+
+    #region Create object for all possible groupings for Time Entry report for dropdown
+    public class GroupByTimeEntry
+    {
+        public string ColumnName { get; set; }
+        public string Description { get; set; }
+    }
+    #endregion
+
     #endregion Helper classes to for creating objects to populate dropdowns
     #endregion Create lists to populate dropdowns for order Page
 
@@ -2221,4 +2230,3 @@ internal class HelperGeneral
     #endregion
 
 }
-

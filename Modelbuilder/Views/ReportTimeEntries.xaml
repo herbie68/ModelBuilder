@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Modelbuilder"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:p="clr-namespace:Modelbuilder.Languages"
       Title="ReportTimeEntries"
       d:DesignHeight="450"
       d:DesignWidth="800"
@@ -16,28 +17,49 @@
                            Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
+        
+        <DataTemplate x:Key="GroupByComboTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Description}" />
+                <TextBlock Text="{Binding Path=ColumnName}"
+                           Visibility="Hidden" />
+            </StackPanel>
+        </DataTemplate>
+
+        <local:SumConverter x:Key="sumConverter" />
     </Page.Resources>
 
     <Grid>
         <StackPanel Orientation="Vertical">
-
-            <Canvas x:Name="GroupFields"
-                    Height="35"
-                    AllowDrop="True"
-                    Background="AntiqueWhite" MouseMove="StackPanel_MouseMove">
-                    <Button Name="btn_Button"
-                            Content="OK"/>
-            </Canvas>
-            
-            <TextBlock Text="Group" />
-            <Canvas x:Name="GroupBy"
-                    Height="35"
-                    AllowDrop="True" Drop="Canvas_Drop"
-                    Background="AntiqueWhite">
-            </Canvas>
-            
-            <StackPanel AllowDrop="True"
-                        Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Height="35" Background="Bisque">
+                <Button x:Name="grpWorktypeName"
+                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
+                        Content="{x:Static p:Cultures.TimeReport_Header_WorktypeName}"
+                        Style="{StaticResource ButtonRoundedWhite}"
+                        Visibility="Visible" Click="grpButton_Click"/>
+                <Button x:Name="grpYear"
+                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
+                        Content="{x:Static p:Cultures.TimeReport_Header_Year}"
+                        Style="{StaticResource ButtonRoundedWhite}"
+                        Visibility="Visible"  Click="grpButton_Click"/>
+                <Button x:Name="grpMonth"
+                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
+                        Content="{x:Static p:Cultures.TimeReport_Header_Month}"
+                        Style="{StaticResource ButtonRoundedWhite}"
+                        Visibility="Visible"  Click="grpButton_Click"/>
+                <Button x:Name="grpDay"
+                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
+                        Content="{x:Static p:Cultures.TimeReport_Header_Day}"
+                        Style="{StaticResource ButtonRoundedWhite}"
+                        Visibility="Visible"  Click="grpButton_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" Background="Beige">
+                <Button Name="C0" Grid.Column="0" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
+                <Button Name="C1" Grid.Column="1" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
+                <Button Name="C2" Grid.Column="2" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
+                <Button Name="C3" Grid.Column="3" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <ComboBox x:Name="cboxProject"
                           Width="350"
                           HorizontalAlignment="Center"
@@ -48,12 +70,13 @@
                           SelectionChanged="cboxProject_SelectionChanged"
                           Style="{DynamicResource DefaultComboBox}"
                           TextSearch.TextPath="ProjectName" />
-                <ComboBox x:Name="cboxGroupBy"
-                          SelectedItem="0" />
-                <ComboBox x:Name="cboxGroupBy2"
-                          SelectedItem="0" />
-            </StackPanel>
+                <TextBox x:Name="btnName0" Text=""/>
+                <TextBox x:Name="btnName1" Text=""/>
+                <TextBox x:Name="btnName2" Text=""/>
+                <TextBox x:Name="btnName3" Text=""/>
+                <TextBox x:Name="btnNumber" Text="-1"/>
 
+            </StackPanel>
             <ListView x:Name="TimeReportList"
                       Height="450">
                 <ListView.Resources>
@@ -92,6 +115,56 @@
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <DockPanel Background="LightBlue">
+                                <TextBlock FontSize="14"
+                                           FontWeight="Bold"
+                                           Text="{Binding Name, Converter={StaticResource sumConverter}}" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander BorderBrush="#FF002255"
+                                                      BorderThickness="0,0,0,1"
+                                                      IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Width="200"
+                                                                   VerticalAlignment="Center"
+                                                                   FontWeight="Bold"
+                                                                   Text="{Binding Name}" />
+                                                        <TextBlock VerticalAlignment="Center"
+                                                                   Text="Aantal dagdelen: " />
+                                                        <TextBlock FontWeight="Bold"
+                                                                   Text="{Binding ItemCount}" />
+                                                        <TextBlock Width="200"
+                                                                   VerticalAlignment="Center"
+                                                                   Text="Totaal gewerkte uren: "
+                                                                   TextAlignment="Right" />
+                                                        <TextBlock VerticalAlignment="Center"
+                                                                   FontWeight="Bold"
+                                                                   Text="{Binding Items, Converter={StaticResource sumConverter}}" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+
+                    </GroupStyle>
+                </ListView.GroupStyle>
             </ListView>
         </StackPanel>
     </Grid>
