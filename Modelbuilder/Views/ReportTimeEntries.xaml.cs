@@ -55,6 +55,7 @@ public partial class ReportTimeEntries : Page
         {
             cboxProject.SelectedItem = project;
             projectName = project.ProjectName.ToString();
+            if(projectName != "" && projectName !="Geen") { stackPanelGrouping.Visibility = Visibility.Visible; } else { stackPanelGrouping.Visibility = Visibility.Hidden; }
         }
 
         GetData();

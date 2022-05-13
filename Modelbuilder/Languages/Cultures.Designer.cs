@@ -8136,6 +8136,24 @@ namespace Modelbuilder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Groepeer op:.
+        /// </summary>
+        public static string TimeReport_Group_GroupBy {
+            get {
+                return ResourceManager.GetString("TimeReport.Group.GroupBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer groepering:.
+        /// </summary>
+        public static string TimeReport_Group_GroupOptions {
+            get {
+                return ResourceManager.GetString("TimeReport.Group.GroupOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dag.
         /// </summary>
         public static string TimeReport_Header_Day {
@@ -8228,9 +8246,36 @@ namespace Modelbuilder.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Selecteer project.
         /// </summary>
+        public static string TimeReport_Project_Tag {
+            get {
+                return ResourceManager.GetString("TimeReport.Project.Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecteer project.
+        /// </summary>
         public static string TimeReport_SelectProject {
             get {
                 return ResourceManager.GetString("TimeReport.SelectProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dit overzicht is te groeperen op detailniveau.
+        /// </summary>
+        public static string TimeReport_SubTitle {
+            get {
+                return ResourceManager.GetString("TimeReport.SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overzicht tijdregistratie.
+        /// </summary>
+        public static string TimeReport_Title {
+            get {
+                return ResourceManager.GetString("TimeReport.Title", resourceCulture);
             }
         }
         

@@ -2893,4 +2893,19 @@ To be able to enter a new time registration Select a date and project first</val
   <data name="ImportWorktypes.Title" xml:space="preserve">
     <value>Import Worktypes</value>
   </data>
+  <data name="TimeReport.Title" xml:space="preserve">
+    <value>Time registration overview</value>
+  </data>
+  <data name="TimeReport.SubTitle" xml:space="preserve">
+    <value>This overview can be grouped by detail level</value>
+  </data>
+  <data name="TimeReport.Group.GroupBy" xml:space="preserve">
+    <value>Group by:</value>
+  </data>
+  <data name="TimeReport.Group.GroupOptions" xml:space="preserve">
+    <value>Select grouping:</value>
+  </data>
+  <data name="TimeReport.Project.Tag" xml:space="preserve">
+    <value>Select Project</value>
+  </data>
 </root>

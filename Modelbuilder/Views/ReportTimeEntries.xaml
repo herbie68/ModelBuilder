@@ -17,7 +17,7 @@
                            Visibility="Hidden" />
             </StackPanel>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="GroupByComboTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Description}" />
@@ -29,143 +29,250 @@
         <local:SumConverter x:Key="sumConverter" />
     </Page.Resources>
 
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" Height="35" Background="Bisque">
-                <Button x:Name="grpWorktypeName"
-                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
-                        Content="{x:Static p:Cultures.TimeReport_Header_WorktypeName}"
-                        Style="{StaticResource ButtonRoundedWhite}"
-                        Visibility="Visible" Click="grpButton_Click"/>
-                <Button x:Name="grpYear"
-                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
-                        Content="{x:Static p:Cultures.TimeReport_Header_Year}"
-                        Style="{StaticResource ButtonRoundedWhite}"
-                        Visibility="Visible"  Click="grpButton_Click"/>
-                <Button x:Name="grpMonth"
-                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
-                        Content="{x:Static p:Cultures.TimeReport_Header_Month}"
-                        Style="{StaticResource ButtonRoundedWhite}"
-                        Visibility="Visible"  Click="grpButton_Click"/>
-                <Button x:Name="grpDay"
-                        Margin="3" FontStyle="Italic" FontWeight="Normal" BorderThickness="1"
-                        Content="{x:Static p:Cultures.TimeReport_Header_Day}"
-                        Style="{StaticResource ButtonRoundedWhite}"
-                        Visibility="Visible"  Click="grpButton_Click"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="40" Background="Beige">
-                <Button Name="C0" Grid.Column="0" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
-                <Button Name="C1" Grid.Column="1" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
-                <Button Name="C2" Grid.Column="2" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
-                <Button Name="C3" Grid.Column="3" Style="{StaticResource ButtonRoundedWhite}" Visibility="Collapsed" Content="" Click="ungrpButton_Click"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="cboxProject"
-                          Width="350"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          VerticalContentAlignment="Center"
-                          ItemTemplate="{StaticResource ProjectComboTemplate}"
-                          SelectedItem="0"
-                          SelectionChanged="cboxProject_SelectionChanged"
-                          Style="{DynamicResource DefaultComboBox}"
-                          TextSearch.TextPath="ProjectName" />
-                <TextBox x:Name="btnName0" Text=""/>
-                <TextBox x:Name="btnName1" Text=""/>
-                <TextBox x:Name="btnName2" Text=""/>
-                <TextBox x:Name="btnName3" Text=""/>
-                <TextBox x:Name="btnNumber" Text="-1"/>
+    <Border Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"
+            Style="{DynamicResource MainBorder}">
+        <StackPanel Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <!--  region Title of the page  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            </StackPanel>
-            <ListView x:Name="TimeReportList"
-                      Height="450">
-                <ListView.Resources>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                        <Setter Property="FontWeight" Value="Bold" />
-                    </Style>
-                </ListView.Resources>
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Width="300"
-                                            DisplayMemberBinding="{Binding ProjectName}"
-                                            Header="Project" />
-                            <GridViewColumn Width="250"
-                                            DisplayMemberBinding="{Binding WorktypeName}"
-                                            Header="Worktype" />
-                            <GridViewColumn Width="80"
-                                            DisplayMemberBinding="{Binding WorkDate}"
-                                            Header="Date" />
-                            <GridViewColumn Width="0"
-                                            DisplayMemberBinding="{Binding Year}"
-                                            Header="Year" />
-                            <GridViewColumn Width="0"
-                                            DisplayMemberBinding="{Binding Month}"
-                                            Header="Month" />
-                            <GridViewColumn Width="0"
-                                            DisplayMemberBinding="{Binding Day}"
-                                            Header="Day" />
-                            <GridViewColumn Width="70"
-                                            DisplayMemberBinding="{Binding WorkTime}"
-                                            Header="Time" />
-                            <GridViewColumn Width="0"
-                                            DisplayMemberBinding="{Binding WorkedMinutes}"
-                                            Header="Minutes" />
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <DockPanel Background="LightBlue">
-                                <TextBlock FontSize="14"
-                                           FontWeight="Bold"
-                                           Text="{Binding Name, Converter={StaticResource sumConverter}}" />
-                                </DockPanel>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
+                <TextBlock Grid.Column="0"
+                           Style="{DynamicResource Title}"
+                           Text="{x:Static p:Cultures.TimeReport_Title}" />
 
-                        <GroupStyle.ContainerStyle>
-                            <Style TargetType="{x:Type GroupItem}">
-                                <Setter Property="Margin" Value="0,0,0,5" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander BorderBrush="#FF002255"
-                                                      BorderThickness="0,0,0,1"
-                                                      IsExpanded="True">
-                                                <Expander.Header>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Width="200"
-                                                                   VerticalAlignment="Center"
-                                                                   FontWeight="Bold"
-                                                                   Text="{Binding Name}" />
-                                                        <TextBlock VerticalAlignment="Center"
-                                                                   Text="Aantal dagdelen: " />
-                                                        <TextBlock FontWeight="Bold"
-                                                                   Text="{Binding ItemCount}" />
-                                                        <TextBlock Width="200"
-                                                                   VerticalAlignment="Center"
-                                                                   Text="Totaal gewerkte uren: "
-                                                                   TextAlignment="Right" />
-                                                        <TextBlock VerticalAlignment="Center"
-                                                                   FontWeight="Bold"
-                                                                   Text="{Binding Items, Converter={StaticResource sumConverter}}" />
-                                                    </StackPanel>
-                                                </Expander.Header>
-                                                <ItemsPresenter />
-                                            </Expander>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
+                <!--#region Hiddenfields-->
+                <!--  Don't remove next lines, are necesarry to store selected values for context menu actions  -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+                    <TextBox x:Name="btnName0"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="" />
+                    <TextBox x:Name="btnName1"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="" />
+                    <TextBox x:Name="btnName2"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="" />
+                    <TextBox x:Name="btnName3"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="" />
+                    <TextBox x:Name="btnNumber"
+                             Style="{DynamicResource HiddenTextBox}"
+                             Text="-1" />
+                </StackPanel>
+                <!--  End of "Do not remove" part  -->
+                <!--#endregion Hiddenfields-->
+            </Grid>
+
+            <Path Style="{DynamicResource TitleLine}" />
+            <TextBlock Grid.Column="0"
+                       Style="{DynamicResource SubTitle}"
+                       Text="{x:Static p:Cultures.TimeReport_SubTitle}" />
+            <!--#endregion-->
+
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <ComboBox x:Name="cboxProject"
+                                  Width="350"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  AllowDrop="False"
+                                  ItemTemplate="{StaticResource ProjectComboTemplate}"
+                                  SelectedIndex="0"
+                                  SelectedItem="0"
+                                  SelectionChanged="cboxProject_SelectionChanged"
+                                  Style="{DynamicResource DefaultComboBox}"
+                                  TextSearch.TextPath="ProjectName" />
+                        <TextBlock VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   Text="{x:Static p:Cultures.TimeReport_SelectProject}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Hidden" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=cboxProject, Path=SelectedItem}"
+                                                     Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+
+                    <StackPanel x:Name="stackPanelGrouping" Height="130" Visibility="Hidden"
+                                Orientation="Vertical">
+                        <TextBlock Margin="0,10,0,0"
+                                   Style="{StaticResource TextBlockBold}"
+                                   Text="{x:Static p:Cultures.TimeReport_Group_GroupOptions}" />
+                        <StackPanel Height="35"
+                                    Background="Bisque"
+                                    Orientation="Horizontal">
+                            <Button x:Name="grpWorktypeName"
+                                    Margin="3"
+                                    BorderThickness="1"
+                                    Click="grpButton_Click"
+                                    Content="{x:Static p:Cultures.TimeReport_Header_WorktypeName}"
+                                    FontStyle="Italic"
+                                    FontWeight="Normal"
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Visible" />
+                            <Button x:Name="grpYear"
+                                    Margin="3"
+                                    BorderThickness="1"
+                                    Click="grpButton_Click"
+                                    Content="{x:Static p:Cultures.TimeReport_Header_Year}"
+                                    FontStyle="Italic"
+                                    FontWeight="Normal"
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Visible" />
+                            <Button x:Name="grpMonth"
+                                    Margin="3"
+                                    BorderThickness="1"
+                                    Click="grpButton_Click"
+                                    Content="{x:Static p:Cultures.TimeReport_Header_Month}"
+                                    FontStyle="Italic"
+                                    FontWeight="Normal"
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Visible" />
+                            <Button x:Name="grpDay"
+                                    Margin="3"
+                                    BorderThickness="1"
+                                    Click="grpButton_Click"
+                                    Content="{x:Static p:Cultures.TimeReport_Header_Day}"
+                                    FontStyle="Italic"
+                                    FontWeight="Normal"
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Visible" />
+                        </StackPanel>
+
+                        <TextBlock Margin="0,10,0,0"
+                                   Style="{StaticResource TextBlockBold}"
+                                   Text="{x:Static p:Cultures.TimeReport_Group_GroupBy}" />
+                        <StackPanel Height="35"
+                                    Background="Beige"
+                                    Orientation="Horizontal">
+                            <Button Name="C0"
+                                    Grid.Column="0"
+                                    Click="ungrpButton_Click"
+                                    Content=""
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Collapsed" />
+                            <Button Name="C1"
+                                    Grid.Column="1"
+                                    Click="ungrpButton_Click"
+                                    Content=""
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Collapsed" />
+                            <Button Name="C2"
+                                    Grid.Column="2"
+                                    Click="ungrpButton_Click"
+                                    Content=""
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Collapsed" />
+                            <Button Name="C3"
+                                    Grid.Column="3"
+                                    Click="ungrpButton_Click"
+                                    Content=""
+                                    Style="{StaticResource ButtonRoundedWhite}"
+                                    Visibility="Collapsed" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <ListView x:Name="TimeReportList"
+                              Height="445">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="FontWeight" Value="Bold" />
                             </Style>
-                        </GroupStyle.ContainerStyle>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="300"
+                                                    DisplayMemberBinding="{Binding ProjectName}"
+                                                    Header="Project" />
+                                    <GridViewColumn Width="250"
+                                                    DisplayMemberBinding="{Binding WorktypeName}"
+                                                    Header="Worktype" />
+                                    <GridViewColumn Width="80"
+                                                    DisplayMemberBinding="{Binding WorkDate}"
+                                                    Header="Date" />
+                                    <GridViewColumn Width="0"
+                                                    DisplayMemberBinding="{Binding Year}"
+                                                    Header="Year" />
+                                    <GridViewColumn Width="0"
+                                                    DisplayMemberBinding="{Binding Month}"
+                                                    Header="Month" />
+                                    <GridViewColumn Width="0"
+                                                    DisplayMemberBinding="{Binding Day}"
+                                                    Header="Day" />
+                                    <GridViewColumn Width="70"
+                                                    DisplayMemberBinding="{Binding WorkTime}"
+                                                    Header="Time" />
+                                    <GridViewColumn Width="0"
+                                                    DisplayMemberBinding="{Binding WorkedMinutes}"
+                                                    Header="Minutes" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Name, Converter={StaticResource sumConverter}}" Background="#d0ebff" Foreground="#1971c2" BorderBrush="#1971c2" BorderThickness="1"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
 
-                    </GroupStyle>
-                </ListView.GroupStyle>
-            </ListView>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Margin" Value="0,0,0,5" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander BorderBrush="#FF002255"
+                                                              BorderThickness="0,0,0,1"
+                                                              IsExpanded="True">
+                                                        <Expander.Header>
+                                                            <StackPanel Orientation="Horizontal" Background="#d0ebff" >
+                                                                <TextBlock Width="200"
+                                                                           VerticalAlignment="Center"
+                                                                           FontWeight="Bold"
+                                                                           Text="{Binding Name}" Background="#d0ebff" Foreground="#1971c2"/>
+                                                                <TextBlock VerticalAlignment="Center"
+                                                                           Text="Aantal dagdelen: "  Background="#d0ebff" Foreground="#1971c2"/>
+                                                                <TextBlock FontWeight="Bold"
+                                                                           Text="{Binding ItemCount}" />
+                                                                <TextBlock Width="200"
+                                                                           VerticalAlignment="Center"
+                                                                           Text="Totaal gewerkte uren: "
+                                                                           TextAlignment="Right" />
+                                                                <TextBlock VerticalAlignment="Center"
+                                                                           FontWeight="Bold"
+                                                                           Text="{Binding Items, Converter={StaticResource sumConverter}}" />
+                                                            </StackPanel>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter Margin="20,0,0,0"/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+            <ComboBox x:Name="comboBox"
+                      Width="120" />
         </StackPanel>
-    </Grid>
+    </Border>
+
 </Page>
